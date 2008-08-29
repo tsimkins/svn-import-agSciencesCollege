@@ -1,0 +1,243 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+
+
+body {
+	background: #0C3D90 url(&dtml-portal_url;/bodybg.gif) repeat-x;
+}
+
+#visual-portal-wrapper {
+	background: White;
+	margin: 0px auto;
+	padding-bottom: 6px;
+	max-width: 875px;
+	min-width: 785px;
+}
+
+#portal-searchbox {
+	margin: 4px;
+}
+
+#portal-header {
+	background: #FFFFFF url(&dtml-portal_url;/CASheader.gif) no-repeat left bottom;
+	height:80px;
+	margin:0;
+	padding:0;
+}
+
+#portal-top, #portal-columns, #portal-footer, .visualClear, #clear-space-before-footer {
+	margin: 0px 6px;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
+}
+
+
+#portal-breadcrumbs {
+	background-color:&dtml-breadcrumbBackgroundColor;;
+	color:#D5D5D5;
+	font-size: 0.81em;
+	font-weight: bold;
+	padding: 2px 3px;
+	border-bottom: 0px;
+}
+
+#portal-breadcrumbs a {
+	color: White;
+	
+}
+
+#portal-column-content {
+	margin-bottom: 0px;
+	padding-top: 0px;
+}
+
+.documentContent {
+	padding-top: 0px !important;
+}
+
+/* ------------ PORTLETS --------------*/
+
+#portal-column-one .visualPadding {
+	padding: 0px;
+}
+
+#portal-column-one .portlet, #portal-column-one .portletItem {
+	border:none;
+}
+
+#portal-column-one .portletItem {
+	padding:0px;
+}
+
+#portal-column-one .portletFooter {
+	display: none;
+}
+
+.portletNavigationTree .portletHeader {
+	display:none;
+}
+
+
+.portletNavigationTree .portletItem ul {
+	margin: 5px;
+}
+
+.portletNavigationTree .portletItem li {
+	border-bottom: 1px dashed #808080;
+	font-size: 1em;
+	margin: 5px;
+	padding-bottom: 5px;
+}
+
+
+.portletNavigationTree .portletItem li a{
+	font-size: 1.1em;
+}
+
+ul.navTreeLevel1 {
+	background-color: #EEE;
+	border: #DDD solid 1px;
+}
+
+.navTreeCurrentItem, a.navTreeItemInPath {
+	border-width:0px !important;
+	font-weight: bold;
+}
+
+ul.navTreeLevel1 .navTreeCurrentItem {
+	background-color: #EEE;	
+}
+
+.navTreeItem a, .navTreeItem a:hover, dd.portletItem .navTreeItem a, dd.portletItem .navTreeItem a:hover {
+	border-width: 0px;
+	background-color: #FFF;
+	color: #666;
+}
+
+ul.navTreeLevel1 .navTreeItem a, ul.navTreeLevel1 .navTreeItem a:hover, ul.navTreeLevel1 dd.portletItem .navTreeItem a, ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
+	background-color: #EEE; 
+	color: #666;
+}
+
+ul.navTreeLevel1 li.navTreeItem {
+	background: #EEE url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
+	padding: 0px 5px 0px 14px;
+}
+
+.portletNavigationTree .portletItem li li, .navTreeItem a {
+	border:none;
+}
+
+
+#portal-column-one .visualPadding {
+	background:transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+	padding-bottom: 250px;
+}
+
+#portal-column-one {
+	border-color: #808080;
+	border-style: solid;
+	border-width: 0 1px 0 0;
+	min-height: 375px;
+	padding: 2px 0 0px;
+	width: 177px;
+	float: left;
+
+}
+
+
+/* -------- MAIN NAV Portlet --------*/
+
+
+/*-------- FOOTER -------------------*/
+
+#portal-footer {
+	background-color: #09285E;
+	color: #528CA3;
+	border-width: 0px;
+}
+
+#portal-footer a {
+	color: #9CF;
+}
+
+/* Added By Tim 2008/07/30 */
+
+#breadcrumbs-you-are-here {
+	display: none;
+}
+
+.searchSection {
+	display: none;
+}
+
+#contact:hover {
+	background:#74B40F none repeat scroll 0 0;
+	color:#005B00;
+}
+
+#contact {
+	background: #005B00 none repeat scroll 0 0;
+	border: 0 1px 0 0 solid #808080;
+	color: #74B40F;
+	display: block;
+	font-size: 0.88em;
+	font-weight:bold;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+/*	float: left; */
+	width: 178px;
+}
+
+
+/* ADMINLINKS */
+
+#adminlinks {
+	background: #ff3900;
+	margin: 0 -11px 15px -9px;
+	padding: 0px;
+}
+
+#adminlinks ul {
+	display: block;
+	text-align: center;
+	margin: 0px auto;
+	padding: 7px 0px 7px 0px;
+	border: 0px;
+	list-style-type: none;
+}
+
+#adminlinks li {
+	display: inline;
+	padding: 3px 3px 3px 7px;
+	margin: 0px;
+	border-width: 0px 0px 0px 1px;
+	border-style: dashed;
+	border-color: white;
+	
+}
+
+#adminlinks li:first-child {
+	border-width: 0px;
+}
+
+#adminlinks li a {
+
+	font-size: 0.88em;
+	color: white;
+	text-decoration: none;
+}
+
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+

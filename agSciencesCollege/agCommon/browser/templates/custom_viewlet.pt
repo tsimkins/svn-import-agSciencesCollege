@@ -1,0 +1,6 @@
+<div id="design-credits"
+     i18n:domain="diyplonestyle">
+
+    <span tal:content="view/stupid_display">Some String</span>
+
+</div>

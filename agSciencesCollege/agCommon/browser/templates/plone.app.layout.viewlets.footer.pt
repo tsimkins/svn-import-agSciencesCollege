@@ -1,0 +1,13 @@
+<div id="portal-footer" i18n:domain="plone">
+  
+  &copy;
+  <span tal:omit-tag=""
+              tal:define="now modules/DateTime/DateTime" 
+              tal:content="now/year">[date last modified] 
+    </span>
+    College of Agricultural Sciences<br>
+					<a href = "http://www.psu.edu/copyright.html">Copyright</a> -- 
+					<a href = "http://www.psu.edu/dept/aaoffice/">Alternative Media</a> -- 
+					<a href = "http://www.psu.edu/dept/aaoffice/">Affirmative Action</a>
+
+</div>

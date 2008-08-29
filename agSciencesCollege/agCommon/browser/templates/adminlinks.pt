@@ -1,0 +1,11 @@
+<div id = "adminlinks">
+	<ul>
+		<li><a href = "http://futurestudents.cas.psu.edu/">Future Students</a></li>
+		<li><a href = "http://students.cas.psu.edu/">Current Students</a></li>
+		
+		<li><a href = "http://gradstudents.cas.psu.edu/">Graduate Students</a></li>
+		<li><a href = "http://collegerelations.cas.psu.edu/">Business &amp; Industry</a></li>
+		<li><a href = "http://agalumni.cas.psu.edu/">Alumni</a></li>
+		<li><a href = "generalpublic/">Public</a></li>
+	</ul>
+</div>

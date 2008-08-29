@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="agcommon">
+
+    <!-- "agCommon" Zope 3 skin layer.
+         Register views, viewlets and resources for this layer to make sure
+         they only apply to the 'agCommon' theme.
+         You can also use this layer to override default Plone browser views
+         and viewlets only within the 'agCommon' theme.
+      -->
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="agCommon"
+        />
+
+    <!-- adminlinks -->
+    <browser:viewlet
+        name="agCommon.adminlinks"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".viewlets.AdminLinksViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+        
+ <include package="z3c.jbot" file="meta.zcml" />
+  <browser:templateOverrides
+      directory="templates" />
+
+</configure>

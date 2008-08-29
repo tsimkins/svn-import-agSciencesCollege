@@ -1,0 +1,12 @@
+<div id="portal-logo" i18n:domain="plone">
+
+  <a id="logo-psu"
+   href = "http://www.psu.edu" target = "_blank">
+    <img id = "psulogo" src = "" alt = "Penn State University"></a>
+    
+  
+  <a id="portal-logo-college"
+   href="http://cas.psu.edu" target="_blank">
+    <img src="" alt="College of Agricultural Sciences" /></a>
+    
+</div>

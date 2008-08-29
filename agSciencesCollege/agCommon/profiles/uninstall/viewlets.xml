@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object>
+  <hidden manager="plone.portalfooter" skinname="*" purge="True" />
+</object>
