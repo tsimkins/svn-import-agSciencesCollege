@@ -5,10 +5,14 @@
 
 <object>
 
-  <order manager="plone.abovecontent" skinname="agCommon">
+  <order manager="agcommon.abovecontentviews" skinname="agCommon">
     <viewlet name="agcommon.adminlinks" />
   </order>
 
+
+  <order manager="agcommon.belowleftcolumn" skinname="agCommon">
+    <viewlet name="agcommon.contact" />
+  </order>
 
  <hidden manager="plone.portalheader" skinname="agCommon">
     <viewlet name="plone.global_sections" />

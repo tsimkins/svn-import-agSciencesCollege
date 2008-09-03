@@ -7,3 +7,7 @@ from Products.CMFCore.utils import getToolByName
 
 class AdminLinksViewlet(ViewletBase):
     render = ViewPageTemplateFile('templates/adminlinks.pt')
+
+
+class ContactViewlet(ViewletBase):
+    render = ViewPageTemplateFile('templates/contact.pt')

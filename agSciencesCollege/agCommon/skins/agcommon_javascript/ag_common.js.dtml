@@ -12,33 +12,27 @@ function resizeColumns()
 {
 	// Magic Number: Total vertical (top + bottom) padding of leftnav
 	// If we change the CSS, we have to change it here, too
-	var theLeftNavPadding = 250;
-	
-	// IE Fix
-	var IEFudge = 0;
-	if (document.all) 
+
+	var container = document.getElementById("portal-columns");
+	var column_one = document.getElementById("portal-column-one");
+	var leftpadding = document.getElementById("portal-column-one-visualPadding");
+		
+	if (container && column_one && leftpadding)
 	{
-		IEFudge = 0;
-		//theLeftNavpadding = 150;
-		//return true;
+		var container_height = getHeight(container);	
+		var column_one_height = getHeight(column_one);	
+		var leftpadding_height = getHeight(leftpadding);	
+
+		var height_diff = container_height - column_one_height;
+
+		leftpadding.style.height = (leftpadding_height + height_diff) + "px";
 	}
 
-	var col_one = document.getElementById("portal-column-one-visualPadding");
-	var col_content = document.getElementById("portal-column-content");
-	var contact = document.getElementById("contact");
-	
-	if (col_one && col_content)
-	{
-		var col_one_height = col_one.offsetHeight ? col_one.offsetHeight : col_one.pixelHeight;		
-		var col_content_height = col_content.offsetHeight ? col_content.offsetHeight : col_content.pixelHeight;
-		var contact_height = contact.offsetHeight ? contact.offsetHeight : contact.pixelHeight;
-		var max_height = col_one_height > col_content_height ? col_one_height  : col_content_height;
-		max_height = max_height - theLeftNavPadding;
-		col_one.style.height = (max_height - IEFudge - contact_height) + "px";
-		col_content.style.height = max_height + "px";
-//		alert(contact_height + ", " + max_height);
-	}
+}
 
+function getHeight(obj)
+{
+	return obj.offsetHeight ? obj.offsetHeight : obj.pixelHeight;	
 }
 
 registerPloneFunction(resizeColumns);

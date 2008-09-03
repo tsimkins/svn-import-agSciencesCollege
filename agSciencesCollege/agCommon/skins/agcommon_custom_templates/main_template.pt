@@ -86,9 +86,8 @@
             </metal:portlets>
             &nbsp;
           </div>
-		<a href = "mailto:trs22@psu.edu" id = "contact">Contact Us</a>
+          <div tal:replace="structure provider:agcommon.belowleftcolumn" />
         </div>
-
         <tal:comment replace="nothing"> End of the left column </tal:comment>
 
         <tal:comment replace="nothing"> Start of right column </tal:comment>
@@ -114,7 +113,7 @@
                  tal:define="show_border context/@@plone/showEditableBorder"
                  tal:attributes="class python:test(show_border,'documentEditable','')">
 
-              <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+              <div tal:replace="structure provider:agcommon.abovecontentviews" />
 
               <div tal:replace="structure provider:plone.contentviews" />
 
@@ -129,6 +128,8 @@
                 <div metal:use-macro="here/global_statusmessage/macros/portal_message">
                   Portal status message
                 </div>
+
+                <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
                 <metal:slot metal:define-slot="body">
                 <tal:comment replace="nothing">
@@ -165,10 +166,7 @@
           <div class="visualClear" id="clear-space-after-portal-wrapper"><!-- --></div>
         </div>
         <tal:comment replace="nothing"> End of main content block </tal:comment>
-
-	      <div class="visualClear" id="clear-space-after-contact"><!-- --></div>
       </div>
-      
       <tal:comment replace="nothing"> end column wrapper </tal:comment>
 
       <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
@@ -189,7 +187,6 @@
 
       </metal:block>
 
-      <div class="visualClear"><!-- --></div>
     </div>
 <script type="text/javascript"
         tal:attributes="src string:${portal_url}/hide_columns.js;"></script>

@@ -5,7 +5,7 @@
               tal:define="now modules/DateTime/DateTime" 
               tal:content="now/year">[date last modified] 
     </span>
-    College of Agricultural Sciences<br>
+    College of Agricultural Sciences<br />
 					<a href = "http://www.psu.edu/copyright.html">Copyright</a> -- 
 					<a href = "http://www.psu.edu/dept/aaoffice/">Alternative Media</a> -- 
 					<a href = "http://www.psu.edu/dept/aaoffice/">Affirmative Action</a>

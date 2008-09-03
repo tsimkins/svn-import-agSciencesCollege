@@ -15,11 +15,36 @@
         name="agCommon"
         />
 
+    <browser:viewletManager
+        name="agcommon.abovecontentviews"
+        provides=".interfaces.IAboveContentViews"
+        class="plone.app.viewletmanager.manager.OrderedViewletManager"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+    <browser:viewletManager
+        name="agcommon.belowleftcolumn"
+        provides=".interfaces.IBelowLeftColumn"
+        class="plone.app.viewletmanager.manager.OrderedViewletManager"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <!-- adminlinks -->
     <browser:viewlet
-        name="agCommon.adminlinks"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        name="agcommon.adminlinks"
+        manager="Products.agCommon.browser.interfaces.IAboveContentViews"
         class=".viewlets.AdminLinksViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+    <!-- contact -->
+    <browser:viewlet
+        name="agcommon.contact"
+        manager="Products.agCommon.browser.interfaces.IBelowLeftColumn"
+        class=".viewlets.ContactViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
