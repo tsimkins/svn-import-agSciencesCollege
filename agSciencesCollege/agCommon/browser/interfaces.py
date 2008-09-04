@@ -20,5 +20,9 @@ class IBelowLeftColumn(IViewletManager):
     """A viewlet manager that sits above the content views
     """
     
-class IAboveContentViewsFOOBAR(IPortletManager):
+class IAdminlinks(IPortletManager):
+ """A description goes here    """
+ 
+     
+class IContact(IPortletManager):
  """A description goes here    """

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<portlets>
+ <portletmanager
+    name="agcommon.adminlinks"
+    type="Products.agCommon.browser.interfaces.IAdminlinks"
+ />
+ 
+ <portletmanager
+    name="agcommon.contact"
+    type="Products.agCommon.browser.interfaces.IContact"
+ /> 
+</portlets>

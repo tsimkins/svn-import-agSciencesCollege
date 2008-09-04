@@ -1,0 +1,3 @@
+<div id = "contact">
+	<tal:block replace="structure provider:agcommon.contact" />
+</div>

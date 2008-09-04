@@ -182,12 +182,12 @@ ul.navTreeLevel1 li.navTreeItem {
 	display: none;
 }
 
-#contact:hover {
+#contact a:hover {
 	background:#74B40F none repeat scroll 0 0;
 	color:#005B00;
 }
 
-#contact {
+#contact a {
 	background: #005B00 none repeat scroll 0 0;
 	border-width: 0 1px 0 0;
 	border-style: solid;
@@ -210,7 +210,7 @@ ul.navTreeLevel1 li.navTreeItem {
 
 #adminlinks {
 	background: #ff3900;
-	margin: 0px;
+	margin: 0px 0px 10px 0px;
 	padding: 0px;
 }
 
@@ -256,6 +256,10 @@ h1.documentFirstHeading {
 	color: #003399;
 	font-weight: normal;
 	border: none;
+}
+
+#clear-space-before-navigation {
+	clear:none;
 }
 
 /* YOUR CSS RULES STOP HERE */
