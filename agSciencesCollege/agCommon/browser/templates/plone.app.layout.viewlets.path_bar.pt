@@ -10,13 +10,7 @@ are here:</span>
         &raquo;
     </span>
 
-    <a href = "http://cas.psu.edu" target = "_blank">AgSci</a>
-
-    <span class="breadcrumbSeparator">
-        &raquo;
-    </span>
-
-    <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">Home</a>
+    <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">AgSci</a>
     <span tal:condition="view/breadcrumbs" class="breadcrumbSeparator">
         &raquo;
     </span>

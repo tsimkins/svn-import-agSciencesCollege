@@ -14,6 +14,12 @@
     <viewlet name="agcommon.contact" />
   </order>
 
+	<order manager="plone.belowcontenttitle" skinname="agCommon">
+		<viewlet name="agcommon.homepageimage" insert-before="plone.belowcontenttitle.documentbyline"/>
+		<viewlet name="agcommon.rightcolumn" insert-before="plone.belowcontenttitle.documentbyline"/>
+		<viewlet name="agcommon.centercolumn" insert-after="plone.belowcontenttitle.keywords"/>
+	</order>
+
  <hidden manager="plone.portalheader" skinname="agCommon">
     <viewlet name="plone.global_sections" />
     <viewlet name="plone.site_actions" />

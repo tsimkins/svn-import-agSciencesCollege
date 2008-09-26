@@ -1,6 +1,7 @@
 from plone.theme.interfaces import IDefaultPloneLayer
 from zope.viewlet.interfaces import IViewletManager
 from plone.portlets.interfaces import IPortletManager
+from plone.app.portlets.interfaces import IColumn
 
 class IThemeSpecific(IDefaultPloneLayer):
     """Marker interface that defines a Zope 3 skin layer bound to a Skin
@@ -21,8 +22,20 @@ class IBelowLeftColumn(IViewletManager):
     """
     
 class IAdminlinks(IPortletManager):
- """A description goes here    """
+	"""A description goes here    """
  
      
 class IContact(IPortletManager):
- """A description goes here    """
+	"""A description goes here    """
+ 
+class IRightColumn(IPortletManager, IColumn):
+	"""A viewlet manager that sits inside the main content area and floats to the right
+	"""
+	
+class IHomepageImage(IPortletManager):
+	"""A viewlet manager where you can create the homepage image
+	"""
+	
+class ICenterColumn(IPortletManager, IColumn):
+	"""A viewlet manager that sits inside the main content area.  Used for news on the front page
+	"""

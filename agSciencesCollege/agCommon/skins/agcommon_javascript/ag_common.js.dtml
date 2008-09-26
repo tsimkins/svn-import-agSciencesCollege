@@ -13,28 +13,73 @@ function resizeColumns()
 	// Magic Number: Total vertical (top + bottom) padding of leftnav
 	// If we change the CSS, we have to change it here, too
 
-	var container = document.getElementById("portal-columns");
-	var column_one = document.getElementById("portal-column-one");
-	var leftpadding = document.getElementById("portal-column-one-visualPadding");
+	var magicNumber = 40;
+	var magicNumber2 = 21;
+	
+	var container = getElement("portal-columns");
+	var column_one = getElement("portal-column-one");
+	var leftpadding = getElement("portal-column-one-visualPadding");
 		
 	if (container && column_one && leftpadding)
 	{
-		var container_height = getHeight(container);	
-		var column_one_height = getHeight(column_one);	
-		var leftpadding_height = getHeight(leftpadding);	
+		var height_diff = container.elementHeight - column_one.elementHeight;
 
-		var height_diff = container_height - column_one_height;
-
-		leftpadding.style.height = (leftpadding_height + height_diff) + "px";
+		leftpadding.style.height = (leftpadding.elementHeight + height_diff + magicNumber) + "px";
 	}
 
+	var theElements = document.getElementsByTagName("body");
+	
+	if (theElements.length == 1)
+	{
+		var theBody = theElements[0];
+		if (theBody.className.match(/section-front-page/))
+		{
+			var theRightColumn = getElement("rightcolumn");
+			var theHomePageImage = getElement("homepageimage");
+			var theAdminLinks = getElement("adminlinks", 14);
+
+			var newHeight = container.elementHeight - (theAdminLinks.elementHeight + theHomePageImage.elementHeight) + theAdminLinks.vPadding +  theHomePageImage.vPadding;
+//			alert(newHeight);
+			theRightColumn.style.height = (newHeight + magicNumber2) + "px";
+			theRightColumn.style.marginBottom = "-4px";
+						
+		}
+	}
+	
+
 }
 
-function getHeight(obj)
+function getElement(theId, vPadding, IEvPadding)
 {
-	return obj.offsetHeight ? obj.offsetHeight : obj.pixelHeight;	
+	var theElement = document.getElementById(theId) ? document.getElementById(theId) : document.createElement("div");
+	theElement.elementHeight = theElement.offsetHeight ? theElement.offsetHeight : theElement.pixelHeight;
+	theElement.style.height = "auto";
+
+	if (!vPadding)
+	{
+		vPadding = 0;
+	}
+
+	if (document.all && IEvPadding)
+	{
+		theElement.vPadding = IEvPadding;
+	}
+	else
+	{
+		theElement.vPadding = vPadding;
+	}
+	
+	return theElement;
 }
 
+function setFlash()
+{
+	var so = new SWFObject("&dtml-portal_url;/thinkagain.swf", "thinkAgain", "585", "265", "8", "transparent");
+	so.addParam("wmode","transparent");
+	so.write("homepageimage");
+}
+
+registerPloneFunction(setFlash);
 registerPloneFunction(resizeColumns);
 
 /* YOUR JAVASCRIPT STOPS HERE */

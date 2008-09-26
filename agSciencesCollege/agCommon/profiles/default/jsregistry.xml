@@ -20,7 +20,13 @@
     cacheable="False" compression="safe" cookable="False"
     enabled="True" expression="" inline="False"/>
 -->
+ <javascript id="swfobject.js"
+    cacheable="False" compression="safe" cookable="False"
+    enabled="True" expression="" inline="False"/>
+
  <javascript id="ag_common.js"
     cacheable="False" compression="safe" cookable="False"
     enabled="True" expression="" inline="False"/>
+
+
 </object>
