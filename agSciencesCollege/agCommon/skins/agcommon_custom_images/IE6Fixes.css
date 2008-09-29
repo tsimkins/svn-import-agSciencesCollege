@@ -1,0 +1,34 @@
+/* IE 6 Hacks */
+
+body.section-front-page #rightcolumn {
+	width: 200px;
+	margin-right: -5px;
+	margin-left: 0px;
+}
+
+/* http://www.positioniseverything.net/explorer/ie-listbug.html */
+
+ul, ol, dl {
+	position: relative;
+}
+
+#visual-portal-wrapper {
+	width: 795px;
+}
+
+#portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
+	margin: 0px;
+	border: 0px;
+}
+
+#adminlinks li a {
+	font-size: .88em;
+}
+
+#adminlinks ul {
+	padding: 0px;
+}
+
+#adminlinks {
+	padding: 3px 0px;
+}

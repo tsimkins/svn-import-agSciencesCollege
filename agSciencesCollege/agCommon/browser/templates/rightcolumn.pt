@@ -1,0 +1,7 @@
+<tal:block tal:condition="nothing">
+</tal:block>
+<div id = "rightcolumn">
+
+	<tal:block replace="structure provider:agcommon.rightcolumn" />
+
+</div>

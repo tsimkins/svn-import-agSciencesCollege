@@ -1,0 +1,5 @@
+<div id = "homepageimage">
+
+	<tal:block replace="structure provider:agcommon.homepageimage" />
+
+</div>

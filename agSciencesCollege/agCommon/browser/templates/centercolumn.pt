@@ -1,0 +1,5 @@
+<div id = "centercolumn">
+
+	<tal:block replace="structure provider:agcommon.centercolumn" />
+
+</div>
