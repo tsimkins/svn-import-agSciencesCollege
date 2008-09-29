@@ -74,7 +74,7 @@ function getElement(theId, vPadding, IEvPadding)
 
 function setFlash()
 {
-	var so = new SWFObject("&dtml-portal_url;/thinkagain.swf", "thinkAgain", "585", "265", "8", "transparent");
+	var so = new SWFObject("&dtml-portal_url;/&dtml-frontFlash;", "thinkAgain", "585", "265", "8", "transparent");
 	so.addParam("wmode","transparent");
 	so.write("homepageimage");
 }

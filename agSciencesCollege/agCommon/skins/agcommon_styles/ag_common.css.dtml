@@ -8,7 +8,7 @@
 
 
 body {
-	background: #0C3D90 url(&dtml-portal_url;/bodybg.gif) repeat-x;
+	background: &dtml-bodyBackgroundColor; url(&dtml-portal_url;/&dtml-bodyBackgroundImage;) repeat-x;
 	color: #333333;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 #portal-header {
-	background: #FFFFFF url(&dtml-portal_url;/CASheader.gif) no-repeat left bottom;
+	background: #FFFFFF url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
 	height:80px;
 	margin:0;
 	padding:0;
@@ -62,6 +62,26 @@ body {
 
 }
 
+
+#portal-columns>div.visualPadding {
+	float: left;
+}
+/*
+#portal-column-content.sr, #portal-column-content.sl {
+	float:left;
+	margin-right:0;
+	width:650px;
+	margin-left: 177px;
+}
+
+*/
+
+
+#portal-column-content.sr, #portal-column-content.sl {
+	margin-left: 177px;
+}
+
+
 /* ------------ PORTLETS --------------*/
 
 #portal-column-one .visualPadding {
@@ -90,7 +110,7 @@ body {
 }
 
 .portletNavigationTree .portletItem li {
-	border-bottom: 1px dashed #808080;
+	border-bottom: 1px dashed #CCCCCC;
 	font-size: 1em;
 	margin: 5px;
 	padding-bottom: 5px;
@@ -154,10 +174,6 @@ ul.navTreeLevel1 li.navTreeItem {
 	margin: 0px 0px 0px 0px;
 }
 
-#portal-column-content.sl {
-	margin-left: 177px !important;
-}
-
 /* -------- MAIN NAV Portlet --------*/
 
 
@@ -184,16 +200,16 @@ ul.navTreeLevel1 li.navTreeItem {
 }
 
 #contact a:hover {
-	background:#74B40F none repeat scroll 0 0;
-	color:#005B00;
+	background: &dtml-contactBackgroundColor; none repeat scroll 0 0;
+	color: &dtml-contactColor;;
 }
 
 #contact a {
-	background: #005B00 none repeat scroll 0 0;
+	background: &dtml-contactColor; none repeat scroll 0 0;
 	border-width: 0 1px 0 0;
 	border-style: solid;
 	border-color: #808080;
-	color: #74B40F;
+	color: &dtml-contactBackgroundColor;;
 	display: block;
 	font-size: 0.88em;
 	font-weight:bold;
@@ -210,7 +226,7 @@ ul.navTreeLevel1 li.navTreeItem {
 /* ADMINLINKS */
 
 #adminlinks {
-	background: #ff3900;
+	background: &dtml-adminlinksBackgroundColor;;
 	margin: 0px 0px 10px 0px;
 	padding: 0px;
 }
@@ -289,8 +305,8 @@ body.section-front-page #rightcolumn>div {
 }
 
 #rightcolumn .portletHeader {
-	background:#FBC767;
-	color:#2F4977;
+	background: &dtml-frontRightPortletBackgroundColor;; 
+	color: &dtml-frontRightPortletTextColor;; 
 	font-size:1em;
 	font-weight:bold;
 	padding:4px;
@@ -350,7 +366,7 @@ body.section-front-page #rightcolumn .portletItem .more {
 
 body.section-front-page #homepageimage {
 	clear: right;
-	background:#0F0F0F url(&dtml-portal_url;/cornfield.jpg) no-repeat scroll left top;
+	background:#0F0F0F url(&dtml-portal_url;/&dtml-homepageImage;) no-repeat scroll left top;
 	border:0 none;
 	display:block;
 	height:265px;

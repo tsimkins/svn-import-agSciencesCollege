@@ -46,4 +46,16 @@ columnOneWidth:string=16em
 columnTwoWidth:string=16em
 
 breadcrumbBackgroundColor:string=#F09400
+adminlinksBackgroundColor:string=#ff3900
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
+bodyBackgroundColor:string=#0C3D90
+bodyBackgroundImage:string=bodybg.gif
+
+frontRightPortletTextColor:string=#2F4977
+frontRightPortletBackgroundColor:string=#FBC767
+
+contactColor:string=#005B00
+contactBackgroundColor:string=#74B40F
+
+frontFlash:string=thinkagain.swf
+homepageImage:string=homepageImage.jpg
