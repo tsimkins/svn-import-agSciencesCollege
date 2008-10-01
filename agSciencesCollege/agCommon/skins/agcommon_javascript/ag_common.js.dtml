@@ -13,7 +13,7 @@ function resizeColumns()
 	// Magic Number: Total vertical (top + bottom) padding of leftnav
 	// If we change the CSS, we have to change it here, too
 
-	var magicNumber = 40;
+	var magicNumber = 41;
 	var magicNumber2 = 21;
 	
 	var container = getElement("portal-columns");
@@ -79,8 +79,53 @@ function setFlash()
 	so.write("homepageimage");
 }
 
+function setSearch()
+{
+	var theSearchButton = document.getElementById("goSearch");
+	var theSearchDropdown = document.getElementById("searchSource");	
+
+	if (theSearchButton && theSearchDropdown)
+	{
+		theSearchDropdown.style.display = "inline";
+
+		theSearchButton.onclick = function () {
+
+			var theSearchDropdown = document.getElementById("searchSource");			
+			var theSearchForm = document.getElementById("GoogleSearch");
+			var theSearchBox = document.getElementById("searchBox");
+
+			if (theSearchDropdown && theSearchForm && theSearchBox)
+			{
+				var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
+
+				if (theSearchOption == "college")
+				{
+					theSearchForm.q.value = theSearchBox.value;
+					theSearchForm.site.value = "CAS";
+					theSearchForm.proxystylesheet.value = "CAS";
+					theSearchForm.submit();
+					return false;
+				}
+				else if (theSearchOption == "psu")
+				{
+					theSearchForm.q.value = theSearchBox.value;
+					theSearchForm.site.value = "PennState";
+					theSearchForm.proxystylesheet.value = "PennState";
+					theSearchForm.submit();
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+		}
+	}		
+}
+
 registerPloneFunction(setFlash);
 registerPloneFunction(resizeColumns);
+registerPloneFunction(setSearch);
 
 /* YOUR JAVASCRIPT STOPS HERE */
 

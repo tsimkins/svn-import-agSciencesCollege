@@ -59,3 +59,5 @@ contactBackgroundColor:string=#74B40F
 
 frontFlash:string=thinkagain.swf
 homepageImage:string=homepageImage.jpg
+
+insideRightColumnBackground:string=#EEEEFF

@@ -30,7 +30,7 @@ body {
 
 #portal-header {
 	background: #FFFFFF url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
-	height:80px;
+	height:76px;
 	margin:0;
 	padding:0;
 }
@@ -65,20 +65,21 @@ body {
 
 #portal-columns>div.visualPadding {
 	float: left;
+	width: 187px;
 }
 /*
 #portal-column-content.sr, #portal-column-content.sl {
 	float:left;
 	margin-right:0;
 	width:650px;
-	margin-left: 177px;
+	margin-left: 187px;
 }
 
 */
 
 
 #portal-column-content.sr, #portal-column-content.sl {
-	margin-left: 177px;
+	margin-left: 187px;
 }
 
 
@@ -169,7 +170,7 @@ ul.navTreeLevel1 li.navTreeItem {
 	border-width: 0 1px 0 0;
 /*	min-height: 375px; */
 	padding: 2px 0px 0px 0px;
-	width: 176px;
+	width: 186px;
 	float: left;
 	margin: 0px 0px 0px 0px;
 }
@@ -219,7 +220,7 @@ ul.navTreeLevel1 li.navTreeItem {
 	text-decoration: none;
 	text-transform: uppercase;
 /*	float: left; */
-	width: 176px;
+	width: 186px;
 }
 
 
@@ -233,7 +234,7 @@ ul.navTreeLevel1 li.navTreeItem {
 
 #adminlinks ul {
 	display: block;
-	text-align: center;
+	text-align: left;
 	margin: 0px auto;
 	padding: 7px 0px 7px 0px;
 	border: 0px;
@@ -292,11 +293,12 @@ body.section-front-page #rightcolumn {
 	border: 0px;
 	padding: 0px;
 	font-weight: normal;
+	font-size: 0.92em;
 
 }
 
 body.section-front-page #rightcolumn>div {
-	width: 200px;
+	width: 175px;
 }
 
 #rightcolumn .portlet {
@@ -330,7 +332,7 @@ body.section-front-page #rightcolumn>div {
 	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 5px;
 	list-style-image: none;
 	list-style-type: none;
-	margin:5px 5px 5px 5px;
+	margin: 2px 5px 5px;
 	padding: 1px 0 1px 13px;
 }
 
@@ -349,13 +351,15 @@ body.section-front-page #rightcolumn .portletItem a {
 	font-weight: normal;
 }
 
-body.section-front-page #rightcolumn .portletItem .more {
+body.section-front-page #rightcolumn .portletItem a.more,
+body.section-front-page #centercolumn .portletItem a.more {
 	color:#5B87B6;
 	display:block;
 	font-size:0.85em;
 	margin:5px;
 	text-align:right;
 	text-decoration:none;
+	border: 0px;
 }
 
 /* Configure Homepage Image Portlet */
@@ -370,7 +374,7 @@ body.section-front-page #homepageimage {
 	border:0 none;
 	display:block;
 	height:265px;
-	margin: -19px -10px 0px -10px;
+	margin: -19px -10px 1px -9px;
 	text-align:left;
 	padding: 0px;
 }
@@ -386,7 +390,7 @@ body.section-front-page #homepageimage {
 /* News Articles */
 
 #centercolumn {
-	margin: 10px 200px 0px 0px ;
+	margin: 10px 175px 0px 0px ;
 	padding: 0px;
 }
 
@@ -411,6 +415,8 @@ body.section-front-page #homepageimage {
 	padding: 0px;
 }
 
+
+
 #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;
 }
@@ -419,7 +425,7 @@ body.section-front-page #homepageimage {
 	color:#2F4977;
 	font-size:1.05em;
 	font-weight:bold;
-	margin-top:5px;
+	margin-top:7px;
 	text-decoration:none;
 	border-width: 0px;
 }
@@ -433,7 +439,7 @@ body.section-front-page #homepageimage {
 
 #centercolumn .portletItem span.text  {
 	color:#333333;
-	font-size:0.88em;
+	font-size:0.92em;
 	margin: 10px 0px;
 	font-weight: normal;
 	text-align: left;
@@ -458,7 +464,7 @@ body.section-front-page #homepageimage {
 }
 
 #rightcolumn .portletWrapper {
-	background:#EEEEFF none repeat scroll 0 0;
+	background: &dtml-insideRightColumnBackground; none repeat scroll 0 0;
 	border:1px solid #CCCCCC;	
 	padding:3px 8px 8px;
 }
@@ -526,6 +532,13 @@ h2 {
 
 body.section-front-page #content {
 	padding-bottom: 0px;
+}
+
+input.searchButton {
+	background: transparent;
+	border: 0px;
+	padding: 0px;
+	margin-top: -1px;
 }
 
 /* YOUR CSS RULES STOP HERE */
