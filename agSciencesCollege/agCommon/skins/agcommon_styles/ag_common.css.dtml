@@ -13,7 +13,7 @@ body {
 }
 
 #visual-portal-wrapper {
-	background: White;
+	background: #FFFFFF;
 	margin: 0px auto;
 	padding-bottom: 6px;
 	max-width: 875px;
@@ -26,13 +26,15 @@ body {
 
 #portal-content-wrapper {
 	float: left;
+	background: #FFFFFF;
+	padding-bottom: 20px;
 }
 
 #portal-header {
 	background: #FFFFFF url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
-	height:76px;
-	margin:0;
-	padding:0;
+	height: 76px;
+	margin: 0;
+	padding: 0;
 }
 
 #portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
@@ -43,8 +45,8 @@ body {
 
 
 #portal-breadcrumbs {
-	background-color:&dtml-breadcrumbBackgroundColor;;
-	color:#D5D5D5;
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: #D5D5D5;
 	font-size: 0.81em;
 	font-weight: bold;
 	padding: 3px 3px;
@@ -59,7 +61,7 @@ body {
 #portal-column-content {
 	margin-bottom: 0px;
 	padding: 0 0 0 0px;
-
+	background: #FFFFFF;
 }
 
 
@@ -69,9 +71,9 @@ body {
 }
 /*
 #portal-column-content.sr, #portal-column-content.sl {
-	float:left;
-	margin-right:0;
-	width:650px;
+	float: left;
+	margin-right: 0;
+	width: 650px;
 	margin-left: 187px;
 }
 
@@ -90,11 +92,11 @@ body {
 }
 
 #portal-column-one .portlet, #portal-column-one .portletItem {
-	border:none;
+	border: none;
 }
 
 #portal-column-one .portletItem {
-	padding:0px;
+	padding: 0px;
 }
 
 #portal-column-one .portletFooter {
@@ -102,7 +104,7 @@ body {
 }
 
 .portletNavigationTree .portletHeader {
-	display:none;
+	display: none;
 }
 
 
@@ -128,7 +130,7 @@ ul.navTreeLevel1 {
 }
 
 .navTreeCurrentItem, a.navTreeItemInPath {
-	border-width:0px !important;
+	border-width: 0px !important;
 	font-weight: bold;
 }
 
@@ -153,18 +155,16 @@ ul.navTreeLevel1 li.navTreeItem {
 }
 
 .portletNavigationTree .portletItem li li, .navTreeItem a {
-	border:none;
+	border: none;
 }
 
 
 #portal-column-one-visualPadding {
-	background:transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
-/*	padding-bottom: 250px; */
-	padding-bottom: 175px;
-	height: 500px;
+	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
 }
 
 #portal-column-one {
+	background: #FFFFFF;
 	border-color: #808080;
 	border-style: solid;
 	border-width: 0 1px 0 0;
@@ -213,7 +213,7 @@ ul.navTreeLevel1 li.navTreeItem {
 	color: &dtml-contactBackgroundColor;;
 	display: block;
 	font-size: 0.88em;
-	font-weight:bold;
+	font-weight: bold;
 	margin: 0px 0px 0px 0px;
 	padding: 10px 0;
 	text-align: center;
@@ -247,7 +247,7 @@ ul.navTreeLevel1 li.navTreeItem {
 	margin: 0px;
 	border-width: 0px 0px 0px 1px;
 	border-style: dashed;
-	border-color: white;
+	border-color: #FFFFFF;
 	
 }
 
@@ -258,7 +258,7 @@ ul.navTreeLevel1 li.navTreeItem {
 #adminlinks li a {
 
 	font-size: 1em;
-	color: white;
+	color: #FFFFFF;
 	text-decoration: none;
 }
 
@@ -277,7 +277,7 @@ h1.documentFirstHeading {
 }
 
 #clear-space-before-navigation {
-	clear:none;
+	clear: none;
 }
 
 /* No H1 on home page */
@@ -287,18 +287,17 @@ body.section-front-page h1 {
 
 /* Configure Right Column Portlets */
 
-body.section-front-page #rightcolumn {
+#rightcolumn {
 	float: right;
-	margin: 2px -10px 0px 15px;
-	border: 0px;
+	margin: 0 0px 50px 20px;
 	padding: 0px;
-	font-weight: normal;
-	font-size: 0.92em;
-
 }
 
-body.section-front-page #rightcolumn>div {
+#rightcolumn .portletWrapper {
 	width: 175px;
+	background: &dtml-insideRightColumnBackground; none repeat scroll 0 0;
+	border: 1px solid #CCCCCC;	
+	padding: 3px 8px 8px;
 }
 
 #rightcolumn .portlet {
@@ -307,18 +306,19 @@ body.section-front-page #rightcolumn>div {
 }
 
 #rightcolumn .portletHeader {
-	background: &dtml-frontRightPortletBackgroundColor;; 
-	color: &dtml-frontRightPortletTextColor;; 
-	font-size:1em;
-	font-weight:bold;
-	padding:4px;
-	text-align:center;
-	text-transform:uppercase;
+	background: &dtml-insideRightPortletBackgroundColor;; 
+	color: &dtml-insideRightPortletTextColor;; 
+	font-size: 1em;
+	font-weight: bold;
+	padding: 4px;
+	text-align: center;
+	text-transform: uppercase;
 	border-width: 0px;
+	margin: -2px -7px 0px -7px;
 }
 
 #rightcolumn .portletItem {
-	background: #EDEDED;
+	background: &dtml-insideRightColumnBackground;;
 	border-width: 0px;
 }
 
@@ -326,6 +326,7 @@ body.section-front-page #rightcolumn>div {
 #rightcolumn .portletItem ul {
 	margin: 0px;
 	padding: 0px;
+	float: none;
 }
 
 #rightcolumn .portletItem li {
@@ -334,31 +335,68 @@ body.section-front-page #rightcolumn>div {
 	list-style-type: none;
 	margin: 2px 5px 5px;
 	padding: 1px 0 1px 13px;
+	font-size: 0.88em;
+}
+
+#rightcolumn ul li a {
+	color: #003399;
+	font-size: 0.88em;
+	font-weight: bold;
+	text-decoration: none;
+	border: 0px;
+	padding: 0px;
+}
+
+/* Right Column Front Page modifications */
+
+body.section-front-page #rightcolumn {
+	float: right;
+	margin: 2px -10px 0px 15px;
+	padding: 0px;
+	font-weight: normal;
+	font-size: 0.92em;
+
+}
+
+body.section-front-page #rightcolumn .portletHeader {
+	background: &dtml-frontRightPortletBackgroundColor;; 
+	color: &dtml-frontRightPortletTextColor;; 
+	margin: 0px;
 }
 
 body.section-front-page #rightcolumn .portletItem a {
-	color:#2F4977;
-	display:block;
-	font-size:1.10em;
-	text-decoration:none;
+	color: #2F4977;
+	display: block;
+	font-size: 1.10em;
+	text-decoration: none;
 	border: 0px;
 	font-weight: normal;
 }
 
-#rightcolumn .portletItem .date {
+body.section-front-page #rightcolumn, body.section-front-page #rightcolumn .portletItem {
+	background: #EDEDED;
+}
+
+body.section-front-page #rightcolumn .portletItem .date {
 	color: #5B87B6;
 	font-size: 0.92em;
 	font-weight: normal;
 }
 
+body.section-front-page #rightcolumn .portletWrapper {
+	border: 0px;
+	padding: 0px;
+}
+
+
 body.section-front-page #rightcolumn .portletItem a.more,
 body.section-front-page #centercolumn .portletItem a.more {
-	color:#5B87B6;
-	display:block;
-	font-size:0.85em;
-	margin:5px;
-	text-align:right;
-	text-decoration:none;
+	color: #5B87B6;
+	display: block;
+	font-size: 0.85em;
+	margin: 5px;
+	text-align: right;
+	text-decoration: none;
 	border: 0px;
 }
 
@@ -370,12 +408,12 @@ body.section-front-page #centercolumn .portletItem a.more {
 
 body.section-front-page #homepageimage {
 	clear: right;
-	background:#0F0F0F url(&dtml-portal_url;/&dtml-homepageImage;) no-repeat scroll left top;
-	border:0 none;
-	display:block;
-	height:265px;
+	background: #0F0F0F url(&dtml-portal_url;/&dtml-homepageImage;) no-repeat scroll left top;
+	border: 0 none;
+	display: block;
+	height: 265px;
 	margin: -19px -10px 1px -9px;
-	text-align:left;
+	text-align: left;
 	padding: 0px;
 }
 
@@ -390,25 +428,33 @@ body.section-front-page #homepageimage {
 /* News Articles */
 
 #centercolumn {
-	margin: 10px 175px 0px 0px ;
-	padding: 0px;
-}
-
-#centercolumn dd {
-	padding: 0px;
-}
-
-#centercolumn .portletHeader {
 	display: none;
 }
 
-#centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background: white;
+body.section-front-page #centercolumn {
+	display: block;
+	margin: 3px -10px -5px 0px ;
+	padding: 5px 0px 5px 0px;
+	border-width: 0px 175px 0px 0px;
+	border-color: #EDEDED;
+	border-style: solid;
+}
+
+body.section-front-page #centercolumn dd {
+	padding: 0px;
+}
+
+body.section-front-page #centercolumn .portletHeader {
+	display: none;
+}
+
+body.section-front-page #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
+	background: #FFFFFF;
 	border-width: 0px;
 	padding: 0px;
 }
 
-#centercolumn .portletItem {
+body.section-front-page #centercolumn .portletItem {
 	border-width: 1px 0px 0px 0px;
 	border-style: dashed;
 	border-color: #CCCCCC;
@@ -417,35 +463,35 @@ body.section-front-page #homepageimage {
 
 
 
-#centercolumn .portlet dd:first-child {
+body.section-front-page #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;
 }
 
-#centercolumn .portletItem a.tile {
-	color:#2F4977;
-	font-size:1.05em;
-	font-weight:bold;
-	margin-top:7px;
-	text-decoration:none;
+body.section-front-page #centercolumn .portletItem a.tile {
+	color: #2F4977;
+	font-size: 1.05em;
+	font-weight: bold;
+	margin-top: 7px;
+	text-decoration: none;
 	border-width: 0px;
 }
 
-#centercolumn .portletItem span.date  {
-	color:#5B87B6;
-	font-size:0.88em;
+body.section-front-page #centercolumn .portletItem span.date  {
+	color: #5B87B6;
+	font-size: 0.88em;
 	font-weight: normal;
 	text-align: left;
 }
 
-#centercolumn .portletItem span.text  {
-	color:#333333;
-	font-size:0.92em;
+body.section-front-page #centercolumn .portletItem span.text  {
+	color: #333333;
+	font-size: 0.92em;
 	margin: 10px 0px;
 	font-weight: normal;
 	text-align: left;
 }
 
-#centercolumn .portletFooter a {
+body.section-front-page #centercolumn .portletFooter a {
 	color: #5B87B6;
 	display: block;
 	font-size: 0.81em;
@@ -455,70 +501,17 @@ body.section-front-page #homepageimage {
 	border-width: 0px;
 }
 
-/* Right callout, right nav */
-
-#rightcolumn {
-	float:right;
-	margin:0 15px 50px 20px;
-	padding: 0px;
-}
-
-#rightcolumn .portletWrapper {
-	background: &dtml-insideRightColumnBackground; none repeat scroll 0 0;
-	border:1px solid #CCCCCC;	
-	padding:3px 8px 8px;
-}
-
-body.section-front-page #rightcolumn .portletWrapper {
-	border: 0px;
-	padding: 0px;
-}
-
-body.section-front-page #rightcolumn {
-	background: #EDEDED;
-}
-
-
-#rightcolumn ul li a {
-	color:#003399;
-	font-size:0.88em;
-	font-weight:bold;
-	text-decoration:none;
-	border: 0px;
-	padding: 0px;
-}
-
-
-#rightcolumn ul li {
-	font-size:0.88em;
-	margin:0;
-	padding:3px 5px;
-	list-style-type: none;
-	list-style-image: none;
-}
-
-#rightcolumn ul {
-	float:none;
-	margin:0;
-	padding:0;
-}
-
-
 
 h2 {
-	color:#333333;
-	font-size:1em;
-	margin:15px 0 5px;
-	padding:0;
+	color: #333333;
+	font-size: 1em;
+	margin: 15px 0 5px;
+	padding: 0;
 	border: 0px;
 	font-weight: bold;
 }
 
-#content, #region-content {
-	padding: 0px;
-}
-
-#portal-column-one-visualPadding>div {
+#portal-column-one-visualPadding .portletWrapper {
 	padding: 0px;
 }
 
@@ -541,7 +534,29 @@ input.searchButton {
 	margin-top: -1px;
 }
 
+
+#content, #region-content {
+	padding: 0px 20px 20px 20px;
+}
+
+body.section-front-page #content, body.section-front-page #region-content, body.section-front-page #portal-content-wrapper {
+	padding: 0px;
+}
+
+/* For JavaScript Equal Height Columns */
+
+#left-visualPadding, #right-visualPadding {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	height: 0px;
+}
+
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
+
+
 

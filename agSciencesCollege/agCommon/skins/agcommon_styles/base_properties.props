@@ -54,6 +54,9 @@ bodyBackgroundImage:string=bodybg.gif
 frontRightPortletTextColor:string=#2F4977
 frontRightPortletBackgroundColor:string=#FBC767
 
+insideRightPortletTextColor:string=#EEEEFF
+insideRightPortletBackgroundColor:string=#2F4977
+
 contactColor:string=#005B00
 contactBackgroundColor:string=#74B40F
 

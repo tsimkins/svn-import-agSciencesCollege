@@ -1,11 +1,5 @@
 /* IE 6 Hacks */
 
-body.section-front-page #rightcolumn {
-	width: 200px;
-	margin-right: -5px;
-	margin-left: 0px;
-}
-
 /* http://www.positioniseverything.net/explorer/ie-listbug.html */
 
 ul, ol, dl {
@@ -16,10 +10,10 @@ ul, ol, dl {
 	width: 795px;
 }
 
-#portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
-	margin: 0px;
-	border: 0px;
+#portal-column-one-visualPadding {
+	height: 0px; 
 }
+
 
 #adminlinks li a {
 	font-size: .88em;
@@ -31,4 +25,14 @@ ul, ol, dl {
 
 #adminlinks {
 	padding: 3px 0px;
+}
+
+body.section-front-page #rightcolumn {
+	margin-right: -5px;
+	margin-left: 0px;
+}
+
+body.section-front-page #centercolumn {
+	border: 0px;
+	margin-right: 175px;
 }

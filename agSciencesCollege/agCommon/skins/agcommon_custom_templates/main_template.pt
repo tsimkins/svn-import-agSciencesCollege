@@ -94,7 +94,9 @@
               <tal:block replace="structure provider:plone.leftcolumn" />
             </metal:portlets>
             &nbsp;
+            <div id = "left-visualPadding">&nbsp;</div>
           </div>
+
           <div tal:replace="structure provider:agcommon.belowleftcolumn" />
         </div>
         <tal:comment replace="nothing"> End of the left column </tal:comment>
@@ -172,7 +174,11 @@
 
           </metal:block>
           </div>
+
+          <div id = "right-visualPadding">&nbsp;</div>
+
           <div class="visualClear" id="clear-space-after-portal-wrapper"><!-- --></div>
+
         </div>
         <tal:comment replace="nothing"> End of main content block </tal:comment>
       </div>
