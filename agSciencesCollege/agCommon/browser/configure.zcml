@@ -115,6 +115,8 @@
         
  <include package="z3c.jbot" file="meta.zcml" />
   <browser:templateOverrides
-      directory="templates" />
+      directory="templates"
+      layer=".interfaces.IThemeSpecific"
+	 />
 
 </configure>

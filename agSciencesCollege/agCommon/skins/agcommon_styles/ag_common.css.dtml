@@ -289,7 +289,7 @@ body.section-front-page h1 {
 
 #rightcolumn {
 	float: right;
-	margin: 0 0px 50px 20px;
+	margin: 0px 0px 50px 20px; 
 	padding: 0px;
 }
 
@@ -297,7 +297,7 @@ body.section-front-page h1 {
 	width: 175px;
 	background: &dtml-insideRightColumnBackground; none repeat scroll 0 0;
 	border: 1px solid #CCCCCC;	
-	padding: 3px 8px 8px;
+	padding: 1px;
 }
 
 #rightcolumn .portlet {
@@ -314,7 +314,8 @@ body.section-front-page h1 {
 	text-align: center;
 	text-transform: uppercase;
 	border-width: 0px;
-	margin: -2px -7px 0px -7px;
+	margin: 0px; 
+
 }
 
 #rightcolumn .portletItem {
@@ -521,6 +522,7 @@ h2 {
 
 #content {
 	padding-bottom: 0px;
+
 }
 
 body.section-front-page #content {
