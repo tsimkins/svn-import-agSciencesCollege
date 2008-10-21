@@ -289,7 +289,7 @@ body.section-front-page h1 {
 
 #rightcolumn {
 	float: right;
-	margin: 0px 0px 50px 20px; 
+	margin: 0px 0px 30px 20px; 
 	padding: 0px;
 }
 
@@ -298,6 +298,8 @@ body.section-front-page h1 {
 	background: &dtml-insideRightColumnBackground; none repeat scroll 0 0;
 	border: 1px solid #CCCCCC;	
 	padding: 1px;
+	margin-bottom: 20px;
+	font-size: 0.88em;
 }
 
 #rightcolumn .portlet {
@@ -336,13 +338,12 @@ body.section-front-page h1 {
 	list-style-type: none;
 	margin: 2px 5px 5px;
 	padding: 1px 0 1px 13px;
-	font-size: 0.88em;
+	font-size: 1.00em;
 }
 
 #rightcolumn ul li a {
 	color: #003399;
-	font-size: 0.88em;
-	font-weight: bold;
+	font-size: 1.00em;
 	text-decoration: none;
 	border: 0px;
 	padding: 0px;
