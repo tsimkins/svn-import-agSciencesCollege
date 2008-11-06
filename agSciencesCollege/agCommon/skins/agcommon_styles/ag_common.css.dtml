@@ -200,6 +200,10 @@ ul.navTreeLevel1 li.navTreeItem {
 	display: none;
 }
 
+#contact p {
+	margin: 0px;
+}
+
 #contact a:hover {
 	background: &dtml-contactColor; none repeat scroll 0 0;
 	color: &dtml-contactBackgroundColor;;
