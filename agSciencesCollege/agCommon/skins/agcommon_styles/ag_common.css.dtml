@@ -201,16 +201,16 @@ ul.navTreeLevel1 li.navTreeItem {
 }
 
 #contact a:hover {
-	background: &dtml-contactBackgroundColor; none repeat scroll 0 0;
-	color: &dtml-contactColor;;
+	background: &dtml-contactColor; none repeat scroll 0 0;
+	color: &dtml-contactBackgroundColor;;
 }
 
 #contact a {
-	background: &dtml-contactColor; none repeat scroll 0 0;
+	background: &dtml-contactBackgroundColor; none repeat scroll 0 0;
 	border-width: 0 1px 0 0;
 	border-style: solid;
 	border-color: #808080;
-	color: &dtml-contactBackgroundColor;;
+	color: &dtml-contactColor;;
 	display: block;
 	font-size: 0.88em;
 	font-weight: bold;
