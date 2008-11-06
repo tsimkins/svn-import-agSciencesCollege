@@ -390,6 +390,11 @@ body.section-front-page #rightcolumn .portletWrapper {
 	padding: 0px;
 }
 
+body.section-front-page #centercolumn .portletWrapper {
+	background: red;
+	margin-right: 10px;
+}
+
 
 body.section-front-page #rightcolumn .portletItem a.more,
 body.section-front-page #centercolumn .portletItem a.more {
