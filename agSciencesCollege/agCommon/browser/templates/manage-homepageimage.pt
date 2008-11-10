@@ -12,7 +12,7 @@
 </head>
 <body>
 <div metal:fill-slot="main">
-  <h1 class="documentFirstHeading">Manage Homepage Image Portlets</h1>
+  <h2 class="documentFirstHeading">Manage Homepage Image Portlets</h2>
   <span tal:replace="structure provider:agcommon.homepageimage" />
 </div>
 </body>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <div metal:fill-slot="main">
-  <h1 class="documentFirstHeading">Manage Contact Portlet</h1>
+  <h2 class="documentFirstHeading">Manage Contact Portlet</h2>
   <span tal:replace="structure provider:agcommon.contact" />
 </div>
 </body>
