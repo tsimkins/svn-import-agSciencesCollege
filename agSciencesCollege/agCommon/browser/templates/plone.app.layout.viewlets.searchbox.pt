@@ -20,7 +20,7 @@
                class="inputLabel" 
                autocomplete="off"/>
 
-		<select id = "searchSource" style = "display: none">
+		<select id = "searchSource">
 			<option value = "site">Search Site</option>
 			<option value = "college">Search College</option>
 			<option value = "psu">Search Penn State</option>
