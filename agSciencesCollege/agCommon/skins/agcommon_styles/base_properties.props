@@ -64,3 +64,10 @@ frontFlash:string=thinkagain.swf
 homepageImage:string=homepageImage.jpg
 
 insideRightColumnBackground:string=#EEEEFF
+
+leftNavTitleBackground:string=#000000
+leftNavTitleColor:string=#FFFFFF
+
+breadcrumbTextColor:string=#D5D5D5
+breadcrumbSeparatorColor:string=#D5D5D5
+breadcrumbLinkColor:string=#FFFFFF
