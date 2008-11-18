@@ -524,6 +524,15 @@ h2 {
 	font-weight: bold;
 }
 
+h3 {
+	color: #666666;
+	font-size: 1em;
+	margin: 15px 0 5px;
+	padding: 0;
+	border: 0px;
+	font-weight: bold;
+}
+
 #portal-column-one-visualPadding .portletWrapper {
 	padding: 0px;
 }
