@@ -36,3 +36,9 @@ body.section-front-page #centercolumn {
 	border: 0px;
 	margin-right: 175px;
 }
+
+.newsImageContainer {
+	width: 202px;
+	text-align: center;
+} 
+

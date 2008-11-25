@@ -45,6 +45,9 @@ portalMinWidth:string=70em
 columnOneWidth:string=16em
 columnTwoWidth:string=16em
 
+maxWidth:string=875px
+minWidth:string=785px
+
 breadcrumbBackgroundColor:string=#F09400
 adminlinksBackgroundColor:string=#ff3900
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
@@ -71,3 +74,4 @@ leftNavTitleColor:string=#FFFFFF
 breadcrumbTextColor:string=#D5D5D5
 breadcrumbSeparatorColor:string=#D5D5D5
 breadcrumbLinkColor:string=#FFFFFF
+
