@@ -1,0 +1,14 @@
+Added minWidth, maxWidth for portal
+CSS look and feel fixes
+Added templates
+Removed homepageImage.jpg -- Now you upload your own homepageImage.jpg at the site root (or wherever)
+
+--This line, and those below, will be ignored--
+
+M    browser/__init__.pyc
+M    browser/viewlets.pyc
+M    browser/interfaces.pyc
+M    skins/agcommon_custom_images/IE6Fixes.css
+M    skins/agcommon_styles/ag_common.css.dtml
+M    skins/agcommon_styles/base_properties.props
+M    __init__.pyc

@@ -21,18 +21,18 @@ class IBelowLeftColumn(IViewletManager):
     """A viewlet manager that sits above the content views
     """
     
-class IAdminlinks(IPortletManager):
+class IAdminlinks(IPortletManager, IColumn):
 	"""A description goes here    """
  
      
-class IContact(IPortletManager):
+class IContact(IPortletManager, IColumn):
 	"""A description goes here    """
  
 class IRightColumn(IPortletManager, IColumn):
 	"""A viewlet manager that sits inside the main content area and floats to the right
 	"""
 	
-class IHomepageImage(IPortletManager):
+class IHomepageImage(IPortletManager, IColumn):
 	"""A viewlet manager where you can create the homepage image
 	"""
 	

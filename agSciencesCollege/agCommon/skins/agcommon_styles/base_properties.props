@@ -54,22 +54,27 @@ bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#0C3D90
 bodyBackgroundImage:string=bodybg.gif
 
+frontRightPortletHeaderTextColor:string=#2F4977
+frontRightPortletHeaderBackgroundColor:string=#FBC767
 frontRightPortletTextColor:string=#2F4977
-frontRightPortletBackgroundColor:string=#FBC767
+frontRightPortletBackgroundColor:string=#F5F5F5
 
-insideRightPortletTextColor:string=#EEEEFF
-insideRightPortletBackgroundColor:string=#2F4977
+insideRightPortletHeaderTextColor:string=#EEEEFF
+insideRightPortletHeaderBackgroundColor:string=#2F4977
+insideRightPortletBackgroundColor:string=#EEEEFF
 
 contactColor:string=#005B00
 contactBackgroundColor:string=#74B40F
 
 frontFlash:string=thinkagain.swf
-homepageImage:string=homepageImage.jpg
 
-insideRightColumnBackground:string=#EEEEFF
+homepageImage:string=homepageImage.jpg
+homepageImageAlignment:string=left
+
 
 leftNavTitleBackground:string=#000000
 leftNavTitleColor:string=#FFFFFF
+leftSubNavBackground:string=#F5F5F5
 
 breadcrumbTextColor:string=#D5D5D5
 breadcrumbSeparatorColor:string=#D5D5D5

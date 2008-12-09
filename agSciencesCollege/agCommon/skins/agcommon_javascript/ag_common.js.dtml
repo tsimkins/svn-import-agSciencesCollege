@@ -83,9 +83,28 @@ function getElement(theId, vPadding, IEvPadding)
 
 function setFlash()
 {
-	var so = new SWFObject("&dtml-portal_url;/&dtml-frontFlash;", "thinkAgain", "585", "265", "8", "transparent");
-	so.addParam("wmode","transparent");
-	so.write("homepageimage");
+	var bodyClass = document.body.className;
+
+	if(bodyClass.match(/template-document_homepage_view/))
+	{
+		var homepageImage = document.getElementById("homepageimage");
+
+		if (homepageImage)
+		{
+			var backgrounds = "&dtml-homepageImage;".split(";");
+			var backgroundAlignments = "&dtml-homepageImageAlignment;".split(";");
+			var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+			homepageImage.style.backgroundImage = "url(background_images/" + backgrounds[randomnumber] + ")";
+			homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber];
+		}
+
+		if ("&dtml-frontFlash;")
+		{
+			var so = new SWFObject("&dtml-portal_url;/&dtml-frontFlash;", "thinkAgain", "585", "265", "8", "transparent");
+			so.addParam("wmode","transparent");
+			so.write("homepageimage");
+		}
+	}
 }
 
 function setSearch()
