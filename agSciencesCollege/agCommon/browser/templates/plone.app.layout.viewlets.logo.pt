@@ -10,8 +10,7 @@
 	tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
 	alt="College of Agricultural Sciences" /></a>
 
-  <a tal:attributes="href view/navigation_root_url"><img 
-	id="logo-site"
-	tal:attributes="src string:${view/navigation_root_url}/blank.gif; alt view/portal_title" /></a>
-
+	<div id = "logo-site">
+		<a tal:attributes="href view/navigation_root_url" tal:content="view/portal_title" />
+	</div>
 </div>

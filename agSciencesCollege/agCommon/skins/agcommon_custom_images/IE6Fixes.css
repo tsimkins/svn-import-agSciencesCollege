@@ -42,3 +42,11 @@ body.section-front-page #centercolumn {
 	text-align: center;
 } 
 
+#adminlinks li {
+    border-width: 0px 0px 0px 2px;
+}
+
+#logo-site {  
+    left: 185px;
+}
+

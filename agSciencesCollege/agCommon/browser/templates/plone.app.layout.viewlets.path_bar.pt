@@ -1,8 +1,7 @@
 <div id="portal-breadcrumbs"
      i18n:domain="plone">
 
-    <span id="breadcrumbs-you-are-here" i18n:translate="you_are_here">You
-are here:</span>
+    <span id="breadcrumbs-you-are-here" i18n:translate="you_are_here">You are here:</span>
 
     <a href = "http://www.psu.edu" target = "_blank">PSU</a>
 
@@ -10,7 +9,13 @@ are here:</span>
         &raquo;
     </span>
 
-    <a i18n:translate="tabs_home" tal:attributes="href view/navigation_root_url">AgSci</a>
+    <a href = "http://cas.psu.edu">AgSci</a>
+
+    <span class="breadcrumbSeparator">
+        &raquo;
+    </span>
+
+    <a tal:attributes="href view/navigation_root_url" tal:content="context/@@plone_portal_state/portal_title">[Title]</a>
     <span tal:condition="view/breadcrumbs" class="breadcrumbSeparator">
         &raquo;
     </span>
