@@ -50,3 +50,7 @@ body.section-front-page #centercolumn {
     left: 185px;
 }
 
+
+img.image-full {
+	width: auto;
+}
