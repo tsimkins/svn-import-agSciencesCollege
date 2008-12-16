@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object>
+  <order manager="plone.abovecontentbody" skinname="Folder Viewlet"
+         based-on="Plone Default">
+    <viewlet name="folder_image" />
+    <viewlet name="folder_text" />
+  </order>
+
+</object>

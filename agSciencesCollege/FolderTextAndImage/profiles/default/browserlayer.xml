@@ -1,0 +1,6 @@
+<layers>
+	<layer name = "FolderImageViewlet"
+	 interface = "Products.FolderTextAndImage.browser.interfaces.IFolderImageViewlet" />
+	<layer name = "FolderTextViewlet"
+	 interface = "Products.FolderTextAndImage.browser.interfaces.IFolderTextViewlet" />
+</layers>

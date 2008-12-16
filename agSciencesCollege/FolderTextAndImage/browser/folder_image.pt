@@ -1,0 +1,1 @@
+<img tal:condition="view/folder_image" tal:replace="structure view/folder_image" />

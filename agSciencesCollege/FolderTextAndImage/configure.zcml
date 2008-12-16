@@ -1,0 +1,30 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="FolderTextAndImage">
+
+  
+  <include package=".browser" />
+
+  <include package="archetypes.schemaextender" />
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="FolderTextAndImage"
+      directory="profiles/default"
+      description="Extension profile for Folder -- Adds Text and Image fields, and Viewlet to display them."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+<!--
+   <genericsetup:registerProfile
+      name="uninstall"
+      title="FolderTextAndImage"
+      directory="profiles/uninstall"
+      description="Removes FolderTextAndImage"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+-->
+</configure>
+

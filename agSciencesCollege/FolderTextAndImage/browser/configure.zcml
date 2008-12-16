@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="FolderTextAndImage">
+
+    <browser:viewlet
+        name="FolderTextAndImage.folder_image"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.FolderImageViewlet"
+        permission="zope2.View"
+		layer=".interfaces.IFolderImageViewlet"
+        />
+
+    <browser:viewlet
+        name="FolderTextAndImage.folder_text"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.FolderTextViewlet"
+        permission="zope2.View"
+		layer=".interfaces.IFolderTextViewlet"
+        />
+
+</configure>
