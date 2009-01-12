@@ -55,7 +55,6 @@ dt {
 	border-right: 1px solid #808080;
 }
 
-
 #portal-breadcrumbs {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
@@ -807,6 +806,59 @@ img.folder_image {
 
 img.image-full {
 	width: 100%;
+}
+
+.contenttype-fsdperson h2.tileHeadline a {
+	color: #333333 !important;
+	font-weight: bold;
+	border: none;
+}
+
+/* leftColumnButtons */
+
+ul.leftColumnButtons {
+	margin: 30px 15px;
+}
+
+ul.leftColumnButtons li {
+	display: block;
+	padding: 0px;
+	background: #85ace7 url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
+	border: 1px solid #506e94;
+	margin-bottom: 15px;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+ul.leftColumnButtons li strong {
+	padding: 0px;
+	margin: 0px;
+	border: 1px solid #FFFFFF;
+	display: block
+}
+
+ul.leftColumnButtons li a {
+	text-decoration: none;
+	display: block;
+	color: white;
+	font-weight: normal;
+	font-size: 1.1em;
+	margin-left: 16px;
+	padding: 8px;
+	background: #5e95e7;
+	border-left: 1px solid #FFFFFF;
+}
+
+ul.leftColumnButtons li.internal-link a {
+	background: #155595;
+}
+
+ul.leftColumnButtons li.internal-link {
+	background-color: #487aab;
+}
+
+.image-left, .image-right {
+	border: 0px;
 }
 
 /* YOUR CSS RULES STOP HERE */
