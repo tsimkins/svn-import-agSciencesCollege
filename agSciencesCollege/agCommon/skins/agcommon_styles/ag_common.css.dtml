@@ -861,6 +861,17 @@ ul.leftColumnButtons li.internal-link {
 	border: 0px;
 }
 
+/* Paragraph and Unordered List readability per cmore */
+
+.documentContent ul {
+	margin:0.75em 0 0 2.5em;
+}
+
+p {
+	margin: 1em 0;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

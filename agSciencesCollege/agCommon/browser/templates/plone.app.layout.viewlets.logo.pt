@@ -3,7 +3,7 @@
   <a href = "http://www.psu.edu" target = "_blank"><img 
 	id="logo-psu" 
 	tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
-	alt="Penn State University"></a>
+	alt="Penn State University" /></a>
     
   <a href="http://cas.psu.edu" target="_blank"><img 
 	id="logo-college"

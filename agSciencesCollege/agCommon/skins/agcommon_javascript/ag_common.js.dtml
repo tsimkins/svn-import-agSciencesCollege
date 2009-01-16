@@ -36,7 +36,7 @@ function resizeColumns()
 
 	if (msieversion() == 6)
 	{
-		IE_left = 13;
+		IE_left = 1;
 	}
 
 	// Set both heights to the same (max) value.  Note that we have to append "px" to the value.
