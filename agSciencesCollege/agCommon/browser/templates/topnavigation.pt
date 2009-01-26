@@ -1,0 +1,22 @@
+
+
+<div id = "topnavigation">
+
+	<ul 
+	    tal:condition="view/topnavigation">
+	
+	    <li tal:repeat="saction view/topnavigation"
+	        tal:attributes="id string:siteaction-${saction/id}"><a
+	           href=""
+	           tal:define="title saction/title;
+	                       id saction/id;"
+	           i18n:attributes="title"
+	           i18n:translate=""
+	           tal:content="title"
+	           tal:attributes="href saction/url;
+	                           title title;"
+	           >Site action</a></li>
+	
+	</ul>
+
+</div>
