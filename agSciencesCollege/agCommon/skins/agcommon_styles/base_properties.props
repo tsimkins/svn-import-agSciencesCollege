@@ -53,10 +53,10 @@ breadcrumbTextColor:string=#D5D5D5
 breadcrumbSeparatorColor:string=#D5D5D5
 breadcrumbLinkColor:string=#FFFFFF
 
-adminlinksBackgroundColor:string=#ff3900
-adminlinksButtonBackgroundColor:string=#ff4400
-adminlinksTextColor:string=#dddddd
-adminlinksTextHoverColor:string=#ffffff
+topnavigationBackgroundColor:string=#ff3900
+topnavigationButtonBackgroundColor:string=#ff4400
+topnavigationTextColor:string=#dddddd
+topnavigationTextHoverColor:string=#ffffff
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#0C3D90

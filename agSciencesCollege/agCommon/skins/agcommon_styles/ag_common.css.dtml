@@ -266,15 +266,15 @@ ul.navTreeLevel1 li.navTreeItem {
 }
 
 
-/* ADMINLINKS */
+/* topnavigation */
 
-#adminlinks {
-	background: &dtml-adminlinksBackgroundColor;;
+#topnavigation {
+	background: &dtml-topnavigationBackgroundColor;;
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
 }
 
-#adminlinks ul {
+#topnavigation ul {
 	display: block;
 	text-align: left;
 	margin: 0px auto;
@@ -283,9 +283,9 @@ ul.navTreeLevel1 li.navTreeItem {
 	list-style-type: none;
 }
 
-#adminlinks li {
-	background: &dtml-adminlinksButtonBackgroundColor;;
-	border-color: &dtml-adminlinksBackgroundColor;;
+#topnavigation li {
+	background: &dtml-topnavigationButtonBackgroundColor;;
+	border-color: &dtml-topnavigationBackgroundColor;;
 	border-width: 0px 0px 0px 1px;
 	border-style: solid;
 	display: -moz-inline-box;
@@ -295,37 +295,37 @@ ul.navTreeLevel1 li.navTreeItem {
 	white-space: nowrap;	
 }
 
-#adminlinks li:first-child {
+#topnavigation li:first-child {
 	border-width: 0px;
 }
 
-#adminlinks li a {
+#topnavigation li a {
 	display: inline;
 	font-size: 1em;
-	color: &dtml-adminlinksTextColor;;
+	color: &dtml-topnavigationTextColor;;
 	text-decoration: none;
 	border: 0px;
 }
 
-#adminlinks img {
+#topnavigation img {
 	display: none;
 }
 
-#adminlinks .portletHeader {
+#topnavigation .portletHeader {
 	display: none;
 }
 
-#adminlinks .portletItem {
+#topnavigation .portletItem {
 	padding: 0;
 	border: 0px;
 }
 
-#adminlinks .portlet {
+#topnavigation .portlet {
 	background-color: transparent;
 	border: 0px;
 }
 
-#adminlinks li.navTreeItem div {
+#topnavigation li.navTreeItem div {
 	display: inline;
 }
 
@@ -774,18 +774,18 @@ body.popup, body.atrefbrowser {
 	margin-left: 10px;
 }
 
-#adminlinks a.state-published {
-	color:&dtml-adminlinksTextColor; !important;
+#topnavigation a.state-published {
+	color:&dtml-topnavigationTextColor; !important;
 	letter-spacing: 0.04em;
 }
 
-#adminlinks a.state-published:hover {
-	color: &dtml-adminlinksTextHoverColor; !important;
+#topnavigation a.state-published:hover {
+	color: &dtml-topnavigationTextHoverColor; !important;
 }
 
 /* Hide managePortletsLink in homegrown portlets. */
 
-#adminlinks .managePortletsLink,
+#topnavigation .managePortletsLink,
 #rightcolumn .managePortletsLink,
 #contact .managePortletsLink,
 #homepageimage .managePortletsLink,

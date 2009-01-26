@@ -15,15 +15,15 @@ ul, ol, dl {
 }
 
 
-#adminlinks li a {
+#topnavigation li a {
 	font-size: .88em;
 }
 
-#adminlinks ul {
+#topnavigation ul {
 	padding: 0px;
 }
 
-#adminlinks {
+#topnavigation {
 	padding: 3px 0px;
 }
 
@@ -42,7 +42,7 @@ body.section-front-page #centercolumn {
 	text-align: center;
 } 
 
-#adminlinks li {
+#topnavigation li {
     border-width: 0px 0px 0px 2px;
 }
 

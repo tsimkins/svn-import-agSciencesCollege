@@ -6,7 +6,7 @@
 <object>
 
   <order manager="agcommon.abovecontentviews" skinname="agCommon">
-    <viewlet name="agcommon.adminlinks" />
+    <viewlet name="agcommon.topnavigation" />
   </order>
 
 
