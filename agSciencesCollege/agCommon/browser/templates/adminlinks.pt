@@ -1,5 +1,0 @@
-<div id = "adminlinks">
-
-	<tal:block replace="structure provider:agcommon.adminlinks" />
-
-</div>
