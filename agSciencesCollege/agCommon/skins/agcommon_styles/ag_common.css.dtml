@@ -765,13 +765,32 @@ body.popup, body.atrefbrowser {
 	text-decoration: none;
 }
 
+.headshot img {
+	border: 0px;
+}
+
+.facultyStaffDirectory .standardView .headshot img, 
+.personView .headshot img,
 .facultyStaffDirectory.personView .headshot img {
+	border: 0px;
+	margin-left: 10px;
+}
+
+.personView .headshot img {
 	margin-top: 40px;
 }
 
-.facultyStaffDirectory.classification .headshot img {
+.classification .headshot img {
 	float: right;
 	margin-left: 10px;
+}
+
+.facultyStaffDirectory .standardView .headshot {
+	float: right;
+}
+
+.facultyStaffDirectory .standardView .caption {
+	margin-left: 0px;
 }
 
 #topnavigation a.state-published {
@@ -801,6 +820,11 @@ img.folder_image {
 
 .tileItem {
 	border-top: 0px;
+	margin-top: 1em;
+}
+
+.tileImage {
+	border: 0;
 	margin-top: 1em;
 }
 
@@ -870,6 +894,8 @@ ul.leftColumnButtons li.internal-link {
 p {
 	margin: 1em 0;
 }
+
+
 
 
 /* YOUR CSS RULES STOP HERE */

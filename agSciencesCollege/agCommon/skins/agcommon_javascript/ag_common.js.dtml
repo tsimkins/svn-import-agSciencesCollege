@@ -8,8 +8,12 @@
 
 // This makes the left column and the center column the same size
 
-
 function resizeColumns()
+{
+	setTimeout("doresizeColumns()", 300);
+}
+
+function doresizeColumns()
 {
 	// Get leftcolumn and rightcolumn elements
 	var leftColumn = document.getElementById("portal-column-one");
@@ -43,6 +47,7 @@ function resizeColumns()
 	leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight + IE_left) + "px";
 	rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight + IE_right) + "px";
 //	alert(leftVisualPadding.style.height, leftVisualPadding.style.height);
+
 }
 
 function msieversion()
@@ -151,9 +156,9 @@ function setSearch()
 	}		
 }
 
-registerPloneFunction(resizeColumns);
 registerPloneFunction(setFlash);
 registerPloneFunction(setSearch);
+registerPloneFunction(resizeColumns);
 
 /* YOUR JAVASCRIPT STOPS HERE */
 
