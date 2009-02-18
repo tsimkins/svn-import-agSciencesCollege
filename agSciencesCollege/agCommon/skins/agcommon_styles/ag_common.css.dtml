@@ -838,6 +838,10 @@ img.image-full {
 	border: none;
 }
 
+.contenttype-fsdperson p.tileBody {
+	display: none;
+}
+
 /* leftColumnButtons */
 
 ul.leftColumnButtons {

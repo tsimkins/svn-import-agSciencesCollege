@@ -104,7 +104,7 @@
 		template="templates/manage-centercolumn.pt"
 		permission="plone.app.portlets.ManagePortlets"
 	/>
-        
+
  <include package="z3c.jbot" file="meta.zcml" />
   <browser:templateOverrides
       directory="templates"
