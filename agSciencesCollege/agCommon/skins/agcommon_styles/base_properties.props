@@ -45,6 +45,8 @@ portalMinWidth:string=70em
 columnOneWidth:string=16em
 columnTwoWidth:string=16em
 
+agCommonPropertiesStartHere:string=_____________________________________________________
+
 maxWidth:string=875px
 minWidth:string=785px
 
@@ -87,3 +89,10 @@ leftNavTextHoverColor:string=#333366;
 leftSubNavBackground:string=#F5F5F5
 
 
+leftButtonArrowBackground_external:string=#85ace7
+leftButtonBackground_external:string=#5e95e7
+leftButtonBackgroundBorder_external:string:#506e94
+
+leftButtonArrowBackground_internal:string=#487aab
+leftButtonBackground_internal:string=#155595
+leftButtonBackgroundBorder_internal:string:#506e94

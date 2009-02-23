@@ -851,8 +851,8 @@ ul.leftColumnButtons {
 ul.leftColumnButtons li {
 	display: block;
 	padding: 0px;
-	background: #85ace7 url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
-	border: 1px solid #506e94;
+	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
+	border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
 	margin-bottom: 15px;
 	list-style-type: none;
 	list-style-image: none;
@@ -873,16 +873,17 @@ ul.leftColumnButtons li a {
 	font-size: 1.1em;
 	margin-left: 16px;
 	padding: 8px;
-	background: #5e95e7;
+	background: &dtml-leftButtonBackground_external;;
 	border-left: 1px solid #FFFFFF;
 }
 
 ul.leftColumnButtons li.internal-link a {
-	background: #155595;
+	background: &dtml-leftButtonBackground_internal;;
 }
 
 ul.leftColumnButtons li.internal-link {
-	background-color: #487aab;
+	background-color: &dtml-leftButtonArrowBackground_internal;;
+	border-color: &dtml-leftButtonBackgroundBorder_internal;;
 }
 
 .image-left, .image-right {
