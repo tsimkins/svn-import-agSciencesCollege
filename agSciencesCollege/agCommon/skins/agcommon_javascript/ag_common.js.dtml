@@ -23,6 +23,11 @@ function doresizeColumns()
 	var leftVisualPadding = document.getElementById("left-visualPadding");
 	var rightVisualPadding = document.getElementById("right-visualPadding");
 
+	if (!(leftColumn && rightColumn && leftVisualPadding && rightVisualPadding))
+	{
+		return;
+	}
+
 	// Reset the heights of these two padding divs to auto, in case 
 	// resizeColumns has already been run (i.e. text resize scenario)
 	leftVisualPadding.style.height = "auto";

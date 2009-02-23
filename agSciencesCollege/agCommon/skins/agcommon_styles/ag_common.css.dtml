@@ -793,12 +793,12 @@ body.popup, body.atrefbrowser {
 	margin-left: 0px;
 }
 
-#topnavigation a.state-published {
+#topnavigation a.state-published, #topnavigation a {
 	color:&dtml-topnavigationTextColor; !important;
 	letter-spacing: 0.04em;
 }
 
-#topnavigation a.state-published:hover {
+#topnavigation a.state-published:hover, #topnavigation a:hover {
 	color: &dtml-topnavigationTextHoverColor; !important;
 }
 
@@ -899,6 +899,12 @@ p {
 	margin: 1em 0;
 }
 
+
+/* PloneFormGen Fields */
+
+#pfg-fieldwrapper .field {
+	clear: none;
+}
 
 
 
