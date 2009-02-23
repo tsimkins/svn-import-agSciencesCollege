@@ -868,7 +868,7 @@ ul.leftColumnButtons li strong {
 ul.leftColumnButtons li a {
 	text-decoration: none;
 	display: block;
-	color: white;
+	color: &dtml-leftButtonTextColor_external;;
 	font-weight: normal;
 	font-size: 1.1em;
 	margin-left: 16px;
@@ -878,6 +878,7 @@ ul.leftColumnButtons li a {
 }
 
 ul.leftColumnButtons li.internal-link a {
+	color: &dtml-leftButtonTextColor_internal;;
 	background: &dtml-leftButtonBackground_internal;;
 }
 
