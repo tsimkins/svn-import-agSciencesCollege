@@ -5,7 +5,7 @@
 	tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
 	alt="Penn State University" /></a>
     
-  <a href="http://cas.psu.edu" target="_blank"><img 
+  <a href="http://agsci.psu.edu" target="_blank"><img 
 	id="logo-college"
 	tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
 	alt="College of Agricultural Sciences" /></a>
