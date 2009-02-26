@@ -592,13 +592,14 @@ body.template-document_homepage_view #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;
 }
 
-body.template-document_homepage_view #centercolumn .portletItem a.tile {
+body.template-document_homepage_view #centercolumn .portletItem a.title {
 /*	color: #2F4977; */
 	font-size: 1.05em;
 	font-weight: bold;
 	margin-top: 7px;
 	text-decoration: none;
 	border-width: 0px;
+	display: block;
 }
 
 body.template-document_homepage_view #centercolumn .portletItem span.date  {
@@ -608,7 +609,7 @@ body.template-document_homepage_view #centercolumn .portletItem span.date  {
 	text-align: left;
 }
 
-body.template-document_homepage_view #centercolumn .portletItem span.text  {
+body.template-document_homepage_view #centercolumn .portletItem span.summary {
 	color: #333333;
 	font-size: 0.92em;
 	margin: 10px 0px;
