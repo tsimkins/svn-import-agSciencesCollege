@@ -24,4 +24,9 @@
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="print.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="print"
+    rel="stylesheet" rendering="import"/>
 </object>

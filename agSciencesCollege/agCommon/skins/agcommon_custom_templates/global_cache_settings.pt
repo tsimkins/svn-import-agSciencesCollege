@@ -1,0 +1,11 @@
+      <metal:cacheheaders define-macro="cacheheaders">
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)" />
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Language', lang)" />
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Vary', 'Accept-Language,Accept-Encoding,Cookie')" />
+        <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Pragma', 'no-cache')" />
+        <metal:block tal:content="structure python:here.enableHTTPCompression(request=request, debug=0)" />
+        <tal:block condition="isAnon">
+          <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Cache-Control', 'max-age=0,s-maxage=300')" />
+          <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Last-Modified', here.modified().toZone('GMT').rfc822())" />
+        </tal:block>
+      </metal:cacheheaders>

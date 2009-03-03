@@ -17,16 +17,17 @@
       -->
 <!-- EXAMPLE (UNCOMMENT TO MAKE AVAILABLE):
  <javascript id="++resource++agcommon.javascripts/example.js"
-    cacheable="False" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="False"
     enabled="True" expression="" inline="False"/>
 -->
  <javascript id="swfobject.js"
-    cacheable="False" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="False"
     enabled="True" expression="" inline="False"/>
 
  <javascript id="ag_common.js"
-    cacheable="False" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="False"
     enabled="True" expression="" inline="False"/>
 
 
 </object>
+

@@ -49,6 +49,10 @@ dt {
 	padding: 0;
 }
 
+#logo-print {
+	display: none;
+}
+
 #portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
 	margin: 0px 6px;
 	border-left: 1px solid #808080;
