@@ -121,44 +121,54 @@ function setSearch()
 {
 	var theSearchButton = document.getElementById("goSearch");
 	var theSearchDropdown = document.getElementById("searchSource");	
+	var thePloneSearchForm = document.getElementById("plonesearchform");
 
-	if (theSearchButton && theSearchDropdown)
+	if (theSearchButton && theSearchDropdown && thePloneSearchForm)
 	{
 		theSearchDropdown.style.display = "inline";
 
 		theSearchButton.onclick = function () {
-
-			var theSearchDropdown = document.getElementById("searchSource");			
-			var theSearchForm = document.getElementById("GoogleSearch");
-			var theSearchBox = document.getElementById("searchBox");
-
-			if (theSearchDropdown && theSearchForm && theSearchBox)
-			{
-				var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
-
-				if (theSearchOption == "college")
-				{
-					theSearchForm.q.value = theSearchBox.value;
-					theSearchForm.site.value = "CAS";
-					theSearchForm.proxystylesheet.value = "CAS";
-					theSearchForm.submit();
-					return false;
-				}
-				else if (theSearchOption == "psu")
-				{
-					theSearchForm.q.value = theSearchBox.value;
-					theSearchForm.site.value = "PennState";
-					theSearchForm.proxystylesheet.value = "PennState";
-					theSearchForm.submit();
-					return false;
-				}
-				else
-				{
-					return true;
-				}
-			}
+			return searchOnSubmit();
+		}
+		
+		thePloneSearchForm.onsubmit = function () {
+			return searchOnSubmit();
 		}
 	}		
+}
+
+function searchOnSubmit()
+{
+	var theSearchDropdown = document.getElementById("searchSource");			
+	var theSearchForm = document.getElementById("GoogleSearch");
+	var theSearchBox = document.getElementById("searchBox");
+
+	if (theSearchDropdown && theSearchForm && theSearchBox)
+	{
+		var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
+
+		if (theSearchOption == "college")
+		{
+			theSearchForm.q.value = theSearchBox.value;
+			theSearchForm.site.value = "CAS";
+			theSearchForm.proxystylesheet.value = "CAS";
+			theSearchForm.submit();
+			return false;
+		}
+		else if (theSearchOption == "psu")
+		{
+			theSearchForm.q.value = theSearchBox.value;
+			theSearchForm.site.value = "PennState";
+			theSearchForm.proxystylesheet.value = "PennState";
+			theSearchForm.submit();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
 }
 
 registerPloneFunction(setFlash);
