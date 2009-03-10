@@ -12,11 +12,11 @@ body {
 	color: #333333;
 }
 
-#content a {
+#content a, #portal-column-one a{
 	color: #003399;
 }
 
-#content a:hover {
+#content a:hover, #portal-column-one a:hover {
 	color: #3366CC;
 }
 
@@ -850,6 +850,14 @@ img.image-full {
 
 /* leftColumnButtons */
 
+div.leftColumnButtons {
+	margin: 30px 8px 20px 8px;
+}
+
+div.leftColumnButtons a {
+	text-decoration: none;
+}
+
 ul.leftColumnButtons {
 	margin: 30px 15px;
 }
@@ -871,7 +879,7 @@ ul.leftColumnButtons li strong {
 	display: block
 }
 
-ul.leftColumnButtons li a {
+#portal-column-one ul.leftColumnButtons li a {
 	text-decoration: none;
 	display: block;
 	color: &dtml-leftButtonTextColor_external;;
@@ -883,7 +891,7 @@ ul.leftColumnButtons li a {
 	border-left: 1px solid #FFFFFF;
 }
 
-ul.leftColumnButtons li.internal-link a {
+#portal-column-one ul.leftColumnButtons li.internal-link a {
 	color: &dtml-leftButtonTextColor_internal;;
 	background: &dtml-leftButtonBackground_internal;;
 }
