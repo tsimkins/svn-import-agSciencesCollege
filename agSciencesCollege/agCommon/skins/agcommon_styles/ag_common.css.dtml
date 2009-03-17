@@ -915,6 +915,13 @@ p {
 	margin: 1em 0;
 }
 
+/* Photo Album */
+.photoAlbumEntry {
+	background-image: none;
+	padding: 0px 5px;
+	width: 142px;
+}
+
 
 /* PloneFormGen Fields */
 

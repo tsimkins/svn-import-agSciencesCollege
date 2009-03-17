@@ -85,7 +85,7 @@ body {
 
 /* Home Page Image */
 
-#homepageimage {
+body.template-document_homepage_view #homepageimage {
 	display: none;
 }
 
@@ -106,12 +106,27 @@ body {
 	padding: 0px !important;
 }
 
+/* Center Column */
+body.template-document_homepage_view #centercolumn {
+	display: block;
+	margin: 3px -9px 0px 0px ;
+	padding: 5px 0px 5px 0px;
+	border-width: 0px;
+}
+
+
+/* Right Column */
+
+body.template-document_homepage_view #rightcolumn, #rightcolumn {
+	display: none;
+}
 
 /* Footer */
 
 #portal-footer {
 	background-color:#EEEEEE;
 	color:#333333;
+	clear: both;
 }
 
 #portal-footer p {
@@ -125,6 +140,10 @@ body {
 /* Other doodads */
 
 .documentActions {
+	display: none;
+}
+
+.documentByLine {
 	display: none;
 }
 
