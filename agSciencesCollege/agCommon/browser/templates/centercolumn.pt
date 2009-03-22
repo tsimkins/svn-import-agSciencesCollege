@@ -2,4 +2,6 @@
 
 	<tal:block replace="structure provider:agcommon.centercolumn" />
 
+	<div style = "clear: both">&nbsp;</div>
+
 </div>

@@ -512,6 +512,43 @@ body.template-document_homepage_view #centercolumn .portletWrapper {
 	margin-right: 10px;
 }
 
+/* Center Column Navigation */
+
+body.template-document_homepage_view #centercolumn .portletNavigationTree ul.navTreeLevel0 {
+	margin: 0px;
+}
+
+body.template-document_homepage_view #centercolumn .portletNavigationTree, 
+body.template-document_homepage_view #centercolumn .portletCollection {
+	float: left;
+	margin-right: 2.5%;
+	width: 47.5%;
+	margin-bottom: 10px;
+}
+
+body.template-document_homepage_view #centercolumn .portletNavigationTree ul.navTreeLevel0 li.navTreeTitle a, body.template-document_homepage_view #centercolumn .portletCollection .portletHeader {
+	background: transparent;
+	display: block;
+	padding: 0px;
+	border: 0px;
+	font-weight: bold;
+	font-size: 1em;
+	color: #003366;
+	border-width: 0px 0px 1px 0px !important;
+	border-color: #CCCCCC !important;
+	border-style: solid !important;
+}
+
+body.template-document_homepage_view #centercolumn .navTreeItem a:hover, 
+body.template-document_homepage_view #centercolumn .navTreeItem a, 
+body.template-document_homepage_view #centercolumn .navTreeCurrentItem a, 
+body.template-document_homepage_view #centercolumn .portletCollection a
+
+{
+	background: transparent;
+	border: 0px !important;
+	padding: 1px 0px;
+}
 
 body.template-document_homepage_view #rightcolumn .portletItem a.more,
 body.template-document_homepage_view #centercolumn .portletItem a.more {
@@ -583,14 +620,12 @@ body.template-document_homepage_view #centercolumn .portletFooter, #centercolumn
 	padding: 0px;
 }
 
-body.template-document_homepage_view #centercolumn .portletItem {
+body.template-document_homepage_view #centercolumn .portletfeedmixer .portletItem {
 	border-width: 1px 0px 0px 0px;
 	border-style: dashed;
 	border-color: #CCCCCC;
 	padding: 0px;
 }
-
-
 
 body.template-document_homepage_view #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;
