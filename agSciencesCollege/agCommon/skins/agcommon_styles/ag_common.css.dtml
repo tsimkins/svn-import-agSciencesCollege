@@ -377,6 +377,10 @@ body.template-document_homepage_view h1 {
 	display: none;
 }
 
+body.template-document_homepage_view #centercolumn h1.documentFirstHeading {
+	display: block;
+}
+
 body.template-document_homepage_view .documentActions {
 	display: none;
 }
