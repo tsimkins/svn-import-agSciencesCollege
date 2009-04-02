@@ -5,6 +5,7 @@ from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
+from Acquisition import aq_acquire
 
 
 class TopNavigationViewlet(ViewletBase):   
@@ -13,7 +14,14 @@ class TopNavigationViewlet(ViewletBase):
 	def update(self):
 		context_state = getMultiAdapter((self.context, self.request),
                                         name=u'plone_context_state')
-		self.topnavigation = context_state.actions().get('topnavigation', None)
+                                        
+		try:
+			topMenu = aq_acquire(self.context, 'top-menu')
+		except AttributeError:
+			topMenu = 'topnavigation'
+		
+		self.topnavigation = context_state.actions().get(topMenu, None)
+
 
 
 class TitleViewlet(ViewletBase):

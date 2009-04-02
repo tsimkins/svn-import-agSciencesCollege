@@ -1,9 +1,8 @@
 
 
-<div id = "topnavigation">
+<div id = "topnavigation" tal:condition="view/topnavigation">
 
-	<ul 
-	    tal:condition="view/topnavigation">
+	<ul>
 	
 	    <li tal:repeat="saction view/topnavigation"
 	        tal:attributes="id string:siteaction-${saction/id}"><a
