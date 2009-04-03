@@ -29,13 +29,14 @@ class Assignment(base.Assignment):
     feeds = u""
     items_shown = 5
     hide_header = False
+    hide_date = False
     show_summary = False
     hide_footer = False
     cache_timeout = 900
     assignment_context_path = None
 
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
-                 hide_header=hide_header, show_summary=show_summary, 
+                 hide_header=hide_header, hide_date=hide_date, show_summary=show_summary, 
                  hide_footer=hide_footer,
                  cache_timeout=cache_timeout,
                  assignment_context_path=assignment_context_path):
@@ -43,8 +44,9 @@ class Assignment(base.Assignment):
         self.feeds=feeds
         self.items_shown=items_shown
         self.hide_header=hide_header
+        self.hide_date=hide_date
         self.show_summary=show_summary
-        self.hide_footer=hide_header
+        self.hide_footer=hide_footer
         self.cache_timeout=cache_timeout
         self.assignment_context_path = assignment_context_path
         
@@ -141,6 +143,10 @@ class Renderer(base.Renderer):
     @property
     def hide_header(self):
         return self.data.hide_header
+
+    @property
+    def hide_date(self):
+        return self.data.hide_date
 
     @property
     def show_summary(self):

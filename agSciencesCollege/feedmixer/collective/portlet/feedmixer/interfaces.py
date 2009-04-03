@@ -48,6 +48,14 @@ class IFeedMixer(IPortletDataProvider):
             default=False,
             required=False)
 
+    hide_date = schema.Bool(
+            title=_(u"heading_hide_date",
+                default=u"Hide RSS Feed Item Date"),
+            description=_(u"description_hide_date",
+                default=u""),
+            default=False,
+            required=False)
+
     show_summary = schema.Bool(
             title=_(u"heading_show_summary",
                 default=u"Show Feed Summary"),

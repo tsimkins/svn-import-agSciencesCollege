@@ -21,6 +21,7 @@
                tal:attributes="href entry/link;
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
                 <span class="portletItemDetails date"
+	                tal:condition="not: view/hide_header|nothing"
                     tal:content="python:toLocalizedTime(entry['updated'])">
                     Nov 1
                 </span>
