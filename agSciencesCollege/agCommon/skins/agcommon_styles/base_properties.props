@@ -81,7 +81,6 @@ frontFlash:string=thinkagain.swf
 homepageImage:string=homepageImage.jpg
 homepageImageAlignment:string=left
 
-
 leftNavTitleBackground:string=#000000
 leftNavTitleColor:string=#FFFFFF
 leftNavTextColor:string=#666666
@@ -98,3 +97,12 @@ leftButtonArrowBackground_internal:string=#487aab
 leftButtonBackground_internal:string=#155595
 leftButtonBackgroundBorder_internal:string=#506e94
 leftButtonTextColor_internal:string=#FFFFFF
+
+documentDescriptionColor:string=#000000
+documentTitleColor:string=#003399
+documentHeadingColor:string=#333333
+documentSubHeadingColor:string=#666666
+
+footerBackgroundColor:string=#09285E
+footerLinkColor:string=#99CCFF
+footerTextColor:string=#528CA3

@@ -223,13 +223,13 @@ ul.navTreeLevel1 li.navTreeItem {
 /*-------- FOOTER -------------------*/
 
 #portal-footer {
-	background-color: #09285E;
-	color: #528CA3;
+	background-color: &dtml-footerBackgroundColor;;
+	color: &dtml-footerTextColor;;
 	border-width: 0px;
 }
 
-#portal-footer a {
-	color: #9CF;
+#portal-footer a, #portal-footer a:visited {
+	color: &dtml-footerLinkColor;;
 }
 
 /* Added By Tim 2008/07/30 */
@@ -363,7 +363,7 @@ dd.portletItem .navTreeItem a:hover {
 }
 
 h1.documentFirstHeading, .facultyStaffDirectory h1 {
-	color: #003399;
+	color: &dtml-documentTitleColor;;
 	font-weight: normal;
 	border: none;
 }
@@ -672,7 +672,7 @@ body.template-document_homepage_view #centercolumn .portletFooter a {
 
 
 h2 {
-	color: #333333;
+	color: &dtml-documentHeadingColor;;
 	font-size: 1.2em;
 	margin: 15px 0 5px;
 	padding: 0;
@@ -681,7 +681,7 @@ h2 {
 }
 
 h3 {
-	color: #666666;
+	color: &dtml-documentSubHeadingColor;;
 	font-size: 1em;
 	margin: 15px 0 5px;
 	padding: 0;
@@ -759,7 +759,7 @@ body.popup, body.atrefbrowser {
 
 .documentDescription {
 	font-weight: normal;
-	color: #000000;
+	color: &dtml-documentDescriptionColor;;
 	margin: 0 0 2.5em 0;
 	font-size: 1.1em;
 }
@@ -968,6 +968,10 @@ p {
 	clear: none;
 }
 
+/* Remove dashed underline from date abbr */
+abbr.dtstart, abbr.dtend {
+	border-bottom: 0px;
+}
 
 
 /* YOUR CSS RULES STOP HERE */
