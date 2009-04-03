@@ -1,5 +1,3 @@
-from random import random
-
 backgrounds = []
 backgroundAlignments = []
 mySWF = ""
@@ -35,7 +33,7 @@ if(bodyClass.match(/template-document_homepage_view/))
 		homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
 		homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber];
 
-		var so = new SWFObject("background-images/%s", "thinkAgain", "585", "265", "8", "transparent");
+		var so = new SWFObject("%s", "thinkAgain", "585", "265", "8", "transparent");
 		so.addParam("wmode","transparent");
 		so.write("homepageimage");
 	}
@@ -44,8 +42,4 @@ if(bodyClass.match(/template-document_homepage_view/))
 
 """ % (";".join(backgrounds), ";".join(backgroundAlignments), mySWF)
 
-
-
-
 return printed
-
