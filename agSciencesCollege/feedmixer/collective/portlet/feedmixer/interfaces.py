@@ -40,6 +40,30 @@ class IFeedMixer(IPortletDataProvider):
             default=5,
             required=True)
 
+    hide_header = schema.Bool(
+            title=_(u"heading_hide_header",
+                default=u"Hide Portlet Header"),
+            description=_(u"description_hide_header",
+                default=u""),
+            default=False,
+            required=False)
+
+    show_summary = schema.Bool(
+            title=_(u"heading_show_summary",
+                default=u"Show Feed Summary"),
+            description=_(u"description_show_summary",
+                default=u""),
+            default=False,
+            required=False)
+
+    hide_footer = schema.Bool(
+            title=_(u"heading_hide_footer",
+                default=u"Hide Portlet Footer"),
+            description=_(u"description_hide_footer",
+                default=u""),
+            default=False,
+            required=False)
+
     feeds = schema.ASCII(
             title=_(u"heading_feeds",
                 default=u"URL(s) for all feeds"),
