@@ -1,0 +1,5 @@
+setuptools
+FeedParser
+plone.portlets
+plone.app.portlets
+plone.memoize
