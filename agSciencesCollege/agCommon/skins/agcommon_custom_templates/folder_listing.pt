@@ -104,20 +104,30 @@
                         <span class="documentByLine">
 
                             <span tal:condition="python: item_type == 'Event'"
-                                  i18n:translate="label_event_byline">
+                                  i18n:translate="label_event_byline"
+                                  tal:define="from_long python:test(item_start.endswith('00:00:00'), 0, 1);
+                                  to_long python:test(item_end.endswith('00:00:00'), 0, 1)"
+                                  >
                                 (<span tal:content="string:${item/location}"
                                        tal:condition="item/location"
                                        class="location"
                                        i18n:name="location">Oslo</span><tal:comma
                                        tal:replace="string:, "
-                                       tal:condition="item/location" />from
+                                       tal:condition="item/location" />
+
+                                 <span tal:replace="string:from" tal:condition="python:item_start != item_end" />
+
                                  <abbr class="dtstart"
                                        tal:attributes="title python:item_start"
-                                       tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                       i18n:name="start">from date</abbr> to
+                                       tal:content="python:toLocalizedTime(item_start,long_format=from_long)"
+                                       i18n:name="start">from date</abbr> 
+                                       
+                                 <span tal:replace="string:to" tal:condition="python:item_start != item_end" />
+
                                  <abbr class="dtend"
+                                       tal:condition="python:item_start != item_end"
                                        tal:attributes="title python:item_end"
-                                       tal:content="python:toLocalizedTime(item_end,long_format=1)"
+                                       tal:content="python:toLocalizedTime(item_end,long_format=to_long)"
                                        i18n:name="end">to date</abbr>)
                             </span>
 
