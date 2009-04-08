@@ -362,7 +362,7 @@ dd.portletItem .navTreeItem a:hover {
 	border: none;
 }
 
-h1.documentFirstHeading, .facultyStaffDirectory h1 {
+h1.documentFirstHeading, .facultyStaffDirectory h1, #content h1 {
 	color: &dtml-documentTitleColor;;
 	font-weight: normal;
 	border: none;
