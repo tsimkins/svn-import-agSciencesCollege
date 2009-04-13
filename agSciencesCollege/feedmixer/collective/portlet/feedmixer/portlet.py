@@ -98,6 +98,10 @@ class Assignment(base.Assignment):
                 self.cleanFeed(feed)
                 cache[url]=(now+self.cache_timeout, feed)
                 return feed
+            elif len(newfeed.get('entries', [])) == 0 or newfeed.status == 404:
+                # If we don't have any entries (i.e. the feed is blank) 
+                # then just return the cached copy.
+            	return feed
 
         feed=feedparser.parse(url)
         self.cleanFeed(feed)
