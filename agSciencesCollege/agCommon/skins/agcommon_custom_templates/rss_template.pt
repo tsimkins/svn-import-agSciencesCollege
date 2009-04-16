@@ -55,9 +55,12 @@
 </channel>
 
 <tal:block repeat="brain python: objects">
-	<item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url" tal:define="obj_item brain/getObject|nocall:brain">
+	<item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url" 
+		tal:define="obj_item brain/getObject|nocall:brain;
+		obj_item_type obj_item/Type">
 		<title tal:content="obj_item/pretty_title_or_id">Title</title>
-		<link tal:content="obj_item/Identifier">Identifier</link>
+		<link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
+		<link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
 		<description tal:content="obj_item/Description">Description</description>
 		<dc:publisher tal:content="obj_item/Publisher">Publisher</dc:publisher>
 		<dc:creator tal:content="obj_item/Creator">Creator</dc:creator>
