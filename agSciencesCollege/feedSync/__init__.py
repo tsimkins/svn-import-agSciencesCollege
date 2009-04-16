@@ -4,10 +4,10 @@ from Products.CMFCore.utils import getToolByName
 from zope.app.component.hooks import getSite
 
 url = 'http://live.psu.edu/wirerss/69'
-#url = 'http://webtools.cas.psu.edu/tmp/live.rss'
 
 def sync(myContext):
 
+	print "Syncing RSS feeds from %s" % url
 	site = getSite()
 	wftool =  getToolByName(site, 'portal_workflow')
 
@@ -44,7 +44,7 @@ def sync(myContext):
 			theArticle.setEffectiveDate(dateStamp)
 						
 			theArticle.setExcludeFromNav(True)
-			theArticle.reindexObject()
+			theArticle.indexObject()
 			
 		else:
 			theReturn.append("Skipped %s" % id)
