@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<site>
+ <property name="email_from_address"
+    type="string">do.not.reply@ag.psu.edu</property>
+ <property name="email_from_name"
+    type="string">Penn State College of Agricultural Sciences</property>
+</site>

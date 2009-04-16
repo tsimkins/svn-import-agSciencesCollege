@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool" purge="False">
+ <object name="navtree_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="metaTypesNotToList" type="lines">
+   <element value="File"/>
+   <element value="Image"/>
+  </property>
+ </object>
+ <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="visible_ids" type="boolean">True</property>
+  <property name="enable_inline_editing" type="boolean">True</property>
+  <property name="enable_livesearch" type="boolean">False</property>
+  <property name="webstats_js" type="string">
+     &lt;script type="text/javascript"&gt;  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));  &lt;/script&gt;  &lt;script type="text/javascript"&gt;  var pageTracker = _gat._getTracker("UA-4037316-1");  pageTracker._setDomainName("psu.edu");  pageTracker._initData();  pageTracker._trackPageview();  &lt;/script&gt;</property>
+  <property name="external_links_open_new_window" type="string">True</property>
+  <property name="icon_visibility" type="string">authenticated</property>
+ </object>
+</object>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+	<import-steps>
+
+	 <import-step
+	    id="Products.agCommonPolicy.setupHandlersWrapper"
+	    handler="Products.agCommonPolicy.setuphandlers.setupHandlersWrapper"
+	    title="Since Plone apparently can't get the order correct, I'm using a wrapper function.  Thanks, guys!"
+	    version="20090414-01">
+		
+	 </import-step>
+
+</import-steps>
