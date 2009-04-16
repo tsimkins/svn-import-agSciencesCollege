@@ -978,6 +978,12 @@ dt.nodescription {
 	margin-bottom: 1em;
 }
 
+span.description {
+	display: block;
+	font-size: 0.9em;
+	line-height: 1.25em;
+	margin-top: 0.25em;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
