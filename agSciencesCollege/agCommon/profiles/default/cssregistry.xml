@@ -25,7 +25,17 @@
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>
 
- <stylesheet id="print.css"
+ <stylesheet id="site.css" insert-after="ag_common.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="all"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="print.css" insert-after="site.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="print"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="site_print.css" insert-after="print.css"
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="print"
     rel="stylesheet" rendering="import"/>

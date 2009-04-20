@@ -124,8 +124,15 @@ body.template-document_homepage_view #rightcolumn, #rightcolumn {
 /* Footer */
 
 #portal-footer {
-	background-color:#EEEEEE;
+	background-color:#FFFFFF;
 	color:#333333;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 10pt;
+    margin: 5px 0 0 0;
+    padding: 0;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #CCCCCC; 
 	clear: both;
 }
 
