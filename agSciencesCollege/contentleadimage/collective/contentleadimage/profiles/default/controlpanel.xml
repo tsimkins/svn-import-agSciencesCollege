@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
+  <configlet title="Content Lead Image Settings"
+             action_id="ContentLeadImage"
+             appId="collective.contentleadimage"
+             category="Products"
+             conditional_expression=""
+             url_expr="string:${portal_url}/@@contentleadimage-controlpanel"
+             visible="True">
+    <permission>Manage Portal</permission>
+  </configlet>
+</object>

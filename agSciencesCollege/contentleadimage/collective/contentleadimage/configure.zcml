@@ -1,0 +1,71 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+	xmlns:browser="http://namespaces.zope.org/browser"
+	xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="collective.contentleadimage">
+
+    <five:registerPackage package="." initialize=".initialize" />
+    <i18n:registerTranslations directory="locales" />
+
+    <include package=".browser" />
+    <include package="archetypes.schemaextender" />
+
+    <adapter factory=".extender.LeadImageExtender" 
+             provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
+             name="collective.contentleadimage" />
+
+    <adapter factory=".leadimageprefs.LeadImageControlPanelAdapter" />
+
+    <adapter for=".interfaces.ILeadImageable
+                  zope.publisher.interfaces.http.IHTTPRequest"
+                  factory=".extender.LeadImageTraverse"
+                  provides="zope.publisher.interfaces.IPublishTraverse" 
+    />
+
+    <class class="Products.Archetypes.BaseObject.BaseObject">
+          <implements interface=".interfaces.ILeadImageable" />
+    </class>
+    
+    <utility factory=".vocabulary.ScalesVocabulary"
+             provides="zope.schema.interfaces.IVocabularyFactory"
+             name='collective.contentleadimage.scales_vocabulary' />
+
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Content Lead Image"
+        directory="profiles/default"
+        description="Extension profile for Content Lead Image"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="Content Lead Image Uninstall"
+        directory="profiles/uninstall"
+        description="Uninstall profile for Content Lead Image"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <!--genericsetup:importStep
+         name="contentleadimage-various" 
+         title="Various import steps for colective.contentleadimage"
+         description=""
+         handler=".setuphandlers.importVarious">
+        <depends name="propertiestool"/>
+    </genericsetup:importStep-->
+      
+    <genericsetup:upgradeStep
+        title="Upgrade Content Lead Image Product"
+        description="Upgrades contentleadimage from Annotations to ImageField"
+        source="0.3"
+        destination="1.0"
+        handler=".migration.migrate0xto1"
+        sortkey="1"
+        profile="collective.contentleadimage:default"
+    />      
+
+</configure>
