@@ -6,7 +6,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
 from Acquisition import aq_acquire
-
+from zope.component import getMultiAdapter
+from AccessControl import getSecurityManager
 
 class TopNavigationViewlet(ViewletBase):   
 	index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -43,3 +44,25 @@ class TitleViewlet(ViewletBase):
 			return u"<title>%s &mdash; %s &mdash; Penn State University</title>" % (
 				escape(safe_unicode(page_title)),
 				escape(safe_unicode(portal_title)))
+
+class KeywordsViewlet(ViewletBase):
+	
+	index = ViewPageTemplateFile('templates/keywords.pt')
+	
+	def update(self):
+
+		super(KeywordsViewlet, self).update()
+		
+		context_state = getMultiAdapter((self.context, self.request),
+		name=u'plone_context_state')
+		tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
+		
+		sm = getSecurityManager()
+		
+		self.user_actions = context_state.actions().get('user', None)
+		
+		plone_utils = getToolByName(self.context, 'plone_utils')
+		
+		self.getIconFor = plone_utils.getIconFor
+		
+		self.anonymous = self.portal_state.anonymous()

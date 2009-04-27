@@ -753,6 +753,13 @@ body.template-document_homepage_view #content, body.template-document_homepage_v
 	max-width: 202px;
 }
 
+.contentLeadImageContainer {
+	max-width:302px;
+	width:auto;
+	float:right;
+	margin:0 0 0.5em 1em;
+}
+
 body.popup, body.atrefbrowser {
 	background: #FFFFFF;
 }
