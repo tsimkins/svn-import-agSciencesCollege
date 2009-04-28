@@ -16,6 +16,11 @@
 		alt="College of Agricultural Sciences" />
 
 	<div id = "logo-site">
-		<a tal:attributes="href view/navigation_root_url" tal:content="view/portal_title" />
+		<tal:overrideTitle tal:condition="context/portal_title|nothing">
+			<a tal:attributes="href view/navigation_root_url" tal:content="context/portal_title" />
+		</tal:overrideTitle>
+		<tal:standardTitle tal:condition="not:context/portal_title|nothing">
+			<a tal:attributes="href view/navigation_root_url" tal:content="view/portal_title" />
+		</tal:standardTitle>
 	</div>
 </div>

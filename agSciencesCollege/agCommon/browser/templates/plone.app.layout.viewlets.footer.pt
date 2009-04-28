@@ -1,12 +1,18 @@
 <div id="portal-footer" i18n:domain="plone">
-  <p>
-  &copy;
-  <span tal:omit-tag=""
-              tal:define="now modules/DateTime/DateTime" 
-              tal:content="now/year">[date last modified] 
-    </span>
-
-	College of Agricultural Sciences</p>
+	<p>
+		&copy;
+		<span tal:omit-tag=""
+			tal:define="now modules/DateTime/DateTime" 
+			tal:content="now/year">[date last modified]</span>
+		
+		<tal:overrideFooter tal:condition="context/footer_copyright|nothing">
+			<span tal:replace="context/footer_copyright" />
+		</tal:overrideFooter>
+		<tal:standardFooter tal:condition="not:context/footer_copyright|nothing">
+			<span tal:replace="string:College of Agricultural Sciences" />
+		</tal:standardFooter>
+		
+	</p>
 	<p>
 		<a href = "http://www.psu.edu/copyright.html">Copyright</a> &mdash; 
 		<a href = "http://www.psu.edu/dept/aaoffice/">Alternative Media</a> &mdash; 
@@ -15,3 +21,4 @@
 	</p>
 
 </div>
+
