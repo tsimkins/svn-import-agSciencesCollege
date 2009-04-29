@@ -50,6 +50,9 @@ agCommonPropertiesStartHere:string=_____________________________________________
 maxWidth:string=875px
 minWidth:string=785px
 
+siteLogoTopMargin:string=41px
+siteLogoFontSize:string=22px
+
 breadcrumbBackgroundColor:string=#F09400
 breadcrumbTextColor:string=#D5D5D5
 breadcrumbSeparatorColor:string=#D5D5D5

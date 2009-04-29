@@ -798,13 +798,13 @@ body.popup, body.atrefbrowser {
 /*	color: #0B3E91; */
 /*	color: #1144AA; */
 	font-family: Tahoma,Arial,Helvetica,sans-serif;
-	font-size: 22px;
+	font-size: &dtml-siteLogoFontSize;;
 	height: 30px;
 	left: 188px;
 	letter-spacing: 0.02em;
 	position: absolute;
 	text-transform: uppercase;
-	top: 41px;
+	top: &dtml-siteLogoTopMargin;;
 	width: 580px;
 }
 
