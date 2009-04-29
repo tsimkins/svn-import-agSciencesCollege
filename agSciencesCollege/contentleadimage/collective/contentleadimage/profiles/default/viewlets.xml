@@ -6,7 +6,7 @@
  </order>
 
  <order manager="plone.abovecontentbody" skinname="Plone Default">
-  <viewlet name="collective.contentleadimage.full" insert-after="plone.presentation" />
+  <viewlet name="collective.contentleadimage.full" insert-before="*" />
  </order>
 
  <hidden manager="plone.belowcontenttitle" skinname="Plone Default">

@@ -1,4 +1,4 @@
-<div class="newsImageContainer" i18n:domain="collective.contentleadimage"
+<div class="contentLeadImageContainer" i18n:domain="collective.contentleadimage"
      tal:define="tag python: view.bodyTag(css_class='newsImage')"
      tal:condition="tag">
 
