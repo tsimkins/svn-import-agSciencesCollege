@@ -65,7 +65,9 @@ topnavigationTextHoverColor:string=#ffffff
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#0C3D90
-bodyBackgroundImage:string=bodybg.gif
+backgroundStripeOneColor:string=#0f50bc
+backgroundStripeTwoColor:string=#0c3b8d
+backgroundStripeThreeColor:string=#08265a
 
 frontRightPortletHeaderTextColor:string=#2F4977
 frontRightPortletHeaderBackgroundColor:string=#FBC767

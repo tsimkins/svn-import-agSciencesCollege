@@ -8,10 +8,38 @@
 
 
 body {
-	background: &dtml-bodyBackgroundColor; url(&dtml-portal_url;/&dtml-bodyBackgroundImage;) repeat-x;
+	background: &dtml-bodyBackgroundColor;;
 	color: #333333;
 }
 
+#background-stripe-one, 
+#background-stripe-two, 
+#background-stripe-three {
+	margin:0;
+	padding:0;
+	border:0;
+	position:absolute;
+	width: 100%;
+	z-index: -10;
+	left: 0;
+}
+
+#background-stripe-one {
+	background: &dtml-backgroundStripeOneColor;;
+	top: 0px;
+	height: 98px;
+	z-index: -15;
+}
+#background-stripe-two {
+	background: &dtml-backgroundStripeTwoColor;;
+	top: 65px;
+	height: 10px;
+}
+#background-stripe-three {
+	background: &dtml-backgroundStripeThreeColor;;
+	top: 75px;
+	height: 23px;
+}
 #content a, #portal-column-one a{
 	color: #003399;
 }

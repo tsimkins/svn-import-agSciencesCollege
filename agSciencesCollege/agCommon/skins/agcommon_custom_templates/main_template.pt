@@ -79,6 +79,9 @@
 
   <body tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
                         dir python:test(isRTL, 'rtl', 'ltr')">
+    <div id="background-stripe-one"><!-- --></div>
+    <div id="background-stripe-two"><!-- --></div>
+    <div id="background-stripe-three"><!-- --></div>
     <div id="visual-portal-wrapper">
 
       <div id="portal-top" i18n:domain="plone">
