@@ -1,0 +1,2 @@
+
+<div class = "folder_text" tal:condition="view/folder_text" tal:content="structure view/folder_text" />
