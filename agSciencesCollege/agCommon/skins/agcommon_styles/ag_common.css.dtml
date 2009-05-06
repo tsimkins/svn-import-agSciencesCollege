@@ -234,7 +234,7 @@ ul.navTreeLevel1 li.navTreeItem {
 }
 
 #portal-column-one {
-	background: #FFFFFF;
+	background: &dtml-leftNavBackgroundColor;;
 	border-color: #808080;
 	border-style: solid;
 	border-width: 0 1px 0 0;
@@ -243,6 +243,10 @@ ul.navTreeLevel1 li.navTreeItem {
 	width: 186px;
 	float: left;
 	margin: 0px 0px 0px 0px;
+}
+
+#portal-column-one .portlet {
+	background: &dtml-leftNavBackgroundColor;;
 }
 
 /* -------- MAIN NAV Portlet --------*/

@@ -89,7 +89,8 @@ homepageImageAlignment:string=left
 leftNavTitleBackground:string=#000000
 leftNavTitleColor:string=#FFFFFF
 leftNavTextColor:string=#666666
-leftNavTextHoverColor:string=#333366;
+leftNavTextHoverColor:string=#333366
+leftNavBackgroundColor:string=#FFFFFF
 leftSubNavBackground:string=#F5F5F5
 
 
