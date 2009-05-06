@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+	<import-steps>
+	 <import-step
+	    id="Products.FolderTextAndImage.uninstall"
+	    handler="Products.FolderTextAndImage.setuphandlers.uninstall"
+	    title="Manually uninstall FolderTextAndImage Schema Extender"
+	    version="20090506-01">
+		
+	 </import-step>
+</import-steps>
