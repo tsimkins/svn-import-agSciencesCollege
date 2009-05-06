@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+        <import-steps>
+         <import-step
+            id="Products.FolderText.install"
+            handler="Products.FolderText.setuphandlers.install"
+            title="Manually install FolderText Schema Extender"
+            version="20081215-01">
+
+         </import-step>
+</import-steps>
