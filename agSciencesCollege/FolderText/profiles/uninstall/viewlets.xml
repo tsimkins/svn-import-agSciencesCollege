@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <object>
-  <hidden manager="plone.abovecontentbody" skinname="Folder Viewlet" purge = "True" />
+  <hidden manager="plone.abovecontentbody" skinname="Folder Text Viewlet" purge = "True" />
 </object>
