@@ -1024,15 +1024,8 @@ span.description {
 	margin-top: 0.25em;
 }
 
-#portal-personaltools {
-	background-color:#FFF2CF;
-	border-bottom:1px solid #AF9A62;
-	border-top:1px solid #AF9A62;
-}
-
-#portal-personaltools li a {
-	color:#8F5535;
-	text-decoration:none;
+.facultyStaffDirectory table.listing {
+	border: 1px solid &dtml-globalBorderColor;;
 }
 
 /* YOUR CSS RULES STOP HERE */

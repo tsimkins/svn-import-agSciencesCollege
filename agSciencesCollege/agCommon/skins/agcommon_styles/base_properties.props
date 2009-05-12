@@ -18,10 +18,6 @@ borderWidth:string=1px
 borderStyle:string=solid
 borderStyleAnnotations:string=dashed
 
-globalBorderColor:string=#8cacbb
-globalBackgroundColor:string=#dee7ec
-globalFontColor:string=#436976
-
 headingFontFamily:string=Verdana, Arial, Helvetica, sans-serif
 
 contentViewBorderColor:string=#74ae0b
@@ -31,9 +27,6 @@ contentViewFontColor:string=#578308
 inputFontColor:string=Black
 
 textTransform:string=none
-
-evenRowBackgroundColor:string=#eef3f5 
-oddRowBackgroundColor:string=transparent
 
 notifyBorderColor:string=#ffa500
 notifyBackgroundColor:string=#ffce7b
@@ -46,6 +39,12 @@ columnOneWidth:string=16em
 columnTwoWidth:string=16em
 
 agCommonPropertiesStartHere:string=_____________________________________________________
+
+globalBorderColor:string=#AF9A62
+globalBackgroundColor:string=#FFF2CF
+
+evenRowBackgroundColor:string=#FFF7DF 
+oddRowBackgroundColor:string=transparent
 
 maxWidth:string=875px
 minWidth:string=785px
