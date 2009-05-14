@@ -40,6 +40,7 @@ columnTwoWidth:string=16em
 
 agCommonPropertiesStartHere:string=_____________________________________________________
 
+globalFontColor:string=#436976
 globalBorderColor:string=#AF9A62
 globalBackgroundColor:string=#FFF2CF
 
