@@ -423,10 +423,11 @@ body.template-document_homepage_view .documentActions {
 	float: right;
 	padding: 0px;
 	margin: 0px;
+	position: relative;
 }
 
 #rightcolumn>div {
-	margin: 0px 0px 30px 20px; 
+	margin: 0px 0px 30px 20px;
 }
 
 #rightcolumn .portletWrapper {
@@ -1027,6 +1028,51 @@ span.description {
 .facultyStaffDirectory table.listing {
 	border: 1px solid &dtml-globalBorderColor;;
 }
+
+/* Homepage Image overrides */
+#homepageimage h1, #homepageimage h2 {
+	display: block;
+	padding: 15px 10px 5px 15px;
+	margin: 0;
+	background: transparent;
+}
+
+#homepageimage h1 {
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #FFC62F;
+	font-family: Georgia, Times New Roman, serif;
+	letter-spacing: 0.06em;
+}
+
+#homepageimage h2 {
+	font-size: 1.em;
+	font-weight: bold;
+	color: #FEFFBF;
+	font-family: Georgia, Times New Roman, serif;
+	letter-spacing: 0.06em;
+}
+
+#homepageimage .text {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 220px;
+	z-index: 10;
+}
+
+#homepageimage .overlay {
+	width: 220px;
+	height: 265px;
+	margin: 0px;
+	background: #6F5614;
+	opacity: 0.75;
+	filter: alpha(opacity = 75);
+	z-index: 5;
+	position: absolute;
+}
+
+
 
 /* YOUR CSS RULES STOP HERE */
 
