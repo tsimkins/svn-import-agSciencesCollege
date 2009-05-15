@@ -40,7 +40,6 @@ columnTwoWidth:string=16em
 
 agCommonPropertiesStartHere:string=_____________________________________________________
 
-globalFontColor:string=#436976
 globalBorderColor:string=#AF9A62
 globalBackgroundColor:string=#FFF2CF
 
@@ -85,6 +84,10 @@ frontFlash:string=thinkagain.swf
 
 homepageImage:string=homepageImage.jpg
 homepageImageAlignment:string=left
+
+homepageH1TextColor:string=#EEEEEE
+homepageH2TextColor:string=#EEEEEE
+homepageTransparentOverlayColor:string=#000000
 
 leftNavTitleBackground:string=#000000
 leftNavTitleColor:string=#FFFFFF

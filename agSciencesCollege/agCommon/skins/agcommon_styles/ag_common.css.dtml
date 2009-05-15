@@ -1038,40 +1038,40 @@ span.description {
 }
 
 #homepageimage h1 {
-	font-size: 1.8em;
-	font-weight: bold;
-	color: #FFC62F;
+	font-size: 1.9em;
+	font-weight: 500;
+	color: &dtml-homepageH1TextColor;;
 	font-family: Georgia, Times New Roman, serif;
 	letter-spacing: 0.06em;
 }
 
 #homepageimage h2 {
-	font-size: 1.em;
-	font-weight: bold;
-	color: #FEFFBF;
+	font-size: 1.0em;
+	font-weight: normal;
+	color: &dtml-homepageH2TextColor;;
 	font-family: Georgia, Times New Roman, serif;
-	letter-spacing: 0.06em;
+	letter-spacing: 0.07em;
 }
 
 #homepageimage .text {
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	width: 220px;
+	width: 200px;
 	z-index: 10;
 }
 
 #homepageimage .overlay {
-	width: 220px;
+	width: 200px;
 	height: 265px;
 	margin: 0px;
-	background: #6F5614;
-	opacity: 0.75;
-	filter: alpha(opacity = 75);
+	padding: 0;
+	background: &dtml-homepageTransparentOverlayColor;;
+	opacity: 0.70;
+	filter: alpha(opacity = 70);
 	z-index: 5;
 	position: absolute;
 }
-
 
 
 /* YOUR CSS RULES STOP HERE */
