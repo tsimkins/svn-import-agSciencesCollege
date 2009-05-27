@@ -933,8 +933,14 @@ div.leftColumnButtons {
 	margin: 30px 8px 20px 8px;
 }
 
-div.leftColumnButtons a {
+#portal-column-one div.leftColumnButtons a {
 	text-decoration: none;
+	color: &dtml-leftLinkTextColor;;
+}
+
+#portal-column-one div.leftColumnButtons a:hover {
+	text-decoration: none;
+	color: &dtml-leftLinkTextHoverColor;;
 }
 
 ul.leftColumnButtons {

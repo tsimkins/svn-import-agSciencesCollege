@@ -96,6 +96,8 @@ leftNavTextHoverColor:string=#333366
 leftNavBackgroundColor:string=#FFFFFF
 leftSubNavBackground:string=#F5F5F5
 
+leftLinkTextColor:string=#003399
+leftLinkTextHoverColor:string=#3366CC
 
 leftButtonArrowBackground_external:string=#85ace7
 leftButtonBackground_external:string=#5e95e7
