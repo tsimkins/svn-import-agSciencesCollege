@@ -171,6 +171,13 @@ body.template-document_homepage_view #rightcolumn, #rightcolumn {
 	margin: 0.5em 0em;
 }
 
+/* Background Stripes */
+#background-stripe-one, #background-stripe-two,
+#background-stripe-three {
+	display: none;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
