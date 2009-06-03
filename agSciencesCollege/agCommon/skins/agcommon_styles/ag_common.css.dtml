@@ -117,19 +117,9 @@ dt {
 	float: left;
 	width: 187px;
 }
-/*
-#portal-column-content.sr, #portal-column-content.sl {
-	float: left;
-	margin-right: 0;
-	width: 650px;
-	margin-left: 187px;
-}
-
-*/
-
 
 #portal-column-content.sr, #portal-column-content.sl {
-	margin-left: 187px;
+	margin-left: 188px;
 }
 
 
@@ -306,7 +296,7 @@ ul.navTreeLevel1 li.navTreeItem {
 
 #topnavigation {
 	background: &dtml-topnavigationBackgroundColor;;
-	margin: 0px 0px 0px 0px;
+	margin: 0px 0px 0px -1px;
 	padding: 0px;
 }
 

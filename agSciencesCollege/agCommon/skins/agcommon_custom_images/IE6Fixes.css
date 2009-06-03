@@ -11,7 +11,12 @@ ul, ol, dl {
 }
 
 #portal-column-content {
-	width: 591px;
+	width: 590px;
+}
+
+body.template-document_homepage_view #homepageimage {
+	width: 575px;
+	overflow: hidden;
 }
 
 #portal-column-one-visualPadding {
