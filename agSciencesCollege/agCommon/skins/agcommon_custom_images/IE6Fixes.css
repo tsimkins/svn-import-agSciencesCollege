@@ -7,22 +7,20 @@ ul, ol, dl {
 }
 
 #visual-portal-wrapper {
-	width: 795px;
+	margin: 0px 20px;
 }
 
 #portal-column-content {
-	width: 590px;
+	margin-right: 10px;
 }
 
 body.template-document_homepage_view #homepageimage {
-	width: 575px;
 	overflow: hidden;
 }
 
 #portal-column-one-visualPadding {
 	height: 0px; 
 }
-
 
 #topnavigation li a {
 	font-size: .88em;
