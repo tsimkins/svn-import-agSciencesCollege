@@ -1,0 +1,21 @@
+#Page or Folder	Flags	Old Url	URL	Title	Description
+Folder		http://grants.cas.psu.edu/welcome.html	/about	About Us	
+Page		http://grants.cas.psu.edu/contacts.html	/contact	Contact Information	
+Folder	excludeFromNavigation		/extension	Extension	Information For Extension Personnel
+Link		http://downloads.cas.psu.edu/grantscontracts/extensionguidelines.pdf	/extension	Guidelines for Gifts, Grants, and Contracts	
+Page		http://grants.cas.psu.edu/AwardPrepInst.html	/extension/awards	Award Processing	Procedures for Extension Personnel
+Page		http://grants.cas.psu.edu/PropPrepInstCo.html	/extension/proposals	Proposal Processing	Procedures for Extension Personnel
+Page		http://grants.cas.psu.edu/CollegeForms.html	/forms	Forms	
+Page		http://grants.cas.psu.edu/Default.htm	/front-page	Grants and Proposals	
+Folder		http://grants.cas.psu.edu/information.htm	/about/proposals	Proposal and Grants	
+Page		http://grants.cas.psu.edu/CurrentRates.html	/rates	Current Rates	
+Folder	excludeFromNavigation		/university-park	University Park	Information For University Park Personnel
+Link		http://guru.psu.edu/policies/RAG02.html	/university-park	Guideline RAG02: Equipment Matching Funds	
+Link		http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf	/university-park	RAG02 Request for University Matching Funds [equipment] Form (PDF)	
+Link		http://guru.psu.edu/policies/RAG03.html	/university-park	Guideline RAG03: Assistantships/Traineeships Matching Funds	
+Link		http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf	/university-park	RAG03 Request for University Matching Funds [Assistantships] Form (PDF)	
+Link		http://downloads.cas.psu.edu/grantscontracts/FactSheet.pdf	/university-park	Grant Fact Sheet/Applicant Data	
+Link		http://www.research.psu.edu/osp/PSU/Proposal/tax08.pdf	/university-park	Tax Exempt Letter (2008)	
+Page		http://grants.cas.psu.edu/AwardPrepInstPSU.html	/university-park/awards	Award Processing	Procedures for University Park Personnel
+Page		http://grants.cas.psu.edu/PropPrepInst.html	/university-park/proposals	Proposal Processing	Procedures for University Park Personnel
+Link		http://downloads.cas.psu.edu/grantscontracts/GrantFactSheet.pdf	/about	FAQ	Frequently Asked Questions about Grants and Contracts

@@ -1,0 +1,488 @@
+
+from zope.component import getSiteManager
+from Products.CMFCore.utils import getToolByName
+
+import transaction
+
+from Testing.makerequest import makerequest
+
+from AccessControl.SecurityManagement import newSecurityManager
+
+
+app = makerequest(app)
+mySite = getattr(app, 'agsci.psu.edu')
+
+context = mySite
+
+context = getattr(context, 'grants')
+
+
+admin = app.acl_users.getUserById('admin')
+admin = admin.__of__(app.acl_users)
+newSecurityManager(None, admin) 
+
+portal = getSiteManager(context)
+wftool = getToolByName(portal, "portal_workflow")
+
+#------------------------------------------------------------
+# Creating folder /about
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="about", 
+		type_name="Folder", 
+		title="About Us", 
+		description = "")
+
+myObject = getattr(myContext, 'about')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /about/default
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="default", 
+		type_name="Document", 
+		title="About Us", 
+		description = "",
+		text=''' <p> The College Grants and Contracts Office has responsibility for processing proposals and awards for sponsored programs for all faculty/staff in the College of Agricultural Sciences. This includes proposals and awards in support of Research, Extension, and Undergraduate Education. The Office is responsible for providing administrative assistance with policies and procedures concerning sponsored programs. It serves as the liaison between faculty and the Office of Sponsored Programs. Other responsibilities include processing of Confidentiality Agreements, Material Transfer Agreements, and distribution of funding opportunities. </p> ''')
+
+myObject = getattr(myContext, 'default')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+myContext.setDefaultPage('default')
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /contact
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="contact", 
+		type_name="Document", 
+		title="Contact Information", 
+		description = "",
+		text=''' <img src="images/Donlan_rdax_100x150_70.jpg" alt="Susan Donlan" border="0" /> <p> Susan Morgan </p> <p> Associate Director, Grants and Contracts </p> <p> 107 Ag Administration Building </p> <p> University Park, PA 16802 </p> <p> Phone: 814-865-3135 </p> <p> Email: <a href="mailto:smk6@psu.edu"> smk6@psu.edu </a> </p> <p> Departments: </p> <p> - Ag. &amp; Extension Education </p> <p> - Ag. Communications &amp; Marketing </p> <p> - Dean's Office (USDA Pasture Lab) </p> <p> - IT </p> <p> - NEP </p> <p> - Resident Education </p> <p> - Pesticide Education Program </p> <p> - Fruit Research &amp; Extension Center </p> <p> - Grape Research and Extension Center - Lake Erie </p> <p> - SE Field Research &amp; Extension Center </p> <img src="images/Fetzer_rdax_100x150_70.jpg" alt="Kaye Fetzer" border="0" /> <p> Kaye Fetzer </p> <p> Coordinator of Research and Administrative Services </p> <p> 107 Ag Administration Building </p> <p> University Park, PA 16802 </p> <p> Phone: 814-865-9410 </p> <p> Email: <a href="mailto:kxz2@psu.edu"> kxz2@psu.edu </a> </p> <p> Departments: </p> <p> - Crop &amp; Soil Sciences </p> <p> - Farm Services </p> <p> - International Programs </p> <p> - Poultry Science </p> <p> - School of Forest Resources </p> <p> - Veternary &amp; Biomedical Sciences </p> <img src="images/Reese_rdax_100x150_70.jpg" alt="Penny Reese" border="0" /> <p> Penny Regel </p> <p> Assocate Coordinator, Grants and Contracts </p> <p> 107 Ag Administration Building </p> <p> University Park, PA 16802 </p> <p> Phone: 814-867-2366 </p> <p> Email: <a href="mailto:plr5@psu.edu"> plr5@psu.edu </a> </p> <p> Departments: </p> <p> - Agricultural &amp; Biological Engineering </p> <p> - Ag. Economics &amp; Rural Sociology </p> <p> - Cooperative Extension - Director's Office </p> <p> - Capital Region, Extension </p> <p> - Central Region, Extension </p> <p> - Northeast Region, Extension </p> <p> - Northwest Region, Extension </p> <p> - Southeast Region, Extension </p> <p> - Southwest Region, Extension </p> <img src="images/Cardamone_rdax_100x150_70.jpg" alt="JoZane Cardamone" border="0" /> <p> JoZane Cardamone </p> <p> Associate Coordinator, Grants and Contracts </p> <p> 107 Ag Administration Building </p> <p> University Park, PA 16802 </p> <p> Phone: 814-865-9446 </p> <p> Email: <a href="mailto:zjc3@psu.edu"> zjc3@psu.edu </a> </p> <p> Departments: </p> <p> - Dairy &amp; Animal Science </p> <p> - Entomology </p> <p> - Food Science </p> <p> - Horticulture </p> <p> - Plant Pathology </p> <img src="images/Catherman_rdax_100x150_70.jpg" alt="Barbara Catherman" border="0" /> <p> Barbara Catherman </p> <p> Staff Assistant, Grants and Contracts </p> <p> 107 Ag Administration Building </p> <p> University Park, PA 16802 </p> <p> Phone: 814-865-5419 </p> <p> Email: <a href="mailto:bmc6@psu.edu"> bmc6@psu.edu </a> </p> ''')
+
+myObject = getattr(myContext, 'contact')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder /extension
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="extension", 
+		type_name="Folder", 
+		title="Extension", 
+		description = "Information For Extension Personnel")
+#------------------------------------------------------------
+# Hiding extension from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "extension")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'extension')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/extensionguidelines.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="guidelines-for-gifts-grants-and-contracts", 
+		type_name="Link", 
+		title="Guidelines for Gifts, Grants, and Contracts", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/extensionguidelines.pdf''')
+
+myObject = getattr(myContext, 'guidelines-for-gifts-grants-and-contracts')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /extension/awards
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="awards", 
+		type_name="Document", 
+		title="Award Processing", 
+		description = "Procedures for Extension Personnel",
+		text=''' <p> 1. Office of Sponsored Programs (OSP) </p> <p> The Office of Sponsored Programs (OSP) is the office authorized to accept awards on behalf of the University for sponsored programs. It helps faculty obtain external funding from government agencies, private industries, and private foundations to support their creative and scholarly activities. Numerous resources and guides are available at: <a href="http://grants.psu.edu/"> http://grants.psu.edu/ </a> . </p> <p> 2. College Grants and Contacts Office (Grants Office) </p> <p> The College Grants and Contracts Office has responsibility for processing financial awards for external funding agencies through the College and appropriate University channels. Information, policies, and procedures are available at: <a href="http://grants.cas.psu.edu/"> http://grants.cas.psu.edu/ </a> . </p> <p> 3. Award Review </p> <p> Generally, awards are transmitted by the sponsor to OSP. OSP will review and negotiate as needed. In some instances, OSP may send the award to the College for review prior to acceptance on behalf of the University. OSP will highlight problem areas that impose risk upon the College. The College and PI will need to review and determine if the terms and conditions are acceptable to them. </p> <p> Any non-negotiable item in an award that imposes risk to the College/University will require an internal sign-off from the Department receiving the award. The Department assumes all fiscal liability associated with these sign-offs. </p> <p> If the award is sent by the sponsor directly to the PI, it should be forwarded immediately to the Grants Office. The PI should not sign an award and return to the sponsor. </p> <p> 4. Contract Negotiations </p> <p> A contract negotiator in OSP will negotiate the business and legal terms of the award. It is the contract negotiator&rsquo;s job to review the award and to negotiate on behalf of the University assuring that the terms and conditions are favorable to an institution of higher education and protect the University and its faculty from needless risks or commitments. If needed, the contract negotiator will contact the College and/or PI for clarification or acceptance of particular terms and conditions. </p> <p> Once negotiations are completed and OSP has received the internal sign-offs (if any), the award will be signed on behalf of the University and returned to the sponsor for their signature. </p> <p> 5. Advanced Fund Number </p> <p> In some cases and with approval of the Regional Director, advanced fund numbers can be requested by the unit after the award has been signed by the University if sufficient information is provided in the agreement. The advanced fund allows the unit to set up a restricted budget and begin incurring expenses as of the proposed effective date of the award. However, it should be noted that if the award does not materialize, or the effective date is other than stated, the risk for unallowable expenses falls entirely upon the unit. </p> <p> 6. Completely Executed Award </p> <p> A completely executed award is one that has been signed by both the University and the sponsor. </p> <p> 7. Account and Initial Budget in IBIS (University Accounting System) </p> <p> Once a completely executed award has been received, the Grants Office will establish an account and the initial budget in IBIS. A copy of the completely executed award will be distributed to everyone that signed the Internal Approval Forms (IAF). It is the responsibility of the PI to review the award for their reporting responsibilities. In most cases, it is the responsibility of Research Accounting to do the invoicing and prepare financial reports. However, in those instances where the University automated invoices and financial reports are not sufficient for the sponsor, it will be the responsibility of the Department to provide the additional information needed for invoicing and financial reporting. Sandra Gentzel, Director&rsquo;s Office, will handle the day-to-day fiscal transactions. </p> <p> 8. Revisions/Amendments </p> <p> Requests for revisions such as no-cost extensions, budget revisions, change of PI, etc. must be processed through the Grants Office. Amendments to awards are handled in the same manner as the original award. In most cases, signature of the authorized University official is required. The PI is responsible for the preparation and submission of technical reports and any other required deliverables. </p> <p> jkm:6/04 </p> ''')
+
+myObject = getattr(myContext, 'awards')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /extension/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Document", 
+		title="Proposal Processing", 
+		description = "Procedures for Extension Personnel",
+		text=''' <p> 1. Office of Sponsored Programs (OSP) The Office of Sponsored Programs (OSP) is the office authorized to submit proposals on behalf of the University for sponsored programs. It helps faculty obtain external funding from government agencies, private industries, and private foundations to support their creative and scholarly activities. Numerous resources and guides are available at: <a href="http://grants.psu.edu/"> http://grants.psu.edu/ </a> . </p> <p> The Faculty Guide to Sponsored Programs is available at <a href="http://www.research.psu.edu/osp/PSU/Proposal/facgd97.pdf"> http://www.research.psu.edu/osp/PSU/Proposal/facgd97.pdf </a> . This gives a brief look at the University practices affecting the solicitation of grant and contract funds. It is not intended to be an official statement of University Policy or a comprehensive manual, but a readily accessible guide to get Penn State faculty started in the pursuit of sponsored support. </p> <p> 2. College Grants and Contacts Office (Grants Office) The College Grants and Contracts Office has responsibility for processing proposals for external funding agencies through the College and appropriate University channels. Information, policies, and procedures are available at: <a href="http://grants.cas.psu.edu/"> http://grants.cas.psu.edu/ </a> . In addition, if we are a subcontractor, the proposal and budget also needs to be submitted through university channels. </p> <p> 3. Funding Opportunity The Project Director (PD) should contact the Grants Office early in the process to discuss intent to submit a proposal and to prepare the initial budget. Discussions with CED and Regional Director should occur prior to that. If the proposal is in response to a program announcement or RFP, a copy or the web address should be provided. </p> <p> 4. Budget The PI should contact the Grants Office for assistance with development of the budget in accordance with sponsor and university guidelines and policies. This should occur at least 10 working days prior to the deadline. After the draft budget has been prepared, it will be faxed or e-mailed to the PD for review. The budget should reflect the scope of work being proposed. Some items to consider when developing a budget are indicated below. </p> Estimated Start Date Length of project Personnel needs: Salaries - identify by name, percent of effort or number of days per year Wages - hourly rate and number of hours per year Equipment items $5,000 and greater - must be identified by item Materials and Supplies Travel Communications (telephone, postage, fax, etc.) Photocopying and Printing Purchased Services Rental Costs (facilities, equipment, etc.) Subcontracts Other (identify) <p> 5. Internal Approval Form (IAF) The Proposal Internal Approval Form (IAF) ( <a href="http://www.research.psu.edu/osp/PSU/Proposal/PIAF-Instr-08.pdf"> http://www.research.psu.edu/osp/PSU/Proposal/PIAF-Instr-08.pdf </a> ) provides a summary of pertinent administrative and fiscal information about the project. It also provides a record of assurances of project director(s). The IAF is prepared by the Grants Office at the time the budget is developed. It must have all required approvals prior to proposal submission. </p> <p> The IAF requires signatures of the PD(s) and co-PD(s) and Regional Director(s). It is the responsibility of the PD to obtain these signatures. Faxed signatures are acceptable. Signatures of the RD and authorized officials for the College and the University are also required. The Grants Office will obtain these after all other signatures have been obtained by the PD. </p> <p> 6. Scope of Work or Narrative Portion of the Proposal It is the responsibility of the PD to prepare this portion of the proposal. The format of a particular proposal will depend on the requirements of the sponsor. The guidelines often include instructions on the type size, number of pages, etc. </p> <p> 7. Submittal of Complete Proposal One original (with blue ink signatures) of the complete proposal (cover page, table of contents, narrative, budget, vitae, attachments, etc.) must be received by the Grants Office at least 5 working days prior to deadline for submission of proposal. The signed IAF also needs to accompany this proposal. </p> <p> After review of the proposal for compliance with sponsor and university guidelines, the proposal will be submitted by Office of Sponsored Programs (OSP) on behalf of the university. </p> ''')
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /forms
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="forms", 
+		type_name="Document", 
+		title="Forms", 
+		description = "",
+		text=''' <ul> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/confchecklist.pdf"> Confidential Information Disclosure Agreement Checklist </a> </li> <li> <a href="http://guru.psu.edu/policies/RAG02.html"> Guideline RAG02: Equipment Matching Funds Program (pdf) </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf"> RAG02 - Request for University Matching Funds -Equipment form </a> </li> <li> <a href="http://guru.psu.edu/policies/RAG03.html"> Guideline RAG03: Assistantships/Traineeships Matching Funds Program </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf"> RAG03: Request for University Matching Funds [Assistantships] Form (pdf) </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/FieldTrialAgmt.pdf"> Non-Propriety Field Trial Grant </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/Indques.pdf"> Industry-Sponsored Research Award Questionnaire </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/MaterialsChecklist.pdf"> Materials Trans/Bailment Agreement Checklist </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/PeerReviewForm.pdf"> Peer Review Form (Special Grants) </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/PENForm.pdf"> Project Extension Notification Form (PEN) </a> </li> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/SUBAWARDRequestForm.pdf"> Subcontract/Subaward Request Form </a> </li> </ul> ''')
+
+myObject = getattr(myContext, 'forms')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /front-page
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="front-page", 
+		type_name="Document", 
+		title="Grants and Proposals", 
+		description = "",
+		text=''' <p> Welcome! </p> The College Grants and Contracts Office has the responsibility for processing proposals and rewards for sponsoreded programs for all faculty/staff in the College of Ag. Sciences. <a href="welcome.html"> More... </a> <p> We Have Moved! </p> The Grants and Contracts Office has relocated to our new offices in 107 Ag Administration Building. Please stop by! <p> Seed Grant Deadline - Sept 18 </p> <p> Seed Grant proposal applications should be submitted on or before Friday, September 19, 2008, at 5:00 p.m. to the Office of Grants and Contracts. </p> <a href="http://research.cas.psu.edu/SeedGrantGuidelines.html"> More... </a> ''')
+
+myObject = getattr(myContext, 'front-page')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder /about/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Folder", 
+		title="Proposal and Grants", 
+		description = "")
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /about/proposals/default
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext = getattr(myContext, 'proposals')
+
+myContext.invokeFactory(id="default", 
+		type_name="Document", 
+		title="Proposal and Grants", 
+		description = "",
+		text=''' The College Grants and Contracts Office processes proposals for external funding agencies through the college and appropriate University channels. We provide the information, policies, and procedures necessary to get your proposal processed properly. <p> We coordinate and oversee sponsored projects in the College of Agricultural Sciences. Our responsibilities include finding funding opportunities for faculty; processing proposals to external and internal sponsors; and negotiating grants, contracts, and agreements. Our work constantly serves the University's research mission, and serves and protects the University faculty. </p> ''')
+
+myObject = getattr(myContext, 'default')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+myContext.setDefaultPage('default')
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /rates
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="rates", 
+		type_name="Document", 
+		title="Current Rates", 
+		description = "",
+		text=''' <ul> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/CurrentRates.pdf"> College of Ag Sciences Current Rates </a> </li> <li> <a href="http://www.research.psu.edu/osp/PSU/Rates/allrates/Rates09-10F.pdf"> University Sponsored Programs Current Rates </a> </li> </ul> ''')
+
+myObject = getattr(myContext, 'rates')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder /university-park
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="university-park", 
+		type_name="Folder", 
+		title="University Park", 
+		description = "Information For University Park Personnel")
+#------------------------------------------------------------
+# Hiding university-park from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "university-park")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'university-park')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://guru.psu.edu/policies/RAG02.html
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="guideline-rag02-equipment-matching-funds", 
+		type_name="Link", 
+		title="Guideline RAG02: Equipment Matching Funds", 
+		description = "",
+		remote_url='''http://guru.psu.edu/policies/RAG02.html''')
+
+myObject = getattr(myContext, 'guideline-rag02-equipment-matching-funds')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="rag02-request-for-university-matching-funds-equipment-form-pdf", 
+		type_name="Link", 
+		title="RAG02 Request for University Matching Funds [equipment] Form (PDF)", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf''')
+
+myObject = getattr(myContext, 'rag02-request-for-university-matching-funds-equipment-form-pdf')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://guru.psu.edu/policies/RAG03.html
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="guideline-rag03-assistantships-traineeships-matching-funds", 
+		type_name="Link", 
+		title="Guideline RAG03: Assistantships/Traineeships Matching Funds", 
+		description = "",
+		remote_url='''http://guru.psu.edu/policies/RAG03.html''')
+
+myObject = getattr(myContext, 'guideline-rag03-assistantships-traineeships-matching-funds')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="rag03-request-for-university-matching-funds-assistantships-form-pdf", 
+		type_name="Link", 
+		title="RAG03 Request for University Matching Funds [Assistantships] Form (PDF)", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf''')
+
+myObject = getattr(myContext, 'rag03-request-for-university-matching-funds-assistantships-form-pdf')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/FactSheet.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="grant-fact-sheet-applicant-data", 
+		type_name="Link", 
+		title="Grant Fact Sheet/Applicant Data", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/FactSheet.pdf''')
+
+myObject = getattr(myContext, 'grant-fact-sheet-applicant-data')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://www.research.psu.edu/osp/PSU/Proposal/tax08.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="tax-exempt-letter-2008", 
+		type_name="Link", 
+		title="Tax Exempt Letter (2008)", 
+		description = "",
+		remote_url='''http://www.research.psu.edu/osp/PSU/Proposal/tax08.pdf''')
+
+myObject = getattr(myContext, 'tax-exempt-letter-2008')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /university-park/awards
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="awards", 
+		type_name="Document", 
+		title="Award Processing", 
+		description = "Procedures for University Park Personnel",
+		text=''' <p> 1. Office of Sponsored Programs (OSP) </p> <p> The Office of Sponsored Programs (OSP) is the office authorized to accept awards on behalf of the University for sponsored programs. It helps faculty obtain external funding from government agencies, private industries, and private foundations to support their creative and scholarly activities. Numerous resources and guides are available at: <a href="http://grants.psu.edu/"> http://grants.psu.edu/ </a> . </p> <p> 2. College Grants and Contracts Office (Grants Office) </p> <p> The College Grants and Contracts Office has responsibility for processing financial awards for external funding agencies through the College and appropriate University channels. Information, policies, and procedures are available at: <a href="http://grants.cas.psu.edu/"> http://grants.cas.psu.edu/ </a> . </p> <p> 3. Award Review </p> <p> Generally, awards are transmitted by the sponsor to OSP. OSP will review and negotiate as needed. In some instances, OSP may send the award to the College for review prior to acceptance on behalf of the University. OSP will highlight problem areas that impose risk upon the College. The College and PI will need to review and determine if the terms and conditions are acceptable to them. </p> <p> Any non-negotiable item in an award that imposes risk to the College/University will require an internal sign-off from the Department receiving the award. The Department assumes all fiscal liability associated with these sign-offs. </p> <p> If the award is sent by the sponsor directly to the PI, it should be forwarded immediately to the Grants Office. The PI should not sign an award and return to the sponsor. </p> <p> 4. Contract Negotiations </p> <p> A contract negotiator in OSP will negotiate the business and legal terms of the award. It is the contract negotiator's job to review the award and to negotiate on behalf of the University assuring that the terms and conditions are favorable to an institution of higher education and protect the University and its faculty from needless risks or commitments. If needed, the contract negotiator will contact the College and/or PI for clarification or acceptance of particular terms and conditions. </p> <p> Once negotiations are completed and OSP has received the internal sign-offs (if any), the award will be signed on behalf of the University and returned to the sponsor for their signature. </p> <p> 5. Advanced Fund Number </p> <p> In many cases, advanced fund numbers can be requested by the unit after the agreement has been signed by the University if sufficient information is provided in the agreement. The advanced fund allows the unit to set up a restricted budget and begin incurring expenses as of the proposed effective date of the award. However, it should be noted that if the award does not materialize, or the effective date is other than stated, the risk for unallowable expenses falls entirely upon the unit. </p> <p> 6. Completely Executed Agreements </p> <p> A completely executed agreement is one that has been signed by both the University and the sponsor. </p> <p> 7. Account and Initial Budget in IBIS (University Accounting System) </p> <p> Once a completely executed award has been received, the Grants Office will establish an account and the initial budget in IBIS. A copy of the completely executed award will be distributed to everyone that signed the Clearance Data Forms (CDF). It is the responsibility of the PI to review the award for their reporting responsibilities. In most cases, it is the responsibility of Research Accounting to do the invoicing and prepare financial reports. However, in those instances where the University automated invoices and financial reports are not sufficient for the sponsor, it will be the responsibility of the Department to provide the additional information needed for invoicing and financial reporting. The accounting individual in your unit will handle the day-to-day fiscal transactions. </p> <p> 8. Revisions/Amendments </p> <p> Requests for revisions such as no-cost extensions, budget revisions, change of PI, etc. must be processed through the Grants Office. Amendments to awards are handled in the same manner as the original award. In most cases, signature of the authorized University official is required. The PI is responsible for the preparation and submission of technical reports and any other required deliverables. </p> <p> jkm:12/02 </p> ''')
+
+myObject = getattr(myContext, 'awards')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating page /university-park/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Document", 
+		title="Proposal Processing", 
+		description = "Procedures for University Park Personnel",
+		text=''' <p> 1. Office of Sponsored Programs (OSP) The Office of Sponsored Programs (OSP) is the office authorized to submit proposals on behalf of the University for sponsored programs. It helps faculty obtain external funding from government agencies, private industries, and private foundations to support their creative and scholarly activities. Numerous resources and guides are available at: <a href="http://grants.psu.edu/"> http://grants.psu.edu/ </a> . </p> <p> 2. College Grants and Contacts Office (Grants Office) The College Grants and Contracts Office has responsibility for processing proposals for external funding agencies through the College and appropriate University channels. Information, policies, and procedures are available at: <a href="http://grants.cas.psu.edu/"> http://grants.cas.psu.edu/ </a> . In addition, if we are a subcontractor, the proposal and budget also needs to be submitted through university channels. </p> <p> 3. Getting Started The Principal Investigator (PI) should contact the Grants Office early in the process to discuss intent to submit a proposal and to prepare the initial budget. If the proposal is in response to a program announcement or RFP, a copy or the web address should be provided. </p> <p> 4. Budget The PI should meet with the Grants Office at least 10 working days prior to the deadline to develop the budget in accordance with sponsor and university guidelines and policies. The budget needs to be clear and realistic and be reflective of the scope of work being proposed. Some items to consider when developing a budget are indicated below. </p> Estimated Start Date; length of project Personnel needs: Salaries - identify by name, percent of effort or number of days/year Wages - hourly rate and number of hours per year Equipment items $5,000 and greater - must be identified by item Materials and Supplies Travel Communications (telephone, postage, fax, etc.) Photocopying and Printing Purchased Services Rental Costs (facilities, equipment, etc.) Subcontracts Other (identify) <p> 5. Clearance Data Form (CDF) This is an internal review form used in order to facilitate proposal administrative reviews and summarizes key administrative and fiscal information about the project. The CDF is prepared by the Grants Office at the time the budget is developed. The PI(s) need to complete the Assignment of Credit page of the CDF. </p> <p> The CDF requires signatures of the PI(s) and Department Head(s). It is the responsibility of the PI to obtain these signatures. Faxed signatures are acceptable. Signatures of the authorized officials for the College and the University are also required and will be obtained by the Grants Office after all other signatures have been obtained by the PI. All signatures are required prior to submittal of the proposal. </p> <p> 6. Proposal Development The proposal should be in the format indicated by the program announcement/guidelines. Read the proposal guidelines and instructions. Pay attention to the page limitations, margins, font sizes, section breaks. Print out proposal and review page breaks, number of pages, margins. </p> <p> 7. Submittal of Complete Proposal to College Grants and Contracts Office One original (with blue ink signatures) of the complete proposal (cover page, table of contents, narrative, budget, vitae, attachments, etc.) must be received by the Grants Office at least 4 working days prior to deadline for submission of proposal. The signed CDF and completed College Checklist also need to accompany this proposal. If colored pages are being submitted, these pages also need to be provided by the PI. If the proposal is submitted electronically, the signed CDF and a hard copy of the proposal must be received in the Grants Office prior to the release of the proposal for electronic submission. </p> <p> After review of the proposal for compliance with sponsor and university guidelines, the proposal will be submitted, on behalf of the University, by the Grants Office or Office of Sponsored Programs. </p> ''')
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/GrantFactSheet.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="faq", 
+		type_name="Link", 
+		title="FAQ", 
+		description = "Frequently Asked Questions about Grants and Contracts",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/GrantFactSheet.pdf''')
+
+myObject = getattr(myContext, 'faq')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+
+transaction.commit()
+

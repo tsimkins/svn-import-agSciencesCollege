@@ -1,0 +1,9 @@
+$
+from zope.component import getSiteManager$
+from Products.CMFCore.utils import getToolByName$
+$
+portal = getSiteManager(context)$
+wftool = getToolByName(portal, "portal_workflow")$
+$
+$
+ <p>   </p> <p>   </p> <ul> <li> <a href="http://downloads.cas.psu.edu/grantscontracts/CurrentRates.pdf"> College of Ag Sciences Current Rates </a>                         </li> <li> <a href="http://www.research.psu.edu/osp/PSU/Rates/allrates/Rates09-10F.pdf"> University Sponsored Programs Current Rates </a> </li> </ul> $

@@ -1,0 +1,410 @@
+
+from zope.component import getSiteManager
+from Products.CMFCore.utils import getToolByName
+
+portal = getSiteManager(context)
+wftool = getToolByName(portal, "portal_workflow")
+
+
+#------------------------------------------------------------
+# Creating folder /about
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="about", 
+		type_name="Folder", 
+		title="About Us", 
+		description = "")
+
+myObject = getattr(myContext, 'about')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /about/default
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="default", 
+		type_name="Document", 
+		title="About Us", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/welcome.html goes here.''')
+
+myObject = getattr(myContext, 'default')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+myContext.setDefaultPage('default')
+#------------------------------------------------------------
+# Creating page /contact
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="contact", 
+		type_name="Document", 
+		title="Contact Information", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/contacts.html goes here.''')
+
+myObject = getattr(myContext, 'contact')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating folder /extension
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="extension", 
+		type_name="Folder", 
+		title="Extension", 
+		description = "Information For Extension Personnel")
+#------------------------------------------------------------
+# Hiding extension from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "extension")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'extension')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/extensionguidelines.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="guidelines-for-gifts-grants-and-contracts", 
+		type_name="Link", 
+		title="Guidelines for Gifts, Grants, and Contracts", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/extensionguidelines.pdf''')
+
+myObject = getattr(myContext, 'guidelines-for-gifts-grants-and-contracts')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /extension/awards
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="awards", 
+		type_name="Document", 
+		title="Award Processing", 
+		description = "Procedures for Extension Personnel",
+		text='''Content from http://grants.cas.psu.edu/AwardPrepInst.html goes here.''')
+
+myObject = getattr(myContext, 'awards')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /extension/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'extension')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Document", 
+		title="Proposal Processing", 
+		description = "Procedures for Extension Personnel",
+		text='''Content from http://grants.cas.psu.edu/PropPrepInstCo.html goes here.''')
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /forms
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="forms", 
+		type_name="Document", 
+		title="Forms", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/CollegeForms.html goes here.''')
+
+myObject = getattr(myContext, 'forms')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /front-page
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="front-page", 
+		type_name="Document", 
+		title="Grants and Proposals", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/Default.htm goes here.''')
+
+myObject = getattr(myContext, 'front-page')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating folder /about/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Folder", 
+		title="Proposal and Grants", 
+		description = "")
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /about/proposals/default
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext = getattr(myContext, 'proposals')
+
+myContext.invokeFactory(id="default", 
+		type_name="Document", 
+		title="Proposal and Grants", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/information.htm goes here.''')
+
+myObject = getattr(myContext, 'default')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+myContext.setDefaultPage('default')
+#------------------------------------------------------------
+# Creating page /rates
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="rates", 
+		type_name="Document", 
+		title="Current Rates", 
+		description = "",
+		text='''Content from http://grants.cas.psu.edu/CurrentRates.html goes here.''')
+
+myObject = getattr(myContext, 'rates')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating folder /university-park
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="university-park", 
+		type_name="Folder", 
+		title="University Park", 
+		description = "Information For University Park Personnel")
+#------------------------------------------------------------
+# Hiding university-park from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "university-park")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'university-park')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://guru.psu.edu/policies/RAG02.html
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="guideline-rag02-equipment-matching-funds", 
+		type_name="Link", 
+		title="Guideline RAG02: Equipment Matching Funds", 
+		description = "",
+		remote_url='''http://guru.psu.edu/policies/RAG02.html''')
+
+myObject = getattr(myContext, 'guideline-rag02-equipment-matching-funds')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="rag02-request-for-university-matching-funds-equipment-form-pdf", 
+		type_name="Link", 
+		title="RAG02 Request for University Matching Funds [equipment] Form (PDF)", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/equipmatch.pdf''')
+
+myObject = getattr(myContext, 'rag02-request-for-university-matching-funds-equipment-form-pdf')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://guru.psu.edu/policies/RAG03.html
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="guideline-rag03-assistantships-traineeships-matching-funds", 
+		type_name="Link", 
+		title="Guideline RAG03: Assistantships/Traineeships Matching Funds", 
+		description = "",
+		remote_url='''http://guru.psu.edu/policies/RAG03.html''')
+
+myObject = getattr(myContext, 'guideline-rag03-assistantships-traineeships-matching-funds')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="rag03-request-for-university-matching-funds-assistantships-form-pdf", 
+		type_name="Link", 
+		title="RAG03 Request for University Matching Funds [Assistantships] Form (PDF)", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/gradmatchform.pdf''')
+
+myObject = getattr(myContext, 'rag03-request-for-university-matching-funds-assistantships-form-pdf')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/FactSheet.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="grant-fact-sheet-applicant-data", 
+		type_name="Link", 
+		title="Grant Fact Sheet/Applicant Data", 
+		description = "",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/FactSheet.pdf''')
+
+myObject = getattr(myContext, 'grant-fact-sheet-applicant-data')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://www.research.psu.edu/osp/PSU/Proposal/tax08.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="tax-exempt-letter-2008", 
+		type_name="Link", 
+		title="Tax Exempt Letter (2008)", 
+		description = "",
+		remote_url='''http://www.research.psu.edu/osp/PSU/Proposal/tax08.pdf''')
+
+myObject = getattr(myContext, 'tax-exempt-letter-2008')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /university-park/awards
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="awards", 
+		type_name="Document", 
+		title="Award Processing", 
+		description = "Procedures for University Park Personnel",
+		text='''Content from http://grants.cas.psu.edu/AwardPrepInstPSU.html goes here.''')
+
+myObject = getattr(myContext, 'awards')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /university-park/proposals
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'university-park')
+
+myContext.invokeFactory(id="proposals", 
+		type_name="Document", 
+		title="Proposal Processing", 
+		description = "Procedures for University Park Personnel",
+		text='''Content from http://grants.cas.psu.edu/PropPrepInst.html goes here.''')
+
+myObject = getattr(myContext, 'proposals')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/grantscontracts/GrantFactSheet.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'about')
+
+myContext.invokeFactory(id="faq", 
+		type_name="Link", 
+		title="FAQ", 
+		description = "Frequently Asked Questions about Grants and Contracts",
+		remote_url='''http://downloads.cas.psu.edu/grantscontracts/GrantFactSheet.pdf''')
+
+myObject = getattr(myContext, 'faq')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+

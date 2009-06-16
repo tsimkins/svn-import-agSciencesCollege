@@ -1,0 +1,349 @@
+
+from zope.component import getSiteManager
+from Products.CMFCore.utils import getToolByName
+
+portal = getSiteManager(context)
+wftool = getToolByName(portal, "portal_workflow")
+
+
+#------------------------------------------------------------
+# Creating folder /activities
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="activities", 
+		type_name="Folder", 
+		title="Events and Activities", 
+		description = "These are the events and activities that are available at APD 2009!")
+
+myObject = getattr(myContext, 'activities')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /activities/ demonstrations
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'activities')
+
+myContext.invokeFactory(id="demonstrations", 
+		type_name="Document", 
+		title="Demonstrations", 
+		description = "We like demos…", 
+		text="<p>Text goes here!</p>")
+
+myObject = getattr(myContext, 'demonstrations')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /activities/tours
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'activities')
+
+myContext.invokeFactory(id="tours", 
+		type_name="Document", 
+		title="Tours", 
+		description = "Tours are OK…", 
+		text="")
+
+myObject = getattr(myContext, 'tours')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /contact
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="contact", 
+		type_name="Document", 
+		title="Contact Information", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'contact')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /driving directions
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="driving directions", 
+		type_name="Document", 
+		title="Driving Directions", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'driving directions')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating folder /exhibitors
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="exhibitors", 
+		type_name="Folder", 
+		title="Information for Exhibitors", 
+		description = "")
+#------------------------------------------------------------
+# Hiding exhibitors from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "exhibitors")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'exhibitors')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /exhibitors/company
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'exhibitors')
+
+myContext.invokeFactory(id="company", 
+		type_name="Document", 
+		title="Exhibitor Listing by Company", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'company')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /exhibitors/product
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'exhibitors')
+
+myContext.invokeFactory(id="product", 
+		type_name="Document", 
+		title="Exhibitor Listing by Products", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'product')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /exhibits
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="exhibits", 
+		type_name="Document", 
+		title="Exhibits", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'exhibits')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /families
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="families", 
+		type_name="Document", 
+		title="Information for Families", 
+		description = "", 
+		text="")
+#------------------------------------------------------------
+# Hiding families from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "families")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'families')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /farmers
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="farmers", 
+		type_name="Document", 
+		title="Information for Farmers", 
+		description = "", 
+		text="")
+#------------------------------------------------------------
+# Hiding farmers from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "farmers")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'farmers')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /info
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="info", 
+		type_name="Document", 
+		title="General  Information", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'info')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /internal
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="internal", 
+		type_name="Document", 
+		title="Internal Information", 
+		description = "", 
+		text="")
+#------------------------------------------------------------
+# Hiding internal from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "internal")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+#------------------------------------------------------------
+# Creating page /maps
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="maps", 
+		type_name="Document", 
+		title="Exhibit Areas and Tents", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'maps')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating folder /media
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="media", 
+		type_name="Folder", 
+		title="News Releases and Photos", 
+		description = "")
+#------------------------------------------------------------
+# Hiding media from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "media")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'media')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /media/news
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'media')
+
+myContext.invokeFactory(id="news", 
+		type_name="Document", 
+		title="News Releases", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'news')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /media/photos
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'media')
+
+myContext.invokeFactory(id="photos", 
+		type_name="Document", 
+		title="Large Photos", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'photos')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
+#------------------------------------------------------------
+# Creating page /photos
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="photos", 
+		type_name="Document", 
+		title="Photo Gallery", 
+		description = "", 
+		text="")
+
+myObject = getattr(myContext, 'photos')
+
+if wftool.getInfoFor(myObject, 'review_state') != 'published':
+    wftool.doActionFor(myObject, 'publish')
+
