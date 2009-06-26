@@ -1069,6 +1069,22 @@ span.description {
 	position: absolute;
 }
 
+body.template-news_listing .effectiveDate {
+	margin-bottom: 0.1em;
+	margin-top: 0.4em;
+}
+
+body.template-news_listing dd {
+	margin-bottom: 2em;
+	margin-left: 0;
+}
+
+body.template-newsitem_view .effectiveDate {
+	color: #76797C;
+	font-size: 0.9em;
+	margin-bottom: 1em;
+	margin-top: 0;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
