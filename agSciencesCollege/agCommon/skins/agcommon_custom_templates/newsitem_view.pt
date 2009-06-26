@@ -26,7 +26,7 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <p class="effectiveDate">Posted: <span tal:replace="python:toLocalizedTime(effectiveDate,long_format=1)" />
+        <p class="effectiveDate">Posted: <span tal:replace="python:toLocalizedTime(effectiveDate,long_format=0)" />
         </p>
         <p class="documentDescription">
             <metal:field use-macro="python:here.widget('description', mode='view')">
