@@ -2,9 +2,21 @@
     i18n:domain="plone"
     tal:condition="view/enabled">
 
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <a href=""
+           tal:attributes="href view/siteurl"
+           tal:content="view/title"
+           class="tile">
+            Tags
+        </a>
+        <span class="portletTopRight"></span>
+    </dt>
+
     <tal:rss tal:condition="view/feedAvailable"
                 tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
                 tal:repeat="item view/items">
+
         <dd class="portletItem oddrow" 
             tal:define="oddrow repeat/item/odd"
             tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
