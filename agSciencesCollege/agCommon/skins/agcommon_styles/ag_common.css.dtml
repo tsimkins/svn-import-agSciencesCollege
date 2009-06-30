@@ -1086,6 +1086,11 @@ body.template-newsitem_view .effectiveDate {
 	margin-top: 0;
 }
 
+body.template-document_homepage_view #centercolumn dl.portletfeedmixer {
+	clear: left;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
