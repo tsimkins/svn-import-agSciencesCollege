@@ -188,6 +188,16 @@ dt {
 	color: &dtml-leftNavTextColor;;
 }
 
+/* !important SUCKS! */
+
+#portal-column-one .portletNavigationTree a.state-published {
+	color: &dtml-leftNavTextColor; !important;
+}
+
+#portal-column-one .portletNavigationTree a.state-published:hover {
+        color: &dtml-leftNavTextHoverColor; !important;
+}
+
 #portal-column-one .navTreeItem a:hover, #portal-column-one 
 dd.portletItem .navTreeItem a:hover {
 	color: &dtml-leftNavTextHoverColor;;
@@ -200,7 +210,7 @@ dd.portletItem {
 #portal-column-one ul.navTreeLevel1 .navTreeItem a, #portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, #portal-column-one ul.navTreeLevel1 
 dd.portletItem .navTreeItem a, #portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
 	background-color: &dtml-leftSubNavBackground;; 
-	color: &dtml-leftNavTextColor;;;
+	color: &dtml-leftNavTextColor;;
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
@@ -470,6 +480,7 @@ body.template-document_homepage_view .documentActions {
 	margin: 2px 5px 5px;
 	padding: 1px 0 1px 13px;
 	font-size: 1.00em;
+	color: &dtml-insideRightPortletTextColor;;
 }
 
 #rightcolumn .portletFooter {
@@ -768,7 +779,7 @@ body.template-document_homepage_view #content, body.template-document_homepage_v
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
 	background: &dtml-leftNavTitleBackground;;
-	color: &dtml-leftNavTitleColor;;
+	color: &dtml-leftNavTitleColor; !important;
 }
 
 .newsImageContainer {

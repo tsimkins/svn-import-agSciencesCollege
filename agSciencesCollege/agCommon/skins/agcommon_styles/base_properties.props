@@ -77,6 +77,7 @@ frontRightPortletBackgroundColor:string=#F5F5F5
 insideRightPortletHeaderTextColor:string=#EEEEFF
 insideRightPortletHeaderBackgroundColor:string=#2F4977
 insideRightPortletBackgroundColor:string=#EEEEFF
+insideRightPortletTextColor:string=#333333
 
 contactColor:string=#005B00
 contactBackgroundColor:string=#74B40F
