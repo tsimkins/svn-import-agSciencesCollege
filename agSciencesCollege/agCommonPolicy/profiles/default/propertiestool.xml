@@ -11,7 +11,8 @@
   <property name="enable_livesearch" type="boolean">False</property>
   <property name="webstats_js" type="string">
      &lt;script type="text/javascript"&gt;  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));  &lt;/script&gt;  &lt;script type="text/javascript"&gt;  var pageTracker = _gat._getTracker("UA-4037316-1");  pageTracker._setDomainName("psu.edu");  pageTracker._initData();  pageTracker._trackPageview();  &lt;/script&gt;</property>
-  <property name="external_links_open_new_window" type="string">True</property>
   <property name="icon_visibility" type="string">authenticated</property>
+  <property name="enable_inline_editing" type="boolean">False</property>
+  <property name="enable_sitemap" type="boolean">True</property>
  </object>
 </object>
