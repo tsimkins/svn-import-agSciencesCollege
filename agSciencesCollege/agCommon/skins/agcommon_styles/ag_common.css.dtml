@@ -748,8 +748,8 @@ input.searchButton {
 }
 
 
-#content, #region-content {
-	padding: 0px 20px 20px 20px;
+#region-content {
+	padding: 1em 20px 20px 20px !important;
 }
 
 body.template-document_homepage_view #content, body.template-document_homepage_view #region-content, body.template-document_homepage_view #portal-content-wrapper {
