@@ -40,11 +40,11 @@ body {
 	top: 75px;
 	height: 23px;
 }
-#content a, #portal-column-one a{
+#region-content a, #portal-column-one a{
 	color: #003399;
 }
 
-#content a:hover, #portal-column-one a:hover {
+#region-content a:hover, #portal-column-one a:hover {
 	color: #3366CC;
 }
 
@@ -394,7 +394,7 @@ dd.portletItem .navTreeItem a:hover {
 	border: none;
 }
 
-h1.documentFirstHeading, .facultyStaffDirectory h1, #content h1 {
+h1.documentFirstHeading, .facultyStaffDirectory h1, #region-content h1 {
 	color: &dtml-documentTitleColor;;
 	font-weight: normal;
 	border: none;
@@ -623,7 +623,7 @@ body.template-document_homepage_view #homepageimage {
 
 /* Friggin' External link icons won't turn off through the interface.  Sledgehammer! */
 
-#content a[href^="http:"], #content a.link-external {
+#region-content a[href^="http:"], #region-content a.link-external {
 	background: transparent;
 	padding: 0px;
 }
@@ -736,10 +736,6 @@ h3 {
 
 }
 
-body.template-document_homepage_view #content {
-	padding-bottom: 0px;
-}
-
 input.searchButton {
 	background: transparent;
 	border: 0px;
@@ -753,7 +749,7 @@ input.searchButton {
 }
 
 body.template-document_homepage_view #content, body.template-document_homepage_view #region-content, body.template-document_homepage_view #portal-content-wrapper {
-	padding: 0px;
+	padding: 0px !important;
 }
 
 /* For JavaScript Equal Height Columns */
