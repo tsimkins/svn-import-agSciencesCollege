@@ -616,7 +616,7 @@ body.template-document_homepage_view #homepageimage {
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: -9px -9px 1px -9px;
+	margin: 3px;
 	text-align: left;
 	padding: 0px;
 }
