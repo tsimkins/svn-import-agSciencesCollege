@@ -616,7 +616,7 @@ body.template-document_homepage_view #homepageimage {
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: 3px;
+	margin: 3px 3px 3px 2px;
 	text-align: left;
 	padding: 0px;
 }
@@ -637,7 +637,7 @@ body.template-document_homepage_view #homepageimage {
 
 body.template-document_homepage_view #centercolumn {
 	display: block;
-	margin: 0 0 0 12px;
+	margin: 0 3px 0 12px;
 	padding: 5px 0px 5px 0px;
 	border-width: 0px 175px 0px 0px;
 	border-color: &dtml-frontRightPortletBackgroundColor;;
