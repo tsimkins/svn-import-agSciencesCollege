@@ -36,19 +36,10 @@ function doresizeColumns()
 	// Calculate max height of leftcontent and rightcontent
 	var maxHeight=Math.max(leftColumn.offsetHeight,rightColumn.offsetHeight);
 
-	// Set IE Fudge -- For some reason, IE7 works just fine, but IE6 is 19px off
-	
-	var IE_left = 1;
-	var IE_right = 0;
-
-	if (msieversion() == 6)
-	{
-		IE_left = 1;
-	}
-
 	// Set both heights to the same (max) value.  Note that we have to append "px" to the value.
 	leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight + IE_left) + "px";
 	rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight + IE_right) + "px";
+
 
 	// For front page, equalize center column height 
 	var bodyClass = document.body.className;
@@ -57,8 +48,9 @@ function doresizeColumns()
 
 	var centerMagicNumber = -13;
 
-	if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn)
+	if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && msieversion() >= 8)
 	{
+		centerColumn.style.height = "auto";
 		increaseCenterColumn = rightColumn.offsetHeight - contentWrapper.offsetHeight + centerMagicNumber;
 		centerColumn.style.height = centerColumn.offsetHeight + increaseCenterColumn + "px";
 	}
