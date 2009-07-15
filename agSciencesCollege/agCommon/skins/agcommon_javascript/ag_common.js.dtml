@@ -37,8 +37,8 @@ function doresizeColumns()
 	var maxHeight=Math.max(leftColumn.offsetHeight,rightColumn.offsetHeight);
 
 	// Set both heights to the same (max) value.  Note that we have to append "px" to the value.
-	leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight + IE_left) + "px";
-	rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight + IE_right) + "px";
+	leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight) + "px";
+	rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight) + "px";
 
 
 	// For front page, equalize center column height 
@@ -48,7 +48,7 @@ function doresizeColumns()
 
 	var centerMagicNumber = -13;
 
-	if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && msieversion() >= 8)
+	if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() ==0))
 	{
 		centerColumn.style.height = "auto";
 		increaseCenterColumn = rightColumn.offsetHeight - contentWrapper.offsetHeight + centerMagicNumber;
