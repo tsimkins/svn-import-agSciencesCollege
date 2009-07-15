@@ -7,22 +7,21 @@
 		&raquo;
 	</span>
 
-	<tal:overrideBreadcrumb tal:condition="context/custom_parent_url|nothing">
-
-		<a tal:attributes="href context/custom_parent_url" tal:content="context/custom_parent_breadcrumb">[Custom Parent Title]</a>
-
-	</tal:overrideBreadcrumb>
-
-
-	<tal:standardBreadcrumb tal:condition="not:context/custom_parent_url|nothing">
-
-		<a href = "http://agsci.psu.edu">AgSci</a>
-
-	</tal:standardBreadcrumb>
+	<a href = "http://agsci.psu.edu">AgSci</a>
 
 	<span class="breadcrumbSeparator">
 		&raquo;
 	</span>
+
+	<tal:overrideBreadcrumb tal:condition="context/custom_parent_url|nothing">
+
+		<a tal:attributes="href context/custom_parent_url" tal:content="context/custom_parent_breadcrumb">[Custom Parent Title]</a>
+
+		<span class="breadcrumbSeparator">
+			&raquo;
+		</span>
+
+	</tal:overrideBreadcrumb>
 
 	<tal:overrideBreadcrumb tal:condition="context/custom_breadcrumb|nothing">
 
