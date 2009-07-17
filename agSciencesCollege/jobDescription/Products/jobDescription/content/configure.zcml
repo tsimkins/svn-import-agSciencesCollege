@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="Products.jobDescription">
+
+  <!-- configure your content components here -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+    <class class=".jobdescriptionfolder.JobDescriptionFolder">
+
+        <require
+            permission="zope2.View"
+            interface="..interfaces.IJobDescriptionFolder"
+            />
+
+        <require
+            permission="cmf.ModifyPortalContent"
+            set_schema="..interfaces.IJobDescriptionFolder"
+            />
+
+    </class>
+  <class class=".jobdescription.JobDescription">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IJobDescription"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IJobDescription"
+        />
+  </class>
+
+</configure>

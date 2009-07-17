@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;
+                       text string:hello">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+        </p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+	<dl class = "jobDescription">
+		<dt tal:content="python:context.getField('job_location').widget.label" />
+		<dd tal:content="context/getJob_location" />
+
+		<dt tal:content="python:context.getField('start_date').widget.label" />
+		<dd tal:content="python:context.getStart_date().strftime('%m/%d/%Y')" />
+		
+		<dt tal:content="python:context.getField('end_date').widget.label" />
+		<dd tal:content="python:context.getEnd_date().strftime('%m/%d/%Y')" />
+
+		<dt tal:content="python:context.getField('job_type').widget.label" />
+		<dd tal:content="context/getJob_type" />
+		
+		<dt tal:content="python:context.getField('job_status').widget.label" />
+		<dd tal:content="context/getJob_status" />
+
+		<dt tal:content="python:context.getField('job_description').widget.label" />
+		<dd tal:content="structure context/getJob_description" />
+		
+		<dt tal:content="python:context.getField('job_requirements').widget.label" />
+		<dd tal:content="structure context/getJob_requirements" />
+				
+		<tal:optionalField tal:condition="context/getJob_related_disciplines|nothing">
+		<dt tal:content="python:context.getField('job_related_disciplines').widget.label" />
+		<dd>
+			<ul tal:repeat="item context/getJob_related_disciplines">
+				<li tal:content="item" tal:condition="item" />
+			</ul>
+		</dd>
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getApplication_instructions|nothing">
+		<dt tal:content="python:context.getField('application_instructions').widget.label" />
+		<dd tal:content="context/getApplication_instructions" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getApplication_deadline|nothing">
+		<dt tal:content="python:context.getField('application_deadline').widget.label" />
+		<dd tal:content="context/getApplication_deadline" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getCompany_website|nothing">		
+		<dt tal:content="python:context.getField('company_website').widget.label" />
+		<dd tal:content="context/getCompany_website" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getContact_name|nothing">
+		<dt tal:content="python:context.getField('contact_name').widget.label" />
+		<dd tal:content="context/getContact_name" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getContact_title|nothing">		
+		<dt tal:content="python:context.getField('contact_title').widget.label" />
+		<dd tal:content="context/getContact_title" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getMailing_address|nothing">		
+		<dt tal:content="python:context.getField('contact_email').widget.label" />
+		<dd tal:content="context/getMailing_address" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getMailing_address|nothing">
+		<dt tal:content="python:context.getField('mailing_address').widget.label" />
+		<dd tal:content="context/getMailing_address" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getPhone_number|nothing">
+		<dt tal:content="python:context.getField('phone_number').widget.label" />
+		<dd tal:content="context/getPhone_number" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getFax_number|nothing">
+		<dt tal:content="python:context.getField('fax_number').widget.label" />
+		<dd tal:content="context/getFax_number" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getOther_information|nothing">
+		<dt tal:content="python:context.getField('other_information').widget.label" />
+		<dd tal:content="context/getOther_information" />
+		</tal:optionalField>
+
+
+	</dl>
+        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+            show related items if they exist
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
