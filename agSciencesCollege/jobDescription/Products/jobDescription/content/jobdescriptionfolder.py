@@ -32,7 +32,7 @@ class JobDescriptionFolder(folder.ATFolder):
     portal_type = "JobDescriptionFolder"
     schema = JobDescriptionFolderSchema
 
-    title = atapi.ATFieldProperty('title')
-    description = atapi.ATFieldProperty('description')
+    #title = atapi.ATFieldProperty('title')
+    #description = atapi.ATFieldProperty('description')
 
 atapi.registerType(JobDescriptionFolder, PROJECTNAME)

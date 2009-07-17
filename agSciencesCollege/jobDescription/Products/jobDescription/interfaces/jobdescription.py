@@ -110,3 +110,6 @@ class IJobDescription(Interface):
         required=True,
     )
 
+class IJobDescriptionFolder(Interface):
+    """Contains job descriptions"""
+    
