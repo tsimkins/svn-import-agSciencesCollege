@@ -87,8 +87,10 @@ class Assignment(base.Assignment):
 
         cached_data=cache.get(url, None)
         if cached_data is not None:
+
             (timestamp, feed)=cached_data
-            if now-timestamp<self.cache_timeout:
+
+            if timestamp>now:
                 return feed
 
             newfeed=feedparser.parse(url,
@@ -101,7 +103,7 @@ class Assignment(base.Assignment):
             elif len(newfeed.get('entries', [])) == 0 or newfeed.status == 404:
                 # If we don't have any entries (i.e. the feed is blank) 
                 # then just return the cached copy.
-            	return feed
+                return feed
 
         feed=feedparser.parse(url)
         self.cleanFeed(feed)
