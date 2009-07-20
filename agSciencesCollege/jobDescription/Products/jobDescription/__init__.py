@@ -12,6 +12,7 @@ from Products.CMFCore import DirectoryView
 # Register our skins directory - this makes it available via portal_skins.
 
 DirectoryView.registerDirectory('skins', globals())
+DirectoryView.registerDirectory('skins/jobDescription', globals())
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings

@@ -162,7 +162,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
     ),
 
     atapi.TextField(
-        'contact_email',
+        'mailing_address',
         storage=atapi.AnnotationStorage(),
         widget=atapi.TextAreaWidget(
             label=_(u"Mailing Address"),

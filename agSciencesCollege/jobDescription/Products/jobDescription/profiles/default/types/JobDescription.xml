@@ -2,7 +2,7 @@
 <object name="JobDescription"
    meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="Products.jobDescription" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">JobDescription</property>
+  <property name="title" i18n:translate="">Job Description</property>
   <property name="description"
     i18n:translate="">Information about Job Descriptions</property>
   <property name="content_meta_type">JobDescription</property>
@@ -11,7 +11,10 @@
   <property name="factory">addJobDescription</property>
   <property name="immediate_view">atct_edit</property>
   <property name="global_allow">False</property>
-  <property name="filter_content_types">False</property>
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+    <element value="JobDescription"/>
+  </property>
   <property name="allow_discussion">False</property>
   <property name="default_view">jobdescription_view</property>
   <property name="view_methods">
