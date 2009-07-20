@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Products.jobDescription: Add JobDescriptionFolder" acquire="False" remove="True" />
+    <permission name="Products.jobDescription: Add JobDescription" acquire="False" remove="True" />
+  </permissions>
+</rolemap>

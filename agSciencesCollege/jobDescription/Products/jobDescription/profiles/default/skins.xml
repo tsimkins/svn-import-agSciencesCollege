@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
-<object name="portal_skins" meta_type="Plone Skins Tool">
+<object name="portal_skins" meta_type="Plone Skins Tool" 
+	allow_any="False" cookie_persistence="False"
+	request_varname="plone_skin">
 
-	<object name="jobDescription" meta_type="Filesystem Directory View"
-		directory="Products.jobDescription:skins/jobDescription" />
+	<object name="jobDescription" meta_type="Filesystem Directory View" directory="Products.jobDescription:skins/jobDescription" 
+/>
 
 	<skin-path name="jobDescription" based-on="Plone Default">
-
 		<layer name="jobDescription" insert-after="custom"/>
 	</skin-path>
 
