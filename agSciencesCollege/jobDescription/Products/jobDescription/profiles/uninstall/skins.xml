@@ -4,6 +4,6 @@
 	request_varname="plone_skin">
 
 	<object name="jobDescription" meta_type="Filesystem Directory View" remove = "True"/>
-	<skin-path name="jobDescription" remove="True" />
+	<skin-path name="*" remove="True" />
 
 </object>

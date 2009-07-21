@@ -11,6 +11,9 @@ from Products.jobDescription import jobDescriptionMessageFactory as _
 from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
+# We're going to construct the vocabulary for the related disciplines from 
+# a field in the parent folder
+
 JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
     # -*- Your Archetypes field definitions here ... -*-
@@ -73,6 +76,8 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u"Job Description"),
         ),
         required=True,
+        default_output_type='text/x-html-safe',
+        validators=('isTidyHtmlWithCleanup',),
     ),
 
     atapi.TextField(
@@ -82,6 +87,8 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u"Job Requirements"),
         ),
         required=True,
+        default_output_type='text/x-html-safe',
+        validators=('isTidyHtmlWithCleanup',),
     ),
 
     atapi.StringField(
@@ -100,6 +107,8 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.RichWidget(
             label=_(u"Application Instructions"),
         ),
+        default_output_type='text/x-html-safe',
+        validators=('isTidyHtmlWithCleanup',),
     ),
 
     atapi.DateTimeField(
@@ -125,6 +134,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.StringWidget(
             label=_(u"Company Name"),
         ),
+        required=True,
     ),
 
     atapi.StringField(

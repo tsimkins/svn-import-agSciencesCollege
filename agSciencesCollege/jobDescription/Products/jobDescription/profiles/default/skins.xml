@@ -6,7 +6,7 @@
 	<object name="jobDescription" meta_type="Filesystem Directory View" directory="Products.jobDescription:skins/jobDescription" 
 />
 
-	<skin-path name="jobDescription" based-on="Plone Default">
+	<skin-path name="*" based-on="Plone Default">
 		<layer name="jobDescription" />
 	</skin-path>
 

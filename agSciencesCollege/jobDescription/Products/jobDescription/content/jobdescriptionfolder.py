@@ -14,6 +14,14 @@ from Products.jobDescription.config import PROJECTNAME
 JobDescriptionFolderSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
     # -*- Your Archetypes field definitions here ... -*-
+    atapi.TextField(
+        'job_related_disciplines',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.TextAreaWidget(
+            label=_(u"Related Disciplines"),
+        ),
+        required=True,
+    ),    
 
 ))
 
@@ -32,7 +40,8 @@ class JobDescriptionFolder(folder.ATFolder):
     portal_type = "JobDescriptionFolder"
     schema = JobDescriptionFolderSchema
 
-    #title = atapi.ATFieldProperty('title')
-    #description = atapi.ATFieldProperty('description')
+    title = atapi.ATFieldProperty('title')
+    description = atapi.ATFieldProperty('description')
+    job_related_disciplines = atapi.ATFieldProperty('job_related_disciplines')
 
 atapi.registerType(JobDescriptionFolder, PROJECTNAME)

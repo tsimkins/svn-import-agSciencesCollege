@@ -49,7 +49,9 @@
 			<tr>
 				<th>Job Title</th>
 				<th>Job Description</th>
+				<th>Company Name</th>
 				<th>Location</th>
+				<th>Job Type/Status</th>
 				<th>Start Date</th>
 				<th>End Date</th>
 			</tr>
@@ -74,13 +76,15 @@
                                        item_location item_object/getJob_location;
                                        item_start python:item_object.getStart_date().strftime('%m/%d/%Y');
                                        item_end python:item_object.getEnd_date().strftime('%m/%d/%Y');
+                                       item_company item_object/getCompany_name;
+                                       item_status python:'%s/%s' % (item_object.getJob_type(), item_object.getJob_status()); 
                                    "
                      >
 
 					<tr tal:define="oddrow repeat/item/odd;"
                         tal:attributes="class python:test(oddrow, 'even', 'odd')">
 						<td>
-                        <a href="#"
+                        <a tal:attributes="href item_id"
                            tal:content="item_title_or_id">
                             Item Title
                         </a>
@@ -88,7 +92,9 @@
 
 
 						<td tal:content="item_description" />
+						<td tal:content="item_company" />
     					<td tal:content="item_location" />
+    					<td tal:content="item_status" />
 						<td tal:content="item_start" />
 						<td tal:content="item_end" />						
 					</tr>

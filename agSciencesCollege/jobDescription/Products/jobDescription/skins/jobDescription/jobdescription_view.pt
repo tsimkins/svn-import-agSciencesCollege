@@ -72,6 +72,16 @@
 		<dd tal:content="context/getApplication_deadline" />
 		</tal:optionalField>
 
+		<tal:optionalField tal:condition="context/getJob_website|nothing">		
+		<dt tal:content="python:context.getField('job_website').widget.label" />
+		<dd tal:content="context/getJob_website" />
+		</tal:optionalField>
+
+		<tal:optionalField tal:condition="context/getCompany_name|nothing">
+		<dt tal:content="python:context.getField('company_name').widget.label" />
+		<dd tal:content="context/getCompany_name" />
+		</tal:optionalField>
+
 		<tal:optionalField tal:condition="context/getCompany_website|nothing">		
 		<dt tal:content="python:context.getField('company_website').widget.label" />
 		<dd tal:content="context/getCompany_website" />
@@ -87,12 +97,14 @@
 		<dd tal:content="context/getContact_title" />
 		</tal:optionalField>
 
-		<tal:optionalField tal:condition="context/getMailing_address|nothing">		
+		<tal:optionalField tal:condition="context/getContact_email|nothing">		
 		<dt tal:content="python:context.getField('contact_email').widget.label" />
-		<dd tal:content="context/getMailing_address" />
+		<dd>
+			<a tal:attributes="href string:mailto:${context/getContact_email}" tal:content="context/getContact_email" />
+		</dd>
 		</tal:optionalField>
 
-		<tal:optionalField tal:condition="context/getMailing_address|nothing">
+		<tal:optionalField tal:condition="context/getMailing_address|nothing">		
 		<dt tal:content="python:context.getField('mailing_address').widget.label" />
 		<dd tal:content="context/getMailing_address" />
 		</tal:optionalField>
