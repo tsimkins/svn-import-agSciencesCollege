@@ -7,7 +7,7 @@
     i18n:translate="">Information about Job Descriptions</property>
   <property name="content_meta_type">JobDescription</property>
   <property name="content_icon">document_icon.gif</property>
-  <property name="product">Products.jobDescription</property>
+  <property name="product">jobDescription</property>
   <property name="factory">addJobDescription</property>
   <property name="immediate_view">atct_edit</property>
   <property name="global_allow">False</property>

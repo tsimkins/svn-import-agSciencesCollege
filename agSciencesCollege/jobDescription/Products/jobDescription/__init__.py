@@ -12,13 +12,12 @@ from Products.CMFCore import DirectoryView
 # Register our skins directory - this makes it available via portal_skins.
 
 DirectoryView.registerDirectory('skins', globals())
-DirectoryView.registerDirectory('skins/jobDescription', globals())
 
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-jobDescriptionMessageFactory = MessageFactory('Products.jobDescription')
+jobDescriptionMessageFactory = MessageFactory('jobDescription')
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product.

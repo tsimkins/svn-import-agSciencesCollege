@@ -7,7 +7,7 @@
     i18n:translate="">A folder that contains job descriptions</property>
   <property name="content_meta_type">JobDescriptionFolder</property>
   <property name="content_icon">folder_icon.gif</property>
-  <property name="product">Products.jobDescription</property>
+  <property name="product">jobDescription</property>
   <property name="factory">addJobDescriptionFolder</property>
   <property name="immediate_view">atct_edit</property>
   <property name="global_allow">True</property>

@@ -7,7 +7,7 @@
 />
 
 	<skin-path name="jobDescription" based-on="Plone Default">
-		<layer name="jobDescription" insert-after="custom"/>
+		<layer name="jobDescription" />
 	</skin-path>
 
 </object>
