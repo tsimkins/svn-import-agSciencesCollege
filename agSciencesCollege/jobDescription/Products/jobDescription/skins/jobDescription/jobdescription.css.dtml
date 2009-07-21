@@ -7,5 +7,5 @@
     border-color: #EFDA77;
     background: #FFFEEF;
     margin: 0.5em 3em 1.5em 3em;
-    padding: 0.25em;
+    padding: 0.25em 0.75em;
 }

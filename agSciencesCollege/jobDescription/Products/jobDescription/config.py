@@ -1,7 +1,7 @@
 """Common configuration constants
 """
 
-PROJECTNAME = 'Products.jobDescription'
+PROJECTNAME = 'jobDescription'
 
 ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-

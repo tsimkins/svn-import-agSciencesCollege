@@ -11,8 +11,7 @@ from Products.jobDescription import jobDescriptionMessageFactory as _
 from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
-# We're going to construct the vocabulary for the related disciplines from 
-# a field in the parent folder
+from Acquisition import aq_parent
 
 JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
@@ -98,8 +97,8 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u"Related Disciplines"),
             format='checkbox'
         ),
-        vocabulary=sorted(('Agribusiness Management', 'Agricultural and Extension Education', 'Agricultural Science', 'Agricultural Systems Management', 'Agroecology', 'Animal Sciences', 'Biological Engineering', 'Community, Environment, and Development', 'Environmental Resource Management', 'Environmental Soil Science', 'Food Science', 'Forest Science', 'Horticulture', 'Immunology and Infectious Disease', 'Landscape Contracting', 'Toxicology', 'Turfgrass Science', 'Veterinary and Biomedical Sciences', 'Wildlife and Fisheries Science', 'Wood Products')
-    )),
+        vocabulary="_getDisciplines",
+    ),
 
     atapi.TextField(
         'application_instructions',
@@ -263,6 +262,14 @@ class JobDescription(base.ATCTContent):
     start_date = atapi.ATFieldProperty('start_date')
 
     job_location = atapi.ATFieldProperty('job_location')
+
+	# We're going to construct the vocabulary for the related disciplines from 
+	# a field in the parent folder
+	
+    def _getDisciplines(self):
+	
+        vocab = aq_parent(self).getJob_related_disciplines().split('\r\n')
+        return vocab
 
 
 atapi.registerType(JobDescription, PROJECTNAME)

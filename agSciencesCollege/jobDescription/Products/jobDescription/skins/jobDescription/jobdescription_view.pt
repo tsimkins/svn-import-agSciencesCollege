@@ -64,7 +64,7 @@
 
 		<tal:optionalField tal:condition="context/getApplication_instructions|nothing">
 		<dt tal:content="python:context.getField('application_instructions').widget.label" />
-		<dd tal:content="context/getApplication_instructions" />
+		<dd tal:content="structure context/getApplication_instructions" />
 		</tal:optionalField>
 
 		<tal:optionalField tal:condition="context/getApplication_deadline|nothing">
@@ -106,7 +106,7 @@
 
 		<tal:optionalField tal:condition="context/getMailing_address|nothing">		
 		<dt tal:content="python:context.getField('mailing_address').widget.label" />
-		<dd tal:content="context/getMailing_address" />
+		<dd tal:content="structure python:context.getMailing_address().replace('\r\n', '<br />')" />
 		</tal:optionalField>
 
 		<tal:optionalField tal:condition="context/getPhone_number|nothing">
