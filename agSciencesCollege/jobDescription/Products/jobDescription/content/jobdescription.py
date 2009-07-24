@@ -42,7 +42,6 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.CalendarWidget(
             label=_(u"End Date"),
         ),
-        required=True,
         validators=('isValidDate'),
     ),
     
