@@ -1,0 +1,3177 @@
+#------------------------------------------------------------
+# Creating folder australia
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="australia", 
+		type_name="Folder", 
+		title="Australia", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding australia from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "australia")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder austria
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="austria", 
+		type_name="Folder", 
+		title="Austria", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding austria from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "austria")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder belgium
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="belgium", 
+		type_name="Folder", 
+		title="Belgium", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding belgium from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "belgium")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder belize
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="belize", 
+		type_name="Folder", 
+		title="Belize", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding belize from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "belize")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder brazil
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="brazil", 
+		type_name="Folder", 
+		title="Brazil", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding brazil from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "brazil")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder china
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="china", 
+		type_name="Folder", 
+		title="China", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding china from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "china")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder costa-rica
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="costa-rica", 
+		type_name="Folder", 
+		title="Costa Rica", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding costa-rica from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "costa-rica")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder curacao
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="curacao", 
+		type_name="Folder", 
+		title="Curacao", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding curacao from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "curacao")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder denmark
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="denmark", 
+		type_name="Folder", 
+		title="Denmark", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding denmark from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "denmark")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder england
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="england", 
+		type_name="Folder", 
+		title="England", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding england from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "england")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder france
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="france", 
+		type_name="Folder", 
+		title="France", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding france from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "france")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder germany
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="germany", 
+		type_name="Folder", 
+		title="Germany", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding germany from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "germany")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder ghana
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="ghana", 
+		type_name="Folder", 
+		title="Ghana", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding ghana from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "ghana")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder guatemala
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="guatemala", 
+		type_name="Folder", 
+		title="Guatemala", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding guatemala from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "guatemala")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder honduras
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="honduras", 
+		type_name="Folder", 
+		title="Honduras", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding honduras from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "honduras")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder ireland
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="ireland", 
+		type_name="Folder", 
+		title="Ireland", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding ireland from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "ireland")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder italy
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="italy", 
+		type_name="Folder", 
+		title="Italy", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding italy from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "italy")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder jamaica
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="jamaica", 
+		type_name="Folder", 
+		title="Jamaica", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding jamaica from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "jamaica")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder jordan
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="jordan", 
+		type_name="Folder", 
+		title="Jordan", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding jordan from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "jordan")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder kenya
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="kenya", 
+		type_name="Folder", 
+		title="Kenya", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding kenya from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "kenya")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder mexico
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="mexico", 
+		type_name="Folder", 
+		title="Mexico", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding mexico from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "mexico")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder new-zealand
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="new-zealand", 
+		type_name="Folder", 
+		title="New Zealand", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding new-zealand from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "new-zealand")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder peru
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="peru", 
+		type_name="Folder", 
+		title="Peru", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding peru from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "peru")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder russia
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="russia", 
+		type_name="Folder", 
+		title="Russia", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding russia from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "russia")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder scotland
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="scotland", 
+		type_name="Folder", 
+		title="Scotland", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding scotland from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "scotland")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder senegal
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="senegal", 
+		type_name="Folder", 
+		title="Senegal", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding senegal from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "senegal")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder south-africa
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="south-africa", 
+		type_name="Folder", 
+		title="South Africa", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding south-africa from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "south-africa")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder spain
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="spain", 
+		type_name="Folder", 
+		title="Spain", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding spain from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "spain")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder the-netherlands
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="the-netherlands", 
+		type_name="Folder", 
+		title="The Netherlands", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding the-netherlands from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-netherlands")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder ukraine
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="ukraine", 
+		type_name="Folder", 
+		title="Ukraine", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding ukraine from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "ukraine")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder vietnam
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="vietnam", 
+		type_name="Folder", 
+		title="Vietnam", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding vietnam from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "vietnam")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating folder wales
+#------------------------------------------------------------
+myContext = context
+
+myContext.invokeFactory(id="wales", 
+		type_name="Folder", 
+		title="Wales", 
+		description = '''''')
+#------------------------------------------------------------
+# Hiding wales from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "wales")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Giannetti_Amsterdam.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'the-netherlands')
+
+myContext.invokeFactory(id="semester-abroad-anthony-giannetti-school-of-forest-resources", 
+		type_name="Link", 
+		title="Semester Abroad: Anthony Giannetti, School of Forest Resources", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Giannetti_Amsterdam.pdf''')
+#------------------------------------------------------------
+# Hiding semester-abroad-anthony-giannetti-school-of-forest-resources from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-abroad-anthony-giannetti-school-of-forest-resources")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-abroad-anthony-giannetti-school-of-forest-resources')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaBrigham.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="an-australian-adventure-brie-brigham-environmental-resource-management", 
+		type_name="Link", 
+		title="An Australian Adventure: Brie Brigham, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaBrigham.pdf''')
+#------------------------------------------------------------
+# Hiding an-australian-adventure-brie-brigham-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "an-australian-adventure-brie-brigham-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'an-australian-adventure-brie-brigham-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Australia_Fairchild.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="life-on-the-other-side-of-the-world-jordane-fairchild-horticulture", 
+		type_name="Link", 
+		title="Life on the Other Side of the World: Jordane Fairchild, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Australia_Fairchild.pdf''')
+#------------------------------------------------------------
+# Hiding life-on-the-other-side-of-the-world-jordane-fairchild-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "life-on-the-other-side-of-the-world-jordane-fairchild-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'life-on-the-other-side-of-the-world-jordane-fairchild-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/FlinchbaughAustralia.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="don-t-go-to-australia-if-you-don-t-like-eggs-jennifer-flinchbaugh-animal-science", 
+		type_name="Link", 
+		title="Don’t Go to Australia If You Don’t Like Eggs, Jennifer Flinchbaugh, Animal Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/FlinchbaughAustralia.pdf''')
+#------------------------------------------------------------
+# Hiding don-t-go-to-australia-if-you-don-t-like-eggs-jennifer-flinchbaugh-animal-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "don-t-go-to-australia-if-you-don-t-like-eggs-jennifer-flinchbaugh-animal-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'don-t-go-to-australia-if-you-don-t-like-eggs-jennifer-flinchbaugh-animal-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaGabriel.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="my-aussie-adventure-christi-gabriel-environmental-resource-management", 
+		type_name="Link", 
+		title="My Aussie Adventure: Christi Gabriel, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaGabriel.pdf''')
+#------------------------------------------------------------
+# Hiding my-aussie-adventure-christi-gabriel-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-aussie-adventure-christi-gabriel-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-aussie-adventure-christi-gabriel-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/JonathanHarteisAdelaide.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="semester-abroad-jonathan-harteis-agribusiness-management", 
+		type_name="Link", 
+		title="Semester Abroad: Jonathan Harteis, Agribusiness Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/JonathanHarteisAdelaide.pdf''')
+#------------------------------------------------------------
+# Hiding semester-abroad-jonathan-harteis-agribusiness-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-abroad-jonathan-harteis-agribusiness-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-abroad-jonathan-harteis-agribusiness-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/AvenelJoseph.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="fall-semester-2002-at-the-university-of-western-australia-in-perth-avenel-joseph-animal-sciences", 
+		type_name="Link", 
+		title="Fall Semester 2002 at the University of Western Australia in Perth: Avenel Joseph, Animal Sciences", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/AvenelJoseph.pdf''')
+#------------------------------------------------------------
+# Hiding fall-semester-2002-at-the-university-of-western-australia-in-perth-avenel-joseph-animal-sciences from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "fall-semester-2002-at-the-university-of-western-australia-in-perth-avenel-joseph-animal-sciences")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'fall-semester-2002-at-the-university-of-western-australia-in-perth-avenel-joseph-animal-sciences')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Leana_Australia.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="internship-at-csiro-lena-le-food-science", 
+		type_name="Link", 
+		title="Internship at CSIRO: Lena Le, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Leana_Australia.pdf''')
+#------------------------------------------------------------
+# Hiding internship-at-csiro-lena-le-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "internship-at-csiro-lena-le-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'internship-at-csiro-lena-le-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaStratton.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'australia')
+
+myContext.invokeFactory(id="a-year-at-the-university-of-queensland-john-stratton-agricultural-nbsp-and-biological-engineering", 
+		type_name="Link", 
+		title="A Year at the University of Queensland: John Stratton, Agricultural&nbsp;and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/AustraliaStratton.pdf''')
+#------------------------------------------------------------
+# Hiding a-year-at-the-university-of-queensland-john-stratton-agricultural-nbsp-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-year-at-the-university-of-queensland-john-stratton-agricultural-nbsp-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-year-at-the-university-of-queensland-john-stratton-agricultural-nbsp-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ViennaBeattiestudents04.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'austria')
+
+myContext.invokeFactory(id="2004-international-stauden-union-isu-conference-mary-colson-and-kacee-wheeland-horticulture", 
+		type_name="Link", 
+		title="2004 International Stauden Union (ISU) Conference: Mary Colson and Kacee Wheeland, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ViennaBeattiestudents04.pdf''')
+#------------------------------------------------------------
+# Hiding 2004-international-stauden-union-isu-conference-mary-colson-and-kacee-wheeland-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "2004-international-stauden-union-isu-conference-mary-colson-and-kacee-wheeland-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, '2004-international-stauden-union-isu-conference-mary-colson-and-kacee-wheeland-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Heffner_Austria.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'austria')
+
+myContext.invokeFactory(id="haploids-in-higher-plant-iii-international-conference-elliot-heffner", 
+		type_name="Link", 
+		title="Haploids in Higher Plant III International Conference: Elliot Heffner", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Heffner_Austria.pdf''')
+#------------------------------------------------------------
+# Hiding haploids-in-higher-plant-iii-international-conference-elliot-heffner from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "haploids-in-higher-plant-iii-international-conference-elliot-heffner")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'haploids-in-higher-plant-iii-international-conference-elliot-heffner')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/SencyzSUSPROTTravelogue.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'belgium')
+
+myContext.invokeFactory(id="internship-experience-in-belgium-allison-sencyz", 
+		type_name="Link", 
+		title="Internship Experience in Belgium: Allison Sencyz", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/SencyzSUSPROTTravelogue.pdf''')
+#------------------------------------------------------------
+# Hiding internship-experience-in-belgium-allison-sencyz from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "internship-experience-in-belgium-allison-sencyz")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'internship-experience-in-belgium-allison-sencyz')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Drzal_Belize.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'belize')
+
+myContext.invokeFactory(id="youth-gardening-field-research-stephanie-drzal-environmental-resource-management", 
+		type_name="Link", 
+		title="Youth Gardening Field Research: Stephanie Drzal, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Drzal_Belize.pdf''')
+#------------------------------------------------------------
+# Hiding youth-gardening-field-research-stephanie-drzal-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "youth-gardening-field-research-stephanie-drzal-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'youth-gardening-field-research-stephanie-drzal-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Pappas_Belize.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'belize')
+
+myContext.invokeFactory(id="techniques-in-community-and-environmental-assessment-jennifer-pappas-recreation-park-and-tourism-management", 
+		type_name="Link", 
+		title="Techniques in Community and Environmental Assessment: Jennifer Pappas, Recreation, Park, and Tourism Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Pappas_Belize.pdf''')
+#------------------------------------------------------------
+# Hiding techniques-in-community-and-environmental-assessment-jennifer-pappas-recreation-park-and-tourism-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "techniques-in-community-and-environmental-assessment-jennifer-pappas-recreation-park-and-tourism-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'techniques-in-community-and-environmental-assessment-jennifer-pappas-recreation-park-and-tourism-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Yenerall_Belize.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'belize')
+
+myContext.invokeFactory(id="field-research-community-track-garden-jackie-yenerall-environmental-and-renewable-resource-economics", 
+		type_name="Link", 
+		title="Field Research/Community Track Garden: Jackie Yenerall, Environmental and Renewable Resource Economics", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Yenerall_Belize.pdf''')
+#------------------------------------------------------------
+# Hiding field-research-community-track-garden-jackie-yenerall-environmental-and-renewable-resource-economics from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "field-research-community-track-garden-jackie-yenerall-environmental-and-renewable-resource-economics")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'field-research-community-track-garden-jackie-yenerall-environmental-and-renewable-resource-economics')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/BrazilMoore.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'brazil')
+
+myContext.invokeFactory(id="praia-do-forte-cacheoira-and-salvador-nbsp-duane-moore-agricultural-and-biological-engineerng", 
+		type_name="Link", 
+		title="Praia do Forte, Cacheoira, and Salvador&nbsp;: Duane Moore, Agricultural and Biological Engineerng", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/BrazilMoore.pdf''')
+#------------------------------------------------------------
+# Hiding praia-do-forte-cacheoira-and-salvador-nbsp-duane-moore-agricultural-and-biological-engineerng from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "praia-do-forte-cacheoira-and-salvador-nbsp-duane-moore-agricultural-and-biological-engineerng")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'praia-do-forte-cacheoira-and-salvador-nbsp-duane-moore-agricultural-and-biological-engineerng')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ChinaSchwartz.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'china')
+
+myContext.invokeFactory(id="beijing-2008-jessica-schwartz", 
+		type_name="Link", 
+		title="Beijing 2008: Jessica Schwartz", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ChinaSchwartz.pdf''')
+#------------------------------------------------------------
+# Hiding beijing-2008-jessica-schwartz from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "beijing-2008-jessica-schwartz")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'beijing-2008-jessica-schwartz')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Beasley_Costa_Rica.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'costa-rica')
+
+myContext.invokeFactory(id="tourism-industry-study-erin-beasley-environmental-and-renewable-resource-economics", 
+		type_name="Link", 
+		title="Tourism Industry Study: Erin Beasley, Environmental and Renewable Resource Economics", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Beasley_Costa_Rica.pdf''')
+#------------------------------------------------------------
+# Hiding tourism-industry-study-erin-beasley-environmental-and-renewable-resource-economics from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "tourism-industry-study-erin-beasley-environmental-and-renewable-resource-economics")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'tourism-industry-study-erin-beasley-environmental-and-renewable-resource-economics')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CostaRicaGabriel.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'costa-rica')
+
+myContext.invokeFactory(id="study-abroad-costa-rica-christi-gabriel-erm", 
+		type_name="Link", 
+		title="Study Abroad Costa Rica: Christi Gabriel, ERM", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CostaRicaGabriel.pdf''')
+#------------------------------------------------------------
+# Hiding study-abroad-costa-rica-christi-gabriel-erm from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "study-abroad-costa-rica-christi-gabriel-erm")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'study-abroad-costa-rica-christi-gabriel-erm')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Costa_Rica_Heagy.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'costa-rica')
+
+myContext.invokeFactory(id="costa-rica-travelogue-robin-heagy-wildlife-and-fisheries-science", 
+		type_name="Link", 
+		title="Costa Rica Travelogue: Robin Heagy, Wildlife and Fisheries Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Costa_Rica_Heagy.pdf''')
+#------------------------------------------------------------
+# Hiding costa-rica-travelogue-robin-heagy-wildlife-and-fisheries-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "costa-rica-travelogue-robin-heagy-wildlife-and-fisheries-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'costa-rica-travelogue-robin-heagy-wildlife-and-fisheries-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CostaRicaKauffman.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'costa-rica')
+
+myContext.invokeFactory(id="costa-rica-bailee-kauffman-erm", 
+		type_name="Link", 
+		title="Costa Rica: Bailee Kauffman, ERM", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CostaRicaKauffman.pdf''')
+#------------------------------------------------------------
+# Hiding costa-rica-bailee-kauffman-erm from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "costa-rica-bailee-kauffman-erm")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'costa-rica-bailee-kauffman-erm')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Costa_Rica_3-05Student_Report.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'costa-rica')
+
+myContext.invokeFactory(id="agribusiness-management-and-food-production-study-tour-spring-2005", 
+		type_name="Link", 
+		title="Agribusiness Management and Food Production Study Tour, Spring 2005", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Costa_Rica_3-05Student_Report.pdf''')
+#------------------------------------------------------------
+# Hiding agribusiness-management-and-food-production-study-tour-spring-2005 from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "agribusiness-management-and-food-production-study-tour-spring-2005")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'agribusiness-management-and-food-production-study-tour-spring-2005')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CuracaoPurosky.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'curacao')
+
+myContext.invokeFactory(id="research-on-a-caribbean-island-sarah-purosky-animal-sciences", 
+		type_name="Link", 
+		title="Research on a Caribbean Island: Sarah Purosky, Animal Sciences", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CuracaoPurosky.pdf''')
+#------------------------------------------------------------
+# Hiding research-on-a-caribbean-island-sarah-purosky-animal-sciences from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "research-on-a-caribbean-island-sarah-purosky-animal-sciences")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'research-on-a-caribbean-island-sarah-purosky-animal-sciences')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/SilvaCopenhagen03.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'denmark')
+
+myContext.invokeFactory(id="a-danish-delight-diana-silva-landscape-contracting", 
+		type_name="Link", 
+		title="A Danish Delight: Diana Silva, Landscape Contracting", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/SilvaCopenhagen03.pdf''')
+#------------------------------------------------------------
+# Hiding a-danish-delight-diana-silva-landscape-contracting from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-danish-delight-diana-silva-landscape-contracting")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-danish-delight-diana-silva-landscape-contracting')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/EnglandDrzal.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'england')
+
+myContext.invokeFactory(id="semester-in-england-stephanie-drzal-environmental-resource-management", 
+		type_name="Link", 
+		title="Semester in England: Stephanie Drzal, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/EnglandDrzal.pdf''')
+#------------------------------------------------------------
+# Hiding semester-in-england-stephanie-drzal-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-in-england-stephanie-drzal-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-in-england-stephanie-drzal-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/EnglandFehr.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'england')
+
+myContext.invokeFactory(id="semester-abroad-at-leeds-jenna-fehr-environmental-resource-management-additionally-read-jenna-s-travel-blog-at-http-juf126-googlepages-com-travelogue", 
+		type_name="Link", 
+		title="Semester Abroad at Leeds: Jenna Fehr, Environmental Resource Management. Additionally, read Jenna's travel blog at http://juf126.googlepages.com/travelogue", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/EnglandFehr.pdf''')
+#------------------------------------------------------------
+# Hiding semester-abroad-at-leeds-jenna-fehr-environmental-resource-management-additionally-read-jenna-s-travel-blog-at-http-juf126-googlepages-com-travelogue from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-abroad-at-leeds-jenna-fehr-environmental-resource-management-additionally-read-jenna-s-travel-blog-at-http-juf126-googlepages-com-travelogue")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-abroad-at-leeds-jenna-fehr-environmental-resource-management-additionally-read-jenna-s-travel-blog-at-http-juf126-googlepages-com-travelogue')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceBeerens.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'france')
+
+myContext.invokeFactory(id="the-agroparistech-experience-madeline-beerens-food-science", 
+		type_name="Link", 
+		title="The AgroParisTech Experience: Madeline Beerens, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceBeerens.pdf''')
+#------------------------------------------------------------
+# Hiding the-agroparistech-experience-madeline-beerens-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-agroparistech-experience-madeline-beerens-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'the-agroparistech-experience-madeline-beerens-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/FrancePage.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'france')
+
+myContext.invokeFactory(id="the-french-riviera-phil-page-turfgrass-science", 
+		type_name="Link", 
+		title="The French Riviera: Phil Page, Turfgrass Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/FrancePage.pdf''')
+#------------------------------------------------------------
+# Hiding the-french-riviera-phil-page-turfgrass-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-french-riviera-phil-page-turfgrass-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'the-french-riviera-phil-page-turfgrass-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceSmolko.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'france')
+
+myContext.invokeFactory(id="u-s-and-european-comparative-agriculture-jena-smolko-agricultural-and-biological-engineering", 
+		type_name="Link", 
+		title="U.S. and European Comparative Agriculture: Jena Smolko, Agricultural and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceSmolko.pdf''')
+#------------------------------------------------------------
+# Hiding u-s-and-european-comparative-agriculture-jena-smolko-agricultural-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "u-s-and-european-comparative-agriculture-jena-smolko-agricultural-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'u-s-and-european-comparative-agriculture-jena-smolko-agricultural-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceSnyder.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'france')
+
+myContext.invokeFactory(id="comparing-us-french-agricultural-systems-austin-snyder-nbsp-environmental-resources-management", 
+		type_name="Link", 
+		title="Comparing US/French Agricultural Systems: Austin Snyder,&nbsp;Environmental Resources Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/FranceSnyder.pdf''')
+#------------------------------------------------------------
+# Hiding comparing-us-french-agricultural-systems-austin-snyder-nbsp-environmental-resources-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "comparing-us-french-agricultural-systems-austin-snyder-nbsp-environmental-resources-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'comparing-us-french-agricultural-systems-austin-snyder-nbsp-environmental-resources-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://lacoccinellefrancaise.blogspot.com/
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'france')
+
+myContext.invokeFactory(id="semester-at-agroparistech-la-coccinelle-francaise-the-french-ladybug-a-blog-by-katie-szulewski-entomology", 
+		type_name="Link", 
+		title="Semester at AgroParisTech - "La Coccinelle Francaise" (The French Ladybug) - a blog by Katie Szulewski, Entomology", 
+		description = '''''',
+		remote_url='''http://lacoccinellefrancaise.blogspot.com/''')
+#------------------------------------------------------------
+# Hiding semester-at-agroparistech-la-coccinelle-francaise-the-french-ladybug-a-blog-by-katie-szulewski-entomology from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-at-agroparistech-la-coccinelle-francaise-the-french-ladybug-a-blog-by-katie-szulewski-entomology")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-at-agroparistech-la-coccinelle-francaise-the-french-ladybug-a-blog-by-katie-szulewski-entomology')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ForneyAfrica-Europe.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'germany')
+
+myContext.invokeFactory(id="agriculture-abroad-morgan-forney-agricultural-and-biological-engineering", 
+		type_name="Link", 
+		title="Agriculture Abroad! Morgan Forney, Agricultural and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ForneyAfrica-Europe.pdf''')
+#------------------------------------------------------------
+# Hiding agriculture-abroad-morgan-forney-agricultural-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "agriculture-abroad-morgan-forney-agricultural-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'agriculture-abroad-morgan-forney-agricultural-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Hirneisen_Germany.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'germany')
+
+myContext.invokeFactory(id="international-summer-university-anthony-hirneisen-food-science", 
+		type_name="Link", 
+		title="International Summer University: Anthony Hirneisen, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Hirneisen_Germany.pdf''')
+#------------------------------------------------------------
+# Hiding international-summer-university-anthony-hirneisen-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "international-summer-university-anthony-hirneisen-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'international-summer-university-anthony-hirneisen-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/KCollinsSummer04travelogue.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ghana')
+
+myContext.invokeFactory(id="summer-study-abroad-kelly-collins-agricultural-and-biological-engineering", 
+		type_name="Link", 
+		title="Summer Study Abroad: Kelly Collins, Agricultural and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/KCollinsSummer04travelogue.pdf''')
+#------------------------------------------------------------
+# Hiding summer-study-abroad-kelly-collins-agricultural-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "summer-study-abroad-kelly-collins-agricultural-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'summer-study-abroad-kelly-collins-agricultural-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/GhanaOsborne.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ghana')
+
+myContext.invokeFactory(id="us-ghana-small-scale-gold-mining-workshop-brooke-osborne", 
+		type_name="Link", 
+		title="US-Ghana Small-Scale Gold Mining Workshop: Brooke Osborne", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/GhanaOsborne.pdf''')
+#------------------------------------------------------------
+# Hiding us-ghana-small-scale-gold-mining-workshop-brooke-osborne from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "us-ghana-small-scale-gold-mining-workshop-brooke-osborne")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'us-ghana-small-scale-gold-mining-workshop-brooke-osborne')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/GuatemalaThomas.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'guatemala')
+
+myContext.invokeFactory(id="the-guatemala-experience-emily-thomas-wildlife-and-fisheries-science", 
+		type_name="Link", 
+		title="The Guatemala Experience: Emily Thomas, Wildlife and Fisheries Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/GuatemalaThomas.pdf''')
+#------------------------------------------------------------
+# Hiding the-guatemala-experience-emily-thomas-wildlife-and-fisheries-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-guatemala-experience-emily-thomas-wildlife-and-fisheries-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'the-guatemala-experience-emily-thomas-wildlife-and-fisheries-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://greengoing.wordpress.com/
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'honduras')
+
+myContext.invokeFactory(id="5-weeks-at-zamorano-university-a-blog-by-sarah-colten-community-and-economic-development", 
+		type_name="Link", 
+		title="5 weeks at Zamorano University: A blog by Sarah Colten, Community and Economic Development", 
+		description = '''''',
+		remote_url='''http://greengoing.wordpress.com/''')
+#------------------------------------------------------------
+# Hiding 5-weeks-at-zamorano-university-a-blog-by-sarah-colten-community-and-economic-development from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "5-weeks-at-zamorano-university-a-blog-by-sarah-colten-community-and-economic-development")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, '5-weeks-at-zamorano-university-a-blog-by-sarah-colten-community-and-economic-development')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CrookeIreland.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ireland')
+
+myContext.invokeFactory(id="my-irish-experience-nathan-crooke-agricultural-systems-management", 
+		type_name="Link", 
+		title="My Irish Experience: Nathan Crooke, Agricultural Systems Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CrookeIreland.pdf''')
+#------------------------------------------------------------
+# Hiding my-irish-experience-nathan-crooke-agricultural-systems-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-irish-experience-nathan-crooke-agricultural-systems-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-irish-experience-nathan-crooke-agricultural-systems-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/IrelandFrederick.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ireland')
+
+myContext.invokeFactory(id="my-life-in-ireland-curtis-frederick-horticulture", 
+		type_name="Link", 
+		title="My life in Ireland: Curtis Frederick, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/IrelandFrederick.pdf''')
+#------------------------------------------------------------
+# Hiding my-life-in-ireland-curtis-frederick-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-life-in-ireland-curtis-frederick-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-life-in-ireland-curtis-frederick-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/EmeraldIslePhotos.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ireland')
+
+myContext.invokeFactory(id="the-emerald-isle-and-other-european-tidbits-katrina-getz", 
+		type_name="Link", 
+		title="The Emerald Isle and Other European Tidbits: Katrina Getz", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/EmeraldIslePhotos.pdf''')
+#------------------------------------------------------------
+# Hiding the-emerald-isle-and-other-european-tidbits-katrina-getz from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-emerald-isle-and-other-european-tidbits-katrina-getz")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'the-emerald-isle-and-other-european-tidbits-katrina-getz')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/IrelandMorrissey.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ireland')
+
+myContext.invokeFactory(id="a-semester-of-great-craic-jennifer-morrissey-animal-sciences", 
+		type_name="Link", 
+		title="A Semester of Great "Craic": Jennifer Morrissey, Animal Sciences", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/IrelandMorrissey.pdf''')
+#------------------------------------------------------------
+# Hiding a-semester-of-great-craic-jennifer-morrissey-animal-sciences from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-semester-of-great-craic-jennifer-morrissey-animal-sciences")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-semester-of-great-craic-jennifer-morrissey-animal-sciences')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyBashore.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="international-program-in-nutrition-lindsay-bashore-food-science", 
+		type_name="Link", 
+		title="International Program in Nutrition: Lindsay Bashore, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyBashore.pdf''')
+#------------------------------------------------------------
+# Hiding international-program-in-nutrition-lindsay-bashore-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "international-program-in-nutrition-lindsay-bashore-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'international-program-in-nutrition-lindsay-bashore-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyGolden.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="my-semester-abroad-lauren-golden-agribusiness-management", 
+		type_name="Link", 
+		title="My Semester Abroad: Lauren Golden, Agribusiness Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyGolden.pdf''')
+#------------------------------------------------------------
+# Hiding my-semester-abroad-lauren-golden-agribusiness-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-semester-abroad-lauren-golden-agribusiness-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-semester-abroad-lauren-golden-agribusiness-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/HarrigalItaly.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="adventures-in-reggio-calabria-sarah-harrigal-food-science", 
+		type_name="Link", 
+		title="Adventures in Reggio Calabria: Sarah Harrigal, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/HarrigalItaly.pdf''')
+#------------------------------------------------------------
+# Hiding adventures-in-reggio-calabria-sarah-harrigal-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "adventures-in-reggio-calabria-sarah-harrigal-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'adventures-in-reggio-calabria-sarah-harrigal-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyJohnson.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="my-italian-study-abroad-experience-brittany-johnson-food-science", 
+		type_name="Link", 
+		title="My Italian Study Abroad Experience: Brittany Johnson, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyJohnson.pdf''')
+#------------------------------------------------------------
+# Hiding my-italian-study-abroad-experience-brittany-johnson-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-italian-study-abroad-experience-brittany-johnson-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-italian-study-abroad-experience-brittany-johnson-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/MahanRome.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="ellen-mahan-food-science", 
+		type_name="Link", 
+		title="Ellen Mahan, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/MahanRome.pdf''')
+#------------------------------------------------------------
+# Hiding ellen-mahan-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "ellen-mahan-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'ellen-mahan-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/McLaughlinItaly.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="my-roman-holiday-toni-mclaughlin-landscape-contracting", 
+		type_name="Link", 
+		title="My Roman Holiday: Toni McLaughlin, Landscape Contracting", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/McLaughlinItaly.pdf''')
+#------------------------------------------------------------
+# Hiding my-roman-holiday-toni-mclaughlin-landscape-contracting from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-roman-holiday-toni-mclaughlin-landscape-contracting")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-roman-holiday-toni-mclaughlin-landscape-contracting')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyRickards.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'italy')
+
+myContext.invokeFactory(id="rome-tom-rickards-agribusiness-management", 
+		type_name="Link", 
+		title="Rome: Tom Rickards, Agribusiness Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ItalyRickards.pdf''')
+#------------------------------------------------------------
+# Hiding rome-tom-rickards-agribusiness-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "rome-tom-rickards-agribusiness-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'rome-tom-rickards-agribusiness-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/PepplesJamaica.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jamaica')
+
+myContext.invokeFactory(id="exploring-the-jamaican-dairy-market-christina-pepple-agricultural-nbsp-and-biological-engineering", 
+		type_name="Link", 
+		title="Exploring the Jamaican Dairy Market: Christina Pepple, Agricultural&nbsp;and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/PepplesJamaica.pdf''')
+#------------------------------------------------------------
+# Hiding exploring-the-jamaican-dairy-market-christina-pepple-agricultural-nbsp-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "exploring-the-jamaican-dairy-market-christina-pepple-agricultural-nbsp-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'exploring-the-jamaican-dairy-market-christina-pepple-agricultural-nbsp-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://www.jordansoils.blogspot.com/
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jordan')
+
+myContext.invokeFactory(id="student-blog-of-jordan-soils-trip-may-2008", 
+		type_name="Link", 
+		title="Student blog of Jordan Soils trip, May 2008", 
+		description = '''''',
+		remote_url='''http://www.jordansoils.blogspot.com/''')
+#------------------------------------------------------------
+# Hiding student-blog-of-jordan-soils-trip-may-2008 from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "student-blog-of-jordan-soils-trip-may-2008")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'student-blog-of-jordan-soils-trip-may-2008')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanByler.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jordan')
+
+myContext.invokeFactory(id="across-jordan-jackie-byler-turfgrass-science", 
+		type_name="Link", 
+		title="Across Jordan: Jackie Byler, Turfgrass Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanByler.pdf''')
+#------------------------------------------------------------
+# Hiding across-jordan-jackie-byler-turfgrass-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "across-jordan-jackie-byler-turfgrass-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'across-jordan-jackie-byler-turfgrass-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanKammerer.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jordan')
+
+myContext.invokeFactory(id="my-jordanian-experience-melanie-kammerer-agriculture", 
+		type_name="Link", 
+		title="My Jordanian Experience: Melanie Kammerer, Agriculture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanKammerer.pdf''')
+#------------------------------------------------------------
+# Hiding my-jordanian-experience-melanie-kammerer-agriculture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-jordanian-experience-melanie-kammerer-agriculture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-jordanian-experience-melanie-kammerer-agriculture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanPoppiti.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jordan')
+
+myContext.invokeFactory(id="my-jordanian-experience-katie-poppiti", 
+		type_name="Link", 
+		title="My Jordanian Experience: Katie Poppiti", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanPoppiti.pdf''')
+#------------------------------------------------------------
+# Hiding my-jordanian-experience-katie-poppiti from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-jordanian-experience-katie-poppiti")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-jordanian-experience-katie-poppiti')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanSilliman.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'jordan')
+
+myContext.invokeFactory(id="my-jordanian-experience-david-silliman-landscape-contracting", 
+		type_name="Link", 
+		title="My Jordanian Experience: David Silliman, Landscape Contracting", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/JordanSilliman.pdf''')
+#------------------------------------------------------------
+# Hiding my-jordanian-experience-david-silliman-landscape-contracting from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-jordanian-experience-david-silliman-landscape-contracting")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-jordanian-experience-david-silliman-landscape-contracting')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/ForneyAfrica-Europe.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'kenya')
+
+myContext.invokeFactory(id="agriculture-abroad-morgan-forney-agricultural-and-biological-engineering-1", 
+		type_name="Link", 
+		title="Agriculture Abroad: Morgan Forney, Agricultural and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/ForneyAfrica-Europe.pdf''')
+#------------------------------------------------------------
+# Hiding agriculture-abroad-morgan-forney-agricultural-and-biological-engineering-1 from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "agriculture-abroad-morgan-forney-agricultural-and-biological-engineering-1")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'agriculture-abroad-morgan-forney-agricultural-and-biological-engineering-1')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/MexicoBealing.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'mexico')
+
+myContext.invokeFactory(id="my-mexican-family-experience-krystal-bealing-environmental-resource-management", 
+		type_name="Link", 
+		title="My Mexican Family Experience: Krystal Bealing, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/MexicoBealing.pdf''')
+#------------------------------------------------------------
+# Hiding my-mexican-family-experience-krystal-bealing-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-mexican-family-experience-krystal-bealing-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-mexican-family-experience-krystal-bealing-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/BorysMexicoImmersionReport.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'mexico')
+
+myContext.invokeFactory(id="mexico-immersion-experience-final-report-alex-borys-instructor", 
+		type_name="Link", 
+		title="Mexico Immersion Experience Final Report: Alex Borys, Instructor", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/BorysMexicoImmersionReport.pdf''')
+#------------------------------------------------------------
+# Hiding mexico-immersion-experience-final-report-alex-borys-instructor from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "mexico-immersion-experience-final-report-alex-borys-instructor")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'mexico-immersion-experience-final-report-alex-borys-instructor')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/BCameronMexicoSU05.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'mexico')
+
+myContext.invokeFactory(id="chichara-chroizo-and-chicharon-brian-cameron", 
+		type_name="Link", 
+		title="Chichara, Chroizo, and Chicharon: Brian Cameron", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/BCameronMexicoSU05.pdf''')
+#------------------------------------------------------------
+# Hiding chichara-chroizo-and-chicharon-brian-cameron from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "chichara-chroizo-and-chicharon-brian-cameron")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'chichara-chroizo-and-chicharon-brian-cameron')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/LaufferMexico.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'mexico')
+
+myContext.invokeFactory(id="mexico-immersion-experience-alexandra-lauffer-agricultural-and-extension-education", 
+		type_name="Link", 
+		title="Mexico Immersion Experience: Alexandra Lauffer, Agricultural and Extension Education", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/LaufferMexico.pdf''')
+#------------------------------------------------------------
+# Hiding mexico-immersion-experience-alexandra-lauffer-agricultural-and-extension-education from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "mexico-immersion-experience-alexandra-lauffer-agricultural-and-extension-education")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'mexico-immersion-experience-alexandra-lauffer-agricultural-and-extension-education')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/MexicoSutton.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'mexico')
+
+myContext.invokeFactory(id="psv-in-mexico-jennifer-sutton-animal-sciences", 
+		type_name="Link", 
+		title="PSV in Mexico: Jennifer Sutton, Animal Sciences", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/MexicoSutton.pdf''')
+#------------------------------------------------------------
+# Hiding psv-in-mexico-jennifer-sutton-animal-sciences from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "psv-in-mexico-jennifer-sutton-animal-sciences")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'psv-in-mexico-jennifer-sutton-animal-sciences')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CuratolaNetherlands.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'the-netherlands')
+
+myContext.invokeFactory(id="dutch-horticulture-tour-karlee-curatola-agricultural-and-extension-education", 
+		type_name="Link", 
+		title="Dutch Horticulture Tour: Karlee Curatola, Agricultural and Extension Education", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CuratolaNetherlands.pdf''')
+#------------------------------------------------------------
+# Hiding dutch-horticulture-tour-karlee-curatola-agricultural-and-extension-education from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "dutch-horticulture-tour-karlee-curatola-agricultural-and-extension-education")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'dutch-horticulture-tour-karlee-curatola-agricultural-and-extension-education')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/NewZealandCochran.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="victoria-university-of-wellington-sean-cochran-environmental-resource-management", 
+		type_name="Link", 
+		title="Victoria University of Wellington: Sean Cochran, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/NewZealandCochran.pdf''')
+#------------------------------------------------------------
+# Hiding victoria-university-of-wellington-sean-cochran-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "victoria-university-of-wellington-sean-cochran-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'victoria-university-of-wellington-sean-cochran-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/GrubbNewZealand.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="wellington-new-zealand-nbsp-karen-grubb-environmental-resource-management", 
+		type_name="Link", 
+		title="Wellington, New Zealand:&nbsp; Karen Grubb, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/GrubbNewZealand.pdf''')
+#------------------------------------------------------------
+# Hiding wellington-new-zealand-nbsp-karen-grubb-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "wellington-new-zealand-nbsp-karen-grubb-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'wellington-new-zealand-nbsp-karen-grubb-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/KeimNewZealand.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="the-new-zealand-adventure-nbsp-ben-keim-horticulture", 
+		type_name="Link", 
+		title="The New Zealand Adventure:&nbsp; Ben Keim, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/KeimNewZealand.pdf''')
+#------------------------------------------------------------
+# Hiding the-new-zealand-adventure-nbsp-ben-keim-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "the-new-zealand-adventure-nbsp-ben-keim-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'the-new-zealand-adventure-nbsp-ben-keim-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/KovachNewZealand.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="culture-and-policy-in-the-pacific-michael-kovac-horticulture", 
+		type_name="Link", 
+		title="Culture and Policy in the Pacific: Michael Kovac, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/KovachNewZealand.pdf''')
+#------------------------------------------------------------
+# Hiding culture-and-policy-in-the-pacific-michael-kovac-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "culture-and-policy-in-the-pacific-michael-kovac-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'culture-and-policy-in-the-pacific-michael-kovac-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/LavanNewZealand.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="new-zealand-internship-kathryn-lavan-agricultural-and-biological-engineering", 
+		type_name="Link", 
+		title="New Zealand Internship: Kathryn LaVan, Agricultural and Biological Engineering", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/LavanNewZealand.pdf''')
+#------------------------------------------------------------
+# Hiding new-zealand-internship-kathryn-lavan-agricultural-and-biological-engineering from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "new-zealand-internship-kathryn-lavan-agricultural-and-biological-engineering")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'new-zealand-internship-kathryn-lavan-agricultural-and-biological-engineering')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/NewZealandRowe.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'new-zealand')
+
+myContext.invokeFactory(id="a-down-under-discovery-lauren-rowe-wildlife-and-fisheries-science", 
+		type_name="Link", 
+		title="A Down-Under Discovery: Lauren Rowe, Wildlife and Fisheries Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/NewZealandRowe.pdf''')
+#------------------------------------------------------------
+# Hiding a-down-under-discovery-lauren-rowe-wildlife-and-fisheries-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-down-under-discovery-lauren-rowe-wildlife-and-fisheries-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-down-under-discovery-lauren-rowe-wildlife-and-fisheries-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/PeruWoods.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'peru')
+
+myContext.invokeFactory(id="peruvian-nbsp-rainforest-michael-woods-agricultural-and-extension-education", 
+		type_name="Link", 
+		title="Peruvian&nbsp;Rainforest: Michael Woods, Agricultural and Extension Education", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/PeruWoods.pdf''')
+#------------------------------------------------------------
+# Hiding peruvian-nbsp-rainforest-michael-woods-agricultural-and-extension-education from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "peruvian-nbsp-rainforest-michael-woods-agricultural-and-extension-education")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'peruvian-nbsp-rainforest-michael-woods-agricultural-and-extension-education')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/HutchinsonRussia.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'russia')
+
+myContext.invokeFactory(id="semester-at-moscow-state-agroengineering-university-heather-hutchinson-food-science", 
+		type_name="Link", 
+		title="Semester at Moscow State Agroengineering University: Heather Hutchinson, Food Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/HutchinsonRussia.pdf''')
+#------------------------------------------------------------
+# Hiding semester-at-moscow-state-agroengineering-university-heather-hutchinson-food-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-at-moscow-state-agroengineering-university-heather-hutchinson-food-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-at-moscow-state-agroengineering-university-heather-hutchinson-food-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/RussiaMesavage.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'russia')
+
+myContext.invokeFactory(id="a-semester-in-mother-russia-ann-mesavage-agribusiness-management", 
+		type_name="Link", 
+		title="A Semester in Mother Russia: Ann Mesavage, Agribusiness Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/RussiaMesavage.pdf''')
+#------------------------------------------------------------
+# Hiding a-semester-in-mother-russia-ann-mesavage-agribusiness-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-semester-in-mother-russia-ann-mesavage-agribusiness-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-semester-in-mother-russia-ann-mesavage-agribusiness-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/RussiaPeffer.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'russia')
+
+myContext.invokeFactory(id="spring-2007-intag-in-moscow-dustin-peffer-horticulture", 
+		type_name="Link", 
+		title="Spring 2007 INTAG in Moscow: Dustin Peffer, Horticulture", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/RussiaPeffer.pdf''')
+#------------------------------------------------------------
+# Hiding spring-2007-intag-in-moscow-dustin-peffer-horticulture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "spring-2007-intag-in-moscow-dustin-peffer-horticulture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'spring-2007-intag-in-moscow-dustin-peffer-horticulture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/BFerraroScotland2004.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'scotland')
+
+myContext.invokeFactory(id="working-summer-internship-bomber-ferrero-ii-turfgrass-science", 
+		type_name="Link", 
+		title="Working Summer Internship: Bomber Ferrero II, Turfgrass Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/BFerraroScotland2004.pdf''')
+#------------------------------------------------------------
+# Hiding working-summer-internship-bomber-ferrero-ii-turfgrass-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "working-summer-internship-bomber-ferrero-ii-turfgrass-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'working-summer-internship-bomber-ferrero-ii-turfgrass-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://www.melabroad808.blogspot.com/
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'senegal')
+
+myContext.invokeFactory(id="my-semester-in-senegal-a-blog-written-by-melanie-kammerer-agriculture", 
+		type_name="Link", 
+		title="My Semester in Senegal: A blog written by Melanie Kammerer, Agriculture", 
+		description = '''''',
+		remote_url='''http://www.melabroad808.blogspot.com/''')
+#------------------------------------------------------------
+# Hiding my-semester-in-senegal-a-blog-written-by-melanie-kammerer-agriculture from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "my-semester-in-senegal-a-blog-written-by-melanie-kammerer-agriculture")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'my-semester-in-senegal-a-blog-written-by-melanie-kammerer-agriculture')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/AMartinezSummer05travelogue.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'south-africa')
+
+myContext.invokeFactory(id="vets-in-the-wild-alejandro-martinez-animal-bioscience", 
+		type_name="Link", 
+		title="Vets in the Wild: Alejandro Martinez, Animal Bioscience", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/AMartinezSummer05travelogue.pdf''')
+#------------------------------------------------------------
+# Hiding vets-in-the-wild-alejandro-martinez-animal-bioscience from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "vets-in-the-wild-alejandro-martinez-animal-bioscience")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'vets-in-the-wild-alejandro-martinez-animal-bioscience')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaNau.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'south-africa')
+
+myContext.invokeFactory(id="ecolife-s-vets-in-the-wild-melissa-nau-animal-bioscience", 
+		type_name="Link", 
+		title="Ecolife's Vets in the Wild: Melissa Nau, Animal Bioscience", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaNau.pdf''')
+#------------------------------------------------------------
+# Hiding ecolife-s-vets-in-the-wild-melissa-nau-animal-bioscience from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "ecolife-s-vets-in-the-wild-melissa-nau-animal-bioscience")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'ecolife-s-vets-in-the-wild-melissa-nau-animal-bioscience')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaStauffer.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'south-africa')
+
+myContext.invokeFactory(id="agroforestry-study-tour-amy-stauffer-agricultural-science", 
+		type_name="Link", 
+		title="Agroforestry Study Tour: Amy Stauffer, Agricultural Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaStauffer.pdf''')
+#------------------------------------------------------------
+# Hiding agroforestry-study-tour-amy-stauffer-agricultural-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "agroforestry-study-tour-amy-stauffer-agricultural-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'agroforestry-study-tour-amy-stauffer-agricultural-science')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaTaylor.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'south-africa')
+
+myContext.invokeFactory(id="vets-in-the-wild-holly-taylor-animal-bioscience", 
+		type_name="Link", 
+		title="Vets in the Wild: Holly Taylor, Animal Bioscience", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/SouthAfricaTaylor.pdf''')
+#------------------------------------------------------------
+# Hiding vets-in-the-wild-holly-taylor-animal-bioscience from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "vets-in-the-wild-holly-taylor-animal-bioscience")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'vets-in-the-wild-holly-taylor-animal-bioscience')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/CordivanoSpain.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'spain')
+
+myContext.invokeFactory(id="semester-abroad-ben-cordivano", 
+		type_name="Link", 
+		title="Semester Abroad: Ben Cordivano", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/CordivanoSpain.pdf''')
+#------------------------------------------------------------
+# Hiding semester-abroad-ben-cordivano from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "semester-abroad-ben-cordivano")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'semester-abroad-ben-cordivano')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/Sp05UkraineStudyTour.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ukraine')
+
+myContext.invokeFactory(id="food-science-study-tour-spring-2005-angela-stoltzfuz-sarah-erdman-aubri-carmichael-melissa-masdea-brandon-baer-elizabeth-grasso", 
+		type_name="Link", 
+		title="Food Science Study Tour, Spring 2005: Angela Stoltzfuz, Sarah Erdman, Aubri Carmichael, Melissa Masdea, Brandon Baer, Elizabeth Grasso", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/Sp05UkraineStudyTour.pdf''')
+#------------------------------------------------------------
+# Hiding food-science-study-tour-spring-2005-angela-stoltzfuz-sarah-erdman-aubri-carmichael-melissa-masdea-brandon-baer-elizabeth-grasso from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "food-science-study-tour-spring-2005-angela-stoltzfuz-sarah-erdman-aubri-carmichael-melissa-masdea-brandon-baer-elizabeth-grasso")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'food-science-study-tour-spring-2005-angela-stoltzfuz-sarah-erdman-aubri-carmichael-melissa-masdea-brandon-baer-elizabeth-grasso')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/RKoontzUKR2.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'ukraine')
+
+myContext.invokeFactory(id="expanding-my-horizons-in-ukraine-randy-koontz-agribusiness-management", 
+		type_name="Link", 
+		title="Expanding My Horizons in Ukraine: Randy Koontz, Agribusiness Management", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/RKoontzUKR2.pdf''')
+#------------------------------------------------------------
+# Hiding expanding-my-horizons-in-ukraine-randy-koontz-agribusiness-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "expanding-my-horizons-in-ukraine-randy-koontz-agribusiness-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'expanding-my-horizons-in-ukraine-randy-koontz-agribusiness-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://www.travelpod.com/members/jimtran
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'vietnam')
+
+myContext.invokeFactory(id="a-year-studying-in-asia-jimmy-tran-environmental-resource-management", 
+		type_name="Link", 
+		title="A Year Studying in Asia: Jimmy Tran, Environmental Resource Management", 
+		description = '''''',
+		remote_url='''http://www.travelpod.com/members/jimtran''')
+#------------------------------------------------------------
+# Hiding a-year-studying-in-asia-jimmy-tran-environmental-resource-management from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-year-studying-in-asia-jimmy-tran-environmental-resource-management")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-year-studying-in-asia-jimmy-tran-environmental-resource-management')
+
+
+
+transaction.commit()
+
+#------------------------------------------------------------
+# Creating link http://downloads.cas.psu.edu/InternationalProg/Travelogues/WalesNeal.pdf
+#------------------------------------------------------------
+myContext = context
+
+myContext = getattr(myContext, 'wales')
+
+myContext.invokeFactory(id="a-year-in-wales-caitlyn-neal-equine-science", 
+		type_name="Link", 
+		title="A Year in Wales: Caitlyn Neal, Equine Science", 
+		description = '''''',
+		remote_url='''http://downloads.cas.psu.edu/InternationalProg/Travelogues/WalesNeal.pdf''')
+#------------------------------------------------------------
+# Hiding a-year-in-wales-caitlyn-neal-equine-science from navigation
+#------------------------------------------------------------
+
+
+myObject = getattr(myContext, "a-year-in-wales-caitlyn-neal-equine-science")
+myObject.setExcludeFromNav(True)
+myObject.reindexObject()
+
+
+
+myObject = getattr(myContext, 'a-year-in-wales-caitlyn-neal-equine-science')
+
+
+
+transaction.commit()
+
+
+transaction.commit()
+
