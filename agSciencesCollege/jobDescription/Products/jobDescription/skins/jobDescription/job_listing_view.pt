@@ -70,12 +70,10 @@
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
-                                       item_start item/start/ISO|item/StartDate|nothing;
-                                       item_end item/end/ISO|item/EndDate|nothing;
                                        item_object item/getObject;
                                        item_location item_object/getJob_location;
-                                       item_start python:item_object.getStart_date().strftime('%m/%d/%Y');
-                                       item_end python:item_object.getEnd_date().strftime('%m/%d/%Y');
+                                       item_start item_object/getStart_date;
+                                       item_end item_object/getEnd_date;
                                        item_company item_object/getCompany_name;
                                        item_status python:'%s/%s' % (item_object.getJob_type(), item_object.getJob_status()); 
                                    "
@@ -95,8 +93,9 @@
 						<td tal:content="item_company" />
     					<td tal:content="item_location" />
     					<td tal:content="item_status" />
-						<td tal:content="item_start" />
-						<td tal:content="item_end" />						
+						<td tal:content="python:item_start.strftime('%m/%d/%Y')" />
+						<td tal:condition="item_end" tal:content="python:item_end.strftime('%m/%d/%Y')" />						
+						<td tal:condition="not:item_end" tal:content="string:N/A" />						
 					</tr>
 
 

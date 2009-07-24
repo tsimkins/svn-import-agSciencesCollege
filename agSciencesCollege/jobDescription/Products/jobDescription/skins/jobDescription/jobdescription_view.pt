@@ -39,7 +39,8 @@
 		<dd tal:content="python:context.getStart_date().strftime('%m/%d/%Y')" />
 		
 		<dt tal:content="python:context.getField('end_date').widget.label" />
-		<dd tal:content="python:context.getEnd_date().strftime('%m/%d/%Y')" />
+		<dd tal:condition="context/getEnd_date" tal:content="python:context.getEnd_date().strftime('%m/%d/%Y')" />
+		<dd tal:condition="not:context/getEnd_date" tal:content="string:N/A" />
 
 		<dt tal:content="python:context.getField('job_type').widget.label" />
 		<dd tal:content="context/getJob_type" />
