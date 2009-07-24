@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import re
-from ploneimport import ploneify
+from ploneimport import ploneify, commit
 
 # File Format (Tab Separated)
 # start_date, end_date, title, description, url, location
@@ -19,7 +18,8 @@ def fromFile(fileName):
 		while len(data) > createArgs:
 			data.pop()
 
-		createEvent(*data)		
+		createEvent(*data)
+		commit()	
 
 def createEvent(start_date, end_date, title, description, url, location):
 
@@ -37,4 +37,5 @@ context.invokeFactory(type_name="Event",
                 event_url="%(url)s",
                 location="%(location)s"
 )""" % { "url" : url, "end_date" : end_date, "start_date" : start_date, "title" : title, "id": id, "location": location }
+
 

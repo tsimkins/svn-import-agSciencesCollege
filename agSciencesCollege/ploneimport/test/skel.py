@@ -36,7 +36,7 @@ def getSFRContent(url):
 
 	removeTags = re.compile('</*(blockquote|span|font|center|hr|div).*?>', re.I|re.M)
 	removeSingleTags = re.compile('</*(u|b|strong|em|i)>', re.I|re.M)	
-	removeAttributes = re.compile('\s*(id|width|height|align|valign|class)\s*=\s*".*?"', re.I|re.M)
+	removeAttributes = re.compile('\s*(id|width|height|align|valign|class|style)\s*=\s*".*?"', re.I|re.M)
 	removeBR = re.compile('<br />', re.I|re.M)
 	removeTd = re.compile('(^<td.*?>|</td>$)', re.I|re.M)
 	removeSpaces = re.compile('\s+', re.I|re.M)

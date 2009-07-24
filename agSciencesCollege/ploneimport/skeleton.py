@@ -47,7 +47,7 @@ def fromFile(fileName):
 
 def createPage(flags={}, old_url="", url="", title="", description="", html=""):
 
-	comment("Creating page %s" %  url)
+	comment("Creating page %s from %s" %  (url, old_url))
 
 	id = url.split("/").pop().strip()
 	
@@ -59,7 +59,7 @@ def createPage(flags={}, old_url="", url="", title="", description="", html=""):
 	print """myContext.invokeFactory(id="%(id)s", 
 		type_name="Document", 
 		title="%(title)s", 
-		description = "%(description)s",
+		description = '''%(description)s''',
 		text='''%(html)s''')""" % { "id" : id, "title" : title, "description" : description, "html" : html }
 
 	processFlags(id, flags)
@@ -75,7 +75,7 @@ def createLink(flags={}, remote_url="", location="", title="", description="", h
 	print """myContext.invokeFactory(id="%(id)s", 
 		type_name="Link", 
 		title="%(title)s", 
-		description = "%(description)s",
+		description = '''%(description)s''',
 		remote_url='''%(remote_url)s''')""" % { "id" : id, "title" : title, "description" : description, "remote_url" : remote_url }
 
 	processFlags(id, flags)
@@ -92,11 +92,11 @@ def createFolder(flags={}, old_url="", url="", title="", description="", html=""
 	print """myContext.invokeFactory(id="%(id)s", 
 		type_name="Folder", 
 		title="%(title)s", 
-		description = "%(description)s")""" % { "id" : id, "title" : title, "description" : description }
+		description = '''%(description)s''')""" % { "id" : id, "title" : title, "description" : description }
 
 	processFlags(id, flags)
-	
-	if old_url or html:
+
+	if (old_url or html) and not flags.get("nodefault"):
 
 		createPage(flags={"isdefault" : True }, old_url=old_url, url=url + "/default", title=title, description=description, html=html)
 

@@ -5,14 +5,14 @@ import re
 ploneObjects = {}
 
 #Ploneify
-def ploneify(toPlone):
+def ploneify(toPlone, uniq=True):
 	ploneString = re.sub("[^A-Za-z0-9]+", "-", toPlone).lower()
 	ploneString = re.sub("-$", "", ploneString)
 	ploneString = re.sub("^-", "", ploneString)
 	
 	serial = ploneObjects.get(ploneString, None)
 	
-	if serial:
+	if serial and uniq:
 		ploneObjects[ploneString] = serial + 1
 		return ploneString + "-" + str(serial)
 	else:
@@ -24,6 +24,10 @@ def comment(text):
 	print "#" + "-"*60
 	print "# %s" % str(text)
 	print "#" + "-"*60
+	
+#	print """
+#print '''%s'''
+#""" % str(text)
 	
 def getFlags(flags):
 	myFlags = {}
@@ -103,7 +107,8 @@ mySite = getattr(app, '%s')
 	urlArray = [x.strip() for x in url.split("/")]
 
 	for fragment in urlArray:
-		print "context = getattr(context, '%s')\n" % fragment
+		if fragment.strip() != '':
+			print "context = getattr(context, '%s')\n" % fragment
 
 	print """
 admin = app.acl_users.getUserById('admin')
@@ -119,5 +124,22 @@ def commit():
 transaction.commit()
 """
 
+def scrub(html):
+
+	htmlEntities = [
+		["&#8211;", "--"],
+		["&#8220;", '"'],
+		["&#8221;", '"'],
+		["&#8216;", "'"],
+		["&#8217;", "'"],
+		["&#146;", "'"],
+		["&nbsp;", " "],
+	]
+
+	for ent in htmlEntities:
+		html = html.replace(ent[0], ent[1])
+	
+	return html
+	
 # We'll need the import modules anyway
 importModules()
