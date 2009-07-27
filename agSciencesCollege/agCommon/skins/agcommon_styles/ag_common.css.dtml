@@ -628,10 +628,12 @@ body.template-document_homepage_view #homepageimage {
 
 /* Friggin' External link icons won't turn off through the interface.  Sledgehammer! */
 
-#region-content a[href^="http:"], #region-content a.link-external {
+#region-content a[href^="http:"], #region-content a.link-external,
+#content a[href^="https:"], #content a.link-https {
 	background: transparent;
 	padding: 0px;
 }
+
 
 
 /* News Articles */
@@ -1102,6 +1104,9 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer {
 	clear: left;
 }
 
+body.template-atct_album_view .contentLeadImageContainer {
+	display: none;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
