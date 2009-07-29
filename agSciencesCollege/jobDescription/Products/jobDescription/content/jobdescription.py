@@ -149,6 +149,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.StringWidget(
             label=_(u"Contact Name"),
         ),
+        required=True,
     ),
 
     atapi.StringField(
