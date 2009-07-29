@@ -40,7 +40,7 @@
         </div>
 
         <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="folderContents python:here.getFolderContents(contentFilter={'portal_type' : 'JobDescription'});
+        <tal:foldercontents define="folderContents here/getSortedEntries;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             ">
         <tal:listing condition="folderContents">
@@ -70,12 +70,11 @@
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
-                                       item_object item/getObject;
-                                       item_location item_object/getJob_location;
-                                       item_start item_object/getStart_date;
-                                       item_end item_object/getEnd_date;
-                                       item_company item_object/getCompany_name;
-                                       item_status python:'%s/%s' % (item_object.getJob_type(), item_object.getJob_status()); 
+                                       item_location item/getJob_location;
+                                       item_start item/getStart_date;
+                                       item_end item/getEnd_date;
+                                       item_company item/getCompany_name;
+                                       item_status python:'%s/%s' % (item.getJob_type(), item.getJob_status()); 
                                    "
                      >
 

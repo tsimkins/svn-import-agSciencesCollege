@@ -43,5 +43,8 @@ class JobDescriptionFolder(folder.ATFolder):
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
     job_related_disciplines = atapi.ATFieldProperty('job_related_disciplines')
+    
+    def getSortedEntries(self):
+        return sorted(self.listFolderContents(contentFilter={'portal_type' : 'JobDescription'}), key=lambda (x): x.Title())
 
 atapi.registerType(JobDescriptionFolder, PROJECTNAME)
