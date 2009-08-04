@@ -127,33 +127,32 @@
 		<dd tal:content="context/getOther_information" />
 		</tal:optionalField>
 
-		<tal:isAnEditor condition="context/canModifyPortalContent">
-		
-			<h2>Page Views</h2>		
-			<table class="listing">
-			<tr>
-				<th>User</th>
-				<th>Date</th>
-			</tr>
-			<tal:pageView repeat="pageview context/getPageViews">
-			<tr>
-				<td tal:content="python: pageview[0]" />
-				<td tal:content="python: pageview[1]" />
-			</tr>
-			</tal:pageView>
-			</table>
-			
-		
-		
-		</tal:isAnEditor>
-		
+	
 		<tal:isNotAnEditor condition="not:context/canModifyPortalContent">
 			<span tal:replace="python:context.addPageView(member.id)" />
 		</tal:isNotAnEditor>
 
-
-
 	</dl>
+
+	<tal:isAnEditor condition="context/canModifyPortalContent">
+	
+		<h2>Page Views</h2>		
+		<table class="listing">
+		<tr>
+			<th>User</th>
+			<th>Date</th>
+		</tr>
+		<tal:pageView repeat="pageview context/getPageViews">
+		<tr>
+			<td tal:content="python: pageview[0]" />
+			<td tal:content="python: pageview[1]" />
+		</tr>
+		</tal:pageView>
+		</table>
+	
+	</tal:isAnEditor>
+		
+		
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">
             show related items if they exist
         </div>
