@@ -124,11 +124,9 @@
 		<dd tal:content="context/getOther_information" />
 		</tal:optionalField>
 
-		<h1 tal:content="member/id" />
-
-		<h1 tal:content="python:context.addPageView(member.id)" />
-
-		<tal:pageViewListing>
+		<tal:isAnEditor condition="context/canModifyPortalContent">
+		
+			<h2>Page Views</h2>		
 			<table class="listing">
 			<tr>
 				<th>User</th>
@@ -142,7 +140,15 @@
 			</tal:pageView>
 			</table>
 			
-		</tal:pageViewListing>
+		
+		
+		</tal:isAnEditor>
+		
+		<tal:isNotAnEditor condition="not:context/canModifyPortalContent">
+			<span tal:replace="python:context.addPageView(member.id)" />
+		</tal:isNotAnEditor>
+
+
 
 	</dl>
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">

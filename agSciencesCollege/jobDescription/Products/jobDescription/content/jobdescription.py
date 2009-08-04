@@ -12,11 +12,17 @@ from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
 from zope.app.annotation.interfaces import IAttributeAnnotatable, IAnnotations
+
 from persistent.list import PersistentList
 from persistent.dict import PersistentDict
+
 from datetime import datetime
 
 from Acquisition import aq_parent
+
+from Products.CMFCore import permissions
+
+from AccessControl import ClassSecurityInfo
 
 JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
@@ -270,8 +276,12 @@ class JobDescription(base.ATCTContent):
 
     # This stores who looks at the job description
 
-	
+    def canModifyPortalContent(self):
+        mtool = self.portal_membership
+        # checkPermissions returns true if permission is granted
 
+        return mtool.checkPermission('Modify portal content', self)
+            
     def addPageView(self, user):
         date = datetime.now()
         annotations = IAnnotations(self)
@@ -282,9 +292,12 @@ class JobDescription(base.ATCTContent):
         
         annotations['jobDescription']['pageviews'].append([user, date])
 
-        return "I added a pageview for %s on %s." % (user, date)
+        #return "I added a pageview for %s on %s." % (user, date)
         
     def getPageViews(self):
+    
+
+
         annotations = IAnnotations(self)
 
         if annotations.get('jobDescription'):
