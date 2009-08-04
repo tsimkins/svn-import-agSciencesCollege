@@ -11,8 +11,7 @@
     <tal:main-macro metal:define-macro="main"
            tal:define="kssClassesView context/@@kss_field_decorator_view;
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                       templateId template/getId;
-                       text string:hello">
+                       templateId template/getId;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -125,6 +124,25 @@
 		<dd tal:content="context/getOther_information" />
 		</tal:optionalField>
 
+		<h1 tal:content="member/id" />
+
+		<h1 tal:content="python:context.addPageView(member.id)" />
+
+		<tal:pageViewListing>
+			<table class="listing">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+			</tr>
+			<tal:pageView repeat="pageview context/getPageViews">
+			<tr>
+				<td tal:content="python: pageview[0]" />
+				<td tal:content="python: pageview[1]" />
+			</tr>
+			</tal:pageView>
+			</table>
+			
+		</tal:pageViewListing>
 
 	</dl>
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">

@@ -11,6 +11,10 @@ from Products.jobDescription import jobDescriptionMessageFactory as _
 from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
+from zope.app.annotation.interfaces import IAttributeAnnotatable, IAnnotations
+
+from datetime import datetime
+from persistent import Persistent 
 from Acquisition import aq_parent
 
 JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
@@ -214,7 +218,7 @@ schemata.finalizeATCTSchema(JobDescriptionSchema, moveDiscussion=False)
 
 class JobDescription(base.ATCTContent):
     """Information about job Opportunities"""
-    implements(IJobDescription)
+    implements(IJobDescription, IAttributeAnnotatable)
 
     meta_type = "JobDescription"
     schema = JobDescriptionSchema
@@ -263,11 +267,31 @@ class JobDescription(base.ATCTContent):
 
     job_location = atapi.ATFieldProperty('job_location')
 
-	# We're going to construct the vocabulary for the related disciplines from 
-	# a field in the parent folder
-	
+    # This stores who looks at the job description
+
+    def addPageView(self, user):
+        date = datetime.now()
+        annotations = IAnnotations(self)
+
+        if not annotations.get('PAGEVIEWS'):
+            annotations['PAGEVIEWS'] = []
+        
+        annotations['PAGEVIEWS'].append([user, date])
+
+        return "I added a pageview for %s on %s." % (user, date)
+        
+    def getPageViews(self):
+        annotations = IAnnotations(self)
+
+        if annotations.get('PAGEVIEWS'):
+#            return reversed([(x,y.strftime('%m/%d/%Y')) for (x,y) in annotations['PAGEVIEWS']])
+            return reversed([(x,y) for (x,y) in annotations['PAGEVIEWS']])
+
+    # We're going to construct the vocabulary for the related disciplines from 
+    # a field in the parent folder
+    
     def _getDisciplines(self):
-	
+    
         vocab = aq_parent(self).getJob_related_disciplines().split('\r\n')
         return vocab
 
