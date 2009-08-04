@@ -11,9 +11,11 @@ from Products.jobDescription import jobDescriptionMessageFactory as _
 from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
-from datetime import datetime
-from persistent import Persistent
+from zope.app.annotation.interfaces import IAttributeAnnotatable, IAnnotations
 from persistent.list import PersistentList
+from persistent.dict import PersistentDict
+from datetime import datetime
+
 from Acquisition import aq_parent
 
 JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
@@ -215,9 +217,9 @@ JobDescriptionSchema['description'].storage = atapi.AnnotationStorage()
 
 schemata.finalizeATCTSchema(JobDescriptionSchema, moveDiscussion=False)
 
-class JobDescription(base.ATCTContent, Persistent):
+class JobDescription(base.ATCTContent):
     """Information about job Opportunities"""
-    implements(IJobDescription)
+    implements(IJobDescription, IAttributeAnnotatable)
 
     meta_type = "JobDescription"
     schema = JobDescriptionSchema
@@ -268,19 +270,26 @@ class JobDescription(base.ATCTContent, Persistent):
 
     # This stores who looks at the job description
 
-    _pageviews = PersistentList()
-    global _pageviews
+	
 
     def addPageView(self, user):
         date = datetime.now()
+        annotations = IAnnotations(self)
 
-        _pageviews.append([user, date])
+        if not annotations.get('jobDescription'):
+            annotations['jobDescription'] = PersistentDict()
+            annotations['jobDescription']['pageviews'] = PersistentList()
+        
+        annotations['jobDescription']['pageviews'].append([user, date])
 
         return "I added a pageview for %s on %s." % (user, date)
         
     def getPageViews(self):
+        annotations = IAnnotations(self)
+
+        if annotations.get('jobDescription'):
 #            return reversed([(x,y.strftime('%m/%d/%Y')) for (x,y) in annotations['PAGEVIEWS']])
-        return reversed([(x,y) for (x,y) in _pageviews])
+            return reversed([(x,y) for (x,y) in annotations['jobDescription']['pageviews']])
 
     # We're going to construct the vocabulary for the related disciplines from 
     # a field in the parent folder
