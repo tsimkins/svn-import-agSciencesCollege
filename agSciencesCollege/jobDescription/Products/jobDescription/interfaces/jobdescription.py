@@ -10,6 +10,11 @@ class IJobDescription(Interface):
     """Information about job Opportunities"""
     
     # -*- schema definition goes here -*-
+    job_filled = schema.TextLine(
+        title=_(u"Job Filled"), 
+        required=False,
+    )
+    
     other_information = schema.TextLine(
         title=_(u"Other Information"), 
         required=False,

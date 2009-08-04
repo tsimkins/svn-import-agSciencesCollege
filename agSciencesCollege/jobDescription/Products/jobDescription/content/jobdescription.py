@@ -29,6 +29,14 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
     # -*- Your Archetypes field definitions here ... -*-
 
     atapi.StringField(
+        'job_filled',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.BooleanWidget(
+            label=_(u"Job Filled"),
+        ),
+    ),
+
+    atapi.StringField(
         'job_location',
         storage=atapi.AnnotationStorage(),
         widget=atapi.StringWidget(
@@ -95,7 +103,6 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.RichWidget(
             label=_(u"Job Requirements"),
         ),
-        required=True,
         default_output_type='text/x-html-safe',
         validators=('isTidyHtmlWithCleanup',),
     ),
@@ -274,6 +281,8 @@ class JobDescription(base.ATCTContent):
 
     job_location = atapi.ATFieldProperty('job_location')
 
+    job_filled = atapi.ATFieldProperty('job_filled')
+
     # This stores who looks at the job description
 
     def canModifyPortalContent(self):
@@ -295,8 +304,6 @@ class JobDescription(base.ATCTContent):
         #return "I added a pageview for %s on %s." % (user, date)
         
     def getPageViews(self):
-    
-
 
         annotations = IAnnotations(self)
 

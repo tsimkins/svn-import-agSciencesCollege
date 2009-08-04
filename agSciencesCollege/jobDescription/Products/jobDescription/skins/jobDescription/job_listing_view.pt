@@ -75,10 +75,12 @@
                                        item_end item/getEnd_date;
                                        item_company item/getCompany_name;
                                        item_status python:'%s/%s' % (item.getJob_type(), item.getJob_status()); 
+                                       job_filled item/getJob_filled|nothing
                                    "
                      >
 
 					<tr tal:define="oddrow repeat/item/odd;"
+					    tal:condition="not:job_filled"
                         tal:attributes="class python:test(oddrow, 'even', 'odd')">
 						<td>
                         <a tal:attributes="href item_id; class item_wf_state_class"

@@ -30,7 +30,10 @@
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
-	<dl class = "jobDescription">
+        
+        <p tal:condition="context/getJob_filled">This position has been filled.</p>
+        
+	<dl class = "jobDescription" tal:condition="not:context/getJob_filled">
 		<dt tal:content="python:context.getField('job_location').widget.label" />
 		<dd tal:content="context/getJob_location" />
 
