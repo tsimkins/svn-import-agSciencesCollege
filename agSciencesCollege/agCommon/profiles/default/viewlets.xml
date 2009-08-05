@@ -16,8 +16,11 @@
 
 	<order manager="plone.belowcontenttitle" skinname="agCommon">
 		<viewlet name="agcommon.homepageimage" insert-before="plone.belowcontenttitle.documentbyline"/>
-		<viewlet name="agcommon.rightcolumn" insert-before="plone.belowcontenttitle.documentbyline"/>
-		<viewlet name="agcommon.centercolumn" insert-after="plone.belowcontenttitle.keywords"/>
+	</order>
+
+	<order manager="plone.abovecontentbody" skinname="agCommon">
+		<viewlet name="agcommon.rightcolumn" insert-before="*"/>
+		<viewlet name="agcommon.centercolumn" insert-after="agcommon.centercolumn"/>
 	</order>
 
  <hidden manager="plone.portalheader" skinname="agCommon">

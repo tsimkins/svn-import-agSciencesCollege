@@ -424,6 +424,7 @@ body.template-document_homepage_view .documentActions {
 	padding: 0px;
 	margin: 0px;
 	position: relative;
+	clear: both;
 }
 
 #rightcolumn>div {
@@ -497,6 +498,10 @@ body.template-document_homepage_view .documentActions {
 }
 
 /* Right Column Front Page modifications */
+
+body.template-document_homepage_view .documentByLine {
+	display: none;
+}
 
 body.template-document_homepage_view #rightcolumn {
 	float: right;
