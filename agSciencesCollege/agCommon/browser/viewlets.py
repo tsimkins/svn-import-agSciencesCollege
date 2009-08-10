@@ -36,14 +36,23 @@ class TitleViewlet(ViewletBase):
 		self.portal_title = self.portal_state.portal_title
 		
 	def index(self):
-		portal_title = safe_unicode(self.portal_title())
+	
+		try:
+			site_title = aq_acquire(self.context, 'site_title')
+			org_title = "Penn State College of Ag Sciences"
+		except AttributeError:
+			site_title = self.portal_title()
+			org_title = "Penn State University"
+	
+		portal_title = safe_unicode(site_title)
 		page_title = safe_unicode(self.page_title())
 		if page_title == portal_title:
-			return u"<title>%s &mdash; Penn State University</title>" % (escape(portal_title))
+			return u"<title>%s &mdash; %s</title>" % (escape(portal_title), escape(org_title))
 		else:
-			return u"<title>%s &mdash; %s &mdash; Penn State University</title>" % (
+			return u"<title>%s &mdash; %s &mdash; %s</title>" % (
 				escape(safe_unicode(page_title)),
-				escape(safe_unicode(portal_title)))
+				escape(safe_unicode(portal_title)),
+				escape(safe_unicode(org_title)))
 
 class KeywordsViewlet(ViewletBase):
 	
