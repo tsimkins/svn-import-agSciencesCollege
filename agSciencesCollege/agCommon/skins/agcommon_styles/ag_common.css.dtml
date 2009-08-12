@@ -960,7 +960,6 @@ div.eventButtons img {
 	color: #333333;
 	padding: 4px;
 	border: 1px solid #CCCCCC;
-	float: right;
 }
 
 #addthis a {
