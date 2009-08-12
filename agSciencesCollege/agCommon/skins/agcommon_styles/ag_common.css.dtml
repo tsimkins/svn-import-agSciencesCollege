@@ -942,6 +942,36 @@ div.leftColumnButtons {
 	margin: 30px 8px 20px 8px;
 }
 
+/* eventButtons */
+div.eventButtons {
+	text-align: center;
+}
+
+div.eventButtons img {
+	margin-top: 30px;
+	padding: 4px;
+	border: 1px solid #;
+}
+
+/* addthis */
+
+#addthis {
+	font-size: 0.88em;
+	color: #333333;
+	padding: 4px;
+	border: 1px solid #CCCCCC;
+	float: right;
+}
+
+#addthis a {
+	text-decoration: none;
+	color: #333333;
+}
+
+body.template-document_homepage_view #addthis {
+	display: none;
+}
+
 #portal-column-one div.leftColumnButtons a {
 	text-decoration: none;
 	color: &dtml-leftLinkTextColor;;

@@ -1,4 +1,6 @@
-<div id="portal-logo" i18n:domain="plone">
+<div id="portal-logo" i18n:domain="plone" 
+	tal:define="portal_title context/portal_title|view/portal_title;
+	navigation_root_url context/navigation_root_url|view/navigation_root_url">
 
   <a href = "http://www.psu.edu" target = "_blank"><img 
 	id="logo-psu" 
@@ -16,11 +18,6 @@
 		alt="College of Agricultural Sciences" />
 
 	<div id = "logo-site">
-		<tal:overrideTitle tal:condition="context/portal_title|nothing">
-			<a tal:attributes="href view/navigation_root_url" tal:content="context/portal_title" />
-		</tal:overrideTitle>
-		<tal:standardTitle tal:condition="not:context/portal_title|nothing">
-			<a tal:attributes="href view/navigation_root_url" tal:content="view/portal_title" />
-		</tal:standardTitle>
+		<a tal:attributes="href navigation_root_url" tal:content="portal_title" />
 	</div>
 </div>
