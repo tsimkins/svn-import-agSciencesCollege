@@ -40,6 +40,14 @@ body {
 	top: 75px;
 	height: 23px;
 }
+
+/* Finally had to break out the old .clearboth */
+.clearboth {
+	font-size: 0.1em;
+	clear: both;
+	margin: 0px !important;
+}
+
 #region-content a, #portal-column-one a{
 	color: #003399;
 }
@@ -967,6 +975,18 @@ div.eventButtons img {
 	color: #333333;
 }
 
+/* Thumbnail view workaround for addthis.  We're assuming that we don't use a right column on image pages. */
+
+body.template-atct_album_view #rightcolumn {
+	float: none;
+}
+
+body.template-atct_album_view #addthis {
+	float: right;
+	margin-bottom: 0px;
+}
+
+/* Don't show addthis on homepage */ 
 body.template-document_homepage_view #addthis {
 	display: none;
 }

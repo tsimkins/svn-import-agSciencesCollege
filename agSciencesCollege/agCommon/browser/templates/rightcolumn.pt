@@ -3,7 +3,8 @@
 <div id = "rightcolumn">
 
 	<tal:block replace="structure provider:agcommon.rightcolumn" />
-	<div id="addthis" tal:condition="not: context/hide_addthis|nothing">
+	<tal:addthis tal:condition="not: context/hide_addthis|nothing">
+	<div id="addthis">
 		<script type="text/javascript">
 		// From http://www.addthis.com/forum/viewtopic.php?f=8&t=14972
 
@@ -25,5 +26,6 @@
 		<!-- AddThis Button END -->
 
 	</div>
-
+	<div class="clearboth"><!-- --></div>
+	</tal:addthis>
 </div>
