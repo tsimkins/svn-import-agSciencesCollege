@@ -52,7 +52,7 @@
     <browser:viewlet
         name="agcommon.rightcolumn"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="templates/rightcolumn.pt"
+        class=".viewlets.RightColumnViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />

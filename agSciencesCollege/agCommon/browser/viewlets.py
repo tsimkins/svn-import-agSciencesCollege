@@ -23,7 +23,13 @@ class TopNavigationViewlet(ViewletBase):
 		
 		self.topnavigation = context_state.actions().get(topMenu, None)
 
+class RightColumnViewlet(ViewletBase):   
+	index = ViewPageTemplateFile('templates/rightcolumn.pt')
 
+	def update(self):
+		self.portal_state = getMultiAdapter((self.context, self.request),
+											name=u'plone_portal_state')
+		self.anonymous = self.portal_state.anonymous()
 
 class TitleViewlet(ViewletBase):
 	
