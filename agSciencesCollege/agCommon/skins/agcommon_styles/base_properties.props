@@ -78,6 +78,8 @@ insideRightPortletHeaderTextColor:string=#EEEEFF
 insideRightPortletHeaderBackgroundColor:string=#2F4977
 insideRightPortletBackgroundColor:string=#EEEEFF
 insideRightPortletTextColor:string=#333333
+insideRightPortletLinkColor:string=#003399
+insideRightPortletLinkHoverColor:string=#3366CC
 
 contactColor:string=#005B00
 contactBackgroundColor:string=#74B40F
