@@ -33,20 +33,6 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div class="newsImageContainer"
-             tal:condition="here/image_mini|nothing">
-            <a href="#"
-               tal:attributes="href string:$here_url/image/image_view_fullscreen"
-               id="parent-fieldname-image">
-               <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage')" src="" alt="" />
-            </a>
-            <p class="discreet">
-              <metal:field use-macro="python:here.widget('imageCaption', mode='view')">
-              Image Caption
-              </metal:field>
-            </p>
-        </div>
-
         <p tal:condition="python: not len_text and is_editable"
            i18n:translate="no_body_text"
            class="discreet">
