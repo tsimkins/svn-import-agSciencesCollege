@@ -1179,6 +1179,17 @@ body.template-atct_album_view .contentLeadImageContainer {
 	display: none;
 }
 
+/* Restyle pull quote */
+
+.pullquote {
+    border-width: 2px 0px;
+    border-style: solid;
+    border-color: #AF9A62;
+    color: #CC9933;
+    padding: 1em;
+    font-size: 1.3em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

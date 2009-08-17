@@ -177,6 +177,9 @@ body.template-document_homepage_view #rightcolumn, #rightcolumn {
 	display: none;
 }
 
+.pullquote {
+	display: none;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
