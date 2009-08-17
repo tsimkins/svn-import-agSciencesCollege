@@ -1188,6 +1188,7 @@ body.template-atct_album_view .contentLeadImageContainer {
     color: #CC9933;
     padding: 1em;
     font-size: 1.3em;
+    line-height: 1.5em;
 }
 
 /* YOUR CSS RULES STOP HERE */
