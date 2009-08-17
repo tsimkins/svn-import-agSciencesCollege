@@ -1184,8 +1184,8 @@ body.template-atct_album_view .contentLeadImageContainer {
 .pullquote {
     border-width: 2px 0px;
     border-style: solid;
-    border-color: #AF9A62;
-    color: #CC9933;
+    border-color: #CC9933;
+    color: #9D7627;
     padding: 1em;
     font-size: 1.3em;
     line-height: 1.5em;
