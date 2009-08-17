@@ -992,6 +992,17 @@ body.template-atct_album_view #addthis {
 	margin-bottom: 0px;
 }
 
+/* Summary view workaround for addthis.  We're assuming that we don't use a right column on image pages. */
+
+body.template-folder_summary_view #rightcolumn {
+	float: none;
+}
+
+body.template-folder_summary_view #addthis {
+	float: right;
+	margin-bottom: 0px;
+}
+
 /* Don't show addthis on homepage */ 
 body.template-document_homepage_view #addthis {
 	display: none;
