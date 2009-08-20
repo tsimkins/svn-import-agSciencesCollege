@@ -987,6 +987,10 @@ body.template-atct_album_view #rightcolumn {
 	float: none;
 }
 
+body.template-atct_album_view #rightcolumn .portletWrapper {
+	display: none;
+}
+
 body.template-atct_album_view #addthis {
 	float: right;
 	margin-bottom: 0px;
@@ -996,6 +1000,10 @@ body.template-atct_album_view #addthis {
 
 body.template-folder_summary_view #rightcolumn {
 	float: none;
+}
+
+body.template-folder_summary_view #rightcolumn .portletWrapper {
+	display: none;
 }
 
 body.template-folder_summary_view #addthis {
