@@ -97,7 +97,6 @@
 
                     <span class="summary"
                              tal:attributes="class string:$item_type_class summary"
-                             tal:condition="python:item_type != 'Link'"
                              metal:define-macro="listitem">
                         <img tal:replace="structure item_icon/html_tag" />
                         <a href="#"
