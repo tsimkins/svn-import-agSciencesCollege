@@ -75,6 +75,13 @@
 			<input type="hidden" value="PennState" name="site"/>
 			<input type="hidden" name="site" value=""/>
 		</form>
+        <form action="http://www.google.com/cse" id="GoogleCustomSearch" target="_blank">
+          <div>
+            <input type="hidden" name="cx" value="009987215249396987893:cmobqlykeyk" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="text" name="q" size="31" />
+          </div>
+        </form>
 
 	</div>
 </div>
