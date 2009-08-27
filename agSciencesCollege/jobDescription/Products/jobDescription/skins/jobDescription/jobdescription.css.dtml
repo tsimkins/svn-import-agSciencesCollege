@@ -9,3 +9,7 @@
     margin: 0.5em 3em 1.5em 3em;
     padding: 0.25em 0.75em;
 }
+
+table.jobDescription td {
+	vertical-align: top;
+}

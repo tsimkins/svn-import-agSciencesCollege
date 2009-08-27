@@ -45,7 +45,7 @@
                             ">
         <tal:listing condition="folderContents">
 
-		<table class = "listing">
+		<table class = "listing jobDescription">
 			<tr>
 				<th>Date Posted</th>
 				<th>Job Title</th>
