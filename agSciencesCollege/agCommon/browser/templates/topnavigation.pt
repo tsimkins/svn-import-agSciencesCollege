@@ -8,12 +8,13 @@
 	        tal:attributes="id string:siteaction-${saction/id}"><a
 	           href=""
 	           tal:define="title saction/title;
-	                       id saction/id;"
+	                       id saction/id;
+	                       description saction/description|saction/title"
 	           i18n:attributes="title"
 	           i18n:translate=""
 	           tal:content="title"
 	           tal:attributes="href saction/url;
-	                           title title;"
+	                           title description;"
 	           >Site action</a></li>
 	
 	</ul>
