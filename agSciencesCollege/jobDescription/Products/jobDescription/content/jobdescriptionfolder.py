@@ -29,7 +29,7 @@ JobDescriptionFolderSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         widget=atapi.IntegerWidget(
             label=_(u"Flag jobs after being posted for this many days."),
         ),
-        default=14,
+        default='14',
         required=True,
     ),   
 
@@ -53,6 +53,7 @@ class JobDescriptionFolder(folder.ATFolder):
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
     job_related_disciplines = atapi.ATFieldProperty('job_related_disciplines')
+    flag_after_days = atapi.ATFieldProperty('flag_after_days')
     
     def getSortedEntries(self):
         openJobs = []
