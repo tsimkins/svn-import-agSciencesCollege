@@ -298,5 +298,7 @@ class JobDescription(base.ATCTContent):
             return aq_parent(self).getFlag_after_days()
         except ValueError:
             return 0
+        except TextFieldException:
+            return 0
 
 atapi.registerType(JobDescription, PROJECTNAME)
