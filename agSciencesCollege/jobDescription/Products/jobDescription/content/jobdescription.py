@@ -296,9 +296,7 @@ class JobDescription(base.ATCTContent):
     def dateThreshold(self):
         try:
             return aq_parent(self).getFlag_after_days()
-        except ValueError:
-            return 0
-        except TextFieldException:
+        except:
             return 0
 
 atapi.registerType(JobDescription, PROJECTNAME)
