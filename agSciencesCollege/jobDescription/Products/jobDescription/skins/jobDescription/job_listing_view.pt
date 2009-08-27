@@ -47,13 +47,12 @@
 
 		<table class = "listing">
 			<tr>
+				<th>Date Posted</th>
 				<th>Job Title</th>
 				<th>Job Description</th>
 				<th>Company Name</th>
 				<th>Location</th>
 				<th>Job Type/Status</th>
-				<th>Start Date</th>
-				<th>End Date</th>
 			</tr>
 			
             <tal:block tal:repeat="item folderContents">
@@ -67,21 +66,34 @@
                                        item_type_class python: 'contenttype-' + normalizeString(item_type);
                                        item_modified item/ModificationDate;
                                        item_created item/CreationDate;
+                                       item_effective python:item.getEffectiveDate();
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
                                        item_location item/getJob_location;
-                                       item_start item/getStart_date;
-                                       item_end item/getEnd_date;
                                        item_company item/getCompany_name;
                                        item_status python:'%s/%s' % (item.getJob_type(), item.getJob_status()); 
-                                       job_filled item/getJob_filled|nothing
+                                       error_icon string:${portal_url}/error_icon.gif;
+                                       isOldPosting item/isOldPosting;
+                                       dateThreshold item/dateThreshold;
+                                       isEditor item/canModifyPortalContent
                                    "
                      >
 
 					<tr tal:define="oddrow repeat/item/odd;"
-					    tal:condition="not:job_filled"
                         tal:attributes="class python:test(oddrow, 'even', 'odd')">
+
+						<td nowrap="nowrap">
+
+						<span tal:condition="item_effective" tal:replace="python:item_effective.strftime('%m/%d/%Y')" />
+						<span tal:condition="not:item_effective">
+						      Not Published
+						</span>
+						<img tal:condition="python:isOldPosting and isEditor"
+						     tal:attributes="src error_icon;
+						                      title string:Posted over ${dateThreshold} days ago" />
+						</td>
+						
 						<td>
                         <a tal:attributes="href item_id; class item_wf_state_class"
                            tal:content="item_title_or_id">
@@ -94,9 +106,6 @@
 						<td tal:content="item_company" />
     					<td tal:content="item_location" />
     					<td tal:content="item_status" />
-						<td tal:content="python:item_start.strftime('%m/%d/%Y')" />
-						<td tal:condition="item_end" tal:content="python:item_end.strftime('%m/%d/%Y')" />						
-						<td tal:condition="not:item_end" tal:content="string:N/A" />						
 					</tr>
 
 

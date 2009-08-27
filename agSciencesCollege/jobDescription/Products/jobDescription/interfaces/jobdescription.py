@@ -25,11 +25,6 @@ class IJobDescription(Interface):
         required=False,
     )
 
-    fax_number = schema.TextLine(
-        title=_(u"Fax Number"), 
-        required=False,
-    )
-
     phone_number = schema.TextLine(
         title=_(u"Phone Number"), 
         required=False,
@@ -57,7 +52,7 @@ class IJobDescription(Interface):
 
     company_name = schema.TextLine(
         title=_(u"Company Name"), 
-        required=False,
+        required=True,
     )
 
     job_website = schema.TextLine(
@@ -80,11 +75,6 @@ class IJobDescription(Interface):
         required=False,
     )
 
-    job_requirements = schema.Text(
-        title=_(u"Job Requirements"), 
-        required=True,
-    )
-
     job_description = schema.Text(
         title=_(u"Job Description"), 
         required=True,
@@ -96,17 +86,7 @@ class IJobDescription(Interface):
     )
 
     job_status = schema.TextLine(
-        title=_(u"Job Status"), 
-        required=True,
-    )
-
-    end_date = schema.Date(
-        title=_(u"End Date"), 
-        required=True,
-    )
-
-    start_date = schema.Date(
-        title=_(u"Start Date"), 
+        title=_(u"Full or Part Time"), 
         required=True,
     )
 

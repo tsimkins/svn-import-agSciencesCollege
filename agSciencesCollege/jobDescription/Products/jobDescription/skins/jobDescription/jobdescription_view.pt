@@ -23,7 +23,7 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <p class="documentDescription">
+        <p class="documentDescription" tal:condition="context/Description">
             <metal:field use-macro="python:here.widget('description', mode='view')">
             Description
             </metal:field>
@@ -37,13 +37,6 @@
 		<dt tal:content="python:context.getField('job_location').widget.label" />
 		<dd tal:content="context/getJob_location" />
 
-		<dt tal:content="python:context.getField('start_date').widget.label" />
-		<dd tal:content="python:context.getStart_date().strftime('%m/%d/%Y')" />
-		
-		<dt tal:content="python:context.getField('end_date').widget.label" />
-		<dd tal:condition="context/getEnd_date" tal:content="python:context.getEnd_date().strftime('%m/%d/%Y')" />
-		<dd tal:condition="not:context/getEnd_date" tal:content="string:N/A" />
-
 		<dt tal:content="python:context.getField('job_type').widget.label" />
 		<dd tal:content="context/getJob_type" />
 		
@@ -52,10 +45,12 @@
 
 		<dt tal:content="python:context.getField('job_description').widget.label" />
 		<dd tal:content="structure context/getJob_description" />
+
+		<tal:optionalField tal:condition="context/getJob_website|nothing">		
+		<dt tal:content="python:context.getField('job_website').widget.label" />
+		<dd tal:content="context/getJob_website" />
+		</tal:optionalField>
 		
-		<dt tal:content="python:context.getField('job_requirements').widget.label" />
-		<dd tal:content="structure context/getJob_requirements" />
-				
 		<tal:optionalField tal:condition="context/getJob_related_disciplines|nothing">
 		<dt tal:content="python:context.getField('job_related_disciplines').widget.label" />
 		<dd>
@@ -70,15 +65,11 @@
 		<dd tal:content="structure context/getApplication_instructions" />
 		</tal:optionalField>
 
-		<tal:optionalField tal:condition="context/getApplication_deadline|nothing">
 		<dt tal:content="python:context.getField('application_deadline').widget.label" />
-		<dd tal:content="context/getApplication_deadline" />
-		</tal:optionalField>
-
-		<tal:optionalField tal:condition="context/getJob_website|nothing">		
-		<dt tal:content="python:context.getField('job_website').widget.label" />
-		<dd tal:content="context/getJob_website" />
-		</tal:optionalField>
+		<dd tal:condition="context/getApplication_deadline|nothing" tal:content="python:context.getApplication_deadline().strftime('%m/%d/%Y')" />
+		<dd tal:condition="not:context/getApplication_deadline|nothing">
+		      Until filled.
+		</dd>
 
 		<tal:optionalField tal:condition="context/getCompany_name|nothing">
 		<dt tal:content="python:context.getField('company_name').widget.label" />
@@ -115,11 +106,6 @@
 		<tal:optionalField tal:condition="context/getPhone_number|nothing">
 		<dt tal:content="python:context.getField('phone_number').widget.label" />
 		<dd tal:content="context/getPhone_number" />
-		</tal:optionalField>
-
-		<tal:optionalField tal:condition="context/getFax_number|nothing">
-		<dt tal:content="python:context.getField('fax_number').widget.label" />
-		<dd tal:content="context/getFax_number" />
 		</tal:optionalField>
 
 		<tal:optionalField tal:condition="context/getOther_information|nothing">

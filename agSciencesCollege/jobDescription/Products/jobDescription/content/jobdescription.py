@@ -18,6 +18,9 @@ from persistent.dict import PersistentDict
 
 from datetime import datetime
 
+# Silly Zope!
+from DateTime import DateTime
+
 from Acquisition import aq_parent
 
 from Products.CMFCore import permissions
@@ -45,25 +48,6 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         required=True,
     ),
     
-    atapi.DateTimeField(
-        'start_date',
-        storage=atapi.AnnotationStorage(),
-        widget=atapi.CalendarWidget(
-            label=_(u"Start Date"),
-        ),
-        required=True,
-        validators=('isValidDate'),
-    ),
-
-    atapi.DateTimeField(
-        'end_date',
-        storage=atapi.AnnotationStorage(),
-        widget=atapi.CalendarWidget(
-            label=_(u"End Date"),
-        ),
-        validators=('isValidDate'),
-    ),
-    
     atapi.StringField(
         'job_type',
         storage=atapi.AnnotationStorage(),
@@ -71,7 +55,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             label=_(u"Job Type"),
             format='select'
         ),
-        vocabulary=('Internship', 'Cooperative', 'Seasonal', 'Temporary', 'Permanent'),
+        vocabulary=('Internship/Cooperative', 'Seasonal/Temporary', 'Permanent'),
         required=True,
     ),
 
@@ -79,7 +63,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         'job_status',
         storage=atapi.AnnotationStorage(),
         widget=atapi.SelectionWidget(
-            label=_(u"Job Status"),
+            label=_(u"Full or Part Time"),
             format='radio',
         ),
         vocabulary = ('Full Time', 'Part Time'),
@@ -90,19 +74,9 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         'job_description',
         storage=atapi.AnnotationStorage(),
         widget=atapi.RichWidget(
-            label=_(u"Job Description"),
+            label=_(u"Job Description and Requirements"),
         ),
         required=True,
-        default_output_type='text/x-html-safe',
-        validators=('isTidyHtmlWithCleanup',),
-    ),
-
-    atapi.TextField(
-        'job_requirements',
-        storage=atapi.AnnotationStorage(),
-        widget=atapi.RichWidget(
-            label=_(u"Job Requirements"),
-        ),
         default_output_type='text/x-html-safe',
         validators=('isTidyHtmlWithCleanup',),
     ),
@@ -123,6 +97,7 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=atapi.RichWidget(
             label=_(u"Application Instructions"),
         ),
+        required=True,
         default_output_type='text/x-html-safe',
         validators=('isTidyHtmlWithCleanup',),
     ),
@@ -205,14 +180,6 @@ JobDescriptionSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
     ),
 
     atapi.StringField(
-        'fax_number',
-        storage=atapi.AnnotationStorage(),
-        widget=atapi.StringWidget(
-            label=_(u"Fax Number"),
-        ),
-    ),
-
-    atapi.StringField(
         'other_information',
         storage=atapi.AnnotationStorage(),
         widget=atapi.StringWidget(
@@ -245,8 +212,6 @@ class JobDescription(base.ATCTContent):
 
     company_website = atapi.ATFieldProperty('company_website')
 
-    fax_number = atapi.ATFieldProperty('fax_number')
-
     phone_number = atapi.ATFieldProperty('phone_number')
 
     mailing_address = atapi.ATFieldProperty('mailing_address')
@@ -267,17 +232,11 @@ class JobDescription(base.ATCTContent):
 
     job_related_disciplines = atapi.ATFieldProperty('job_related_disciplines')
 
-    job_requirements = atapi.ATFieldProperty('job_requirements')
-
     job_description = atapi.ATFieldProperty('job_description')
 
     job_type = atapi.ATFieldProperty('job_type')
     
     job_status = atapi.ATFieldProperty('job_status')
-
-    end_date = atapi.ATFieldProperty('end_date')
-
-    start_date = atapi.ATFieldProperty('start_date')
 
     job_location = atapi.ATFieldProperty('job_location')
 
@@ -318,6 +277,20 @@ class JobDescription(base.ATCTContent):
     
         vocab = aq_parent(self).getJob_related_disciplines().split('\r\n')
         return vocab
-
+    
+    # Check how many days the job has been posted, and return True if it is on old posting.
+    
+    def isOldPosting(self):
+        now = DateTime()
+        posted = self.getEffectiveDate()
+        difference = self.dateThreshold()
+        
+        if posted:
+            return int(now-posted) > int(difference)
+        else:
+            return False
+        
+    def dateThreshold(self):
+        return aq_parent(self).getFlag_after_days()
 
 atapi.registerType(JobDescription, PROJECTNAME)

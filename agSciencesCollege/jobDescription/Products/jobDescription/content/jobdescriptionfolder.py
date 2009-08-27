@@ -23,6 +23,16 @@ JobDescriptionFolderSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         required=True,
     ),    
 
+    atapi.TextField(
+        'flag_after_days',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.IntegerWidget(
+            label=_(u"Flag jobs after being posted for this many days."),
+        ),
+        default=14,
+        required=True,
+    ),   
+
 ))
 
 # Set storage on fields copied from ATFolderSchema, making sure
@@ -45,6 +55,12 @@ class JobDescriptionFolder(folder.ATFolder):
     job_related_disciplines = atapi.ATFieldProperty('job_related_disciplines')
     
     def getSortedEntries(self):
-        return sorted(self.listFolderContents(contentFilter={'portal_type' : 'JobDescription'}), key=lambda (x): x.Title())
+        openJobs = []
+        jobList = sorted(self.listFolderContents(contentFilter={'portal_type' : 'JobDescription'}), key=lambda (x): x.EffectiveDate())
+        for job in reversed(jobList):
+            if not job.job_filled:
+                openJobs.append(job)
+
+        return openJobs
 
 atapi.registerType(JobDescriptionFolder, PROJECTNAME)
