@@ -10,140 +10,139 @@
 
 function resizeColumns()
 {
-	setTimeout("doresizeColumns()", 300);
+    setTimeout("doresizeColumns()", 300);
 }
 
 function doresizeColumns()
 {
-	// Get leftcolumn and rightcolumn elements
-	var leftColumn = document.getElementById("portal-column-one");
-	var rightColumn = document.getElementById("portal-column-content");
+    // Get leftcolumn and rightcolumn elements
+    var leftColumn = document.getElementById("portal-column-one");
+    var rightColumn = document.getElementById("portal-column-content");
 
-	// Get left-visualPadding and right-visualPadding elements
-	var leftVisualPadding = document.getElementById("left-visualPadding");
-	var rightVisualPadding = document.getElementById("right-visualPadding");
+    // Get left-visualPadding and right-visualPadding elements
+    var leftVisualPadding = document.getElementById("left-visualPadding");
+    var rightVisualPadding = document.getElementById("right-visualPadding");
 
-	if (!(leftColumn && rightColumn && leftVisualPadding && rightVisualPadding))
-	{
-		return;
-	}
+    if (!(leftColumn && rightColumn && leftVisualPadding && rightVisualPadding))
+    {
+        return;
+    }
 
-	// Reset the heights of these two padding divs to auto, in case 
-	// resizeColumns has already been run (i.e. text resize scenario)
-	leftVisualPadding.style.height = "auto";
-	rightVisualPadding.style.height = "auto";
+    // Reset the heights of these two padding divs to auto, in case 
+    // resizeColumns has already been run (i.e. text resize scenario)
+    leftVisualPadding.style.height = "auto";
+    rightVisualPadding.style.height = "auto";
 
-	// Calculate max height of leftcontent and rightcontent
-	var maxHeight=Math.max(leftColumn.offsetHeight,rightColumn.offsetHeight);
+    // Calculate max height of leftcontent and rightcontent
+    var maxHeight=Math.max(leftColumn.offsetHeight,rightColumn.offsetHeight);
 
-	// Set both heights to the same (max) value.  Note that we have to append "px" to the value.
-	leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight) + "px";
-	rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight) + "px";
+    // Set both heights to the same (max) value.  Note that we have to append "px" to the value.
+    leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight) + "px";
+    rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight) + "px";
 
 
-	// For front page, equalize center column height 
-	var bodyClass = document.body.className;
-	var contentWrapper = document.getElementById("portal-content-wrapper");
-	var centerColumn = document.getElementById("centercolumn");
+    // For front page, equalize center column height 
+    var bodyClass = document.body.className;
+    var contentWrapper = document.getElementById("portal-content-wrapper");
+    var centerColumn = document.getElementById("centercolumn");
 
-	var centerMagicNumber = -13;
+    var centerMagicNumber = -13;
 
-	if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() ==0))
-	{
-		centerColumn.style.height = "auto";
-		increaseCenterColumn = rightColumn.offsetHeight - contentWrapper.offsetHeight + centerMagicNumber;
-		centerColumn.style.height = centerColumn.offsetHeight + increaseCenterColumn + "px";
-	}
+    if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() ==0))
+    {
+        centerColumn.style.height = "auto";
+        increaseCenterColumn = rightColumn.offsetHeight - contentWrapper.offsetHeight + centerMagicNumber;
+        centerColumn.style.height = centerColumn.offsetHeight + increaseCenterColumn + "px";
+    }
 }
 
 function msieversion()
 {
-	var ua = window.navigator.userAgent
-	var msie = ua.indexOf ( "MSIE " )
-	
-	if ( msie > 0 )      // If Internet Explorer, return version number
-		return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
-	else                 // If another browser, return 0
-		return 0
+    var ua = window.navigator.userAgent
+    var msie = ua.indexOf ( "MSIE " )
+    
+    if ( msie > 0 )      // If Internet Explorer, return version number
+        return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+    else                 // If another browser, return 0
+        return 0
 
 }
 
 
 function getElement(theId, vPadding, IEvPadding)
 {
-	var theElement = document.getElementById(theId) ? document.getElementById(theId) : document.createElement("div");
-	theElement.elementHeight = theElement.offsetHeight ? theElement.offsetHeight : theElement.pixelHeight;
-	theElement.style.height = "auto";
+    var theElement = document.getElementById(theId) ? document.getElementById(theId) : document.createElement("div");
+    theElement.elementHeight = theElement.offsetHeight ? theElement.offsetHeight : theElement.pixelHeight;
+    theElement.style.height = "auto";
 
-	if (!vPadding)
-	{
-		vPadding = 0;
-	}
+    if (!vPadding)
+    {
+        vPadding = 0;
+    }
 
-	if (document.all && IEvPadding)
-	{
-		theElement.vPadding = IEvPadding;
-	}
-	else
-	{
-		theElement.vPadding = vPadding;
-	}
-	
-	return theElement;
+    if (document.all && IEvPadding)
+    {
+        theElement.vPadding = IEvPadding;
+    }
+    else
+    {
+        theElement.vPadding = vPadding;
+    }
+    
+    return theElement;
 }
 
 function setSearch()
 {
-	var theSearchButton = document.getElementById("goSearch");
-	var theSearchDropdown = document.getElementById("searchSource");	
-	var thePloneSearchForm = document.getElementById("plonesearchform");
+    var theSearchButton = document.getElementById("goSearch");
+    var theSearchDropdown = document.getElementById("searchSource");    
+    var thePloneSearchForm = document.getElementById("plonesearchform");
 
-	if (theSearchButton && theSearchDropdown && thePloneSearchForm)
-	{
-		theSearchDropdown.style.display = "inline";
+    if (theSearchButton && theSearchDropdown && thePloneSearchForm)
+    {
+        theSearchDropdown.style.display = "inline";
 
-		theSearchButton.onclick = function () {
-			return searchOnSubmit();
-		}
-		
-		thePloneSearchForm.onsubmit = function () {
-			return searchOnSubmit();
-		}
-	}		
+        theSearchButton.onclick = function () {
+            return searchOnSubmit();
+        }
+        
+        thePloneSearchForm.onsubmit = function () {
+            return searchOnSubmit();
+        }
+    }        
 }
 
 function searchOnSubmit()
 {
-	var theSearchDropdown = document.getElementById("searchSource");			
-	var theSearchForm = document.getElementById("GoogleSearch");
-	var theSearchBox = document.getElementById("searchBox");
+    var theSearchDropdown = document.getElementById("searchSource");            
+    var theSearchForm = document.getElementById("GoogleSearch");
+    var theSearchBox = document.getElementById("searchBox");
+    var theCustomSearchBox = document.getElementById("GoogleCustomSearch");
 
-	if (theSearchDropdown && theSearchForm && theSearchBox)
-	{
-		var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
+    if (theSearchDropdown && theSearchForm && theSearchBox && theCustomSearchBox)
+    {
+        var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
 
-		if (theSearchOption == "college")
-		{
-			theSearchForm.q.value = theSearchBox.value;
-			theSearchForm.site.value = "CAS";
-			theSearchForm.proxystylesheet.value = "CAS";
-			theSearchForm.submit();
-			return false;
-		}
-		else if (theSearchOption == "psu")
-		{
-			theSearchForm.q.value = theSearchBox.value;
-			theSearchForm.site.value = "PennState";
-			theSearchForm.proxystylesheet.value = "PennState";
-			theSearchForm.submit();
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	
+        if (theSearchOption == "college")
+        {
+            theCustomSearchBox.q.value = theSearchBox.value;
+            theCustomSearchBox.submit();
+            return false;
+        }
+        else if (theSearchOption == "psu")
+        {
+            theSearchForm.q.value = theSearchBox.value;
+            theSearchForm.site.value = "PennState";
+            theSearchForm.proxystylesheet.value = "PennState";
+            theSearchForm.submit();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
 }
 
 registerPloneFunction(setSearch);
