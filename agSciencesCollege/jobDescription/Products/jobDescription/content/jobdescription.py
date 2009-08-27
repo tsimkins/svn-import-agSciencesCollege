@@ -285,12 +285,18 @@ class JobDescription(base.ATCTContent):
         posted = self.getEffectiveDate()
         difference = self.dateThreshold()
         
-        if posted:
-            return int(now-posted) > int(difference)
-        else:
+        try:
+            if posted:
+                return int(now-posted) > int(difference)
+            else:
+                return False
+        except ValueError:
             return False
-        
+                    
     def dateThreshold(self):
-        return aq_parent(self).getFlag_after_days()
+        try:
+            return aq_parent(self).getFlag_after_days()
+        except ValueError:
+            return 0
 
 atapi.registerType(JobDescription, PROJECTNAME)
