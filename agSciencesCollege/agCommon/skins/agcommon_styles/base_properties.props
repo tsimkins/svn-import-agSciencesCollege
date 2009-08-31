@@ -59,9 +59,9 @@ breadcrumbSeparatorColor:string=#D5D5D5
 breadcrumbLinkColor:string=#FFFFFF
 
 topnavigationBackgroundColor:string=#ff3900
-topnavigationButtonBackgroundColor:string=#ff4400
-topnavigationTextColor:string=#dddddd
-topnavigationTextHoverColor:string=#ffffff
+topnavigationButtonBackgroundColor:string=#FF4B17
+topnavigationTextColor:string=#FFFFFF
+topnavigationTextHoverColor:string=#FFBA19
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#0C3D90
@@ -93,8 +93,8 @@ homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
 homepageTransparentOverlayColor:string=#000000
 
-leftNavTitleBackground:string=#000000
-leftNavTitleColor:string=#FFFFFF
+leftNavTitleBackground:string=#eae073
+leftNavTitleColor:string=#334466
 leftNavTextColor:string=#666666
 leftNavTextHoverColor:string=#333366
 leftNavBackgroundColor:string=#FFFFFF
