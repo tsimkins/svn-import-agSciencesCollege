@@ -1,0 +1,5 @@
+for myDocument in context.listFolderContents():
+
+        myDocument.setExcludeFromNav(True)
+        myDocument.reindexObject()
+
