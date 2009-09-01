@@ -1199,6 +1199,10 @@ body.template-atct_album_view .contentLeadImageContainer {
     line-height: 1.5em;
 }
 
+.eventDetails {
+	margin-top: 1.5em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
