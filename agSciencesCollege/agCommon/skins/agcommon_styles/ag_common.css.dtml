@@ -1265,7 +1265,9 @@ body.template-atct_album_view .contentLeadImageContainer {
 	border-color: &dtml-leftButtonBackgroundBorder_internal;;
 }
 
-
+.template-fg_base_view_p3 textarea {
+	width: 450px;
+}
 
 
 /* YOUR CSS RULES STOP HERE */
