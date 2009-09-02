@@ -1,0 +1,24 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+
+  
+    <plone:portlet
+        name="agcommon.LinkIcon"
+        interface=".linkicon.ILinkIcon"
+        assignment=".linkicon.Assignment"
+        renderer=".linkicon.Renderer"
+        addview=".linkicon.AddForm"
+        editview=".linkicon.EditForm"
+        />
+
+    <plone:portlet
+        name="agcommon.LinkButton"
+        interface=".linkbutton.ILinkButton"
+        assignment=".linkbutton.Assignment"
+        renderer=".linkbutton.Renderer"
+        addview=".linkbutton.AddForm"
+        editview=".linkbutton.EditForm"
+        />
+
+</configure>
