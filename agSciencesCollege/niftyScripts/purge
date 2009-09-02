@@ -1,0 +1,10 @@
+#!/usr/bin/python
+import sys
+
+url = sys.argv[1]
+from telnetlib import Telnet
+squid = Telnet('localhost', 3128)
+squid.open('localhost', 3128)
+squid.write("PURGE %s\n" % url)
+print squid.read_all()
+squid.close()
