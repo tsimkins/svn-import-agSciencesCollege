@@ -47,15 +47,15 @@ globalBackgroundColor:string=#FFF2CF
 evenRowBackgroundColor:string=#FFF7DF 
 oddRowBackgroundColor:string=transparent
 
-maxWidth:string=875px
+maxWidth:string=908px
 minWidth:string=785px
 
 siteLogoTopMargin:string=41px
 siteLogoFontSize:string=22px
 
 breadcrumbBackgroundColor:string=#F09400
-breadcrumbTextColor:string=#D5D5D5
-breadcrumbSeparatorColor:string=#D5D5D5
+breadcrumbTextColor:string=#4F1C1A
+breadcrumbSeparatorColor:string=#EFC177
 breadcrumbLinkColor:string=#FFFFFF
 
 topnavigationBackgroundColor:string=#ff3900
@@ -69,9 +69,9 @@ backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#2F4977
-frontRightPortletHeaderBackgroundColor:string=#FBC767
-frontRightPortletTextColor:string=#2F4977
+frontRightPortletHeaderTextColor:string=#2B3D7B
+frontRightPortletHeaderBackgroundColor:string=#EFC177
+frontRightPortletTextColor:string=#47568B
 frontRightPortletBackgroundColor:string=#F5F5F5
 
 insideRightPortletHeaderTextColor:string=#EEEEFF
@@ -103,10 +103,10 @@ leftSubNavBackground:string=#F5F5F5
 leftLinkTextColor:string=#003399
 leftLinkTextHoverColor:string=#3366CC
 
-leftButtonArrowBackground_external:string=#85ace7
-leftButtonBackground_external:string=#5e95e7
-leftButtonBackgroundBorder_external:string=#506e94
-leftButtonTextColor_external:string=#FFFFFF
+leftButtonArrowBackground_external:string=#F3A72E
+leftButtonBackground_external:string=#FBE2B9
+leftButtonBackgroundBorder_external:string=#6D4300
+leftButtonTextColor_external:string=#995E00
 
 leftButtonArrowBackground_internal:string=#487aab
 leftButtonBackground_internal:string=#155595
