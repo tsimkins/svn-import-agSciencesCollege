@@ -1209,6 +1209,10 @@ body.template-atct_album_view .contentLeadImageContainer {
 	margin: 30px 8px 20px 8px;
 }
 
+#portal-column-one .linkIcon li {
+	margin: 1em 0;
+}
+
 #portal-column-one .linkIcon a {
 	text-decoration: none;
 	color: &dtml-leftLinkTextColor;;
