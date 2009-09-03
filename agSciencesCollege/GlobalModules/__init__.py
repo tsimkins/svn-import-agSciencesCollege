@@ -9,3 +9,15 @@ allow_module('Products.CMFCore.utils.getToolByName')
 allow_module('zope.component')
 allow_module('zope.component.getSiteManager')
 
+allow_module('Products.GlobalModules')
+allow_module('Products.GlobalModules.makeHomePage')
+
+def makeHomePage(context):
+    print context.portal_type
+    print context.archetype_name
+    context.archetype_name = 'Home Page'
+    context.portal_type = 'HomePage'
+    context.reindexObject()
+    print context.portal_type
+    print context.archetype_name
+    print "OK"
