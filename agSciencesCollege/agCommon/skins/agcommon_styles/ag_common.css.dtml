@@ -1273,6 +1273,11 @@ body.template-atct_album_view .contentLeadImageContainer {
 	width: 450px;
 }
 
+/* Removing avatar from quintasgroup comments */
+
+div.comment img.avatar {
+	display: none;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
