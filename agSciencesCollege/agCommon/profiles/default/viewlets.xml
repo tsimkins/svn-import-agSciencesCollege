@@ -19,8 +19,8 @@
 	</order>
 
 	<order manager="plone.abovecontentbody" skinname="agCommon">
-		<viewlet name="agcommon.rightcolumn" insert-before="*"/>
-		<viewlet name="agcommon.centercolumn" insert-after="agcommon.centercolumn"/>
+		<viewlet name="agcommon.rightcolumn" />
+		<viewlet name="agcommon.centercolumn" insert-after="agcommon.rightcolumn" />
 	</order>
 
  <hidden manager="plone.portalheader" skinname="agCommon">
