@@ -511,6 +511,11 @@ body.template-document_homepage_view .documentActions {
 	padding: 0px;
 }
 
+#rightcolumn .navTreeCurrentItem {
+    border: 0 !important;
+    font-weight: bold;
+}
+
 /* Right Column Front Page modifications */
 
 body.template-document_homepage_view .documentByLine {
@@ -1282,8 +1287,8 @@ div.comment img.avatar {
 /* Content Well Portlets for Sitemap */
 
 #portlets-below {
-	background: #333;
-	font-size: 0.80em;
+	background: &dtml-sitemapBackgroundColor;;
+	font-size: 0.88em;
 	margin-right: 6px;
 	margin-left: 6px;
 	margin-top: 0px;
@@ -1311,7 +1316,7 @@ div.portletsBelowContentE {
 }
 
 #portlets-below dl.portlet {
-    padding: 0.5em 0.25em 0.5em 0.75em;
+    padding: 0.5em 0 0.5em 0.75em;
     margin: 0.5em;
 }
 
@@ -1324,7 +1329,7 @@ div.portletsBelowContentE {
 
 #portlets-below dd.portletItem
 {
-	padding: 0.25em 0;
+	padding: 0;
     margin: 0;
 }
 
@@ -1335,18 +1340,13 @@ div.portletsBelowContentE {
 
 #portlets-below .navTree li
 {
-	padding: 0.25em 0;
-    margin: 0;
-}
-
-#portlets-below .navTree li
-{
-	padding: 0.25em 0;
+	padding: 0;
     margin: 0;
 }
 
 #portlets-below .portletHeader a {
-	color: #ffffff;
+	color: &dtml-sitemapHeaderColor;;
+	padding: 0 0 0 5px;
 }
 
 #portlets-below .portletFooter {
@@ -1355,26 +1355,33 @@ div.portletsBelowContentE {
 }
 
 #portlets-below .portletFooter a {
-	color: #e5e5e5;
-	font-size: 0.9em;
+	color: &dtml-sitemapLinkColor;;
+	display: block;
+	background: transparent;
 }
 
-#portlets-below a, #portlets-below .state-published {
-	color: #e0e0e0 !important;
+#portlets-below a, #portlets-below .state-published
+{
+	color: &dtml-sitemapLinkColor; !important;
+	padding: 0.25em 5px;
 }
+
+#portlets-below .portletItem .state-published:hover,
+#portlets-below .portletItem a:hover {
+	color: &dtml-sitemapBackgroundColor; !important;
+	background: &dtml-sitemapLinkColor; !important;
+}
+
 
 /* Navigation Portlet */
 
 #portlets-below dd.portletItem .navTreeItem a, 
 #portlets-below .navTreeItem a,
-#portlets-below .navTreeItem a:hover,
 #portlets-below .navTreeCurrentItem
 {
     background: transparent;
     border: 0 !important;
-    padding: 0;
-    padding-top: 0 ;
-    padding-bottom: 0;
+    font-weight: normal;
 }
 
 /* YOUR CSS RULES STOP HERE */

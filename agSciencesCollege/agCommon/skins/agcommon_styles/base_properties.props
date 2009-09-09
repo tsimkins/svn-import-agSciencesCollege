@@ -121,3 +121,7 @@ documentSubHeadingColor:string=#666666
 footerBackgroundColor:string=#09285E
 footerLinkColor:string=#99CCFF
 footerTextColor:string=#528CA3
+
+sitemapBackgroundColor:string=#0F1A2F
+sitemapHeaderColor:string=#FFFFFF
+sitemapLinkColor:string=#e0e0e0

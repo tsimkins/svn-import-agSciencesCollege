@@ -7,12 +7,12 @@
         <a href="#" 
            class="tile"
            tal:condition="not:view/title"
-           tal:attributes="href string:${root/absolute_url}/sitemap" 
+           tal:attributes="href string:${root/absolute_url}" 
            i18n:translate="box_navigation">Navigation</a>
        <a href="#" 
            class="tile"
            tal:condition="view/title"
-           tal:attributes="href string:${root/absolute_url}/sitemap"
+           tal:attributes="href string:${root/absolute_url}"
            tal:content="view/title">Navigation</a>
         <span class="portletTopRight"></span>
     </dt>

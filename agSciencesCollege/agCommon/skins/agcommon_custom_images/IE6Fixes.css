@@ -61,3 +61,9 @@ body.section-front-page #centercolumn {
 img.image-full {
 	width: auto;
 }
+
+/* Hide #portlets-below */
+
+#portlets-below {
+	display: none;
+}
