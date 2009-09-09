@@ -1279,6 +1279,104 @@ div.comment img.avatar {
 	display: none;
 }
 
+/* Content Well Portlets for Sitemap */
+
+#portlets-below {
+	background: #333;
+	font-size: 0.80em;
+	margin-right: 6px;
+	margin-left: 6px;
+	margin-top: 0px;
+	padding-bottom: 6px;
+}
+
+#portlets-below div.portletsBelowContentF {
+	clear: both;
+	height: 1px;
+}
+
+div.portletsBelowContentA,
+div.portletsBelowContentB,
+div.portletsBelowContentC,
+div.portletsBelowContentD,
+div.portletsBelowContentE {
+	width: 20%;
+	float: left;
+}
+
+#portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
+#portlets-below .portletItem, #portlets-below .portletHeader {
+	background: transparent;
+	border: 0;
+}
+
+#portlets-below dl.portlet {
+    padding: 0.5em 0.25em 0.5em 0.75em;
+    margin: 0.5em;
+}
+
+#portlets-below .portletHeader {
+	text-transform: uppercase;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 0.5em 0em 0.25em 0em;
+}
+
+#portlets-below dd.portletItem
+{
+	padding: 0.25em 0;
+    margin: 0;
+}
+
+#portlets-below .portletNavigationTree dd.portletItem
+{
+    padding: 0;
+}
+
+#portlets-below .navTree li
+{
+	padding: 0.25em 0;
+    margin: 0;
+}
+
+#portlets-below .navTree li
+{
+	padding: 0.25em 0;
+    margin: 0;
+}
+
+#portlets-below .portletHeader a {
+	color: #ffffff;
+}
+
+#portlets-below .portletFooter {
+	text-align: left;
+	padding: 0.25em 0;
+}
+
+#portlets-below .portletFooter a {
+	color: #e5e5e5;
+	font-size: 0.9em;
+}
+
+#portlets-below a, #portlets-below .state-published {
+	color: #e0e0e0 !important;
+}
+
+/* Navigation Portlet */
+
+#portlets-below dd.portletItem .navTreeItem a, 
+#portlets-below .navTreeItem a,
+#portlets-below .navTreeItem a:hover,
+#portlets-below .navTreeCurrentItem
+{
+    background: transparent;
+    border: 0 !important;
+    padding: 0;
+    padding-top: 0 ;
+    padding-bottom: 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

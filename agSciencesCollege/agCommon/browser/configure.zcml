@@ -73,6 +73,15 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="contentwellportlets.portletsbelowcontent"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class="Products.ContentWellPortlets.browser.viewlets.PortletsBelowViewlet"
+        layer="Products.ContentWellPortlets.browser.interfaces.IContentWellPortlets"
+        permission="zope2.View"
+        />
+
+
 	<browser:page
 	 for="plone.portlets.interfaces.ILocalPortletAssignable"
 	 class="plone.app.portlets.browser.manage.ManageContextualPortlets"
@@ -105,7 +114,7 @@
 		permission="plone.app.portlets.ManagePortlets"
 	/>
 
- <include package="z3c.jbot" file="meta.zcml" />
+  <include package="z3c.jbot" file="meta.zcml" />
   <browser:templateOverrides
       directory="templates"
       layer=".interfaces.IThemeSpecific"
