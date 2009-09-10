@@ -12,6 +12,9 @@ allow_module('zope.component.getSiteManager')
 allow_module('Products.GlobalModules')
 allow_module('Products.GlobalModules.makeHomePage')
 
+allow_module('ZODB.POSException')
+allow_module('ZODB.POSException.POSKeyError')
+
 def makeHomePage(context):
     print context.portal_type
     print context.archetype_name
