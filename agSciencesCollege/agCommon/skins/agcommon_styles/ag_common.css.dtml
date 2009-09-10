@@ -1324,7 +1324,7 @@ div.portletsBelowContentE {
 	text-transform: uppercase;
 	font-size: 1.1em;
 	font-weight: bold;
-	padding: 0.5em 0em 0.25em 0em;
+	padding: 0.5em 0em 0.25em 5px;
 }
 
 #portlets-below dd.portletItem
@@ -1344,9 +1344,9 @@ div.portletsBelowContentE {
     margin: 0;
 }
 
-#portlets-below .portletHeader a {
-	color: &dtml-sitemapHeaderColor;;
-	padding: 0 0 0 5px;
+#portlets-below .portletHeader a, #portlets-below .portletHeader span {
+	color: &dtml-sitemapHeaderColor; !important;
+	padding: 0;
 }
 
 #portlets-below .portletFooter {
@@ -1364,6 +1364,7 @@ div.portletsBelowContentE {
 {
 	color: &dtml-sitemapLinkColor; !important;
 	padding: 0.25em 5px;
+	display: block;
 }
 
 #portlets-below .portletItem .state-published:hover,
@@ -1383,6 +1384,10 @@ div.portletsBelowContentE {
     border: 0 !important;
     font-weight: normal;
 }
+
+
+/* RSS Feedmixer portlet */
+
 
 /* YOUR CSS RULES STOP HERE */
 
