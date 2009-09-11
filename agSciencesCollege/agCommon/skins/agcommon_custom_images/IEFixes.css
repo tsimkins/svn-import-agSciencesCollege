@@ -208,4 +208,8 @@ ul.leftColumnButtons li {
     margin-top: 2.5em;
 }
 
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
 /*  */
