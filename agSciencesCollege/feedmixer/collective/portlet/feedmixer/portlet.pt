@@ -13,8 +13,9 @@
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
         tal:repeat="entry view/entries">
         <dd class="portletItem"
-            tal:define="oddrow repeat/entry/odd"
-            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+            tal:define="oddrow repeat/entry/odd;
+                        isFirst repeat/entry/start"
+            tal:attributes="class python:isFirst and 'portletItem first' or oddrow and 'portletItem even' or 'portletItem odd'">
 
             <a href=""
                class ="title"
