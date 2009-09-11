@@ -2,10 +2,15 @@ import feedparser
 from datetime import datetime
 from Products.CMFCore.utils import getToolByName
 from zope.app.component.hooks import getSite
+from AccessControl.SecurityManagement import newSecurityManager
 
 url = 'http://live.psu.edu/wirerss/69'
 
 def sync(myContext):
+	# Be an admin
+	admin = myContext.acl_users.getUserById('trs22')
+	admin = admin.__of__(myContext.acl_users)
+	newSecurityManager(None, admin) 
 
 	print "Syncing RSS feeds from %s" % url
 	site = getSite()
@@ -44,7 +49,7 @@ def sync(myContext):
 			theArticle.setEffectiveDate(dateStamp)
 						
 			theArticle.setExcludeFromNav(True)
-			theArticle.indexObject()
+			theArticle.reindexObject()
 			
 		else:
 			theReturn.append("Skipped %s" % id)
