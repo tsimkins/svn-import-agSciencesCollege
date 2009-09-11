@@ -49,7 +49,7 @@ def sync(myContext):
 			theArticle.setEffectiveDate(dateStamp)
 						
 			theArticle.setExcludeFromNav(True)
-			theArticle.reindexObject()
+			theArticle.indexObject()
 			
 		else:
 			theReturn.append("Skipped %s" % id)
