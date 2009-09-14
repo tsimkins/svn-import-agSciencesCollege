@@ -35,10 +35,13 @@ JAVASCRIPTS             = (
                         
 EXTERNAL_METHODS        = None
 
-
+"""
 GALLERYVIEWS = ('pgv_sg_simpletimed_view',
                 'pgv_sg_carouseltimed_view',
                 'pgv_sg_carousel_view',                    
                 'pgv_sg_simpletimed_big_view',
                 'pgv_sg_carouseltimed_big_view',
                 'pgv_sg_carousel_big_view',)
+"""
+# Limiting gallery view to just the common one.
+GALLERYVIEWS = ('pgv_sg_carousel_view',)

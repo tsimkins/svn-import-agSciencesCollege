@@ -132,8 +132,8 @@ class PloneGalleryView(BrowserView):
 
         
 
-        thumbHeight = 128 
-        thumbWidth = 128
+        thumbHeight = 64
+        thumbWidth = 64
         thumbSpacing = 10
         
         JSCode = JSCode % (showArrows, showCarousel, showInfopane, timed, embedLinks, delay, thumbHeight, thumbWidth, thumbSpacing,fadeDuration, thumbIdleOpacity, textShowCarousel, startGallery)
