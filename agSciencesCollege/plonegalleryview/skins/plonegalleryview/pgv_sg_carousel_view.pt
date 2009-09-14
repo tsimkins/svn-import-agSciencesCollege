@@ -32,12 +32,6 @@
       <tal:SmoothGalleryJSCode tal:replace="structure python: view.genPGVSmoothGalleryJSCode(showCarousel='true', timed='false')" />
 
       <div align="center">
-        <a href="pgv_sg_carousel_big_view"
-           class="GSizeLink"
-           i18n:translate="show_big_images">show big images</a>
-        <br />
-        <br />
-            <div id="myCarousel" class="jdGallery"></div> 
         	<div id="myGallery" class="small">
             	<tal:loop repeat="result images">
             	  <div class="imageElement">
@@ -51,7 +45,7 @@
             		  <img tal:attributes="alt python: result.Title() + ' - small';
                     					   title python: '';
                     					   class python: 'full';
-                    					   src python: result.absolute_url() + '/image_preview';" />   						       
+                    					   src python: result.absolute_url() + '/image_gallery';" />   						       
                 </div>
             	</tal:loop>              
             
@@ -69,12 +63,13 @@
                       		    <img tal:attributes="alt python: result.Title + ' - small';
                       			  			         title python: '';
                       						         class python: 'full';
-                      		  				         src python: result.getURL() + '/image_preview';" />
+                      		  				         src python: result.getURL() + '/image_gallery';" />
                             </div>
               	        </tal:loop>
                     </tal:vars>
                 </tal:loop>   
             </div>      
+            <div id="myCarousel" class="jdGallery"></div> 
         </div>
         <div class="visualClear"><!-- clears floating areas --></div> 
     </div>

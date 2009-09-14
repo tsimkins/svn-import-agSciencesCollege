@@ -24,7 +24,7 @@ html{
 {
     text-align: center;
     margin: 0px 0px 10px 0px;
-    height:165px;
+    height:87px;
     overflow:hidden;
     background: #000000;
 }
@@ -95,7 +95,7 @@ html{
 {
 	cursor: pointer;
 	background: #000;
-	background-position: center center;
+	background-position: center 20px;
 	float: left;
 	border: solid 1px #fff;
 }
@@ -169,8 +169,8 @@ html{
 */
 
 .pgv_sg_simpletimed_view #myGallery{
-	width: 510px;
-	height: 426px;
+	width: 585px;
+	height: 436px;
 }
 .pgv_sg_simpletimed_big_view #myGallery{
 	width: 830px;
@@ -186,12 +186,12 @@ html{
 
 .pgv_sg_carouseltimed_view #myGallery,
 .pgv_sg_carousel_view #myGallery{
-	width: 510px;
-	height: 426px;
+	width: 585px;
+	height: 436px;
 }
 .pgv_sg_carouseltimed_view #myCarousel,
 .pgv_sg_carousel_view #myCarousel{
-	width: 512px;
+	width: 587px;
 }
 .pgv_sg_carouseltimed_view .jdGallery a.carouselBtn,
 .pgv_sg_carousel_view .jdGallery a.carouselBtn{

@@ -67,7 +67,7 @@
 	margin: 0;
 	margin: 2px 5px;
 	font-weight: bold;
-	color: inherit;
+	color: #FFFFFF;
 }
 
 .jdGallery .slideInfoZone p
@@ -171,10 +171,10 @@
 	width: 25%;
 	cursor: pointer;
 	z-index:10;
-	filter:alpha(opacity=20);
-	-moz-opacity:0.2;
-	-khtml-opacity: 0.2;
-	opacity: 0.2;
+	filter:alpha(opacity=65);
+	-moz-opacity:0.65;
+	-khtml-opacity: 0.65;
+	opacity: 0.65;
 }
 
 * html .jdGallery a.right, * html .jdGallery a.left
@@ -184,16 +184,16 @@
 
 .jdGallery a.right:hover, .jdGallery a.left:hover
 {
-	filter:alpha(opacity=80);
-	-moz-opacity:0.8;
-	-khtml-opacity: 0.8;
-	opacity: 0.8;
+	filter:alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
 }
 
 .jdGallery a.left
 {
 	left: 0;
-	top: 0;
+	top: -28px;
 	background: url('img/fleche1.png') no-repeat center left;
 }
 
@@ -202,7 +202,7 @@
 .jdGallery a.right
 {
 	right: 0;
-	top: 0;
+	top: -28px;
 	background: url('img/fleche2.png') no-repeat center right;
 }
 

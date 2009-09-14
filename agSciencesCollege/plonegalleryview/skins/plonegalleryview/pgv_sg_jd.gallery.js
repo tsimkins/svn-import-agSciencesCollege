@@ -52,7 +52,7 @@ var gallery = new Class({
 			thumbWidth: 128,
 			thumbSpacing: 10,
 			embedLinks: true,
-			fadeDuration: 700,
+			fadeDuration: 10,
 			thumbIdleOpacity: 0.6,
 			timed: false,
 			delay: 7000,
@@ -170,7 +170,7 @@ var gallery = new Class({
 					'margin':'0px',
 					'padding':'0px',
 					'backgroundImage':"url('" + this.galleryData[i].image + "')",
-					'backgroundPosition':"center center",
+					'backgroundPosition':"center 20px",
 					'opacity':'0'
 				}).injectInside(el),
 				'opacity',
@@ -270,7 +270,7 @@ var gallery = new Class({
 			{
 				if (this.options.showInfopane)
 				{
-					this.showInfoSlideShow.delay((500 + this.options.fadeDuration), this);
+					this.showInfoSlideShow.delay((10 + this.options.fadeDuration), this);
 				} else
 					if (this.options.showCarousel)
 						this.centerCarouselOn(position);
@@ -424,7 +424,7 @@ var gallery = new Class({
 		element = this.slideInfoZone.element;
 		element.getElement('h2').setHTML(this.galleryData[this.currentIter].title);
 		element.getElement('p').setHTML(this.galleryData[this.currentIter].description);
-		this.slideInfoZone.custom({'opacity': [0, this.options.slideInfoZoneOpacity], 'height': [0, this.slideInfoZone.normalHeight]});
+		this.slideInfoZone.custom({'opacity': [0, this.options.slideInfoZoneOpacity], 'height': [this.slideInfoZone.normalHeight, this.slideInfoZone.normalHeight]});
 		if (this.options.showCarousel)
 			this.slideInfoZone.chain(this.centerCarouselOn.pass(this.currentIter, this));
 		return this.slideInfoZone;
@@ -432,7 +432,7 @@ var gallery = new Class({
 	hideInfoSlideShow: function() {
 		this.fireEvent('onHideInfopane');
 		this.slideInfoZone.clearTimer();
-		this.slideInfoZone.custom({'opacity': 0, 'height': 0});
+		this.slideInfoZone.custom({'opacity': 0, 'height': this.slideInfoZone.normalHeight});
 		return this.slideInfoZone;
 	},
 	makeLink: function(num) {
