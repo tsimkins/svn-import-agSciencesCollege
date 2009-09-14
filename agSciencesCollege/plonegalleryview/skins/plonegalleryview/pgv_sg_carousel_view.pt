@@ -72,6 +72,7 @@
             <div id="myCarousel" class="jdGallery"></div> 
         </div>
         <div class="visualClear"><!-- clears floating areas --></div> 
+        <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontentbody" />
     </div>
   </tal:main-macro>
 </div>
