@@ -69,7 +69,7 @@ function changeATMPImageSource(elemID, newURL, newTitle) {
             var href        = parent.href;
             var token2      = href.split("/");
             var oldID       = token2[token2.length - 2];
-            var href        = href.replace(oldID, newID).replace('/image_mini', '/image_large');
+            var href        = href.replace(oldID, newID).replace('/image_mini', '/image');
             parent.setAttribute('href', href);
             parent.setAttribute('title', newTitle);
         }

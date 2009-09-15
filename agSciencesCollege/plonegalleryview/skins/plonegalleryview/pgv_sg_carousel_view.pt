@@ -37,7 +37,7 @@
             	  <div class="imageElement">
       	              <h3 tal:content="result/Title"> Item 1 Title </h3>
             		  <p tal:content="result/Description">Item 1 Description</p>
-                      <a tal:attributes="href python: result.absolute_url() + '/image_large';" title="zoom" class="open" target="_blank" rel="lightbox"></a>
+                      <a tal:attributes="href python: result.absolute_url() + '/image';" title="Zoom Image" class="open" target="_blank" rel="lightbox"></a>
                       <img tal:attributes="alt python: result.Title() + ' - thumbnail';
                   			  			   title python: '';
                   						   class python: 'thumbnail';
@@ -55,7 +55,7 @@
             	            <div class="imageElement">
                 	            <h3 tal:content="result/Title"> Item 1 Title </h3>
                       		    <p tal:content="result/Description">Item 1 Description</p>
-                      		    <a tal:attributes="href python: result.absolute_url() + '/image_large';" title="zoom" class="open" target="_blank" rel="lightbox"></a>
+                      		    <a tal:attributes="href python: result.absolute_url() + '/image';" title="Zoom Image" class="open" target="_blank" rel="lightbox"></a>
                       		  	<img tal:attributes="alt python: result.Title + ' - thumbnail';
                       			  			         title python: '';
                       						         class python: 'thumbnail';
