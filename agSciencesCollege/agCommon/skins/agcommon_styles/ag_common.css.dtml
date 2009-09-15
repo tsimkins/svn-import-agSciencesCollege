@@ -1186,7 +1186,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer {
 	clear: left;
 }
 
-body.template-atct_album_view .contentLeadImageContainer {
+body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view  .contentLeadImageContainer {
 	display: none;
 }
 
