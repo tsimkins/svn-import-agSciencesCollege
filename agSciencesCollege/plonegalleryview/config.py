@@ -16,9 +16,9 @@ STYLESHEETS             = (
                            {'id':           'pgv_sg_jd.gallery.css',
                             'media':        'all',
                             'rendering':    'import'},
-#                           {'id':           'pgv_sg_slightbox.css',
-#                            'media':        'all',
-#                            'rendering':    'import'}, 
+                           {'id':           'pgv_sg_slightbox.css',
+                            'media':        'all',
+                            'rendering':    'import'}, 
                            {'id':           'pgv_sg_styles.css',
                             'media':        'all',
                             'rendering':    'import'},                           
@@ -29,8 +29,8 @@ JAVASCRIPTS             = (
                            'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                           
                            {'id':           'pgv_sg_jd.gallery.js',
                            'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                           
-#                           {'id':           'pgv_sg_slightbox.js',                           
-#                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                       
+                           {'id':           'pgv_sg_slightbox.js',                           
+                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                       
                         )
                         
 EXTERNAL_METHODS        = None

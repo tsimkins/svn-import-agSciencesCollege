@@ -37,7 +37,7 @@
 	background-color: #000;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('img/loading-bar-black.gif');
+	background-image: url('loading-bar-black.gif');
 }
 
 .jdGallery .slideInfoZone
@@ -95,7 +95,7 @@
 	bottom: 0;
 	right: 30px;
 	height: 20px;
-	/*width: 100px; background: url('img/carousel_btn.gif') no-repeat;*/
+	/*width: 100px; background: url('carousel_btn.gif') no-repeat;*/
 	text-align: center;
 	padding: 0 10px;
 	font-size: 13px;
@@ -194,19 +194,19 @@
 {
 	left: 0;
 	top: -28px;
-	background: url('img/fleche1.png') no-repeat center left;
+	background: url('fleche1.png') no-repeat center left;
 }
 
-* html .jdGallery a.left { background: url('img/fleche1.gif') no-repeat center left; }
+* html .jdGallery a.left { background: url('fleche1.gif') no-repeat center left; }
 
 .jdGallery a.right
 {
 	right: 0;
 	top: -28px;
-	background: url('img/fleche2.png') no-repeat center right;
+	background: url('fleche2.png') no-repeat center right;
 }
 
-* html .jdGallery a.right { background: url('img/fleche2.gif') no-repeat center right; }
+* html .jdGallery a.right { background: url('fleche2.gif') no-repeat center right; }
 
 .jdGallery a.open
 {
@@ -231,8 +231,8 @@
 	opacity: 0.8;
 }
 
-.withArrows a.open:hover { background: url('img/open.png') no-repeat center center; }
+.withArrows a.open:hover { background: url('open.png') no-repeat center center; }
 
-* html .withArrows a.open:hover { background: url('img/open.gif') no-repeat center center;
+* html .withArrows a.open:hover { background: url('open.gif') no-repeat center center;
 	filter:alpha(opacity=80); }
 	

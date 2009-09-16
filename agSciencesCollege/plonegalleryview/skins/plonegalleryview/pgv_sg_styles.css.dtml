@@ -15,7 +15,7 @@ most of them overwrites the defaults in original jd.gallery.css
 
 
 
-# fix the flicker in IE6 when the images change in the main slideshow window, thx to Mike Pearce ;-)
+/* fix the flicker in IE6 when the images change in the main slideshow window, thx to Mike Pearce ;-) */
 html{
   filter: expression(document.execCommand("BackgroundImageCache", false, true));
 }
@@ -50,7 +50,7 @@ html{
 .jdGallery a.carouselBtn
 {
 	position: absolute;
-	bottom: 10;
+	bottom: 10px;
 	right: 30px;
 	height: 20px;
 	width: 100px; background: url('pgv_sg_carousel_btn.gif') no-repeat;

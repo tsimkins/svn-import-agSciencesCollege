@@ -45,6 +45,7 @@ var $removeEvents = function (object, type)
 var gallery = new Class({
 	initialize: function(element, options) {
 		this.setOptions({
+			lightbox: true,
 			showArrows: true,
 			showCarousel: true,
 			showInfopane: true,
@@ -94,7 +95,8 @@ var gallery = new Class({
 		{
 			this.currentLink = new Element('a').addClass('open').setProperties({
 				href: '#',
-				title: ''
+				title: '',
+                rel: 'lightbox'
 			}).injectInside(element);
 			if ((!this.options.showArrows) && (!this.options.showCarousel))
 				this.galleryElement = element = this.currentLink;
