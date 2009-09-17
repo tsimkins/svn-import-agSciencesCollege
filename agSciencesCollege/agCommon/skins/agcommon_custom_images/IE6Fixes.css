@@ -67,3 +67,16 @@ img.image-full {
 #portlets-below {
 	display: none;
 }
+
+
+/* Slideshow Widths */
+
+.pgv_sg_carouseltimed_view #myGallery,
+.pgv_sg_carousel_view #myGallery{
+	width: 585px; 
+}
+.pgv_sg_carouseltimed_view #myCarousel,
+.pgv_sg_carousel_view #myCarousel{
+	width: 587px; 
+	padding: 0;
+}
