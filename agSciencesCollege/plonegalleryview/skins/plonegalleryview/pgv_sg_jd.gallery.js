@@ -66,7 +66,7 @@ var gallery = new Class({
 			linkSelector: "a.open",
 			imageSelector: "img.full",
 			thumbnailSelector: "img.thumbnail",
-			slideInfoZoneOpacity: 0.9,
+			slideInfoZoneOpacity: 1,
 			carouselMinimizedOpacity: 0.9,
 			carouselMinimizedHeight: 20,
 			carouselMaximizedOpacity: 0.9, 

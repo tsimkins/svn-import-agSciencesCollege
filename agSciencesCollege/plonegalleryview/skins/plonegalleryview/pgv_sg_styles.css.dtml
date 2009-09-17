@@ -155,7 +155,7 @@ html{
 	left: 0;
 	bottom: 0;
 	height: 5em;
-	background: #333;
+	background: #1c1c1c;
 	color: #fff;
 	text-indent: 0;
 	overflow: hidden;
@@ -186,12 +186,15 @@ html{
 
 .pgv_sg_carouseltimed_view #myGallery,
 .pgv_sg_carousel_view #myGallery{
-	width: 585px;
+/*	width: 585px; */
+    width: 100%;
 	height: 436px;
 }
 .pgv_sg_carouseltimed_view #myCarousel,
 .pgv_sg_carousel_view #myCarousel{
-	width: 587px;
+/*	width: 587px; */
+	width: 100%;
+	padding: 0px 1px;
 }
 .pgv_sg_carouseltimed_view .jdGallery a.carouselBtn,
 .pgv_sg_carousel_view .jdGallery a.carouselBtn{

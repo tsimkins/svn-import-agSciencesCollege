@@ -63,8 +63,8 @@
 
 #lbBottom {
 	font-family: Verdana, Helvetica, sans-serif;
-	font-size: 10px;
-	color: #666;
+	font-size: 1em;
+	color: #FFFFFF;
 	line-height: 1.4em;
 	text-align: left;
 	padding-left: 10px;
@@ -107,7 +107,7 @@
 #lbDescription #lbTitle {
 	float: left;
 	clear: both;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 #lbDescription #lbCaption {
