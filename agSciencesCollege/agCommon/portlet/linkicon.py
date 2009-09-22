@@ -33,7 +33,7 @@ class Assignment(base.Assignment):
 
 
 class Renderer(base.Renderer):
-    _template = ViewPageTemplateFile('linkicon.pt')
+    _template = ViewPageTemplateFile('templates/linkicon.pt')
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)

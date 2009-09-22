@@ -24,22 +24,41 @@ Note: insert-before and -after accept the value "*" which means
 
 <object>
 
-    <!-- New Viewlets -->
+    <!-- Display Viewlets -->
+    
+    <order manager="plone.htmlhead" skinname="agCommon">
+        <viewlet name="agcommon.htmlhead.title" insert-after="*"/>
+    </order>
+
+    <order manager="plone.portaltop" skinname="agCommon">
+        <viewlet name="plone.header" insert-before="*"/>
+        <viewlet name="plone.personal_bar" insert-after="plone.header"/>
+        <viewlet name="plone.path_bar" insert-after="plone.personal_bar"/>
+    </order>
+
+    <order manager="plone.portalheader" skinname="agCommon">
+        <viewlet name="plone.searchbox" insert-before="*"/>
+        <viewlet name="plone.logo" insert-after="plone.searchbox"/>
+    </order>
 
     <order manager="agcommon.abovecontentviews" skinname="agCommon">
-        <viewlet name="agcommon.topnavigation" />
+        <viewlet name="agcommon.topnavigation" insert-before="*"/>
     </order>
-    
-    <order manager="agcommon.belowleftcolumn" skinname="agCommon">
-        <viewlet name="agcommon.contact" />
+
+    <order manager="plone.contentviews" skinname="agCommon">
+        <viewlet name="plone.contentviews" insert-after="contentwellportlets.portletsabovecontent"/>
+        <viewlet name="plone.contentactions" insert-after="plone.contentviews"/>
     </order>
-    
+
     <order manager="plone.belowcontenttitle" skinname="agCommon">
         <viewlet name="agcommon.homepageimage" insert-before="plone.belowcontenttitle.documentbyline"/>
+        <viewlet name="agcommon.belowcontenttitle.keywords" insert-after="plone.belowcontenttitle.documentbyline"/>
     </order>
     
     <order manager="plone.abovecontentbody" skinname="agCommon">
-        <viewlet name="agcommon.rightcolumn" />
+        <viewlet name="collective.contentleadimage.full" insert-before="*"/>
+        <viewlet name="agcommon.addthis" insert-after="collective.contentleadimage.full" />
+        <viewlet name="agcommon.rightcolumn" insert-after="agcommon.addthis" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.rightcolumn" />
     </order>
 
@@ -62,11 +81,19 @@ Note: insert-before and -after accept the value "*" which means
     <hidden manager="plone.contentviews" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsabovecontent" />
     </hidden>
+
+    <hidden manager="plone.belowcontenttitle" skinname="agCommon">
+        <viewlet name="collective.contentleadimage.thumbnail" />
+        <viewlet name="plone.belowcontenttitle.keywords"/>
+    </hidden>
     
     <hidden manager="plone.belowcontent" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsbelowcontent" />
     </hidden>
 
+    <hidden manager="plone.htmlhead" skinname="agCommon">
+        <viewlet name="plone.htmlhead.title" />
+    </hidden>
 
 
 </object>

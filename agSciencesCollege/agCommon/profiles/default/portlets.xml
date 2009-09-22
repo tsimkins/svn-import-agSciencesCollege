@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <portlets>
  
-    <portletmanager
-        name="agcommon.contact"
-        type="Products.agCommon.browser.interfaces.IContact"
-    /> 
-
 	<portletmanager
 		name="agcommon.rightcolumn"
 		type="Products.agCommon.browser.interfaces.IRightColumn"

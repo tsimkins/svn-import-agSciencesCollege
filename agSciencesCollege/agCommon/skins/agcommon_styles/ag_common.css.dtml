@@ -76,6 +76,8 @@ dt {
 	float: left;
 	background: #FFFFFF;
 	padding-bottom: 20px;
+	border-left: 1px solid #808080;
+	margin-left: -2px;
 }
 
 #portal-header {
@@ -237,17 +239,17 @@ ul.navTreeLevel1 li.navTreeItem {
 	border: none;
 }
 #portal-column-one #portal-column-one-visualPadding.visualPadding {
-	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+/*	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom; */
 	padding: 0 0 150px 0;
 }
 
 #portal-column-one {
-	background: &dtml-leftNavBackgroundColor;;
+	background: transparent;
 	border-color: #808080;
 	border-style: solid;
 	border-width: 0 1px 0 0;
 /*	min-height: 375px; */
-	padding: 2px 0px 0px 0px;
+	padding: 2px 0px 150px 0px;
 	width: 186px;
 	float: left;
 	margin: 0px 0px 0px 0px;
@@ -280,6 +282,15 @@ ul.navTreeLevel1 li.navTreeItem {
 
 .searchSection {
 	display: none;
+}
+
+/* Contact Portlet */
+#contact {
+    margin: 0 0 0 6px;
+    border-color:#808080;
+    border-style:solid;
+    border-width:0 0 0 1px;
+    display: none;
 }
 
 #contact p {
@@ -977,6 +988,7 @@ div.eventButtons img {
 	color: #333333;
 	padding: 4px;
 	border: 1px solid #CCCCCC;
+	display: none;
 }
 
 #addthis a {
@@ -1174,6 +1186,13 @@ body.template-news_listing dd {
 	margin-bottom: 2em;
 	margin-left: 0;
 }
+
+/* Fix rightcolumn issue */
+
+body.template-news_listing #rightcolumn dd {
+    margin-bottom: 0;
+}
+
 
 body.template-newsitem_view .effectiveDate {
 	color: #76797C;
@@ -1408,6 +1427,132 @@ body.template-document_homepage_view #centercolumn {
 body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletItem {
     font-size: 1.1em;
 }
+
+
+/* Configure Plone Portal Column Two */
+
+#portal-column-two {
+	padding: 1em 0.5em 0 0.5em;
+	margin: 0 0 0 3px;
+	float: right;
+    clear: none;
+	position: relative;
+	background: &dtml-insideRightPortletBackgroundColor;;
+	width: 15em;
+	border-width: 0 0 0 2px;
+	border-color: &dtml-insideRightPortletBackgroundColor;;
+	border-style: solid;
+}
+
+#portal-column-two .visualPadding {
+    padding: 0;
+}
+
+#portal-column-two>div {
+	margin: 0px 0px 30px 0px;
+}
+
+#portal-column-two .portletWrapper {
+	background: transparent;
+	border: none;	
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 0.88em;
+}
+
+#portal-column-two .portlet {
+	border-width: 0px;
+	margin: 0px 0px 0px auto;
+	background: transparent;
+}
+
+#portal-column-two .portletHeader {
+	background: transparent; 
+	color: &dtml-insideRightPortletHeaderBackgroundColor;; 
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 2px 0px;
+	text-align: left;
+	text-transform: uppercase;
+	border-width: 0px 0px 1px 0px;
+	border-style: solid;
+	border-color: &dtml-insideRightPortletHeaderBackgroundColor;; 
+	margin: 6px; 
+}
+
+#portal-column-two .portletHeader a {  
+	color: &dtml-insideRightPortletHeaderTextColor;;
+}
+
+#portal-column-two .portletItem {
+	background: transparent;
+	border-width: 0px;
+	color: &dtml-insideRightPortletTextColor;;
+}
+
+#portal-column-two .portletItem ul {
+	margin: 0px;
+	padding: 0px;
+	float: none;
+}
+
+#portal-column-two .portletItem li {
+	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 5px;
+	list-style-image: none;
+	list-style-type: none;
+	margin: 2px 5px 5px;
+	padding: 1px 0 1px 13px;
+	font-size: 1.00em;
+	color: &dtml-insideRightPortletTextColor;;
+}
+
+#portal-column-two .portletItem a {
+	color: &dtml-insideRightPortletLinkColor;;
+}
+
+#portal-column-two .portletItem a:hover {
+	color: &dtml-insideRightPortletLinkHoverColor;;
+}
+
+#portal-column-two .portletFooter {
+	background: &dtml-insideRightPortletBackgroundColor;; 
+}
+
+#portal-column-two ul li a {
+	color: &dtml-insideRightPortletLinkColor;;
+	font-size: 1.00em;
+	text-decoration: none;
+	border: 0px;
+	padding: 0px;
+}
+
+#portal-column-two .navTreeCurrentItem {
+    border: 0 !important;
+    font-weight: bold;
+}
+
+/* End Portal Column Two */
+
+
+/* Updates for portal-column-content */
+#portal-column-content.sr {
+    margin-right:0;
+}
+
+#portal-column-content.sr #portal-content-wrapper {
+    border-width: 0 16.25em 0 1px;
+    border-right-color: &dtml-insideRightPortletBackgroundColor;;
+    border-left-color: #808080;
+    border-style: solid;
+    margin: 0 0 0 -2px;
+    padding: 0;
+    width: auto;
+    float: none;
+}
+
+#portal-columns {
+	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+} 
 
 /* YOUR CSS RULES STOP HERE */
 
