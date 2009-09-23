@@ -46,6 +46,7 @@ Note: insert-before and -after accept the value "*" which means
     </order>
 
     <order manager="plone.contentviews" skinname="agCommon">
+        <viewlet name="agcommon.addthis" insert-before="*" />
         <viewlet name="plone.contentviews" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="plone.contentactions" insert-after="plone.contentviews"/>
     </order>
@@ -57,8 +58,7 @@ Note: insert-before and -after accept the value "*" which means
     
     <order manager="plone.abovecontentbody" skinname="agCommon">
         <viewlet name="collective.contentleadimage.full" insert-before="*"/>
-        <viewlet name="agcommon.addthis" insert-after="collective.contentleadimage.full" />
-        <viewlet name="agcommon.rightcolumn" insert-after="agcommon.addthis" />
+        <viewlet name="agcommon.rightcolumn" insert-after="collective.contentleadimage.full" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.rightcolumn" />
     </order>
 

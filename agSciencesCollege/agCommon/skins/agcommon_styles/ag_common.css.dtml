@@ -14,7 +14,8 @@ body {
 
 #background-stripe-one, 
 #background-stripe-two, 
-#background-stripe-three {
+#background-stripe-three, 
+#background-stripe-four {
 	margin:0;
 	padding:0;
 	border:0;
@@ -40,7 +41,15 @@ body {
 	top: 75px;
 	height: 23px;
 }
-
+#background-stripe-four {
+	background: transparent;
+	top: 98px;
+	height: 900px;
+    background-image:url('&dtml-portal_url;/gradientBackground.png?startColor=<dtml-var expr="backgroundStripeOneColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&height=600');
+	background-repeat: repeat-x;
+	background-position: left 300px;
+	opacity: 1;
+}
 /* Finally had to break out the old .clearboth */
 .clearboth {
 	font-size: 0.1em;
@@ -249,7 +258,7 @@ ul.navTreeLevel1 li.navTreeItem {
 	border-style: solid;
 	border-width: 0 1px 0 0;
 /*	min-height: 375px; */
-	padding: 2px 0px 150px 0px;
+	padding: 2px 0px 0 0px;
 	width: 186px;
 	float: left;
 	margin: 0px 0px 0px 0px;
@@ -444,6 +453,7 @@ body.template-document_homepage_view .documentActions {
 	margin: 0px;
 	position: relative;
 	clear: both;
+    display: none;
 }
 
 #rightcolumn>div {
@@ -534,6 +544,7 @@ body.template-document_homepage_view .documentByLine {
 }
 
 body.template-document_homepage_view #rightcolumn {
+    display: block;
 	float: right;
 	margin: 0 3px 3px 3px;
 	padding: 0px;
@@ -654,7 +665,7 @@ body.template-document_homepage_view #homepageimage {
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: 3px 3px 3px 2px;
+	margin: 3px 3px 3px 4px;
 	text-align: left;
 	padding: 0px;
 }
@@ -987,8 +998,11 @@ div.eventButtons img {
 	font-size: 0.88em;
 	color: #333333;
 	padding: 4px;
-	border: 1px solid #CCCCCC;
-	display: none;
+	border: 0px solid #CCCCCC;
+    display: block;
+    float: right;
+    margin: 8px 6px 5px 8px;
+    height: 1.6em;
 }
 
 #addthis a {
@@ -1406,7 +1420,7 @@ div.portletsBelowContentE {
 /* RSS Feedmixer portlet in centercolumn */
 body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader {
     display: block;
-    margin: -5px -7px 0px -10px;
+    margin: -5px -7px 0px -7px;
     font-size: 0.88em;
     font-weight: bold;
     text-align: left;
@@ -1435,8 +1449,6 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 	padding: 1em 0.5em 0 0.5em;
 	margin: 0 0 0 3px;
 	float: right;
-    clear: none;
-	position: relative;
 	background: &dtml-insideRightPortletBackgroundColor;;
 	width: 15em;
 	border-width: 0 0 0 2px;

@@ -107,7 +107,7 @@
 
     <browser:viewlet
         name="agcommon.addthis"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        manager="plone.app.layout.viewlets.interfaces.IContentViews"
         layer=".interfaces.IThemeSpecific"
         class=".viewlets.AddThisViewlet"
         permission="zope2.View"
