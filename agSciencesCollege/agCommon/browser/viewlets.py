@@ -39,7 +39,14 @@ class AddThisViewlet(ViewletBase):
 											name=u'plone_portal_state')
 		self.anonymous = self.portal_state.anonymous()
 		
+class FooterViewlet(ViewletBase):   
+	index = ViewPageTemplateFile('templates/footer.pt')
 
+	def update(self):
+		self.portal_state = getMultiAdapter((self.context, self.request),
+											name=u'plone_portal_state')
+		self.anonymous = self.portal_state.anonymous()
+		
 class TitleViewlet(ViewletBase):
 	
 	def update(self):

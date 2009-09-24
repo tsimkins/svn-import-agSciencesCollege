@@ -132,6 +132,7 @@
     <browser:viewlet
         name="plone.footer"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.FooterViewlet"
         template="templates/footer.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"

@@ -11,7 +11,7 @@ ul, ol, dl {
 }
 
 #portal-column-content {
-	margin-right: 10px;
+	margin-right: 0px;
 }
 
 body.template-document_homepage_view #homepageimage {
@@ -35,13 +35,13 @@ body.template-document_homepage_view #homepageimage {
 }
 
 body.section-front-page #rightcolumn {
-	margin-right: -5px;
+	margin-right: 2px;
 	margin-left: 0px;
 }
 
 body.section-front-page #centercolumn {
 	border: 0px;
-	margin-right: 175px;
+	margin-right: 160px;
 }
 
 .newsImageContainer {
@@ -80,3 +80,4 @@ img.image-full {
 	width: 587px; 
 	padding: 0;
 }
+
