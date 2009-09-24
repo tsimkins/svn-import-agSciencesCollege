@@ -213,3 +213,7 @@ ul.leftColumnButtons li {
 }
 
 /*  */
+
+#portlets-above ul {
+    list-style-image: none;
+}

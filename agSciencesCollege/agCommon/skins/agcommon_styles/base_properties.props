@@ -125,3 +125,7 @@ footerTextColor:string=#528CA3
 sitemapBackgroundColor:string=#0F1A2F
 sitemapHeaderColor:string=#FFFFFF
 sitemapLinkColor:string=#e0e0e0
+
+bodySitemapBackgroundColor:string=#FFFFFF
+bodySitemapHeaderColor:string=#0F1A2F
+bodySitemapLinkColor:string=#00015F
