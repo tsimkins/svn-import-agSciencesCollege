@@ -16,18 +16,18 @@
       of your product (on the filesystem) as Filesystem Directory Views within
       the portal_skins tool, so that they become usable as skin layers.
       -->
- <object name="agcommon_custom_images"
+ <object name="agcommon_images"
     meta_type="Filesystem Directory View"
-    directory="Products.agCommon:skins/agcommon_custom_images"/>
+    directory="Products.agCommon:skins/agcommon_images"/>
  <object name="agcommon_styles"
     meta_type="Filesystem Directory View"
     directory="Products.agCommon:skins/agcommon_styles"/>
  <object name="agcommon_javascript"
     meta_type="Filesystem Directory View"
     directory="Products.agCommon:skins/agcommon_javascript"/>
- <object name="agcommon_custom_templates"
+ <object name="agcommon_templates"
     meta_type="Filesystem Directory View"
-    directory="Products.agCommon:skins/agcommon_custom_templates"/>
+    directory="Products.agCommon:skins/agcommon_templates"/>
 
  <!-- A skin-path in this file corresponds to a Skin Selection in the
      'Properties' tab of the portal_skins tool, in the ZMI.
@@ -46,11 +46,11 @@
        -->
   <layer name="agcommon_styles"
      insert-after="custom"/>
-  <layer name="agcommon_custom_images"
+  <layer name="agcommon_images"
      insert-after="agcommon_styles"/>
-  <layer name="agcommon_custom_templates"
-     insert-after="agcommon_custom_images"/>
+  <layer name="agcommon_templates"
+     insert-after="agcommon_images"/>
   <layer name="agcommon_javascript"
-     insert-after="agcommon_custom_template"/>
+     insert-after="agcommon_template"/>
  </skin-path>
 </object>

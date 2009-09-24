@@ -16,17 +16,17 @@
       of your product (on the filesystem) as Filesystem Directory Views within
       the portal_skins tool, so that they become usable as skin layers.
       -->
- <object name="agcommon_custom_images"
+ <object name="agcommon_images"
     meta_type="Filesystem Directory View"
-    directory="Products.agCommon:skins/agcommon_custom_images" remove="True" />
+    directory="Products.agCommon:skins/agcommon_images" remove="True" />
  <object name="agcommon_styles"
     meta_type="Filesystem Directory View"
     directory="Products.agCommon:skins/agcommon_styles" remove="True" />
  <object name="agcommon_javascript"
     meta_type="Filesystem Directory View"
     directory="Products.agCommon:skins/agcommon_javascript" remove="True" />
- <object name="agcommon_custom_templates"
+ <object name="agcommon_templates"
     meta_type="Filesystem Directory View"
-    directory="Products.agCommon:skins/agcommon_custom_templates" remove="True" />
+    directory="Products.agCommon:skins/agcommon_templates" remove="True" />
 
 </object>

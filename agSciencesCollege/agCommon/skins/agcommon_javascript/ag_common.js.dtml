@@ -10,7 +10,8 @@
 
 function resizeColumns()
 {
-    //setTimeout("doresizeColumns()", 300);
+    alert('test');
+    setTimeout("doresizeColumns()", 300);
 }
 
 function doresizeColumns()
