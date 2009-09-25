@@ -16,6 +16,11 @@ def gradientBackground(request):
         height = str(int(request.form.get("height", '600')))
     except ValueError:
         height = '600';
+
+    try:
+        width = str(int(request.form.get("width", '1')))
+    except ValueError:
+        width = '1';
     
     # Validate we have a color code
     colorRegex = "^[0-9A-Fa-f]{3,6}$"
@@ -26,6 +31,6 @@ def gradientBackground(request):
     if not re.match(colorRegex, endColor):
         endColor = 'FFFFFF'
     
-    png = Popen(['convert', '-size', '8x%s'%height, 'gradient:#%s-#%s'%(str(startColor), str(endColor)), 'png:-'], stdout=PIPE)
+    png = Popen(['convert', '-size', '%sx%s'%(width, height), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), 'png:-'], stdout=PIPE)
 
     return "".join(png.stdout.readlines())

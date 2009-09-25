@@ -81,3 +81,19 @@ img.image-full {
 	padding: 0;
 }
 
+/* Link icons */
+#portal-column-one .linkIcon ul {
+	margin-left: 10px;
+	margin-right: 0px;
+}
+
+/* Column two unordered lists */
+
+#portal-column-two .portletItem ul,
+#portal-column-two .portletItem p {
+    margin-top: 30px;
+}
+
+#portlets-above dl.portlet .portletHeader {
+    padding-top:55px;
+}
