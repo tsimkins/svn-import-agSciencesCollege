@@ -69,7 +69,7 @@
                     </tal:vars>
                 </tal:loop>   
             </div>      
-            <div id="myCarousel" class="jdGallery"></div> 
+            <div id="myCarousel" class="jdGallery"><noscript>JavaScript must be enabled to view this slideshow.  Please enable JavaScript, or <a href="atct_album_view">View the thumbnails</a>.</noscript></div> 
         </div>
         <div class="visualClear"><!-- clears floating areas --></div> 
         <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontentbody" />

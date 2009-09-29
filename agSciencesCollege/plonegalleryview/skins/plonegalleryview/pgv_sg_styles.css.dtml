@@ -20,6 +20,21 @@ html{
   filter: expression(document.execCommand("BackgroundImageCache", false, true));
 }
 
+#myCarousel noscript {
+    padding: 1.5em;
+    color: #EEEEEE;
+    display: block;
+}
+
+#myCarousel noscript a {
+    color: #3366CC;
+}
+
+#myCarousel noscript a:hover {
+    color: #6699FF;
+}
+
+
 #myCarousel
 {
     text-align: center;
