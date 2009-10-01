@@ -9,7 +9,7 @@
 
 body {
 	background: &dtml-bodyBackgroundColor;;
-	color: #333333;
+	color: #000000;
 }
 
 #background-stripe-one, 
@@ -45,8 +45,8 @@ body {
 	background: transparent;
 	top: 98px;
 	height: 900px;
-	background-color: &dtml-backgroundStripeOneColor;;
-    background-image:url('&dtml-portal_url;/gradientBackground.png?startColor=<dtml-var expr="backgroundStripeOneColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&height=600');
+	background-color: &dtml-backgroundStripeTwoColor;;
+    background-image:url('&dtml-portal_url;/gradientBackground.png?startColor=<dtml-var expr="backgroundStripeTwoColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&height=600');
 	background-repeat: repeat-x;
 	background-position: left 300px;
 	opacity: 1;
@@ -201,7 +201,8 @@ dt {
 	background-color: &dtml-leftSubNavBackground;;	
 }
 
-#portal-column-one .navTreeItem a, #portal-column-one .navTreeItem a:hover, #portal-column-one dd.portletItem #portal-column-one .navTreeItem a, 
+#portal-column-one .navTreeItem a, #portal-column-one .navTreeItem a:hover, 
+#portal-column-one dd.portletItem #portal-column-one .navTreeItem a, 
 #portal-column-one dd.portletItem .navTreeItem a:hover {
 	border-width: 0px;
 	background-color: transparent;
@@ -252,9 +253,10 @@ ul.navTreeLevel1 li.navTreeItem {
 #portal-column-one .portletNavigationTree .portletItem li li, #portal-column-one .navTreeItem a {
 	border: none;
 }
-#portal-column-one #portal-column-one-visualPadding.visualPadding {
-/*	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom; */
-	padding: 0 0 150px 0;
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom:150px;
+    padding: 0;
 }
 
 #portal-column-one {
@@ -458,7 +460,7 @@ body.template-document_homepage_view .documentActions {
 	margin: 0px;
 	position: relative;
 	clear: both;
-    display: none;
+    display: none; 
 }
 
 #rightcolumn>div {
@@ -840,7 +842,7 @@ body.template-document_homepage_view #content, body.template-document_homepage_v
 }
 
 .contentLeadImageContainer {
-	max-width:302px;
+	max-width:202px;
 	width:auto;
 	float:right;
 	margin:0 0 0.5em 1em;
@@ -1006,7 +1008,7 @@ div.eventButtons img {
 	border: 0px solid #CCCCCC;
     display: block;
     float: right;
-    margin: 8px 6px 5px 8px;
+    margin: 12px 6px 5px 8px;
     height: 1.6em;
 }
 
@@ -1144,7 +1146,7 @@ dt.nodescription {
 span.description {
 	display: block;
 	font-size: 0.9em;
-	line-height: 1.25em;
+	line-height: 1.4em;
 	margin-top: 0.25em;
 }
 
@@ -1455,7 +1457,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 	margin: 0 0 0 3px;
 	float: right;
 	background: &dtml-insideRightPortletBackgroundColor;;
-	width: 15em;
+	width: 16em;
 	border-width: 0 0 0 2px;
 	border-color: &dtml-insideRightPortletBackgroundColor;;
 	border-style: solid;
@@ -1474,7 +1476,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 	border: none;	
 	padding: 0;
 	margin-bottom: 20px;
-	font-size: 0.92em;
+	font-size: 1em;
 }
 
 #portal-column-two .portlet {
@@ -1485,16 +1487,16 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 
 #portal-column-two .portletHeader {
 	background: transparent; 
-	color: &dtml-insideRightPortletHeaderBackgroundColor;; 
-	font-size: 1.2em;
+	color: &dtml-insideRightPortletHeaderTextColor;; 
+	font-size: 1em;
 	font-weight: bold;
 	padding: 2px 0px;
 	text-align: left;
 	text-transform: uppercase;
 	border-width: 0px 0px 1px 0px;
 	border-style: solid;
-	border-color: &dtml-insideRightPortletHeaderBackgroundColor;; 
-	margin: 6px 6px 0 6px; 
+	border-color: &dtml-insideRightPortletHeaderTextColor;; 
+	margin: 2px 6px 0 6px; 
 }
 
 #portal-column-two .portletHeader a {  
@@ -1546,6 +1548,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 #portal-column-two .navTreeCurrentItem {
     border: 0 !important;
     font-weight: bold;
+    background: transparent;
 }
 
 /* End Portal Column Two */
@@ -1557,7 +1560,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 }
 
 #portal-column-content.sr #portal-content-wrapper {
-    border-width: 0 16.25em 0 1px;
+    border-width: 0 17.25em 0 1px;
     border-right-color: &dtml-insideRightPortletBackgroundColor;;
     border-left-color: #808080;
     border-style: solid;

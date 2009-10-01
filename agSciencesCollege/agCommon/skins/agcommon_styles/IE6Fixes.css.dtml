@@ -1,0 +1,24 @@
+/*
+** Stylesheet with Internet Explorer 6.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#topnavigation li {
+	display: inline;
+	border-width: 0px 0px 0px 3px;
+}
+
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
+#visual-portal-wrapper {
+    margin: 0 5%;
+}
+
+body.section-front-page #rightcolumn .portletFooter{
+    border: 0;
+}
+
+/* </dtml-with> */

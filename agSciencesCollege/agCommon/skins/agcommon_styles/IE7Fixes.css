@@ -1,8 +1,0 @@
-/*IE 7 Fixes*/
-
-/* RSS Feedmixer portlet in centercolumn */
-
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader {
-    margin: -7px -7px 0px -10px;
-    padding: 5px 9px 5px 9px;
-}
