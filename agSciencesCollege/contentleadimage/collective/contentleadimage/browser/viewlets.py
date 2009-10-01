@@ -23,6 +23,7 @@ class LeadImageViewlet(ViewletBase):
         """ returns img tag """
         context = aq_inner(self.context)
         
+        # Use News Item image as Content Lead Image, if it exists
         field = None
         
         leadimagefield = context.getField(IMAGE_FIELD_NAME)
@@ -43,6 +44,7 @@ class LeadImageViewlet(ViewletBase):
         """ returns img tag """
         context = aq_inner(self.context)
 
+        # Use News Item image as Content Lead Image image, if it exists
         field = None
         
         leadimagefield = context.getField(IMAGE_FIELD_NAME)
@@ -61,6 +63,8 @@ class LeadImageViewlet(ViewletBase):
 
     def caption(self):
         context = aq_inner(self.context)
+        
+        # Use News Item caption as Content Lead Image caption, if it exists
         if context.getField(IMAGE_FIELD_NAME):
             return context.widget(IMAGE_CAPTION_FIELD_NAME, mode='view')
         elif context.getField('imageCaption'):
@@ -71,11 +75,14 @@ class LeadImageViewlet(ViewletBase):
     def render(self):
         context = aq_inner(self.context)
         portal_type = getattr(context, 'portal_type', None)
+        
+        # Special case for News Item
         if portal_type in self.prefs.allowed_types or portal_type == 'News Item':
             return super(LeadImageViewlet, self).render()
         else:
             return ''
 
+    # Used in page template to determine if we're working with a news item
     def isNewsItem(self):
         context = aq_inner(self.context)
         portal_type = getattr(context, 'portal_type', None)

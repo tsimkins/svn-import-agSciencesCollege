@@ -78,7 +78,6 @@
     />
 
     <!-- Summary View -->
-
     <browser:page
          for="Products.Archetypes.interfaces.IBaseFolder"
          name="folder_leadimage_listing"

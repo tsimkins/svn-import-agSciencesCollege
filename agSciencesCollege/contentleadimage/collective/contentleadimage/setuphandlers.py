@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPropertiesTool
+from Products.ZCatalog.ProgressHandler import ZLogHandler
 from collective.contentleadimage import config
 
 def importVarious(self):
@@ -18,6 +19,9 @@ def importVarious(self):
         props.manage_addProperty('desc_scale_name', 'thumb', 'string')
     if not props.hasProperty('body_scale_name'):
         props.manage_addProperty('body_scale_name', 'mini', 'string')
+        
+    ctool = getToolByName(portal, 'portal_catalog')
+    ctool.reindexIndex(['hasContentLeadImage'], portal.REQUEST, pghandler=ZLogHandler())
     
 def removeConfiglet(self):
     if self.readDataFile('cli-uninstall.txt') is None:

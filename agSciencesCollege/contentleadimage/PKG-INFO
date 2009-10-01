@@ -1,8 +1,8 @@
 Metadata-Version: 1.0
 Name: collective.contentleadimage
-Version: 1.1.4
+Version: 1.1.7
 Summary: Adds lead image to any content in plone site
-Home-page: https://svn.plone.org/svn/collective/collective.contentleadimage
+Home-page: http://pypi.python.org/pypi/collective.contentleadimage
 Author: Radim Novotny
 Author-email: novotny.radim@gmail.com
 License: GPL
@@ -35,10 +35,54 @@ Description: collective.contentleadimage Package Readme
         (True/False). This may help developers to create own templates optimized
         for displaying lead image.
         
+        Installation
+        ------------
+        
+        If you are using zc.buildout and the plone.recipe.zope2instance recipe to manage
+        your project, you can do this:
+        
+        Add ``collective.contentleadimage`` to the list of eggs to install, e.g.::
+        
+        [buildout]
+        ...
+        eggs =
+        ...
+        collective.contentleadimage
+        
+        Tell the plone.recipe.zope2instance recipe to install a ZCML slug::
+        
+        [instance]
+        recipe = plone.recipe.zope2instance
+        ...
+        zcml =
+        collective.contentleadimage
+        
+        Re-run buildout, e.g. with::
+        
+        $ ./bin/buildout
+        
+        More detailed installation instructions may be found in docs/INSTALL.txt.
         
         
         Changelog
         =========
+        
+        1.1.7 - 2009/09/22
+        
+        - something went wrong with optional plone.indexer. Let's disable it
+        menawhile.
+        
+        1.1.6 - 2009/09/06
+        
+        - fixed version number
+        
+        1.1.5 - 2009/09/02
+        
+        - use plone.indexer if possible
+        
+        - added controlapnel icon
+        
+        - reindex hasContentLeadImage index on reinstall
         
         1.1.4 - 2008/12/16
         

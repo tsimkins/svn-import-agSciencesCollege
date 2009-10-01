@@ -42,6 +42,7 @@ collective/contentleadimage/locales/it/LC_MESSAGES/collective.contentleadimage.p
 collective/contentleadimage/locales/no/LC_MESSAGES/collective.contentleadimage.mo
 collective/contentleadimage/locales/no/LC_MESSAGES/collective.contentleadimage.po
 collective/contentleadimage/locales/no/LC_MESSAGES/messages.mo
+collective/contentleadimage/profiles/default/actionicons.xml
 collective/contentleadimage/profiles/default/browserlayer.xml
 collective/contentleadimage/profiles/default/catalog.xml
 collective/contentleadimage/profiles/default/contentleadimage.txt
