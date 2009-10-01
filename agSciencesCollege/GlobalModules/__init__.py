@@ -11,6 +11,10 @@ allow_module('zope.component.getSiteManager')
 
 allow_module('Products.GlobalModules')
 allow_module('Products.GlobalModules.makeHomePage')
+allow_module('Products.GlobalModules.makePhotoFolder')
+
+allow_module('Products.agCommon')
+allow_module('Products.agCommon.gradientBackground')
 
 allow_module('ZODB.POSException')
 allow_module('ZODB.POSException.POSKeyError')
@@ -20,6 +24,16 @@ def makeHomePage(context):
     print context.archetype_name
     context.archetype_name = 'Home Page'
     context.portal_type = 'HomePage'
+    context.reindexObject()
+    print context.portal_type
+    print context.archetype_name
+    print "OK"
+
+def makePhotoFolder(context):
+    print context.portal_type
+    print context.archetype_name
+    context.archetype_name = 'Photo Folder'
+    context.portal_type = 'PhotoFolder'
     context.reindexObject()
     print context.portal_type
     print context.archetype_name
