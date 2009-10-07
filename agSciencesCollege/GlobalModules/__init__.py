@@ -28,6 +28,8 @@ allow_module('re')
 allow_module('re.sub')
 allow_module('re.compile')
 
+allow_module('simple_send')
+
 phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
 
 def makeHomePage(context):
