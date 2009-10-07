@@ -4,7 +4,7 @@
 from zope.component import getSiteManager
 from Products.CMFCore.utils import getToolByName
 from AccessControl.SecurityManagement import newSecurityManager
-import transaction
+#import transaction
 
 # My imports
 import pdb
@@ -68,15 +68,11 @@ def importEvents(context, emailUsers=['trs22', 'jaa2']):
                         event_url=eventURL,
                         location="")  
     
-                transaction.commit()
-        
                 myObject = getattr(context, eventId)
                 myObject.manage_addProperty('cventid', eventId, 'string')
                 myObject.setExcludeFromNav(True)
                 myObject.reindexObject()
-   
         
-                #transaction.commit()
                 myStatus.append("Created event %s (id %s)" % (eventTitle, eventId))
     
             else:
@@ -97,7 +93,7 @@ def importEvents(context, emailUsers=['trs22', 'jaa2']):
             mMsg = "\n".join(["\n\n", mTitle, "<ul>", statusText, "<ul>"])
             mailHost.secureSend(mMsg, mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
 
-    transaction.commit()
+    #transaction.commit()
     myStatus.append("Finished Loading")
     return "\n".join(myStatus)
     #return newEvents
