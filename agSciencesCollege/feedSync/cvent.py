@@ -92,7 +92,7 @@ def importEvents(context, emailUsers=['trs22', 'jaa2']):
         mailHost = context.MailHost
 
         for myUser in emailUsers:
-            mTo = "%s@ag.psu.edu" % myUser
+            mTo = "%s@psu.edu" % myUser
         
             mMsg = "\n".join(["\n\n", mTitle, "<ul>", statusText, "<ul>"])
             mailHost.secureSend(mMsg, mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
