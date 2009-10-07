@@ -14,14 +14,13 @@ import urllib2
 import sys
 import re
 
-def importEvents(context, emailUsers=['trs22', 'jaa2']):
+def importEvents(context, emailUsers=['trs22']):
     myStatus = []
     newEvents = []
 
     cventURL = "http://guest.cvent.com/EVENTS/Calendar/Calendar.aspx?cal=9d9ed7b8-dd56-46d5-b5b3-8fb79e05acaf"
     summaryURL = "http://guest.cvent.com/EVENTS/info/summary.aspx?e=%s"
     conferenceURL="https://agsci.psu.edu/conferences/event-calendar"
-    sendEmail = False
 
     # More Zopey goodness
     
@@ -53,7 +52,7 @@ def importEvents(context, emailUsers=['trs22', 'jaa2']):
         for eventCell in eventRow.findAll('td', {'class':'BodyText1'}):
             eventLink = eventCell.find('a')
             eventId = eventLink['evtstub']
-            eventTitle = eventLink.contents[0]
+            eventTitle = str(eventLink.contents[0])
             eventURL = summaryURL % eventId
         
             if not cventIDs.count(eventId):
