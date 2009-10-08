@@ -18,17 +18,12 @@ allow_module('Products.GlobalModules.makeHomePage')
 allow_module('Products.GlobalModules.makePhotoFolder')
 allow_module('Products.GlobalModules.fixPhoneNumber')
 
-allow_module('Products.agCommon')
-allow_module('Products.agCommon.gradientBackground')
-
 allow_module('ZODB.POSException')
 allow_module('ZODB.POSException.POSKeyError')
 
 allow_module('re')
 allow_module('re.sub')
 allow_module('re.compile')
-
-allow_module('simple_send')
 
 phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
 
