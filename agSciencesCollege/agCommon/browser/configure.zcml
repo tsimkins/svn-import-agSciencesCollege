@@ -124,7 +124,7 @@
     <browser:viewlet
         name="agcommon.centercolumn"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="templates/centercolumn.pt"
+        class=".viewlets.CenterColumnViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />

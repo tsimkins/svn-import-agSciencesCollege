@@ -1,11 +1,17 @@
 # Register our skins directory - this makes it available via portal_skins.
 
 from Products.CMFCore.DirectoryView import registerDirectory
+from Products.PythonScripts.Utility import allow_module
 from subprocess import Popen,PIPE
 import re
 
 GLOBALS = globals()
 registerDirectory('skins', GLOBALS)
+
+# Allow us to use this module in scripts
+
+allow_module('Products.agCommon')
+allow_module('Products.agCommon.gradientBackground')
 
 def gradientBackground(request):
     

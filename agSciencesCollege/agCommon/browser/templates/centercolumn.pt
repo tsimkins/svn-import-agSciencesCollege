@@ -1,4 +1,4 @@
-<div id = "centercolumn">
+<div id = "centercolumn" tal:condition="view/isHomePage">
 
 	<tal:block replace="structure provider:agcommon.centercolumn" />
 

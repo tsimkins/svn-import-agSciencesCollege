@@ -13,7 +13,8 @@
 <body>
 <div metal:fill-slot="main">
   <h2 class="documentFirstHeading">Manage Center Column Portlets</h2>
-  <span tal:replace="structure provider:agcommon.centercolumn" />
+  <span tal:condition="python: context.getLayout() == 'document_homepage_view'" tal:replace="structure provider:agcommon.centercolumn" />
+  <p tal:condition="python: not context.getLayout() == 'document_homepage_view'">This portlet manager may only be used on homepages.</p>
 </div>
 </body>
 </html>
