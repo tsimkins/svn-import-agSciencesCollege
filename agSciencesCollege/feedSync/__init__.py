@@ -75,10 +75,10 @@ def getImage(url):
         print "404 for %s" % url
         return None
         
-    myImg = mySoup.findAll(id="article_image")[0]
+    myImg = mySoup.findAll(id="article_image")
     
     if myImg:
-        imgSrc = "http://live.psu.edu%s"%  myImg['src']
+        imgSrc = "http://live.psu.edu%s"%  myImg[0]['src']
         
         try:
             imgFile = urllib2.urlopen(imgSrc)
