@@ -88,17 +88,22 @@ def getImage(url):
             imgData = imgFile.read()            
             return imgData
 
+def setImage(theArticle):
+    url = theArticle.getRemoteUrl()
+
+    # Grab article image and set it as contentleadimage            
+    theImage = getImage(url)
+
+    if theImage:
+        theArticle.getField(IMAGE_FIELD_NAME).set(theArticle, theImage)
+        theArticle.reindexObject()
+        print "setImage for %s" % theArticle.id
+    else:
+        print "No Image for %s" % theArticle.id
+
+
+        
 def retroSetImages(context):
     for theArticle in context.listFolderContents(contentFilter={"portal_type" : "Link"}):
     
-        url = theArticle.getRemoteUrl()
-        # Grab article image and set it as contentleadimage            
-        theImage = getImage(url)
-
-        if theImage:
-            theArticle.getField(IMAGE_FIELD_NAME).set(theArticle, theImage)
-            print "setImage for %s" % theArticle.id
-        else:
-            print "No Image for %s" % theArticle.id
-
-        theArticle.reindexObject()
+        setImage(theArticle)
