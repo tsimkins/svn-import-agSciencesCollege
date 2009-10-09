@@ -75,7 +75,7 @@ def getImage(url):
         print "404 for %s" % url
         return None
         
-    myImg = mySoup.find(id="article_image")
+    myImg = mySoup.findAll(id="article_image")[0]
     
     if myImg:
         imgSrc = "http://live.psu.edu%s"%  myImg['src']
