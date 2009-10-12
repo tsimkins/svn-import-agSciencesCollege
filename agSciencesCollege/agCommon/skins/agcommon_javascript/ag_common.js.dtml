@@ -25,11 +25,15 @@ function doresizeColumns()
         centerColumn.style.height = "auto";
         iHeight = centerColumn.offsetHeight;
 
+        // failsafe so we don't infinitely loop in case something isn't as we thought.
+        failsafe = 0;
+
         // 3 is the margin between the right inside column and the bottom.  Otherwise we go into an infinite loop!
 
-        while ((centerColumn.offsetTop + centerColumn.offsetHeight) < (contentWrapper.offsetTop + contentWrapper.offsetHeight - 3))
+        while (failsafe<500 && (centerColumn.offsetTop + centerColumn.offsetHeight) < (contentWrapper.offsetTop + contentWrapper.offsetHeight - 3))
         {
             iHeight++;
+            failsafe++;
             centerColumn.style.height = iHeight + "px";
         }
         
