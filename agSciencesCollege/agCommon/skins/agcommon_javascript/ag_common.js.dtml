@@ -10,49 +10,29 @@
 
 function resizeColumns()
 {
-    //setTimeout("doresizeColumns()", 300);
+    setTimeout("doresizeColumns()", 300);
 }
 
 function doresizeColumns()
 {
-    // Get leftcolumn and rightcolumn elements
-    var leftColumn = document.getElementById("portal-column-one");
-    var rightColumn = document.getElementById("portal-column-content");
-
-    // Get left-visualPadding and right-visualPadding elements
-    var leftVisualPadding = document.getElementById("left-visualPadding");
-    var rightVisualPadding = document.getElementById("right-visualPadding");
-
-    if (!(leftColumn && rightColumn && leftVisualPadding && rightVisualPadding))
-    {
-        return;
-    }
-
-    // Reset the heights of these two padding divs to auto, in case 
-    // resizeColumns has already been run (i.e. text resize scenario)
-    leftVisualPadding.style.height = "auto";
-    rightVisualPadding.style.height = "auto";
-
-    // Calculate max height of leftcontent and rightcontent
-    var maxHeight=Math.max(leftColumn.offsetHeight,rightColumn.offsetHeight);
-
-    // Set both heights to the same (max) value.  Note that we have to append "px" to the value.
-    leftVisualPadding.style.height = (maxHeight - leftColumn.offsetHeight) + "px";
-    rightVisualPadding.style.height = (maxHeight - rightColumn.offsetHeight) + "px";
-
-
     // For front page, equalize center column height 
     var bodyClass = document.body.className;
-    var contentWrapper = document.getElementById("portal-content-wrapper");
+    var contentWrapper = document.getElementById("portal-column-content");
     var centerColumn = document.getElementById("centercolumn");
 
-    var centerMagicNumber = -13;
-
-    if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() ==0))
+    if(bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() == 0))
     {
         centerColumn.style.height = "auto";
-        increaseCenterColumn = rightColumn.offsetHeight - contentWrapper.offsetHeight + centerMagicNumber;
-        centerColumn.style.height = centerColumn.offsetHeight + increaseCenterColumn + "px";
+        iHeight = centerColumn.offsetHeight;
+
+        // 3 is the margin between the right inside column and the bottom.  Otherwise we go into an infinite loop!
+
+        while ((centerColumn.offsetTop + centerColumn.offsetHeight) < (contentWrapper.offsetTop + contentWrapper.offsetHeight - 3))
+        {
+            iHeight++;
+            centerColumn.style.height = iHeight + "px";
+        }
+        
     }
 }
 

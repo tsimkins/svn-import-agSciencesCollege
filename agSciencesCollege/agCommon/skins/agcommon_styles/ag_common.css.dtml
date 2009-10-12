@@ -965,7 +965,7 @@ img.folder_image {
 
 .tileImage {
 	border: 0;
-	margin-top: 1em;
+	margin-top: 1.5em;
 }
 
 img.image-full {
@@ -973,7 +973,7 @@ img.image-full {
 }
 
 .contenttype-fsdperson h2.tileHeadline a {
-	color: #333333 !important;
+	color: #003399 !important;
 	font-weight: bold;
 	border: none;
 }
@@ -1443,6 +1443,7 @@ body.template-document_homepage_view #centercolumn .portletfeedmixer dd.first {
 
 body.template-document_homepage_view #centercolumn {
     font-size: 0.92em;
+    margin-bottom: 3px;
 }
 
 body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletItem {
@@ -1697,6 +1698,27 @@ div.portletsAboveContentE {
     font-weight: normal;
 }
 
+/* Fixing issue with rightcolumn and summary view */
+#portal-column-content.sr #content .tileItem .visualClear {
+    clear: right;
+}
+
+/* Tile Headline Link */
+
+.tileHeadline a {
+    color: #003399 !important;
+}
+
+.tileHeadline a:hover {
+    color: #3366CC !important;
+    text-decoration: underline;
+}
+
+/* Fix issue with right column and content lead image listing */
+
+body.template-folder_leadimage_listing #portal-column-content.sr #content dl {
+    float: left;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
