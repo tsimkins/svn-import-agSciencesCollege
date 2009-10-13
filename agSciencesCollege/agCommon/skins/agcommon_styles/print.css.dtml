@@ -99,6 +99,7 @@ body.template-document_homepage_view #homepageimage {
 /* Content */
 
 #portal-content-wrapper {
+    border-left: none;
     border: none;
 }
 
@@ -212,6 +213,11 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 /* Remove listingbar */
 
 .listingBar {
+    display: none;
+}
+
+/* Content Well Portlets */
+#portlets-above, #portlets-below {
     display: none;
 }
 
