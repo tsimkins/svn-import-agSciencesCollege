@@ -15,8 +15,7 @@
 	</p>
 	<p>
 		<a href = "http://www.psu.edu/copyright.html">Copyright</a> &mdash; 
-		<a href = "http://www.psu.edu/dept/aaoffice/">Alternative Media</a> &mdash; 
-		<a href = "http://www.psu.edu/dept/aaoffice/">Affirmative Action</a> &mdash;
+		<a href = "http://www.psu.edu/ur/legal.html">Privacy and Legal Statements</a> &mdash; 
 		<a tal:attributes="href string:${context/portal_url}/contact">Contact Us</a>
 	</p>
 
