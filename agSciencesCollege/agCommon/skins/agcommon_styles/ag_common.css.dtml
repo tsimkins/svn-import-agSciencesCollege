@@ -416,6 +416,11 @@ dd.portletItem .navTreeItem a:hover {
 	margin-top: 20px;
 }
 
+/* Squish tabs in edit view together when we have a right column */
+#portal-column-content.sr .documentEditable .contentViews li a { 
+	padding: 0 0.75em;
+    margin-right:0.25em;
+}
 
 .documentActions {
 	margin-top: 20px;
@@ -1198,7 +1203,10 @@ span.description {
 	position: absolute;
 }
 
-body.template-news_listing .effectiveDate {
+body.template-news_listing .effectiveDate,
+body.template-folder_leadimage_listing .effectiveDate,
+body.template-folder_leadimage_view .effectiveDate
+ {
 	margin-bottom: 0.1em;
 	margin-top: 0.4em;
 }

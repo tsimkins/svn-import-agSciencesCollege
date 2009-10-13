@@ -102,6 +102,10 @@ body.template-document_homepage_view #homepageimage {
 	margin-left:0px;
 }
 
+#portal-column-content.sr #portal-content-wrapper {
+    border: none;
+}
+
 #content, .documentContent {
 	padding: 0px !important;
 }
@@ -117,7 +121,7 @@ body.template-document_homepage_view #centercolumn {
 
 /* Right Column */
 
-body.template-document_homepage_view #rightcolumn, #rightcolumn {
+body.template-document_homepage_view #rightcolumn, #portal-column-two {
 	display: none;
 }
 
@@ -176,7 +180,7 @@ body.template-document_homepage_view #rightcolumn, #rightcolumn {
 
 /* Background Stripes */
 #background-stripe-one, #background-stripe-two,
-#background-stripe-three {
+#background-stripe-three, #background-stripe-four {
 	display: none;
 }
 
@@ -192,6 +196,18 @@ body.template-document_homepage_view #rightcolumn, #rightcolumn {
 /* Actions and edit menu bar */
 
 .contentActions, .contentViews, .reviewHistory {
+    display: none;
+}
+
+/* Hide addthis */
+
+#addthis {
+    display: none;
+}
+
+/* Remove listingbar */
+
+.listingBar {
     display: none;
 }
 
