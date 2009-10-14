@@ -120,7 +120,7 @@ def createSiteFolders(context):
 
             print "Created and published folder %s" % theId
         else:
-            print "Whoops, %s already exists" % theId
+            print "Folder %s already exists." % theId
             
 def configureFrontPage(context):
     site = context.getSite()
@@ -235,11 +235,92 @@ def configureFSD(context):
         fsdtool.setPhoneNumberRegex('^\d{3}-\d{3}-\d{4}$')
         fsdtool.setUseInternalPassword(False)
         print "Configured FSD"
+
+def configureScripts(context):
+    # We're going to copy the contents of scripts in agcommon_templates
+    # to the root of the site, since we can't actually copy them as objects.
+
+    site = context.getSite()
+    portal_skins = getToolByName(site, 'portal_skins')
+    
+    toCopy = [
+        { 
+            'src' : 'getHomepageImage',
+            'target' : 'getHomepageImage.js'
+        },
+        { 
+            'src' : 'gradientBackground',
+            'target' : 'gradientBackground.png'
+        },
+    ]
+    
+    try:
+        templates = portal_skins.agcommon_templates
+    except KeyError:
+        print "Can't find agcommon_templates"
+    else:
+    
+        addPythonScript = site.manage_addProduct['PythonScripts'].manage_addPythonScript
+    
+        for script in toCopy:
+            src = script['src']
+            target = script['target']
+
+            try:
+                site.manage_delObjects([target])
+                print "Deleted existing script %s" % target
+            except AttributeError:
+                print "Site does not have script %s" % target
         
+            addPythonScript(target)
+            
+            newScript = getattr(site, target)
+            packageScript = getattr(templates, src)            
+            
+            newScript.write(packageScript.read())
+            
+            site[target].ZCacheable_setManagerId('HTTPCache')
+            
+            print "Added script %s" % target
+
+
+# Install required products
+# Borrowed from http://plone.org/documentation/faq/install-dependencies
+
+def installAdditionalProducts(context):
+    
+    # This doesn't work, apparently gets called recursively?
+    
+    return False
+
+    toInstall = [
+            'CacheSetup', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
+            'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
+            'plone.app.imaging', 'plonegalleryview'
+    ]
+
+    site = context.getSite()
+    qi = getToolByName(site, 'portal_quickinstaller')
+
+    for product in toInstall:
+    
+        print "Attempting to install %s" % product
+    
+        if not qi.isProductInstalled(product):
+            if qi.isProductInstallable(product):
+                qi.installProduct(product)
+                print "Installed product %s" % product
+            else:
+                print "Product %s not installable" % product
+        else:
+            print "Product %s already installed." % product    
+            
 def setupHandlersWrapper(context):
     
     site = context.getSite()
-    
+
+    #installAdditionalProducts(context)
+
     createUsers(context)
     
     deleteUnusedFolders(context)
@@ -253,3 +334,5 @@ def setupHandlersWrapper(context):
     configureMimeTypes(context)
     
     configureFSD(context)
+
+    configureScripts(context)
