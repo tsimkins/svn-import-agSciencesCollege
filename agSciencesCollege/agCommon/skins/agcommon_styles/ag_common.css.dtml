@@ -1728,6 +1728,17 @@ body.template-folder_leadimage_listing #portal-column-content.sr #content dl {
     float: left;
 }
 
+/* manage agCommonPortlets */
+
+.agCommonPortlet {
+    display: block !important;
+    margin: 1.5em 0 0 0;
+}
+
+body.section-front-page #rightcolumn .agCommonPortlet {
+    width: 175px;
+    margin: 2em 0 0 0;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

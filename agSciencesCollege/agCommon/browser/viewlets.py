@@ -8,6 +8,7 @@ from cgi import escape
 from Acquisition import aq_acquire
 from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
+from plone.portlets.interfaces import ILocalPortletAssignable
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -41,6 +42,14 @@ class RightColumnViewlet(ViewletBase):
         else:
             self.isHomePage = False
 
+    def can_manage_portlets(self):
+
+        if not ILocalPortletAssignable.providedBy(self.context):
+            return False
+        mtool = getToolByName(self.context, 'portal_membership')
+        return mtool.checkPermission("Portlets: Manage portlets", self.context)
+        
+
 class CenterColumnViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/centercolumn.pt')
 
@@ -58,6 +67,13 @@ class CenterColumnViewlet(ViewletBase):
             self.isHomePage = True
         else:
             self.isHomePage = False
+
+    def can_manage_portlets(self):
+
+        if not ILocalPortletAssignable.providedBy(self.context):
+            return False
+        mtool = getToolByName(self.context, 'portal_membership')
+        return mtool.checkPermission("Portlets: Manage portlets", self.context)
 
 class AddThisViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/addthis.pt')
