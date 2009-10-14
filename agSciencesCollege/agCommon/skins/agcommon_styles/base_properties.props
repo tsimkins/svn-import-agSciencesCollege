@@ -64,7 +64,7 @@ topnavigationTextColor:string=#FFFFFF
 topnavigationTextHoverColor:string=#FFBA19
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
-bodyBackgroundColor:string=#0C3D90
+bodyBackgroundColor:string=#99B4DF
 backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
@@ -74,20 +74,12 @@ frontRightPortletHeaderBackgroundColor:string=#EFC177
 frontRightPortletTextColor:string=#47568B
 frontRightPortletBackgroundColor:string=#F5F5F5
 
-insideRightPortletHeaderTextColor:string=#EEEEFF
-insideRightPortletHeaderBackgroundColor:string=#2F4977
-insideRightPortletBackgroundColor:string=#EEEEFF
+insideRightPortletHeaderTextColor:string=#2F4977
+insideRightPortletHeaderBackgroundColor:string=#F5F5F5
+insideRightPortletBackgroundColor:string=#F5F5F5
 insideRightPortletTextColor:string=#333333
 insideRightPortletLinkColor:string=#003399
 insideRightPortletLinkHoverColor:string=#3366CC
-
-contactColor:string=#005B00
-contactBackgroundColor:string=#74B40F
-
-frontFlash:string=thinkagain.swf
-
-homepageImage:string=homepageImage.jpg
-homepageImageAlignment:string=left
 
 homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
