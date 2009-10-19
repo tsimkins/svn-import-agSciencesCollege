@@ -61,6 +61,7 @@
                                        item_type_class python: 'contenttype-' + normalizeString(item_type);
                                        item_modified item/ModificationDate;
                                        item_created item/CreationDate;
+                                       item_effective item/EffectiveDate;
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
@@ -116,6 +117,8 @@
                         </a>
                     </span>
 
+                    <div class="documentByLine effectiveDate"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
+                    
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
                     <tal:event condition="python: item_type == 'Event'">
                          <span tal:condition="python: item_type == 'Event'"

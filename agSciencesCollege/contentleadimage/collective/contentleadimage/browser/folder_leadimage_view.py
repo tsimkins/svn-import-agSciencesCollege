@@ -1,5 +1,5 @@
-from Acquisition import aq_inner
-from zope.component import getUtility
+from Acquisition import aq_inner, aq_acquire
+from zope.component import getUtility, getMultiAdapter
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone.interfaces import IPloneSiteRoot
@@ -27,6 +27,18 @@ class FolderLeadImageView(BrowserView):
 
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
+        self.update()
         
     def __call__(self):
         return self.template()
+        
+    def update(self):
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
+                                        
+        try:
+            showDate = aq_acquire(self.context, 'showDate')
+        except AttributeError:
+            showDate = False
+        
+        self.showDate = showDate
