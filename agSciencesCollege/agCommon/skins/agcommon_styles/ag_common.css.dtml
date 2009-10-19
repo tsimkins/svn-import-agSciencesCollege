@@ -1702,6 +1702,11 @@ body.section-front-page #rightcolumn .agCommonPortlet {
     width: 175px;
     margin: 2em 0 0 0;
 }
+
+/* lead image listing fix for floating issues */
+body.template-folder_leadimage_view .tileItem {
+    float: left;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
