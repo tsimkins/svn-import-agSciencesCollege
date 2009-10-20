@@ -40,11 +40,12 @@
         </div>
 
         <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
+        <tal:foldercontents define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
+                            contentFilter contentFilter|request/contentFilter|custom_sort;
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
                             is_a_topic python:here.portal_type=='Topic';
-                            folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and here.queryCatalog(contentFilter, batch=True) or here.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                            folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and here.queryCatalog(contentFilter, batch=True) or here.getFolderContents(contentFilter, batch=True, b_size=limit_display or 10);
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
@@ -183,9 +184,9 @@
             </dl>
             
             <!-- Navigation -->
-            <tal:block condition="python:not is_a_topic and not batch">
+
                 <div metal:use-macro="here/batch_macros/macros/navigation" />
-            </tal:block>
+
             
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">

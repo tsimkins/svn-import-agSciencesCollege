@@ -1710,7 +1710,7 @@ body.template-folder_leadimage_view #portal-column-content.sr .tileItem {
 
 /* Edit form fixes */
 
-.documentEditable #region-content form {
+.documentEditable #portal-column-content.sr #region-content form {
     float: left;
 }
 
