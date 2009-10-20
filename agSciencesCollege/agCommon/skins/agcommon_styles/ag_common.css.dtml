@@ -83,7 +83,7 @@ dt {
 }
 
 #portal-content-wrapper {
-	float: none;
+	float: left;
 	background: #FFFFFF;
 	padding-bottom: 20px;
 	border-left: 1px solid #808080;
@@ -405,12 +405,6 @@ h1.documentFirstHeading, .facultyStaffDirectory h1, #region-content h1 {
 
 #clear-space-before-navigation {
 	clear: none;
-}
-
-/* Fix for front page content wrapper */
-
-body.template-document_homepage_view #portal-content-wrapper {
-    float: left;
 }
 
 /* No H1 on home page */
@@ -1545,6 +1539,7 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
     margin: 0 0 0 -1px;
     padding: 0;
     width: auto;
+    float: none;
 }
 
 #portal-column-content.sl #portal-content-wrapper {
