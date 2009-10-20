@@ -37,8 +37,8 @@ class FolderLeadImageView(BrowserView):
                                         name=u'plone_context_state')
                                         
         try:
-            showDate = aq_acquire(self.context, 'showDate')
+            show_date = aq_acquire(self.context, 'show_date')
         except AttributeError:
-            showDate = False
+            show_date = False
         
-        self.showDate = showDate
+        self.show_date = show_date
