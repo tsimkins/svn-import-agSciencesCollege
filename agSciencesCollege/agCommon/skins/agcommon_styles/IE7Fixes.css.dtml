@@ -30,4 +30,16 @@ body.section-front-page #rightcolumn .portletFooter{
     border: 0;
 }
 
+
+/* Fix a floating bug on the folder leadimage view.  We had to hide the addthis div */
+
+body.template-folder_leadimage_view #portal-column-content.sr #addthis {
+    display: none;
+}
+
+body.template-folder_leadimage_view #portal-column-content.sr #portal-content-wrapper .documentContent {
+    position: relative;
+    float: left;
+}
+
 /* </dtml-with> */
