@@ -1707,6 +1707,13 @@ body.section-front-page #rightcolumn .agCommonPortlet {
 body.template-folder_leadimage_view #portal-column-content.sr .tileItem {
     float: left;
 }
+
+/* Edit form fixes */
+
+.documentEditable #region-content form {
+    float: left;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

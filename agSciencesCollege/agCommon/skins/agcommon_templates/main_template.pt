@@ -191,7 +191,7 @@
 
                 <span id="contentBottomLeft"></span>
                 <span id="contentBottomRight"></span>
-
+                  <div class="visualClear" id="clear-space-after-region-content"><!-- --></div>
               </div>
 
             </div>
