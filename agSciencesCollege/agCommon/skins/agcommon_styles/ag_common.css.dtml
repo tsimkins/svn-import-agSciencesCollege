@@ -172,24 +172,24 @@ dt {
 
 
 #portal-column-one .portletNavigationTree .portletItem ul {
-	margin: 5px;
+	margin: 0px;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li {
 	border-bottom: 1px dashed #CCCCCC;
 	font-size: 1em;
-	margin: 6px 5px;
+	margin: 0.5em 0;
 	padding-bottom: 5px;
 }
-
 
 #portal-column-one .portletNavigationTree .portletItem li a {
 	font-size: 1.1em;
 }
 
-#portal-column-one ul.navTreeLevel1 {
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
 	background-color: &dtml-leftSubNavBackground;;
 	border: #DDD solid 1px;
+	margin: 0.15em 0.25em 0.25em 0.25em;
 }
 
 #portal-column-one .navTreeCurrentItem, a.navTreeItemInPath {
@@ -209,6 +209,10 @@ dt {
 	color: &dtml-leftNavTextColor;;
 }
 
+#portal-column-one .portletNavigationTree ul.navTreeLevel2 li.navTreeItem {
+	margin-left: 0 !important;	
+}
+
 /* !important SUCKS! */
 
 #portal-column-one .portletNavigationTree a.state-published {
@@ -216,7 +220,7 @@ dt {
 }
 
 #portal-column-one .portletNavigationTree a.state-published:hover {
-        color: &dtml-leftNavTextHoverColor; !important;
+    color: &dtml-leftNavTextHoverColor; !important;
 }
 
 #portal-column-one .navTreeItem a:hover, #portal-column-one 
@@ -245,9 +249,10 @@ dd.portletItem .navTreeItem a, #portal-column-one ul.navTreeLevel1 dd.portletIte
 }
 
 
-ul.navTreeLevel1 li.navTreeItem {
+#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
 	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
-	padding: 0px 5px 0px 14px;
+	padding: 0px 0.5em 0px 1.1em;
+	margin-left: 0.35em;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li li, #portal-column-one .navTreeItem a {
@@ -1179,13 +1184,6 @@ body.template-news_listing dd {
 	margin-left: 0;
 }
 
-/* Fix rightcolumn issue */
-
-body.template-news_listing #rightcolumn dd {
-    margin-bottom: 0;
-}
-
-
 body.template-newsitem_view .effectiveDate {
 	color: #76797C;
 	font-size: 0.9em;
@@ -1704,14 +1702,33 @@ body.section-front-page #rightcolumn .agCommonPortlet {
 }
 
 /* lead image listing fix for floating issues */
-body.template-folder_leadimage_view #portal-column-content.sr .tileItem {
+body.template-folder_leadimage_view #portal-column-content.sr .tileItem,
+body.template-folder_summary_view #portal-column-content.sr .tileItem {
     float: left;
 }
 
 /* Edit form fixes */
 
-.documentEditable #portal-column-content.sr #region-content form {
+.documentEditable #portal-column-content.sr #region-content form,
+#portal-column-content.sr .documentEditable #region-content form {
     float: left;
+}
+
+/* Left Column Portlets */
+
+#portal-column-one .portletWrapper {
+    margin: 10px;
+}
+
+
+#portal-column-one .portletHeader {
+    background: &dtml-leftButtonBackground_external;;
+    color: &dtml-leftButtonTextColor_external;;
+    border-color: &dtml-leftButtonBackgroundBorder_external;;
+    padding: 3px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 /* YOUR CSS RULES STOP HERE */
