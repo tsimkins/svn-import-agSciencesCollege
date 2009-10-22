@@ -797,7 +797,7 @@ body.template-document_homepage_view #content, body.template-document_homepage_v
 	border-bottom: 0px;
 	background: &dtml-leftNavTitleBackground;;
 	color: #FFFFFF;
-	margin: -7px -5px 0px -5px; 
+	margin: -12px -10px 0px -10px; 
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
@@ -805,7 +805,7 @@ body.template-document_homepage_view #content, body.template-document_homepage_v
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
-	background: &dtml-leftNavTitleBackground;;
+	background: transparent;
 	color: &dtml-leftNavTitleColor; !important;
 }
 
@@ -1218,7 +1218,7 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 /* Link Icons */
 
 #portal-column-one .linkIcon {
-	margin: 30px 8px 20px 8px;
+	margin: 30px -2px 20px -2px;
 }
 
 #portal-column-one .linkIcon li {
@@ -1239,7 +1239,7 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 /* Link Buttons */
 
 #portal-column-one .linkButton ul {
-	margin: 30px 15px;
+	margin: 30px 5px;
 }
 
 #portal-column-one .linkButton li {

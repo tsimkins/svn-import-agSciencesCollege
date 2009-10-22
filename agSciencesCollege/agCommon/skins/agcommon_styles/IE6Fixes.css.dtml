@@ -21,4 +21,15 @@ body.section-front-page #rightcolumn .portletFooter{
     border: 0;
 }
 
+#portal-column-one .portletNavigationTree {
+	margin-left: -10px !important;
+	margin-right: -10px !important;
+	margin-top: -10px !important;
+	padding: 0 10px !important;
+}
+
+#portal-column-one .portletNavigationTree li.navTreeTitle {
+	margin-top: 00px !important;
+	background: transparent !important;
+}
 /* </dtml-with> */
