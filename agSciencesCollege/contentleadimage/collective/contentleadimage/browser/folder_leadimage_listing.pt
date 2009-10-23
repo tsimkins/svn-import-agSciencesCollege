@@ -117,7 +117,7 @@
                         </a>
                     </span>
 
-                    <div class="documentByLine effectiveDate"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
+                    <div class="documentByLine effectiveDate" tal:condition="view/show_date"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
                     
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
                     <tal:event condition="python: item_type == 'Event'">
