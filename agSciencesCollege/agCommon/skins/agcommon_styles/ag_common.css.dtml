@@ -251,7 +251,7 @@ dd.portletItem .navTreeItem a, #portal-column-one ul.navTreeLevel1 dd.portletIte
 
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
 	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
-	padding: 0px 0.5em 0px 1.1em;
+	padding: 0px 0.5em 0px 1.25em;
 	margin-left: 0.35em;
 }
 
@@ -1745,6 +1745,24 @@ body.template-folder_summary_view #portal-column-content.sr .tileItem {
 .listingBar span.previous, .listingPrevious {
     width: 48%;
 }
+
+/* Related items */
+
+#relatedItemBox {
+    padding-bottom: 0.5em;
+}
+
+#relatedItemBox ul {
+    margin-left: 1.5em;
+}
+   
+#relatedItemBox li {
+    margin-bottom: 1.5em;
+} 
+
+#relatedItemBox img {
+    display: none;
+} 
 
 /* YOUR CSS RULES STOP HERE */
 
