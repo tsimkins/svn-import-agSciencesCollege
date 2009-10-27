@@ -40,4 +40,9 @@
     enabled="1" expression=""  media="print"
     rel="stylesheet" rendering="import"/>
 
+ <stylesheet id="handheld.css" 
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="handheld"
+    rel="stylesheet" rendering="import"/>
+
 </object>

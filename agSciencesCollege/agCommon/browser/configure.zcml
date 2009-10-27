@@ -155,6 +155,13 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="plone.nextprevious"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.NextPreviousViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
 
     <!-- Portlet Managers -->
     

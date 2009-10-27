@@ -1731,6 +1731,21 @@ body.template-folder_summary_view #portal-column-content.sr .tileItem {
     text-transform: uppercase;
 }
 
+/* Next/Previous Links */
+.listingBar {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.listingBar span.next, .listingNext  {
+    width: 48%;
+}
+
+.listingBar span.previous, .listingPrevious {
+    width: 48%;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

@@ -29,7 +29,7 @@ body.section-front-page #rightcolumn .portletFooter{
 }
 
 #portal-column-one .portletNavigationTree li.navTreeTitle {
-	margin-top: 00px !important;
+	margin-top: 0px !important;
 	background: transparent !important;
 }
 /* </dtml-with> */

@@ -9,6 +9,8 @@ from Acquisition import aq_acquire
 from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
+from plone.app.layout.nextprevious.view import NextPreviousView
+from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -141,3 +143,6 @@ class KeywordsViewlet(ViewletBase):
         self.getIconFor = plone_utils.getIconFor
         
         self.anonymous = self.portal_state.anonymous()
+        
+class NextPreviousViewlet(ViewletBase, NextPreviousView):
+    render = ZopeTwoPageTemplateFile('templates/nextprevious.pt')

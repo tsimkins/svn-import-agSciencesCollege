@@ -42,4 +42,7 @@ body.template-folder_leadimage_view #portal-column-content.sr #portal-content-wr
     float: left;
 }
 
+.listingBar {
+    padding: 0 1em;
+}
 /* </dtml-with> */
