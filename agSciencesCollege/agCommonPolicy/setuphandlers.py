@@ -13,6 +13,9 @@ from zope.component import getSiteManager, getUtility, getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 from Products.CMFCore.utils import getToolByName
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping
+from plone.app.viewletmanager.manager import ManageViewlets
+from zLOG import LOG, INFO
+import os.path
 import string
 import random
 
@@ -25,7 +28,6 @@ def createUsers(context):
     users = [
                 ["trs22", "Simkins", "Tim", "trs22@psu.edu"],
                 ["cjm49", "More", "Chris", "cjm49@psu.edu"],
-                ["aln", "Nakpil", "Albert", "aln@psu.edu"],
                 ["axd159", "Devlin", "Ann", "axd159@psu.edu"],
                 ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu"],
                 ["pgw105", "Warren", "Pete", "pgw105@psu.edu"],
@@ -93,9 +95,9 @@ def deleteUnusedFolders(context):
                 urltool = getToolByName(site, "portal_url")
                 portal = urltool.getPortalObject()
                 portal.manage_delObjects([theFolder])
-                print "deleted folder %s" % theFolder
+                LOG('agCommonPolicy', INFO, "deleted folder %s" % theFolder)
         else:
-            print "Folder %s not found" % theFolder
+            LOG('agCommonPolicy', INFO, "Folder %s not found" % theFolder)
             
 
 def createSiteFolders(context):
@@ -118,29 +120,36 @@ def createSiteFolders(context):
                 theObject.setExcludeFromNav(True)
                 theObject.reindexObject()
 
-            print "Created and published folder %s" % theId
+            LOG('agCommonPolicy', INFO, "Created and published folder %s" % theId)
         else:
-            print "Folder %s already exists." % theId
+            LOG('agCommonPolicy', INFO, "Folder %s already exists." % theId)
             
 def configureFrontPage(context):
     site = context.getSite()
 
     if hasattr(site, 'front-page'):
         frontPage = getattr(site, 'front-page')
-        frontPage.setText('Home Page should be set to "Homepage View"')
-        frontPage.setTitle('Home')
-        frontPage.setDescription('')
-        frontPage.setPresentation(False)
-        frontPage.setLayout("document_homepage_view")
-        frontPage.archetype_name = 'Home Page'
-        frontPage.portal_type = 'HomePage'
-        frontPage.reindexObject()
+        
+        try:
+            type = frontPage.getPortalTypeName()
+        except AttributeError:
+            LOG('agCommonPolicy', INFO, "front-page has no function getPortalTypeName()")
+        else:
+            if type != 'HomePage':
+                frontPage.setText('Home Page should be set to "Homepage View"')
+                frontPage.setTitle('Home')
+                frontPage.setDescription('')
+                frontPage.setPresentation(False)
+                frontPage.setLayout("document_homepage_view")
+                frontPage.archetype_name = 'Home Page'
+                frontPage.portal_type = 'HomePage'
+                frontPage.reindexObject()
         
 def setSitePortlets(context):
 
     site = context.getSite()
 
-    print "Setting site portlets."
+    LOG('agCommonPolicy', INFO, "Setting site portlets.")
 
     try:
 
@@ -151,27 +160,27 @@ def setSitePortlets(context):
         ploneRight = getMultiAdapter((site, ploneRightColumn), IPortletAssignmentMapping, context=site)
     
     except ComponentLookupError:
-        print "ComponentLookupError"
+        LOG('agCommonPolicy', INFO, "ComponentLookupError")
 
     else:
 
         for deletePortlet in [u'review', u'news', u'events', u'calendar']:
             try:
                 del ploneRight[deletePortlet]
-                print "Deleted %s" % deletePortlet
+                LOG('agCommonPolicy', INFO, "Deleted %s" % deletePortlet)
             except KeyError:
-                print "No portlet named %s" % deletePortlet
+                LOG('agCommonPolicy', INFO, "No portlet named %s" % deletePortlet)
             
             
         for deletePortlet in [u'login']:
             try:
                 del ploneLeft[deletePortlet]
-                print "Deleted %s" % deletePortlet
+                LOG('agCommonPolicy', INFO, "Deleted %s" % deletePortlet)
             except KeyError:
-                print "No portlet named %s" % deletePortlet
+                LOG('agCommonPolicy', INFO, "No portlet named %s" % deletePortlet)
 
         if ploneLeft.has_key('navigation'):
-            print "Set navigation portlet start level"
+            LOG('agCommonPolicy', INFO, "Set navigation portlet start level")
             ploneLeft['navigation'].topLevel = 0
 
 
@@ -191,7 +200,7 @@ def addExtensionToMimeType(registry, extension, mimetype):
 
         myMime.edit(myMime.name(), myMime.mimetypes, newExtensions, myMime.icon_path, globs=newGlobs)
 
-        print "Added extension %s to mimetype %s" % (extension, mimetype)
+        LOG('agCommonPolicy', INFO, "Added extension %s to mimetype %s" % (extension, mimetype))
 
 def configureMimeTypes(context):
     
@@ -229,19 +238,23 @@ def configureFSD(context):
     try:
         fsdtool = getToolByName(site, 'facultystaffdirectory_tool')
     except AttributeError:
-        print "FSD not installed."
+        LOG('agCommonPolicy', INFO, "FSD not installed.")
     else:
         fsdtool.setPhoneNumberDescription('555-555-5555')
         fsdtool.setPhoneNumberRegex('^\d{3}-\d{3}-\d{4}$')
         fsdtool.setUseInternalPassword(False)
-        print "Configured FSD"
+        LOG('agCommonPolicy', INFO, "Configured FSD")
 
 def configureScripts(context):
     # We're going to copy the contents of scripts in agcommon_templates
     # to the root of the site, since we can't actually copy them as objects.
 
+    LOG('agCommonPolicy', INFO, "Context: %s"  % context)
+
     site = context.getSite()
     portal_skins = getToolByName(site, 'portal_skins')
+
+    LOG('agCommonPolicy', INFO, "Site: %s"  % site)
     
     toCopy = [
         { 
@@ -256,8 +269,12 @@ def configureScripts(context):
     
     try:
         templates = portal_skins.agcommon_templates
+        LOG('agCommonPolicy', INFO, 'templates: %s' % templates)
+    except AttributeError:
+        LOG('agCommonPolicy', INFO, "AttributeError Can't find agcommon_templates")
+        LOG('agCommonPolicy', INFO, "----\n----".join(portal_skins.keys()))
     except KeyError:
-        print "Can't find agcommon_templates"
+        LOG('agCommonPolicy', INFO, "KeyError Can't find agcommon_templates")
     else:
     
         addPythonScript = site.manage_addProduct['PythonScripts'].manage_addPythonScript
@@ -268,9 +285,9 @@ def configureScripts(context):
 
             try:
                 site.manage_delObjects([target])
-                print "Deleted existing script %s" % target
+                LOG('agCommonPolicy', INFO, "Deleted existing script %s" % target)
             except AttributeError:
-                print "Site does not have script %s" % target
+                LOG('agCommonPolicy', INFO, "Site does not have script %s" % target)
         
             addPythonScript(target)
             
@@ -281,7 +298,7 @@ def configureScripts(context):
             
             site[target].ZCacheable_setManagerId('HTTPCache')
             
-            print "Added script %s" % target
+            LOG('agCommonPolicy', INFO, "Added script %s" % target)
 
 
 # Install required products
@@ -295,7 +312,7 @@ def installAdditionalProducts(context):
 
     toInstall = [
             'CacheSetup', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
-            'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
+            'agCommonPolicy', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
             'plone.app.imaging', 'plonegalleryview'
     ]
 
@@ -304,35 +321,93 @@ def installAdditionalProducts(context):
 
     for product in toInstall:
     
-        print "Attempting to install %s" % product
+        LOG('agCommonPolicy', INFO, "Attempting to install %s" % product)
     
         if not qi.isProductInstalled(product):
             if qi.isProductInstallable(product):
                 qi.installProduct(product)
-                print "Installed product %s" % product
+                LOG('agCommonPolicy', INFO, "Installed product %s" % product)
             else:
-                print "Product %s not installable" % product
+                LOG('agCommonPolicy', INFO, "Product %s not installable" % product)
         else:
-            print "Product %s already installed." % product    
-            
-def setupHandlersWrapper(context):
-    
+            LOG('agCommonPolicy', INFO, "Product %s already installed." % product)
+
+# This will update the base_properties file to contain any new base_properties
+# No more "white screen of death"
+
+def updateBaseProperties(context):
     site = context.getSite()
 
-    #installAdditionalProducts(context)
+    # Let's give it a go!
+    LOG('agCommonPolicy', INFO, "Updating Base properties for %s" % site['id'])
+    portal_skins = getattr(site, 'portal_skins')
 
-    createUsers(context)
-    
-    deleteUnusedFolders(context)
-    
-    createSiteFolders(context)
+    custom = getattr(portal_skins, 'custom')
 
-    configureFrontPage(context)
-    
-    setSitePortlets(context)
+    try:
+        agcommon_styles = getattr(portal_skins, 'agcommon_styles')
+    except:
+        LOG('agCommonPolicy', INFO, "ERROR: %s : agCommon skin not installed" % site['id'])
+        return False
+        
+    try:
+        custom_base_properties = getattr(custom, 'base_properties')
+    except:
+        LOG('agCommonPolicy', INFO, "ERROR: %s : No customized base_properties" % site['id'])
+        return False
+        
+    base_properties = getattr(agcommon_styles, 'base_properties')
 
-    configureMimeTypes(context)
-    
-    configureFSD(context)
+    try:            
+        for myProperty in base_properties.propertyItems():
+            (myPropertyKey, myPropertyValue) = myProperty
 
-    configureScripts(context)
+            if not custom_base_properties.getProperty(myPropertyKey):
+                myPropertyType = base_properties.getPropertyType(myPropertyKey)
+                try:
+                    custom_base_properties.manage_addProperty(myPropertyKey, myPropertyValue, myPropertyType)
+                except:
+                    LOG('agCommonPolicy', INFO, "ERROR: %s : Error adding property %s:%s=%s" % (site['id'], myPropertyKey, myPropertyType, myPropertyValue))
+                    return False
+                    
+                LOG('agCommonPolicy', INFO, "Added %s:%s=%s" % (myPropertyKey, myPropertyType, myPropertyValue))
+    except:
+        LOG('agCommonPolicy', INFO, "ERROR: %s : Problem updating properties" % site['id'])
+
+def customizeViewlets(context):
+    
+    site = context.getSite()
+    
+    if site['id'] == 'agsci.psu.edu':
+        ManageViewlets.show('plone.portalfooter', 'contentwellportlets.portletsbelowcontent')
+
+def setupHandlersWrapper(context):
+
+    if os.path.exists('agCommonPolicy.marker'):
+    
+        site = context.getSite()
+    
+        #installAdditionalProducts(context)
+    
+        createUsers(context)
+        
+        deleteUnusedFolders(context)
+        
+        createSiteFolders(context)
+    
+        configureFrontPage(context)
+        
+        setSitePortlets(context)
+    
+        configureMimeTypes(context)
+        
+        configureFSD(context)
+    
+        configureScripts(context)
+    
+        updateBaseProperties(context)
+        
+        #customizeViewlets(context)
+        
+    else:
+        LOG('agCommonPolicy', INFO, "Not running setup handlers from a non-agCommonPolicy install")
