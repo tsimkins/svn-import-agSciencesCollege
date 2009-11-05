@@ -5,7 +5,7 @@
 	<div id="addthis"
 		tal:condition="python: not hide_addthis and isAnon">
 		<script type="text/javascript">
-		// From http://www.addthis.com/forum/viewtopic.php?f=8&t=14972
+		// From http://www.addthis.com/forum/viewtopic.php?f=8&amp;t=14972
 
 		var addthis_config = {
 		  data_use_flash: false

@@ -8,9 +8,9 @@
 <body>
 
 <metal:css fill-slot="style_slot">
-    <!-- Homepage CSS -->
-        <style type="text/css" media="all" tal:condition="exists: portal/homepage.css"
-               tal:content="string:@import url($portal_url/homepage.css);">
+    <!-- Portlet Homepage CSS -->
+        <style type="text/css" media="all" tal:condition="exists: portal/portlet_homepage.css"
+               tal:content="string:@import url($portal_url/portlet_homepage.css);">
         </style>
 </metal:css>
 
@@ -25,14 +25,19 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
+        <h2 class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+        </h2>
+
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
-        
-        <script type = "text/javascript" src = "background-images/getHomepageImage.js"></script>
 
     </tal:main-macro>
 </metal:main>
 
 </body>
 </html>
+

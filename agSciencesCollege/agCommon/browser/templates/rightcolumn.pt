@@ -1,4 +1,4 @@
-<div id = "rightcolumn" tal:condition="view/isHomePage">
+<div id="rightcolumn" tal:condition="view/isHomePage">
 
 	<tal:block replace="structure provider:agcommon.rightcolumn" />
 

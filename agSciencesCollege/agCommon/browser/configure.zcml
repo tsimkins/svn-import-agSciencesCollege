@@ -107,7 +107,7 @@
 
     <browser:viewlet
         name="agcommon.addthis"
-        manager="plone.app.layout.viewlets.interfaces.IContentViews"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
         layer=".interfaces.IThemeSpecific"
         class=".viewlets.AddThisViewlet"
         permission="zope2.View"
@@ -116,7 +116,7 @@
     <browser:viewlet
         name="agcommon.homepageimage"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        template="templates/homepageimage.pt"
+        class=".viewlets.HomepageImageViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />

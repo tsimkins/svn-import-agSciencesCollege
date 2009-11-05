@@ -1,13 +1,13 @@
 <div id="portal-breadcrumbs"
 	 i18n:domain="plone">
 
-	<a href = "http://www.psu.edu" target = "_blank">PSU</a>
+	<a href="http://www.psu.edu" target="_blank">PSU</a>
 
 	<span class="breadcrumbSeparator">
 		&raquo;
 	</span>
 
-	<a href = "http://agsci.psu.edu">AgSci</a>
+	<a href="http://agsci.psu.edu">AgSci</a>
 
 	<span class="breadcrumbSeparator">
 		&raquo;

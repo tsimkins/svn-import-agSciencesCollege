@@ -4,7 +4,19 @@
 
 /* <dtml-with base_properties> */
 
-#topnavigation li {
+#portal-content-wrapper {
+    margin-left: -3px;
+}
+
+#portal-column-content {
+    width: 710px;
+}
+
+body.template-document_homepage_view #portal-column-content {
+    width: 704px;
+}
+
+#portal-top-navigation li {
 	display: inline;
 	border-width: 0px 0px 0px 3px;
 }
@@ -14,22 +26,24 @@
 }
 
 #visual-portal-wrapper {
-    margin: 0 5%;
-}
-
-body.section-front-page #rightcolumn .portletFooter{
-    border: 0;
-}
-
-#portal-column-one .portletNavigationTree {
-	margin-left: -10px !important;
-	margin-right: -10px !important;
-	margin-top: -10px !important;
-	padding: 0 10px !important;
+    width: 902px;
 }
 
 #portal-column-one .portletNavigationTree li.navTreeTitle {
 	margin-top: 0px !important;
 	background: transparent !important;
 }
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#addthis {
+    display: none;
+}
+
+body.template-folder_leadimage_listing .leadimage-listing img {
+    display: none; 
+}
+
 /* </dtml-with> */

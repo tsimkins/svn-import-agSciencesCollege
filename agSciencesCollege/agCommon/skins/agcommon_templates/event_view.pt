@@ -181,7 +181,7 @@
                tal:define="field python:context.getField('eventUrl');"                    
                         id="parent-fieldname-eventUrl"
                         tal:attributes="href here/event_url">
-               More information about this event&hellip;</a>
+                    <span tal:replace="context/more_information|string:More information about this event" />&hellip;</a>
         </p>
 
         </div>

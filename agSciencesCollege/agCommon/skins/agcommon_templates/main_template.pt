@@ -142,13 +142,11 @@
             </div>
             <tal:comment replace="nothing"> End of the right column </tal:comment>
         
-          <div id="portal-content-wrapper">
+          <div id="portal-content-wrapper"
+               tal:define="show_border context/@@plone/showEditableBorder"
+               tal:attributes="class python:test(show_border,'documentEditable','')">
           <metal:block define-slot="content">
-            <div metal:define-macro="content"
-                 tal:define="show_border context/@@plone/showEditableBorder"
-                 tal:attributes="class python:test(show_border,'documentEditable','')">
-
-
+            <metal:macro metal:define-macro="content">
 
               <div tal:replace="structure provider:plone.contentviews" />
 
@@ -194,7 +192,7 @@
                   <div class="visualClear" id="clear-space-after-region-content"><!-- --></div>
               </div>
 
-            </div>
+            </metal:macro>
 
           </metal:block>
           </div>

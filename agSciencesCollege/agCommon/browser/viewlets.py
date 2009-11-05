@@ -77,6 +77,25 @@ class CenterColumnViewlet(ViewletBase):
         mtool = getToolByName(self.context, 'portal_membership')
         return mtool.checkPermission("Portlets: Manage portlets", self.context)
 
+class HomepageImageViewlet(ViewletBase):   
+    index = ViewPageTemplateFile('templates/homepageimage.pt')
+
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+            
+        if layout == 'document_homepage_view':
+            self.isHomePage = True
+        else:
+            self.isHomePage = False
+
+
 class AddThisViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/addthis.pt')
 

@@ -5,12 +5,15 @@
 
 /* YOUR CSS RULES START HERE */
 
-
+/* = Body =================================================== */
 
 body {
 	background: &dtml-bodyBackgroundColor;;
 	color: #000000;
 }
+
+
+/* = background-stripe-X ==================================== */
 
 #background-stripe-one, 
 #background-stripe-two, 
@@ -27,20 +30,23 @@ body {
 
 #background-stripe-one {
 	background: &dtml-backgroundStripeOneColor;;
-	top: 0px;
+	top: 0;
 	height: 98px;
 	z-index: -15;
 }
+
 #background-stripe-two {
 	background: &dtml-backgroundStripeTwoColor;;
 	top: 65px;
 	height: 10px;
 }
+
 #background-stripe-three {
 	background: &dtml-backgroundStripeThreeColor;;
 	top: 75px;
 	height: 23px;
 }
+
 #background-stripe-four {
 	background: transparent;
 	top: 98px;
@@ -51,44 +57,29 @@ body {
 	background-position: left 300px;
 	opacity: 1;
 }
-/* Finally had to break out the old .clearboth */
-.clearboth {
-	font-size: 0.1em;
-	clear: both;
-	margin: 0px !important;
-}
 
-#region-content a, #portal-column-one a {
-	color: #003399;
-}
 
-#region-content a:hover, #portal-column-one a:hover {
-	color: #3366CC;
-}
-
-dt {
-	font-weight: normal;
-}
+/* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
 	background: #FFFFFF;
-	margin: 0px auto;
-	padding-bottom: 6px;
+	margin: 0 auto;
+	padding: 0 6px 6px 6px;
 	max-width: &dtml-maxWidth;;
 	min-width: &dtml-minWidth;;
 }
 
-#portal-searchbox {
-	margin: 4px;
+
+/* = portal-top ============================================= */
+
+#portal-top {
+	margin: 0;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
 }
 
-#portal-content-wrapper {
-	float: left;
-	background: #FFFFFF;
-	padding-bottom: 20px;
-	border-left: 1px solid #808080;
-	margin-left: -2px;
-}
+
+/* = portal-header ========================================= */
 
 #portal-header {
 	background: #FFFFFF url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
@@ -97,749 +88,39 @@ dt {
 	padding: 0;
 }
 
-#logo-print {
-	display: none;
-}
-
-#portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
-	margin: 0px 6px;
-	border-left: 1px solid #808080;
-	border-right: 1px solid #808080;
-}
-
-#portal-breadcrumbs {
-	background-color: &dtml-breadcrumbBackgroundColor;;
-	color: &dtml-breadcrumbTextColor;;
-	font-size: 0.92em;
-	font-weight: bold;
-	letter-spacing: 0.025em;
-	padding: 3px 3px;
-	border-bottom: 0px;
-}
-
-#portal-breadcrumbs .breadcrumbSeparator {
-	color: &dtml-breadcrumbSeparatorColor;;
-}
-
-#portal-breadcrumbs a {
-	color: &dtml-breadcrumbLinkColor;;
-	font-weight: normal;
-}
-
-#portal-column-content {
-	margin-bottom: 0px;
-	padding: 0 0 0 0px;
-	background: #FFFFFF;
+#portal-header a {
+	border-width: 0;
+	text-decoration: none;
 }
 
 
-#portal-columns>div.visualPadding {
-	float: left;
-	width: 187px;
-}
+/* = portal-searchbox ====================================== */
 
-#portal-column-content.sl {
-	margin-left: 188px;
-}
-
-
-/* ------------ PORTLETS --------------*/
-
-#portal-column-one .visualPadding {
-	padding: 0px; 
-}
-
-#portal-column-one .portlet, #portal-column-one .portletItem {
-	border: none;
-}
-
-#portal-column-one .portletItem {
-	padding: 0px;
-}
-
-#portal-column-one .portletFooter {
-	display: none;
-}
-
-.portletItemDetails {
-	color: #333333;
-	font-size: 0.92em;
-}
-
-#portal-column-one .portletNavigationTree .portletHeader {
-	display: none;
-}
-
-
-#portal-column-one .portletNavigationTree .portletItem ul {
-	margin: 0px;
-}
-
-#portal-column-one .portletNavigationTree .portletItem li {
-	border-bottom: 1px dashed #CCCCCC;
-	font-size: 1em;
-	margin: 0.5em 0;
-	padding-bottom: 5px;
-}
-
-#portal-column-one .portletNavigationTree .portletItem li a {
-	font-size: 1.1em;
-}
-
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
-	background-color: &dtml-leftSubNavBackground;;
-	border: #DDD solid 1px;
-	margin: 0.15em 0.25em 0.25em 0.25em;
-}
-
-#portal-column-one .navTreeCurrentItem, a.navTreeItemInPath {
-	border-width: 0px !important;
-	font-weight: bold;
-}
-
-#portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
-	background-color: &dtml-leftSubNavBackground;;	
-}
-
-#portal-column-one .navTreeItem a, #portal-column-one .navTreeItem a:hover, 
-#portal-column-one dd.portletItem #portal-column-one .navTreeItem a, 
-#portal-column-one dd.portletItem .navTreeItem a:hover {
-	border-width: 0px;
-	background-color: transparent;
-	color: &dtml-leftNavTextColor;;
-}
-
-#portal-column-one .portletNavigationTree ul.navTreeLevel2 li.navTreeItem {
-	margin-left: 0 !important;	
-}
-
-/* !important SUCKS! */
-
-#portal-column-one .portletNavigationTree a.state-published {
-	color: &dtml-leftNavTextColor; !important;
-}
-
-#portal-column-one .portletNavigationTree a.state-published:hover {
-    color: &dtml-leftNavTextHoverColor; !important;
-}
-
-#portal-column-one .navTreeItem a:hover, #portal-column-one 
-dd.portletItem .navTreeItem a:hover {
-	color: &dtml-leftNavTextHoverColor;;
-}
-
-dd.portletItem {
-	padding: 0.7em;
-}
-
-dd.portletItem p {
-	padding: 0 0 1em 0;
-}
-
-#portal-column-one ul.navTreeLevel1 .navTreeItem a, #portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, #portal-column-one ul.navTreeLevel1 
-dd.portletItem .navTreeItem a, #portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
-	background-color: &dtml-leftSubNavBackground;; 
-	color: &dtml-leftNavTextColor;;
-}
-
-#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover
-{
-	color: &dtml-leftNavTextHoverColor;;
-}
-
-
-#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
-	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
-	padding: 0px 0.5em 0px 1.25em;
-	margin-left: 0.35em;
-}
-
-#portal-column-one .portletNavigationTree .portletItem li li, #portal-column-one .navTreeItem a {
-	border: none;
-}
-
-#portal-column-one-visualPadding.visualPadding {
-    margin-bottom:150px;
-    padding: 0;
-}
-
-#portal-column-one {
-	background: transparent;
-	border-color: #808080;
-	border-style: solid;
-	border-width: 0 1px 0 0;
-/*	min-height: 375px; */
-	padding: 2px 0px 0 0px;
-	width: 186px;
-	float: left;
-	margin: 0px 0px 0px 0px;
-}
-
-#portal-column-one .portlet {
-	background: &dtml-leftNavBackgroundColor;;
-}
-
-/* -------- MAIN NAV Portlet --------*/
-
-
-/*-------- FOOTER -------------------*/
-
-#portal-footer {
-	background-color: &dtml-footerBackgroundColor;;
-	color: &dtml-footerTextColor;;
-	border-width: 0px;
-}
-
-#portal-footer a, #portal-footer a:visited {
-	color: &dtml-footerLinkColor;;
-}
-
-/* Added By Tim 2008/07/30 */
-
-#breadcrumbs-you-are-here {
-	display: none;
+#portal-searchbox {
+	margin: 4px;
 }
 
 .searchSection {
 	display: none;
 }
 
-/* topnavigation */
-
-#topnavigation {
-	background: &dtml-topnavigationBackgroundColor;;
-	margin: 0px 0px 0px -1px;
-	padding: 0px;
-}
-
-#topnavigation ul {
-	display: block;
-	text-align: left;
-	margin: 0px auto;
-	padding: 0 0 0 4px;
-	border: 0px;
-	list-style-type: none;
-}
-
-#topnavigation li {
-	background: &dtml-topnavigationButtonBackgroundColor;;
-	border-color: &dtml-topnavigationBackgroundColor;;
-	border-width: 0px 0px 0px 1px;
-	border-style: solid;
-	display: -moz-inline-box;
-	display: inline-block;
-	padding: 3px 4px;
-	margin: 3px 0px;
-	white-space: nowrap;	
-}
-
-#topnavigation li:first-child {
-	border-width: 0px;
-}
-
-#topnavigation li a {
-	display: inline;
-	font-size: 1em;
-	color: &dtml-topnavigationTextColor;;
-	text-decoration: none;
-	border: 0px;
-}
-
-#topnavigation img {
-	display: none;
-}
-
-#topnavigation .portletHeader {
-	display: none;
-}
-
-#topnavigation .portletItem {
-	padding: 0;
-	border: 0px;
-}
-
-#topnavigation .portlet {
-	background-color: transparent;
-	border: 0px;
-}
-
-#topnavigation li.navTreeItem div {
-	display: inline;
-}
-
-.navTreeItem a:hover,
-dd.portletItem .navTreeItem a:hover {
-	background: transparent;
-}
-
-.documentEditable .contentActions,
-.documentEditable .contentViews,
-.documentEditable .documentContent
-{
-	margin: 0px 5px;
-}
-
-.documentEditable .contentViews { 
-	margin-top: 20px;
-}
-
-/* Squish tabs in edit view together when we have a right column */
-#portal-column-content.sr .documentEditable .contentViews li a { 
-	padding: 0 0.75em;
-    margin-right:0.25em;
-}
-
-.documentActions {
-	margin-top: 20px;
-}
-
-.documentContent {
-	padding-bottom: 0px !important;
-}
-
-.documentContent dd a {
-	border: none;
-}
-
-h1.documentFirstHeading, .facultyStaffDirectory h1, #region-content h1 {
-	color: &dtml-documentTitleColor;;
-	font-weight: normal;
-	border: none;
-}
-
-#clear-space-before-navigation {
-	clear: none;
-}
-
-/* No H1 on home page */
-body.template-document_homepage_view h1 {
-	display: none;
-}
-
-body.template-document_homepage_view #centercolumn h1.documentFirstHeading {
-	display: block;
-}
-
-body.template-document_homepage_view .documentActions {
-	display: none;
-}
-
-/* Configure Right Column Portlets */
-
-#rightcolumn {
-	float: right;
-	padding: 0px;
-	margin: 0px;
-	position: relative;
-	clear: both;
-    display: none; 
-}
-
-#rightcolumn>div {
-	margin: 0px 0px 30px 20px;
-}
-
-#rightcolumn .portletWrapper {
-	width: 175px;
-	background: &dtml-insideRightPortletBackgroundColor; none repeat scroll 0 0;
-	border: 1px solid #CCCCCC;	
-	padding: 1px;
-	margin-bottom: 20px;
-	font-size: 0.88em;
-}
-
-#rightcolumn .portlet {
-	border-width: 0px;
-	margin: 0px 0px 0px auto;
-}
-
-#rightcolumn .portletHeader {
-	background: &dtml-insideRightPortletHeaderBackgroundColor;; 
-	color: &dtml-insideRightPortletHeaderTextColor;; 
-	font-size: 1em;
-	font-weight: bold;
-	padding: 4px;
-	text-align: center;
-	text-transform: uppercase;
-	border-width: 0px;
-	margin: 0px; 
-}
-
-#rightcolumn .portletHeader a {  
-	color: &dtml-insideRightPortletHeaderTextColor;;
-}
-
-#rightcolumn .portletItem {
-	background: &dtml-insideRightPortletBackgroundColor;;
-	border-width: 0px;
-	color: &dtml-insideRightPortletTextColor;;
-}
-
-#rightcolumn .portletItem ul {
-	margin: 0px;
-	padding: 0px;
-	float: none;
-}
-
-#rightcolumn .portletItem li {
-	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 5px;
-	list-style-image: none;
-	list-style-type: none;
-	margin: 2px 5px 5px;
-	padding: 1px 0 1px 13px;
-	font-size: 1.00em;
-	color: &dtml-insideRightPortletTextColor;;
-}
-
-#rightcolumn .portletItem a {
-	color: &dtml-insideRightPortletLinkColor;;
-}
-
-#rightcolumn .portletItem a:hover {
-	color: &dtml-insideRightPortletLinkHoverColor;;
-}
-
-#rightcolumn .portletFooter {
-	background: &dtml-insideRightPortletBackgroundColor;; 
-}
-
-#rightcolumn ul li a {
-	color: &dtml-insideRightPortletLinkColor;;
-	font-size: 1.00em;
-	text-decoration: none;
-	border: 0px;
-	padding: 0px;
-}
-
-#rightcolumn .navTreeCurrentItem {
-    border: 0 !important;
-    font-weight: bold;
-}
-
-/* Right Column Front Page modifications */
-
-body.template-document_homepage_view .documentByLine {
-	display: none;
-}
-
-body.template-document_homepage_view #rightcolumn {
-    display: block;
-	float: right;
-	margin: 0 3px 3px 3px;
-	padding: 0px;
-	font-weight: normal;
-	font-size: 0.92em;
-	background: &dtml-frontRightPortletBackgroundColor;;
-	color: &dtml-frontRightPortletTextColor;;
-}
-
-body.template-document_homepage_view #rightcolumn .portletItem li, body.template-document_homepage_view #rightcolumn .portletItem p {
-    color: &dtml-frontRightPortletTextColor;;
-}
-
-body.template-document_homepage_view #rightcolumn .portletHeader, body.template-document_homepage_view #rightcolumn .portletHeader a,
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader , body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader a {
-	background: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	margin: 0px;
-}
-
-body.template-document_homepage_view #rightcolumn .portletFooter {
-	background: &dtml-frontRightPortletBackgroundColor;; 
-}
-
-body.template-document_homepage_view #rightcolumn .portletItem a {
-	color: &dtml-frontRightPortletTextColor;;
-	display: block;
-	font-size: 1.10em;
-	text-decoration: none;
-	border: 0px;
-	font-weight: normal;
-}
-
-/* body.template-document_homepage_view #rightcolumn,  */
-body.template-document_homepage_view #rightcolumn .portletItem {
-	background: &dtml-frontRightPortletBackgroundColor;;
-}
-
-body.template-document_homepage_view #rightcolumn .portletItem .date {
-	color: #5B87B6;
-	font-size: 0.92em;
-	font-weight: normal;
-}
-
-body.template-document_homepage_view #rightcolumn .portletWrapper {
-	border: 0px;
-	padding: 0px;
-	margin-left: 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portletWrapper {
-	margin-right: 10px;
-}
-
-/* Center Column Navigation */
-
-body.template-document_homepage_view #centercolumn .portletNavigationTree ul.navTreeLevel0 {
-	margin: 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portletNavigationTree, 
-body.template-document_homepage_view #centercolumn .portletCollection {
-	float: left;
-	margin-right: 2.5%;
-	width: 47.5%;
-	margin-bottom: 10px;
-}
-
-body.template-document_homepage_view #centercolumn .portletNavigationTree ul.navTreeLevel0 li.navTreeTitle a, body.template-document_homepage_view #centercolumn .portletCollection .portletHeader {
-	background: transparent;
-	display: block;
-	padding: 0px;
-	border: 0px;
-	font-weight: bold;
-	font-size: 1em;
-	color: #003366;
-	border-width: 0px 0px 1px 0px !important;
-	border-color: #CCCCCC !important;
-	border-style: solid !important;
-}
-
-body.template-document_homepage_view #centercolumn .navTreeItem a:hover, 
-body.template-document_homepage_view #centercolumn .navTreeItem a, 
-body.template-document_homepage_view #centercolumn .navTreeCurrentItem a, 
-body.template-document_homepage_view #centercolumn .portletCollection a
-
-{
-	background: transparent;
-	border: 0px !important;
-	padding: 1px 0px;
-}
-
-body.template-document_homepage_view #rightcolumn .portletItem a.more,
-body.template-document_homepage_view #centercolumn .portletItem a.more {
-/*	color: #5B87B6; */
-	display: block;
-	font-size: 0.85em;
-	margin: 5px;
-	text-align: right;
-	text-decoration: none;
-	border: 0px;
-}
-
-body.template-document_homepage_view #rightcolumn .portletItem a:hover,
-body.template-document_homepage_view #centercolumn .portletItem a:hover {
-	color: #3366CC;
-}
-
-/* Configure Homepage Image Portlet */
-
-#homepageimage {
-	display: none;
-}
-
-body.template-document_homepage_view #homepageimage {
-	clear: right;
-	background: #999999;
-	border: 0 none;
-	display: block;
-	height: 265px;
-	margin: 3px 3px 3px 4px;
-	text-align: left;
-	padding: 0px;
-}
-
-/* Friggin' External link icons won't turn off through the interface.  Sledgehammer! */
-
-#region-content a[href^="http:"], #region-content a.link-external,
-#content a[href^="https:"], #content a.link-https {
-	background: transparent;
-	padding: 0px;
-}
-
-
-
-/* News Articles */
-
-#centercolumn {
-	display: none;
-}
-
-body.template-document_homepage_view #centercolumn {
-	display: block;
-	margin: 0 3px 0 12px;
-	padding: 5px 0px 5px 0px;
-	border-width: 0px 175px 0px 0px;
-	border-color: &dtml-frontRightPortletBackgroundColor;;
-	border-style: solid;
-}
-
-body.template-document_homepage_view #centercolumn dd {
-	padding: 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portletHeader {
-	display: none;
-}
-
-body.template-document_homepage_view #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background: #FFFFFF;
-	border-width: 0px;
-	padding: 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0px 0px 0px;
-	border-style: dashed;
-	border-color: #CCCCCC;
-	padding: 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portlet dd:first-child {
-	border-width: 0px 0px 0px 0px;
-}
-
-body.template-document_homepage_view #centercolumn .portletItem a.title {
-/*	color: #2F4977; */
-	font-size: 1.05em;
-	font-weight: bold;
-	margin-top: 7px;
-	text-decoration: none;
-	border-width: 0px;
-	display: block;
-}
-
-body.template-document_homepage_view #centercolumn .portletItem span.date  {
-	color: #5B87B6;
-	font-size: 0.88em;
-	font-weight: normal;
-	text-align: left;
-}
-
-body.template-document_homepage_view #centercolumn .portletItem span.summary {
-	color: #333333;
-	font-size: 0.92em;
-	margin: 10px 0px;
-	font-weight: normal;
-	text-align: left;
-}
-
-body.template-document_homepage_view #centercolumn .portletFooter a {
-	color: #5B87B6;
-	display: block;
-	font-size: 0.81em;
-	margin: 5px 5px 0;
-	text-align: right;
-	text-decoration: none;
-	border-width: 0px;
-}
-
-
-h2 {
-	color: &dtml-documentHeadingColor;;
-	font-size: 1.2em;
-	margin: 15px 0 5px;
-	padding: 0;
-	border: 0px;
-	font-weight: bold;
-}
-
-h3 {
-	color: &dtml-documentSubHeadingColor;;
-	font-size: 1em;
-	margin: 15px 0 5px;
-	padding: 0;
-	border: 0px;
-	font-weight: bold;
-}
-
-#portal-column-one-visualPadding .portletWrapper {
-	padding: 0px;
-}
-
-.portlet {
-	margin: 0px;
-}
-
-#content {
-	padding-bottom: 0px;
-
-}
-
 input.searchButton {
 	background: transparent;
-	border: 0px;
-	padding: 0px;
+	border: 0;
+	padding: 0;
 	margin-top: -1px;
 }
 
 
-#region-content {
-	padding: 1em 20px 20px 20px !important;
-}
-
-body.template-document_homepage_view #content, body.template-document_homepage_view #region-content, body.template-document_homepage_view #portal-content-wrapper {
-	padding: 0px !important;
-}
-
-/* For JavaScript Equal Height Columns */
-
-#left-visualPadding, #right-visualPadding {
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-	height: 0px;
-}
-
-/* Top level nav when title included */
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle {
-	border-bottom: 0px;
-	background: &dtml-leftNavTitleBackground;;
-	color: #FFFFFF;
-	margin: -12px -10px 0px -10px; 
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	font-weight: bold;
-}
-
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
-	background: transparent;
-	color: &dtml-leftNavTitleColor; !important;
-}
-
-.newsImageContainer {
-	width: auto;
-	max-width: 202px;
-}
-
-.contentLeadImageContainer {
-	max-width:202px;
-	width:auto;
-	float:right;
-	margin:0 0 0.5em 1em;
-}
-
-body.popup, body.atrefbrowser {
-	background: #FFFFFF;
-}
-
-.documentDescription {
-	font-weight: normal;
-	color: &dtml-documentDescriptionColor;;
-	margin: 0 0 2.5em 0;
-	font-size: 1.1em;
-}
-
-.portletFooter {
-	border-style: none;
-}
+/* = portal-logo =========================================== */
 
 #portal-logo, #portal-logo img {
 	position: absolute;
-	margin: 0px;
+	margin: 0;
 }
+
+
+/* = logo-psu ============================================== */
 
 #logo-psu {
 	height: 55px;
@@ -848,6 +129,9 @@ body.popup, body.atrefbrowser {
 	left: 5px;
 }
 
+
+/* = logo-college ========================================== */
+
 #logo-college {
 	height: 32px;
 	width: 52px;
@@ -855,9 +139,17 @@ body.popup, body.atrefbrowser {
 	left: 100px;
 }
 
+
+/* = logo-print ============================================ */
+
+#logo-print {
+	display: none;
+}
+
+
+/* = logo-site ============================================= */
+
 #logo-site {
-/*	color: #0B3E91; */
-/*	color: #1144AA; */
 	font-family: Tahoma,Arial,Helvetica,sans-serif;
 	font-size: &dtml-siteLogoFontSize;;
 	height: 30px;
@@ -873,347 +165,203 @@ body.popup, body.atrefbrowser {
 	color: #1144AA;
 }
 
-#portal-header a {
-	border-width: 0px;
-	text-decoration: none;
+
+/* = portal-breadcrumbs ==================================== */
+
+#portal-breadcrumbs {
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: &dtml-breadcrumbTextColor;;
+	font-size: 0.92em;
+	font-weight: bold;
+	letter-spacing: 0.025em;
+	padding: 3px 3px;
+	border-bottom: 0;
 }
 
-.headshot img {
-	border: 0px;
+#portal-breadcrumbs .breadcrumbSeparator {
+	color: &dtml-breadcrumbSeparatorColor;;
 }
 
-.facultyStaffDirectory .standardView .headshot img, 
-.personView .headshot img,
-.facultyStaffDirectory.personView .headshot img {
-	border: 0px;
-	margin-left: 10px;
+#portal-breadcrumbs a {
+	color: &dtml-breadcrumbLinkColor;;
+	font-weight: normal;
 }
 
-.personView .headshot img {
-	margin-top: 40px;
-}
-
-.classification .headshot img {
-	float: right;
-	margin-left: 10px;
-}
-
-.facultyStaffDirectory .standardView .headshot {
-	float: right;
-}
-
-.facultyStaffDirectory .standardView .caption {
-	margin-left: 0px;
-}
-
-#topnavigation a.state-published, #topnavigation a {
-	color:&dtml-topnavigationTextColor; !important;
-	letter-spacing: 0.04em;
-}
-
-#topnavigation a.state-published:hover, #topnavigation a:hover {
-	color: &dtml-topnavigationTextHoverColor; !important;
-}
-
-/* Hide managePortletsLink in homegrown portlets. */
-
-#topnavigation .managePortletsLink,
-#rightcolumn .managePortletsLink,
-#contact .managePortletsLink,
-#homepageimage .managePortletsLink,
-#centercolumn .managePortletsLink {
+#breadcrumbs-you-are-here {
 	display: none;
 }
 
-img.folder_image {
-	float: right;
-	margin-left: 8px;
-	margin-bottom: 8px;
+
+/* = portal-columns ======================================== */
+
+#portal-columns {
+	margin: 0;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
+	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+    width: auto !important;
+    float: left;
+} 
+
+/* = portal-column-one ===================================== */
+
+#portal-column-one {
+    float: left;
+	background: transparent;
+	border-color: #808080;
+	border-style: solid;
+	border-width: 0 1px 0 0;
+	width: 186px;
+    padding:0;
+	margin: 0;
 }
 
-.tileItem {
-	border-top: 0px;
-	margin-top: 1em;
+#portal-column-one .visualPadding {
+	padding: 0; 
 }
 
-.tileImage {
-	border: 0;
-	margin-top: 1.5em;
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom:150px;
+    padding: 0;
 }
 
-img.image-full {
-	width: 100%;
+#portal-column-one a {
+	color: #003399;
 }
 
-.contenttype-fsdperson h2.tileHeadline a {
-	color: #003399 !important;
+#portal-column-one a:hover {
+	color: #3366CC;
+}
+
+
+/* ----- portlets ------------------------------------------ */
+
+#portal-column-one .portletWrapper {
+    margin: 0 10px 20px 10px;
+	padding: 0;
+}
+
+#portal-column-one .portletHeader {
+    background: &dtml-leftButtonBackground_external;;
+    color: &dtml-leftButtonTextColor_external;;
+    border-color: &dtml-leftButtonBackgroundBorder_external;;
+    padding: 3px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#portal-column-one .portlet {
+	border: none;
+    background: &dtml-leftNavBackgroundColor;;
+}
+
+#portal-column-one .portletNavigationTree .portletHeader {
+	display: none;
+}
+
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle {
+	border-bottom: 0;
+	background: &dtml-leftNavTitleBackground;;
+	color: #FFFFFF;
+	margin: 0 -10px; 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 	font-weight: bold;
+}
+
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+	background: transparent;
+	color: &dtml-leftNavTitleColor; !important;
+}
+
+#portal-column-one .portletItem {
+	padding: 0;
 	border: none;
 }
 
-.contenttype-fsdperson p.tileBody {
-	display: none;
+#portal-column-one .portletNavigationTree .portletItem ul {
+	margin: 0;
 }
 
-/* leftColumnButtons */
-
-div.leftColumnButtons {
-	margin: 30px 8px 20px 8px;
+#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
+	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
+	padding: 0 0.5em 0 1.25em;
+	margin-left: 0.35em;
 }
 
-/* eventButtons */
-div.eventButtons {
-	text-align: center;
+#portal-column-one .portletNavigationTree .portletItem li li,
+#portal-column-one .navTreeItem a {
+	border: none;
 }
 
-div.eventButtons img {
-	margin-top: 10px;
-	padding: 4px;
-	border: 1px solid #CCCCCC;
+#portal-column-one .portletNavigationTree .portletItem li {
+	border-bottom: 1px dashed #CCCCCC;
+	font-size: 1em;
+	margin: 0.5em 0;
+	padding-bottom: 5px;
 }
 
-/* addthis */
-
-#addthis {
-	font-size: 0.88em;
-	color: #333333;
-	padding: 4px;
-	border: 0px solid #CCCCCC;
-    display: block;
-    float: right;
-    margin: 12px 6px 5px 8px;
-    height: 1.6em;
-}
-
-#addthis a {
-	text-decoration: none;
-	color: #333333;
-}
-
-/* Thumbnail view workaround for addthis.  We're assuming that we don't use a right column on image pages. */
-
-body.template-atct_album_view #rightcolumn {
-	float: none;
-}
-
-body.template-atct_album_view #rightcolumn .portletWrapper {
-	display: none;
-}
-
-body.template-atct_album_view #addthis {
-	float: right;
-	margin-bottom: 0px;
-}
-
-/* Summary view workaround for addthis.  We're assuming that we don't use a right column on image pages. */
-
-body.template-folder_summary_view #rightcolumn {
-	float: none;
-}
-
-body.template-folder_summary_view #rightcolumn .portletWrapper {
-	display: none;
-}
-
-body.template-folder_summary_view #addthis {
-	float: right;
-	margin-bottom: 0px;
-}
-
-/* Don't show addthis on homepage */ 
-body.template-document_homepage_view #addthis {
-	display: none;
-}
-
-#portal-column-one div.leftColumnButtons a {
-	text-decoration: none;
-	color: &dtml-leftLinkTextColor;;
-}
-
-#portal-column-one div.leftColumnButtons a:hover {
-	text-decoration: none;
-	color: &dtml-leftLinkTextHoverColor;;
-}
-
-ul.leftColumnButtons {
-	margin: 30px 15px;
-}
-
-ul.leftColumnButtons li {
-	display: block;
-	padding: 0px;
-	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
-	border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
-	margin-bottom: 15px;
-	list-style-type: none;
-	list-style-image: none;
-}
-
-ul.leftColumnButtons li strong {
-	padding: 0px;
-	margin: 0px;
-	border: 1px solid #FFFFFF;
-	display: block
-}
-
-#portal-column-one ul.leftColumnButtons li a {
-	text-decoration: none;
-	display: block;
-	color: &dtml-leftButtonTextColor_external;;
-	font-weight: normal;
+#portal-column-one .portletNavigationTree .portletItem li a {
 	font-size: 1.1em;
-	margin-left: 16px;
-	padding: 8px;
-	background: &dtml-leftButtonBackground_external;;
-	border-left: 1px solid #FFFFFF;
 }
 
-#portal-column-one ul.leftColumnButtons li.internal-link a {
-	color: &dtml-leftButtonTextColor_internal;;
-	background: &dtml-leftButtonBackground_internal;;
+#portal-column-one .navTreeItem a
+{
+	border-width: 0;
+	background-color: transparent;
+	color: &dtml-leftNavTextColor;;
 }
 
-ul.leftColumnButtons li.internal-link {
-	background-color: &dtml-leftButtonArrowBackground_internal;;
-	border-color: &dtml-leftButtonBackgroundBorder_internal;;
+#portal-column-one .portletNavigationTree a.state-published {
+	color: &dtml-leftNavTextColor; !important;
 }
 
-.image-left, .image-right {
-	border: 0px;
+#portal-column-one .portletNavigationTree a.state-published:hover,
+#portal-column-one .navTreeItem a:hover {
+	color: &dtml-leftNavTextHoverColor;;
 }
 
-/* Paragraph and Unordered List readability per cmore */
-
-.documentContent ul {
-	margin:0.75em 0 0 2.5em;
+#portal-column-one ul.navTreeLevel1 .navTreeItem a, 
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
+#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a, 
+#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
+	background-color: &dtml-leftSubNavBackground;; 
+	color: &dtml-leftNavTextColor;;
 }
 
-p {
-	margin: 1em 0;
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
+#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover
+{
+	color: &dtml-leftNavTextHoverColor;;
 }
 
-/* Photo Album */
-.photoAlbumEntry {
-	background-image: none;
-	padding: 0px 5px;
-	width: 142px;
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
+	background-color: &dtml-leftSubNavBackground;;
+	border: #DDDDDD solid 1px;
+	margin: 0.15em 0.25em 0.25em 0.25em;
+}
+
+#portal-column-one .navTreeCurrentItem, 
+#portal-column-one a.navTreeItemInPath {
+	border-width: 0 !important;
+	font-weight: bold;
+}
+
+#portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
+	background-color: &dtml-leftSubNavBackground;;	
+}
+
+#portal-column-one .portletNavigationTree ul.navTreeLevel2 li.navTreeItem {
+	margin-left: 0 !important;	
 }
 
 
-/* PloneFormGen Fields */
-
-#pfg-fieldwrapper .field {
-	clear: none;
-}
-
-/* Remove dashed underline from date abbr */
-abbr.dtstart, abbr.dtend {
-	border-bottom: 0px;
-}
-
-/* Give a dt.nodescription a bottom margin of 1em, since we're removing the dd if it doesn't have a description. */
-dt.nodescription {
-	margin-bottom: 1em;
-}
-
-span.description {
-	display: block;
-	font-size: 0.9em;
-	line-height: 1.4em;
-	margin-top: 0.25em;
-}
-
-.facultyStaffDirectory table.listing {
-	border: 1px solid &dtml-globalBorderColor;;
-}
-
-/* Homepage Image overrides */
-#homepageimage h1, #homepageimage h2 {
-	display: block;
-	padding: 15px 10px 5px 15px;
-	margin: 0;
-	background: transparent;
-}
-
-#homepageimage h1 {
-	font-size: 1.9em;
-	font-weight: 500;
-	color: &dtml-homepageH1TextColor;;
-	font-family: Georgia, Times New Roman, serif;
-	letter-spacing: 0.06em;
-}
-
-#homepageimage h2 {
-	font-size: 1.0em;
-	font-weight: normal;
-	color: &dtml-homepageH2TextColor;;
-	font-family: Georgia, Times New Roman, serif;
-	letter-spacing: 0.07em;
-}
-
-#homepageimage .text {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	width: 200px;
-	z-index: 10;
-}
-
-#homepageimage .overlay {
-	width: 200px;
-	height: 265px;
-	margin: 0px;
-	padding: 0;
-	background: &dtml-homepageTransparentOverlayColor;;
-	opacity: 0.70;
-	filter: alpha(opacity = 70);
-	z-index: 5;
-	position: absolute;
-}
-
-body.template-news_listing .effectiveDate,
-body.template-folder_leadimage_listing .effectiveDate,
-body.template-folder_leadimage_view .effectiveDate
- {
-	margin-bottom: 0.1em;
-	margin-top: 0.4em;
-}
-
-body.template-news_listing dd {
-	margin-bottom: 2em;
-	margin-left: 0;
-}
-
-body.template-newsitem_view .effectiveDate {
-	color: #76797C;
-	font-size: 0.9em;
-	margin-bottom: 1em;
-	margin-top: 0;
-}
-
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer {
-	clear: left;
-}
-
-body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view  .contentLeadImageContainer {
+#portal-column-one .portletFooter {
 	display: none;
 }
 
-/* Restyle pull quote */
-
-.pullquote {
-    border-width: 2px 0px;
-    border-style: solid;
-    border-color: #CC9933;
-    color: #9D7627;
-    padding: 1em;
-    font-size: 1.3em;
-    line-height: 1.5em;
-}
-
-.eventDetails {
-	margin-top: 1.5em;
-}
 
 /* Link Icons */
 
@@ -1239,12 +387,12 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 /* Link Buttons */
 
 #portal-column-one .linkButton ul {
-	margin: 30px 5px;
+	margin: 30px 0;
 }
 
 #portal-column-one .linkButton li {
 	display: block;
-	padding: 0px;
+	padding: 0;
 	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
 	border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
 	margin-bottom: 15px;
@@ -1253,8 +401,8 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 }
 
 #portal-column-one .linkButton strong {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	border: 1px solid #FFFFFF;
 	display: block
 }
@@ -1281,165 +429,99 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 	border-color: &dtml-leftButtonBackgroundBorder_internal;;
 }
 
-.template-fg_base_view_p3 textarea {
-	width: 450px;
+
+/* = portal-column-content ================================= */
+
+#portal-column-content {
+    margin: 0;
+	margin-bottom: 0;
+	padding: 0;
+	background: #FFFFFF;
 }
 
-/* Removing avatar from quintasgroup comments */
+#portal-column-content.sl {
+	margin-left: 186px;
+}
 
-div.comment img.avatar {
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#portal-column-content .visualClear {
+    display: inline;
+}
+
+
+/* = portal-top-navigation ================================= */
+
+#portal-top-navigation {
+	margin: 0;
+	padding: 0;
+	background: &dtml-topnavigationBackgroundColor;;
+}
+
+#portal-top-navigation ul {
+	display: block;
+	text-align: left;
+	margin: 0 auto;
+	padding: 0 0 0 4px;
+	border: 0;
+	list-style-type: none;
+}
+
+#portal-top-navigation li {
+	background: &dtml-topnavigationButtonBackgroundColor;;
+	border-color: &dtml-topnavigationBackgroundColor;;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	display: -moz-inline-box;
+	display: inline-block;
+	padding: 3px 4px;
+	margin: 3px 0;
+	white-space: nowrap;	
+}
+
+#portal-top-navigation li:first-child {
+	border-width: 0;
+}
+
+#portal-top-navigation img {
 	display: none;
 }
 
-/* Content Well Portlets for Sitemap */
-
-#portlets-below {
-	background: &dtml-sitemapBackgroundColor;;
-	font-size: 0.88em;
-	margin-right: 6px;
-	margin-left: 6px;
-	margin-top: 0px;
-	padding-bottom: 6px;
-}
-
-#portlets-below div.portletsBelowContentF {
-	clear: both;
-	height: 1px;
-}
-
-div.portletsBelowContentA,
-div.portletsBelowContentB,
-div.portletsBelowContentC,
-div.portletsBelowContentD,
-div.portletsBelowContentE {
-	width: 20%;
-	float: left;
-}
-
-#portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
-#portlets-below .portletItem, #portlets-below .portletHeader {
-	background: transparent;
+#portal-top-navigation a {
+	color:&dtml-topnavigationTextColor; !important;
+	letter-spacing: 0.04em;
+	display: inline;
+	font-size: 1em;
+	color: &dtml-topnavigationTextColor;;
+	text-decoration: none;
 	border: 0;
 }
 
-#portlets-below dl.portlet {
-    padding: 0.5em 0 0.5em 0.75em;
-    margin: 0.5em;
-}
-
-#portlets-below .portletHeader {
-	text-transform: uppercase;
-	font-size: 1.1em;
-	font-weight: bold;
-	padding: 0.5em 0em 0.25em 5px;
-}
-
-#portlets-below dd.portletItem
-{
-	padding: 0;
-    margin: 0;
-}
-
-#portlets-below .portletNavigationTree dd.portletItem
-{
-    padding: 0;
-}
-
-#portlets-below .navTree li
-{
-	padding: 0;
-    margin: 0;
-}
-
-#portlets-below .portletHeader a, #portlets-below .portletHeader span {
-	color: &dtml-sitemapHeaderColor; !important;
-	padding: 0;
-}
-
-#portlets-below .portletFooter {
-	text-align: left;
-	padding: 0.25em 0;
-}
-
-#portlets-below .portletFooter a {
-	color: &dtml-sitemapLinkColor;;
-	display: block;
-	background: transparent;
-}
-
-#portlets-below a, #portlets-below .state-published
-{
-	color: &dtml-sitemapLinkColor; !important;
-	padding: 0.25em 5px;
-	display: block;
-}
-
-#portlets-below .portletItem .state-published:hover,
-#portlets-below .portletItem a:hover {
-	color: &dtml-sitemapBackgroundColor; !important;
-	background: &dtml-sitemapLinkColor; !important;
+#portal-top-navigation a:hover {
+	color: &dtml-topnavigationTextHoverColor; !important;
 }
 
 
-/* Navigation Portlet */
-
-#portlets-below dd.portletItem .navTreeItem a, 
-#portlets-below .navTreeItem a,
-#portlets-below .navTreeCurrentItem
-{
-    background: transparent;
-    border: 0 !important;
-    font-weight: normal;
-}
-
-
-/* RSS Feedmixer portlet in centercolumn */
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader {
-    display: block;
-    margin: -5px -7px 0px -8px;
-    font-size: 0.88em;
-    font-weight: bold;
-    text-align: left;
-    text-transform: uppercase;
-    border: 0;
-    padding: 4px 9px 4px 11px;
-}
-
-body.template-document_homepage_view #centercolumn .portletfeedmixer dd.first {
-	border-width: 0px 0px 0px 0px;
-	padding-top: 3px;
-}
-
-body.template-document_homepage_view #centercolumn {
-    font-size: 0.92em;
-    margin-bottom: 3px;
-}
-
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletItem {
-    font-size: 1.1em;
-}
-
-
-/* Configure Plone Portal Column Two */
+/* = portal-column-two ===================================== */
 
 #portal-column-two {
-	padding: 1em 0.5em 0 0.5em;
-	margin: 0 0 0 3px;
-	float: right;
+    float: right;
+	padding: 12px;
+	margin: 0;
 	background: &dtml-insideRightPortletBackgroundColor;;
-	width: 16em;
-	border-width: 0 0 0 2px;
-	border-color: &dtml-insideRightPortletBackgroundColor;;
-	border-style: solid;
+	width: 160px;
 }
 
 #portal-column-two .visualPadding {
     padding: 0;
 }
 
-#portal-column-two>div {
-	margin: 0px 0px 30px 0px;
+#portal-column-two dd.portletItem {
+	padding: 0.5em 0;
 }
+/* ----- portlets ------------------------------------------ */
 
 #portal-column-two .portletWrapper {
 	background: transparent;
@@ -1450,8 +532,8 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 }
 
 #portal-column-two .portlet {
-	border-width: 0px;
-	margin: 0px 0px 0px auto;
+	border-width: 0;
+	margin: 0;
 	background: transparent;
 }
 
@@ -1460,13 +542,13 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 	color: &dtml-insideRightPortletHeaderTextColor;; 
 	font-size: 1em;
 	font-weight: bold;
-	padding: 2px 0px;
+	padding: 2px 0;
 	text-align: left;
 	text-transform: uppercase;
-	border-width: 0px 0px 1px 0px;
+	border-width: 0 0 1px 0;
 	border-style: solid;
 	border-color: &dtml-insideRightPortletHeaderTextColor;; 
-	margin: 2px 6px 0 6px; 
+	margin: 2px 0 0 0; 
 }
 
 #portal-column-two .portletHeader a {  
@@ -1475,14 +557,14 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 
 #portal-column-two .portletItem {
 	background: transparent;
-	border-width: 0px;
+	border-width: 0;
 	color: &dtml-insideRightPortletTextColor;;
+	padding: 0;
 }
 
 #portal-column-two .portletItem ul {
-	margin: 0px;
-	padding: 0px;
-	float: none;
+	margin: 0;
+	padding: 0;
 }
 
 #portal-column-two .portletItem li {
@@ -1511,8 +593,8 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
 	color: &dtml-insideRightPortletLinkColor;;
 	font-size: 1.00em;
 	text-decoration: none;
-	border: 0px;
-	padding: 0px;
+	border: 0;
+	padding: 0;
 }
 
 #portal-column-two .navTreeCurrentItem {
@@ -1521,155 +603,269 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletI
     background: transparent;
 }
 
-/* End Portal Column Two */
-
-
-/* Updates for portal-column-content */
-#portal-column-content.sr {
-    margin-right:0;
+#portal-column-two ul.relatedItems li {
+    margin-left: 2px;
 }
 
-#portal-column-content.sr #portal-content-wrapper {
-    border-width: 0 17.25em 0 1px;
-    border-right-color: &dtml-insideRightPortletBackgroundColor;;
-    border-left-color: #808080;
-    border-style: solid;
-    margin: 0 0 0 -1px;
-    padding: 0;
-    width: auto;
-    float: none;
+
+/* = portal-content-wrapper ================================ */
+
+#portal-content-wrapper {
+	background: transparent;
 }
 
 #portal-column-content.sl #portal-content-wrapper {
-    margin: 0 0 0 -2px;
+	border-left: 1px solid #808080;
 }
 
-#portal-columns {
-	background: transparent url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
-} 
-
-
-
-
-
-/* above */
-/* Content Well Portlets for Main Content Area */
-
-#portlets-above {
-	background: &dtml-bodySitemapBackgroundColor;;
-	font-size: 1em;
-	margin: 0;
-	padding-bottom: 6px;
-	margin: 0 -15px 0 -15px;
+#portal-column-content.sr #portal-content-wrapper {
+    padding: 0;
+    width: auto;
+	border-right: 184px solid &dtml-insideRightPortletBackgroundColor;;
 }
 
-#portlets-above div.portletsAboveContentF {
-	clear: both;
-	height: 1px;
-}
-
-div.portletsAboveContentA,
-div.portletsAboveContentB,
-div.portletsAboveContentC,
-div.portletsAboveContentD,
-div.portletsAboveContentE {
-	width: 33%;
-	float: left;
-}
-
-#portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
-#portlets-above .portletItem, #portlets-above .portletHeader {
+#portal-content-wrapper a[href^="http:"], 
+#portal-content-wrapper a.link-external,
+#portal-content-wrapper a[href^="https:"], 
+#portal-content-wrapper a.link-https {
 	background: transparent;
+	padding: 0;
+}
+
+#portal-content-wrapper .contentActions a {
+    padding: 0 0.5em;
+}
+
+/* = region-content ======================================== */
+
+#region-content {
+	padding: 10px 0 20px 0 !important;
+    margin: 0 20px 0 20px;
+}
+
+#region-content a {
+	color: #003399;
+}
+
+#region-content a:hover {
+	color: #3366CC;
+}
+
+#region-content h1, 
+#region-content h1.documentFirstHeading {
+	color: &dtml-documentTitleColor;;
+	font-weight: normal;
+	border: none;
+}
+
+#region-content h2 {
+	color: &dtml-documentHeadingColor;;
+	font-size: 1.2em;
+	margin: 15px 0 5px;
+	padding: 0;
+	border: 0;
+	font-weight: bold;
+}
+
+#region-content h2.tileHeadline {
+    font-size: 1.1em;
+}
+
+#region-content h3 {
+	color: &dtml-documentSubHeadingColor;;
+	font-size: 1em;
+	margin: 15px 0 5px;
+	padding: 0;
+	border: 0;
+	font-weight: bold;
+}
+
+#region-content .documentDescription {
+	font-weight: normal;
+	color: &dtml-documentDescriptionColor;;
+	margin: 0 0 2.5em 0;
+	font-size: 1.1em;
+}
+
+#region-content .tileItem {
+	border-top: 0;
+	margin-top: 0.5em;
+    margin-bottom: 2.5em;
+}
+
+#region-content .tileImage {
 	border: 0;
 }
 
-#portlets-above dl.portlet {
-    padding: 0.5em 0 0.5em 0.75em;
-    margin: 0.5em;
+/* = content =============================================== */
+
+#content {
+    float: left;
 }
 
-#portlets-above dl.portlet:first-child,
-#portlets-above dl.portlet:first-child .portletHeader {
-	padding-top: 0;
-	margin-top: 0;
-}
+/* = clear-space-after-region-content =============================================== */
 
-#portlets-above .portletHeader {
-    font-size:1.1em;
-    font-weight:bold;
-    padding:0.5em 0 0.25em 0px;
-    text-transform: uppercase;
-	display: block;
+#clear-space-after-region-content.visualClear {
+    display: block;
 }
 
 
+/* = addthis =============================================== */
 
-#portlets-above dd.portletItem
-{
-	padding: 0;
-    margin: 0;
-	line-height: 1.3em;
+#addthis {
+	font-size: 0.88em;
+	color: #333333;
+	padding: 4px;
+	border: 0 solid #CCCCCC;
+    display: block;
+    float: right;
+    margin: 0 0 3px 8px;
+    height: 1.6em;
 }
 
-#portlets-above .portletNavigationTree dd.portletItem
-{
-    padding: 0;
+#addthis a {
+	text-decoration: none;
+	color: #333333;
 }
 
-#portlets-above ul {
+
+/* = clear-space-before-footer=============================== */
+
+#clear-space-before-footer {
+	margin: 0;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
+}
+
+
+/* = portal-footer ========================================= */
+
+#portal-footer {
+	margin: 0;
+    border-width: 0 1px 0 1px;
+    border-style: solid;
+    border-color: #808080;
+	background-color: &dtml-footerBackgroundColor;;
+	color: &dtml-footerTextColor;;
+}
+
+#portal-footer a, #portal-footer a:visited {
+	color: &dtml-footerLinkColor;;
+}
+
+
+
+
+
+
+/* bottom */
+
+
+
+dt {
+	font-weight: normal;
+}
+
+dd.portletItem {
+	padding: 0.7em;
+}
+
+dd.portletItem p {
+	padding: 0 0 1em 0;
+}
+
+.portlet {
 	margin: 0;
 }
 
-#portlets-above .navTree li
-{
-	padding: 0;
-    margin: 0;
+.contentLeadImageContainer {
+	max-width: 202px;
+	width: auto;
+	float: right;
+	margin: 0 0 0.5em 1em;
 }
 
-#portlets-above .portletHeader a, #portlets-above .portletHeader span {
-	color: &dtml-bodySitemapHeaderColor; !important;
-	padding: 0;
+.portletFooter {
+	border-style: none;
 }
 
-#portlets-above .portletFooter {
-	text-align: left;
-	padding: 0.25em 0 0.25em 5px;
+
+
+
+
+
+
+
+.image-left, .image-right {
+	border: 0;
 }
 
-#portlets-above .portletFooter a {
-	color: &dtml-bodySitemapLinkColor;;
+/* Paragraph and Unordered List readability per cmore */
+
+.documentContent ul {
+	margin:0.75em 0 0 2.5em;
+}
+
+p {
+	margin: 1em 0;
+}
+
+/* Photo Album */
+.photoAlbumEntry {
+	background-image: none;
+	padding: 0 5px;
+	width: 142px;
+}
+
+
+/* PloneFormGen Fields */
+
+#pfg-fieldwrapper .field {
+	clear: none;
+}
+
+/* Remove dashed underline from date abbr */
+abbr.dtstart, abbr.dtend {
+	border-bottom: 0;
+}
+
+/* Give a dt.nodescription a bottom margin of 1em, since we're removing the dd if it doesn't have a description. */
+dt.nodescription {
+	margin-bottom: 1em;
+}
+
+span.description {
 	display: block;
-	background: transparent;
+	font-size: 0.9em;
+	line-height: 1.4em;
+	margin-top: 0.25em;
 }
 
-#portlets-above .portletItem a, #portlets-above .portletItem .state-published
-{
-	color: &dtml-bodySitemapLinkColor; !important;
-	padding: 0.3em 5px !important; 
-	display: block;
+/* Restyle pull quote */
+
+.pullquote {
+    border-width: 2px 0;
+    border-style: solid;
+    border-color: #CC9933;
+    color: #9D7627;
+    padding: 1em;
+    font-size: 1.3em;
+    line-height: 1.5em;
 }
 
-#portlets-above .portletItem .state-published:hover,
-#portlets-above .portletItem a:hover {
-	color: &dtml-bodySitemapBackgroundColor; !important;
-	background: &dtml-bodySitemapLinkColor; !important;
+.eventDetails {
+	margin-top: 1.5em;
 }
 
 
-/* Navigation Portlet */
-
-#portlets-above dd.portletItem .navTreeItem a, 
-#portlets-above .navTreeItem a,
-#portlets-above .navTreeCurrentItem
-{
-    background: transparent;
-    border: 0 !important;
-    font-weight: normal;
+.template-fg_base_view_p3 textarea {
+	width: 450px;
 }
 
-/* Fixing issue with rightcolumn and summary view */
-#portal-column-content.sr #content .tileItem .visualClear {
-    clear: right;
+/* Removing avatar from quintasgroup comments */
+
+div.comment img.avatar {
+	display: none;
 }
 
 /* Tile Headline Link */
@@ -1681,54 +877,6 @@ div.portletsAboveContentE {
 .tileHeadline a:hover {
     color: #3366CC !important;
     text-decoration: underline;
-}
-
-/* Fix issue with right column and content lead image listing */
-
-body.template-folder_leadimage_listing #portal-column-content.sr #content dl {
-    float: left;
-}
-
-/* manage agCommonPortlets */
-
-.agCommonPortlet {
-    display: block !important;
-    margin: 1.5em 0 0 0;
-}
-
-body.section-front-page #rightcolumn .agCommonPortlet {
-    width: 175px;
-    margin: 2em 0 0 0;
-}
-
-/* lead image listing fix for floating issues */
-body.template-folder_leadimage_view #portal-column-content.sr .tileItem,
-body.template-folder_summary_view #portal-column-content.sr .tileItem {
-    float: left;
-}
-
-/* Edit form fixes */
-
-.documentEditable #portal-column-content.sr #region-content form,
-#portal-column-content.sr .documentEditable #region-content form {
-    float: left;
-}
-
-/* Left Column Portlets */
-
-#portal-column-one .portletWrapper {
-    margin: 10px;
-}
-
-
-#portal-column-one .portletHeader {
-    background: &dtml-leftButtonBackground_external;;
-    color: &dtml-leftButtonTextColor_external;;
-    border-color: &dtml-leftButtonBackgroundBorder_external;;
-    padding: 3px 8px;
-    font-size: 1em;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 /* Next/Previous Links */
@@ -1763,6 +911,106 @@ body.template-folder_summary_view #portal-column-content.sr .tileItem {
 #relatedItemBox img {
     display: none;
 } 
+
+blockquote {
+    border-left: none;
+    padding-left: 2em;
+}
+
+/* ============================== MISC ========================== */
+
+.portletItemDetails {
+	color: #333333;
+	font-size: 0.92em;
+}
+
+
+/* = Edit UI =================================================== */
+
+#portal-content-wrapper.documentEditable {
+    margin: 0;
+}
+
+#portal-content-wrapper.documentEditable .contentViews {
+    margin-top: 15px;
+}
+
+#portal-content-wrapper.documentEditable #region-content {
+    margin: 0;
+	padding: 10px 10px 20px 10px !important;
+}
+
+#portal-column-content .documentEditable .contentViews li a { 
+	padding: 0 1em;
+    margin-right: 0.25em;
+}
+
+/* Squish tabs in edit view together when we have a right column */
+
+#portal-column-content.sr .documentEditable .contentViews li a { 
+	padding: 0 0.75em;
+    margin-right: 0.25em;
+}
+
+
+
+/* = Template workarounds======================================= */
+
+body.popup, body.atrefbrowser {
+	background: #FFFFFF;
+}
+
+body.template-news_listing .effectiveDate,
+body.template-folder_leadimage_listing .effectiveDate,
+body.template-folder_leadimage_view .effectiveDate
+ {
+	margin-bottom: 0.1em;
+	margin-top: 0.4em;
+}
+
+body.template-news_listing dd {
+	margin-bottom: 2em;
+	margin-left: 0;
+}
+
+body.template-newsitem_view .effectiveDate {
+	color: #76797C;
+	font-size: 0.9em;
+	margin-bottom: 1em;
+	margin-top: 0;
+}
+
+body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view  .contentLeadImageContainer {
+	display: none;
+}
+
+body.template-atct_album_view #portal-column-content .visualClear,
+body.template-folder_leadimage_listing  #portal-column-content .visualClear,
+body.template-plone_control_panel #portal-column-content .visualClear {
+    display: block;
+}
+
+body.template-folder_leadimage_view #region-content .tileImage {
+    margin-top: 1.5em;
+}
+
+body.template-folder_summary_view #portal-columns,
+body.template-folder_summary_view #content {
+    float: none;
+}
+
+#portlet-prefs {
+    float: left;
+    width: 187px;
+}
+
+#region-content .tileItem.leadimage-listing {
+    margin-bottom: 0.5em;
+}
+
+body.template-pgv_sg_carousel_view #region-content {
+    padding-top: 0 !important;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

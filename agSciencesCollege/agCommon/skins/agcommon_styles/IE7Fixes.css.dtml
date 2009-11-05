@@ -4,9 +4,24 @@
 
 /* <dtml-with base_properties> */
 
-#topnavigation li {
+#content {
+    float: none;
+    max-width: 100%;
+}
+
+#portal-top-navigation {
+	background: &dtml-topnavigationBackgroundColor;;
+	padding: 2px 0;
+}
+
+#portal-top-navigation li {
 	display: inline;
 	border-width: 0px 0px 0px 3px;
+	margin: 0;
+}
+
+#hcard .visualClear {
+    display: none;
 }
 
 body.template-document_homepage_view #centercolumn {
@@ -30,19 +45,8 @@ body.section-front-page #rightcolumn .portletFooter{
     border: 0;
 }
 
-
-/* Fix a floating bug on the folder leadimage view.  We had to hide the addthis div */
-
-body.template-folder_leadimage_view #portal-column-content.sr #addthis {
-    display: none;
-}
-
-body.template-folder_leadimage_view #portal-column-content.sr #portal-content-wrapper .documentContent {
-    position: relative;
-    float: left;
-}
-
 .listingBar {
     padding: 0 1em;
 }
+
 /* </dtml-with> */

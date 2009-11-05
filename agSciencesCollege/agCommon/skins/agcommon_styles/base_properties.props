@@ -71,6 +71,8 @@ backgroundStripeThreeColor:string=#08265a
 
 frontRightPortletHeaderTextColor:string=#2B3D7B
 frontRightPortletHeaderBackgroundColor:string=#EFC177
+frontRightPortletLinkColor:string=#003399
+frontRightPortletLinkHoverColor:string=#3366CC
 frontRightPortletTextColor:string=#47568B
 frontRightPortletBackgroundColor:string=#F5F5F5
 

@@ -37,7 +37,8 @@ Note: insert-before and -after accept the value "*" which means
     </order>
 
     <order manager="plone.portalheader" skinname="agCommon">
-        <viewlet name="plone.searchbox" insert-before="*"/>
+        <viewlet name="plone.skip_links" insert-before="*"/>
+        <viewlet name="plone.searchbox" insert-after="plone.skip_links"/>
         <viewlet name="plone.logo" insert-after="plone.searchbox"/>
     </order>
 
@@ -45,8 +46,11 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="agcommon.topnavigation" insert-before="*"/>
     </order>
 
-    <order manager="plone.contentviews" skinname="agCommon">
+    <order manager="agcommon.abovecontenttitle" skinname="agCommon">
         <viewlet name="agcommon.addthis" insert-before="*" />
+    </order>
+
+    <order manager="plone.contentviews" skinname="agCommon">
         <viewlet name="plone.contentviews" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="plone.contentactions" insert-after="plone.contentviews"/>
     </order>

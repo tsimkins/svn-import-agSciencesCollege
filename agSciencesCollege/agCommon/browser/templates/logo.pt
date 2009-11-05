@@ -2,7 +2,7 @@
 	tal:define="portal_title context/portal_title|view/portal_title;
 	navigation_root_url context/navigation_root_url|view/navigation_root_url">
 
-  <a href = "http://www.psu.edu" target = "_blank"><img 
+  <a href="http://www.psu.edu" target="_blank"><img 
 	id="logo-psu" 
 	tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
 	alt="Penn State University" /></a>
@@ -17,7 +17,7 @@
 		tal:attributes="src string:${view/navigation_root_url}/psu_logo_print.gif" 
 		alt="College of Agricultural Sciences" />
 
-	<div id = "logo-site">
+	<div id="logo-site">
 		<a tal:attributes="href navigation_root_url" tal:content="portal_title" />
 	</div>
 </div>

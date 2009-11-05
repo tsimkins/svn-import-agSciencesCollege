@@ -1,11 +1,11 @@
-<div id = "homepageimage">
+<div id="homepageimage" tal:condition="view/isHomePage">
 
 	<tal:homePageOverlay tal:condition="python: context.get('homepage_h1') or context.get('homepage_h2')">
-		<div class = "text">
+		<div class="text">
 			<h1 tal:condition="context/homepage_h1|nothing" tal:content="context/homepage_h1">[Homepage h1 Text]</h1>
 			<h2 tal:condition="context/homepage_h2|nothing" tal:content="context/homepage_h2">[Homepage h2 Text]</h2>
 		</div>
-		<div class = "overlay"><!-- --></div>
+		<div class="overlay"><!-- --></div>
 	</tal:homePageOverlay>
 
 	<tal:block replace="structure provider:agcommon.homepageimage" />

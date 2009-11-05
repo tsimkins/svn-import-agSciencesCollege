@@ -25,5 +25,10 @@
         addview="agcommon.LinkButton"
         title="Link Button Portlet"
     />
+
+    <portlet
+        addview="agcommon.RelatedItems"
+        title="Related Items Portlet"
+    />
       
 </portlets>

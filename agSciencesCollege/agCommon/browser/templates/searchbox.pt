@@ -79,7 +79,7 @@
           <div>
             <input type="hidden" name="cx" value="009987215249396987893:cmobqlykeyk" />
             <input type="hidden" name="ie" value="UTF-8" />
-            <input type="text" name="q" size="31" />
+            <input type="hidden" name="q" size="31" />
           </div>
         </form>
 

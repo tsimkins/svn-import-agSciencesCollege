@@ -36,5 +36,11 @@
         title="Link Button Portlet"
         remove="True"
     />
-      
+
+    <portlet
+        addview="agcommon.RelatedItems"
+        title="Related Items Portlet"
+        remove="True"
+    />
+    
 </portlets>
