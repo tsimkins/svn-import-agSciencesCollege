@@ -173,7 +173,7 @@ def getPloneSites(context):
 
     return ploneSites
 
-# Bulk reinstall agCommon and agCommonPolicy on all Plone sites
+# Reinstall agCommon and agCommonPolicy on Plone sites
 def reinstallAgCommon(context):
 
     toInstall = [
