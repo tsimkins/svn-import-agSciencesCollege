@@ -1054,7 +1054,8 @@ body.template-pgv_sg_carousel_view #region-content {
     clear: right;
 }
 
-body.template-folder_summary_view .documentActions {
+body.template-folder_summary_view .documentActions,
+body.template-folder_leadimage_view .documentActions {
     clear: both;
 }
 
