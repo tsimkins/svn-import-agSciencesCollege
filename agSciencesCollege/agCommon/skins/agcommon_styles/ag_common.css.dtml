@@ -695,6 +695,8 @@ input.searchButton {
 	border-top: 0;
 	margin-top: 0.5em;
     margin-bottom: 2.5em;
+    float: left;
+    width: 100%;
 }
 
 #region-content .tileImage {
@@ -1027,6 +1029,10 @@ body.template-folder_noimage_view #content {
     float: none;
 }
 
+body.template-folder_listing #portal-columns,
+body.template-folder_listing #content {
+    float: none;
+}
 
 body.template-pgv_sg_carousel_view #region-content {
     padding-top: 0 !important;
@@ -1047,6 +1053,8 @@ body.template-pgv_sg_carousel_view #region-content {
 .documentActions {
     clear: right;
 }
+
+
 
 /* YOUR CSS RULES STOP HERE */
 

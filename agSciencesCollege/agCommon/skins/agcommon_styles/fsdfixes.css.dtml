@@ -77,6 +77,8 @@ body.template-specialty_standard_view .facultyStaffDirectory .listing {
     float: right;
     padding-right: 0;
     margin-right: 0;
+    text-align: right;
+    margin-left: 8px;
 }
 
 
@@ -87,6 +89,10 @@ body.template-specialty_standard_view .facultyStaffDirectory .listing {
 .facultyStaffDirectory .standardView .caption {
     margin-left: 0;
     padding-left: 0;
+}
+
+body.template-person_view .documentActions {
+    clear: none;
 }
 
 /* YOUR CSS RULES STOP HERE */
