@@ -49,6 +49,10 @@ body.template-department_standard_view #portal-column-content .classificationLis
     float: left;
 }
 
+body.template-department_standard_view #portal-column-content .classificationListing .headshot {
+    float: right;
+}
+
 body.template-classification_standard_view #portal-column-content .visualClear {
     display: block;
 }

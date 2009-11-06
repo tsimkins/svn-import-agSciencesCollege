@@ -1022,12 +1022,28 @@ body.template-fg_base_view_p3 #content {
     margin-bottom: 0.5em;
 }
 
+body.template-pgv_sg_carousel_view #portal-columns,
+body.template-pgv_sg_carousel_view #content {
+    float: none;
+}
+
+
+body.template-folder_noimage_view #portal-columns,
+body.template-folder_noimage_view #content {
+    float: none;
+}
+
+
 body.template-pgv_sg_carousel_view #region-content {
     padding-top: 0 !important;
 }
 
 .discussion {
 	float: left;
+}
+
+#clear-space-after-portal-wrapper.visualClear {
+    display: block;
 }
 
 /* YOUR CSS RULES STOP HERE */
