@@ -1064,6 +1064,9 @@ body.template-base_edit form {
     float: left;
 }
 
+body.template-atct_topic_view #portal-columns {
+    float: none;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
