@@ -40,6 +40,7 @@
    <element value="Image"/>
    <element value="Event"/>
    <element value="News Item"/>
+   <element value="FSDPerson"/>
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
