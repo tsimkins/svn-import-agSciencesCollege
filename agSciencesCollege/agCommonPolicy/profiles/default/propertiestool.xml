@@ -38,6 +38,8 @@
   <property name="metaTypesNotToList" type="lines">
    <element value="File"/>
    <element value="Image"/>
+   <element value="Event"/>
+   <element value="News Item"/>
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
