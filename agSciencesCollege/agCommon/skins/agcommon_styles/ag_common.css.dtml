@@ -1012,6 +1012,10 @@ body.template-pgv_sg_carousel_view #region-content {
     padding-top: 0 !important;
 }
 
+.discussion {
+	float: left;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
