@@ -202,13 +202,13 @@ html{
 .pgv_sg_carouseltimed_view #myGallery,
 .pgv_sg_carousel_view #myGallery{
 /*	width: 585px; */
-    width: 100%;
+    width: 99%;
 	height: 436px;
 }
 .pgv_sg_carouseltimed_view #myCarousel,
 .pgv_sg_carousel_view #myCarousel{
 /*	width: 587px; */
-	width: 100%;
+	width: 99%;
 	padding: 0px 1px;
 }
 .pgv_sg_carouseltimed_view .jdGallery a.carouselBtn,
