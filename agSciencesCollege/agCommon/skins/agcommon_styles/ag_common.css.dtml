@@ -707,6 +707,7 @@ input.searchButton {
 
 #content {
     float: left;
+    width: 100%;
 }
 
 /* = clear-space-after-region-content =============================================== */
