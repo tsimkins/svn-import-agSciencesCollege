@@ -1054,6 +1054,9 @@ body.template-pgv_sg_carousel_view #region-content {
     clear: right;
 }
 
+body.template-base_edit form {
+    float: left;
+}
 
 
 /* YOUR CSS RULES STOP HERE */
