@@ -47,9 +47,14 @@ body.template-department_standard_view #portal-column-content .visualClear {
 
 body.template-department_standard_view #portal-column-content .classificationListing {
     float: left;
+    width:100%;
 }
 
 body.template-department_standard_view #portal-column-content .classificationListing .headshot {
+    float: right;
+}
+
+body.template-classification_standard_view #portal-column-content .classificationListing .headshot {
     float: right;
 }
 
