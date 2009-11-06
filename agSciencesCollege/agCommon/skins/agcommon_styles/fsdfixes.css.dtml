@@ -55,10 +55,21 @@ body.template-classification_standard_view #portal-column-content .visualClear {
 
 body.template-classification_standard_view #portal-column-content .classificationListing {
     float: left;
+    width: 100%;
 }
+
+.facultyStaffDirectory .standardView .headshot {
+    float: right;
+}
+
 
 .facultyStaffDirectory .standardView .headshot img {
     border: none;
+}
+
+.facultyStaffDirectory .standardView .caption {
+    margin-left: 0;
+    padding-left: 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

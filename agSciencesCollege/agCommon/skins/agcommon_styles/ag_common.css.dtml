@@ -514,6 +514,10 @@ input.searchButton {
 	width: 160px;
 }
 
+#portal-column-two h3 {
+    font-size: 1em;
+}
+
 #portal-column-two .visualPadding {
     padding: 0;
 }
@@ -996,6 +1000,16 @@ body.template-folder_leadimage_view #region-content .tileImage {
 
 body.template-folder_summary_view #portal-columns,
 body.template-folder_summary_view #content {
+    float: none;
+}
+
+body.template-link_view #portal-columns, 
+body.template-link_view #content {
+    float: none;
+}
+
+body.template-fg_base_view_p3 #portal-columns,
+body.template-fg_base_view_p3 #content {
     float: none;
 }
 
