@@ -31,6 +31,18 @@ body.template-classification_standard_view #content {
     float: none;
 }
 
+body.template-specialty_standard_view #portal-columns,
+body.template-specialty_standard_view #content {
+    float: none;
+}
+
+body.template-specialtiesfolder_view #portal-columns,
+body.template-specialtiesfolder_view #content {
+    float: none;
+}
+
+
+
 .facultyStaffDirectory.personView .headshot {
     margin:5em 0 0;
 }
@@ -67,7 +79,7 @@ body.template-classification_standard_view #portal-column-content .classificatio
     width: 100%;
 }
 
-body.template-specialty_standard_view .facultyStaffDirectory .listing,
+body.template-classification_standard_view  .facultyStaffDirectory .listing,
 body.template-specialty_standard_view .facultyStaffDirectory .listing {
     float:left;
     width: 100%;
