@@ -69,6 +69,8 @@ body.template-classification_standard_view #portal-column-content .classificatio
 
 .facultyStaffDirectory .standardView .headshot {
     float: right;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 

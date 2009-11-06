@@ -1046,6 +1046,10 @@ body.template-pgv_sg_carousel_view #region-content {
     display: block;
 }
 
+.documentContent dd a {
+    border-bottom: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
