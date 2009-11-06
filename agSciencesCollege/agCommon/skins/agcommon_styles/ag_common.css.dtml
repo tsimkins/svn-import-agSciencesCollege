@@ -793,15 +793,9 @@ dd.portletItem p {
 	border-style: none;
 }
 
-
-
-
-
-
-
-
 .image-left, .image-right {
 	border: 0;
+	clear: none;
 }
 
 /* Paragraph and Unordered List readability per cmore */
@@ -1048,6 +1042,10 @@ body.template-pgv_sg_carousel_view #region-content {
 
 .documentContent dd a {
     border-bottom: none;
+}
+
+.documentActions {
+    clear: right;
 }
 
 /* YOUR CSS RULES STOP HERE */
