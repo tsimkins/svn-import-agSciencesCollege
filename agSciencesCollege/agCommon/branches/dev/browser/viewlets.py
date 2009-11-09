@@ -39,7 +39,7 @@ class RightColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -65,7 +65,7 @@ class CenterColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -90,7 +90,7 @@ class HomepageImageViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -165,3 +165,27 @@ class KeywordsViewlet(ViewletBase):
         
 class NextPreviousViewlet(ViewletBase, NextPreviousView):
     render = ZopeTwoPageTemplateFile('templates/nextprevious.pt')
+
+class PathBarViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/path_bar.pt')
+        
+    def update(self):
+        super(PathBarViewlet, self).update()
+        
+        self.navigation_root_url = self.portal_state.navigation_root_url()
+    
+        self.is_rtl = self.portal_state.is_rtl()
+
+        breadcrumbs_view = getMultiAdapter((self.context, self.request),
+                                           name='breadcrumbs_view')
+        self.breadcrumbs = breadcrumbs_view.breadcrumbs()
+        
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+            
+        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
+            self.isHomePage = True
+        else:
+            self.isHomePage = False

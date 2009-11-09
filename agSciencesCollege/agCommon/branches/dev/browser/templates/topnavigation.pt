@@ -17,3 +17,8 @@
     </ul>
 
 </div>
+
+<div tal:condition="not:view/topnavigation" id="portal-top-navigation" class="empty">
+<!-- -->
+
+</div>

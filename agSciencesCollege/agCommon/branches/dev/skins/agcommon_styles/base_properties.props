@@ -53,10 +53,10 @@ minWidth:string=785px
 siteLogoTopMargin:string=41px
 siteLogoFontSize:string=22px
 
-breadcrumbBackgroundColor:string=#F09400
-breadcrumbTextColor:string=#4F1C1A
+breadcrumbBackgroundColor:string=transparent
+breadcrumbTextColor:string=#DF7E0D
 breadcrumbSeparatorColor:string=#EFC177
-breadcrumbLinkColor:string=#FFFFFF
+breadcrumbLinkColor:string=#619BDF
 
 topnavigationBackgroundColor:string=#ff3900
 topnavigationButtonBackgroundColor:string=#FF4B17
