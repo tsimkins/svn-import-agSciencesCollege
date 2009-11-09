@@ -284,6 +284,7 @@ h1, .documentByLine, .documentActions {
 
 #content {
     margin: 3px 3px 0 3px;
+    width: auto;
 }
 
 #content, #region-content, #portal-content-wrapper {

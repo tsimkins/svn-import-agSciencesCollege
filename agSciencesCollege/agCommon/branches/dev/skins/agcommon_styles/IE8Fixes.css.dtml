@@ -4,4 +4,8 @@
 
 /* <dtml-with base_properties> */
 
+body.template-folder_leadimage_view #portal-column-content.sr .tileItem, body.template-folder_summary_view #portal-column-content.sr .tileItem {
+    float: left;
+}
+
 /* </dtml-with> */
