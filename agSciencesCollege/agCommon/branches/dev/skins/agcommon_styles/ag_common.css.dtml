@@ -197,17 +197,18 @@ input.searchButton {
 #portal-columns {
 	margin: 0;
 	padding: 0;
-	border-left: 1px solid #808080;
-	border-right: 1px solid #808080;
 	background: transparent;
-	width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-left: 1px #808080 solid;
+    border-right: 1px #808080 solid;
+    border-spacing: 0;
+    width: 100%;
 } 
 
 /* = portal-column-one ===================================== */
 
 #portal-column-one {
-	background: &dtml-leftNavBackgroundColor;; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+	background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
 	border-color: #808080;
 	border-style: solid;
 	border-width: 0 1px 0 0;
