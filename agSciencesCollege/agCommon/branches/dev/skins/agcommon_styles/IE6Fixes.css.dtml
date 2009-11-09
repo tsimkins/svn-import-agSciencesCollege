@@ -1,0 +1,49 @@
+/*
+** Stylesheet with Internet Explorer 6.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portal-content-wrapper {
+    margin-left: -3px;
+}
+
+#portal-column-content {
+    width: 710px;
+}
+
+body.template-document_homepage_view #portal-column-content {
+    width: 704px;
+}
+
+#portal-top-navigation li {
+	display: inline;
+	border-width: 0px 0px 0px 3px;
+}
+
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
+#visual-portal-wrapper {
+    width: 902px;
+}
+
+#portal-column-one .portletNavigationTree li.navTreeTitle {
+	margin-top: 0px !important;
+	background: transparent !important;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#addthis {
+    display: none;
+}
+
+body.template-folder_leadimage_listing .leadimage-listing img {
+    display: none; 
+}
+
+/* </dtml-with> */

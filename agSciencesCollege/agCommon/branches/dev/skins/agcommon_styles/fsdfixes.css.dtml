@@ -1,0 +1,115 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* Missing table border */
+
+.facultyStaffDirectory table.listing {
+	border: 1px solid &dtml-globalBorderColor;;
+}
+
+body.template-fsd_atoz_view #portal-columns,
+body.template-fsd_atoz_view #content {
+    float: none;
+}
+
+body.template-person_view #portal-columns,
+body.template-person_view #content {
+    float: none;
+}
+
+body.template-department_standard_view #portal-columns,
+body.template-department_standard_view #content {
+    float: none;
+}
+
+body.template-classification_standard_view #portal-columns,
+body.template-classification_standard_view #content {
+    float: none;
+}
+
+body.template-specialty_standard_view #portal-columns,
+body.template-specialty_standard_view #content {
+    float: none;
+}
+
+body.template-specialtiesfolder_view #portal-columns,
+body.template-specialtiesfolder_view #content {
+    float: none;
+}
+
+
+
+.facultyStaffDirectory.personView .headshot {
+    margin:5em 0 0;
+}
+
+.facultyStaffDirectory.personView .headshot img {
+    margin-right: 0;
+    float: right;
+    border: none;
+}
+
+body.template-department_standard_view #portal-column-content .visualClear {
+    display: block;
+}
+
+body.template-department_standard_view #portal-column-content .classificationListing {
+    float: left;
+    width:100%;
+}
+
+body.template-department_standard_view #portal-column-content .classificationListing .headshot {
+    float: right;
+}
+
+body.template-classification_standard_view #portal-column-content .classificationListing .headshot {
+    float: right;
+}
+
+body.template-classification_standard_view #portal-column-content .visualClear {
+    display: block;
+}
+
+body.template-classification_standard_view #portal-column-content .classificationListing {
+    float: left;
+    width: 100%;
+}
+
+body.template-classification_standard_view  .facultyStaffDirectory .listing,
+body.template-specialty_standard_view .facultyStaffDirectory .listing {
+    float:left;
+    width: 100%;
+}
+
+.facultyStaffDirectory .standardView .headshot {
+    float: right;
+    padding-right: 0;
+    margin-right: 0;
+    text-align: right;
+    margin-left: 8px;
+}
+
+
+.facultyStaffDirectory .standardView .headshot img {
+    border: none;
+}
+
+.facultyStaffDirectory .standardView .caption {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+body.template-person_view .documentActions {
+    clear: none;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

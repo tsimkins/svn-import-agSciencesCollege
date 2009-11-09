@@ -1,0 +1,11 @@
+<div id="centercolumn" tal:condition="view/isHomePage">
+
+	<tal:block replace="structure provider:agcommon.centercolumn" />
+
+    <div class="managePortletsLink agCommonPortlet" tal:condition="view/can_manage_portlets">
+        <a title="Center Column portlet management screen"
+            tal:attributes="href string:${context/absolute_url}/@@manage-centercolumn"
+            >Manage Center Column</a>
+    </div>
+
+</div>
