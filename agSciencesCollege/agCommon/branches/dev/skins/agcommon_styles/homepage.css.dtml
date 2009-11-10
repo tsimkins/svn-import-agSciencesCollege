@@ -29,7 +29,7 @@ h1, .documentByLine, .documentActions {
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
-	padding: 12px 10px 0px 12px;
+	padding: 10px 10px 0px 12px;
 	margin: 0;
 	background: transparent;
 }
@@ -40,7 +40,6 @@ h1, .documentByLine, .documentActions {
 	color: &dtml-homepageH1TextColor;;
 	font-family: Georgia, Times New Roman, serif;
 	letter-spacing: 0.06em;
-	margin-top: 20px;
 }
 
 #homepageimage h2 {
@@ -57,12 +56,13 @@ h1, .documentByLine, .documentActions {
 	padding: 0;
 	width: 200px;
 	z-index: 10;
+	margin-top: 25px;
 }
 
 #homepageimage .overlay {
 	width: 200px;
-	height: 265px;
-	margin: 0px;
+	height: 240px;
+	margin: 25px 0 0 0;
 	padding: 0;
 	background: &dtml-homepageTransparentOverlayColor;;
 	opacity: 0.70;
