@@ -29,7 +29,7 @@ h1, .documentByLine, .documentActions {
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
-	padding: 15px 10px 5px 15px;
+	padding: 12px 10px 0px 12px;
 	margin: 0;
 	background: transparent;
 }
@@ -40,6 +40,7 @@ h1, .documentByLine, .documentActions {
 	color: &dtml-homepageH1TextColor;;
 	font-family: Georgia, Times New Roman, serif;
 	letter-spacing: 0.06em;
+	margin-top: 20px;
 }
 
 #homepageimage h2 {
@@ -306,6 +307,14 @@ h1, .documentByLine, .documentActions {
     border-bottom: 1px solid &dtml-contentViewBorderColor;;
 }
 
+#homepageimage {
+    margin-top: -28px;
+}
+
+#homepageimage.nobreadcrumbs {
+    margin-top: 0;
+}
+
 /* =================== Portlets =================== */
 
 /* Hide managePortletsLink in homegrown portlets. */
@@ -362,7 +371,24 @@ h1, .documentByLine, .documentActions {
 	display: none;
 }
 
+#portal-breadcrumbs {
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: &dtml-breadcrumbTextColor;;
+	padding: 4px 8px;
+	z-index: 99;
+	position: relative;
+	opacity: 0.85;
+	filter: alpha(opacity=85);	
+	margin: 3px 3px 0 3px;
+}
 
+#portal-breadcrumbs .breadcrumbSeparator {
+	color: &dtml-breadcrumbSeparatorColor;;
+}
+
+#portal-breadcrumbs a {
+	color: &dtml-breadcrumbLinkColor;;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

@@ -11,6 +11,7 @@ from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
+from zope.app.component.hooks import getSite
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -94,6 +95,16 @@ class HomepageImageViewlet(ViewletBase):
             self.isHomePage = True
         else:
             self.isHomePage = False
+
+        # Determine if we should hide breadcrumbs
+
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+            else:
+                self.hide_breadcrumbs = False
+        except AttributeError:
+            self.hide_breadcrumbs = False
 
 
 class AddThisViewlet(ViewletBase):   
@@ -189,3 +200,17 @@ class PathBarViewlet(ViewletBase):
             self.isHomePage = True
         else:
             self.isHomePage = False
+        
+        # Get the site id
+        
+        self.site = getSite()['id']
+
+        # Determine if we should hide breadcrumbs
+
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+            else:
+                self.hide_breadcrumbs = False
+        except AttributeError:
+            self.hide_breadcrumbs = False
