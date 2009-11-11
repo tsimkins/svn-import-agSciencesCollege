@@ -92,8 +92,9 @@ homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
 homepageTransparentOverlayColor:string=#000000
 
-leftNavTitleBackground:string=#eae073
+leftNavTitleBackground:string=#EEEEEE
 leftNavTitleColor:string=#334466
+leftNavBorderColor:string=#DDDDDD
 leftNavTextColor:string=#666666
 leftNavTextHoverColor:string=#333366
 leftNavBackgroundColor:string=#FFFFFF

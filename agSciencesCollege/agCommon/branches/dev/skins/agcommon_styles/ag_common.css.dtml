@@ -263,7 +263,11 @@ input.searchButton {
 	display: none;
 }
 
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle {
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li:first-child {
+    margin-top: 1em;
+}
+
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle:first-child {
 	border-bottom: 0;
 	background: &dtml-leftNavTitleBackground;;
 	color: #FFFFFF;
@@ -272,11 +276,14 @@ input.searchButton {
 	padding-bottom: 10px;
 	padding-left: 10px;
 	font-weight: bold;
+	border-bottom: 1px solid &dtml-leftNavBorderColor;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
 	background: transparent;
 	color: &dtml-leftNavTitleColor; !important;
+	font-size: 1.1em;
+	padding: 0.1em 0;
 }
 
 #portal-column-one .portletItem {
@@ -289,7 +296,7 @@ input.searchButton {
 }
 
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
-	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 6px;
+	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.75em;
 	padding: 0 0.5em 0 1.25em;
 	margin-left: 0.35em;
 }
@@ -302,12 +309,13 @@ input.searchButton {
 #portal-column-one .portletNavigationTree .portletItem li {
 	border-bottom: 1px dashed #CCCCCC;
 	font-size: 1em;
-	margin: 0.5em 0;
-	padding-bottom: 5px;
+	margin: 0;
+	padding-bottom: 0;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li a {
-	font-size: 1.1em;
+	font-size: 1em;
+    padding: 0.45em 0 0.5em 0;
 }
 
 #portal-column-one .navTreeItem a
@@ -342,8 +350,8 @@ input.searchButton {
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
 	background-color: &dtml-leftSubNavBackground;;
-	border: #DDDDDD solid 1px;
-	margin: 0.15em 0.25em 0.25em 0.25em;
+	border: &dtml-leftNavBorderColor; solid 1px;
+	margin: 0 0.25em 0.75em 0.25em;
 }
 
 #portal-column-one .navTreeCurrentItem, 
@@ -662,11 +670,12 @@ input.searchButton {
 	color: &dtml-documentTitleColor;;
 	font-weight: normal;
 	border: none;
+	font-size: 175%;
 }
 
 #region-content h2 {
 	color: &dtml-documentHeadingColor;;
-	font-size: 1.2em;
+	font-size: 130%;
 	margin: 15px 0 5px;
 	padding: 0;
 	border: 0;
@@ -689,8 +698,8 @@ input.searchButton {
 #region-content .documentDescription {
 	font-weight: normal;
 	color: &dtml-documentDescriptionColor;;
-	margin: 0 0 2.5em 0;
-	font-size: 1.1em;
+	margin: 0 0 1.5em 0;
+	font-size: 1.15em;
 }
 
 #region-content .tileItem {

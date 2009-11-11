@@ -61,8 +61,8 @@ h1, .documentByLine, .documentActions {
 
 #homepageimage .overlay {
 	width: 200px;
-	height: 240px;
-	margin: 25px 0 0 0;
+	height: 265px;
+	margin: 0 0 0 0;
 	padding: 0;
 	background: &dtml-homepageTransparentOverlayColor;;
 	opacity: 0.70;
