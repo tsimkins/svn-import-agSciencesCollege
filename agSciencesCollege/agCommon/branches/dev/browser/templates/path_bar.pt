@@ -1,6 +1,6 @@
 <div id="portal-breadcrumbs"
 	 i18n:domain="plone"
-	 tal:attributes="class python: view.hide_breadcrumbs and 'nobreadcrumbs' or ''"
+	 tal:condition="not:view/hide_breadcrumbs"
 	 >
 
     <tal:agsci tal:condition="python:view.site != 'agsci.psu.edu'">

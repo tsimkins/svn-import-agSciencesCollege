@@ -311,8 +311,8 @@ h1, .documentByLine, .documentActions {
     margin-top: -28px;
 }
 
-#portal-breadcrumbs.nobreadcrumbs {
-	visibility: hidden;
+#homepageimage.nobreadcrumbs {
+	margin-top: 0;
 }
 
 /* =================== Portlets =================== */
