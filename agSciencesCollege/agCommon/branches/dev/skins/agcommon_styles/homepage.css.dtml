@@ -56,7 +56,7 @@ h1, .documentByLine, .documentActions {
 	padding: 0;
 	width: 200px;
 	z-index: 10;
-	margin-top: 25px;
+	margin-top: 0.5em;
 }
 
 #homepageimage .overlay {
@@ -311,8 +311,8 @@ h1, .documentByLine, .documentActions {
     margin-top: -28px;
 }
 
-#homepageimage.nobreadcrumbs {
-    margin-top: 0;
+#portal-breadcrumbs.nobreadcrumbs {
+	visibility: hidden;
 }
 
 /* =================== Portlets =================== */
