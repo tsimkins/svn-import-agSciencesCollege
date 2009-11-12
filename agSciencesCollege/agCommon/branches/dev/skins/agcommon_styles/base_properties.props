@@ -58,8 +58,8 @@ insideBreadcrumbTextColor:string=#DF7E0D
 insideBreadcrumbSeparatorColor:string=#EFC177
 insideBreadcrumbLinkColor:string=#619BDF
 
-breadcrumbBackgroundColor:string=#000000
-breadcrumbTextColor:string=#DDDDDD
+breadcrumbBackgroundColor:string=#333333
+breadcrumbTextColor:string=#FFFFFF
 breadcrumbSeparatorColor:string=#EFC177
 breadcrumbLinkColor:string=#FFFFFF
 
