@@ -377,8 +377,8 @@ h1, .documentByLine, .documentActions {
 	padding: 4px 8px;
 	z-index: 99;
 	position: relative;
-	opacity: 0.70;
-	filter: alpha(opacity=70);	
+	opacity: 0.80;
+	filter: alpha(opacity=80);	
 	margin: 3px 3px 0 3px;
 }
 
