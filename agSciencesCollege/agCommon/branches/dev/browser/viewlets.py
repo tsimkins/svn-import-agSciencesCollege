@@ -96,15 +96,26 @@ class HomepageImageViewlet(ViewletBase):
         else:
             self.isHomePage = False
 
+        try:
+            self.homepage_h1 = aq_acquire(self.context, 'homepage_h1')
+        except AttributeError:
+            self.homepage_h1 = None
+
+        try:
+            self.homepage_h2 = aq_acquire(self.context, 'homepage_h2')
+        except AttributeError:
+            self.homepage_h2 = None
+            
         # Determine if we should hide breadcrumbs
 
         try:
             if aq_acquire(self.context, 'hide_breadcrumbs'):
                 self.hide_breadcrumbs = True
-            else:
-                self.hide_breadcrumbs = False
         except AttributeError:
-            self.hide_breadcrumbs = False
+            if self.homepage_h1 or self.homepage_h2:
+                self.hide_breadcrumbs = True
+            else:
+                self.hide_breadcrumbs = False    
 
 
 class AddThisViewlet(ViewletBase):   
@@ -206,11 +217,24 @@ class PathBarViewlet(ViewletBase):
         self.site = getSite()['id']
 
         # Determine if we should hide breadcrumbs
-
         try:
             if aq_acquire(self.context, 'hide_breadcrumbs'):
                 self.hide_breadcrumbs = True
-            else:
-                self.hide_breadcrumbs = False
         except AttributeError:
             self.hide_breadcrumbs = False
+
+        try:
+            if aq_acquire(self.context, 'homepage_h1'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+        try:
+            if aq_acquire(self.context, 'homepage_h2'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+
+
+
