@@ -4,11 +4,6 @@
 
 /* <dtml-with base_properties> */
 
-#content {
-    float: none;
-    max-width: 100%;
-}
-
 #portal-top-navigation {
 	background: &dtml-topnavigationBackgroundColor;;
 	padding: 2px 0;
@@ -18,10 +13,6 @@
 	display: inline;
 	border-width: 0px 0px 0px 3px;
 	margin: 0;
-}
-
-#hcard .visualClear {
-    display: none;
 }
 
 body.template-document_homepage_view #centercolumn {
@@ -41,12 +32,20 @@ body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletH
 	margin-left: 0;
 }
 
-body.section-front-page #rightcolumn .portletFooter{
+body.template-document_homepage_view #rightcolumn {
+    position: relative;
+}
+
+body.template-document_homepage_view #rightcolumn .portletFooter{
     border: 0;
 }
 
 .listingBar {
     padding: 0 1em;
+}
+
+#portal-columns {
+    border-collapse: collapse;
 }
 
 /* </dtml-with> */

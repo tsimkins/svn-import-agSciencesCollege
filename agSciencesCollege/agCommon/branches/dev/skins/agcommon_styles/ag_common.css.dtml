@@ -407,7 +407,7 @@ input.searchButton {
 #portal-column-one .linkButton li {
 	display: block;
 	padding: 0;
-	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/button_bullet.gif) no-repeat 4px center;
+	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/triangle_bullet.png) no-repeat 4px center;
 	border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
 	margin-bottom: 15px;
 	list-style-type: none;
