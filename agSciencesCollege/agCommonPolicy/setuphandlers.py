@@ -115,9 +115,12 @@ def createSiteFolders(context):
             
             theObject = getattr(site, theId)
             
-            if wftool.getInfoFor(theObject, 'review_state') != 'Published':
-                wftool.doActionFor(theObject, 'publish')
-
+            try:
+                if wftool.getInfoFor(theObject, 'review_state') != 'Published':
+                    wftool.doActionFor(theObject, 'publish')
+            except WorkflowException:
+                LOG('agCommonPolicy.createSiteFolders', INFO, "Site has no workflow, not publishing folder")
+                
             if theId == 'background-images':
                 theObject.setExcludeFromNav(True)
                 theObject.reindexObject()
