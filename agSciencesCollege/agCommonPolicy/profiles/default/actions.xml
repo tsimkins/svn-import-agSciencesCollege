@@ -14,7 +14,7 @@
  </object>
  <object name="topnavigation" meta_type="CMF Action Category" purge="False">
   <property name="title"></property>
-  <object name="home" meta_type="CMF Action">
+  <object name="home" meta_type="CMF Action" insert-before="*">
    <property name="title">Home</property>
    <property name="description"></property>
    <property name="url_expr">string:${portal_url}/</property>
