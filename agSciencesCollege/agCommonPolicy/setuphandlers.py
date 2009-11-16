@@ -15,6 +15,7 @@ from zope.component.interfaces import ComponentLookupError
 from Products.CMFCore.utils import getToolByName
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping
 from plone.app.viewletmanager.manager import ManageViewlets
+from Products.CMFCore.WorkflowCore import WorkflowException
 from zLOG import LOG, INFO
 import os.path
 import string
