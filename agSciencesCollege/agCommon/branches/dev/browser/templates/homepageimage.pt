@@ -3,7 +3,7 @@
 	<tal:homePageOverlay tal:condition="python: view.homepage_h1 or view.homepage_h2">
 		<div class="text">
 			<h1 tal:condition="view/homepage_h1" tal:content="view/homepage_h1">[Homepage h1 Text]</h1>
-			<h2 tal:condition="view/homepage_h1" tal:content="view/homepage_h2">[Homepage h2 Text]</h2>
+			<h2 tal:condition="view/homepage_h2" tal:content="view/homepage_h2">[Homepage h2 Text]</h2>
 		</div>
 		<div class="overlay"><!-- --></div>
 	</tal:homePageOverlay>
