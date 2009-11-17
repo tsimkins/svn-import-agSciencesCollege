@@ -41,6 +41,7 @@
    <element value="Event"/>
    <element value="News Item"/>
    <element value="FSDPerson"/>
+   <element value="FSDFacultyStaffDirectoryTool"/>
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
