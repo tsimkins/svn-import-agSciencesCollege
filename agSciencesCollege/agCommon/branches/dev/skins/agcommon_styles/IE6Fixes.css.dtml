@@ -14,11 +14,12 @@
 }
 
 #visual-portal-wrapper {
-    width: 902px;
+    width: 895px;
 }
 
 #portal-column-one .portletNavigationTree li.navTreeTitle {
 	margin-top: 0px !important;
+	padding: 10px 0;
 	background: transparent !important;
 }
 
