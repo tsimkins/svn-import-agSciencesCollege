@@ -2,9 +2,8 @@
 
     function manageTags(prefix, label)
     {
-        
         full_prefix = prefix + "-";
-        
+
         existingTags = jq('#subject_existing_keywords option');
 
         for (var i=0; i<existingTags.size(); i++)
@@ -17,7 +16,7 @@
             }
         }
 
-        mainTagLink = jq('<a href="#" id="edit_' + prefix + '_tags">' + label + '</a>');
+        mainTagLink = jq('<a href="#" title="' + full_prefix + '" id="edit_' + prefix + '_tags">' + label + '</a>');
 
         mainTagLink.click(
             function() 
@@ -30,17 +29,22 @@
                 {
                     tag = existingTags.eq(i);
                     
-                    if (tag.val().substring(0,full_prefix.length) == full_prefix)
+                    if (tag.val().substring(0,this.title.length) == this.title)
                     {
-                        tagLabel = tag.val().substring(5,tag.val().length)
-                        checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" /> <span>' + tagLabel + '</span><br />')
+						tagContainer = jq('<span class="tag_container"></span>');
+                        tagLabelValue = tag.val().substring(this.title.length,tag.val().length)
+						tagLabel = jq('<span>' + tagLabelValue + '</span><br />');
+                        checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" />')
     
                         if (tag.attr("selected"))
                         {
                             checkbox.attr("checked", "checked");
                         }
 
-                        checkbox.appendTo(modalTags);
+						checkbox.appendTo(tagContainer);
+						tagLabel.appendTo(tagContainer);
+
+                        tagContainer.appendTo(modalTags);
                     }
                 }
                 
@@ -78,7 +82,7 @@
                 submit.appendTo(buttons);
                 buttons.appendTo(modalTags);
                 
-                modalTags.modal(); 
+                modalTags.modal({minHeight:'500px', minWidth:'90%'}); 
                 return false;
             }
         )

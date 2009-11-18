@@ -35,6 +35,7 @@ font-size: 0.88em;
     background: #FFFFFF;
     padding: 1em;
     border: 2px solid #333366;
+	width: 90% !important;
 }
 
 div.simplemodal-wrap h1 {
@@ -62,7 +63,28 @@ div.simplemodal-wrap #buttons {
     background: #EF9C3B;
     margin-top: 3px;
     padding: 3px;
+	font-size: 0.88em;
+	text-align: center;
+	color: #FFFFFF !important;
+	text-decoration: none;
 }
+
+.tag_container {
+	float: left;
+	display: block;
+	width: 25%;
+}
+
+.tag_container input {
+	margin-right: 4px;
+}
+
+
+#modal_buttons {
+	clear: left;
+	padding: 20px 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
