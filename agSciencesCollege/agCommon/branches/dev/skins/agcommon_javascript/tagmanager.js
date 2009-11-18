@@ -2,13 +2,16 @@
 
     function manageTags(prefix, label)
     {
+        
+        full_prefix = prefix + "-";
+        
         existingTags = jq('#subject_existing_keywords option');
 
         for (var i=0; i<existingTags.size(); i++)
         {
             tag = existingTags.eq(i);
             
-            if (tag.val().substring(0,prefix.length+1) == prefix + "-")
+            if (tag.val().substring(0,full_prefix.length) == full_prefix)
             {
                 tag.hide();
             }
@@ -27,7 +30,7 @@
                 {
                     tag = existingTags.eq(i);
                     
-                    if (tag.val().substring(0,5) == 'main-')
+                    if (tag.val().substring(0,full_prefix.length) == full_prefix)
                     {
                         tagLabel = tag.val().substring(5,tag.val().length)
                         checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" /> <span>' + tagLabel + '</span><br />')
@@ -87,7 +90,7 @@
 
 jq(document).ready(
 	function () {
-	    manageTags("county", "Edit County Tags");
+        manageTags("county", "Edit County Tags");
     	manageTags("main", "Edit Topic Tags");
 	}
 )
