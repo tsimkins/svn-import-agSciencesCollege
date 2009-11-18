@@ -1,0 +1,71 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+#announcement-box {
+border: #999999 1px solid;
+background-color: #dfbc1b;
+width: 146px;
+padding: 3px;
+}
+
+#announcement-box p {
+font-weight: bold;
+color: #233b8f;
+margin: 0.25em 0;
+font-size: 1em;
+line-height: 1.5em;
+}
+
+#announcement-box input{
+font-family: Verdana, Geneva, Arial, Helvetica, san-serif;
+margin: 0.25em 0;
+font-size: 0.88em;
+}
+
+
+#simplemodal-overlay {
+    background: #333333;
+}
+
+#simplemodal-container {
+    background: #FFFFFF;
+    padding: 1em;
+    border: 2px solid #333366;
+}
+
+div.simplemodal-wrap h1 {
+    border: none;
+    color: #000033;
+    margin-bottom: 0.5em;
+}
+
+div.simplemodal-wrap input[type="checkbox"] {
+    margin-left: 1em;
+}
+
+div.simplemodal-wrap input[type="button"] {
+    margin: 0.5em;
+}
+
+div.simplemodal-wrap #buttons {
+    margin: 1em 0.5em;
+}
+
+#edit_county_tags, #edit_main_tags {
+    width: 120px;
+    display: block;
+    border: 1px solid #FF981F;
+    background: #EF9C3B;
+    margin-top: 3px;
+    padding: 3px;
+}
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

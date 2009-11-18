@@ -86,6 +86,8 @@
 
 
 jq(document).ready(
-    manageTags("county", "Edit County Tags");
-    manageTags("main", "Edit Topic Tags");
+	function () {
+	    manageTags("county", "Edit County Tags");
+    	manageTags("main", "Edit Topic Tags");
+	}
 )
