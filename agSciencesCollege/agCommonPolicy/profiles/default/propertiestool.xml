@@ -8,6 +8,7 @@
    <element value="Link"/>
    <element value="Document"/>
    <element value="PhotoFolder"/>
+   <element value="HomePage"/>
   </property>
   <property name="image_width" type="int">200</property>
   <property name="image_height" type="int">250</property>
