@@ -1,0 +1,35 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+#portal-column-content {
+    background-repeat: no-repeat;
+}
+
+#portal-breadcrumbs.headerimage {
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: &dtml-breadcrumbTextColor;;
+	padding: 4px 8px;
+	z-index: 20;
+	position: relative;
+	opacity: 0.80;
+	filter: alpha(opacity=80);	
+	margin: -145px 0 135px 0;
+	height: 17px;
+}
+
+#portal-breadcrumbs.headerimage .breadcrumbSeparator {
+	color: &dtml-breadcrumbSeparatorColor;;
+}
+
+#portal-breadcrumbs.headerimage a {
+	color: &dtml-breadcrumbLinkColor;;
+}
+
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */

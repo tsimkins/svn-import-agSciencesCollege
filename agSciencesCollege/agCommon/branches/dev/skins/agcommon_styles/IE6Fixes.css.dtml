@@ -23,6 +23,9 @@
 	background: transparent !important;
 }
 
+#portal-columns {
+    width: 100% !important;
+}
 #portal-column-content.sr {
     margin-right: 0;
 }
