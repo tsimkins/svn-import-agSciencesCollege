@@ -262,6 +262,22 @@ input.searchButton {
     background: transparent;
 }
 
+#portal-column-one .portletStaticText .portletItem {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#portal-column-one .portletStaticText .portletItem h2 {
+	border: none;
+    font-size: 110%;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+#portal-column-one .portletStaticText .portletItem p {
+    margin: 0;
+}
+
 #portal-column-one .portletNavigationTree .portletHeader {
 	display: none;
 }

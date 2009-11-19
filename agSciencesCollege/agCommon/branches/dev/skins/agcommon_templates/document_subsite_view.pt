@@ -22,13 +22,13 @@
                        templateId template/getId;
                        text here/getText;">
 
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
         <h1 class="documentFirstHeading"> 
             <metal:field use-macro="python:here.widget('title', mode='view')">
             Title
             </metal:field>
         </h1>
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <p class="documentDescription">
             <metal:field use-macro="python:here.widget('description', mode='view')">
@@ -36,6 +36,8 @@
             </metal:field>
         </p>
 
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+        
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
