@@ -15,26 +15,6 @@
 
 </metal:css>
 
-<metal:javascript fill-slot="javascript_head_slot">
-    <!-- Homepage Javascript -->
-    <script type="text/javascript">
-        function setHeaderGraphic() {
-            pcc = document.getElementById('portal-column-content');
-            pb = document.getElementById('portal-breadcrumbs');
-            if (pcc && pb)
-            {
-                pcc.style.backgroundImage = 'url(' + window.location.href + '/leadImage)';
-                pcc.style.paddingTop = '145px';
-                pcc.style.backgroundPosition = "top left";
-                pb.className = "headerimage";
-            }
-        }
-        
-        registerPloneFunction(setHeaderGraphic);
-    </script>
-
-</metal:javascript>
-
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
            tal:define="kssClassesView context/@@kss_field_decorator_view;

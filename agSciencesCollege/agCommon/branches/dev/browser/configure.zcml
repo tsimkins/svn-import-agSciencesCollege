@@ -138,6 +138,17 @@
         permission="zope2.View"
         />
 
+    <!-- Content Lead Image Header -->
+
+    <browser:viewlet
+        name="collective.contentleadimage.header"
+        manager=".interfaces.IAboveContentViews"
+        class=".viewlets.LeadImageHeader"
+        template="templates/leadimage-header.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+        
     <!-- Content Well Portlet Relocation -->
     <browser:viewlet
         name="contentwellportlets.portletsabovecontent"

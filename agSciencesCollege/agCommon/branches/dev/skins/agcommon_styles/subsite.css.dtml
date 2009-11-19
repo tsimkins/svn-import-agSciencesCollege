@@ -5,11 +5,14 @@
 
 /* YOUR CSS RULES START HERE */
 
-#portal-column-content {
+#image-header {
     background-repeat: no-repeat;
+    background-position: top left;
+	margin: -25px 0 15px 0;
+	height: 145px;
 }
 
-#portal-breadcrumbs.headerimage {
+#portal-breadcrumbs {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
 	padding: 4px 8px;
@@ -17,18 +20,17 @@
 	position: relative;
 	opacity: 0.80;
 	filter: alpha(opacity=80);	
-	margin: -145px 0 135px 0;
+	margin: 0;
 	height: 17px;
 }
 
-#portal-breadcrumbs.headerimage .breadcrumbSeparator {
+#portal-breadcrumbs .breadcrumbSeparator {
 	color: &dtml-breadcrumbSeparatorColor;;
 }
 
-#portal-breadcrumbs.headerimage a {
+#portal-breadcrumbs a {
 	color: &dtml-breadcrumbLinkColor;;
 }
-
 
 /* YOUR CSS RULES STOP HERE */
 

@@ -5,13 +5,14 @@ from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
-from Acquisition import aq_acquire
+from Acquisition import aq_acquire, aq_inner
 from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 from zope.app.component.hooks import getSite
+from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -235,6 +236,21 @@ class PathBarViewlet(ViewletBase):
         except AttributeError:
             pass
 
+class LeadImageHeader(LeadImageViewlet):
+
+    def update(self):
+    
+        # Only show header if we're on a subsite homepage
+
+        context = aq_inner(self.context)
+        portal_type = getattr(context, 'portal_type', None)
+
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+
+        self.showHeader = layout == 'document_subsite_view' and portal_type == 'HomePage'
 
 
 

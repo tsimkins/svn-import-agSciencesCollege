@@ -43,7 +43,8 @@ Note: insert-before and -after accept the value "*" which means
     </order>
 
     <order manager="agcommon.abovecontentviews" skinname="agCommon">
-        <viewlet name="plone.path_bar" insert-before="*"/>        
+        <viewlet name="plone.path_bar" insert-before="*"/>
+        <viewlet name="collective.contentleadimage.header" insert-after="plone.path_bar"/>
     </order>
 
     <order manager="agcommon.abovecontenttitle" skinname="agCommon">
