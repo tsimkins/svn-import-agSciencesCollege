@@ -233,7 +233,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background: #FFFFFF;
+	background: transparent;
 	border-width: 0px;
 	padding: 0px;
 }

@@ -14,6 +14,8 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 
+homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
+
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
 
@@ -41,7 +43,7 @@ class RightColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -67,7 +69,7 @@ class CenterColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -92,7 +94,7 @@ class HomepageImageViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -208,7 +210,7 @@ class PathBarViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view' or layout == 'portlet_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
