@@ -661,7 +661,7 @@ input.searchButton {
 #portal-content-wrapper a.link-external,
 #portal-content-wrapper a[href^="https:"], 
 #portal-content-wrapper a.link-https {
-	background: transparent;
+	background-image: none;
 	padding: 0;
 }
 
