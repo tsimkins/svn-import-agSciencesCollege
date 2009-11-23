@@ -21,9 +21,11 @@
                class="inputLabel" 
                autocomplete="off"/>
 
-		<select id = "searchSource">
-			<option value = "site">Search Site</option>
-			<option value = "college">Search College</option>
+		<select id = "searchSource"
+		      tal:define="agsciHomepage python: view.site_url.endswith('agsci.psu.edu')">
+			<option value = "section">Search This Section</option>
+			<option value = "site" tal:attributes="selected python:agsciHomepage and '' or 'selected'">Search Site</option>
+			<option value = "college" tal:attributes="selected python:agsciHomepage and 'selected' or ''">Search College</option>
 			<option value = "psu">Search Penn State</option>
 		</select>
 

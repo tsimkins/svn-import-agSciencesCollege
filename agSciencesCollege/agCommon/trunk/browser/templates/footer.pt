@@ -9,7 +9,7 @@
 			<span tal:replace="context/footer_copyright" />
 		</tal:overrideFooter>
 		<tal:standardFooter tal:condition="not:context/footer_copyright|nothing">
-			<span tal:replace="string:College of Agricultural Sciences" />
+	      <a href="http://agsci.psu.edu" tal:content="string:College of Agricultural Sciences" />
 		</tal:standardFooter>
 		
 	</p>

@@ -3,8 +3,10 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.PythonScripts.Utility import allow_module
+from zope.component.interfaces import ComponentLookupError
+from Products.CMFCore.WorkflowCore import WorkflowException
 from subprocess import Popen,PIPE
-from zLOG import LOG, INFO
+from zLOG import LOG, INFO, ERROR
 
 import re
 
@@ -174,39 +176,46 @@ def getPloneSites(context):
     return ploneSites
 
 # Reinstall agCommon and agCommonPolicy on Plone sites
-def reinstallAgCommon(context):
+def reinstallAgCommon(site):
 
     toInstall = [
             'agCommon', 'agCommonPolicy', 
     ]
 
-    #for site in getPloneSites(context):
-    
-    # Skip Extension, it has errors for some reason?
-    #if ['extension.psu.edu', 'thinkagain.psu.edu'].count(site['id']):
-    #    LOG('agCommon', INFO, "-----------Skipping %s because it throws errors." % site['id'])
-    #    continue
-
-    site = context
-    qi = getToolByName(site, 'portal_quickinstaller')
-    
+  
+    LOG('agCommon.reinstallAgCommon', INFO,  "-"*50  )  
+    LOG('agCommon.reinstallAgCommon', INFO,  "Starting reinstall on %s" % site  )  
+    LOG('agCommon.reinstallAgCommon', INFO,  "-"*50  )  
+        
+    try:
+        qi = getToolByName(site, 'portal_quickinstaller')
+    except AttributeError:
+        LOG('agCommon.reinstallAgCommon', ERROR,  "AttributeError for portal_quickinstaller" )
+        return False
+        
     toReinstall = []
 
     for product in toInstall:
     
-        LOG('agCommon', INFO, "Attempting to install %s on site %s" % (product, site.get('id', 'Unknown')))
+        LOG('agCommon.reinstallAgCommon', INFO, "Attempting to install %s on site %s" % (product, site.get('id', 'Unknown')))
     
         if not qi.isProductInstalled(product):
             if qi.isProductInstallable(product):
                 try:
                     qi.installProduct(product)
-                    LOG('agCommon', INFO,  "Installed product %s" % product)
-                except WorkflowException:
-                    LOG('agCommon', INFO,  "Workflow is in single state.  This causes an error.")
+                    LOG('agCommon.reinstallAgCommon', INFO,  "Installed product %s" % product)
+                except WorkflowException, e:
+                    LOG('agCommon.reinstallAgCommon', ERROR,  "WorkflowException: (Workflow is in single state).  This causes an error: %s" % e)
+                except ComponentLookupError, e:
+                    LOG('agCommon.reinstallAgCommon', ERROR,  "ComponentLookupError: %s" % e)
             else:
-                LOG('agCommon', INFO,  "Product %s not installable" % product)
+                LOG('agCommon.reinstallAgCommon', INFO,  "Product %s not installable" % product)
         else:
-            LOG('agCommon', INFO,  "Product %s already installed -- Must reinstall." % product  )
+            LOG('agCommon.reinstallAgCommon', INFO,  "Product %s already installed -- Must reinstall." % product  )
             toReinstall.append(product)  
-            
-    qi.reinstallProducts(toReinstall)
+
+    try:
+        qi.reinstallProducts(toReinstall)
+        LOG('agCommon.reinstallAgCommon', INFO,  "Reinstalling products [%s]" % ", ".join(toReinstall)  )
+    except ComponentLookupError, e:
+        LOG('agCommon.reinstallAgCommon', ERROR,  "ComponentLookupError: %s" % e  )

@@ -1,17 +1,15 @@
 <div id="portal-breadcrumbs"
-	 i18n:domain="plone">
+	 i18n:domain="plone"
+	 tal:condition="not:view/hide_breadcrumbs"
+	 >
 
-	<a href="http://www.psu.edu" target="_blank">PSU</a>
-
-	<span class="breadcrumbSeparator">
-		&raquo;
-	</span>
-
+    <tal:agsci tal:condition="python:view.site != 'agsci.psu.edu'">
 	<a href="http://agsci.psu.edu">AgSci</a>
 
 	<span class="breadcrumbSeparator">
 		&raquo;
 	</span>
+	</tal:agsci>
 
 	<tal:overrideBreadcrumb tal:condition="context/custom_parent_url|nothing">
 

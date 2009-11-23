@@ -70,8 +70,8 @@
     <!-- The breadcrumbs -->
     <browser:viewlet
         name="plone.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        manager=".interfaces.IAboveContentViews"
+        class=".viewlets.PathBarViewlet"
         template="templates/path_bar.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -91,7 +91,7 @@
     <!-- Top Navigation -->
     <browser:viewlet
         name="agcommon.topnavigation"
-        manager=".interfaces.IAboveContentViews"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".viewlets.TopNavigationViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -138,6 +138,17 @@
         permission="zope2.View"
         />
 
+    <!-- Content Lead Image Header -->
+
+    <browser:viewlet
+        name="collective.contentleadimage.header"
+        manager=".interfaces.IAboveContentViews"
+        class=".viewlets.LeadImageHeader"
+        template="templates/leadimage-header.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+        
     <!-- Content Well Portlet Relocation -->
     <browser:viewlet
         name="contentwellportlets.portletsabovecontent"

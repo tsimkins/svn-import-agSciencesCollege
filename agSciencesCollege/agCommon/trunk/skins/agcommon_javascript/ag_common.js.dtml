@@ -103,12 +103,18 @@ function searchOnSubmit()
     var theSearchForm = document.getElementById("GoogleSearch");
     var theSearchBox = document.getElementById("searchBox");
     var theCustomSearchBox = document.getElementById("GoogleCustomSearch");
+    var currentfolderCheckbox = document.getElementById("searchbox_currentfolder_only");
 
-    if (theSearchDropdown && theSearchForm && theSearchBox && theCustomSearchBox)
+    if (theSearchDropdown && theSearchForm && theSearchBox && theCustomSearchBox && currentfolderCheckbox)
     {
         var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
 
-        if (theSearchOption == "college")
+        if (theSearchOption == "section")
+        {
+            currentfolderCheckbox.checked = true;
+            return true;
+        }
+        else if (theSearchOption == "college")
         {
             theCustomSearchBox.q.value = theSearchBox.value;
             theCustomSearchBox.submit();
@@ -124,6 +130,7 @@ function searchOnSubmit()
         }
         else
         {
+            currentfolderCheckbox.checked = false;
             return true;
         }
     }

@@ -79,7 +79,7 @@ body {
 
 /* Top Navigation */
 
-#topnavigation {
+#portal-top-navigation {
 	display: none;
 }
 

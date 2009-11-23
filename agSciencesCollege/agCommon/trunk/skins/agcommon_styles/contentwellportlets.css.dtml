@@ -7,6 +7,10 @@
 
 /* Content Well Portlets for Sitemap */
 
+#portlets-above {
+    display: none;
+}
+
 #portlets-below {
 	background: &dtml-sitemapBackgroundColor;;
 	font-size: 0.88em;

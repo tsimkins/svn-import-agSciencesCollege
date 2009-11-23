@@ -5,12 +5,16 @@ from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
-from Acquisition import aq_acquire
+from Acquisition import aq_acquire, aq_inner
 from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
+from zope.app.component.hooks import getSite
+from collective.contentleadimage.browser.viewlets import LeadImageViewlet
+
+homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -39,7 +43,7 @@ class RightColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -65,7 +69,7 @@ class CenterColumnViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
@@ -90,10 +94,31 @@ class HomepageImageViewlet(ViewletBase):
         except:
             layout = None
             
-        if layout == 'document_homepage_view':
+        if homepage_views.count(layout) > 0:
             self.isHomePage = True
         else:
             self.isHomePage = False
+
+        try:
+            self.homepage_h1 = aq_acquire(self.context, 'homepage_h1')
+        except AttributeError:
+            self.homepage_h1 = None
+
+        try:
+            self.homepage_h2 = aq_acquire(self.context, 'homepage_h2')
+        except AttributeError:
+            self.homepage_h2 = None
+            
+        # Determine if we should hide breadcrumbs
+
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            if self.homepage_h1 or self.homepage_h2:
+                self.hide_breadcrumbs = True
+            else:
+                self.hide_breadcrumbs = False    
 
 
 class AddThisViewlet(ViewletBase):   
@@ -165,3 +190,69 @@ class KeywordsViewlet(ViewletBase):
         
 class NextPreviousViewlet(ViewletBase, NextPreviousView):
     render = ZopeTwoPageTemplateFile('templates/nextprevious.pt')
+
+class PathBarViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/path_bar.pt')
+        
+    def update(self):
+        super(PathBarViewlet, self).update()
+        
+        self.navigation_root_url = self.portal_state.navigation_root_url()
+    
+        self.is_rtl = self.portal_state.is_rtl()
+
+        breadcrumbs_view = getMultiAdapter((self.context, self.request),
+                                           name='breadcrumbs_view')
+        self.breadcrumbs = breadcrumbs_view.breadcrumbs()
+        
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+            
+        if homepage_views.count(layout) > 0:
+            self.isHomePage = True
+        else:
+            self.isHomePage = False
+        
+        # Get the site id
+        
+        self.site = getSite()['id']
+
+        # Determine if we should hide breadcrumbs
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            self.hide_breadcrumbs = False
+
+        try:
+            if aq_acquire(self.context, 'homepage_h1'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+        try:
+            if aq_acquire(self.context, 'homepage_h2'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+class LeadImageHeader(LeadImageViewlet):
+
+    def update(self):
+    
+        # Only show header if we're on a subsite homepage
+
+        context = aq_inner(self.context)
+        portal_type = getattr(context, 'portal_type', None)
+
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+
+        self.showHeader = layout == 'document_subsite_view' and portal_type == 'HomePage'
+
+
+

@@ -11,10 +11,12 @@
     </div>
 </head>
 <body>
-<div metal:fill-slot="main">
+<div metal:fill-slot="main"
+    tal:define="homepage_views python: ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'];
+                isHomepage python: homepage_views.count(context.getLayout()) > 0">
   <h2 class="documentFirstHeading">Manage Center Column Portlets</h2>
-  <span tal:condition="python: context.getLayout() == 'document_homepage_view'" tal:replace="structure provider:agcommon.centercolumn" />
-  <p tal:condition="python: not context.getLayout() == 'document_homepage_view'">This portlet manager may only be used on homepages.</p>
+  <span tal:condition="python: isHomepage" tal:replace="structure provider:agcommon.centercolumn" />
+  <p tal:condition="python: not isHomepage">This portlet manager may only be used on homepages.</p>
 </div>
 </body>
 </html>

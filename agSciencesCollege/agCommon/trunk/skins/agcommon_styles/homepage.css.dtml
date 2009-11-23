@@ -29,7 +29,7 @@ h1, .documentByLine, .documentActions {
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
-	padding: 15px 10px 5px 15px;
+	padding: 10px 10px 0px 12px;
 	margin: 0;
 	background: transparent;
 }
@@ -56,12 +56,13 @@ h1, .documentByLine, .documentActions {
 	padding: 0;
 	width: 200px;
 	z-index: 10;
+	margin-top: 0.5em;
 }
 
 #homepageimage .overlay {
 	width: 200px;
 	height: 265px;
-	margin: 0px;
+	margin: 0 0 0 0;
 	padding: 0;
 	background: &dtml-homepageTransparentOverlayColor;;
 	opacity: 0.70;
@@ -232,7 +233,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background: #FFFFFF;
+	background: transparent;
 	border-width: 0px;
 	padding: 0px;
 }
@@ -284,6 +285,7 @@ h1, .documentByLine, .documentActions {
 
 #content {
     margin: 3px 3px 0 3px;
+    width: auto;
 }
 
 #content, #region-content, #portal-content-wrapper {
@@ -303,6 +305,14 @@ h1, .documentByLine, .documentActions {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid &dtml-contentViewBorderColor;;
+}
+
+#homepageimage {
+    margin-top: -28px;
+}
+
+#homepageimage.nobreadcrumbs {
+	margin-top: 0;
 }
 
 /* =================== Portlets =================== */
@@ -361,7 +371,25 @@ h1, .documentByLine, .documentActions {
 	display: none;
 }
 
+#portal-breadcrumbs {
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: &dtml-breadcrumbTextColor;;
+	padding: 4px 8px;
+	z-index: 20;
+	position: relative;
+	opacity: 0.80;
+	filter: alpha(opacity=80);	
+	margin: 3px 3px 0 3px;
+	height: 17px;
+}
 
+#portal-breadcrumbs .breadcrumbSeparator {
+	color: &dtml-breadcrumbSeparatorColor;;
+}
+
+#portal-breadcrumbs a {
+	color: &dtml-breadcrumbLinkColor;;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

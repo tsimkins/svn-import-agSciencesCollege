@@ -35,7 +35,18 @@
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>
 
- <stylesheet id="site.css" insert-after="fsdfixes.css"
+ <stylesheet id="futurestudents.css" insert-after="fsdfixes.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" media="all"
+    expression="python:portal.id == 'thinkagain.psu.edu'"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="extension.css" insert-after="futurestudents.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1"     expression="python:portal.id == 'extension.psu.edu'"  media="all"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="site.css" insert-after="extension.css"
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>

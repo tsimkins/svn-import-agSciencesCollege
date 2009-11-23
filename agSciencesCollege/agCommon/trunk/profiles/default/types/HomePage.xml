@@ -17,6 +17,7 @@
  <property name="default_view">document_homepage_view</property>
  <property name="view_methods">
   <element value="document_homepage_view"/>
+  <element value="document_subsite_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
