@@ -494,7 +494,7 @@ input.searchButton {
 	display: block;
 	text-align: left;
 	margin: 0 auto;
-	padding: 0 0 0 2px;
+	padding: 0 0 0 3px;
 	border: 0;
 	list-style-type: none;
 }
@@ -509,10 +509,6 @@ input.searchButton {
 	padding: 3px 8px;
 	margin: 3px 0;
 	white-space: nowrap;	
-}
-
-#portal-top-navigation li:first-child {
-	border-width: 0;
 }
 
 #portal-top-navigation img {
