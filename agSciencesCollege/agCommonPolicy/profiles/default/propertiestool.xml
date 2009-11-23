@@ -44,6 +44,27 @@
    <element value="FSDPerson"/>
    <element value="FSDFacultyStaffDirectoryTool"/>
    <element value="PhotoFolder"/>
+   <element value="FormSelectionField"/>
+   <element value="FormMultiSelectionField"/>
+   <element value="FormLabelField"/>
+   <element value="FormDateField"/>
+   <element value="FormLinesField"/>
+   <element value="FormIntegerField"/>
+   <element value="FormBooleanField"/>
+   <element value="FormPasswordField"/>
+   <element value="FormFixedPointField"/>
+   <element value="FormStringField"/>
+   <element value="FormTextField"/>
+   <element value="FormRichTextField"/>
+   <element value="FormRichLabelField"/>
+   <element value="FormFileField"/>
+   <element value="FormLikertField"/>
+   <element value="FormSaveDataAdapter"/>
+   <element value="FormMailerAdapter"/>
+   <element value="FormCustomScriptAdapter"/>
+   <element value="FormThanksPage"/>
+   <element value="FieldsetFolder"/>
+   <element value="FormCaptchaField"/>
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
