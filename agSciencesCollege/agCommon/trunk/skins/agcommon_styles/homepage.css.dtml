@@ -391,6 +391,10 @@ h1, .documentByLine, .documentActions {
 	color: &dtml-breadcrumbLinkColor;;
 }
 
+.documentContent {
+    font-size: 110%;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

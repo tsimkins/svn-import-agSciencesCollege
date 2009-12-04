@@ -728,7 +728,7 @@ input.searchButton {
 /* = addthis =============================================== */
 
 #addthis {
-	font-size: 0.88em;
+	font-size: 0.80em;
 	color: #333333;
 	padding: 4px;
 	border: 0 solid #CCCCCC;
@@ -744,15 +744,6 @@ input.searchButton {
 }
 
 
-/* = clear-space-before-footer=============================== */
-/* remove?
-#clear-space-before-footer {
-	margin: 0;
-	border-left: 1px solid #808080;
-	border-right: 1px solid #808080;
-}
-
-*/
 /* = portal-footer ========================================= */
 
 #portal-footer {
@@ -806,6 +797,10 @@ dd.portletItem p {
 
 .image-left, .image-right {
 	border: 0;
+}
+
+.documentContent {
+    font-size: 120%;
 }
 
 /* Paragraph and Unordered List readability per cmore */
@@ -979,7 +974,7 @@ body.template-news_listing dd {
 
 body.template-newsitem_view .effectiveDate {
 	color: #76797C;
-	font-size: 0.9em;
+	font-size: 85%;
 	margin-bottom: 1em;
 	margin-top: 0;
 }

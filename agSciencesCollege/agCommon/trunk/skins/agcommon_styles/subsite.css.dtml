@@ -156,6 +156,9 @@
 	border-width: 0px;
 }
 
+.documentContent {
+    font-size: 110%;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

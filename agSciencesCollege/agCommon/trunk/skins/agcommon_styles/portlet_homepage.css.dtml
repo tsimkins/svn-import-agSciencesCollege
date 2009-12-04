@@ -103,6 +103,9 @@ h1.documentFirstHeading {
     display: none;
 }
 
+.documentContent {
+    font-size: 110%;
+}
 
 
 /* YOUR CSS RULES STOP HERE */
