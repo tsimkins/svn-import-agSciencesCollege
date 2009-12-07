@@ -350,7 +350,7 @@ input.searchButton {
 
 #portal-column-one .portletNavigationTree a.state-published:hover,
 #portal-column-one .navTreeItem a:hover {
-	color: &dtml-leftNavTextHoverColor;;
+	color: &dtml-leftNavTextHoverColor; !important;
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeItem a, 
@@ -953,7 +953,7 @@ blockquote {
 
 
 
-/* = Template workarounds======================================= */
+/* = Template workarounds ======================================= */
 
 body.popup, body.atrefbrowser {
 	background: #FFFFFF;
@@ -1005,6 +1005,46 @@ body.template-pgv_sg_carousel_view #region-content {
     border-bottom: none;
 }
 
+/* = Table of contents ============================================ */
+#document-toc {
+   	background-color: &dtml-leftSubNavBackground;;
+	border: &dtml-leftNavBorderColor; solid 1px;
+	padding: 0.75em;
+	font-size: 85%;
+	width: 25%;
+	margin-bottom: 1em;
+}
+
+#document-toc .portletHeader {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-weight: bold;
+	color: &dtml-leftNavTextColor;;
+}
+
+#document-toc .portletItem {
+    background: transparent;
+    border: none;
+    padding: 0.25em 0 0 0;
+}
+#document-toc .portletItem li {
+	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.3em;
+	padding: 0 0.5em 0 1.25em;
+    list-style-type: none;
+}
+
+#document-toc .portletItem li li {
+    list-style-type: square;
+    background: transparent;
+    padding: 0;
+    margin-left: 1.5em;
+	color: &dtml-leftNavTextColor;;
+}
+
+#document-toc .portletItem ol {
+    margin-left: 0.5em;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
