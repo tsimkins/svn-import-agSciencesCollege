@@ -1015,6 +1015,7 @@ body.template-pgv_sg_carousel_view #region-content {
 	margin-bottom: 1em;
     margin-left: 1em;
 	clear: right;
+	position: relative;
 }
 
 #portal-column-content.sr #document-toc {
