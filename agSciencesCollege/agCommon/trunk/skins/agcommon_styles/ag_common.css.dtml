@@ -688,7 +688,7 @@ input.searchButton {
 	font-size: 175%;
 }
 
-#region-content h2 {
+#region-content h2, html.kupu-html h2 {
 	color: &dtml-documentHeadingColor;;
 	font-size: 130%;
 	margin: 15px 0 5px;
@@ -701,7 +701,7 @@ input.searchButton {
     font-size: 1.1em;
 }
 
-#region-content h3 {
+#region-content h3, html.kupu-html h3 {
 	color: &dtml-documentSubHeadingColor;;
 	font-size: 1em;
 	margin: 15px 0 5px;
