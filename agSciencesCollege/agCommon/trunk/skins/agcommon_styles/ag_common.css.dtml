@@ -1013,6 +1013,12 @@ body.template-pgv_sg_carousel_view #region-content {
 	font-size: 85%;
 	width: 25%;
 	margin-bottom: 1em;
+    margin-left: 1em;
+	clear: right;
+}
+
+#portal-column-content.sr #document-toc {
+  	width: 33%;
 }
 
 #document-toc .portletHeader {
