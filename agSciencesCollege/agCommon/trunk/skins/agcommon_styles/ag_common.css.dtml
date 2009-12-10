@@ -972,6 +972,10 @@ body.template-news_listing dd {
 	margin-left: 0;
 }
 
+body.template-news_listing #portal-column-two dd {
+	margin-bottom: 0;
+}
+
 body.template-newsitem_view .effectiveDate {
 	color: #76797C;
 	font-size: 85%;
