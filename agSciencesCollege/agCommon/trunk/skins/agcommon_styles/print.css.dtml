@@ -221,6 +221,11 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
     display: none;
 }
 
+/* Table of Contents */
+#document-toc {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

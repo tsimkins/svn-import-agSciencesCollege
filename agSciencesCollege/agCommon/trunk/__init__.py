@@ -1,5 +1,6 @@
 # Register our skins directory - this makes it available via portal_skins.
 
+from zope.component import getSiteManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.DirectoryView import registerDirectory
 from Products.PythonScripts.Utility import allow_module
@@ -7,6 +8,7 @@ from zope.component.interfaces import ComponentLookupError
 from Products.CMFCore.WorkflowCore import WorkflowException
 from subprocess import Popen,PIPE
 from zLOG import LOG, INFO, ERROR
+
 
 import re
 
@@ -123,6 +125,16 @@ def getHomepageImage(context):
     
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
 
+def makePage(context):
+    print context.portal_type
+    print context.archetype_name
+    context.archetype_name = 'Page'
+    context.portal_type = 'Document'
+    context.reindexObject()
+    print context.portal_type
+    print context.archetype_name
+    print "OK"
+
 def makeHomePage(context):
     print context.portal_type
     print context.archetype_name
@@ -143,6 +155,74 @@ def makePhotoFolder(context):
     print context.archetype_name
     print "OK"
 
+def folderToPage(folder):
+    # Title, Description, Body Text, Author, Tags, Effective Date
+    portal = getSiteManager(folder)
+    wftool = getToolByName(portal, "portal_workflow")
+    
+    folder_id = folder.id
+    folder_title = folder.Title()
+    folder_description = folder.Description()
+    folder_text = folder.folder_text()
+    folder_owner = folder.getOwner()
+    folder_subject = folder.Subject()
+    folder_effective_date = folder.EffectiveDate()
+
+    if wftool.getInfoFor(folder, 'review_state') != 'private':
+        wftool.doActionFor(folder, 'retract')
+
+    folder_parent = folder.getParentNode()
+    
+    folder_parent.manage_renameObject(folder_id, '%s-folder' % folder_id)
+    
+    folder_parent.invokeFactory(id=folder_id, type_name="Document", title=folder_title, description = folder_description, text=folder_text, subject=folder_subject)
+    
+    page = getattr(folder_parent, folder_id)
+        
+    page.changeOwnership(folder_owner)
+    
+    page.setEffectiveDate(folder_effective_date)
+
+    if wftool.getInfoFor(page, 'review_state') != 'published':
+        wftool.doActionFor(page, 'publish')
+        
+    page.reindexObject()
+    
+def pageToFolder(page):
+    # Title, Description, Body Text, Author, Tags, Effective Date
+
+    portal = getSiteManager(page)
+    wftool = getToolByName(portal, "portal_workflow")
+    
+    page_id = page.id
+    page_title = page.Title()
+    page_description = page.Description()
+    page_text = page.getText()
+    page_owner = page.getOwner()
+    page_subject = page.Subject()
+    page_effective_date = page.EffectiveDate()
+
+    if wftool.getInfoFor(page, 'review_state') != 'private':
+        wftool.doActionFor(page, 'retract')
+    
+    page_parent = page.getParentNode()
+    
+    page_parent.manage_renameObject(page_id, '%s-page' % page_id)
+
+    page_parent.invokeFactory(id=page_id, type_name="Folder", title=page_title, description = page_description, text=page_text, subject=page_subject)
+    
+    folder = getattr(page_parent, page_id)
+        
+    folder.changeOwnership(page_owner)
+    
+    folder.setEffectiveDate(page_effective_date)
+
+    if wftool.getInfoFor(folder, 'review_state') != 'published':
+        wftool.doActionFor(folder, 'publish')
+
+    folder.reindexObject()
+    
+    
 def fixPhoneNumber(myPerson):
 
     phone = myPerson.getOfficePhone()
