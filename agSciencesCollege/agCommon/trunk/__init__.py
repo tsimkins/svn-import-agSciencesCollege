@@ -140,6 +140,7 @@ def makeHomePage(context):
     print context.archetype_name
     context.archetype_name = 'Home Page'
     context.portal_type = 'HomePage'
+    context.setLayout("document_homepage_view")
     context.reindexObject()
     print context.portal_type
     print context.archetype_name
@@ -150,6 +151,7 @@ def makePhotoFolder(context):
     print context.archetype_name
     context.archetype_name = 'Photo Folder'
     context.portal_type = 'PhotoFolder'
+    context.setLayout("document_view")
     context.reindexObject()
     print context.portal_type
     print context.archetype_name
