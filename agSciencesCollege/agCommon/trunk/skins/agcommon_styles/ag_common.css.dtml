@@ -213,7 +213,7 @@ input.searchButton {
 
 #portal-column-one {
 	background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
-	border-color: #808080;
+	border-color: &dtml-leftNavBorderColor;;
 	border-style: solid;
 	border-width: 0 1px 0 0;
 	width: 186px;
@@ -295,7 +295,7 @@ input.searchButton {
 	padding-bottom: 10px;
 	padding-left: 10px;
 	font-weight: bold;
-	border-bottom: 1px solid &dtml-leftNavBorderColor;
+	border-bottom: 1px solid &dtml-leftNavBorderColor;;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
@@ -848,7 +848,7 @@ span.description {
     border-color: #CC9933;
     color: #9D7627;
     padding: 1em;
-    font-size: 1.3em;
+    font-size: 1.1em;
     line-height: 1.5em;
 }
 
@@ -1056,6 +1056,11 @@ body.template-pgv_sg_carousel_view #region-content {
 #document-toc .portletItem ol {
     margin-left: 0.5em;
 }
+
+#subject_existing_keywords {
+	max-width: 18em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
