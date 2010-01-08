@@ -55,6 +55,7 @@ def createUsers(context):
                 'username' : id,
                 'fullname' : '%s %s' % (first, last),
                 'email' : email.strip(),
+                'visible_ids' : True
             }
             try:
                 regtool.addMember(id, randomPassword(), properties=properties)
@@ -108,7 +109,7 @@ def createSiteFolders(context):
     # Publish from http://svn.cosl.usu.edu/svndev/eduCommons3/branches/yale-3.0.2/setupHandlers.py
     wftool =  getToolByName(site, 'portal_workflow')
 
-    for theArray in [['about', 'About Us'], ['news', 'News'], ['events', 'Events'], ['contact', 'Contact Us'], ['background-images', 'Background Images']]:
+    for theArray in [['about', 'About Us'], ['news', 'News'], ['events', 'Events'], ['contact', 'Contact Us'], ['background-images', 'Background Images'], ['images', 'Images']]:
         (theId, theTitle) = theArray
         
         if theId not in site.objectIds():
@@ -122,7 +123,7 @@ def createSiteFolders(context):
             except WorkflowException:
                 LOG('agCommonPolicy.createSiteFolders', INFO, "Site has no workflow, not publishing folder")
                 
-            if theId == 'background-images':
+            if theId == 'background-images' or theId == 'images':
                 theObject.setExcludeFromNav(True)
                 theObject.reindexObject()
 
@@ -404,6 +405,90 @@ def customizeViewlets(context):
     if site['id'] == 'agsci.psu.edu':
         ManageViewlets.show('plone.portalfooter', 'contentwellportlets.portletsbelowcontent')
 
+def configureKupu(context):
+
+    # addLibrary(self, id, title, uri, src, icon)
+    # This puts the "images" folder
+
+    site = context.getSite()
+    sm = getSiteManager(site)
+    kupu = getToolByName(sm, 'kupu_library_tool')
+    
+    has_images_library = False
+    
+    for lib in kupu.getLibraries(sm):
+        if lib['id'] == 'images':
+            has_images_library = True
+            break
+        
+    if not has_images_library:
+        kupu.addLibrary('images', 'string:Images', 'string:${portal_url}/images', 
+            'string:${portal_url}/images/kupucollection.xml', 'string:${portal_url}/image_icon.gif')
+        LOG('agCommonPolicy.configureKupu', INFO, "Adding 'images' Kupu library")
+        
+    # Set up the nasty/stripped/custom tags 
+    # http://plone.org/documentation/how-to/how-to-embed-content-flickr-youtube-or-myspace
+    """
+    * Remove "Object" and "Embed" from the "Nasty Tags" list
+    * Remove "Object" and "Param" from the "Stripped Tags" list
+    * Add "Embed" to the "Custom Tags" list
+    """
+    
+    # Grab data structures
+    portal_transforms = site['portal_transforms']
+    safe_html = portal_transforms['safe_html']   
+    nasty_tags = safe_html.get_parameter_value('nasty_tags')     
+    valid_tags = safe_html.get_parameter_value('valid_tags')
+    
+    # Make changes required to embed content
+    if nasty_tags.get('object'):
+        del nasty_tags['object']
+
+    if nasty_tags.get('embed'):
+        del nasty_tags['embed']
+        
+    valid_tags['object'] = 1
+    valid_tags['embed'] = 1
+    valid_tags['param'] = 1
+    valid_tags['iframe'] = 1
+        
+    # Obtain key/value structures from dicts
+    
+    nasty_tags_key = []
+    nasty_tags_value = []
+
+    for key,value in nasty_tags.items():
+        nasty_tags_key.append(key)
+        nasty_tags_value.append(str(value))
+
+    valid_tags_key = []
+    valid_tags_value = []
+
+    for key,value in valid_tags.items():
+        valid_tags_key.append(key)
+        valid_tags_value.append(str(value))
+
+    # Load these structures into the safe_html object
+    kwargs = {'nasty_tags_key': nasty_tags_key,'nasty_tags_value': nasty_tags_value,'valid_tags_key': valid_tags_key, 'valid_tags_value': valid_tags_value}
+    safe_html.set_parameters(**kwargs)
+    safe_html.reload()
+
+    # True up the Kupu side of things
+    stripped_tags = kupu.get_stripped_tags()
+    stripped_tags = list(set(stripped_tags) - set(['object', 'param']))
+    kupu.set_stripped_tags(stripped_tags)
+    
+    # Set embed-tab filter
+    filteroptions = kupu.getFilterOptions()
+
+    for f in filteroptions:
+        if f["id"] == 'embed-tab':   
+            f["visible"] = True
+    
+    kupu.set_toolbar_filters(filteroptions,kupu._global_toolbar_filter)
+
+    LOG('agCommonPolicy.configureKupu', INFO, "Enabled embedding YouTube/etc. content")
+
 def setupHandlersWrapper(context):
 
     if context.readDataFile('agCommonPolicy.marker') is None:
@@ -432,6 +517,8 @@ def setupHandlersWrapper(context):
 
     updateBaseProperties(context)
     
+    configureKupu(context)
+
     #customizeViewlets(context)
         
  
