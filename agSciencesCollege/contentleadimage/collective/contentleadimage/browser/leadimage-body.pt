@@ -3,7 +3,7 @@
 </tal:comment>
 
 <div class="contentLeadImageContainer" i18n:domain="collective.contentleadimage"
-     tal:define="tag python: view.bodyTag(css_class='newsImage')"
+     tal:define="tag python: view.bodyTag()"
      tal:condition="tag">
 
     <tal:comment tal:replace="nothing">
