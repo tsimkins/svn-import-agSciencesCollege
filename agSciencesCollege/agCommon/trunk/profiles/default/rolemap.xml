@@ -71,5 +71,9 @@
                 acquire="True">
       <role name="Portlet Manager"/>
     </permission>
+    <permission name="Manage portal"
+                acquire="True">
+      <role name="Portlet Manager"/>
+    </permission>
   </permissions>
 </rolemap>
