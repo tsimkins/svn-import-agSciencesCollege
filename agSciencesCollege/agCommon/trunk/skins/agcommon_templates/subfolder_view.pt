@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+<metal:main_macro define-macro="main">
+    <metal:body define-macro="body_macro"
+                tal:define="kssClassesView context/@@kss_field_decorator_view;
+                            getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                            templateId template/getId;
+                            standalone_view python:False">
+
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:condition="here/Description">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+        </p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <tal:subfolder metal:define-macro="subfolders_macro"
+                      define="folderContents python:here.getFolderContents({'portal_type' : ['Topic','Folder']})"
+                      condition="folderContents"
+                      repeat="subfolder_brain folderContents">
+                      
+         <div class="tileItem"
+            tal:define="subfolder subfolder_brain/getObject"
+         >
+          <h2 class="tileHeadline">
+            <a href=""
+               tal:attributes="href subfolder/absolute_url;"
+               tal:content="subfolder/title_or_id">
+              Folder Title
+            </a>
+          </h2>
+
+          <span class="description" tal:condition="subfolder/Description">
+            <metal:field use-macro="python:subfolder.widget('description', mode='view')">
+              Description
+            </metal:field>
+          </span>
+
+          <tal:define define="here nocall:subfolder;
+                              here_url subfolder/absolute_url;">
+        <tal:topiccontents define="portal_type here/portal_type|nothing;
+                                   folder_layout here/layout|nothing;
+                                   topicCount python:portal_type == 'Topic' and len(here.queryCatalog()) or 0;
+                                   limit python:portal_type == 'Topic' and here.getItemCount() > 0 and here.getItemCount() or 1000;
+                                   subfolderContents python:here.getFolderContents() or here.queryCatalog(sort_limit=limit)[:limit];
+                                   batch subfolderContents;">
+
+            <tal:listing condition="subfolderContents">
+            <a style='text-align: right' href="#"
+               tal:condition="nocall: here/asPDF|nothing"
+               tal:attributes="href string:${here_url}/asPDF/atct_topic_pdf_template/atct_topic_pdf"
+               i18n:translate="label_download_as_pdf"
+               i18n:domain="atcontenttypes">
+                Download PDF
+            </a>
+            
+            <div metal:define-macro="text-field-view"
+                 id="parent-fieldname-text" class="stx"
+                 tal:define="kss_class python:getKssClasses('text',
+                             templateId=templateId, macro='text-field-view');
+                             text here/getText|nothing"
+                 tal:condition="text"
+                 tal:attributes="class python:test(here.Format() in ('text/structured',
+                                                       'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
+                <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+            </div>
+
+            <tal:folder_summary_view condition="python:folder_layout == 'folder_summary_view'"
+                         define="folderContents subfolderContents">
+                <metal:listing metal:use-macro="here/folder_summary_view/macros/listing">
+                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                </metal:listing>
+
+            </tal:folder_summary_view>
+
+            <tal:atct_album_view condition="python:folder_layout == 'atct_album_view'"
+                         define="folderContents subfolderContents;
+                                 image_count python:96">
+                <metal:listing metal:use-macro="here/atct_album_view/macros/listing">
+                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                </metal:listing>
+
+            </tal:atct_album_view>
+
+            <tal:atct_topic_view condition="python:folder_layout == 'atct_topic_view'"
+                         define="folderContents subfolderContents;
+                                 image_count python:96">
+                <metal:listing metal:use-macro="here/atct_topic_view/macros/listing">
+                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                </metal:listing>
+
+            </tal:atct_topic_view>
+            
+            <tal:folder_listing condition="python:['folder_summary_view','atct_album_view','atct_topic_view'].count(folder_layout) == 0"
+                         define="folderContents subfolderContents">
+                <metal:listing metal:use-macro="here/folder_listing/macros/listing">
+                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                </metal:listing>
+
+            </tal:folder_listing>
+            
+            </tal:listing>
+
+            <p class="discreet"
+               tal:condition="python: not subfolderContents"
+               i18n:domain="atcontenttypes"
+               i18n:translate="description_no_items_in_topic">
+                There are currently no results for this search.
+            </p>
+
+          <p class="tileFooter" tal:condition="python:topicCount > limit">
+            <a href=""
+               tal:attributes="href subfolder/absolute_url;">
+              More&hellip;
+            </a>
+          </p>
+
+        </tal:topiccontents>
+          </tal:define>
+         </div>
+        </tal:subfolder>
+
+    </metal:body>
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+
+</metal:main_macro>
+
+</div>
+
+</body>
+</html>

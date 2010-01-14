@@ -6,5 +6,6 @@
   <element value="folder_noimage_view"/>
   <element value="folder_noimage_listing"/>
   <element value="news_listing"/>
+  <element value="subfolder_view"/>
  </property>
 </object>

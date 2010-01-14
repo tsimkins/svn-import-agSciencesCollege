@@ -699,6 +699,7 @@ input.searchButton {
 
 #region-content h2.tileHeadline {
     font-size: 1.1em;
+    margin-top: 0;
 }
 
 #region-content h3, html.kupu-html h3 {
@@ -989,6 +990,33 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 
 body.template-folder_leadimage_view #region-content .tileImage {
     margin-top: 1.5em;
+}
+
+body.template-subfolder_view #region-content .tileItem h2.tileHeadline {
+    font-size: 1.25em;
+}
+
+body.template-subfolder_view #region-content .tileItem .tileItem h2.tileHeadline {
+    font-size: 1em;
+}
+
+body.template-subfolder_view #region-content .tileItem .tileItem .facultyStaffDirectory {
+    font-size: 0.9em;
+}
+
+
+body.template-subfolder_view #region-content .tileItem .tileItem,
+body.template-subfolder_view #region-content .tileItem dl,
+body.template-subfolder_view #region-content .tileItem .tileFooter  {
+    margin-left: 20px;
+}
+
+body.template-subfolder_view #region-content .tileItem .tileItem .tileFooter  {
+    margin-left: 0;
+}
+
+body.template-subfolder_view #region-content .tileItem .photoAlbum {
+    margin-left: 10px;
 }
 
 #portlet-prefs {

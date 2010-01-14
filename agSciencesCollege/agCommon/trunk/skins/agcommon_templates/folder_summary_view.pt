@@ -12,7 +12,8 @@
     <metal:main-macro define-macro="main"
                       tal:define="kssClassesView context/@@kss_field_decorator_view;
                                   getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                  templateId template/getId">
+                                  templateId template/getId;
+                                  standalone_view python:True">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -186,7 +187,9 @@
             </tal:block>
 
             <!-- Navigation -->
-            <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <tal:batch condition="standalone_view">
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:batch>
 
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">
