@@ -19,7 +19,7 @@ class LeadImageViewlet(ViewletBase):
         portal = getUtility(IPloneSiteRoot)
         return ILeadImagePrefsForm(portal)
 
-    def bodyTag(self, css_class='newsImage'):
+    def bodyTag(self, css_class=''):
         """ returns img tag """
         context = aq_inner(self.context)
         
