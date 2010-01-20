@@ -2,6 +2,8 @@
            i18n:domain="linkbutton">
 <dl class="portlet linkButton">
 
+    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+
     <dd class="portletItem" tal:condition="view/linkButtons">
            
         <ul>

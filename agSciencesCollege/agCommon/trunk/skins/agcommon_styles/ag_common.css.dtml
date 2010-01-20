@@ -416,8 +416,12 @@ input.searchButton {
 
 /* Link Buttons */
 
-#portal-column-one .linkButton ul {
+#portal-column-one .linkButton {
 	margin: 30px 0;
+}
+
+#portal-column-one .linkButton ul {
+	margin: 10px 0;
 }
 
 #portal-column-one .linkButton li {

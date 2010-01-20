@@ -15,21 +15,51 @@ from Products.CMFPlone import PloneMessageFactory as _
 
 class ILinkIcon(IPortletDataProvider):
 
-    items = schema.TextLine(title=_(u'Link/Icon Set Id'),
+    header = schema.TextLine(
+        title=_(u"Portlet header"),
+        description=_(u"Title of the rendered portlet"),
+        required=True)
+
+    show_header = schema.Bool(
+        title=_(u"Show portlet header"),
+        description=_(u""),
+        required=True,
+        default=False)
+
+    items = schema.Choice(title=_(u'Link/Icon Set Id'),
                        description=_(u'The id of the link/icon set in portal_actions'),
-                       required=True)
+                       required=True,
+                       vocabulary="agcommon.portlet.portal_actions"
+                       )
+                       
+    hide = schema.Bool(
+        title=_(u"Hide portlet"),
+        description=_(u"Tick this box if you want to temporarily hide "
+                      "the portlet without losing your text."),
+        required=True,
+        default=False)
 
 class Assignment(base.Assignment):
+
     implements(ILinkIcon)
 
+    header = ""
+    show_header = ""
     items = ""
+    hide = False
 
-    def __init__(self, items=items):
+    def __init__(self, header=u"", show_header=u"", items=items, hide=False):
+        self.header = header
+        self.show_header = show_header
         self.items = items
-        
+        self.hide = hide
+                
     @property
     def title(self):
-        return "Links and Icons"
+        if self.header:
+            return self.header
+        else:
+            return "Links and Icons"
 
 
 class Renderer(base.Renderer):
@@ -56,7 +86,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return True
+        return not self.data.hide
 
 
 class AddForm(base.AddForm):
@@ -65,7 +95,7 @@ class AddForm(base.AddForm):
     description = _(u"This portlet displays icons and links configured in portal_actions.")
 
     def create(self, data):
-        return Assignment(items=data.get('items', ""))
+        return Assignment(**data)
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(ILinkIcon)

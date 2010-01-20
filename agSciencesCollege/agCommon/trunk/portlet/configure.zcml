@@ -30,4 +30,9 @@
         editview=".relateditems.EditForm"
         />
 
+    <utility
+      component=".vocabulary.PortalActionsVocabularyFactory"
+      name="agcommon.portlet.portal_actions"
+      />
+
 </configure>
