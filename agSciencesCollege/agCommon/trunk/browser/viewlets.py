@@ -155,10 +155,21 @@ class TitleViewlet(ViewletBase):
         except AttributeError:
             site_title = self.portal_title()
             org_title = "Penn State University"
-    
+
+        try:
+            org_title = aq_acquire(self.context, 'org_title')
+        except AttributeError:
+            org_title = org_title
+
         portal_title = safe_unicode(site_title)
         page_title = safe_unicode(self.page_title())
-        if page_title == portal_title:
+        org_title = safe_unicode(org_title)
+
+        if not org_title or org_title.lower() == 'none':
+            return u"<title>%s &mdash; %s</title>" % (
+                escape(safe_unicode(page_title)),
+                escape(safe_unicode(portal_title)))
+        elif page_title == portal_title:
             return u"<title>%s &mdash; %s</title>" % (escape(portal_title), escape(org_title))
         else:
             return u"<title>%s &mdash; %s &mdash; %s</title>" % (
