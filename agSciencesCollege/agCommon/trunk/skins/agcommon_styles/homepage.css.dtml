@@ -205,11 +205,11 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn .portletItem a.more,
 #centercolumn .portletItem a.more {
-	display: block;
+/*	display: block;
 	font-size: 0.85em;
 	margin: 5px;
-	text-align: right;
-	text-decoration: none;
+	text-align: right; 
+	text-decoration: none;*/
 	border: 0px;
 }
 
@@ -284,6 +284,22 @@ h1, .documentByLine, .documentActions {
 	text-align: right;
 	text-decoration: none;
 	border-width: 0px;
+}
+
+#centercolumn .portletfeedmixer .portletItem {
+    height: 1%;
+    overflow: hidden;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage {
+    float: right; 
+    margin: 10px 0 10px 10px;
+    width: 128px;
+    text-align: right;
+}
+
+#centercolumn .portletfeedmixer .portletItem .hasImage {
+	width: 370px;
 }
 
 #content {

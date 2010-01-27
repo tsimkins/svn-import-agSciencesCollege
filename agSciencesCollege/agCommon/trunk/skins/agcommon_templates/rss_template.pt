@@ -57,7 +57,9 @@
 <tal:block repeat="brain python: objects">
 	<item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url" 
 		tal:define="obj_item brain/getObject|nocall:brain;
-		obj_item_type obj_item/Type">
+		obj_item_type obj_item/Type;
+		image python:obj_item.getField('leadImage', None) and 'leadImage' or obj_item.getField('image', None) and 'image' or None;
+		">
 		<title tal:content="obj_item/pretty_title_or_id">Title</title>
 		<link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
 		<link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
@@ -71,6 +73,13 @@
 		<dc:date tal:content="python: obj_item['effective_date'].HTML4()" tal:condition="obj_item/effective_date|nothing">Effective date</dc:date>
 		<dc:date tal:content="python: obj_item.modified().HTML4()" tal:condition="not: obj_item/effective_date|nothing">Modification date</dc:date>
 		<dc:type tal:content="obj_item/Type">Type</dc:type>
+
+		<enclosure 
+		  tal:condition="image"
+		  tal:attributes="url string:${obj_item/Identifier}/${image};
+		                 length string:0;
+		                 type string:application/octet-stream" 
+           />
 	</item>
 </tal:block>
 
