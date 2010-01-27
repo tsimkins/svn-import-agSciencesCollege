@@ -58,8 +58,16 @@ class IFeedMixer(IPortletDataProvider):
 
     show_summary = schema.Bool(
             title=_(u"heading_show_summary",
-                default=u"Show Feed Summary"),
+                default=u"Show Article Summary"),
             description=_(u"description_show_summary",
+                default=u""),
+            default=False,
+            required=False)
+
+    show_image = schema.Bool(
+            title=_(u"heading_show_image",
+                default=u"Show Article Image"),
+            description=_(u"description_show_image",
                 default=u""),
             default=False,
             required=False)

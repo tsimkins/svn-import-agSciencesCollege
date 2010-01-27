@@ -31,13 +31,14 @@ class Assignment(base.Assignment):
     hide_header = False
     hide_date = False
     show_summary = False
+    show_image = False
     hide_footer = False
     cache_timeout = 900
     assignment_context_path = None
 
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
                  hide_header=hide_header, hide_date=hide_date, show_summary=show_summary, 
-                 hide_footer=hide_footer,
+                 show_image=show_image, hide_footer=hide_footer,
                  cache_timeout=cache_timeout,
                  assignment_context_path=assignment_context_path):
         self.title=title
@@ -46,6 +47,7 @@ class Assignment(base.Assignment):
         self.hide_header=hide_header
         self.hide_date=hide_date
         self.show_summary=show_summary
+        self.show_image=show_image
         self.hide_footer=hide_footer
         self.cache_timeout=cache_timeout
         self.assignment_context_path = assignment_context_path
@@ -91,7 +93,8 @@ class Assignment(base.Assignment):
             (timestamp, feed)=cached_data
 
             if timestamp>now:
-                return feed
+                #return feed
+                pass
 
             newfeed=feedparser.parse(url,
                     etag=getattr(feed, "etag", None),
@@ -154,6 +157,10 @@ class Renderer(base.Renderer):
     @property
     def show_summary(self):
         return self.data.show_summary
+
+    @property
+    def show_image(self):
+        return self.data.show_image
 
     @property
     def hide_footer(self):

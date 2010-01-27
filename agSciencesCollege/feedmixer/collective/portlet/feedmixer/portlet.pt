@@ -14,13 +14,25 @@
         tal:repeat="entry view/entries">
         <dd class="portletItem"
             tal:define="oddrow repeat/entry/odd;
-                        isFirst repeat/entry/start"
+                        isFirst repeat/entry/start;
+                        isLast repeat/entry/end;
+                        hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None"
             tal:attributes="class python:isFirst and 'portletItem first' or oddrow and 'portletItem even' or 'portletItem odd'">
+
+    
+            <a tal:attributes="href entry/link;
+                                title entry/title"
+                class="rssImage" tal:condition="hasImage">
+
+                <img tal:attributes="src python: entry.enclosures[0].href + '_feedimage'; alt entry/title" />
+            
+            </a>
 
             <a href=""
                class ="title"
                tal:attributes="href entry/link;
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
+                               
                 <span class="portletItemDetails date"
 	                tal:condition="not: view/hide_date|nothing"
                     tal:content="python:toLocalizedTime(entry['updated'])">
@@ -28,15 +40,13 @@
                 </span>
 
                 <span class="portletItemDetails summary"
-                    tal:content="entry/summary_detail/value"
-                    tal:condition="view/show_summary|nothing">
+                    tal:condition="view/show_summary|nothing"
+                    tal:content="entry/summary_detail/value">
                     [Feed Summary]
                 </span>
+                
 
-                <a tal:condition="view/show_summary|nothing" class = "more"
-                   tal:attributes="href entry/link">
-                        More &raquo;
-                </a>
+                
         </dd>
     </tal:entry>
     
