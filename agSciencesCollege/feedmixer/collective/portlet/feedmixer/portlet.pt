@@ -24,7 +24,7 @@
                                 title entry/title"
                 class="rssImage" tal:condition="hasImage">
 
-                <img tal:attributes="src python: entry.enclosures[0].href + '_feedimage'; alt entry/title" />
+                <img tal:attributes="src python: entry.enclosures[0].href + '_feedmixer'; alt entry/title" />
             
             </a>
 
