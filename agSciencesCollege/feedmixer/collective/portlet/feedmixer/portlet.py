@@ -85,6 +85,12 @@ class Assignment(base.Assignment):
 
         # http://www.feedparser.org/docs/changes-41.html
         # I'm betting this is causing our hangs!
+        
+        # http://mxm-mad-science.blogspot.com/2009/01/small-trick-for-socket-timouts-in-plone.html
+        # Resetting back to original timeout as soon as the call completes
+        
+        orig_timeout = socket.getdefaulttimeout()
+        
         if hasattr(socket, 'setdefaulttimeout'):
             socket.setdefaulttimeout(10)
 
@@ -109,12 +115,14 @@ class Assignment(base.Assignment):
             if len(newfeed.get('entries', [])) == 0 or newfeed.status == 404:
                 # If we don't have any entries (i.e. the feed is blank) 
                 # then just return the cached copy.
+                socket.setdefaulttimeout(orig_timeout)
                 return feed
 
         feed=feedparser.parse(url)
         self.cleanFeed(feed)
         cache[url]=(now+self.cache_timeout, feed)
 
+        socket.setdefaulttimeout(orig_timeout)
         return feed
 
 
