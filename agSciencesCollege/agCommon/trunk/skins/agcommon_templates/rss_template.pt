@@ -58,7 +58,12 @@
 	<item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url" 
 		tal:define="obj_item brain/getObject|nocall:brain;
 		obj_item_type obj_item/Type;
-		image python:obj_item.getField('leadImage', None) and 'leadImage' or obj_item.getField('image', None) and 'image' or None;
+		leadImage_field  python:obj_item.getField('leadImage', None);
+		leadImage_size python:leadImage_field and leadImage_field.get_size(obj_item) or 0;
+		leadImage_content_type python:leadImage_field and leadImage_field.getContentType(obj_item) or None;
+		image_field  python:obj_item.getField('image', None);
+		image_size python:image_field and image_field.get_size(obj_item) or 0;
+		image_content_type python:image_field and image_field.getContentType(obj_item) or None;
 		">
 		<title tal:content="obj_item/pretty_title_or_id">Title</title>
 		<link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
@@ -75,11 +80,18 @@
 		<dc:type tal:content="obj_item/Type">Type</dc:type>
 
 		<enclosure 
-		  tal:condition="image"
-		  tal:attributes="url string:${obj_item/Identifier}/${image};
-		                 length string:0;
-		                 type string:application/octet-stream" 
+		  tal:condition="python: leadImage_size > 0"
+		  tal:attributes="url string:${obj_item/Identifier}/leadImage;
+		                 length leadImage_size;
+		                 type leadImage_content_type" 
            />
+		<enclosure 
+		  tal:condition="python: image_size > 0"
+		  tal:attributes="url string:${obj_item/Identifier}/image;
+		                 length image_size;
+		                 type image_content_type" 
+           />
+
 	</item>
 </tal:block>
 

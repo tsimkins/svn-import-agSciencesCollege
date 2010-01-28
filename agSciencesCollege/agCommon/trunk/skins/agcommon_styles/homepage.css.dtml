@@ -286,6 +286,8 @@ h1, .documentByLine, .documentActions {
 	border-width: 0px;
 }
 
+
+/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
 #centercolumn .portletfeedmixer .portletItem {
     height: 1%;
     overflow: hidden;
