@@ -15,7 +15,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.portlet.feedmixer.interfaces import IFeedMixer
 
-
+import socket
 
 class Assignment(base.Assignment):
     """Portlet assignment.
@@ -82,6 +82,12 @@ class Assignment(base.Assignment):
         This may return a cached result if the cache entry is considered to
         be fresh. Returned feeds have been cleaned using the cleanFeed method.
         """
+
+        # http://www.feedparser.org/docs/changes-41.html
+        # I'm betting this is causing our hangs!
+        if hasattr(socket, 'setdefaulttimeout'):
+            socket.setdefaulttimeout(10)
+
         now=time.time()
 
         chooser=getUtility(ICacheChooser)
