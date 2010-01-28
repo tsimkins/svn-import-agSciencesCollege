@@ -164,10 +164,10 @@
 	                        </p>
 	                    </div>
                     <p class="tileBody">
-                        <span tal:omit-tag="" tal:condition="not:item_description">
+                        <span tal:omit-tag="" tal:condition="python: item_type != 'FSDPerson' and item_description">
                             &nbsp;
                         </span>
-                        <span class="description" tal:content="item_description">
+                        <span class="description" tal:content="item_description" tal:condition="item_description">
                             description
                         </span>
                     </p>
