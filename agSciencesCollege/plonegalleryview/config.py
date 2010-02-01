@@ -26,11 +26,14 @@ STYLESHEETS             = (
                           
 JAVASCRIPTS             = (
                            {'id':           'pgv_sg_mootools.js',
-                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                           
+                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']",
+                           'compression':  "none"},                           
                            {'id':           'pgv_sg_jd.gallery.js',
-                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                           
+                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']",
+                           'compression':  "none"},                           
                            {'id':           'pgv_sg_slightbox.js',                           
-                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']"},                       
+                           'expression':   "python: here.meta_type in ['ATFolder','ATTopic']",
+                           'compression':  "none"},                           
                         )
                         
 EXTERNAL_METHODS        = None
@@ -43,5 +46,5 @@ GALLERYVIEWS = ('pgv_sg_simpletimed_view',
                 'pgv_sg_carouseltimed_big_view',
                 'pgv_sg_carousel_big_view',)
 """
-# Limiting gallery view to just the common one.
-GALLERYVIEWS = ('pgv_sg_carousel_view',)
+# Going forward, only PhotoFolders have a Photo Gallery view
+GALLERYVIEWS = ('')
