@@ -645,6 +645,31 @@ input.searchButton {
     margin-left: 2px;
 }
 
+/* Person portlet */
+
+#portal-column-two dl.people .portletItem img.photo {
+    margin-top: 1.5em;
+    display: block;
+}
+
+#portal-column-two dl.people h2 {
+    border-bottom: none;
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-bottom: 0em;
+}
+
+#portal-column-two dl.people .title {
+    font-weight: bold;
+    font-size: 0.95em;
+    line-height: 1.25em;
+    margin-bottom: 0.5em;
+}
+
+#portal-column-two dl.people .adr {
+    margin-bottom: 0.5em;
+    line-height: 1.35em;
+}
 
 /* = portal-content-wrapper ================================ */
 

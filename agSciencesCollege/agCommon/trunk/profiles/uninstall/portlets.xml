@@ -43,4 +43,10 @@
         remove="True"
     />
     
+    <portlet
+        addview="agcommon.Person"
+        title="Person Portlet"
+        remove="True"
+    />
+    
 </portlets>
