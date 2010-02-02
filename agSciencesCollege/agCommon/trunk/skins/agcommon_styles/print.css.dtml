@@ -226,6 +226,13 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
     display: none;
 }
 
+
+/* Remove comment Form */
+
+div.discussion form {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
