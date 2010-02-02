@@ -31,14 +31,14 @@
                 <span class="postal-code" tal:content="context/getOfficePostalCode">[postal zip code]</span>
             </div>
 
-                <div tal:condition="context/getOfficePhone" class="tel officePhone">
-                <span class="type" i18n:translate="FacultyStaffDirectory_label_officePhone">Phone</span>:
-                <span class="value" tal:content="context/getOfficePhone">[office phone number]</span>
-                </div>
-
             <div tal:condition="context/getEmail">
                 <span i18n:translate="FacultyStaffDirectory_label_email">Email</span>:
                 <span tal:attributes="class string:email" tal:content="structure python:context.spamProtectFSD(context.getEmail())" />
+            </div>
+
+            <div tal:condition="context/getOfficePhone" class="tel officePhone">
+                <span class="type" i18n:translate="FacultyStaffDirectory_label_officePhone">Phone</span>:
+                <span class="value" tal:content="context/getOfficePhone">[office phone number]</span>
             </div>
 
         </tal:person>
