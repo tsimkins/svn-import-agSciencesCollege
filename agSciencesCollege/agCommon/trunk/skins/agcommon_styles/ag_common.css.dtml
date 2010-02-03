@@ -790,12 +790,7 @@ input.searchButton {
 }
 
 
-
-
-
-
 /* bottom */
-
 
 
 dt {
@@ -815,10 +810,18 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer {
-	max-width: 202px;
+	max-width: 267px;
 	width: auto;
 	float: right;
-	margin: 0 0 0.5em 1em;
+	margin: 0 0 0.5em 0;
+}
+
+.contentLeadImageContainer img {
+	border-left: 15px solid #FFFFFF;
+}
+
+.contentLeadImageContainer p.discreet {
+	margin-left: 15px;
 }
 
 .portletFooter {
