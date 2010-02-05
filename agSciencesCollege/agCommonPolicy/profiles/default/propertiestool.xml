@@ -9,9 +9,10 @@
    <element value="Document"/>
    <element value="PhotoFolder"/>
    <element value="HomePage"/>
+   <element value="File"/>
   </property>
-  <property name="image_width" type="int">200</property>
-  <property name="image_height" type="int">250</property>
+  <property name="image_width" type="int">250</property>
+  <property name="image_height" type="int">313</property>
   <property name="desc_scale_name" type="string">thumb</property>
   <property name="body_scale_name" type="string">leadimage</property>
  </object>
@@ -30,7 +31,7 @@
    <element value="third-width 200:200"/>
    <element value="quarter-width 150:150"/>
    <element value="normal 200:200"/>
-   <element value="leadimage 200:250"/>
+   <element value="leadimage 250:313"/>
    <element value="gallery 500:333"/>
    <element value="galleryzoom 800:533"/>
    <element value="feedmixer 128:192"/>

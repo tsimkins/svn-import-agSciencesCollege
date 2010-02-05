@@ -274,6 +274,10 @@ def configureScripts(context):
             'src' : 'gradientBackground',
             'target' : 'gradientBackground.png'
         },
+        { 
+            'src' : 'gradientBackground',
+            'target' : 'topnav-gradientBackground.png'
+        },
     ]
     
     try:
