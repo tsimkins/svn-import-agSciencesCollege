@@ -487,7 +487,10 @@ input.searchButton {
 #portal-top-navigation {
 	margin: 0;
 	padding: 0;
-	background: &dtml-topnavigationBackgroundColor;;
+	background-color: &dtml-topnavigationBackgroundColor;;
+    background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
+    background-repeat: repeat-x;
+    background-position: bottom left;
 }
 
 #portal-top-navigation.empty {
@@ -506,13 +509,17 @@ input.searchButton {
 #portal-top-navigation li {
 	background: &dtml-topnavigationButtonBackgroundColor;;
 	border-color: &dtml-topnavigationBackgroundColor;;
-	border-width: 0 0 0 1px;
+	border-width: 0 0 0 2px;
 	border-style: solid;
 	display: -moz-inline-box;
 	display: inline-block;
-	padding: 3px 8px;
-	margin: 3px 0;
+	padding: 6px 6px 6px 8px;
+	margin: 0 0;
 	white-space: nowrap;	
+}
+
+#portal-top-navigation li:first-child {
+    border-width: 0;
 }
 
 #portal-top-navigation img {
@@ -652,6 +659,14 @@ input.searchButton {
     display: block;
 }
 
+#portal-column-two dl.people h2 a {
+	color: &dtml-insideRightPortletLinkColor; !important;
+}
+
+#portal-column-two dl.people h2 a:hover {
+	color: &dtml-insideRightPortletLinkHoverColor; !important;
+}
+
 #portal-column-two dl.people h2 {
     border-bottom: none;
     font-size: 1.15em;
@@ -714,16 +729,17 @@ input.searchButton {
 	color: &dtml-documentTitleColor;;
 	font-weight: normal;
 	border: none;
-	font-size: 175%;
+	font-size: 190%;
 }
 
 #region-content h2, html.kupu-html h2 {
 	color: &dtml-documentHeadingColor;;
-	font-size: 130%;
+	font-size: 160%;
 	margin: 15px 0 5px;
 	padding: 0;
 	border: 0;
-	font-weight: bold;
+	font-weight: normal;
+	border-bottom: 1px solid #999999;
 }
 
 #region-content h2.tileHeadline {
@@ -733,11 +749,11 @@ input.searchButton {
 
 #region-content h3, html.kupu-html h3 {
 	color: &dtml-documentSubHeadingColor;;
-	font-size: 1em;
+	font-size: 125%;
 	margin: 15px 0 5px;
 	padding: 0;
 	border: 0;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 #region-content .documentDescription {
@@ -790,8 +806,8 @@ input.searchButton {
 }
 
 
-/* bottom */
 
+/* bottom */
 
 dt {
 	font-weight: normal;
@@ -817,11 +833,11 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer img {
-	border-left: 15px solid #FFFFFF;
+    border-left: 15px solid #FFFFFF;
 }
 
 .contentLeadImageContainer p.discreet {
-	margin-left: 15px;
+    margin-left: 15px;
 }
 
 .portletFooter {
