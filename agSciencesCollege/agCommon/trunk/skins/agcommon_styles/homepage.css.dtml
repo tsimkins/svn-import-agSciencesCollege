@@ -32,6 +32,7 @@ h1, .documentByLine, .documentActions {
 	padding: 10px 10px 0px 12px;
 	margin: 0;
 	background: transparent;
+	border-width: 0;
 }
 
 #homepageimage h1 {

@@ -743,7 +743,7 @@ input.searchButton {
 }
 
 #region-content h2.tileHeadline {
-    font-size: 1.1em;
+    font-size: 1.3em;
     margin-top: 0;
     border-width: 0;
 }
