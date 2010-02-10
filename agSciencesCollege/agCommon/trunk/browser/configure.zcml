@@ -57,6 +57,16 @@
         permission="zope2.View"
         />
 
+    <!-- The search box -->
+    <browser:viewlet
+        name="agcommon.localsearchbox"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+        template="templates/localsearchbox.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <!-- Logo -->
     <browser:viewlet
         name="plone.logo"

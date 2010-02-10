@@ -1137,6 +1137,28 @@ body.template-pgv_sg_carousel_view #region-content {
 	max-width: 18em;
 }
 
+#portal-localsearchbox {
+    background: #F9F9F9;
+    border: 1px solid #E0E0E0;
+    padding: 8px;
+}
+
+#localSearchBox {
+    width: 314px;
+    padding: 1px 2px;
+    border-style: solid;
+    border-color: #999999;
+    background-image: none;
+}
+
+#portal-localsearchbox .searchButton {
+    background: #FFD35F;
+    border: 1px solid #EF6500;
+    padding: 1px 2px;
+    margin-top: 0;
+    color: #3F1B00;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
