@@ -5,8 +5,8 @@
 /* <dtml-with base_properties> */
 
 #portal-top-navigation {
-	background: &dtml-topnavigationBackgroundColor;;
-	padding: 2px 0;
+	background-color: &dtml-topnavigationBackgroundColor;;
+	padding: 0 0;
 }
 
 #portal-top-navigation li {

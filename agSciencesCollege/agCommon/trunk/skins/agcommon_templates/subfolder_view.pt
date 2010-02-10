@@ -60,7 +60,7 @@
                                    folder_layout here/layout|nothing;
                                    topicCount python:portal_type == 'Topic' and len(here.queryCatalog()) or 0;
                                    limit python:portal_type == 'Topic' and here.getItemCount() > 0 and here.getItemCount() or 1000;
-                                   subfolderContents python:here.getFolderContents() or here.queryCatalog(sort_limit=limit)[:limit];
+                                   subfolderContents python:here.getFolderContents() or (portal_type == 'Topic' and here.queryCatalog(sort_limit=limit)[:limit]) or [];
                                    batch subfolderContents;">
 
             <tal:listing condition="subfolderContents">

@@ -67,12 +67,12 @@
 
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
-    <link rel="alternate" type="application/rss+xml" 
-		title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/wirerss/69">
-
-    <link rel="alternate" href="" title="RSS 1.0" type="application/rss+xml"
+    <link rel="alternate" href="" type="application/rss+xml"
           tal:condition="python: syntool.isSyndicationAllowed(here)"
-          tal:attributes="href string:$here_url/RSS" />
+          tal:attributes="href string:$here_url/RSS; title context/pretty_title_or_id" />
+          
+    <link rel="alternate" type="application/rss+xml" 
+		title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/wirerss/69" />
 
     <!-- Disable IE6 image toolbar -->
     <meta http-equiv="imagetoolbar" content="no" />
