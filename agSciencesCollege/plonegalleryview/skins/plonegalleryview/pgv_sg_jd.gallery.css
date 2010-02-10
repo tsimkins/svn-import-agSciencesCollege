@@ -69,6 +69,7 @@
 	margin: 2px 5px !important;
 	font-weight: normal;
 	color: #FFFFFF !important;
+	border-width: 0 !important;
 }
 
 .jdGallery .slideInfoZone p
