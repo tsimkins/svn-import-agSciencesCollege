@@ -50,6 +50,10 @@ body.template-classification_standard_view #portal-column-content .classificatio
     padding-left: 0;
 }
 
+body.template-fsd_atoz_view .facultyStaffDirectory h2 {
+    border-width: 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

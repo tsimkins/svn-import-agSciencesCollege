@@ -116,8 +116,8 @@ leftButtonTextColor_internal:string=#FFFFFF
 
 documentDescriptionColor:string=#000000
 documentTitleColor:string=#003399
-documentHeadingColor:string=#333333
-documentSubHeadingColor:string=#666666
+documentHeadingColor:string=#000000
+documentSubHeadingColor:string=#000000
 
 footerBackgroundColor:string=#09285E
 footerLinkColor:string=#99CCFF

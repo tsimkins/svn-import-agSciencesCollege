@@ -42,7 +42,7 @@ margin: .5em 0;
 #centercolumnleft h2:first-child {
 margin: 0px 0px 10px;
 color: #FF5500;
-
+border-width: 0;
 }
 
 

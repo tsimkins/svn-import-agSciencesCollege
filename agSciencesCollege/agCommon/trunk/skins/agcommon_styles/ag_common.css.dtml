@@ -745,6 +745,7 @@ input.searchButton {
 #region-content h2.tileHeadline {
     font-size: 1.1em;
     margin-top: 0;
+    border-width: 0;
 }
 
 #region-content h3, html.kupu-html h3 {
@@ -761,6 +762,7 @@ input.searchButton {
 	color: &dtml-documentDescriptionColor;;
 	margin: 0 0 1.5em 0;
 	font-size: 1.15em;
+	border-width: 0;
 }
 
 #region-content .tileItem {
