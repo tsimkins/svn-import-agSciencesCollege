@@ -28,12 +28,8 @@
     letter-spacing: -0.05em;
 }
 
-#portlets-above .portlet {
-    min-height: 32em;
-}
-
 #portlets-above dl.portlet:first-child .portletHeader {
-    padding-top:55px;
+    padding-top: 1em;
 }
 
 #portal-column-two .portletHeader a {
@@ -48,55 +44,8 @@
     border-bottom: none;
 }
 
-/* Animals and Farming Portlet */
-
-#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a616e696d616c732d6661726d696e67 .portletHeader {
-    background-image:url('&dtml-portal_url;/extension-headers/animals-farming.jpg');
-}
-
-/* Energy Portlet */
-
-#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a656e657267792d6e61747572616c2d7265736f7572636573  .portletHeader {
-    background-image:url('&dtml-portal_url;/extension-headers/energy-natural-resources.jpg');
-}
-
-
-/* Youth Portlet */
-
-#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572330a636f6e746578740a2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a796f7574682d66616d696c79  .portletHeader {
-    background-image:url('&dtml-portal_url;/extension-headers/youth-family.jpg');
-}
-
-
-/* Plants Portlet */
-#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a706c616e74732d63726f7073  .portletHeader {
-    background-image:url('&dtml-portal_url;/extension-headers/plants-grass.jpg');
-}
-
-/* Community Portlet */
-
-#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a636f6d6d756e6974792d65636f6e6f6d696373  .portletHeader {
-    background-image:url('&dtml-portal_url;/extension-headers/community-economics.jpg');
-}
-
-h1.documentFirstHeading {
-    display: none;
-}
-
-#region-content h2.documentDescription {
-    font-size: 1.5em;
-    margin: 0 0 1em 0;
-}
-
 #portal-content-wrapper {
     padding: 13px 20px 0 20px !important;
-}
-
-#portal-columns {
-    background-image: url(&dtml-portal_url;/extension-banner.jpg);
-    background-position: left top;
-    background-repeat: no-repeat;
-    padding: 155px 0 0 !important;
 }
 
 #addthis {
@@ -119,6 +68,3 @@ h1.documentFirstHeading {
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
-
-
-

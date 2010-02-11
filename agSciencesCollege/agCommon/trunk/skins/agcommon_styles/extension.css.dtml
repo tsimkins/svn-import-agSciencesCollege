@@ -85,6 +85,78 @@ div.simplemodal-wrap #buttons {
 	padding: 20px 0;
 }
 
+
+/* --------------------------- Customizations to front page portlets -------------------------------- */
+
+body.section-front-page #portlets-above .portlet {
+    min-height: 32em;
+}
+
+body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
+    padding-top: 29px;
+    padding-left: 3px;
+}
+
+body.section-front-page h1.documentFirstHeading {
+    display: none;
+}
+
+body.section-front-page #region-content h2.documentDescription {
+    font-size: 1.5em;
+    margin: 0 0 1em 0;
+}
+
+body.section-front-page #portal-columns {
+    background-image: url(&dtml-portal_url;/extension-banner.jpg);
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding: 155px 0 0 !important;
+}
+
+/* --------------------------- Front page portlet graphics -------------------------------- */
+
+/* Testing */
+
+body.section-front-page #portlets-above .portletHeader {
+    font-size: 13px;
+}
+
+body.section-front-page #portlets-above .portletHeader a, #portlets-above .portletHeader span {
+    color:#FFFFFF !important;
+}
+
+/* Production Agriculture Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e2d31 .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/production-agriculture.jpg');
+}
+
+/* Energy and Natural Resources Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/energy-natural-resources.jpg');
+}
+
+
+/* Home and Family Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572330a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/home-family.jpg');
+}
+
+
+/* Yard and Garden Portlet */
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e2d31  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/yard-garden.jpg');
+}
+
+/* Community and Economics Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/community-economics.jpg');
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

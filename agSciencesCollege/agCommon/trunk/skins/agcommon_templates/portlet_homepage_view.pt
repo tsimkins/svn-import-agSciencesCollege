@@ -23,6 +23,13 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <h2 class="documentDescription">
@@ -40,4 +47,3 @@
 
 </body>
 </html>
-
