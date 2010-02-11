@@ -40,12 +40,20 @@ body.template-document_homepage_view #rightcolumn .portletFooter{
     border: 0;
 }
 
+body.template-portlet_homepage_view #rightcolumn .portletFooter{
+    border: 0;
+}
+
 .listingBar {
     padding: 0 1em;
 }
 
 #portal-columns {
     border-collapse: collapse;
+}
+
+#content {
+    min-height: 0;
 }
 
 /* </dtml-with> */

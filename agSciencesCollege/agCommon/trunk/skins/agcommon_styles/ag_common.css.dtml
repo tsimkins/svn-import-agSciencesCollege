@@ -8,7 +8,7 @@
 /* = Body =================================================== */
 
 body {
-	background: &dtml-bodyBackgroundColor;;
+	background-color: &dtml-bodyBackgroundColor;;
 	color: #000000;
 }
 
@@ -29,26 +29,26 @@ body {
 }
 
 #background-stripe-one {
-	background: &dtml-backgroundStripeOneColor;;
+	background-color: &dtml-backgroundStripeOneColor;;
 	top: 0;
 	height: 98px;
 	z-index: -15;
 }
 
 #background-stripe-two {
-	background: &dtml-backgroundStripeTwoColor;;
+	background-color: &dtml-backgroundStripeTwoColor;;
 	top: 65px;
 	height: 10px;
 }
 
 #background-stripe-three {
-	background: &dtml-backgroundStripeThreeColor;;
+	background-color: &dtml-backgroundStripeThreeColor;;
 	top: 75px;
 	height: 29px;
 }
 
 #background-stripe-four {
-	background: transparent;
+	background-color: transparent;
 	top: 104px;
 	height: 900px;
 	background-color: &dtml-backgroundStripeTwoColor;;
@@ -62,7 +62,7 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 	margin: 0 auto;
 	padding: 0 6px 6px 6px;
 	max-width: &dtml-maxWidth;;
@@ -105,7 +105,7 @@ body {
 }
 
 input.searchButton {
-	background: transparent;
+	background-color: transparent;
 	border: 0;
 	padding: 0;
 	margin-top: -1px;
@@ -201,7 +201,7 @@ input.searchButton {
 #portal-columns {
 	margin: 0;
 	padding: 0;
-	background: transparent;
+	background-color: transparent;
     border-collapse: separate;
     border-left: 1px #808080 solid;
     border-right: 1px #808080 solid;
@@ -248,7 +248,7 @@ input.searchButton {
 }
 
 #portal-column-one .portletHeader {
-    background: &dtml-leftButtonBackground_external;;
+    background-color: &dtml-leftButtonBackground_external;;
     color: &dtml-leftButtonTextColor_external;;
     border-color: &dtml-leftButtonBackgroundBorder_external;;
     padding: 3px 8px;
@@ -259,7 +259,7 @@ input.searchButton {
 
 #portal-column-one .portlet {
 	border: none;
-    background: transparent;
+    background-color: transparent;
 }
 
 #portal-column-one .portletStaticText .portletItem {
@@ -288,7 +288,7 @@ input.searchButton {
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle:first-child {
 	border-bottom: 0;
-	background: &dtml-leftNavTitleBackground;;
+	background-color: &dtml-leftNavTitleBackground;;
 	color: #FFFFFF;
 	margin: 0 -10px; 
 	padding-top: 10px;
@@ -299,7 +299,7 @@ input.searchButton {
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
-	background: transparent;
+	background-color: transparent;
 	color: &dtml-leftNavTitleColor; !important;
 	font-size: 1.1em;
 	padding: 0.1em 0;
@@ -449,13 +449,13 @@ input.searchButton {
 	font-size: 1.1em;
 	margin-left: 16px;
 	padding: 8px;
-	background: &dtml-leftButtonBackground_external;;
+	background-color: &dtml-leftButtonBackground_external;;
 	border-left: 1px solid #FFFFFF;
 }
 
 #portal-column-one .linkButton li.internal-link a {
 	color: &dtml-leftButtonTextColor_internal;;
-	background: &dtml-leftButtonBackground_internal;;
+	background-color: &dtml-leftButtonBackground_internal;;
 }
 
 #portal-column-one .linkButton li.internal-link {
@@ -470,7 +470,7 @@ input.searchButton {
     margin: 0;
 	margin-bottom: 0;
 	padding: 0;
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 	vertical-align: top;
 }
 
@@ -507,7 +507,7 @@ input.searchButton {
 }
 
 #portal-top-navigation li {
-	background: &dtml-topnavigationButtonBackgroundColor;;
+	background-color: &dtml-topnavigationButtonBackgroundColor;;
 	border-color: &dtml-topnavigationBackgroundColor;;
 	border-width: 0 0 0 2px;
 	border-style: solid;
@@ -546,7 +546,7 @@ input.searchButton {
 #portal-column-two {
 	padding: 12px;
 	margin: 0;
-	background: &dtml-insideRightPortletBackgroundColor;;
+	background-color: &dtml-insideRightPortletBackgroundColor;;
 	width: 160px;
 	vertical-align: top;
 }
@@ -569,7 +569,7 @@ input.searchButton {
 /* ----- portlets ------------------------------------------ */
 
 #portal-column-two .portletWrapper {
-	background: transparent;
+	background-color: transparent;
 	border: none;	
 	padding: 0;
 	margin-bottom: 20px;
@@ -579,11 +579,11 @@ input.searchButton {
 #portal-column-two .portlet {
 	border-width: 0;
 	margin: 0;
-	background: transparent;
+	background-color: transparent;
 }
 
 #portal-column-two .portletHeader {
-	background: transparent; 
+	background-color: transparent; 
 	color: &dtml-insideRightPortletHeaderTextColor;; 
 	font-size: 1em;
 	font-weight: bold;
@@ -601,7 +601,7 @@ input.searchButton {
 }
 
 #portal-column-two .portletItem {
-	background: transparent;
+	background-color: transparent;
 	border-width: 0;
 	color: &dtml-insideRightPortletTextColor;;
 	padding: 0;
@@ -631,7 +631,7 @@ input.searchButton {
 }
 
 #portal-column-two .portletFooter {
-	background: &dtml-insideRightPortletBackgroundColor;; 
+	background-color: &dtml-insideRightPortletBackgroundColor;; 
 }
 
 #portal-column-two ul li a {
@@ -645,7 +645,7 @@ input.searchButton {
 #portal-column-two .navTreeCurrentItem {
     border: 0 !important;
     font-weight: bold;
-    background: transparent;
+    background-color: transparent;
 }
 
 #portal-column-two ul.relatedItems li {
@@ -689,7 +689,7 @@ input.searchButton {
 /* = portal-content-wrapper ================================ */
 
 #portal-content-wrapper {
-	background: transparent;
+	background-color: transparent;
 }
 
 #portal-column-content.sr #portal-content-wrapper {
@@ -931,7 +931,7 @@ div.comment img.avatar {
 
 /* Next/Previous Links */
 .listingBar {
-    background: transparent;
+    background-color: transparent;
     border: none;
     padding: 0;
 }
@@ -1007,7 +1007,7 @@ blockquote {
 /* = Template workarounds ======================================= */
 
 body.popup, body.atrefbrowser {
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 body.template-news_listing .effectiveDate,
@@ -1105,7 +1105,7 @@ body.template-pgv_sg_carousel_view #region-content {
 }
 
 #document-toc .portletHeader {
-    background: transparent;
+    background-color: transparent;
     border: none;
     padding: 0;
     font-weight: bold;
@@ -1113,10 +1113,11 @@ body.template-pgv_sg_carousel_view #region-content {
 }
 
 #document-toc .portletItem {
-    background: transparent;
+    background-color: transparent;
     border: none;
     padding: 0.25em 0 0 0;
 }
+
 #document-toc .portletItem li {
 	background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.3em;
 	padding: 0 0.5em 0 1.25em;
@@ -1125,7 +1126,7 @@ body.template-pgv_sg_carousel_view #region-content {
 
 #document-toc .portletItem li li {
     list-style-type: square;
-    background: transparent;
+    background-color: transparent;
     padding: 0;
     margin-left: 1.5em;
 	color: &dtml-leftNavTextColor;;
@@ -1140,7 +1141,7 @@ body.template-pgv_sg_carousel_view #region-content {
 }
 
 #portal-localsearchbox {
-    background: #F9F9F9;
+    background-color: #F9F9F9;
     border: 1px solid #E0E0E0;
     padding: 8px;
 }
@@ -1154,11 +1155,12 @@ body.template-pgv_sg_carousel_view #region-content {
 }
 
 #portal-localsearchbox .searchButton {
-    background: #FFD35F;
+    background-color: #FFD35F;
     border: 1px solid #EF6500;
     padding: 1px 2px;
     margin-top: 0;
     color: #3F1B00;
+    background-image: none;
 }
 
 /* YOUR CSS RULES STOP HERE */

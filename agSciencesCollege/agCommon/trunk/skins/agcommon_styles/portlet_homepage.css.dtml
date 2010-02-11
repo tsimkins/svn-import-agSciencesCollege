@@ -32,8 +32,13 @@
     padding-top: 1em;
 }
 
+/* Fix for IE7 being dumb and putting bullets by the nav items.  */
+#portlets-above dl.portletNavigationTree li {
+    list-style-image: none;
+}
+
 #portal-column-two .portletHeader a {
-    color:#2F4977;
+    color: &dtml-insideRightPortletHeaderTextColor;;
 }
 
 #portal-column-two .portlet {
@@ -61,7 +66,7 @@
 }
 
 #portal-column-two dl.linkIcon .portletItem li {
-    background: none;
+    background-color: none;
     padding: 1px 0;
 }
 

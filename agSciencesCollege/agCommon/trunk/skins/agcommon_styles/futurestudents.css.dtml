@@ -23,8 +23,8 @@ h1 {
 
 
 #homepageimage .overlay {
-background: #EEEEEE;
-width:220px;
+    background-color: #EEEEEE;
+    width:220px;
 }
 
 #homepageimage .text {
@@ -102,7 +102,7 @@ body.template-document_homepage_view {
 
 
 ul.navTree,ul.navTreeLevel1 li.navTreeItem {
-	background: transparent;
+	background-color: transparent;
 }
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeTitle:first-child {
@@ -128,7 +128,7 @@ ul.navTreeLevel1 {
 #portal-column-one {
         border-width: 0;
         width: 187px;
-        background: &dtml-leftNavBackgroundColor;;
+        background-color: &dtml-leftNavBackgroundColor;;
 }
 
 #portal-column-one .portletNavigationTree a.state-published {
@@ -141,7 +141,7 @@ ul.navTreeLevel1 {
 
 #portal-column-one .portletNavigationTree {
 	padding: 0px 5px 18px 5px;
-	background: &dtml-topnavigationButtonBackgroundColor;;
+	background-color: &dtml-topnavigationButtonBackgroundColor;;
 	margin-left: -10px;
 	margin-right: -10px;
 }
@@ -159,7 +159,7 @@ ul.navTreeLevel1 {
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a:hover {
-        background: &dtml-leftNavTitleBackground;;
+        background-color: &dtml-leftNavTitleBackground;;
         color: &dtml-leftNavTitleHoverColor; !important;
 }
 

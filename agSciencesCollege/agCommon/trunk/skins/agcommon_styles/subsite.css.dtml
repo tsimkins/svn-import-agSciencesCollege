@@ -83,7 +83,7 @@
 
 #centercolumn dl.portletfeedmixer .portletHeader, 
 #centercolumn dl.portletfeedmixer .portletHeader a {
-	background: &dtml-frontRightPortletHeaderBackgroundColor;; 
+	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
 	color: &dtml-frontRightPortletHeaderTextColor;; 
 	margin: 0px;
 }
@@ -106,7 +106,7 @@
 }
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background: transparent;
+	background-color: transparent;
 	border-width: 0px;
 	padding: 0px;
 }

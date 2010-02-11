@@ -9,7 +9,7 @@
 /* Body width 100%, background white */
 
 body {
-	background: white;
+	background-color: #FFFFFF;
 }
 
 #visual-portal-wrapper {
@@ -28,7 +28,7 @@ body {
 /* Portal Header and Logo */
 
 #portal-header {
-	background: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 #logo-psu, #logo-college {
@@ -63,7 +63,7 @@ body {
 /* Breadcrumbs */
 
 #portal-breadcrumbs {
-	background: #EEEEEE;
+	background-color: #EEEEEE;
 	color: #000000;
 	border: 1px solid #666666;
 }

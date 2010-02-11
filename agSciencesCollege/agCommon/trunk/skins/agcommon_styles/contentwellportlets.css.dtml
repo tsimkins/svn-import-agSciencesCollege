@@ -12,7 +12,7 @@
 }
 
 #portlets-below {
-	background: &dtml-sitemapBackgroundColor;;
+	background-color: &dtml-sitemapBackgroundColor;;
 	font-size: 0.88em;
 	margin-right: 0;
 	margin-left: 0;
@@ -36,7 +36,7 @@ div.portletsBelowContentE {
 
 #portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
 #portlets-below .portletItem, #portlets-below .portletHeader {
-	background: transparent;
+	background-color: transparent;
 	border: 0;
 }
 
@@ -82,7 +82,7 @@ div.portletsBelowContentE {
 #portlets-below .portletFooter a {
 	color: &dtml-sitemapLinkColor;;
 	display: block;
-	background: transparent;
+	background-color: transparent;
 }
 
 #portlets-below a, #portlets-below .state-published
@@ -95,7 +95,7 @@ div.portletsBelowContentE {
 #portlets-below .portletItem .state-published:hover,
 #portlets-below .portletItem a:hover {
 	color: &dtml-sitemapBackgroundColor; !important;
-	background: &dtml-sitemapLinkColor; !important;
+	background-color: &dtml-sitemapLinkColor; !important;
 }
 
 
@@ -105,22 +105,16 @@ div.portletsBelowContentE {
 #portlets-below .navTreeItem a,
 #portlets-below .navTreeCurrentItem
 {
-    background: transparent;
+    background-color: transparent;
     border: 0 !important;
     font-weight: normal;
 }
-
-
-
-
-
-
 
 /* above */
 /* Content Well Portlets for Main Content Area */
 
 #portlets-above {
-	background: &dtml-bodySitemapBackgroundColor;;
+	background-color: &dtml-bodySitemapBackgroundColor;;
 	font-size: 1em;
 	margin: 0;
 	padding-bottom: 6px;
@@ -142,7 +136,7 @@ div.portletsAboveContentE {
 
 #portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
 #portlets-above .portletItem, #portlets-above .portletHeader {
-	background: transparent;
+	background-color: transparent;
 	border: 0;
 }
 
@@ -204,7 +198,7 @@ div.portletsAboveContentE {
 #portlets-above .portletFooter a {
 	color: &dtml-bodySitemapLinkColor;;
 	display: block;
-	background: transparent;
+	background-color: transparent;
 }
 
 #portlets-above .portletItem a, #portlets-above .portletItem .state-published
@@ -217,7 +211,7 @@ div.portletsAboveContentE {
 #portlets-above .portletItem .state-published:hover,
 #portlets-above .portletItem a:hover {
 	color: &dtml-bodySitemapBackgroundColor; !important;
-	background: &dtml-bodySitemapLinkColor; !important;
+	background-color: &dtml-bodySitemapLinkColor; !important;
 }
 
 
@@ -227,7 +221,7 @@ div.portletsAboveContentE {
 #portlets-above .navTreeItem a,
 #portlets-above .navTreeCurrentItem
 {
-    background: transparent;
+    background-color: transparent;
     border: 0 !important;
     font-weight: normal;
 }
