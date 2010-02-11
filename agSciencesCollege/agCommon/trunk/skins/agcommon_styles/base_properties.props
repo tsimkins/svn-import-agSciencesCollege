@@ -63,11 +63,11 @@ breadcrumbTextColor:string=#FFFFFF
 breadcrumbSeparatorColor:string=#EFC177
 breadcrumbLinkColor:string=#FFFFFF
 
-topnavigationBackgroundColor:string=#FF6900
+topnavigationBackgroundColor:string=#FF630F
 topnavigationButtonBackgroundColor:string=transparent
 topnavigationTextColor:string=#FFFFFF
-topnavigationTextHoverColor:string=#FFBA19
-topnavigationGradientBackground:string=#F03300
+topnavigationTextHoverColor:string=#FFEB8F
+topnavigationGradientBackground:string=#C83400
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#99B4DF
