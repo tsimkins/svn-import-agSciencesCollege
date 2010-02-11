@@ -267,3 +267,17 @@ class LeadImageHeader(LeadImageViewlet):
 
 
 
+class RSSViewlet(ViewletBase):
+    def update(self):
+        super(RSSViewlet, self).update()
+        syntool = getToolByName(self.context, 'portal_syndication')
+        if syntool.isSyndicationAllowed(self.context):
+            self.allowed = True
+            context_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_context_state')
+            self.url = '%s/RSS' % context_state.object_url()
+            self.page_title = context_state.object_title
+        else:
+            self.allowed = False
+
+    render = ViewPageTemplateFile('templates/rsslink.pt')

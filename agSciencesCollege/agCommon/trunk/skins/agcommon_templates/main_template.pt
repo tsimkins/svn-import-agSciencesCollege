@@ -64,13 +64,8 @@
         </style>
     <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
 
-
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
-    <link rel="alternate" href="" type="application/rss+xml"
-          tal:condition="python: syntool.isSyndicationAllowed(here)"
-          tal:attributes="href string:$here_url/RSS; title context/pretty_title_or_id" />
-          
     <link rel="alternate" type="application/rss+xml" 
 		title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/wirerss/69" />
 
@@ -91,7 +86,9 @@
 
   </head>
 
-  <body tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
+  <body tal:define="custom_class context/custom_class|nothing;
+                    customClass python:custom_class and ' '.join(['custom-%s' % str(x) for x in custom_class.split()]) or ''" 
+                    tal:attributes="class string:${here/getSectionFromURL} template-${template/id} ${customClass};
                         dir python:test(isRTL, 'rtl', 'ltr')">
     <div id="background-stripe-one"><!-- --></div>
     <div id="background-stripe-two"><!-- --></div>

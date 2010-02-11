@@ -30,6 +30,10 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="agcommon.htmlhead.title" insert-after="*"/>
     </order>
 
+    <order manager="plone.htmlhead.links" skinname="agCommon">
+        <viewlet name="agcommon.links.RSS" />
+    </order>
+
     <order manager="plone.portaltop" skinname="agCommon">
         <viewlet name="plone.header" insert-before="*"/>
         <viewlet name="plone.personal_bar" insert-after="plone.header"/>
@@ -41,7 +45,7 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="plone.searchbox" insert-after="plone.skip_links"/>
         <viewlet name="plone.logo" insert-after="plone.searchbox"/>
     </order>
-
+    
     <order manager="agcommon.abovecontentviews" skinname="agCommon">
         <viewlet name="plone.path_bar" insert-before="*"/>
         <viewlet name="collective.contentleadimage.header" insert-after="plone.path_bar"/>
@@ -80,6 +84,10 @@ Note: insert-before and -after accept the value "*" which means
     
     <!-- Hidden Viewlets -->
 
+    <hidden manager="plone.htmlhead.links" skinname="agCommon">
+        <viewlet name="plone.links.RSS" />
+    </hidden>
+    
     <hidden manager="plone.portalheader" skinname="agCommon">
         <viewlet name="plone.global_sections" />
         <viewlet name="plone.site_actions" />

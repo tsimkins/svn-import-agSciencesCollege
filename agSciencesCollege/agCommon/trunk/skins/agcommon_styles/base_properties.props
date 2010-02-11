@@ -8,7 +8,7 @@ fontBaseSize:string=69%
 fontColor:string=Black
 fontSmallSize:string=85%
 
-backgroundColor:string=White
+backgroundColor:string=#FFFFFF
 
 linkColor:string=#436976
 linkActiveColor:string=Red

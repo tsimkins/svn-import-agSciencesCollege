@@ -38,6 +38,17 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Links to RSS feed for syndicated content -->
+
+    <browser:viewlet
+        name="agcommon.links.RSS"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+        permission="zope2.View" 
+        class=".viewlets.RSSViewlet"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/rsslink.pt"
+        />
+        
     <!-- Render the keywords -->
     <browser:viewlet
         name="agcommon.belowcontenttitle.keywords"
