@@ -67,6 +67,7 @@
    <element value="FormThanksPage"/>
    <element value="FieldsetFolder"/>
    <element value="FormCaptchaField"/>
+   <element value="JobDescription"/>
   </property>
  </object>
  <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
