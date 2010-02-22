@@ -432,7 +432,7 @@ input.searchButton {
 }
 
 #portal-column-one .linkButton li,
-#portal-column-two .linkButton li,
+#portal-column-two .linkButton .portletItem li
  {
 	display: block;
 	padding: 0;
@@ -452,7 +452,7 @@ input.searchButton {
 }
 
 #portal-column-one .linkButton a,
-#portal-column-two .linkButton a {
+#portal-column-two .linkButton .portletItem a {
 	text-decoration: none;
 	display: block;
 	color: &dtml-leftButtonTextColor_external;;

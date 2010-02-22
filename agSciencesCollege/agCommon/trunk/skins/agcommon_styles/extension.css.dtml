@@ -89,12 +89,11 @@ div.simplemodal-wrap #buttons {
 /* --------------------------- Customizations to front page portlets -------------------------------- */
 
 body.section-front-page #portlets-above .portlet {
-    min-height: 32em;
+    min-height: 34em;
 }
 
 body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
-    padding-top: 29px;
-    padding-left: 3px;
+    padding-top: 50px;
 }
 
 body.section-front-page h1.documentFirstHeading {
@@ -111,11 +110,18 @@ body.section-front-page #region-content h2.documentDescription {
 /* Testing */
 
 body.section-front-page #portlets-above .portletHeader {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 body.section-front-page #portlets-above .portletHeader a, #portlets-above .portletHeader span {
-    color:#FFFFFF !important;
+    color:#FCFCFC !important;
+}
+
+body.section-front-page #portlets-above .portletHeader a {
+    padding: 1px 0 1px 5px;
+    display: block;
+    width: 195px;
+    background: &dtml-topnavigationGradientBackground;;
 }
 
 /* Production Agriculture Portlet */
@@ -149,6 +155,10 @@ body.section-front-page #portlets-above .portletHeader a, #portlets-above .portl
     background-image:url('&dtml-portal_url;/extension-headers/community-economics.jpg');
 }
 
+/* IE 6 No backgrounds */
+* html body.section-front-page #portlets-above .portletHeader {
+    background-image: none !important;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
