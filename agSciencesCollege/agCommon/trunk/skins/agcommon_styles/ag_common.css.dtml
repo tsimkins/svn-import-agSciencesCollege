@@ -438,7 +438,7 @@ input.searchButton {
 	padding: 0;
 	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/triangle_bullet.png) no-repeat 4px center;
 	border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
-	margin-bottom: 15px;
+	margin: 0 0 15px 0;
 	list-style-type: none;
 	list-style-image: none;
 }
