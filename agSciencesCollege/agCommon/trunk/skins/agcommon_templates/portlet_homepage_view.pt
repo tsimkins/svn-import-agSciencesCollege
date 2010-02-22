@@ -41,7 +41,9 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
-
+        
+        <script tal:condition="python:'background-images' in context.keys()" type="text/javascript" src="background-images/getPortletHomepageImage.js"></script>
+        
     </tal:main-macro>
 </metal:main>
 

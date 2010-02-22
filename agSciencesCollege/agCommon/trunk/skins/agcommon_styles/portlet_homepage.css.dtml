@@ -37,6 +37,11 @@
     list-style-image: none;
 }
 
+#portal-columns {
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
 #portal-column-two .portletHeader a {
     color: &dtml-insideRightPortletHeaderTextColor;;
 }

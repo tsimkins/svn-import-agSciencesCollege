@@ -125,6 +125,47 @@ def getHomepageImage(context):
     
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
 
+def getPortletHomepageImage(context):
+    backgrounds = []
+    backgroundAlignments = []
+    backgroundHeights = []
+    
+    for myImage in context.listFolderContents(contentFilter={"portal_type" : "Image"}):
+        backgrounds.append(myImage.absolute_url())
+    
+        if myImage.hasProperty("align"):
+            backgroundAlignments.append(myImage.align)
+        else:
+            backgroundAlignments.append("left")
+    
+        backgroundHeights.append(str(myImage.getHeight()))
+        
+    
+    if len(backgrounds):
+    
+        return """
+    var bodyClass = document.body.className;
+    
+    if(bodyClass.match(/template-portlet_homepage_view/))
+    {
+        var homepageImage = document.getElementById("portal-columns");
+    
+        if (homepageImage)
+        {
+            var backgrounds = "%s".split(";");
+            var backgroundAlignments = "%s".split(";");
+            var backgroundHeights = "%s".split(";");
+            var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+            homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
+            homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber] + " top";
+            homepageImage.style.paddingTop = backgroundHeights[randomnumber] + 'px';
+        }
+    
+    }
+    
+    """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
+
+
 def makePage(context):
     print context.portal_type
     print context.archetype_name

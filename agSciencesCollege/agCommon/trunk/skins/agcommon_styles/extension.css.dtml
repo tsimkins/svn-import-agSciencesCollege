@@ -106,13 +106,6 @@ body.section-front-page #region-content h2.documentDescription {
     margin: 0 0 1em 0;
 }
 
-body.section-front-page #portal-columns {
-    background-image: url(&dtml-portal_url;/extension-banner.jpg);
-    background-position: left top;
-    background-repeat: no-repeat;
-    padding: 155px 0 0 !important;
-}
-
 /* --------------------------- Front page portlet graphics -------------------------------- */
 
 /* Testing */
