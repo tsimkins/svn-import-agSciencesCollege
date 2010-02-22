@@ -395,20 +395,24 @@ input.searchButton {
 
 /* Link Icons */
 
-#portal-column-one .linkIcon {
+#portal-column-one .linkIcon,
+#portal-column-two .linkIcon {
 	margin: 30px -2px 20px -2px;
 }
 
-#portal-column-one .linkIcon li {
+#portal-column-one .linkIcon li,
+#portal-column-two .linkIcon li {
 	margin: 1em 0;
 }
 
-#portal-column-one .linkIcon a {
+#portal-column-one .linkIcon a,
+#portal-column-two .linkIcon a {
 	text-decoration: none;
 	color: &dtml-leftLinkTextColor;;
 }
 
-#portal-column-one .linkIcon a:hover {
+#portal-column-one .linkIcon a:hover,
+#portal-column-two .linkIcon a:hover {
 	text-decoration: none;
 	color: &dtml-leftLinkTextHoverColor;;
 }
@@ -416,15 +420,20 @@ input.searchButton {
 
 /* Link Buttons */
 
-#portal-column-one .linkButton {
+#portal-column-one .linkButton,
+#portal-column-two .linkButton,
+ {
 	margin: 30px 0;
 }
 
-#portal-column-one .linkButton ul {
+#portal-column-one .linkButton ul,
+#portal-column-two .linkButton ul, {
 	margin: 10px 0;
 }
 
-#portal-column-one .linkButton li {
+#portal-column-one .linkButton li,
+#portal-column-two .linkButton li,
+ {
 	display: block;
 	padding: 0;
 	background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/triangle_bullet.png) no-repeat 4px center;
@@ -434,14 +443,16 @@ input.searchButton {
 	list-style-image: none;
 }
 
-#portal-column-one .linkButton strong {
+#portal-column-one .linkButton strong,
+#portal-column-two .linkButton strong {
 	padding: 0;
 	margin: 0;
 	border: 1px solid #FFFFFF;
 	display: block
 }
 
-#portal-column-one .linkButton a {
+#portal-column-one .linkButton a,
+#portal-column-two .linkButton a {
 	text-decoration: none;
 	display: block;
 	color: &dtml-leftButtonTextColor_external;;
@@ -453,12 +464,14 @@ input.searchButton {
 	border-left: 1px solid #FFFFFF;
 }
 
-#portal-column-one .linkButton li.internal-link a {
+#portal-column-one .linkButton li.internal-link a,
+#portal-column-two .linkButton li.internal-link a {
 	color: &dtml-leftButtonTextColor_internal;;
 	background-color: &dtml-leftButtonBackground_internal;;
 }
 
-#portal-column-one .linkButton li.internal-link {
+#portal-column-one .linkButton li.internal-link,
+#portal-column-two .linkButton li.internal-link {
 	background-color: &dtml-leftButtonArrowBackground_internal;;
 	border-color: &dtml-leftButtonBackgroundBorder_internal;;
 }

@@ -162,10 +162,6 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 	display: none;
 }
 
-.documentByLine {
-	display: none;
-}
-
 .hiddenStructure {
 	display: none;
 }
