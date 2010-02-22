@@ -34,7 +34,8 @@ def createUsers(context):
                 ["axd159", "Devlin", "Ann", "axd159@psu.edu"],
                 ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu"],
                 ["pgw105", "Warren", "Pete", "pgw105@psu.edu"],
-                ["tds194", "Sassman", "Tyler", "tds194@psu.edu"]
+                ["tds194", "Sassman", "Tyler", "tds194@psu.edu"],
+                ["gxa2", "Abdullah", "Gary", "gxa2@psu.edu"],
             ]
 
     printed = []
@@ -269,6 +270,10 @@ def configureScripts(context):
         { 
             'src' : 'getHomepageImage',
             'target' : 'getHomepageImage.js'
+        },
+        { 
+            'src' : 'getPortletHomepageImage',
+            'target' : 'getPortletHomepageImage.js'
         },
         { 
             'src' : 'gradientBackground',
