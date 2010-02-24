@@ -19,6 +19,10 @@
     visibility: hidden;
 }
 
+body {
+    background: #FFFFFF;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
