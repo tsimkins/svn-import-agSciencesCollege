@@ -148,23 +148,34 @@ def getPortletHomepageImage(context):
     
     if(bodyClass.match(/template-portlet_homepage_view/))
     {
-        var homepageImage = document.getElementById("portal-columns");
-    
-        if (homepageImage)
+        portalColumns = document.getElementById("portal-columns");
+        visualPortalWrapper = document.getElementById("visual-portal-wrapper");
+
+        if (portalColumns && visualPortalWrapper)
         {
             var backgrounds = "%s".split(";");
             var backgroundAlignments = "%s".split(";");
             var backgroundHeights = "%s".split(";");
             var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+
+            var homepageImage = document.createElement("div");
+            homepageImage.id="portet-homepage-image";
+            homepageImage.innerHTML = "&nbsp;";
+            
+            visualPortalWrapper.insertBefore(homepageImage, portalColumns);
+            
             homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
             homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber] + " top";
+            homepageImage.style.backgroundRepeat = "no-repeat";
             homepageImage.style.paddingTop = backgroundHeights[randomnumber] + 'px';
+            homepageImage.style.fontSize = '0px';
+            homepageImage.style.borderWidth = '0 1px';
+            homepageImage.style.borderStyle = 'solid';
+            homepageImage.style.borderColor = '#808080';
         }
-    
     }
     
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
-
 
 def makePage(context):
     print context.portal_type

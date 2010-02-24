@@ -17,7 +17,7 @@
     color: #233b8f;
     margin: 0.25em 0;
     font-size: 1em;
-    line-height: 1.5em;
+    line-height: 1.1em;
 }
 
 #announcement-box input{
@@ -101,7 +101,7 @@ body.section-front-page h1.documentFirstHeading {
 }
 
 body.section-front-page #region-content h2.documentDescription {
-    font-size: 1.5em;
+    font-size: 1.1em;
     margin: 0 0 1em 0;
 }
 
