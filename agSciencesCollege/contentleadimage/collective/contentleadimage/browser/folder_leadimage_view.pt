@@ -12,7 +12,8 @@
     <metal:main-macro define-macro="main"
                       tal:define="kssClassesView context/@@kss_field_decorator_view;
                                   getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                  templateId template/getId">
+                                  templateId template/getId;
+                                  standalone_view python:True">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -47,7 +48,7 @@
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
-                            batch folderContents;">
+                            batch folderContents">
         <tal:listing condition="folderContents">
 
             <tal:block tal:repeat="item folderContents">
@@ -57,6 +58,7 @@
                                        item_title_or_id item/pretty_title_or_id;
                                        item_description item/Description;
                                        item_type item/portal_type;
+                                       item_type python: ['Tour', 'Activity', 'Exhibit'].count(item_type) and 'Event' or item_type;
                                        item_type_title item/Type;
                                        item_type_class python: 'contenttype-' + normalizeString(item_type);
                                        item_modified item/ModificationDate;
@@ -116,25 +118,12 @@
                     </h2>
 
                     <div class="documentByLine effectiveDate" tal:condition="view/show_date"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
-                    <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
+
                     <tal:event condition="python: item_type == 'Event'">
-                         <span tal:condition="python: item_type == 'Event'"
-                               i18n:translate="label_event_byline">
-                             (<span tal:content="string:${item/location}"
-                                    class="location"
-                                    i18n:name="location">Oslo</span><tal:comma
-                                    tal:replace="string:, "
-                                    tal:condition="item/location" />from
-                              <abbr class="dtstart"
-                                    tal:attributes="title python:item_start"
-                                    tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                    i18n:name="start">from date</abbr> to
-                              <abbr class="dtend"
-                                    tal:attributes="title python:item_end"
-                                    tal:content="python:toLocalizedTime(item_end,long_format=1)"
-                                    i18n:name="end">to date</abbr>)
-                         </span>
+                         <div metal:use-macro="here/folder_listing/macros/event_date" />
                     </tal:event>
+
+                    <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
                     <tal:newsitem condition="python: item_type == 'News Item'">
                         <tal:name tal:condition="item_creator"
                             tal:define="author python:mtool.getMemberInfo(item_creator)">
@@ -155,12 +144,25 @@
                         </span>
                     </tal:newsitem>
                     </div>
-
+                    <div tal:condition="python:item_type =='FSDPerson'" class="facultyStaffDirectory" >
+                        <ul tal:condition="item_object/getJobTitles" class="jobTitle">
+                            <li tal:repeat="jobTitle item_object/getJobTitles" tal:content="jobTitle" />
+                        </ul>
+                        <p>
+                            <span tal:condition="item_object/getEmail">
+                                <span tal:replace="structure python:context.spamProtect(item_object.getEmail())" />
+                            </span>
+                            <br />
+                            <span tal:condition="item_object/getOfficePhone" class="phone">
+                                <span tal:replace="item_object/getOfficePhone" />
+                            </span>
+                        </p>
+                    </div>
                     <p class="tileBody">
-                        <span tal:omit-tag="" tal:condition="not:item_description">
+                        <span tal:omit-tag="" tal:condition="python: item_type != 'FSDPerson' and not item_description">
                             &nbsp;
                         </span>
-                        <span class="description" tal:content="item_description">
+                        <span class="description" tal:content="item_description" tal:condition="item_description">
                             description
                         </span>
                     </p>
@@ -186,12 +188,14 @@
             </tal:block>
 
             <!-- Navigation -->
-            <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <tal:batch condition="standalone_view">
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:batch>
 
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">
             <p class="discreet"
-               tal:condition="not: folderContents"
+               tal:condition="python: not folderContents and not isAnon"
                i18n:translate="description_no_items_in_folder">
                 There are currently no items in this folder.
             </p>
