@@ -59,6 +59,7 @@
                                        item_title_or_id item/pretty_title_or_id;
                                        item_description item/Description;
                                        item_type item/portal_type;
+                                       item_type python: ['Tour', 'Activity', 'Exhibit'].count(item_type) and 'Event' or item_type;
                                        item_type_title item/Type;
                                        item_modified item/ModificationDate;
                                        item_created item/CreationDate;
@@ -101,36 +102,72 @@
                             </a>
                         </span>
 
+                        <span class="documentByLine"
+                                tal:condition="python: item_type == 'Event'"
+                                metal:define-macro="event_date"
+                                tal:define="item_start_day python:item_start and str(item_start).split()[0] or '';
+                                            item_end_day python:item_end and str(item_end).split()[0] or ''"
+                                i18n:translate="label_event_byline">
+
+                            (<span tal:content="string:${item/location}"
+                                    tal:condition="item/location"
+                                    class="location"
+                                    i18n:name="location">Oslo</span><tal:comma
+                                    tal:replace="string:, "
+                                    tal:condition="item/location" />
+
+                                <span tal:replace="string:from" tal:condition="python:item_start != item_end" />
+
+                                <abbr class="dtstart"
+                                    tal:attributes="title python:item_start"
+                                    tal:define="from_long python:test(item_start.endswith('00:00:00'), 0, 1)"
+                                    tal:content="python:toLocalizedTime(item_start,long_format=from_long)"
+                                    i18n:name="start">from date</abbr> 
+                                    
+                                <span tal:replace="string:to" tal:condition="python:item_start != item_end" />
+
+                            <tal:differentday condition="python:not item_start_day == item_end_day">
+
+                                <abbr class="dtend"
+                                    tal:condition="python:item_start != item_end"
+                                    tal:attributes="title python:item_end"
+                                    tal:define="to_long python:test(item_end.endswith('00:00:00'), 0, 1)"
+                                    tal:content="python:toLocalizedTime(item_end,long_format=to_long)"
+                                    i18n:name="end">to date</abbr>)
+
+                            </tal:differentday>
+
+                            <tal:kludge tal:replace="nothing">
+                                The tal:sameday below is a kludge that assumes that our long time format 
+                                ends with 'HH:MM AM/PM" or 'HH:MM' for military time.
+                                
+                                The purpose is to only show the time if the day is the same.
+
+                                So, rather than having the time be:
+
+                                    "from August 19, 2010 07:00 PM to August 19, 2010 08:00 PM"
+
+                                It will now be:
+
+                                    "from August 19, 2010 07:00 PM to 08:00 PM"
+
+                            </tal:kludge>
+
+                            <tal:sameday condition="python:item_start_day == item_end_day"
+                                    define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0">
+
+                                <abbr class="dtend"
+                                    tal:condition="python:item_start != item_end"
+                                    tal:attributes="title python:item_end"
+                                    tal:define="time_array python:toLocalizedTime(item_end,long_format=1).split();
+                                                time_string python:ampm and '%s %s' % (time_array[-2], time_array[-1]) or time_array[-1]"
+                                    tal:content="time_string"
+                                    i18n:name="end">to date</abbr>)
+                                    
+                            </tal:sameday>
+                            
+                        </span>
                         <span class="documentByLine">
-
-                            <span tal:condition="python: item_type == 'Event'"
-                                  i18n:translate="label_event_byline">
-
-                                (<span tal:content="string:${item/location}"
-                                       tal:condition="item/location"
-                                       class="location"
-                                       i18n:name="location">Oslo</span><tal:comma
-                                       tal:replace="string:, "
-                                       tal:condition="item/location" />
-
-                                 <span tal:replace="string:from" tal:condition="python:item_start != item_end" />
-
-                                 <abbr class="dtstart"
-                                       tal:attributes="title python:item_start"
-                                       tal:define="from_long python:test(item_start.endswith('00:00:00'), 0, 1)"
-                                       tal:content="python:toLocalizedTime(item_start,long_format=from_long)"
-                                       i18n:name="start">from date</abbr> 
-                                       
-                                 <span tal:replace="string:to" tal:condition="python:item_start != item_end" />
-
-                                 <abbr class="dtend"
-                                       tal:condition="python:item_start != item_end"
-                                       tal:attributes="title python:item_end"
-                                       tal:define="to_long python:test(item_end.endswith('00:00:00'), 0, 1)"
-                                       tal:content="python:toLocalizedTime(item_end,long_format=to_long)"
-                                       i18n:name="end">to date</abbr>)
-                            </span>
-
                             <tal:byline condition="show_about">
                                 &mdash;
 
