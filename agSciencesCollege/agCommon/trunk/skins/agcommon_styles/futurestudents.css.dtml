@@ -129,7 +129,7 @@ ul.navTreeLevel1 {
         border-width: 0;
         width: 187px;
         background-color: &dtml-leftNavBackgroundColor;;
-        background-postion: bottom center; 
+        background-position: bottom center; 
 }
 
 #portal-column-one .portletNavigationTree a.state-published {
