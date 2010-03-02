@@ -1139,6 +1139,7 @@ body.template-pgv_sg_carousel_view #region-content {
 
 #document-toc .portletItem li li {
     list-style-type: square;
+    background-image: none;
     background-color: transparent;
     padding: 0;
     margin-left: 1.5em;
