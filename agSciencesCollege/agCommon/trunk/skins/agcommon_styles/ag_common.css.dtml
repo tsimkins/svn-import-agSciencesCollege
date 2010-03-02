@@ -541,9 +541,9 @@ input.searchButton {
 
 #portal-top-navigation a {
 	color:&dtml-topnavigationTextColor; !important;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.01em;
 	display: inline;
-	font-size: 1em;
+	font-size: 1.1em;
 	color: &dtml-topnavigationTextColor;;
 	text-decoration: none;
 	border: 0;
