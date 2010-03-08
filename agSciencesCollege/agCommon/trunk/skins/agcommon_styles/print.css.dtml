@@ -29,6 +29,7 @@ body {
 
 #portal-header {
 	background-color: #FFFFFF;
+	background-image: none;
 }
 
 #logo-psu, #logo-college {
