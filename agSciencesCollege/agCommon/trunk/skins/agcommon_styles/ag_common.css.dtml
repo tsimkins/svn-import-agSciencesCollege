@@ -62,7 +62,7 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-	background-color: &dtml-bodyBackgroundColor;;
+	background-color: &dtml-backgroundColor;;
 	margin: 0 auto;
 	padding: 0 6px 6px 6px;
 	max-width: &dtml-maxWidth;;
@@ -82,7 +82,7 @@ body {
 /* = portal-header ========================================= */
 
 #portal-header {
-	background: &dtml-bodyBackgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
+	background: &dtml-backgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
 	height: 75px;
 	margin: 1px 0 0 0;
 	padding: 0;
@@ -289,7 +289,7 @@ input.searchButton {
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle:first-child {
 	border-bottom: 0;
 	background-color: &dtml-leftNavTitleBackground;;
-	color: &dtml-bodyBackgroundColor;;
+	color: &dtml-backgroundColor;;
 	margin: 0 -10px; 
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -447,7 +447,7 @@ input.searchButton {
 #portal-column-two .linkButton strong {
 	padding: 0;
 	margin: 0;
-	border: 1px solid &dtml-bodyBackgroundColor;;
+	border: 1px solid &dtml-backgroundColor;;
 	display: block
 }
 
@@ -461,7 +461,7 @@ input.searchButton {
 	margin-left: 16px;
 	padding: 8px;
 	background-color: &dtml-leftButtonBackground_external;;
-	border-left: 1px solid &dtml-bodyBackgroundColor;;
+	border-left: 1px solid &dtml-backgroundColor;;
 }
 
 #portal-column-one .linkButton li.internal-link a,
@@ -483,7 +483,7 @@ input.searchButton {
     margin: 0;
 	margin-bottom: 0;
 	padding: 0;
-	background-color: &dtml-bodyBackgroundColor;;
+	background-color: &dtml-backgroundColor;;
 	vertical-align: top;
 }
 
@@ -841,7 +841,7 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer {
-    background-color: &dtml-bodyBackgroundColor;;
+    background-color: &dtml-backgroundColor;;
 	max-width: 267px;
 	width: auto;
 	float: right;
@@ -849,7 +849,7 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer img {
-    border-left: 15px solid &dtml-bodyBackgroundColor;;
+    border-left: 15px solid &dtml-backgroundColor;;
 }
 
 .contentLeadImageContainer p.discreet {
@@ -1021,7 +1021,7 @@ blockquote {
 /* = Template workarounds ======================================= */
 
 body.popup, body.atrefbrowser {
-	background-color: &dtml-bodyBackgroundColor;;
+	background-color: &dtml-backgroundColor;;
 }
 
 body.template-news_listing .effectiveDate,
