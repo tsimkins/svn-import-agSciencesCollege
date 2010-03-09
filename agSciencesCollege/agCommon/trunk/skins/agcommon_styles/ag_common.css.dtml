@@ -62,7 +62,7 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-	background-color: #FFFFFF;
+	background-color: &dtml-bodyBackgroundColor;;
 	margin: 0 auto;
 	padding: 0 6px 6px 6px;
 	max-width: &dtml-maxWidth;;
@@ -82,7 +82,7 @@ body {
 /* = portal-header ========================================= */
 
 #portal-header {
-	background: #FFFFFF url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
+	background: &dtml-bodyBackgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
 	height: 75px;
 	margin: 1px 0 0 0;
 	padding: 0;
@@ -289,7 +289,7 @@ input.searchButton {
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle:first-child {
 	border-bottom: 0;
 	background-color: &dtml-leftNavTitleBackground;;
-	color: #FFFFFF;
+	color: &dtml-bodyBackgroundColor;;
 	margin: 0 -10px; 
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -447,7 +447,7 @@ input.searchButton {
 #portal-column-two .linkButton strong {
 	padding: 0;
 	margin: 0;
-	border: 1px solid #FFFFFF;
+	border: 1px solid &dtml-bodyBackgroundColor;;
 	display: block
 }
 
@@ -461,7 +461,7 @@ input.searchButton {
 	margin-left: 16px;
 	padding: 8px;
 	background-color: &dtml-leftButtonBackground_external;;
-	border-left: 1px solid #FFFFFF;
+	border-left: 1px solid &dtml-bodyBackgroundColor;;
 }
 
 #portal-column-one .linkButton li.internal-link a,
@@ -483,7 +483,7 @@ input.searchButton {
     margin: 0;
 	margin-bottom: 0;
 	padding: 0;
-	background-color: #FFFFFF;
+	background-color: &dtml-bodyBackgroundColor;;
 	vertical-align: top;
 }
 
@@ -841,6 +841,7 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer {
+    background-color: &dtml-bodyBackgroundColor;;
 	max-width: 267px;
 	width: auto;
 	float: right;
@@ -848,7 +849,7 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer img {
-    border-left: 15px solid #FFFFFF;
+    border-left: 15px solid &dtml-bodyBackgroundColor;;
 }
 
 .contentLeadImageContainer p.discreet {
@@ -1020,7 +1021,7 @@ blockquote {
 /* = Template workarounds ======================================= */
 
 body.popup, body.atrefbrowser {
-	background-color: #FFFFFF;
+	background-color: &dtml-bodyBackgroundColor;;
 }
 
 body.template-news_listing .effectiveDate,
