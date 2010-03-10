@@ -51,6 +51,7 @@ def gradientBackground(request):
     
     startColor = request.form.get("startColor", '000000')
     endColor = request.form.get("endColor", 'FFFFFF')
+    orientation = request.form.get("orientation", 'v').lower()[0]
     
     try:
         height = str(int(request.form.get("height", '600')))
@@ -70,8 +71,11 @@ def gradientBackground(request):
     
     if not re.match(colorRegex, endColor):
         endColor = 'FFFFFF'
-    
-    png = Popen(['convert', '-size', '%sx%s'%(width, height), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), 'png:-'], stdout=PIPE)
+
+    if orientation == 'h': 
+        png = Popen(['convert', '-size', '%sx%s'%(height, width), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), '-rotate', '270', 'png:-'], stdout=PIPE)
+    else:
+        png = Popen(['convert', '-size', '%sx%s'%(width, height), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), 'png:-'], stdout=PIPE)
 
     return "".join(png.stdout.readlines())
 
