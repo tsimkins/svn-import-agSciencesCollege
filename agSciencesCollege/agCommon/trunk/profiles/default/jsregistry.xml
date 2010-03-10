@@ -40,5 +40,8 @@
     cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="python:portal.id == 'extension.psu.edu'" inline="False"/>
 
+ <javascript id="semicolon-delimited.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" inline="False"/>
 </object>
 
