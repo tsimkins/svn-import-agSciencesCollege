@@ -9,6 +9,7 @@
 
 		var addthis_config = {
 		  data_use_flash: false
+          data_track_linkback: true
 		}
 		</script>
 
