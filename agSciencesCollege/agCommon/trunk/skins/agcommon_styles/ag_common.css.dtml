@@ -294,6 +294,7 @@ input.searchButton {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
+	padding-right: 10px;
 	font-weight: bold;
 	border-bottom: 1px solid &dtml-leftNavBorderColor;;
 }
