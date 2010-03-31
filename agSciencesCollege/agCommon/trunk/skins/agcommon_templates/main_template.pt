@@ -40,6 +40,14 @@
         <style type="text/css" media="all" tal:condition="exists: portal/IEFixes.css"
                tal:content="string:@import url($portal_url/IEFixes.css);">
         </style>
+        <style type="text/css" media="print">
+            body {
+                font-size: 69%;
+            }
+            h1.documentFirstHeading {
+                margin-top: 0.5em;
+            }
+        </style>
     <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
 
 
@@ -61,6 +69,13 @@
     <tal:iefixstart replace="structure string:&lt;!--[if IE 8]&gt;" />
         <style type="text/css" media="all" tal:condition="exists: portal/IE8Fixes.css"
                tal:content="string:@import url($portal_url/IE8Fixes.css);">
+        </style>
+    <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
+
+    <!-- Internet Explorer Print CSS Fixes -->
+    <tal:iefixstart replace="structure string:&lt;!--[if IE]&gt;" />
+        <style type="text/css" media="print" tal:condition="exists: portal/IEPrintFixes.css"
+               tal:content="string:@import url($portal_url/IEPrintFixes.css);">
         </style>
     <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
 
