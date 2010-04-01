@@ -283,6 +283,10 @@ def configureScripts(context):
             'src' : 'gradientBackground',
             'target' : 'topnav-gradientBackground.png'
         },
+        { 
+            'src' : 'gradientBackground',
+            'target' : 'leftbutton-gradientBackground.png'
+        },
     ]
     
     try:
@@ -414,6 +418,40 @@ def customizeViewlets(context):
     if site['id'] == 'agsci.psu.edu':
         ManageViewlets.show('plone.portalfooter', 'contentwellportlets.portletsbelowcontent')
 
+def createRecentChanges(context):
+
+    # Creates a /recent-changes collection
+
+    site = context.getSite()
+    sm = getSiteManager(site)
+
+    if hasattr(site, 'recent-changes'):
+        site.manage_delObjects(['recent-changes'])
+    
+    # Create collection
+    site.invokeFactory(id="recent-changes", type_name="Topic", title="Recent Changes")
+    theCollection = getattr(site, "recent-changes")
+    theCollection.setExcludeFromNav(True)
+
+    wftool =  getToolByName(site, 'portal_workflow')
+
+    try:
+        if wftool.getInfoFor(theCollection, 'review_state') != 'Published':
+            wftool.doActionFor(theCollection, 'publish')
+    except WorkflowException:
+        LOG('agCommonPolicy.createRecentChanges', INFO, "Site has no workflow, not publishing folder")
+
+    # Modified date
+    theCriteria = theCollection.addCriterion('modified', 'ATFriendlyDateCriteria')
+    theCriteria.setOperation('less') # Less than
+    theCriteria.setValue(7) # Seven days
+    theCriteria.setDateRange('-') # in the past
+
+    # Sort by modified date
+    theCriteria = theCollection.addCriterion('modified','ATSortCriterion') 
+
+    LOG('agCommonPolicy.createRecentChanges', INFO, "Adding 'recent-changes' collection")
+
 def configureKupu(context):
 
     # addLibrary(self, id, title, uri, src, icon)
@@ -527,6 +565,8 @@ def setupHandlersWrapper(context):
     updateBaseProperties(context)
     
     configureKupu(context)
+    
+    createRecentChanges(context)
 
     #customizeViewlets(context)
         
