@@ -16,6 +16,18 @@ class IFood(Interface):
         required=True,
         description=_(u""),
     )
+
+    feature = schema.Bool(
+        title=_(u"Featured Food"), 
+        required=False,
+        description=_(u""),
+    )
+
+    in_stock = schema.Bool(
+        title=_(u"In Stock"), 
+        required=False,
+        description=_(u""),
+    )
     
     serving_size = schema.Float(
         title=_(u"Serving Size"), 
@@ -136,17 +148,22 @@ class IFood(Interface):
         required=True,
         description=_(u""),
     )
-###
 
-    ingredients = schema.List(
+    ingredients = schema.Text(
         title=_(u"Ingredients"), 
         required=True,
         description=_(u""),
     )
 
+    allergy = schema.List(
+        title=_(u"AllergyInformation"), 
+        required=False,
+        description=_(u""),
+    )
+    
     body_text = schema.Text(
         title=_(u"Body Text"), 
         required=False,
-        description=_(u"Field description"),
+        description=_(u""),
     )
 

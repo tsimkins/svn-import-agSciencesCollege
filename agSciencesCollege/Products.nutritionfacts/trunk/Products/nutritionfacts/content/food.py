@@ -25,6 +25,24 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         required=True,
     ),
 
+    atapi.BooleanField(
+        'feature',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.BooleanWidget(
+            label=_(u"Featured Food"),
+            description=_(u""),
+        ),
+    ),
+    
+    atapi.BooleanField(
+        'in_stock',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.BooleanWidget(
+            label=_(u"In Stock"),
+            description=_(u""),
+        ),
+    ),
+
     atapi.FloatField(
         'serving_size',
         storage=atapi.AnnotationStorage(),
@@ -95,7 +113,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Total Fat"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -106,7 +124,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Saturated Fat"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -117,7 +135,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Trans Fat"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -127,8 +145,8 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         'cholesterol',
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
-            label=_(u"Cholesterol),
-            description=_(u""),
+            label=_(u"Cholesterol"),
+            description=_(u"in milligrams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -139,7 +157,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Sodium"),
-            description=_(u""),
+            description=_(u"in milligrams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -150,7 +168,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Total Carbohydrate"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -161,7 +179,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Dietary Fiber"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -172,7 +190,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Sugars"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -183,7 +201,7 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=atapi.DecimalWidget(
             label=_(u"Protein"),
-            description=_(u""),
+            description=_(u"in grams"),
         ),
         required=True,
         validators=('isDecimal'),
@@ -244,23 +262,35 @@ FoodSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         validators=('isDecimal'),
     ),
 
-    atapi.LinesField(
+    atapi.TextField(
         'ingredients',
         storage=atapi.AnnotationStorage(),
-        widget=atapi.LinesWidget(
+        widget=atapi.TextAreaWidget(
             label=_(u"Ingredients"),
-            description=_(u"one per line"),
+            description=_(u""),
         ),
         required=True,
+    ),
+
+    atapi.LinesField(
+        'allergy',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.LinesWidget(
+            label=_(u"Allergy Information"),
+            description=_(u"one per line"),
+        ),
+        required=False,
     ),
 
     atapi.TextField(
         'body_text',
         storage=atapi.AnnotationStorage(),
-        widget=atapi.TextAreaWidget(
+        widget=atapi.RichWidget(
             label=_(u"Body Text"),
             description=_(u"More information about this food"),
         ),
+        default_output_type='text/x-html-safe',
+        validators=('isTidyHtmlWithCleanup',),
     ),
 
 ))
@@ -284,6 +314,8 @@ class Food(base.ATCTContent):
     description = atapi.ATFieldProperty('description')
     
     # -*- Your ATSchema to Python Property Bridges Here ... -*-
+    feature = atapi.ATFieldProperty('feature')
+
     food_type = atapi.ATFieldProperty('food_type')
 
     serving_size = atapi.ATFieldProperty('serving_size')
