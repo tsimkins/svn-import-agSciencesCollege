@@ -1,0 +1,251 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+
+/* Body width 100%, background white */
+
+body {
+	background-color: #FFFFFF;
+}
+
+#visual-portal-wrapper {
+	max-width: auto;
+	min-width: auto;
+	width: 100%;
+}
+
+/* Remove vertical borders */
+
+#portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
+	border-left:0px;
+	border-right:0px;
+}
+
+/* Portal Header and Logo */
+
+#portal-header {
+	background-color: #FFFFFF;
+	background-image: none;
+}
+
+#logo-psu, #logo-college {
+	display:none;
+}
+
+#logo-print {
+	display: block;
+}
+
+#logo-site {
+	position: relative;
+	font-size: 1.75em;
+	height: auto;
+	top: 0.90em;
+	left: 8.0em;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	width: auto;
+}
+
+#logo-site a {
+	color: #333333;
+}
+
+/* Remove Search Box */
+
+#portal-searchbox {
+	display: none;
+}
+
+/* Breadcrumbs */
+
+#portal-breadcrumbs {
+	background-color: #EEEEEE;
+	color: #000000;
+	border: 1px solid #666666;
+	padding-left: 10px;
+}
+
+#portal-breadcrumbs a {
+	color: #000000;
+	text-decoration: none;
+}
+
+#portal-breadcrumbs .breadcrumbSeparator {
+	color:#666666;
+}
+
+/* Top Navigation */
+
+#portal-top-navigation {
+	display: none;
+}
+
+/* Home Page Image */
+
+body.template-document_homepage_view #homepageimage {
+	display: none;
+}
+
+
+/* Left Column */
+
+#portal-column-one {
+	display: none;
+}
+
+/* Content */
+
+#portal-content-wrapper {
+    border-left: none;
+    border: none;
+}
+
+#portal-column-content.sr, #portal-column-content.sl {
+	margin-left:0px;
+}
+
+#portal-column-content.sr #portal-content-wrapper {
+    border: none;
+}
+
+#content, .documentContent {
+	padding: 0px !important;
+	line-height: 1.5em;
+}
+
+.contentLeadImageContainer .discreet {
+	line-height: 1.25em;
+	font-size: 0.92em;
+}
+
+/* Center Column */
+body.template-document_homepage_view #centercolumn {
+	display: block;
+	margin: 3px -9px 0px 0px ;
+	padding: 5px 0px 5px 0px;
+	border-width: 0px;
+}
+
+
+/* Right Column */
+
+body.template-document_homepage_view #rightcolumn, #portal-column-two {
+	display: none;
+}
+
+/* Footer */
+
+#portal-footer {
+	background-color:#FFFFFF;
+	color:#333333;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 10pt;
+    margin: 5px 0 0 0;
+    padding: 0;
+    border-width: 0;
+    border-left: 0px;
+    border-right: 0px;
+	clear: both;
+}
+
+#portal-footer p {
+	display: none;
+}
+
+#portal-footer p:first-child {
+	display: block;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-top-color: #CCCCCC; 
+}
+
+/* Other doodads */
+
+.documentActions {
+	display: none;
+}
+
+.hiddenStructure {
+	display: none;
+}
+
+#kss-spinner {
+	display: none;
+}
+
+/* Unfloat Images */
+
+.image-right, .image-left {
+	float: none;
+	clear: none;
+	display: block;
+	margin: 0.5em 0em;
+}
+
+/* Background Stripes */
+#background-stripe-one, #background-stripe-two,
+#background-stripe-three, #background-stripe-four {
+	display: none;
+}
+
+.pullquote {
+	display: none;
+}
+
+/* Info Bar */
+#portal-personaltools-wrapper {
+    display: none;
+}
+
+/* Actions and edit menu bar */
+
+.contentActions, .contentViews, .reviewHistory {
+    display: none;
+}
+
+/* Hide addthis */
+
+#addthis {
+    display: none;
+}
+
+/* Remove listingbar */
+
+.listingBar {
+    display: none;
+}
+
+/* Content Well Portlets */
+#portlets-above, #portlets-below {
+    display: none;
+}
+
+/* Table of Contents */
+#document-toc {
+    display: none !important;
+}
+
+
+/* Remove comment Form */
+
+div.discussion form {
+    display: none;
+}
+
+
+/* Remove image border */
+
+img {
+    border-width: 0;
+}
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

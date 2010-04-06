@@ -1,0 +1,232 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* Content Well Portlets for Sitemap */
+
+#portlets-above {
+    display: none;
+}
+
+#portlets-below {
+	background-color: &dtml-sitemapBackgroundColor;;
+	font-size: 0.88em;
+	margin-right: 0;
+	margin-left: 0;
+	margin-top: 0;
+	padding-bottom: 6px;
+}
+
+#portlets-below div.portletsBelowContentF {
+	clear: both;
+	height: 1px;
+}
+
+div.portletsBelowContentA,
+div.portletsBelowContentB,
+div.portletsBelowContentC,
+div.portletsBelowContentD,
+div.portletsBelowContentE {
+	width: 20%;
+	float: left;
+}
+
+#portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
+#portlets-below .portletItem, #portlets-below .portletHeader {
+	background-color: transparent;
+	border: 0;
+}
+
+#portlets-below dl.portlet {
+    padding: 0.5em 0 0.5em 0.75em;
+    margin: 0.5em;
+}
+
+#portlets-below .portletHeader {
+	text-transform: uppercase;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 0.5em 0em 0.25em 5px;
+}
+
+#portlets-below dd.portletItem
+{
+	padding: 0;
+    margin: 0;
+}
+
+#portlets-below .portletNavigationTree dd.portletItem
+{
+    padding: 0;
+}
+
+#portlets-below .navTree li
+{
+	padding: 0;
+    margin: 0;
+}
+
+#portlets-below .portletHeader a, #portlets-below .portletHeader span {
+	color: &dtml-sitemapHeaderColor; !important;
+	padding: 0;
+}
+
+#portlets-below .portletFooter {
+	text-align: left;
+	padding: 0.25em 0;
+}
+
+#portlets-below .portletFooter a {
+	color: &dtml-sitemapLinkColor;;
+	display: block;
+	background-color: transparent;
+}
+
+#portlets-below a, #portlets-below .state-published
+{
+	color: &dtml-sitemapLinkColor; !important;
+	padding: 0.25em 5px;
+	display: block;
+}
+
+#portlets-below .portletItem .state-published:hover,
+#portlets-below .portletItem a:hover {
+	color: &dtml-sitemapBackgroundColor; !important;
+	background-color: &dtml-sitemapLinkColor; !important;
+}
+
+
+/* Navigation Portlet */
+
+#portlets-below dd.portletItem .navTreeItem a, 
+#portlets-below .navTreeItem a,
+#portlets-below .navTreeCurrentItem
+{
+    background-color: transparent;
+    border: 0 !important;
+    font-weight: normal;
+}
+
+/* above */
+/* Content Well Portlets for Main Content Area */
+
+#portlets-above {
+	background-color: &dtml-bodySitemapBackgroundColor;;
+	font-size: 1em;
+	margin: 0;
+	padding-bottom: 6px;
+}
+
+#portlets-above div.portletsAboveContentF {
+	clear: both;
+	height: 1px;
+}
+
+div.portletsAboveContentA,
+div.portletsAboveContentB,
+div.portletsAboveContentC,
+div.portletsAboveContentD,
+div.portletsAboveContentE {
+	width: 33%;
+	float: left;
+}
+
+#portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
+#portlets-above .portletItem, #portlets-above .portletHeader {
+	background-color: transparent;
+	border: 0;
+}
+
+#portlets-above dl.portlet {
+    padding: 0.5em 0 0.5em 0.75em;
+    margin: 0.5em;
+}
+
+#portlets-above dl.portlet:first-child,
+#portlets-above dl.portlet:first-child .portletHeader {
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 0;
+    padding-top: 0;
+}
+
+#portlets-above .portletHeader {
+    font-size:1.1em;
+    font-weight:bold;
+    padding:0.5em 0 0.25em 0;
+    text-transform: uppercase;
+	display: block;
+}
+
+
+
+#portlets-above dd.portletItem
+{
+	padding: 0;
+    margin: 0;
+	line-height: 1.3em;
+}
+
+#portlets-above .portletNavigationTree dd.portletItem
+{
+    padding: 0;
+}
+
+#portlets-above ul {
+	margin: 0;
+}
+
+#portlets-above .navTree li
+{
+	padding: 0;
+    margin: 0;
+}
+
+#portlets-above .portletHeader a, #portlets-above .portletHeader span {
+	color: &dtml-bodySitemapHeaderColor; !important;
+	padding: 0;
+}
+
+#portlets-above .portletFooter {
+	text-align: left;
+	padding: 0.25em 0 0.25em 5px;
+}
+
+#portlets-above .portletFooter a {
+	color: &dtml-bodySitemapLinkColor;;
+	display: block;
+	background-color: transparent;
+}
+
+#portlets-above .portletItem a, #portlets-above .portletItem .state-published
+{
+	color: &dtml-bodySitemapLinkColor; !important;
+	padding: 0.3em 5px !important; 
+	display: block;
+}
+
+#portlets-above .portletItem .state-published:hover,
+#portlets-above .portletItem a:hover {
+	color: &dtml-bodySitemapBackgroundColor; !important;
+	background-color: &dtml-bodySitemapLinkColor; !important;
+}
+
+
+/* Navigation Portlet */
+
+#portlets-above dd.portletItem .navTreeItem a, 
+#portlets-above .navTreeItem a,
+#portlets-above .navTreeCurrentItem
+{
+    background-color: transparent;
+    border: 0 !important;
+    font-weight: normal;
+}
+
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */

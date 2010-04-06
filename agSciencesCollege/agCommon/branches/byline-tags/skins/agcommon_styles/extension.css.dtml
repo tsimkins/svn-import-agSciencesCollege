@@ -1,0 +1,168 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+#announcement-box {
+    border: #999999 1px solid;
+    background-color: #dfbc1b;
+    width: 146px;
+    padding: 3px;
+}
+
+#announcement-box p {
+    font-weight: bold;
+    color: #233b8f;
+    margin: 0.25em 0;
+    font-size: 1em;
+    line-height: 1.1em;
+}
+
+#announcement-box input{
+    font-family: Verdana, Geneva, Arial, Helvetica, san-serif;
+    margin: 0.25em 0;
+    font-size: 0.88em;
+}
+
+
+#simplemodal-overlay {
+    background-color: #333333;
+}
+
+#simplemodal-container {
+    background-color: #FFFFFF;
+    padding: 1em;
+    border: 2px solid #333366;
+	width: 90% !important;
+}
+
+div.simplemodal-wrap h1 {
+    border: none;
+    color: #000033;
+    margin-bottom: 0.5em;
+}
+
+div.simplemodal-wrap input[type="checkbox"] {
+    margin-left: 1em;
+}
+
+div.simplemodal-wrap input[type="button"] {
+    margin: 0.5em;
+}
+
+div.simplemodal-wrap #buttons {
+    margin: 1em 0.5em;
+}
+
+#edit_county_tags, #edit_main_tags {
+    width: 120px;
+    display: block;
+    border: 1px solid #FF981F;
+    background-color: #EF9C3B;
+    margin-top: 3px;
+    padding: 3px;
+	font-size: 0.88em;
+	text-align: center;
+	color: #FFFFFF !important;
+	text-decoration: none;
+}
+
+.tag_container {
+	float: left;
+	display: block;
+	width: 25%;
+}
+
+.tag_container input {
+	margin-right: 4px;
+}
+
+
+#modal_buttons {
+	clear: left;
+	padding: 20px 0;
+}
+
+
+/* --------------------------- Customizations to front page portlets -------------------------------- */
+
+body.section-front-page #portlets-above .portlet {
+    min-height: 34em;
+}
+
+body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
+    padding-top: 50px;
+}
+
+body.section-front-page h1.documentFirstHeading {
+    display: none;
+}
+
+body.section-front-page #region-content h2.documentDescription {
+    font-size: 1.1em;
+    margin: 0 0 1em 0;
+}
+
+/* --------------------------- Front page portlet graphics -------------------------------- */
+
+/* Testing */
+
+body.section-front-page #portlets-above .portletHeader {
+    font-size: 12px;
+}
+
+body.section-front-page #portlets-above .portletHeader a, #portlets-above .portletHeader span {
+    color:#FCFCFC !important;
+}
+
+body.section-front-page #portlets-above .portletHeader a {
+    padding: 1px 0 1px 5px;
+    display: block;
+    width: 195px;
+    background: &dtml-topnavigationGradientBackground;;
+}
+
+/* Production Agriculture Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e2d31 .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/production-agriculture.jpg');
+}
+
+/* Energy and Natural Resources Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/energy-natural-resources.jpg');
+}
+
+
+/* Home and Family Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572330a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/home-family.jpg');
+}
+
+
+/* Yard and Garden Portlet */
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572320a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e2d31  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/yard-garden.jpg');
+}
+
+/* Community and Economics Portlet */
+
+#portletwrapper-436f6e74656e7457656c6c506f72746c6574732e41626f7665506f72746c65744d616e61676572310a636f6e746578740a2f657874656e73696f6e2f657874656e73696f6e2e7073752e6564752f66726f6e742d706167650a6e617669676174696f6e  .portletHeader {
+    background-image:url('&dtml-portal_url;/extension-headers/community-economics.jpg');
+}
+
+/* IE 6 No backgrounds */
+* html body.section-front-page #portlets-above .portletHeader {
+    background-image: none !important;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

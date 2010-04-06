@@ -1,0 +1,35 @@
+<tal:block condition="view/available"
+           i18n:domain="linkbutton">
+<dl class="portlet linkButton">
+
+    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+
+    <dd class="portletItem" tal:condition="view/linkButtons">
+           
+        <ul tal:attributes="class python:view.gradient and 'gradient' or ''">
+        
+            <li tal:repeat="lbutton view/linkButtons"
+                tal:attributes="id string:linkbutton-${lbutton/id};
+                                class python: lbutton.get('internal') and 'internal-link'">
+                <tal:linkButton  
+                    tal:define="title lbutton/title;
+                                id lbutton/id;
+                                description lbutton/description|lbutton/title">
+                           <strong>
+                           <a
+                           tal:content="title"
+                           tal:attributes="href lbutton/url;
+                                           title description;"
+                           >Link</a>
+                           </strong>
+                  </tal:linkButton>
+                   
+            </li>
+        
+        </ul>
+            
+    </dd>
+
+
+</dl>
+</tal:block>
