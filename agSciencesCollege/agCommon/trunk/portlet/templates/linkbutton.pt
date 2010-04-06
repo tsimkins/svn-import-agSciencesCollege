@@ -6,7 +6,7 @@
 
     <dd class="portletItem" tal:condition="view/linkButtons">
            
-        <ul>
+        <ul tal:attributes="class python:view.gradient and 'gradient' or ''">
         
             <li tal:repeat="lbutton view/linkButtons"
                 tal:attributes="id string:linkbutton-${lbutton/id};

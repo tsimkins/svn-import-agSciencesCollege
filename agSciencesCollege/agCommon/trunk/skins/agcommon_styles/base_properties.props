@@ -106,6 +106,7 @@ leftLinkTextHoverColor:string=#3366CC
 
 leftButtonArrowBackground_external:string=#F3A72E
 leftButtonBackground_external:string=#FBE2B9
+leftButtonBackgroundGradient_external:string=#EF9200
 leftButtonBackgroundBorder_external:string=#6D4300
 leftButtonTextColor_external:string=#995E00
 

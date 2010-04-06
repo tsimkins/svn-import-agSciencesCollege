@@ -444,6 +444,17 @@ input.searchButton {
 	list-style-image: none;
 }
 
+/* Changes for gradient buttons */
+
+#portal-column-one .linkButton ul.gradient li,
+#portal-column-two .linkButton .portletItem ul.gradient li
+ {
+	background-color: &dtml-leftButtonBackground_external;;
+	background-repeat: repeat-x;
+	background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&endColor=<dtml-var expr="leftButtonBackgroundGradient_external.replace('#','')">&height=22');
+	background-position: left bottom;
+}
+
 #portal-column-one .linkButton strong,
 #portal-column-two .linkButton strong {
 	padding: 0;
@@ -461,8 +472,14 @@ input.searchButton {
 	font-size: 1.1em;
 	margin-left: 16px;
 	padding: 8px;
-	background-color: &dtml-leftButtonBackground_external;;
 	border-left: 1px solid &dtml-backgroundColor;;
+}
+
+/* Changes for gradient buttons */
+#portal-column-one .linkButton a,
+#portal-column-two .linkButton .portletItem a {
+	margin-left: 0px;
+	border-left: none;
 }
 
 #portal-column-one .linkButton li.internal-link a,
