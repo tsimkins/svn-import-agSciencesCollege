@@ -463,6 +463,14 @@ input.searchButton {
 	display: block
 }
 
+#portal-column-one .linkButton ul.gradient strong,
+#portal-column-two .linkButton ul.gradient strong {
+	padding: 16;
+	margin: 8;
+	border: 1px solid &dtml-backgroundColor;;
+	display: block
+}
+
 #portal-column-one .linkButton a,
 #portal-column-two .linkButton .portletItem a {
 	text-decoration: none;
@@ -472,14 +480,17 @@ input.searchButton {
 	font-size: 1.1em;
 	margin-left: 16px;
 	padding: 8px;
+	background-color: &dtml-leftButtonBackground_external;; 
 	border-left: 1px solid &dtml-backgroundColor;;
+
 }
 
 /* Changes for gradient buttons */
-#portal-column-one .linkButton a,
-#portal-column-two .linkButton .portletItem a {
+#portal-column-one .linkButton ul.gradient a,
+#portal-column-two .linkButton .portletItem ul.gradient a {
 	margin-left: 0px;
 	border-left: none;
+	background-color: transparent;
 }
 
 #portal-column-one .linkButton li.internal-link a,
