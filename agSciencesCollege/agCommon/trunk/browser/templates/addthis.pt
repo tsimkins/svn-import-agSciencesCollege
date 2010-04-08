@@ -8,7 +8,7 @@
 		// From http://www.addthis.com/forum/viewtopic.php?f=8&amp;t=14972
 
 		var addthis_config = {
-		  data_use_flash: false
+		  data_use_flash: false,
           data_track_linkback: true
 		}
 		</script>
