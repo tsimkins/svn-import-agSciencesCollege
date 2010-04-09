@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool" purge="False">
+ <index name="food_type" meta_type="KeywordIndex" purge="True">
+  <indexed_attr value="food_type" purge="True"/>
+ </index>
+ <index name="feature" meta_type="FieldIndex" purge="True">
+  <indexed_attr value="feature" purge="True"/>
+ </index>
+ <index name="in_stock" meta_type="FieldIndex" purge="True">
+  <indexed_attr value="in_stock" purge="True"/>
+ </index>
+ <column value="food_type" purge="True"/>
+ <column value="feature" purge="True"/>
+ <column value="in_stock" purge="True"/>
+</object>
+

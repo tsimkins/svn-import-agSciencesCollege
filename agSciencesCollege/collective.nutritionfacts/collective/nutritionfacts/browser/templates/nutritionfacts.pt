@@ -1,0 +1,86 @@
+<!-- The following XHTML snippet builds a basic nutrition label when accompanied by the
+	nutrition.css stylesheet. The code is free, and you may use it as you wish. Crediting the author
+	is always appreciated.
+	Jonathon Eric Cihlar, January 2007
+-->
+<table class="nutrition" summary="This table summarizes nutritional information">
+
+	<tr>
+		<th colspan="2">Nutrition Facts</th>
+	</tr>
+	<tr id="servings">
+		<td colspan="2">Serving Size <span tal:replace="view/numbers/serving_size" /> <span tal:replace="here/serving_size_units" /> (<span tal:replace="view/numbers/serving_weight" />g)<br />Servings Per Container <span tal:replace="view/numbers/servings_per_container" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">Amount Per Serving</td>
+	</tr>
+	<tr id="calories">
+		<td><strong>Calories</strong> <span tal:replace="view/numbers/calories" /></td>
+		<td>Calories from Fat <span tal:replace="view/numbers/fat_calories" /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td class="dv">% Daily Value *</td>
+	</tr>
+	<tr>
+		<td><strong>Total Fat</strong> <span tal:replace="view/numbers/total_fat" />g</td>
+		<td class="dv"><span tal:replace="view/percents/total_fat" />%</td>
+	</tr>
+	<tr>
+		<td class="sub">Saturated Fat <span tal:replace="view/numbers/saturated_fat" />g</td>
+		<td class="dv"><span tal:replace="view/percents/saturated_fat" />%</td>
+	</tr>
+	<tr>
+		<td class="sub">Trans Fat <span tal:replace="view/numbers/trans_fat" />g</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><strong>Cholesterol</strong> <span tal:replace="view/numbers/cholesterol" />mg</td>
+		<td class="dv"><span tal:replace="view/percents/cholesterol" />%</td>
+	</tr>
+	<tr>
+		<td><strong>Sodium</strong> <span tal:replace="view/numbers/sodium" />mg</td>
+		<td class="dv"><span tal:replace="view/percents/sodium" />%</td>
+	</tr>
+	<tr>
+		<td><strong>Total Carbohydrate</strong> <span tal:replace="view/numbers/total_carbohydrate" />g</td>
+		<td class="dv"><span tal:replace="view/percents/total_carbohydrate" />%</td>
+	</tr>
+	<tr>
+		<td class="sub">Dietary Fiber <span tal:replace="view/numbers/dietary_fiber" />g</td>
+		<td class="dv"><span tal:replace="view/percents/dietary_fiber" />%</td>
+	</tr>
+	<tr>
+		<td class="sub">Sugars <span tal:replace="view/numbers/sugars" />g</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><strong>Protein</strong> <span tal:replace="view/numbers/protein" />g</td>
+		<td class="dv"></td>
+	</tr>
+	<tr id="minerals">
+		<td>Vitamin A</td>
+		<td class="dv"><span tal:replace="view/numbers/vitamin_a" />%</td>
+	</tr>
+	<tr>
+		<td>Vitamin C</td>
+		<td class="dv"><span tal:replace="view/numbers/vitamin_c" />%</td>
+	</tr>
+	<tr>
+		<td>Calcium</td>
+		<td class="dv"><span tal:replace="view/numbers/calcium" />%</td>
+	</tr>
+	<tr>
+		<td>Iron</td>
+		<td class="dv"><span tal:replace="view/numbers/iron" />%</td>
+	</tr>
+	<tr>
+		<td>Vitamin D</td>
+		<td class="dv"><span tal:replace="view/numbers/vitamin_d" />%</td>
+	</tr>
+	<tr>
+		<td id="disclaimer" colspan="2">
+			* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.	
+		</td>
+	</tr>
+</table>
