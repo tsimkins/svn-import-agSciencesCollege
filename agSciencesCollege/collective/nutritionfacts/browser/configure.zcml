@@ -1,0 +1,35 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.nutritionfacts">
+
+  <include package="plone.app.contentmenu" />
+
+  <interface
+      interface=".interfaces.IThemeSpecific"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      name="NutritionFacts"
+    />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="food_view"
+      class=".food_view.FoodView"
+      template="templates/food_view.pt"
+      allowed_interface=".food_view.IFoodView"
+      permission="zope.Public"
+      />
+
+    <browser:viewlet
+        name="nutritionfacts.table"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        view=".food_view.IFoodView"
+        class=".viewlets.NutritionFactsViewlet"
+        template="templates/nutritionfacts.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+        
+</configure>

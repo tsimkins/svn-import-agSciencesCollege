@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<atcttool>
+
+ <topic_indexes>
+  <index
+    name="food_type"
+    description="Food Type"
+    enabled="True"
+    friendlyName="Food Type"
+    purge="True">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
+  
+  <index
+    name="feature"
+    description="Featured Food"
+    enabled="True"
+    friendlyName="Featured Food"
+    purge="True">
+   <criteria>ATBooleanCriterion</criteria>
+  </index>
+
+  <index
+    name="in_stock"
+    description="In Stock"
+    enabled="True"
+    friendlyName="In Stock"
+    purge="True">
+   <criteria>ATBooleanCriterion</criteria>
+
+  </index>
+
+  
+ </topic_indexes>
+
+ <topic_metadata>
+  <metadata
+    name="food_type"
+        description="Type of Food"
+        enabled="True"
+        friendlyName="Food Type" 
+        purge="True"/>
+
+  <metadata
+    name="feature"
+        description="Featured Food"
+        enabled="True"
+        friendlyName="Featured Food"
+        purge="True"/>
+
+
+  <metadata
+    name="in_stock"
+        description="In Stock"
+        enabled="True"
+        friendlyName="In Stock"
+        purge="True"/>
+
+ </topic_metadata> 
+ 
+</atcttool>
