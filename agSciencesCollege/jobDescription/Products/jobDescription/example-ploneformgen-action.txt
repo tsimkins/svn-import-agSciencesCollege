@@ -1,0 +1,50 @@
+# Available parameters:
+#  fields  = HTTP request form fields as key value pairs
+#  request = The current HTTP request. 
+#            Access fields by request.form["myfieldname"]
+#  ploneformgen = PloneFormGen object
+# 
+# Return value is not processed -- unless you
+# return a dictionary with contents. That's regarded
+# as an error and will stop processing of actions
+# and return the user to the form. Error dictionaries
+# should be of the form {'field_id':'Error message'}
+
+jobDescriptionFolder = "listing"
+
+r = request.form
+
+parentFolder = container.getParentNode().getParentNode()
+
+if hasattr(parentFolder, jobDescriptionFolder):
+
+    listing = getattr(parentFolder, jobDescriptionFolder)
+    
+    jobSerial = 0
+
+    for thisSerial in [int(x.id) for x in listing.listFolderContents(contentFilter={"portal_type" : "JobDescription"})]:
+        if thisSerial >= jobSerial:
+            jobSerial = thisSerial
+
+    jobSerial = jobSerial + 1
+    print "serial: %d" % jobSerial
+    listing.invokeFactory(id=jobSerial, type_name='JobDescription', title=r.get('job-title'), 
+                            job_location=r.get('job-location'),
+                            job_type=r.get('job-type'),
+                            job_status=r.get('job-status'),
+                            job_description=r.get('job-description'),
+                            application_instructions=r.get('application-instructions'),
+                            application_deadline=r.get('application-deadline'),
+                            job_website=r.get('job-website'),
+                            company_name=r.get('company-name'),
+                            company_website=r.get('company-website'),
+                            contact_name=r.get('contact-name'),
+                            contact_title=r.get('contact-title'),
+                            contact_email=r.get('contact-email'),
+                            phone_number=r.get('phone-number'),
+                            creators="trs22"
+    )
+else:
+
+    assert False, "Whoops."
+
