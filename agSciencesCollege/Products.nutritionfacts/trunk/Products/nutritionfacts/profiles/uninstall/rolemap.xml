@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <!-- -*- extra stuff goes here -*- -->
+    <permission name="Products.nutritionfacts: Add Food" acquire="False" purge="True">
+    </permission>
+  </permissions>
+</rolemap>

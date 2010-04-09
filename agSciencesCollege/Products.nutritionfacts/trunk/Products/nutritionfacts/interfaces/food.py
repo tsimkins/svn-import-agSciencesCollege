@@ -156,7 +156,7 @@ class IFood(Interface):
     )
 
     allergy = schema.List(
-        title=_(u"AllergyInformation"), 
+        title=_(u"Allergy Information"), 
         required=False,
         description=_(u""),
     )

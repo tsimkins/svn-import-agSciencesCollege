@@ -316,6 +316,8 @@ class Food(base.ATCTContent):
     # -*- Your ATSchema to Python Property Bridges Here ... -*-
     feature = atapi.ATFieldProperty('feature')
 
+    in_stock = atapi.ATFieldProperty('in_stock')
+
     food_type = atapi.ATFieldProperty('food_type')
 
     serving_size = atapi.ATFieldProperty('serving_size')
@@ -359,6 +361,8 @@ class Food(base.ATCTContent):
     vitamin_d = atapi.ATFieldProperty('vitamin_d')
 
     ingredients = atapi.ATFieldProperty('ingredients')
+
+    allergy = atapi.ATFieldProperty('allergy')
 
     body_text = atapi.ATFieldProperty('body_text')
 

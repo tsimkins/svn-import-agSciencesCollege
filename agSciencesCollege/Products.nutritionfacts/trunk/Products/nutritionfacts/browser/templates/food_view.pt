@@ -85,22 +85,28 @@
         </p>
         <div tal:replace="structure provider:plone.abovecontentbody" />
         <dl>
+	        <tal:hasData condition="here/getIngredients">
             <dt tal:content="python:here.getField('ingredients').widget.label" />
 	        <dd tal:content="here/getIngredients" />
-
+	        </tal:hasData>
+	        
+	        <tal:hasData condition="here/getFood_type">
             <dt tal:content="python:here.getField('food_type').widget.label" />
 	        <dd>
 	           <ul>
 	               <li tal:repeat="type here/getFood_type" tal:content="type" />
                </ul>
 	        </dd>
+	        </tal:hasData>
 	        
+	        <tal:hasData condition="here/getAllergy">
             <dt tal:content="python:here.getField('allergy').widget.label" />
 	        <dd>
 	           <ul>
 	               <li tal:repeat="type here/getAllergy" tal:content="type" />
                </ul>
 	        </dd>
+	        </tal:hasData>
         </dl>
 
         <div tal:replace="structure here/getBody_text" />
