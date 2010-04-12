@@ -5,12 +5,6 @@
 
   <include package="plone.app.contentmenu" />
 
-  <interface
-      interface=".interfaces.IThemeSpecific"
-      type="zope.publisher.interfaces.browser.IBrowserSkinType"
-      name="NutritionFacts"
-    />
-
   <!-- -*- extra stuff goes here -*- -->
 
   <browser:page
@@ -28,8 +22,6 @@
         view=".food_view.IFoodView"
         class=".viewlets.NutritionFactsViewlet"
         template="templates/nutritionfacts.pt"
-        layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
-        
 </configure>

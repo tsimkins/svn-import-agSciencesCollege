@@ -9,8 +9,13 @@
 /**
  * Define the table to be of the class "nutrition"
  */
+
+dl.nutritionfacts dt {
+	font-weight: bold;
+}
+
 table.nutrition {
-	width : 275px;
+	width : 250px;
 	margin-top : 10px;
 	margin-left : 0;
 	margin-right : 0;
@@ -21,7 +26,7 @@ table.nutrition {
 	float: right;
 
 	font-family : Arial;
-	font-size : 1.2em;
+	font-size : 1.1em;
 	background: #FFFFFF;
 	margin-left: 2em;
 

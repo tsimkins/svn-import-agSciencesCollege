@@ -84,7 +84,7 @@
             </metal:field>
         </p>
         <div tal:replace="structure provider:plone.abovecontentbody" />
-        <dl>
+        <dl class="nutritionfacts">
 	        <tal:hasData condition="here/getIngredients">
             <dt tal:content="python:here.getField('ingredients').widget.label" />
 	        <dd tal:content="here/getIngredients" />
