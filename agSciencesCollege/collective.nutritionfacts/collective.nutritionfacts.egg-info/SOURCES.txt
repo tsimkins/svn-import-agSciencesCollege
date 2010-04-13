@@ -50,6 +50,7 @@ collective/nutritionfacts/profiles/uninstall/portal_atct.xml
 collective/nutritionfacts/profiles/uninstall/skins.xml
 collective/nutritionfacts/profiles/uninstall/types.xml
 collective/nutritionfacts/profiles/uninstall/viewlets.xml
+collective/nutritionfacts/skins/nutritionfacts_styles/food_icon.png
 collective/nutritionfacts/skins/nutritionfacts_styles/nutrition.css.dtml
 collective/nutritionfacts/tests/__init__.py
 collective/nutritionfacts/tests/base.py

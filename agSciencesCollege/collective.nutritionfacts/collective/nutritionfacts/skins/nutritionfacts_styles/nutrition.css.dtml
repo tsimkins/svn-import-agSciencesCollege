@@ -24,6 +24,7 @@ table.nutrition {
 	border-collapse : collapse;
 	table-layout : auto;
 	float: right;
+    clear: right;
 
 	font-family : Arial;
 	font-size : 1.1em;
