@@ -10,6 +10,7 @@
    <element value="PhotoFolder"/>
    <element value="HomePage"/>
    <element value="File"/>
+   <element value="Food"/>
   </property>
   <property name="image_width" type="int">250</property>
   <property name="image_height" type="int">313</property>
