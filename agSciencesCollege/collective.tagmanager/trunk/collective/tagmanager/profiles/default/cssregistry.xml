@@ -22,6 +22,7 @@
       -->
  <stylesheet id="tagmanager.css" 
     title="" cacheable="True" compression="safe" cookable="True"
+    expression="not: portal/portal_membership/isAnonymousUser"
     enabled="1" media="all"
     rel="stylesheet" rendering="import"/>
 
