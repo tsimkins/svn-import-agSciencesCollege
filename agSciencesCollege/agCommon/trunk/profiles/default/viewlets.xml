@@ -80,6 +80,7 @@ Note: insert-before and -after accept the value "*" which means
     <order manager="plone.portalfooter" skinname="agCommon">
         <viewlet name="plone.footer" insert-before="*" />
         <viewlet name="contentwellportlets.portletsbelowcontent" insert-after="plone.footer" />
+        <viewlet name="agcommon.analytics" insert-after="plone.analytics" />        
     </order>
     
     <!-- Hidden Viewlets -->

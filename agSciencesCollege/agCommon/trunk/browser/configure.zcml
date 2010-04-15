@@ -169,6 +169,14 @@
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
+
+    <browser:viewlet
+        name="agcommon.analytics"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.UnitAnalyticsViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
         
     <!-- Content Well Portlet Relocation -->
     <browser:viewlet

@@ -13,6 +13,7 @@ from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
+from plone.app.layout.analytics.view import AnalyticsViewlet
 
 homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
 
@@ -265,7 +266,14 @@ class LeadImageHeader(LeadImageViewlet):
 
         self.showHeader = layout == 'document_subsite_view' and portal_type == 'HomePage'
 
+class UnitAnalyticsViewlet(AnalyticsViewlet):
 
+    def render(self):
+        """render the webstats snippet"""   
+        ptool = getToolByName(self.context, "portal_properties")
+        snippet = safe_unicode(ptool.site_properties.getProperty("unit_webstats_js", ""))
+        return snippet
+        
 
 class RSSViewlet(ViewletBase):
     def update(self):
