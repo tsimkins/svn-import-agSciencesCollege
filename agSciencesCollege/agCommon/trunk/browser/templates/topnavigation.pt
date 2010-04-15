@@ -2,7 +2,8 @@
     <ul>
     
         <li tal:repeat="saction view/topnavigation"
-            tal:attributes="id string:siteaction-${saction/id}"><a
+            tal:attributes="id string:siteaction-${saction/id};
+                            class python:saction.get('alternate_color') and 'alternate' or ''"><a
                href=""
                tal:define="title saction/title;
                            id saction/id;

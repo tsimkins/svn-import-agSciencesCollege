@@ -69,6 +69,10 @@ topnavigationTextColor:string=#FFFFFF
 topnavigationTextHoverColor:string=#FFEB8F
 topnavigationGradientBackground:string=#C83400
 
+topnavigationAlternateBackgroundColor:string=#FEB30F
+topnavigationAlternateGradientBackground:string=#9F7213
+topnavigationAlternateTextColor:string=#FFFFFF
+
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#99B4DF
 backgroundStripeOneColor:string=#0f50bc
@@ -106,7 +110,8 @@ leftLinkTextHoverColor:string=#3366CC
 
 leftButtonArrowBackground_external:string=#F3A72E
 leftButtonBackground_external:string=#FBE2B9
-leftButtonBackgroundGradient_external:string=#EF9200
+leftButtonTextColorGradient_external:string=#4F3000
+leftButtonBackgroundGradient_external:string=#EFAF4A
 leftButtonBackgroundBorder_external:string=#6D4300
 leftButtonTextColor_external:string=#995E00
 
