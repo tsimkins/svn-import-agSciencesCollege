@@ -27,65 +27,6 @@
 }
 
 
-#simplemodal-overlay {
-    background-color: #333333;
-}
-
-#simplemodal-container {
-    background-color: #FFFFFF;
-    padding: 1em;
-    border: 2px solid #333366;
-	width: 90% !important;
-}
-
-div.simplemodal-wrap h1 {
-    border: none;
-    color: #000033;
-    margin-bottom: 0.5em;
-}
-
-div.simplemodal-wrap input[type="checkbox"] {
-    margin-left: 1em;
-}
-
-div.simplemodal-wrap input[type="button"] {
-    margin: 0.5em;
-}
-
-div.simplemodal-wrap #buttons {
-    margin: 1em 0.5em;
-}
-
-#edit_county_tags, #edit_main_tags {
-    width: 120px;
-    display: block;
-    border: 1px solid #FF981F;
-    background-color: #EF9C3B;
-    margin-top: 3px;
-    padding: 3px;
-	font-size: 0.88em;
-	text-align: center;
-	color: #FFFFFF !important;
-	text-decoration: none;
-}
-
-.tag_container {
-	float: left;
-	display: block;
-	width: 25%;
-}
-
-.tag_container input {
-	margin-right: 4px;
-}
-
-
-#modal_buttons {
-	clear: left;
-	padding: 20px 0;
-}
-
-
 /* --------------------------- Customizations to front page portlets -------------------------------- */
 
 body.section-front-page #portlets-above .portlet {
