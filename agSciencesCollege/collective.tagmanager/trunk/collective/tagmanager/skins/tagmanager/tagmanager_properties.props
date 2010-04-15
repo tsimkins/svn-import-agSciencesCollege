@@ -1,0 +1,14 @@
+title:string=collective.tagmanager Properties
+
+buttonBackground:string=#EFE3C2
+buttonBorder:string=#8F7659
+buttonText:string=#4F3A22
+buttonHoverBorder:string=#EF7268
+buttonHoverText:string=#8F381A
+
+hasTagsButtonBackground:string=#EF483B
+hasTagsButtonBorder:string=#EF7268
+hasTagsButtonText:string=#FFFFFF
+hasTagsButtonHoverBorder:string=#FF981F
+hasTagsButtonHoverText:string=#FEFF9F
+
