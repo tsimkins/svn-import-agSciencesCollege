@@ -74,10 +74,10 @@
 
     function hideTagMultiSelect()
     {
-        visible = jq('#subject_existing_keywords option').size();
-        hidden = jq('#subject_existing_keywords option:hidden').size();
+        all = jq('#subject_existing_keywords option').size();
+        button = jq('#subject_existing_keywords option[status="button"]').size();
         
-        if (hidden < visible)
+        if (button < all)
         {
             categoryList = addTagCategory("Other");
             manageTags(categoryList, 'other', 'Other Tags');
@@ -99,6 +99,7 @@
             function() {
                 jq(this).hide();
                 jq(this).attr('tagprefix', prefix);
+                jq(this).attr('status', 'button');
             }
         );
 
