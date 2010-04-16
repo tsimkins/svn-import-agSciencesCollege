@@ -54,11 +54,11 @@
         
         if (prefix == 'other')
         {
-            visibleTags =  jq("#subject_existing_keywords option:visible");
+            not_buttons =  jq("#subject_existing_keywords option[status!='button']");
             
-            if (visibleTags.size() > 0)
+            if (not_buttons.size() > 0)
             {
-                return visibleTags;
+                return not_buttons;
             }
             else
             {
@@ -97,7 +97,6 @@
 
         prefixTags.each(
             function() {
-                jq(this).hide();
                 jq(this).attr('tagprefix', prefix);
                 jq(this).attr('status', 'button');
             }
