@@ -1103,7 +1103,11 @@ body.template-folder_leadimage_view #region-content .tileImage {
 }
 
 body.template-subfolder_view #region-content .tileItem h2.tileHeadline {
-    font-size: 1.25em;
+    font-size: 125%;
+}
+
+body.template-subfolder_view #region-content .tileItem>h2.tileHeadline a {
+    color: &dtml-documentSubHeadingColor; !important;
 }
 
 body.template-subfolder_view #region-content .tileItem .tileItem h2.tileHeadline {
