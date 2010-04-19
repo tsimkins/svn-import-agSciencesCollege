@@ -118,6 +118,24 @@
 	padding: 0px;
 }
 
+/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
+#centercolumn .portletfeedmixer .portletItem {
+    height: 1%;
+    overflow: hidden;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage {
+    float: right; 
+    margin: 10px 0 10px 10px;
+    width: 128px;
+    text-align: right;
+}
+
+#centercolumn .portletfeedmixer .portletItem .hasImage {
+	width: 370px;
+}
+
+
 #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;
 }
