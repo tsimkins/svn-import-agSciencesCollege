@@ -104,7 +104,7 @@ body {
     display: none;
 }
 
-input.searchButton {
+#portal-searchbox input.searchButton {
     background-color: transparent;
     border: 0;
     padding: 0;
