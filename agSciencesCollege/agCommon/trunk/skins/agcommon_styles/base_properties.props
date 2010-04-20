@@ -72,6 +72,7 @@ topnavigationGradientBackground:string=#C83400
 topnavigationAlternateBackgroundColor:string=#FEB30F
 topnavigationAlternateGradientBackground:string=#9F7213
 topnavigationAlternateTextColor:string=#FFFFFF
+topnavigationAlternateTextHoverColor:string=#C83400
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#99B4DF

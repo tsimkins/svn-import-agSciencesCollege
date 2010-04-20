@@ -577,6 +577,10 @@ body {
     color: &dtml-topnavigationAlternateTextColor; !important;
 }
 
+#portal-top-navigation li.alternate a:hover {
+    color: &dtml-topnavigationAlternateTextHoverColor; !important;
+}
+
 #portal-top-navigation li:first-child {
     border-width: 0;
 }
