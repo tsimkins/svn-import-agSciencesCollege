@@ -13,8 +13,6 @@ from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import PloneMessageFactory as _
 
-from Products.CMFCore.utils import getToolByName
-
 class ILinkButton(IPortletDataProvider):
 
     header = schema.TextLine(
@@ -82,14 +80,6 @@ class Renderer(base.Renderer):
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
         self.linkButtons = context_state.actions().get(self.data.items, None)
-        self.gradient = False
-                
-        portal_actions = getToolByName(self.context, 'portal_actions')
-        
-        buttons = portal_actions.get(self.data.items, None)
-        
-        if buttons:
-            self.gradient = buttons.getProperty('gradient')
         
     def render(self):
         return xhtml_compress(self._template())

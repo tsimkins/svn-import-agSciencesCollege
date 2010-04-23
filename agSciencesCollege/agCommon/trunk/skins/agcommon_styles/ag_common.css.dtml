@@ -437,50 +437,18 @@ body {
  {
     display: block;
     padding: 0;
-    background: &dtml-leftButtonArrowBackground_external; url(&dtml-portal_url;/triangle_bullet.png) no-repeat 4px center;
     border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
     margin: 0 0 15px 0;
     list-style-type: none;
     list-style-image: none;
-}
-
-/* Changes for gradient buttons */
-
-#portal-column-one .linkButton ul.gradient li,
-#portal-column-two .linkButton .portletItem ul.gradient li
- {
     background-color: &dtml-leftButtonBackground_external;;
     background-repeat: repeat-x;
     background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&height=27');
     background-position: left bottom;
 }
 
-#portal-column-one .linkButton ul.gradient li.internal-link,
-#portal-column-two .linkButton .portletItem ul.gradient li.internal-link
- {
-    background-color: &dtml-leftButtonBackground_internal;;
-    border-color: &dtml-leftButtonBackgroundBorder_internal;;
-    background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=27');
-    background-position: left bottom;
-}
-
-#portal-column-one .linkButton ul.gradient li.internal-link a,
-#portal-column-two .linkButton ul.gradient li.internal-link a {
-    color: &dtml-leftButtonTextColor_internal;;
-    background-color: transparent;
-}
-
 #portal-column-one .linkButton strong,
 #portal-column-two .linkButton strong {
-    padding: 0;
-    margin: 0;
-    border: 1px solid &dtml-backgroundColor;;
-    display: block
-}
-
-#portal-column-one .linkButton ul.gradient strong,
-#portal-column-two .linkButton ul.gradient strong {
     padding: 16;
     margin: 8;
     border: 1px solid &dtml-backgroundColor;;
@@ -494,33 +462,27 @@ body {
     color: &dtml-leftButtonTextColor_external;;
     font-weight: normal;
     font-size: 1.1em;
-    margin-left: 16px;
     padding: 8px;
-    background-color: &dtml-leftButtonBackground_external;; 
-    border-left: 1px solid &dtml-backgroundColor;;
-
-}
-
-/* Changes for gradient buttons */
-#portal-column-one .linkButton ul.gradient a,
-#portal-column-two .linkButton .portletItem ul.gradient a {
     margin-left: 0px;
-    border-left: none;
+    border: none;
     background-color: transparent;
-    color: &dtml-leftButtonTextColor_external;;
 }
 
 #portal-column-one .linkButton li.internal-link a,
 #portal-column-two .linkButton li.internal-link a {
     color: &dtml-leftButtonTextColor_internal;;
-    background-color: &dtml-leftButtonBackground_internal;;
+    background-color: transparent;
 }
 
 #portal-column-one .linkButton li.internal-link,
 #portal-column-two .linkButton li.internal-link {
-    background-color: &dtml-leftButtonArrowBackground_internal;;
+    background-color: &dtml-leftButtonBackground_internal;;
     border-color: &dtml-leftButtonBackgroundBorder_internal;;
+    background-repeat: repeat-x;
+    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=27');
+    background-position: left bottom;
 }
+
 
 
 /* = portal-column-content ================================= */
