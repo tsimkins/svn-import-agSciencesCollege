@@ -454,14 +454,14 @@ body {
     background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&height=27');
     background-position: left bottom;
 }
-/*$$$*/
+
 #portal-column-one .linkButton ul.gradient li.internal-link,
 #portal-column-two .linkButton .portletItem ul.gradient li.internal-link
  {
     background-color: &dtml-leftButtonBackground_internal;;
     border-color: &dtml-leftButtonBackgroundBorder_internal;;
     background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=27');
+    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=27');
     background-position: left bottom;
 }
 
