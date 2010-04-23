@@ -287,6 +287,10 @@ def configureScripts(context):
             'src' : 'gradientBackground',
             'target' : 'leftbutton-gradientBackground.png'
         },
+        { 
+            'src' : 'gradientBackground',
+            'target' : 'leftbuttonInternal-gradientBackground.png'
+        },
         {
             'src' : 'gradientBackground',
             'target' : 'topnav-alternate-gradientBackground.png'
@@ -454,6 +458,7 @@ def createRecentChanges(context):
 
     # Sort by modified date
     theCriteria = theCollection.addCriterion('modified','ATSortCriterion') 
+    theCriteria.setReversed(True)
 
     LOG('agCommonPolicy.createRecentChanges', INFO, "Adding 'recent-changes' collection")
 
