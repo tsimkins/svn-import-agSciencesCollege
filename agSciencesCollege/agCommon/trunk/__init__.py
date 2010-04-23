@@ -49,8 +49,8 @@ phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
 
 def gradientBackground(request):
     
-    startColor = request.form.get("startColor", '000000')
-    endColor = request.form.get("endColor", 'FFFFFF')
+    startColor = request.form.get("startColor", 'FFFFFF')
+    endColor = request.form.get("endColor")
     orientation = request.form.get("orientation", 'v').lower()[0]
     
     try:
@@ -67,10 +67,50 @@ def gradientBackground(request):
     colorRegex = "^[0-9A-Fa-f]{3,6}$"
     
     if not re.match(colorRegex, startColor):
-        startColor = '000000'
+        startColor = 'FFFFFF'
+
+    def subtract_percent(s, p=20):
     
-    if not re.match(colorRegex, endColor):
-        endColor = 'FFFFFF'
+        if p > 100:
+            p=100
+            
+        if p < 0:
+            p=0
+    
+        dec = int(s, 16) * (100-p)/100
+        return str('%X' % int(dec)).zfill(2)
+
+    def split_rgb(s):
+        d = {}
+        d['r'] = s[0:2]
+        d['g'] = s[2:4]
+        d['b'] = s[4:7]
+        return d
+    
+    def sum_colors(d):
+        return sum(d.values())
+    
+    def calc(d, c):
+        v = d[c]
+        
+        v_percent = float(sum([int(x, 16) for x in d.values()]))/(3*255)
+
+        v_modify = 1
+
+        if v_percent >= .6 or v_percent <= .3:
+            v_modify = .8
+
+        if v == min(d.values()):
+            return subtract_percent(v, 70*v_modify)
+        elif v == max(d.values()):
+            return subtract_percent(v, 20*v_modify)
+        else:
+            return subtract_percent(v, 50*v_modify)
+                        
+    if not endColor or not re.match(colorRegex, endColor):
+        colors = split_rgb(startColor)
+        
+        endColor = '%s%s%s' % (calc(colors,'r'), calc(colors,'g'), calc(colors,'b'))
 
     if orientation == 'h': 
         png = Popen(['convert', '-size', '%sx%s'%(height, width), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), '-rotate', '270', 'png:-'], stdout=PIPE)
