@@ -438,6 +438,9 @@ body {
     display: block;
     padding: 0;
     border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
     margin: 0 0 15px 0;
     list-style-type: none;
     list-style-image: none;
@@ -452,6 +455,9 @@ body {
     padding: 16;
     margin: 8;
     border: 1px solid &dtml-backgroundColor;;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
     display: block
 }
 
