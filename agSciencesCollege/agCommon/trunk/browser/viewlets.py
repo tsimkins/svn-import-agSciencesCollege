@@ -129,6 +129,28 @@ class AddThisViewlet(ViewletBase):
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
+
+
+class FBLikeViewlet(ViewletBase):   
+    index = ViewPageTemplateFile('templates/fblike.pt')
+
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
+        self.likeurl = escape(safe_unicode(self.context.absolute_url()))
+
+        try:
+            layout = self.context.getLayout()
+        except:
+            layout = None
+            
+        if homepage_views.count(layout) > 0:
+            self.isHomePage = True
+        else:
+            self.isHomePage = False
+
         
 class FooterViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/footer.pt')
@@ -137,47 +159,96 @@ class FooterViewlet(ViewletBase):
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
-        
-class TitleViewlet(ViewletBase):
-    
+
+class CustomTitleViewlet(ViewletBase):
+
     def update(self):
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
         self.context_state = getMultiAdapter((self.context, self.request),
                                              name=u'plone_context_state')
+
         self.page_title = self.context_state.object_title
         self.portal_title = self.portal_state.portal_title
-        
-    def index(self):
     
         try:
-            site_title = aq_acquire(self.context, 'site_title')
-            org_title = "Penn State College of Ag Sciences"
+            self.site_title = aq_acquire(self.context, 'site_title')
+            self.org_title = "Penn State College of Ag Sciences"
         except AttributeError:
-            site_title = self.portal_title()
-            org_title = "Penn State University"
+            self.site_title = self.portal_title()
+            self.org_title = "Penn State University"
 
         try:
-            org_title = aq_acquire(self.context, 'org_title')
+            self.org_title = aq_acquire(self.context, 'org_title')
         except AttributeError:
-            org_title = org_title
-
-        portal_title = safe_unicode(site_title)
-        page_title = safe_unicode(self.page_title())
-        org_title = safe_unicode(org_title)
+            self.org_title = org_title
+            
+        
+class TitleViewlet(CustomTitleViewlet):
+    
+    def index(self):
+    
+        portal_title = escape(safe_unicode(self.site_title))
+        page_title = escape(safe_unicode(self.page_title()))
+        org_title = escape(safe_unicode(self.org_title))
 
         if not org_title or org_title.lower() == 'none':
             return u"<title>%s &mdash; %s</title>" % (
-                escape(safe_unicode(page_title)),
-                escape(safe_unicode(portal_title)))
+                page_title,
+                portal_title)
         elif page_title == portal_title:
-            return u"<title>%s &mdash; %s</title>" % (escape(portal_title), escape(org_title))
+            return u"<title>%s &mdash; %s</title>" % (portal_title, org_title)
         else:
             return u"<title>%s &mdash; %s &mdash; %s</title>" % (
-                escape(safe_unicode(page_title)),
-                escape(safe_unicode(portal_title)),
-                escape(safe_unicode(org_title)))
+                page_title,
+                portal_title,
+                org_title)
 
+
+class FBMetadataViewlet(CustomTitleViewlet):
+    
+    index = ViewPageTemplateFile('templates/fbmetadata.pt')
+
+    def update(self):
+    
+        super(FBMetadataViewlet, self).update()
+    
+        portal_title = safe_unicode(self.site_title)
+        page_title = safe_unicode(self.page_title())
+        org_title = safe_unicode(self.org_title)
+        
+        if not org_title or org_title.lower() == 'none':
+            self.fb_title = page_title
+            self.fb_site_name = portal_title
+        elif page_title == portal_title:
+            self.fb_title = portal_title
+            self.fb_site_name = org_title
+        else:
+            self.fb_title = page_title
+            self.fb_site_name = "%s (%s)" % (portal_title, org_title)
+                
+        #self.fb_title = escape(self.fb_title)
+        #self.fb_site_name = escape(self.fb_site_name)
+        
+        # Leadimage or news image
+
+        self.showFBMetadata = True
+        
+        try:
+            leadImage_field = self.context.getField('leadImage', None)
+            image_field = self.context.getField('image', None)
+        except AttributeError:
+            leadImage_field = None
+            image_field = None
+            self.showFBMetadata = False
+            
+        if leadImage_field and leadImage_field.get_size(self.context) > 0:
+            self.fb_image = "%s/leadImage_mini" % self.context.absolute_url()
+        elif image_field and image_field.get_size(self.context) > 0:
+            self.fb_image = "%s/image_mini" % self.context.absolute_url()
+        else:
+            self.fb_image = "%s/leftnavbg.jpg" % self.context.portal_url()
+            
 class KeywordsViewlet(ViewletBase):
     
     index = ViewPageTemplateFile('templates/keywords.pt')

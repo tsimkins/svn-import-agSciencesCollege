@@ -1076,7 +1076,7 @@ body.template-newsitem_view .effectiveDate {
     margin-top: 0;
 }
 
-body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view  .contentLeadImageContainer {
+body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view .contentLeadImageContainer {
     display: none;
 }
 
@@ -1208,6 +1208,12 @@ body.template-pgv_sg_carousel_view #region-content {
     margin-top: 0;
     color: #3F1B00;
     background-image: none;
+}
+
+#fblike {
+    border: none; 
+    overflow: hidden; 
+    width: 450px; 
 }
 
 /* YOUR CSS RULES STOP HERE */
