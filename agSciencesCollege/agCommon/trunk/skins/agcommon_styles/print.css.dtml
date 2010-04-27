@@ -243,6 +243,11 @@ div.discussion form {
 img {
     border-width: 0;
 }
+
+#fblike {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
