@@ -163,6 +163,18 @@ def getHomepageImage(context):
             homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
             homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber];
             homepageImage.style.height = backgroundHeights[randomnumber] + 'px';
+            
+            hpiDivs = homepageImage.getElementsByTagName("div");
+            
+            for (var i=0; i<hpiDivs.length; i++)
+            {
+                var div = hpiDivs[i];
+
+                if (div.className == 'overlay')
+                {
+                    div.style.height = backgroundHeights[randomnumber] + 'px';
+                }
+            }
         }
     
     }
