@@ -302,7 +302,8 @@ body {
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
     background-color: transparent;
     color: &dtml-leftNavTitleColor; !important;
-    font-size: 1.1em;
+    font-size: 1.3em;
+    line-height: 1.4em;
     padding: 0.1em 0;
 }
 
