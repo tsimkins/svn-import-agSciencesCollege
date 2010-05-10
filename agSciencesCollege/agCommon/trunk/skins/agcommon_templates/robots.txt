@@ -20,6 +20,20 @@ User-Agent: Googlebot
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
 Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
+
+# Apparently Yahoo supports wildcards, too?
+# http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
+
+User-Agent: Slurp
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
 
 # Penn State's Google Search Appliance
 User-Agent: PennStateSpider
