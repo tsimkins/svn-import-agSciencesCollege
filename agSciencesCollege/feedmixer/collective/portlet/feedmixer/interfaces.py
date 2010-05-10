@@ -31,7 +31,6 @@ class IFeedMixer(IPortletDataProvider):
             required=True,
             vocabulary="collective.portlet.feedmixer.timeouts")
 
-
     items_shown = schema.Int(
             title=_(u"heading_items_shown",
                 default=u"Number of items to display"),
@@ -40,21 +39,21 @@ class IFeedMixer(IPortletDataProvider):
             default=5,
             required=True)
 
-    hide_header = schema.Bool(
-            title=_(u"heading_hide_header",
-                default=u"Hide Portlet Header"),
-            description=_(u"description_hide_header",
+    show_header = schema.Bool(
+            title=_(u"heading_show_header",
+                default=u"Show Portlet Header"),
+            description=_(u"description_show_header",
                 default=u""),
-            default=False,
-            required=False)
+            default=True,
+            required=True)
 
-    hide_date = schema.Bool(
-            title=_(u"heading_hide_date",
-                default=u"Hide RSS Feed Item Date"),
-            description=_(u"description_hide_date",
+    show_date = schema.Bool(
+            title=_(u"heading_show_date",
+                default=u"Show RSS Feed Item Date"),
+            description=_(u"description_show_date",
                 default=u""),
-            default=False,
-            required=False)
+            default=True,
+            required=True)
 
     show_summary = schema.Bool(
             title=_(u"heading_show_summary",
@@ -62,7 +61,7 @@ class IFeedMixer(IPortletDataProvider):
             description=_(u"description_show_summary",
                 default=u""),
             default=False,
-            required=False)
+            required=True)
 
     show_image = schema.Bool(
             title=_(u"heading_show_image",
@@ -70,15 +69,15 @@ class IFeedMixer(IPortletDataProvider):
             description=_(u"description_show_image",
                 default=u""),
             default=False,
-            required=False)
+            required=True)
 
-    hide_footer = schema.Bool(
-            title=_(u"heading_hide_footer",
-                default=u"Hide Portlet Footer"),
-            description=_(u"description_hide_footer",
+    show_footer = schema.Bool(
+            title=_(u"heading_show_footer",
+                default=u"Show Portlet Footer"),
+            description=_(u"description_show_footer",
                 default=u""),
-            default=False,
-            required=False)
+            default=True,
+            required=True)
 
     feeds = schema.ASCII(
             title=_(u"heading_feeds",

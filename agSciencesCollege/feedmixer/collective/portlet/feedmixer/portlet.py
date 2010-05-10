@@ -28,27 +28,27 @@ class Assignment(base.Assignment):
     title = u"Feed Viewer"
     feeds = u""
     items_shown = 5
-    hide_header = False
-    hide_date = False
+    show_header = False
+    show_date = False
     show_summary = False
     show_image = False
-    hide_footer = False
+    show_footer = False
     cache_timeout = 900
     assignment_context_path = None
 
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
-                 hide_header=hide_header, hide_date=hide_date, show_summary=show_summary, 
-                 show_image=show_image, hide_footer=hide_footer,
+                 show_header=show_header, show_date=show_date, show_summary=show_summary, 
+                 show_image=show_image, show_footer=show_footer,
                  cache_timeout=cache_timeout,
                  assignment_context_path=assignment_context_path):
         self.title=title
         self.feeds=feeds
         self.items_shown=items_shown
-        self.hide_header=hide_header
-        self.hide_date=hide_date
+        self.show_header=show_header
+        self.show_date=show_date
         self.show_summary=show_summary
         self.show_image=show_image
-        self.hide_footer=hide_footer
+        self.show_footer=show_footer
         self.cache_timeout=cache_timeout
         self.assignment_context_path = assignment_context_path
         
@@ -75,6 +75,20 @@ class Assignment(base.Assignment):
                 entry["published"]=entry["updated"]
 
 
+    def fetchFeed(self, url):
+
+        orig_timeout = socket.getdefaulttimeout()
+
+        socket.setdefaulttimeout(10)
+
+        feed=feedparser.parse(url)
+                    
+        socket.setdefaulttimeout(orig_timeout)
+        
+        self.cleanFeed(feed)
+        
+        return feed
+            
 
     def getFeed(self, url):
         """Fetch a feed.
@@ -89,41 +103,34 @@ class Assignment(base.Assignment):
         # http://mxm-mad-science.blogspot.com/2009/01/small-trick-for-socket-timouts-in-plone.html
         # Resetting back to original timeout as soon as the call completes
         
-        orig_timeout = socket.getdefaulttimeout()
-        
-        if hasattr(socket, 'setdefaulttimeout'):
-            socket.setdefaulttimeout(10)
-
         now=time.time()
 
         chooser=getUtility(ICacheChooser)
         cache=chooser("collective.portlet.feedmixer.FeedCache")
 
         cached_data=cache.get(url, None)
-        if cached_data is not None:
 
-            (timestamp, feed)=cached_data
+        if not cached_data:
+            feed = self.fetchFeed(url)
+            cache[url]=(now, feed)
+            return feed
 
-            if timestamp>now:
-                #return feed
-                pass
+        else:
 
-            newfeed=feedparser.parse(url,
-                    etag=getattr(feed, "etag", None),
-                    modified=getattr(feed, "modified", None))
+            (timestamp, cached_feed)=cached_data
 
-            if len(newfeed.get('entries', [])) == 0 or newfeed.status == 404:
+            if now <= (timestamp + self.cache_timeout):
+                return cached_feed
+
+            feed = self.fetchFeed(url)
+
+            if len(feed.get('entries', [])) == 0 or feed.status == 404:
                 # If we don't have any entries (i.e. the feed is blank) 
                 # then just return the cached copy.
-                socket.setdefaulttimeout(orig_timeout)
+                return cached_feed
+            else:
+                cache[url]=(now, feed)
                 return feed
-
-        feed=feedparser.parse(url)
-        self.cleanFeed(feed)
-        cache[url]=(now+self.cache_timeout, feed)
-
-        socket.setdefaulttimeout(orig_timeout)
-        return feed
 
 
     def mergeEntriesFromFeeds(self, feeds):
@@ -161,12 +168,12 @@ class Renderer(base.Renderer):
         return self.data.title
 
     @property
-    def hide_header(self):
-        return self.data.hide_header
+    def show_header(self):
+        return self.data.show_header
 
     @property
-    def hide_date(self):
-        return self.data.hide_date
+    def show_date(self):
+        return self.data.show_date
 
     @property
     def show_summary(self):
@@ -177,8 +184,8 @@ class Renderer(base.Renderer):
         return self.data.show_image
 
     @property
-    def hide_footer(self):
-        return self.data.hide_footer
+    def show_footer(self):
+        return self.data.show_footer
 
     @property
     def entries(self):

@@ -1,7 +1,7 @@
 <dl class="portlet portletfeedmixer"
     i18n:domain="collective.portlet.feedmixer">
 
-    <dt class="portletHeader" tal:condition="not: view/hide_header|nothing">
+    <dt class="portletHeader" tal:condition="view/show_header|nothing">
         <span class="portletTopLeft"></span>
         <span tal:content="structure view/title">
            Header
@@ -15,16 +15,19 @@
         <dd class="portletItem"
             tal:define="oddrow repeat/entry/odd;
                         isFirst repeat/entry/start;
-                        isLast repeat/entry/end;
-                        hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None"
-            tal:attributes="class python:isFirst and 'portletItem first' or oddrow and 'portletItem even' or 'portletItem odd'">
+                        className string:portletItem;
+                        className python:isFirst and className + ' first' or className;
+                        className python:oddrow and className + ' odd' or className + ' even';
+                        hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
+                        imageURL python:hasImage and entry.enclosures[0].href or None"
+            tal:attributes="class className">
 
     
             <a tal:attributes="href entry/link;
                                 title entry/title"
                 class="rssImage" tal:condition="hasImage">
 
-                <img tal:attributes="src python: entry.enclosures[0].href + '_feedmixer'; alt entry/title" />
+                <img tal:attributes="src imageURL; alt entry/title" />
             
             </a>
 
@@ -34,7 +37,7 @@
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
                                
                 <span class="portletItemDetails date"
-	                tal:condition="not: view/hide_date|nothing"
+	                tal:condition="view/show_date|nothing"
                     tal:content="python:toLocalizedTime(entry['updated'])">
                     Nov 1
                 </span>
@@ -53,7 +56,7 @@
     <dd class="portletFooter">
       <a href="#"
           class="tile"
-          tal:condition="not: view/hide_footer|nothing"
+          tal:condition="view/show_footer|nothing"
           tal:attributes="href view/more_url"
           i18n:translate="box_full_feed_view">More&hellip;</a>
         <span class="portletBottomLeft"></span>
