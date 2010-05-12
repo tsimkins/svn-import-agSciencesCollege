@@ -19,7 +19,7 @@
                         className python:isFirst and className + ' first' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
-                        imageURL python:hasImage and entry.enclosures[0].href or None"
+                        imageURL python:hasImage and entry.enclosures[0].href + '_feedmixer' or None"
             tal:attributes="class className">
 
     
