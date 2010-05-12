@@ -1221,6 +1221,7 @@ body.template-pgv_sg_carousel_view #region-content {
     border: none; 
     overflow: hidden; 
     width: 450px; 
+    margin-top: 25px;
 }
 
 /* YOUR CSS RULES STOP HERE */
