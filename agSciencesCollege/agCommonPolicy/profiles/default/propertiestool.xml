@@ -82,4 +82,25 @@
   <property name="enable_inline_editing" type="boolean">False</property>
   <property name="enable_sitemap" type="boolean">True</property>
  </object>
+ <object name="ploneformgen_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="mail_template" type="text">
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+
+  &lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;p tal:content=&quot;here/getBody_pre | nothing&quot; /&gt;
+
+        &lt;tal:block repeat=&quot;field options/wrappedFields&quot;&gt;
+            &lt;p&gt;&lt;strong tal:content=&quot;field/fgField/widget/label&quot; /&gt;:
+            &lt;span tal:content=&quot;structure python:field.htmlValue(request)&quot; /&gt;
+            &lt;/p&gt;
+        &lt;/tal:block&gt;
+
+    &lt;p tal:content=&quot;here/getBody_post | nothing&quot; /&gt;
+    &lt;pre tal:content=&quot;here/getBody_footer | nothing&quot; /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+  </property>
+ </object>
 </object>
