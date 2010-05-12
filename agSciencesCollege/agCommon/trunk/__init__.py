@@ -27,6 +27,7 @@ allow_module('Products.feedSync.cvent')
 allow_module('Products.feedSync.cvent.importEvents')
 allow_module('Products.CMFCore.utils')
 allow_module('Products.CMFCore.utils.getToolByName')
+allow_module('urllib2')
 allow_module('zope.component')
 allow_module('zope.component.getSiteManager')
 
