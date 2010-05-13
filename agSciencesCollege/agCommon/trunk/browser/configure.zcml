@@ -180,6 +180,16 @@
         permission="zope2.View"
         />
 
+    <!-- Analytics Viewlets -->
+
+    <browser:viewlet
+        name="plone.analytics"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.AnalyticsViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="agcommon.analytics"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"

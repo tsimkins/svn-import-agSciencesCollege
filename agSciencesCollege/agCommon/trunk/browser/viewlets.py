@@ -13,7 +13,11 @@ from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
-from plone.app.layout.analytics.view import AnalyticsViewlet
+
+from zope.interface import implements
+from zope.viewlet.interfaces import IViewlet
+
+from Products.Five.browser import BrowserView
 
 homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
 
@@ -337,12 +341,42 @@ class LeadImageHeader(LeadImageViewlet):
 
         self.showHeader = layout == 'document_subsite_view' and portal_type == 'HomePage'
 
+class AnalyticsViewlet(BrowserView):
+    implements(IViewlet)
+
+    def __init__(self, context, request, view, manager):
+        super(AnalyticsViewlet, self).__init__(context, request)
+        self.__parent__ = view
+        self.context = context
+        self.request = request
+        self.view = view
+        self.manager = manager
+
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+
+    def render(self):
+        """render the agsci webstats snippet"""
+        if self.anonymous:
+            ptool = getToolByName(self.context, "portal_properties")
+            snippet = safe_unicode(ptool.site_properties.webstats_js)
+        else:
+            snippet = ""
+        return snippet
+
 class UnitAnalyticsViewlet(AnalyticsViewlet):
 
     def render(self):
-        """render the webstats snippet"""   
-        ptool = getToolByName(self.context, "portal_properties")
-        snippet = safe_unicode(ptool.site_properties.getProperty("unit_webstats_js", ""))
+        """render the unit webstats snippet"""   
+
+        if self.anonymous:
+            ptool = getToolByName(self.context, "portal_properties")
+            snippet = safe_unicode(ptool.site_properties.getProperty("unit_webstats_js", ""))
+        else:
+            snippet = ""
+
         return snippet
         
 
