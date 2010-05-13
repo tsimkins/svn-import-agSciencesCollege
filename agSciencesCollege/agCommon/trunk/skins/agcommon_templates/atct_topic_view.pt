@@ -36,7 +36,6 @@
         <tal:topiccontents define="topicContents python:here.queryCatalog(batch=True);
                                    batch topicContents;">
 
-            <tal:listing condition="topicContents">
             <a style='text-align: right' href="#"
                tal:condition="nocall: here/asPDF|nothing"
                tal:attributes="href string:${here_url}/asPDF/atct_topic_pdf_template/atct_topic_pdf"
@@ -55,6 +54,8 @@
                                                        'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
                 <div metal:define-slot="inside" tal:replace="structure text">The body</div>
             </div>
+
+            <tal:listing condition="topicContents">
 
             <tal:default condition="not:here/getCustomView|nothing"
                          define="folderContents topicContents">
@@ -131,7 +132,7 @@
             </tal:listing>
 
             <p class="discreet"
-               tal:condition="python: not topicContents and here.listCriteria()"
+               tal:condition="python: not topicContents and here.listCriteria() and not isAnon"
                i18n:domain="atcontenttypes"
                i18n:translate="description_no_items_in_topic">
                 There are currently no results for this search.
@@ -155,7 +156,7 @@
     </metal:body>
 
     <metal:body define-macro="folderlisting_macro">
-        <tal:subtopics condition="here/hasSubtopics|nothing"
+        <tal:subtopics condition="here/hasSubtopics|navigationothing"
                        define="folderContents here/getFolderContents">
             <h2 i18n:domain="atcontenttypes"
                 i18n:translate="heading_contained_collections">
