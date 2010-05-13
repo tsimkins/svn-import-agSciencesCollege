@@ -11,12 +11,20 @@
     </div>
 </head>
 <body>
+
+<div metal:fill-slot="column_one_slot">
+    <!-- Hiding Column One -->
+</div>
+
+<div metal:fill-slot="column_two_slot">
+    <!-- Hiding Column Two -->
+</div>
+
 <div metal:fill-slot="main">
   <h2 class="documentFirstHeading">Manage Right Column Portlets</h2>
   <span tal:condition="python: context.getLayout() == 'document_homepage_view'" tal:replace="structure provider:agcommon.rightcolumn" />
   <tal:notAHomepage tal:condition="python: not context.getLayout() == 'document_homepage_view'">
   <p>This portlet manager may only be used on homepages.</p>
-  <p>Use that one instead.  ---&gt;</p>
   </tal:notAHomepage>
 </div>
 </body>

@@ -11,6 +11,15 @@
     </div>
 </head>
 <body>
+
+<div metal:fill-slot="column_one_slot">
+    <!-- Hiding Column One -->
+</div>
+
+<div metal:fill-slot="column_two_slot">
+    <!-- Hiding Column Two -->
+</div>
+
 <div metal:fill-slot="main"
     tal:define="homepage_views python: ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'];
                 isHomepage python: homepage_views.count(context.getLayout()) > 0">
