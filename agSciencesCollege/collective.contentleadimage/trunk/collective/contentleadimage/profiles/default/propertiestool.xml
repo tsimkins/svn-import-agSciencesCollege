@@ -8,4 +8,9 @@
         <element value="Folder" />
     </property>
   </object>
+ <object name="imaging_properties">
+  <property name="allowed_sizes" type="lines" purge="False">
+   <element value="leadimage 81:67"/>
+  </property>
+ </object>
 </object>

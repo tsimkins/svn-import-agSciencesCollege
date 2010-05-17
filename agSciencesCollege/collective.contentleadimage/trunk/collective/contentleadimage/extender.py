@@ -35,6 +35,7 @@ class LeadimageImageField(ExtensionField, ImageField):
 
     @property
     def sizes(self):
+        # This property is not used in Plone 4 ! 
         portal = getUtility(IPloneSiteRoot)
         cli_prefs = ILeadImagePrefsForm(portal)
         sizes = IMAGE_SIZES.copy()

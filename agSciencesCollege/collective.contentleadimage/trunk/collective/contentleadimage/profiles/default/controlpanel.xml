@@ -7,6 +7,7 @@
              appId="collective.contentleadimage"
              category="Products"
              conditional_expression=""
+             icon_expr="string:${portal_url}/logoIcon.png"
              url_expr="string:${portal_url}/@@contentleadimage-controlpanel"
              visible="True"
              i18n:attributes="title">

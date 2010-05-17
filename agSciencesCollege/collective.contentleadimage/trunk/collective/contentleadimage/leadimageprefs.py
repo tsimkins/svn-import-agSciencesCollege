@@ -24,6 +24,11 @@ from collective.contentleadimage.interfaces import ILeadImageable
 from collective.contentleadimage import config
 from ZODB.POSException import ConflictError
 
+try:
+    from plone.app.imaging.utils import getAllowedSizes
+except ImportError:
+    getAllowedSizes = lambda: dict()
+
 
 class ILeadImagePrefsForm(Interface):    
     """ The view for LeadImage  prefs form. """
@@ -80,6 +85,7 @@ class LeadImageControlPanelAdapter(SchemaAdapterBase):
         super(LeadImageControlPanelAdapter, self).__init__(context)
         pprop = getUtility(IPropertiesTool)
         self.cli_props = getattr(pprop, 'cli_properties', None)
+        self.imaging_props = getattr(pprop, 'imaging_properties', None)
         self.context = context
 
     def viewletVisible(self, manager, viewlet):
@@ -101,18 +107,60 @@ class LeadImageControlPanelAdapter(SchemaAdapterBase):
             if viewlet not in hidden:
                 hidden = hidden + (viewlet,)
         storage.setHidden(manager, skinname, hidden)
-        
+        # hide viewlet in default skin as well
+        default = storage.getDefault(manager)
+        if (default is not None) and default != skinname:
+            storage.setHidden(manager, default, hidden)
+
+    def _change_imaging_props(self, w, h):
+        if self.imaging_props is not None:
+            sizes = self.imaging_props.allowed_sizes
+            new_sizes = []
+            for row in sizes:
+                if row.startswith(config.IMAGE_SCALE_NAME+' '):
+                    new_sizes.append(config.IMAGE_SCALE_NAME + ' %s:%s' % (w, h))
+                else:
+                    new_sizes.append(row)
+            self.imaging_props.allowed_sizes = new_sizes
 
     def get_image_height(self):
+        if self.imaging_props is not None:
+            # get from plone.app.imaging properties
+            size = getAllowedSizes().get(config.IMAGE_SCALE_NAME, None)
+            if size is not None:
+                return int(size[1])  # height
+        # fallback (Plone 3 or wrong configuration)
         return self.cli_props.image_height
 
     def set_image_height(self, image_height):
+        if self.imaging_props is not None:
+            # we have plone.app.imaging - store the size to imaging_properties
+            sizes = getAllowedSizes()
+            if config.IMAGE_SCALE_NAME in sizes.keys():
+                w, h = sizes[config.IMAGE_SCALE_NAME]
+                h = image_height
+                self._change_imaging_props(w, h)
+        # store the size to cli_properties in any case
         self.cli_props.image_height = image_height
     
     def get_image_width(self):
+        if self.imaging_props is not None:
+            # get from plone.app.imaging properties
+            size = getAllowedSizes().get(config.IMAGE_SCALE_NAME, None)
+            if size is not None:
+                return int(size[0])  # height
+        # fallback (Plone 3 or wrong configuration)
         return self.cli_props.image_width
 
     def set_image_width(self, image_width):
+        if self.imaging_props is not None:
+            # we have plone.app.imaging - store the size to imaging_properties
+            sizes = getAllowedSizes()
+            if config.IMAGE_SCALE_NAME in sizes.keys():
+                w, h = sizes[config.IMAGE_SCALE_NAME]
+                w = image_width
+                self._change_imaging_props(w, h)
+        # store the size to cli_properties in any case
         self.cli_props.image_width = image_width
     
     def get_viewlet_description(self):

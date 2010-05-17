@@ -4,6 +4,7 @@
               handler="collective.contentleadimage.setuphandlers.importVarious"
               title="Various contentleadimage Settings">
   <dependency step="propertiestool"/>
+  <dependency step="catalog"/>
     Properties settings
  </import-step>
 </import-steps>
