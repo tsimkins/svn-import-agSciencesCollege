@@ -1,0 +1,50 @@
+<div id="portal-localsearchbox"
+     i18n:domain="plone"
+     tal:condition="context/localsearch|nothing">
+    <form id="plonelocalsearchform" 
+          name="searchform"
+          action="search"
+          tal:attributes="action string:${view/site_url}/search">
+
+        <label for="SearchableText" class="hiddenStructure"
+                    i18n:translate="text_search">Search Site</label>
+
+        <div class="LSBox">
+        <input name="SearchableText"
+               id="localSearchBox"
+               type="text"
+               size="18"
+               value=""
+               title="Search this section..."
+               accesskey="4"
+               i18n:attributes="title title_search_site;"
+               tal:attributes="value request/SearchableText|nothing"
+               class="inputLabel" 
+               autocomplete="off"/>
+
+        <input class="searchButton"
+               type="submit"
+               id = "goSearch"
+               value = "Go"
+		/>
+    
+        <div class="searchSection">
+            <input id="localsearchbox_currentfolder_only" 
+                   class="noborder"
+                   type="checkbox" 
+                   name="path"
+                   checked="checked"
+                   tal:attributes="value view/folder_path"
+                   />
+            <label for="searchbox_currentfolder_only" 
+                   i18n:translate="label_searchbox_currentfolder_only"
+                   style="cursor: pointer">
+                only in current section
+            </label>
+        </div>
+
+    </form>
+
+    <div style="clear: both;"><!-- --></div>
+
+</div>

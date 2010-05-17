@@ -1,0 +1,11 @@
+<div id="homepageimage" tal:condition="view/isHomePage" tal:attributes="class python: (view.hide_breadcrumbs or not view.anonymous) and 'nobreadcrumbs' or ''">
+
+	<tal:homePageOverlay tal:condition="python: view.homepage_h1 or view.homepage_h2">
+		<div class="text">
+			<h1 tal:condition="view/homepage_h1" tal:content="view/homepage_h1">[Homepage h1 Text]</h1>
+			<h2 tal:condition="view/homepage_h2" tal:content="view/homepage_h2">[Homepage h2 Text]</h2>
+		</div>
+		<div class="overlay"><!-- --></div>
+	</tal:homePageOverlay>
+
+</div>

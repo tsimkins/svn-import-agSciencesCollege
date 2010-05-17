@@ -1,0 +1,30 @@
+<tal:addthis
+	tal:define="hide_addthis context/hide_addthis|nothing;
+			isAnon view/anonymous">
+
+	<div id="addthis"
+		tal:condition="python: not hide_addthis and isAnon">
+		<script type="text/javascript">
+		// From http://www.addthis.com/forum/viewtopic.php?f=8&amp;t=14972
+
+		var addthis_config = {
+		  data_use_flash: false,
+          data_track_linkback: true
+		}
+		</script>
+
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style">
+		<a href="http://www.addthis.com/bookmark.php?v=250&amp;pub=agsciences" class="addthis_button_compact">Share</a>
+		<span class="addthis_separator">&nbsp;</span>
+		<a class="addthis_button_print"></a>
+		<a class="addthis_button_email"></a>
+		<a class="addthis_button_facebook"></a>
+		<a class="addthis_button_twitter"></a>
+		</div>
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=agsciences"></script>
+		
+		<!-- AddThis Button END -->
+
+	</div>
+	</tal:addthis>

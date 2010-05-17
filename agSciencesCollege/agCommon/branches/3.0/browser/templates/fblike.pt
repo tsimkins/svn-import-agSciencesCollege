@@ -1,0 +1,11 @@
+<tal:fblike
+    tal:define="hide_fblike context/hide_fblike|nothing;
+                isAnon view/anonymous"
+    tal:condition="not:view/isHomePage">
+    <iframe 
+        id="fblike" 
+        tal:condition="python: not hide_fblike and isAnon"
+        tal:define="likeurl view/likeurl;"
+        tal:attributes="src string:http://www.facebook.com/plugins/like.php?href=${likeurl}&amp;layout=standard&amp;show_faces=true&amp;action=like&amp;colorscheme=light" 
+        scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+</tal:fblike>
