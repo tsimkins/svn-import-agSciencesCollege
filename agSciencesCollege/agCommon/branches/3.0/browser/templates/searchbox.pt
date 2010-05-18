@@ -1,28 +1,31 @@
 <div id="portal-searchbox"
-     i18n:domain="plone">
-    <form id="plonesearchform" 
-          name="searchform"
+     i18n:domain="plone"
+     tal:define="navigation_root_url view/navigation_root_url;
+                 search_input_id view/search_input_id;">
+    <form name="searchform"
           action="search"
-          tal:attributes="action string:${view/site_url}/search">
+          id="plonesearchform"
+          tal:attributes="action string:${navigation_root_url}/search">
 
-        <label for="SearchableText" class="hiddenStructure"
-                    i18n:translate="text_search">Search Site</label>
+        <label class="hiddenStructure"
+               tal:attributes="for search_input_id"
+               i18n:translate="text_search">Search Site</label>
 
         <div class="LSBox">
         <input name="SearchableText"
-               id="searchBox"
                type="text"
                size="18"
                value=""
                title="Search..."
                accesskey="4"
                i18n:attributes="title title_search_site;"
-               tal:attributes="value request/SearchableText|nothing"
-               class="inputLabel" 
+               tal:attributes="value request/form/SearchableText|nothing;
+                               id search_input_id"
+               class="inputLabel"
                autocomplete="off"/>
 
 		<select id = "searchSource"
-		      tal:define="agsciHomepage python: view.site_url.endswith('agsci.psu.edu')">
+		      tal:define="agsciHomepage python: navigation_root_url.endswith('agsci.psu.edu')">
 			<option value = "section">Search This Section</option>
 			<option value = "site" tal:attributes="selected python:agsciHomepage and '' or 'selected'">Search Site</option>
 			<option value = "college" tal:attributes="selected python:agsciHomepage and 'selected' or ''">Search College</option>
@@ -31,19 +34,19 @@
 
         <input class="searchButton"
                type="image"
-               tal:attributes="src string:${view/site_url}/go.gif"
-               id = "goSearch"
-               value = "Go"
-		/>
-    
+               tal:attributes="src string:${navigation_root_url}/go.gif"
+               id="goSearch"
+               value="Search"
+               i18n:attributes="value label_search;" />
+
         <div class="searchSection">
-            <input id="searchbox_currentfolder_only" 
+            <input id="searchbox_currentfolder_only"
                    class="noborder"
-                   type="checkbox" 
-                   name="path" 
+                   type="checkbox"
+                   name="path"
                    tal:attributes="value view/folder_path"
                    />
-            <label for="searchbox_currentfolder_only" 
+            <label for="searchbox_currentfolder_only"
                    i18n:translate="label_searchbox_currentfolder_only"
                    style="cursor: pointer">
                 only in current section
@@ -57,7 +60,7 @@
     <div id="portal-advanced-search"
          class="hiddenStructure">
         <a href="#"
-           tal:attributes="href string:${view/site_url}/search_form"
+           tal:attributes="href string:${navigation_root_url}/search_form"
            i18n:translate="label_advanced_search"
            accesskey="5">
             Advanced Search&hellip;

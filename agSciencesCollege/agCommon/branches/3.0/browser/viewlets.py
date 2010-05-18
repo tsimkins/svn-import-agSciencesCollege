@@ -185,7 +185,7 @@ class CustomTitleViewlet(ViewletBase):
         try:
             self.org_title = aq_acquire(self.context, 'org_title')
         except AttributeError:
-            self.org_title = org_title
+            self.org_title = ""
             
         
 class TitleViewlet(CustomTitleViewlet):

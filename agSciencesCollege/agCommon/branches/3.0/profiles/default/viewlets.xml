@@ -46,17 +46,18 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="plone.searchbox" insert-after="plone.skip_links"/>
         <viewlet name="plone.logo" insert-after="plone.searchbox"/>
     </order>
-    
-    <order manager="agcommon.abovecontentviews" skinname="agCommon">
-        <viewlet name="plone.path_bar" insert-before="*"/>
-        <viewlet name="collective.contentleadimage.header" insert-after="plone.path_bar"/>
-    </order>
 
-    <order manager="agcommon.abovecontenttitle" skinname="agCommon">
+    <order manager="plone.abovecontent" skinname="agCommon">
+        <viewlet name="plone.personal_bar" insert-before="*" />
+    </order>
+    
+    <order manager="plone.abovecontenttitle" skinname="agCommon">
         <viewlet name="agcommon.addthis" insert-before="*" />
     </order>
 
     <order manager="plone.contentviews" skinname="agCommon">
+        <viewlet name="plone.path_bar" insert-before="*"/>
+        <viewlet name="collective.contentleadimage.header" insert-before="plone.path_bar"/>
         <viewlet name="plone.contentviews" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="plone.contentactions" insert-after="plone.contentviews"/>
     </order>
@@ -94,14 +95,17 @@ Note: insert-before and -after accept the value "*" which means
     <hidden manager="plone.portalheader" skinname="agCommon">
         <viewlet name="plone.global_sections" />
         <viewlet name="plone.site_actions" />
+        <viewlet name="plone.personal_bar" />
     </hidden>
 
-    <hidden manager="plone.portaltop" skinname="agCommon">
+    <hidden manager="plone.abovecontent" skinname="agCommon">
         <viewlet name="plone.path_bar" />
+        <viewlet name="plone.app.i18n.locales.languageselector" />
     </hidden>
 
     <hidden manager="plone.portalfooter" skinname="agCommon">
         <viewlet name="plone.colophon" />
+        <viewlet name="plone.site_actions" />
     </hidden>
     
     <hidden manager="plone.contentviews" skinname="agCommon">

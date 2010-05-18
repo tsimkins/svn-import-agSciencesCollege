@@ -98,26 +98,24 @@
         permission="zope2.View"
         />
 
-    <!-- The breadcrumbs -->
-    <browser:viewlet
-        name="plone.path_bar"
-        manager=".interfaces.IAboveContentViews"
-        class=".viewlets.PathBarViewlet"
-        template="templates/path_bar.pt"
-        layer=".interfaces.IThemeSpecific"
-        permission="zope2.View"
-        />
-
     <!-- The personal bar -->
     <browser:viewlet
         name="plone.personal_bar"
         manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class="plone.app.layout.viewlets.common.PersonalBarViewlet"
-        template="templates/personal_bar.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
-        
+
+    <!-- The breadcrumbs -->
+    <browser:viewlet
+        name="plone.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IContentViews"
+        class=".viewlets.PathBarViewlet"
+        template="templates/path_bar.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
 
     <!-- Top Navigation -->
     <browser:viewlet
@@ -173,7 +171,7 @@
 
     <browser:viewlet
         name="collective.contentleadimage.header"
-        manager=".interfaces.IAboveContentViews"
+        manager="plone.app.layout.viewlets.interfaces.IContentViews"
         class=".viewlets.LeadImageHeader"
         template="templates/leadimage-header.pt"
         layer=".interfaces.IThemeSpecific"
@@ -258,12 +256,6 @@
     <plone:portletRenderer
         portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
         template="templates/navigation.pt"
-        layer=".interfaces.IThemeSpecific"
-        />
-
-    <plone:portletRenderer
-        portlet="plone.app.portlets.portlets.rss.IRSSPortlet"
-        template="templates/rss.pt"
         layer=".interfaces.IThemeSpecific"
         />
 

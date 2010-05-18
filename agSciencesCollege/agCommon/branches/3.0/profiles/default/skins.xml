@@ -51,6 +51,8 @@
   <layer name="agcommon_templates"
      insert-after="agcommon_images"/>
   <layer name="agcommon_javascript"
-     insert-after="agcommon_template"/>
+     insert-after="agcommon_templates"/>
+  <layer name="classic_styles"
+     insert-after="agcommon_javascript"/>
  </skin-path>
 </object>

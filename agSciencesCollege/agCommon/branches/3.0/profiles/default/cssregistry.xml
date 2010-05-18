@@ -66,6 +66,30 @@
     enabled="1" expression=""  media="handheld"
     rel="stylesheet" rendering="import"/>
 
+ <stylesheet id="IE6Fixes.css"  insert-after="handheld.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="all"
+    conditionalcomment="IE 6"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="IE7Fixes.css"  insert-after="IE6Fixes.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="all"
+    conditionalcomment="IE 7"
+    rel="stylesheet" rendering="import"/>
+    
+ <stylesheet id="IE8Fixes.css"  insert-after="IE7Fixes.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="all"
+    conditionalcomment="IE 8"
+    rel="stylesheet" rendering="import"/>
+    
+ <stylesheet id="IEPrintFixes.css"  insert-after="IE8Fixes.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="print"
+    conditionalcomment="IE"
+    rel="stylesheet" rendering="import"/>    
+    
  <stylesheet id="columns.css" enabled="0"/>
 
 </object>

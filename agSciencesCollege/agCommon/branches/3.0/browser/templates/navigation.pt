@@ -1,17 +1,11 @@
 <tal:block i18n:domain="plone">
-<dl class="portlet portletNavigationTree"  
+<dl class="portlet portletNavigationTree"
     tal:define="root view/navigation_root">
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <a href="#" 
+        <a href="#"
            class="tile"
-           tal:condition="not:view/title"
-           tal:attributes="href string:${root/absolute_url}" 
-           i18n:translate="box_navigation">Navigation</a>
-       <a href="#" 
-           class="tile"
-           tal:condition="view/title"
            tal:attributes="href string:${root/absolute_url}"
            tal:content="view/title">Navigation</a>
         <span class="portletTopRight"></span>
@@ -19,17 +13,19 @@
 
     <dd class="portletItem lastItem">
         <ul class="navTree navTreeLevel0">
-            <li class="navTreeItem navTree navTreeTitle"
-                tal:condition="view/include_top">
-                <div tal:define="selectedClass view/root_item_class;
-                                 rootIsPortal view/root_is_portal;">
+            <li tal:define="selectedClass view/root_item_class;
+                            li_class python:selectedClass and ' navTreeCurrentNode' or '';"
+                tal:condition="view/include_top"
+                tal:attributes="class string:navTreeItem navTree navTreeTitle navTreeTopNode${li_class}">
+                <div tal:define="rootIsPortal view/root_is_portal;">
                    <a tal:attributes="href root/absolute_url;
                                       title root/Description;
-                                      class selectedClass">
-                   <img src="" height="16" width="16" alt=""
-                        tal:condition="view/root_icon"
-                        tal:attributes="src view/root_icon" />
-                   <span tal:replace="root/Title">Root item title</span>
+                                      class string:contenttype-plone-site $selectedClass;">
+                   <span tal:omit-tag=""
+                         tal:condition="rootIsPortal"
+                         i18n:translate="tabs_home">Home</span>
+                   <span tal:condition="not:rootIsPortal"
+                         tal:replace="root/Title">Root item title</span>
                    </a>
                 </div>
             </li>
