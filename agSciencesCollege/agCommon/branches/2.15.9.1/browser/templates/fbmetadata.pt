@@ -1,0 +1,10 @@
+
+<tal:fbmetadata condition="view/showFBMetadata">
+    <!-- Open Graph Protocol info for Facebook -->    
+    <meta property="og:title" tal:attributes="content view/fb_title"/>
+    <meta property="og:site_name" tal:attributes="content view/fb_site_name"/>
+    <meta property="og:image" tal:attributes="content view/fb_image"/>
+    <meta property="og:url" tal:attributes="content context/absolute_url"/>
+    <meta property="og:fbadmins" tal:attributes="content string:agsciences"/>
+    <meta tal:condition="context/Description" property="og:description" tal:attributes="content context/Description"/>    
+</tal:fbmetadata>

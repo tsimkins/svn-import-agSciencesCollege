@@ -1,0 +1,43 @@
+# Define access-restrictions for robots/spiders
+# http://www.robotstxt.org/wc/norobots.html
+
+
+
+# By default we allow robots to access all areas of our site 
+# already accessible to anonymous users
+
+User-agent: *
+Disallow: /search
+Crawl-delay: 5
+
+
+# Add Googlebot-specific syntax extension to exclude forms 
+# that are repeated for each piece of content in the site 
+# the wildcard is only supported by Googlebot
+# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx;=sibling
+
+User-Agent: Googlebot
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
+
+# Apparently Yahoo supports wildcards, too?
+# http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
+
+User-Agent: Slurp
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
+
+# Penn State's Google Search Appliance
+User-Agent: PennStateSpider
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*?searchterm=*
+
