@@ -1,6 +1,3 @@
-<link rel="alternate" type="application/rss+xml"
-      title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/wirerss/69" />
-		
 <link rel="alternate" href="" title="RSS 1.0"
       type="application/rss+xml"
       tal:condition="view/allowed"

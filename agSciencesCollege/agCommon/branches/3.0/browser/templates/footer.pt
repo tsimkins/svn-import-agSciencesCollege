@@ -5,19 +5,21 @@
 			tal:define="now modules/DateTime/DateTime" 
 			tal:content="now/year">[date last modified]</span>
 		
-		<tal:overrideFooter tal:condition="context/footer_copyright|nothing">
-			<span tal:replace="context/footer_copyright" />
-		</tal:overrideFooter>
-		<tal:standardFooter tal:condition="not:context/footer_copyright|nothing">
-	      <a href="http://agsci.psu.edu" tal:content="string:College of Agricultural Sciences" />
-		</tal:standardFooter>
+	      <a tal:attributes="href view/footer_copyright_link" tal:content="view/footer_copyright" />
 		
 	</p>
-	<p>
-		<a href="http://www.psu.edu/copyright.html">Copyright</a> &mdash; 
-		<a href="http://www.psu.edu/ur/legal.html">Privacy and Legal Statements</a> &mdash; 
-		<a tal:attributes="href string:${context/portal_url}/contact">Contact Us</a>
-	</p>
+
+    <p tal:condition="view/footerlinks">
+        <tal:links repeat="saction view/footerlinks">
+        <a 
+           tal:define="description saction/description|saction/title"
+           tal:content="saction/title"
+           tal:attributes="id saction/id;
+                           href saction/url;
+                           title description;">[Footer Link]</a>
+        <tal:mdash condition="not:repeat/saction/end">&mdash;</tal:mdash>
+        </tal:links>
+    </p>
 
 </div>
 

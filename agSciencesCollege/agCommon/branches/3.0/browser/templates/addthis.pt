@@ -1,5 +1,5 @@
 <tal:addthis
-	tal:define="hide_addthis context/hide_addthis|nothing;
+	tal:define="hide_addthis view/hide_addthis;
 			isAnon view/anonymous">
 
 	<div id="addthis"

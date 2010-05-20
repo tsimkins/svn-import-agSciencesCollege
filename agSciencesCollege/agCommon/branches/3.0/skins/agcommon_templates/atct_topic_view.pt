@@ -121,6 +121,7 @@
             </tal:listing>
 
             <p class="discreet"
+               tal:define="isAnon context/@@plone_portal_state/anonymous"
                tal:condition="python: not topicContents and here.listCriteria() and not isAnon"
                i18n:domain="atcontenttypes"
                i18n:translate="description_no_items_in_topic">
@@ -146,7 +147,8 @@
 
     <metal:body define-macro="folderlisting_macro">
         <tal:subtopics condition="here/hasSubtopics|nothing"
-                       define="folderContents here/listSubtopics|nothing">
+                       define="folderContents here/listSubtopics|nothing;
+                               standalone_view python:True">
             <h2 i18n:domain="atcontenttypes"
                 i18n:translate="heading_contained_collections">
                 Also in this section

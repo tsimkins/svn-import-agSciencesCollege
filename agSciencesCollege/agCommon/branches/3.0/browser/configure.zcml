@@ -58,7 +58,18 @@
         layer=".interfaces.IThemeSpecific"
         template="templates/rsslink.pt"
         />
-        
+
+    <!-- Links to Site RSS feed -->
+
+    <browser:viewlet
+        name="agcommon.links.site_rss"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+        permission="zope2.View" 
+        class=".viewlets.SiteRSSViewlet"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/site_rss.pt"
+        />
+   
     <!-- Render the keywords -->
     <browser:viewlet
         name="agcommon.belowcontenttitle.keywords"
@@ -103,6 +114,7 @@
         name="plone.personal_bar"
         manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class="plone.app.layout.viewlets.common.PersonalBarViewlet"
+        template="templates/personal_bar.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
@@ -154,6 +166,17 @@
         name="agcommon.centercolumn"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         class=".viewlets.CenterColumnViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+    <!-- The related items --> 
+    <browser:viewlet
+        name="plone.belowcontentbody.relateditems"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class="plone.app.layout.viewlets.content.ContentRelatedItems"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        template="templates/document_relateditems.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />

@@ -9,7 +9,7 @@
 
 <metal:css fill-slot="style_slot">
     <!-- Homepage CSS -->
-        <style type="text/css" media="all" tal:condition="exists: portal/homepage.css"
+        <style type="text/css" media="all" 
                tal:content="string:@import url($portal_url/homepage.css);">
         </style>
 </metal:css>

@@ -19,7 +19,18 @@ from zope.viewlet.interfaces import IViewlet
 
 from Products.Five.browser import BrowserView
 
-homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
+def isHomePage(context):
+    homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
+
+    try:
+        layout = context.getLayout()
+    except:
+        layout = None
+        
+    if homepage_views.count(layout) > 0:
+        return True
+    else:
+        return False
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -43,15 +54,7 @@ class RightColumnViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
         
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if homepage_views.count(layout) > 0:
-            self.isHomePage = True
-        else:
-            self.isHomePage = False
+        self.isHomePage = isHomePage(self.context)
 
     def can_manage_portlets(self):
 
@@ -69,15 +72,7 @@ class CenterColumnViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
         
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if homepage_views.count(layout) > 0:
-            self.isHomePage = True
-        else:
-            self.isHomePage = False
+        self.isHomePage = isHomePage(self.context)
 
     def can_manage_portlets(self):
 
@@ -94,15 +89,7 @@ class HomepageImageViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
         
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if homepage_views.count(layout) > 0:
-            self.isHomePage = True
-        else:
-            self.isHomePage = False
+        self.isHomePage = isHomePage(self.context)
 
         try:
             self.homepage_h1 = aq_acquire(self.context, 'homepage_h1')
@@ -134,6 +121,17 @@ class AddThisViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
 
+        self.isHomePage = isHomePage(self.context)
+
+        ptool = getToolByName(self.context, "portal_properties")
+        self.hide_addthis = not ptool.agcommon_properties.enable_addthis
+
+        try:
+            self.hide_addthis = aq_acquire(self.context, 'hide_addthis')
+        except AttributeError:
+            pass
+
+
 
 class FBLikeViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/fblike.pt')
@@ -145,15 +143,9 @@ class FBLikeViewlet(ViewletBase):
         
         self.likeurl = escape(safe_unicode(self.context.absolute_url()))
 
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if homepage_views.count(layout) > 0:
-            self.isHomePage = True
-        else:
-            self.isHomePage = False
+        self.isHomePage = isHomePage(self.context)
+
+    
 
         
 class FooterViewlet(ViewletBase):   
@@ -164,6 +156,21 @@ class FooterViewlet(ViewletBase):
                                             name=u'plone_portal_state')
         self.anonymous = self.portal_state.anonymous()
 
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
+
+        # Get copyright info
+        ptool = getToolByName(self.context, "portal_properties")
+        self.footer_copyright = ptool.agcommon_properties.footer_copyright
+        self.footer_copyright_link = ptool.agcommon_properties.footer_copyright_link
+        
+        try:
+            footerlinks = aq_acquire(self.context, 'footerlinks')
+        except AttributeError:
+            footerlinks = 'footerlinks'
+        
+        self.footerlinks = context_state.actions().get(footerlinks, None)
+        
 class CustomTitleViewlet(ViewletBase):
 
     def update(self):
@@ -292,15 +299,7 @@ class PathBarViewlet(ViewletBase):
                                            name='breadcrumbs_view')
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
         
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if homepage_views.count(layout) > 0:
-            self.isHomePage = True
-        else:
-            self.isHomePage = False
+        self.isHomePage = isHomePage(self.context)
         
         # Get the site id
         
@@ -394,3 +393,22 @@ class RSSViewlet(ViewletBase):
             self.allowed = False
 
     render = ViewPageTemplateFile('templates/rsslink.pt')
+    
+class SiteRSSViewlet(ViewletBase):
+    def update(self):
+        ptool = getToolByName(self.context, "portal_properties")
+
+        self.show_site_rss = False
+        try:
+            self.site_rss_title = ptool.agcommon_properties.site_rss_title
+            self.site_rss_link = ptool.agcommon_properties.site_rss_link
+
+            if self.site_rss_title and self.site_rss_link:
+                self.show_site_rss = True
+
+        except AttributeError:
+            # Don't show site RSS
+            pass
+            
+        
+    render = ViewPageTemplateFile('templates/site_rss.pt')    

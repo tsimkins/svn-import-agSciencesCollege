@@ -734,53 +734,53 @@ body {
     line-height: 1.35em;
 }
 
-/* = portal-content-wrapper ================================ */
+/* = content ================================ */
 
-#portal-content-wrapper {
+#content {
     background-color: transparent;
 }
 
-#portal-column-content.sr #portal-content-wrapper {
+#portal-column-content.sr #content {
     padding: 0;
     width: auto;
 }
 
-#portal-content-wrapper a[href^="http:"], 
-#portal-content-wrapper a.link-external,
-#portal-content-wrapper a[href^="https:"], 
-#portal-content-wrapper a.link-https {
+#content a[href^="http:"], 
+#content a.link-external,
+#content a[href^="https:"], 
+#content a.link-https {
     background-image: none;
     padding: 0;
 }
 
-#portal-content-wrapper .contentActions a {
+#content .contentActions a {
     padding: 0 0.5em;
 }
 
-/* = region-content ======================================== */
+/* = content ======================================== */
 
-#region-content {
+#content {
     padding: 0 0 20px 0 !important;
     margin: 0 20px 0 20px;
 }
 
-#region-content a {
+#content a {
     color: #003399;
 }
 
-#region-content a:hover {
+#content a:hover {
     color: #3366CC;
 }
 
-#region-content h1, 
-#region-content h1.documentFirstHeading {
+#content h1, 
+#content h1.documentFirstHeading {
     color: &dtml-documentTitleColor;;
     font-weight: normal;
     border: none;
     font-size: 190%;
 }
 
-#region-content h2, html.kupu-html h2 {
+#content h2, html.kupu-html h2 {
     color: &dtml-documentHeadingColor;;
     font-size: 160%;
     margin: 15px 0 5px;
@@ -790,13 +790,13 @@ body {
     border-bottom: 1px solid #999999;
 }
 
-#region-content h2.tileHeadline {
+#content h2.tileHeadline {
     font-size: 1.3em;
     margin-top: 0;
     border-width: 0;
 }
 
-#region-content h3, html.kupu-html h3 {
+#content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
     font-size: 125%;
     margin: 15px 0 5px;
@@ -805,7 +805,7 @@ body {
     font-weight: normal;
 }
 
-#region-content .documentDescription {
+#content .documentDescription {
     font-weight: normal;
     color: &dtml-documentDescriptionColor;;
     margin: 0 0 1.5em 0;
@@ -813,11 +813,11 @@ body {
     border-width: 0;
 }
 
-#region-content .tileItem {
+#content .tileItem {
     border-top: 0;
 }
 
-#region-content .tileImage {
+#content .tileImage {
     border: 0;
 }
 
@@ -899,13 +899,13 @@ dd.portletItem p {
     border: 0;
 }
 
-.documentContent {
+#content {
     font-size: 120%;
 }
 
 /* Paragraph and Unordered List readability per cmore */
 
-.documentContent ul {
+#content ul {
     margin:0.75em 0 0 2.5em;
 }
 
@@ -1026,15 +1026,15 @@ blockquote {
 
 /* = Edit UI =================================================== */
 
-#portal-content-wrapper.documentEditable {
+#content.documentEditable {
     margin: 0;
 }
 
-#portal-content-wrapper.documentEditable .contentViews {
+#content.documentEditable .contentViews {
     margin-top: 15px;
 }
 
-#portal-content-wrapper.documentEditable #region-content {
+#content.documentEditable #content {
     margin: 0;
     padding: 10px 10px 20px 10px !important;
 }
@@ -1087,38 +1087,38 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
     display: none;
 }
 
-body.template-folder_leadimage_view #region-content .tileImage {
+body.template-folder_leadimage_view #content .tileImage {
     margin-top: 1.5em;
 }
 
-body.template-subfolder_view #region-content .tileItem h2.tileHeadline {
+body.template-subfolder_view #content .tileItem h2.tileHeadline {
     font-size: 125%;
 }
 
-body.template-subfolder_view #region-content .tileItem>h2.tileHeadline a {
+body.template-subfolder_view #content .tileItem>h2.tileHeadline a {
     color: &dtml-documentSubHeadingColor; !important;
 }
 
-body.template-subfolder_view #region-content .tileItem .tileItem h2.tileHeadline {
+body.template-subfolder_view #content .tileItem .tileItem h2.tileHeadline {
     font-size: 1em;
 }
 
-body.template-subfolder_view #region-content .tileItem .tileItem .facultyStaffDirectory {
+body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory {
     font-size: 0.9em;
 }
 
 
-body.template-subfolder_view #region-content .tileItem .tileItem,
-body.template-subfolder_view #region-content .tileItem dl,
-body.template-subfolder_view #region-content .tileItem .tileFooter  {
+body.template-subfolder_view #content .tileItem .tileItem,
+body.template-subfolder_view #content .tileItem dl,
+body.template-subfolder_view #content .tileItem .tileFooter  {
     margin-left: 20px;
 }
 
-body.template-subfolder_view #region-content .tileItem .tileItem .tileFooter  {
+body.template-subfolder_view #content .tileItem .tileItem .tileFooter  {
     margin-left: 0;
 }
 
-body.template-subfolder_view #region-content .tileItem .photoAlbum {
+body.template-subfolder_view #content .tileItem .photoAlbum {
     margin-left: 10px;
 }
 
@@ -1127,16 +1127,16 @@ body.template-subfolder_view #region-content .tileItem .photoAlbum {
     width: 187px;
 }
 
-#region-content .tileItem.leadimage-listing {
+#content .tileItem.leadimage-listing {
     margin-bottom: 0.5em;
 }
 
 
-body.template-pgv_sg_carousel_view #region-content {
+body.template-pgv_sg_carousel_view #content {
     padding-top: 0 !important;
 }
 
-.documentContent dd a {
+#content dd a {
     border-bottom: none;
 }
 

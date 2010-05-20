@@ -33,6 +33,7 @@ Note: insert-before and -after accept the value "*" which means
 
     <order manager="plone.htmlhead.links" skinname="agCommon">
         <viewlet name="agcommon.links.RSS" />
+        <viewlet name="agcommon.links.site_rss" insert-after="agcommon.links.RSS" />
     </order>
 
     <order manager="plone.portaltop" skinname="agCommon">
