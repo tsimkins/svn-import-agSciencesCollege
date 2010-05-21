@@ -7,10 +7,6 @@
 
 /* This is site-level customizations in CSS */
 
-#background-stripe-one, 
-#background-stripe-two, 
-#background-stripe-three, 
-#background-stripe-four,
 #logo-college, #logo-psu,
 #goSearch, #addthis {
     display: none;

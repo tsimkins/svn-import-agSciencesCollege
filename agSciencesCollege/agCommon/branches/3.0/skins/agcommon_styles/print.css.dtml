@@ -187,12 +187,6 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 	margin: 0.5em 0em;
 }
 
-/* Background Stripes */
-#background-stripe-one, #background-stripe-two,
-#background-stripe-three, #background-stripe-four {
-	display: none;
-}
-
 .pullquote {
 	display: none;
 }

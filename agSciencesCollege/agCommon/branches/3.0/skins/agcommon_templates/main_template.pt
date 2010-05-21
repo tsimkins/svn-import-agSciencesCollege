@@ -76,11 +76,6 @@
                     custom_class python:custom_class and ' '.join(['custom-%s' % str(x) for x in custom_class.split()]) or ''"
         tal:attributes="class string:${body_class} ${custom_class};
                         dir python: isRTL and 'rtl' or 'ltr'">
-
-    <div id="background-stripe-one"><!-- --></div>
-    <div id="background-stripe-two"><!-- --></div>
-    <div id="background-stripe-three"><!-- --></div>
-    <div id="background-stripe-four"><!-- --></div>
     
     <div id="visual-portal-wrapper">
 

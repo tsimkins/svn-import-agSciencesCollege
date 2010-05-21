@@ -5,57 +5,14 @@
 
 /* YOUR CSS RULES START HERE */
 
-/* = Body =================================================== */
+/* = body =================================================== */
 
 body {
     background-color: &dtml-bodyBackgroundColor;;
+    background-image:url('&dtml-portal_url;/bodyBackground.png');
     color: #000000;
-}
-
-
-/* = background-stripe-X ==================================== */
-
-#background-stripe-one, 
-#background-stripe-two, 
-#background-stripe-three, 
-#background-stripe-four {
-    margin:0;
-    padding:0;
-    border:0;
-    position:absolute;
-    width: 100%;
-    z-index: -1;
-    left: 0;
-}
-
-#background-stripe-one {
-    background-color: &dtml-backgroundStripeOneColor;;
-    top: 0;
-    height: 98px;
-    z-index: -1;
-}
-
-#background-stripe-two {
-    background-color: &dtml-backgroundStripeTwoColor;;
-    top: 65px;
-    height: 10px;
-}
-
-#background-stripe-three {
-    background-color: &dtml-backgroundStripeThreeColor;;
-    top: 75px;
-    height: 29px;
-}
-
-#background-stripe-four {
-    background-color: transparent;
-    top: 104px;
-    height: 900px;
-    background-color: &dtml-backgroundStripeTwoColor;;
-    background-image:url('&dtml-portal_url;/gradientBackground.png?startColor=<dtml-var expr="backgroundStripeTwoColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&height=600');
     background-repeat: repeat-x;
-    background-position: left 300px;
-    opacity: 1;
+    background-position: left top;
 }
 
 
