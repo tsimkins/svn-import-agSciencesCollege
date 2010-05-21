@@ -295,7 +295,10 @@ def configureScripts(context):
             'src' : 'gradientBackground',
             'target' : 'topnav-alternate-gradientBackground.png'
         },
-
+        {
+            'src' : 'bodyBackground',
+            'target' : 'bodyBackground.png'
+        },
     ]
     
     try:
@@ -468,6 +471,9 @@ def configureKupu(context):
     # This puts the "images" folder
 
     site = context.getSite()
+
+    """
+    # No more Kupu. TODO: TinyMCE functionality.
     sm = getSiteManager(site)
     kupu = getToolByName(sm, 'kupu_library_tool')
     
@@ -482,7 +488,8 @@ def configureKupu(context):
         kupu.addLibrary('images', 'string:Images', 'string:${portal_url}/images', 
             'string:${portal_url}/images/kupucollection.xml', 'string:${portal_url}/image_icon.gif')
         LOG('agCommonPolicy.configureKupu', INFO, "Adding 'images' Kupu library")
-        
+    """
+      
     # Set up the nasty/stripped/custom tags 
     # http://plone.org/documentation/how-to/how-to-embed-content-flickr-youtube-or-myspace
     """
@@ -530,6 +537,8 @@ def configureKupu(context):
     safe_html.set_parameters(**kwargs)
     safe_html.reload()
 
+    """
+    # No more Kupu. Does TinyMCE need this?
     # True up the Kupu side of things
     stripped_tags = kupu.get_stripped_tags()
     stripped_tags = list(set(stripped_tags) - set(['object', 'param']))
@@ -543,7 +552,7 @@ def configureKupu(context):
             f["visible"] = True
     
     kupu.set_toolbar_filters(filteroptions,kupu._global_toolbar_filter)
-
+    """
     LOG('agCommonPolicy.configureKupu', INFO, "Enabled embedding YouTube/etc. content")
 
 def setupHandlersWrapper(context):
