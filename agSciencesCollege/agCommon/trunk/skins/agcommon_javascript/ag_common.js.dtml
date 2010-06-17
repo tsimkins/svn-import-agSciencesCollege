@@ -140,6 +140,20 @@ function searchOnSubmit()
 registerPloneFunction(setSearch);
 registerPloneFunction(resizeColumns);
 
+/* Show mobile version link for mobile browsers */
+
+jq(document).ready( function () {
+    var mobileRegex = /(iphone|ipod|android|blackberry|symbian|midp|windows ce|treo|webos|mobile safari)/;
+    var userAgent = navigator.userAgent.toLowerCase();
+
+    if (mobileRegex.test(userAgent))
+    {
+        jq("#visual-portal-wrapper").prepend(jq('<div id="mobile-version"><a href="m">Mobile Version</a></div>'));
+    }
+
+    
+} );
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */

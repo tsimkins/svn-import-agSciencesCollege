@@ -132,6 +132,8 @@ class AddThisViewlet(ViewletBase):
     def update(self):
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
+        syntool = getToolByName(self.context, 'portal_syndication')
+        self.isSyndicationAllowed = syntool.isSyndicationAllowed(self.context)
         self.anonymous = self.portal_state.anonymous()
 
 

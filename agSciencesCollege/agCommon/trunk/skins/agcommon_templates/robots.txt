@@ -8,6 +8,8 @@
 
 User-agent: *
 Disallow: /search
+Disallow: /m/
+Disallow: /nonmobile
 Crawl-delay: 5
 
 

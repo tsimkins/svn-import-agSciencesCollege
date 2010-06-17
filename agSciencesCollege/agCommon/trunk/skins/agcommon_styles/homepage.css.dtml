@@ -141,7 +141,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletItem li {
-	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 5px;
+	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 3px;
 	list-style-image: none;
 	list-style-type: none;
 	margin: 2px 5px 5px;

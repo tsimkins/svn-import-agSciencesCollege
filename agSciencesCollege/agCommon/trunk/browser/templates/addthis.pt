@@ -15,12 +15,15 @@
 
 		<!-- AddThis Button BEGIN -->
 		<div class="addthis_toolbox addthis_default_style">
-		<a href="http://www.addthis.com/bookmark.php?v=250&amp;pub=agsciences" class="addthis_button_compact">Share</a>
-		<span class="addthis_separator">&nbsp;</span>
+
 		<a class="addthis_button_print"></a>
 		<a class="addthis_button_email"></a>
 		<a class="addthis_button_facebook"></a>
 		<a class="addthis_button_twitter"></a>
+		<a tal:condition="view/isSyndicationAllowed" 
+		   title="RSS Feed"
+		   tal:attributes="href string:RSS"><img width="16" height="16" alt="RSS Feed"
+		                                         tal:attributes="src string:${context/portal_url}/icons/rss.jpg" /></a>
 		</div>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=agsciences"></script>
 		
