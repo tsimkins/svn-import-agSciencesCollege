@@ -25,6 +25,8 @@ Disallow: /*?searchterm=*
 Disallow: /*image$
 Disallow: /*image_*
 Disallow: /*image_view_fullscreen$
+Disallow: /m/
+Disallow: /nonmobile
 
 # Apparently Yahoo supports wildcards, too?
 # http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
@@ -36,10 +38,14 @@ Disallow: /*?searchterm=*
 Disallow: /*image$
 Disallow: /*image_*
 Disallow: /*image_view_fullscreen$
+Disallow: /m/
+Disallow: /nonmobile
 
 # Penn State's Google Search Appliance
 User-Agent: PennStateSpider
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
 Disallow: /*?searchterm=*
+Disallow: /m/
+Disallow: /nonmobile
 
