@@ -778,6 +778,10 @@ body {
     color: #3366CC;
 }
 
+#region-content h1.noBreadcrumbs { 
+    margin-top: 0.75em;
+}
+
 #region-content h1, 
 #region-content h1.documentFirstHeading {
     color: &dtml-documentTitleColor;;
