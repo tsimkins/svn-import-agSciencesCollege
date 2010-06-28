@@ -12,13 +12,11 @@
 
     <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-    <h1 class="documentFirstHeading" tal:content="structure view/title">
+    <h1 class="noBreadcrumbs documentFirstHeading" tal:content="structure view/title">
         Feed Title
     </h1>
 
     <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-    <div tal:replace="structure provider:plone.abovecontentbody" />
 
     <tal:entry
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
@@ -36,7 +34,7 @@
             <span tal:condition="exists:entry/author"
                   tal:omit-tag=""
                   i18n:translate="feed_entry_author">
-                  By <span i18n:name="author" tal:replace="entry/author">someone.</span><tal:block condition="exists:entry/feed/title"> from <span i18n:name="feed_title" tal:replace="structure entry/feed/title"> feed title</span></tal:block>.
+                  <tal:block condition="exists:entry/feed/title"> From <span i18n:name="feed_title" tal:replace="structure entry/feed/title"> feed title</span></tal:block>.
             </span>
             <span tal:condition="python:'author' not in entry and 'title' in entry['feed']"
                   tal:omit-tag=""
