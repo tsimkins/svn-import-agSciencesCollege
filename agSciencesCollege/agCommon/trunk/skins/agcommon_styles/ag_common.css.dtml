@@ -278,6 +278,12 @@ body {
     margin: 0;
 }
 
+#portal-column-one .portletStaticText img {
+    width: 166px;
+    display: block;
+    margin-top: 15px;
+}
+
 #portal-column-one .portletNavigationTree .portletHeader {
     display: none;
 }
