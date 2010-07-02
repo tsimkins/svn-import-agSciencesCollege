@@ -64,10 +64,12 @@
 		image_field  python:obj_item.getField('image', None);
 		image_size python:image_field and image_field.get_size(obj_item) or 0;
 		image_content_type python:image_field and image_field.getContentType(obj_item) or None;
+		utm python:'utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss'
 		">
 		<title tal:content="obj_item/pretty_title_or_id">Title</title>
-		<link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
-		<link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
+		<link tal:condition="python:obj_item_type != 'Link'" tal:content="string:${obj_item/Identifier}?${utm}">Identifier</link>
+		<link tal:condition="python:obj_item_type == 'Link' and obj_item.getRemoteUrl().count('?')" tal:content="string:${obj_item/getRemoteUrl}&amp;${utm}">Link</link>
+		<link tal:condition="python:obj_item_type == 'Link' and not obj_item.getRemoteUrl().count('?')" tal:content="string:${obj_item/getRemoteUrl}?${utm}">Link</link>
 		<description tal:content="obj_item/Description">Description</description>
 		<dc:publisher tal:content="obj_item/Publisher">Publisher</dc:publisher>
 		<dc:creator tal:content="obj_item/Creator">Creator</dc:creator>

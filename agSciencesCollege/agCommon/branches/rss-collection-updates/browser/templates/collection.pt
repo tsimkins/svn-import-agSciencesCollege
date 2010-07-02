@@ -18,17 +18,29 @@
         tal:define="oddrow repeat/obj/odd;
                     item_icon python:getIcon(obj);
                     item_type obj/portal_type;
-					item_start obj/start/ISO|obj/StartDate|nothing;"
+					item_start obj/start/ISO|obj/StartDate|nothing;
+					site_properties context/portal_properties/site_properties|nothing;
+					use_view_action site_properties/typesUseViewActionInListings|python:()"
         tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+
         <a href="#"
            class="tile"
-           tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or obj.getURL();
+           tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type in use_view_action and obj.getURL()+'/view') or obj.getURL();
                            title obj/Description">
             <img tal:replace="structure item_icon/html_tag" />
             <span tal:replace="obj/pretty_title_or_id">
              Title
             </span>
-
+            <tal:file tal:condition="python:item_type == 'File'"
+                tal:define="item obj/getObject;
+                            size item/get_size|nothing">
+    
+                <span class="discreet">
+                    (<span tal:replace="python:item.lookupMime(item.getContentType())">ContentType</span>,
+                    <tal:size content="python:'%sKb' % (size / 1024)">0Kb</tal:size>)
+                </span>
+    
+            </tal:file>
 			<tal:block tal:condition="python:item_type != 'Event'">
             <span class="portletItemDetails"
                   tal:condition="view/data/show_dates"
@@ -46,8 +58,9 @@
 			</tal:block>
 
         </a>
-    </dd>
-    </tal:events>
+
+</dd>
+</tal:events>
     
     <dd class="portletFooter" tal:condition="view/data/show_more">
         <span class="portletBottomLeft"></span>
