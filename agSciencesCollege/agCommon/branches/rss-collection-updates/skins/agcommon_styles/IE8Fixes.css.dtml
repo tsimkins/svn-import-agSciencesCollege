@@ -1,0 +1,7 @@
+/*
+** Stylesheet with Internet Explorer 8.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+/* </dtml-with> */

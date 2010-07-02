@@ -1,0 +1,59 @@
+<div id="portal-breadcrumbs"
+	 i18n:domain="plone"
+	 tal:condition="not:view/hide_breadcrumbs"
+	 >
+
+    <tal:agsci tal:condition="python:view.site != 'agsci.psu.edu'">
+	<a href="http://agsci.psu.edu">AgSci</a>
+
+	<span class="breadcrumbSeparator">
+		&raquo;
+	</span>
+	</tal:agsci>
+
+	<tal:overrideBreadcrumb tal:condition="context/custom_parent_url|nothing">
+
+		<a tal:attributes="href context/custom_parent_url" tal:content="context/custom_parent_breadcrumb">[Custom Parent Title]</a>
+
+		<span class="breadcrumbSeparator">
+			&raquo;
+		</span>
+
+	</tal:overrideBreadcrumb>
+
+	<tal:overrideBreadcrumb tal:condition="context/custom_breadcrumb|nothing">
+
+		<a tal:attributes="href view/navigation_root_url" tal:content="context/custom_breadcrumb">[Title]</a>
+
+	</tal:overrideBreadcrumb>
+
+	<tal:standardBreadcrumb tal:condition="not:context/custom_breadcrumb|nothing">
+
+		<a tal:attributes="href view/navigation_root_url" 
+tal:content="context/@@plone_portal_state/portal_title">[Title]</a>
+
+	</tal:standardBreadcrumb>
+
+	<span tal:condition="view/breadcrumbs" class="breadcrumbSeparator">
+		&raquo;
+	</span>
+
+	<span tal:repeat="crumb view/breadcrumbs"
+		  tal:attributes="dir python:view.is_rtl and 'rtl' or 'ltr'">
+		<tal:last tal:define="is_last repeat/crumb/end">
+			<a href="#"
+			   tal:omit-tag="not: crumb/absolute_url"
+			   tal:condition="python:not is_last"
+			   tal:attributes="href crumb/absolute_url"
+			   tal:content="crumb/Title">
+				crumb
+			</a>
+			<span class="breadcrumbSeparator" tal:condition="not: is_last">
+		&raquo;
+			</span>
+			<span tal:condition="is_last"
+				  tal:content="crumb/Title">crumb</span>
+		 </tal:last>
+	</span>
+
+</div>

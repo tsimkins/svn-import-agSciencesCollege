@@ -1,0 +1,89 @@
+<div id="portal-searchbox"
+     i18n:domain="plone">
+    <form id="plonesearchform" 
+          name="searchform"
+          action="search"
+          tal:attributes="action string:${view/site_url}/search">
+
+        <label for="SearchableText" class="hiddenStructure"
+                    i18n:translate="text_search">Search Site</label>
+
+        <div class="LSBox">
+        <input name="SearchableText"
+               id="searchBox"
+               type="text"
+               size="18"
+               value=""
+               title="Search..."
+               accesskey="4"
+               i18n:attributes="title title_search_site;"
+               tal:attributes="value request/SearchableText|nothing"
+               class="inputLabel" 
+               autocomplete="off"/>
+
+		<select id = "searchSource"
+		      tal:define="agsciHomepage python: view.site_url.endswith('agsci.psu.edu')">
+			<option value = "section">Search This Section</option>
+			<option value = "site" tal:attributes="selected python:agsciHomepage and '' or 'selected'">Search Site</option>
+			<option value = "college" tal:attributes="selected python:agsciHomepage and 'selected' or ''">Search College</option>
+			<option value = "psu">Search Penn State</option>
+		</select>
+
+        <input class="searchButton"
+               type="image"
+               tal:attributes="src string:${view/site_url}/go.gif"
+               id = "goSearch"
+               value = "Go"
+		/>
+    
+        <div class="searchSection">
+            <input id="searchbox_currentfolder_only" 
+                   class="noborder"
+                   type="checkbox" 
+                   name="path" 
+                   tal:attributes="value view/folder_path"
+                   />
+            <label for="searchbox_currentfolder_only" 
+                   i18n:translate="label_searchbox_currentfolder_only"
+                   style="cursor: pointer">
+                only in current section
+            </label>
+        </div>
+
+        <div class="LSResult" id="LSResult" style=""><div class="LSShadow" id="LSShadow"></div></div>
+        </div>
+    </form>
+
+    <div id="portal-advanced-search"
+         class="hiddenStructure">
+        <a href="#"
+           tal:attributes="href string:${view/site_url}/search_form"
+           i18n:translate="label_advanced_search"
+           accesskey="5">
+            Advanced Search&hellip;
+        </a>
+    </div>
+
+	<!--
+		These are the alternate search forms.
+	-->
+
+	<div style = "display: none">
+		<form id = "GoogleSearch" action="http://search-results.aset.psu.edu/search" method="get" target="_blank">
+			<input type="hidden" value="PennState" name="client"/>
+			<input type="hidden" id="searchbox" name="q"/>
+			<input type="hidden" value="PennState" name="proxystylesheet"/>
+			<input type="hidden" value="xml_no_dtd" name="output"/>
+			<input type="hidden" value="PennState" name="site"/>
+			<input type="hidden" name="site" value=""/>
+		</form>
+        <form action="http://www.google.com/cse" id="GoogleCustomSearch" target="_blank">
+          <div>
+            <input type="hidden" name="cx" value="009987215249396987893:cmobqlykeyk" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="hidden" name="q" size="31" />
+          </div>
+        </form>
+
+	</div>
+</div>

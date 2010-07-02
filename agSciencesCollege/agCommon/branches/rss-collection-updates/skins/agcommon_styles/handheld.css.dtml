@@ -1,0 +1,31 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* This is site-level customizations in CSS */
+
+#background-stripe-one, 
+#background-stripe-two, 
+#background-stripe-three, 
+#background-stripe-four,
+#logo-college, #logo-psu,
+#goSearch, #addthis {
+    display: none;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+body {
+    background: #FFFFFF;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+
