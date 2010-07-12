@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="agsci.subsite">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <!-- include our sub-packages that contain their own configure.zcml files -->
+    <include package=".content" />
+
+    <subscriber for="agsci.subsite.content.interfaces.ISubsite
+          Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.subsite.events.subsite_setup.onSubsiteCreation" 
+        />
+
+    <!-- register the Generic Setup extension profile -->
+    <genericsetup:registerProfile
+        name="default"
+        title="agsci.subsite"
+        directory="profiles/default"
+        description="Extension profile for agsci.subsite"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    <!-- Register an event handler for when a Subsite is created -->
+
+</configure>
