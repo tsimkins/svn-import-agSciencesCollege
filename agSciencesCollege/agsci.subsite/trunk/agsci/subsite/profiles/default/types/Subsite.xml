@@ -20,6 +20,7 @@
 	<element value="PhotoFolder"/>
 	<element value="HomePage"/>
 	<element value="File"/>
+	<element value="Blog"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">folder_summary_view</property>

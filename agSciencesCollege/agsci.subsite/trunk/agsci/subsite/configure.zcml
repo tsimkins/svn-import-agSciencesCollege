@@ -14,12 +14,12 @@
     <!-- Register an event handler for when a Subsite is created -->
     <subscriber for="agsci.subsite.content.interfaces.ISubsite
           Products.Archetypes.interfaces.IObjectInitializedEvent"
-        handler="agsci.subsite.events.subsite_setup.onSubsiteCreation" 
+        handler="agsci.subsite.events.onSubsiteCreation" 
         />
 
     <subscriber for="agsci.subsite.content.interfaces.IBlog
           Products.Archetypes.interfaces.IObjectInitializedEvent"
-        handler="agsci.subsite.events.blog_setup.onBlogCreation" 
+        handler="agsci.subsite.events.onBlogCreation" 
         />
 
     <!-- register the Generic Setup extension profile -->
