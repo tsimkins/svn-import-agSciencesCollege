@@ -12,8 +12,9 @@ def initialize(context):
     """initialize product (called by zope)"""
 
     # import packages and types for registration
-
+    # I really don't think I have to do these imports.
     from content import Subsite
+    from content import Blog
 
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),

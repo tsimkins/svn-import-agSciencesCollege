@@ -5,4 +5,7 @@
  <object name="Subsite"
          meta_type="Factory-based Type Information with dynamic views"/>
 
+ <object name="Blog"
+         meta_type="Factory-based Type Information with dynamic views"/>
+
 </object>

@@ -45,10 +45,6 @@ def onSubsiteCreation(subsite, event):
 
     writeDebug('Beginning post create script.')
 
-    # Calculate dates
-    now = datetime.now()
-    current_year = now.year
-
     # Get URL tool
     urltool = getToolByName(subsite, 'portal_url')
     
@@ -58,104 +54,24 @@ def onSubsiteCreation(subsite, event):
 
     writeDebug('Creating news folder')
     
-    # Create News folder
+    # Create Blog 'news' folder
     if 'news' not in subsite.objectIds():
         subsite.invokeFactory(type_name='Folder', id='news', title='News')
-        obj = subsite['news']
-        obj.setConstrainTypesMode(1) # restrict what this folder can contain
-        obj.setImmediatelyAddableTypes([])
-        obj.setLocallyAllowedTypes(['Topic','Folder'])
-        obj.reindexObject()
-        
-        # Create year folders for the past year, and the next 10 years
-        archive_years = [str(x) for x in range(current_year-1,current_year+11)]
+        # All the other goodies get taken care of through the 'Blog' content type
 
-        for year in archive_years:
-            if year not in obj.objectIds():
-                writeDebug('Creating archive year folder %s' % year)
-                obj.invokeFactory(type_name='Folder', id=year, title=year)
-                archive_folder = obj[year]
-                archive_folder.setLayout('news_listing')
-                archive_folder.setExcludeFromNav(True)
-                archive_folder.setConstrainTypesMode(1) # restrict what this folder can contain
-                archive_folder.setImmediatelyAddableTypes(['Link','News Item'])
-                archive_folder.setLocallyAllowedTypes(['Link','News Item'])
-                archive_folder.reindexObject()
-
-        # Create sample news item
-        writeDebug('Creating sample news item')
-        if str(current_year) in obj.objectIds():
-            current_year_folder = obj[str(current_year)]
-            current_year_folder.invokeFactory(type_name='News Item', id='sample', title='Sample News Item', description='This is a sample News Item', text='<p>You may delete this item</p>', effective_date="%s-01-01" % str(current_year))
-        else:
-            writeDebug('WTF? %s' % str(obj.objectIds()))            
-
-        writeDebug('Creating latest news collection')
-
-        # create a smartfolder for latest news items, and set it as the default page
-        if 'latest' not in obj.objectIds():
-            obj.invokeFactory(type_name='Topic', id='latest', title='Latest News')
-            obj.setDefaultPage('latest')
-            
-            smart_obj = obj['latest']
-        
-            # Set the criteria for the folder
-            type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
-            
-            type_crit.setValue(['News Item', 'Link']) # only our specified types
-            
-            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
-            path_crit.setValue(obj.UID()) # Only list news in the news folder
-            path_crit.setRecurse(True)
-
-            sort_crit = smart_obj.addCriterion('effective','ATSortCriterion')
-            sort_crit.setReversed(True)
-
-        writeDebug('Creating years collection')
-
-        # create a smartfolder for archived news by year inside the folder
-        if 'years' not in obj.objectIds():
-            obj.invokeFactory(type_name='Topic', id='years', title='Archive')
-            
-            smart_obj = obj['years']
-            smart_obj.setExcludeFromNav(True)
-            smart_obj.reindexObject()
-        
-            # Set the criteria for the folder
-            type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
-            
-            type_crit.setValue(['Folder']) # only our specified event types
-            
-            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
-            path_crit.setValue(obj.UID()) # Only list events in the news folder
-            path_crit.setRecurse(True)
-
-            path_crit = smart_obj.addCriterion('getId','ATListCriterion')
-            path_crit.setValue(archive_years)
-        
-            sort_crit = smart_obj.addCriterion('getId','ATSortCriterion')
-            sort_crit.setReversed(True)
-
-
-        # Add News Archive Portlet to right column
-        writeDebug('Adding News Archive Portlet to right column')
-        news_RightColumn = getPortletAssignmentMapping(obj, 'plone.rightcolumn')
-        archiveCollectionPortlet = collection.Assignment(header=u"Archive",
-                                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.years)),
-                                        random=False,
-                                        show_more=False,
-                                        show_dates=False)
-
-        saveAssignment(news_RightColumn, archiveCollectionPortlet)
-
-
+        # Let's put a spotlight subfolder, etc. within the news folder from here.
+        # Not all blogs need a spotlight folder, and we tie the spotlight tag to the
+        # name of the subsite.
+    
         writeDebug('Creating spotlight folder')
-
+    
+        news = subsite['news']
+    
         # create a folder for spotlight items inside the news folder
-        if 'spotlight' not in obj.objectIds():
-            obj.invokeFactory(type_name='Folder', id='spotlight', title='Spotlight')
+        if 'spotlight' not in news.objectIds():
+            news.invokeFactory(type_name='Folder', id='spotlight', title='Spotlight')
             
-            spotlight_obj = obj['spotlight']
+            spotlight_obj = news['spotlight']
             spotlight_obj.setConstrainTypesMode(1) # restrict what this folder can contain
             spotlight_obj.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
             spotlight_obj.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic'])
@@ -172,7 +88,7 @@ def onSubsiteCreation(subsite, event):
             path_crit = smart_obj.addCriterion('path','ATPathCriterion')
             path_crit.setValue(subsite.UID()) # Only list items in the current subsite
             path_crit.setRecurse(True)
-
+    
             # Set the criteria for the folder
             tag_crit = smart_obj.addCriterion('Subject','ATSelectionCriterion')
             tag_crit.setValue("spotlight-%s" % subsite.id) # Only list items in the current subsite
@@ -183,7 +99,8 @@ def onSubsiteCreation(subsite, event):
             # Create sample spotlight item
             writeDebug('Creating sample spotlight item')
             spotlight_obj.invokeFactory(type_name='Document', id='sample', title='Sample Spotlight Item', description='This is a sample Spotlight Item', text='<p>You may delete this item</p>', subject=["spotlight-%s" % subsite.id])
-
+            
+    
     writeDebug('Creating events folder')      
 
     # Create Events folder

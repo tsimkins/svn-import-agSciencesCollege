@@ -10,9 +10,16 @@
     <!-- include our sub-packages that contain their own configure.zcml files -->
     <include package=".content" />
 
+
+    <!-- Register an event handler for when a Subsite is created -->
     <subscriber for="agsci.subsite.content.interfaces.ISubsite
           Products.Archetypes.interfaces.IObjectInitializedEvent"
         handler="agsci.subsite.events.subsite_setup.onSubsiteCreation" 
+        />
+
+    <subscriber for="agsci.subsite.content.interfaces.IBlog
+          Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.subsite.events.blog_setup.onBlogCreation" 
         />
 
     <!-- register the Generic Setup extension profile -->
@@ -23,6 +30,6 @@
         description="Extension profile for agsci.subsite"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-    <!-- Register an event handler for when a Subsite is created -->
+
 
 </configure>
