@@ -47,6 +47,10 @@ def onSubsiteCreation(subsite, event):
 
     # Get URL tool
     urltool = getToolByName(subsite, 'portal_url')
+
+    # Remove subsite from nav
+    subsite.setExcludeFromNav(True)
+    subsite.reindexObject()
     
     # Remove top menu
     writeDebug('Removing top menu')
@@ -65,8 +69,8 @@ def onSubsiteCreation(subsite, event):
         # But apparently not automatically.  Let's force it.
         
         news = subsite['news']
-        
         onBlogCreation(news, event)
+        news.unmarkCreationFlag() 
 
         # Let's put a spotlight subfolder, etc. within the news folder from here.
         # Not all blogs need a spotlight folder, and we tie the spotlight tag to the
@@ -83,12 +87,13 @@ def onSubsiteCreation(subsite, event):
             spotlight_obj.setConstrainTypesMode(1) # restrict what this folder can contain
             spotlight_obj.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
             spotlight_obj.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic'])
-            spotlight_obj.reindexObject()
+            spotlight_obj.unmarkCreationFlag()
             
             writeDebug('Creating recent spotlight topic')
             spotlight_obj.invokeFactory(type_name='Topic', id='recent', title='Spotlight')
             
             smart_obj = spotlight_obj['recent']
+            smart_obj.unmarkCreationFlag()
             
             spotlight_obj.setDefaultPage('recent')
         
@@ -106,7 +111,12 @@ def onSubsiteCreation(subsite, event):
             
             # Create sample spotlight item
             writeDebug('Creating sample spotlight item')
-            spotlight_obj.invokeFactory(type_name='Document', id='sample', title='Sample Spotlight Item', description='This is a sample Spotlight Item', text='<p>You may delete this item</p>', subject=["spotlight-%s" % subsite.id])
+            
+            if 'sample' not in spotlight_obj.objectIds():
+                spotlight_obj.invokeFactory(type_name='Document', id='sample',
+                                            title='Sample Spotlight Item', description='This is a sample Spotlight Item', 
+                                            text='<p>You may delete this item</p>', subject=["spotlight-%s" % subsite.id])
+                spotlight_obj['sample'].unmarkCreationFlag()
             
     
     writeDebug('Creating events folder')      
@@ -118,13 +128,15 @@ def onSubsiteCreation(subsite, event):
         obj.setConstrainTypesMode(1) # restrict what this folder can contain
         obj.setImmediatelyAddableTypes(['Event'])
         obj.setLocallyAllowedTypes(['Event','Topic'])
-        obj.reindexObject()
+        obj.unmarkCreationFlag()
 
         # Create sample event
         obj.invokeFactory(type_name='Event', id='sample', title='Sample Event', 
                           description='This is a sample Event Item',  start_date='2020-01-01', 
                           end_date='2020-01-01', start_time='13:00', stop_time='14:30', 
                           event_url='http://agsci.psu.edu', location='Anywhere')
+
+        obj['sample'].unmarkCreationFlag()
 
         writeDebug('Creating upcoming collection')      
         
@@ -134,8 +146,8 @@ def onSubsiteCreation(subsite, event):
             obj.setDefaultPage('upcoming')
             
             smart_obj = obj['upcoming']
-            smart_obj.reindexObject()
-        
+            smart_obj.unmarkCreationFlag()
+                    
             # Set the criteria for the folder
             type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
             
@@ -196,6 +208,7 @@ def onSubsiteCreation(subsite, event):
         subsite.invokeFactory(type_name='HomePage',id='front-page',title=subsite_title, text='')
         subsite.setDefaultPage('front-page')
         front_page=subsite['front-page']
+        front_page.unmarkCreationFlag()
         
         # Set portlets for homepage
         homepage_centerColumn = getPortletAssignmentMapping(front_page, 'agcommon.centercolumn')
@@ -284,8 +297,9 @@ def onBlogCreation(blog, event):
             archive_folder.setImmediatelyAddableTypes(['Link','News Item'])
             archive_folder.setLocallyAllowedTypes(['Link','News Item'])
             archive_folder.setEffectiveDate("%s-01-01" % year)
+            archive_folder.unmarkCreationFlag()
             archive_folder.reindexObject()
-
+            
     # Create sample news item and set publishing date to 01-01-YYYY
     writeDebug('Creating sample news item')
     current_year_folder = blog[str(current_year)]
@@ -294,8 +308,7 @@ def onBlogCreation(blog, event):
                                         text='<p>You may delete this item</p>')
     sample = current_year_folder['sample']
     sample.setEffectiveDate("%s-01-01" % str(current_year))
-    sample.reindexObject()
-        
+    sample.unmarkCreationFlag()        
         
 
     writeDebug('Creating latest news collection')
@@ -306,6 +319,7 @@ def onBlogCreation(blog, event):
         blog.setDefaultPage('latest')
         
         smart_obj = blog['latest']
+        smart_obj.unmarkCreationFlag()
     
         # Set the criteria for the folder
         type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
@@ -327,6 +341,7 @@ def onBlogCreation(blog, event):
         
         smart_obj = blog['years']
         smart_obj.setExcludeFromNav(True)
+        smart_obj.unmarkCreationFlag()
         smart_obj.reindexObject()
     
         # Set the criteria for the folder
@@ -363,4 +378,61 @@ def onBlogCreation(blog, event):
     #pdb.set_trace() 
     return True
     
+# What we want to happen when we create a section
+def onSectionCreation(section, event):
+
+    writeDebug('Beginning post create script.')
+
+    # Remove from left nav
+    section.setLayout('folder_listing')
+    section.setExcludeFromNav(True)
+    section.reindexObject()
+    
+    # Get URL tool
+    urltool = getToolByName(section, 'portal_url')
+    
+    # Set portlets
+    # Register some portlets for this section's context.
+    # Copied mostly from plone.portlets' README doctests.
+
+    section_LeftColumn = getPortletAssignmentMapping(section, 'plone.leftcolumn')
+    section_RightColumn = getPortletAssignmentMapping(section, 'plone.rightcolumn')
+    
+    # Block the parent portlets
+    writeDebug('Blocking parent portlets')
+
+    writeDebug('Blocking plone.leftcolumn parent portlets')    
+    try:
+        section_LeftColumnManager = getLocalPortletAssignmentManager(section, 'plone.leftcolumn')
+        section_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+    except ComponentLookupError:
+        writeDebug('ERROR blocking plone.leftcolumn parent portlets')    
+
+    writeDebug('Blocking plone.rightcolumn parent portlets')    
+    try:
+        section_RightColumnManager = getLocalPortletAssignmentManager(section, 'plone.rightcolumn')
+        section_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+    except ComponentLookupError:
+        writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
+        pdb.set_trace() 
+
+    # Set left navigation portlet
+    left_navigation = navigation.Assignment(name=u"",
+                                            root='/%s' % '/'.join(urltool.getRelativeContentPath(section)),
+                                            currentFolderOnly = False,
+                                            includeTop = True,
+                                            topLevel = 0,
+                                            bottomLevel = 3)
+
+    section_LeftColumn['navigation'] = left_navigation 
+    
+    #Adding sample page
+    
+    if 'sample' not in section.getObjectIds():
+        section.invokeFactory(type_name='Document', id='sample', title='Sample Page', description='This is a sample Page', text='<p>You may delete this item</p>')
+        section['sample'].unmarkCreationFlag()
+    
+    writeDebug('Finished creating section')     
+    #pdb.set_trace() 
+    return True
 

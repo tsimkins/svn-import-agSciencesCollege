@@ -7,5 +7,6 @@ PROJECTNAME = "agsci.subsite"
 
 ADD_PERMISSIONS = {
     "Subsite" : "Subsite: Add Subsite",
+    "Section" : "Section: Add Section",
     "Blog" : "Blog: Add Blog",
     }

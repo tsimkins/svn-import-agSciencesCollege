@@ -5,6 +5,10 @@ __docformat__ = 'plaintext'
 
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
+from Products.CMFCore import DirectoryView
+
+# Register our skins directory - this makes it available via portal_skins.
+DirectoryView.registerDirectory('skins', globals())
 
 from agsci.subsite.config import *
 
@@ -14,6 +18,7 @@ def initialize(context):
     # import packages and types for registration
     # I really don't think I have to do these imports.
     from content import Subsite
+    from content import Section
     from content import Blog
 
     content_types, constructors, ftis = atapi.process_types(

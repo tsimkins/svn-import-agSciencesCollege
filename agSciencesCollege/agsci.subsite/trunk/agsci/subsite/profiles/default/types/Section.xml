@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<object name="Subsite"
+<object name="Section"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
    
- <property name="title">Subsite</property>
- <property name="description">A subsite with the standard news/events/etc.</property>
- <property name="content_icon">subsite.png</property>
- <property name="content_meta_type">Subsite</property>
+ <property name="title">Section</property>
+ <property name="description">A section of a subsite</property>
+ <property name="content_icon">section.png</property>
+ <property name="content_meta_type">Section</property>
  <property name="product">agsci.subsite</property>
- <property name="factory">addSubsite</property>
+ <property name="factory">addSection</property>
  <property name="immediate_view">folder_summary_view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
@@ -20,8 +20,6 @@
 	<element value="PhotoFolder"/>
 	<element value="HomePage"/>
 	<element value="File"/>
-	<element value="Blog"/>
-	<element value="Section"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">folder_summary_view</property>
