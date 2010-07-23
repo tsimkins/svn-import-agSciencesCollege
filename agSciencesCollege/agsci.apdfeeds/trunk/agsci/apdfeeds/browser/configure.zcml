@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="agsci.apdfeeds">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="twitter_feed"
+      class=".twitter_feed.FeedDisplay"
+      template="templates/feed_display.pt"
+      allowed_interface=".interfaces.IFeedDisplay"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="event_feed"
+      class=".event_feed.FeedDisplay"
+      template="templates/feed_display.pt"
+      allowed_interface=".interfaces.IFeedDisplay"
+      permission="zope.Public"
+      />
+
+</configure>

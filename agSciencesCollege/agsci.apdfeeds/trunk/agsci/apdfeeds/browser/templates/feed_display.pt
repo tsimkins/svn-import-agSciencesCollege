@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="agsci.apdfeeds">
+<head>
+    <style type="text/css">
+    
+        body {
+            background: #04193F;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            overflow: hidden;
+        }
+    
+        #results {
+            background: #FFFFFF;
+            list-style-type: none;
+            font-family: Verdana, Arial, Helvetica, Helv, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            border: 1px solid #666666;
+            -moz-border-radius-bottomleft: 10px;
+            -webkit-border-bottom-left-radius: 10px;
+            -moz-border-radius-bottomright: 10px;
+            -webkit-border-bottom-right-radius: 10px;
+        }
+        
+        #results li {
+            margin: 0;
+            padding: 10px;
+            border-top: 1px solid #CCCCCC;
+            font-size: 1.1em;
+        }
+
+        #results li:first-child {
+            border-top: none;
+        }
+
+        #results .avatar {
+            float: left;
+            height: 48px;
+            overflow: hidden;
+            width: 48px;
+        }
+        
+        #results li .msg {
+            margin: 0 0 2px 58px;
+        }
+
+        #results li.noavatar .msg {
+            margin: 0 0 2px 0px;
+        }
+
+        #results li .info {
+            margin: 0 0 0 58px;
+            color: #666666;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        #results li.noavatar .info {
+            margin: 0;
+        }
+        
+        #results .author {
+            font-weight: bold;
+            color: #333333;
+        }
+        
+        h1 {
+            background:#D8D8D8;
+            color: #00244F;
+            padding: 15px 15px 10px 15px;
+            margin: 0;
+            text-align: left;
+            border-width: 1px 1px 0 1px;
+            border-style: solid;
+            border-color: #666666;
+            -moz-border-radius-topleft: 10px;
+            -webkit-border-top-left-radius: 10px;
+            -moz-border-radius-topright: 10px;
+            -webkit-border-top-right-radius: 10px;
+        }
+        
+    </style>
+<body>
+    <tal:main-macro metal:define-macro="main"
+                    tal:define="items view/items">
+                    
+    <h1 tal:content="view/title" />
+    <ul id="results">
+        <li tal:repeat="item items" 
+            tal:define="author_image item/author_image|nothing" 
+            tal:attributes="class python:author_image != '' and '' or 'naoavatar'">
+            <div class="avatar" tal:condition="item/author_image|none">
+                <img tal:attributes="src item/author_image;
+                                     alt item/author" />
+            </div>
+            
+            <div class="msg">
+                <tal:author condition="item/author|none">
+                    <span class="author" tal:content="item/author" />:
+                </tal:author>
+                <span tal:replace="item/title" />
+            </div>
+            
+            <div class="info">
+                <span tal:replace="item/item_time" />
+            </div>
+            <div style="clear: both"><!-- --></div>
+        </li>
+    </ul>
+    </tal:main-macro>
+</body>
+</html>
