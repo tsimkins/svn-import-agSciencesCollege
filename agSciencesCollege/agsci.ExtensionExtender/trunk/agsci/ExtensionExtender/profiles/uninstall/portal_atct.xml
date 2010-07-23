@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<atcttool>
+
+ <topic_indexes>
+  <index
+    name="Counties"
+    description="Counties"
+    enabled="True"
+    friendlyName="Counties" remove="True" />
+    
+  <index
+    name="Programs"
+    description="Programs"
+    enabled="True"
+    friendlyName="Programs" remove="True" />
+    
+ </topic_indexes>
+
+ <topic_metadata>
+  <metadata
+    name="Counties"
+    description="Counties"
+    enabled="True"
+    friendlyName="Counties" remove="True" />
+
+  <metadata
+    name="Programs"
+    description="Programs"
+    enabled="True"
+    friendlyName="Programs" remove="True" />
+    
+ </topic_metadata> 
+ 
+</atcttool>

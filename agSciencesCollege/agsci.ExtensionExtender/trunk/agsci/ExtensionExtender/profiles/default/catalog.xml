@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool" purge="False">
+ <index name="Counties" meta_type="KeywordIndex">
+  <indexed_attr value="extension_counties"/>
+ </index>
+ <index name="Programs" meta_type="KeywordIndex">
+  <indexed_attr value="extension_programs"/>
+ </index>
+
+
+ <column value="extension_counties"/>
+ <column value="extension_programs"/>
+</object>
+

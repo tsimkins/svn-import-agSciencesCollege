@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="agsci.ExtensionExtender">
+
+    <include package="archetypes.schemaextender" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="ExtensionExtender"
+        directory="profiles/default"
+        description="Features that will only be used within the extension.psu.edu site"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+   <genericsetup:registerProfile
+      name="uninstall"
+      title="ExtensionExtender Uninstall Profile"
+      directory="profiles/uninstall"
+      description="Removes ExtensionExtender."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+
+    <adapter
+        factory=".extender.ExtensionExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.IExtensionExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.event.ATEvent"
+        interface=".interfaces.IExtensionExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.IExtensionExtender"
+    />
+    
+    <five:implements
+        class="Products.FacultyStaffDirectory.Person.Person"
+        interface=".interfaces.IExtensionExtender"
+    /> 
+
+<!-- IATDocument, IATLink, IATFile, IATImage -->
+</configure>
+

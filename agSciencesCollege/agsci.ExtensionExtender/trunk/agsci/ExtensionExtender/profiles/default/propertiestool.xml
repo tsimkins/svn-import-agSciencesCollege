@@ -1,0 +1,85 @@
+<object name="portal_properties" meta_type="Plone Properties Tool" purge="False">
+ <object name="extension_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="title">Extension Extender Properties</property>
+  <property name="allowed_types" type="lines">
+   <element value="Event"/>
+   <element value="Folder"/>
+   <element value="Document"/>
+   <element value="FSDPerson"/>
+  </property>
+  <property name="extension_counties" type="lines">
+    <element value="Adams" />
+    <element value="Allegheny" />
+    <element value="Armstrong" />
+    <element value="Beaver" />
+    <element value="Bedford" />
+    <element value="Berks" />
+    <element value="Blair" />
+    <element value="Bradford" />
+    <element value="Bucks" />
+    <element value="Butler" />
+    <element value="Cambria" />
+    <element value="Cameron" />
+    <element value="Carbon" />
+    <element value="Centre" />
+    <element value="Chester" />
+    <element value="Clarion" />
+    <element value="Clearfield" />
+    <element value="Clinton" />
+    <element value="Columbia" />
+    <element value="Crawford" />
+    <element value="Cumberland" />
+    <element value="Dauphin" />
+    <element value="Delaware" />
+    <element value="Elk" />
+    <element value="Erie" />
+    <element value="Fayette" />
+    <element value="Forest" />
+    <element value="Franklin" />
+    <element value="Fulton" />
+    <element value="Greene" />
+    <element value="Huntingdon" />
+    <element value="Indiana" />
+    <element value="Jefferson" />
+    <element value="Juniata" />
+    <element value="Lackawanna" />
+    <element value="Lancaster" />
+    <element value="Lawrence" />
+    <element value="Lebanon" />
+    <element value="Lehigh" />
+    <element value="Luzerne" />
+    <element value="Lycoming" />
+    <element value="McKean" />
+    <element value="Mercer" />
+    <element value="Mifflin" />
+    <element value="Monroe" />
+    <element value="Montgomery" />
+    <element value="Montour" />
+    <element value="Northampton" />
+    <element value="Northumberland" />
+    <element value="Perry" />
+    <element value="Philadelphia" />
+    <element value="Pike" />
+    <element value="Potter" />
+    <element value="Schuylkill" />
+    <element value="Snyder" />
+    <element value="Somerset" />
+    <element value="Sullivan" />
+    <element value="Susquehanna" />
+    <element value="Tioga" />
+    <element value="Union" />
+    <element value="Venango" />
+    <element value="Warren" />
+    <element value="Washington" />
+    <element value="Wayne" />
+    <element value="Westmoreland" />
+    <element value="Wyoming" />
+    <element value="York" />
+  </property>
+  <property name="extension_programs" type="lines">
+    <element value="Program 1" />
+    <element value="Program 2" />
+    <element value="Program 3" />
+  </property>
+ </object>
+</object>

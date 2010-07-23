@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<atcttool>
+
+ <topic_indexes>
+  <index
+    name="Counties"
+    description="Counties"
+    enabled="True"
+    friendlyName="Counties">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
+  
+  <index
+    name="Programs"
+    description="Programs"
+    enabled="True"
+    friendlyName="Programs">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
+  
+ </topic_indexes>
+
+ <topic_metadata>
+  <metadata
+    name="Counties"
+    description="Counties"
+    enabled="True"
+    friendlyName="Counties" />
+
+  <metadata
+    name="Programs"
+    description="Programs"
+    enabled="True"
+    friendlyName="Programs" />
+
+ </topic_metadata> 
+ 
+</atcttool>
