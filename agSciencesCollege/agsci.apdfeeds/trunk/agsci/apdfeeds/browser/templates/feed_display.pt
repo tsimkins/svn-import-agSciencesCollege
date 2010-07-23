@@ -2,6 +2,7 @@
       lang="en"
       i18n:domain="agsci.apdfeeds">
 <head>
+    <meta http-equiv="refresh" content="30">
     <style type="text/css">
     
         body {
@@ -87,12 +88,11 @@
 <body>
     <tal:main-macro metal:define-macro="main"
                     tal:define="items view/items">
-                    
     <h1 tal:content="view/title" />
     <ul id="results">
         <li tal:repeat="item items" 
             tal:define="author_image item/author_image|nothing" 
-            tal:attributes="class python:author_image != '' and '' or 'naoavatar'">
+            tal:attributes="class python:item.get('author_image') and 'has-avatar' or 'noavatar'">
             <div class="avatar" tal:condition="item/author_image|none">
                 <img tal:attributes="src item/author_image;
                                      alt item/author" />
