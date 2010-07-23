@@ -106,7 +106,24 @@
             </div>
             
             <div class="info">
-                <span tal:replace="item/item_time" />
+
+                <tal:timedisplay condition="not:item/item_start|nothing">
+                    <span tal:replace="item/item_time" />
+                </tal:timedisplay>
+
+                <tal:timedisplay tal:condition="item/item_start|nothing">
+                    <span tal:replace="python:item.get('item_start').strftime('%m/%d/%Y %I:%M %p')"  />
+
+                    <tal:location condition="item/location|nothing">
+                        at
+                        <span tal:replace="item/location" />
+                    </tal:location>
+
+                    (<span tal:replace="item/item_time" />)
+
+                </tal:timedisplay>
+                
+
             </div>
             <div style="clear: both"><!-- --></div>
         </li>

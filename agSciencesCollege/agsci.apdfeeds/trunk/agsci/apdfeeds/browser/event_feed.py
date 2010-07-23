@@ -24,12 +24,7 @@ class FeedDisplay(BrowserView):
         # Five minutes ago        
         from_date = DateTime() - (5.0/(24*60))
         
-        self.items = [{
-                'title' : 'test title',
-                'author' : None,
-                'item_time' : 'in 5 seconds',
-                'author_image' : None,
-            }]
+        self.items = []
         
         search_results = self.portal_catalog.searchResults({'portal_type' : 'Event', 
                                                             'start' : {'query' : (from_date), 'range' : 'min'},
@@ -49,6 +44,8 @@ class FeedDisplay(BrowserView):
                 'author' : None,
                 'item_time' : time_text,
                 'author_image' : None,
+                'location' : brain.location,
+                'item_start' : brain.start, 
             })
             
 
