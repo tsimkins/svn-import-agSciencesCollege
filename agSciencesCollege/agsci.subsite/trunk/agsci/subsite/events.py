@@ -8,8 +8,10 @@ import pdb
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, ILocalPortletAssignmentManager
 
 from plone.portlets.constants import CONTEXT_CATEGORY
+from collective.contentleadimage.config import IMAGE_FIELD_NAME
 
 from plone.app.portlets.portlets import navigation
+from plone.portlet.static import static
 from collective.portlet import feedmixer
 from plone.portlet.collection import collection
 
@@ -261,6 +263,227 @@ def onSubsiteCreation(subsite, event):
     #pdb.set_trace() 
     return True
 
+
+# What we want to happen when we create a subsite
+def onCountySiteCreation(subsite, event):
+
+    # Get URL tool
+    urltool = getToolByName(subsite, 'portal_url')
+
+    # Get county name
+    # We ass-u-me that the subsite id is the county name, lowercased.
+    county_name = str(subsite.id).title()
+
+    # Set county
+    subsite.extension_counties = (county_name,)
+    
+    # Get the office info for the office
+    office_info = {}
+
+    portal_skins = getToolByName(subsite, 'portal_skins')
+    
+    office_info_file = portal_skins.agsci_subsite['office_info.txt']
+    
+    lines = office_info_file._readFile(False).replace('\r', '\n').split('\n')
+    header = [x.lower() for x in lines.pop(0).split('\t')]
+    
+    for line in lines:
+        fields = line.split('\t')
+        
+        county = fields[0].lower()
+        
+        if county == county_name.lower():
+            for x in range(0, len(header)):
+                office_info[header[x]] = fields[x]
+
+    
+    # Programs Folder
+    writeDebug('Creating programs folder')
+    if not 'programs' in subsite.objectIds():
+        subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
+        programs = subsite['programs']
+        
+        # Make 4-H and Master Gardeners folders
+        programs.invokeFactory(type_name='Folder', id='4-h', title='4-H')
+        programs['4-h'].unmarkCreationFlag()
+        programs['4-h'].setExcludeFromNav(True)
+        programs['4-h'].reindexObject()
+
+        programs.invokeFactory(type_name='Folder', id='master-gardeners', title='Master Gardeners')        
+        programs['master-gardeners'].unmarkCreationFlag()
+        programs['master-gardeners'].setExcludeFromNav(True)
+        programs['master-gardeners'].reindexObject()
+
+
+        programs.unmarkCreationFlag()     
+        
+        # create a smartfolder for listing the programs in alphabetical order
+        if 'listing' not in programs.objectIds():
+            programs.invokeFactory(type_name='Topic', id='listing', title='%s Programs' % county_name)
+            programs.setDefaultPage('listing')
+            
+            smart_obj = programs['listing']
+            smart_obj.unmarkCreationFlag()
+                    
+            # Set the criteria for the folder
+            type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+            
+            type_crit.setValue(['Folder', 'Link', 'Subsite', 'Section']) # only our specified event types
+        
+            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
+            path_crit.setValue(programs.UID()) # Only list events in the current subsite
+            path_crit.setRecurse(False)
+        
+            sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')   
+        
+    # Add all the subsite goodies
+    writeDebug('Running subsite populations script')
+    onSubsiteCreation(subsite, event)
+    
+    # Directory 
+    writeDebug('Adding directory collection')
+    if not 'directory' in subsite.objectIds():
+        subsite.invokeFactory(type_name='Topic', id='directory', title='Directory')
+        smart_obj = subsite['directory']
+        
+        smart_obj.setLayout('folder_summary_view')
+        
+        # Set the criteria for the folder
+        county_crit = smart_obj.addCriterion('Counties','ATSelectionCriterion')
+        county_crit.setValue(county_name) # Only list items in the current subsite
+
+        type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+        type_crit.setValue(['Person']) # only our specified types
+                
+        sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')
+        sort_crit.setReversed(True)
+
+        smart_obj.unmarkCreationFlag()
+
+
+    # Directions 
+    writeDebug('Adding directions page')
+    if not 'directions' in subsite.objectIds():
+        subsite.invokeFactory(type_name='Document', id='directions', 
+        title='Directions to %s Extension Office' % county_name,
+        text="""
+<h2>Driving Directions</h2>
+<iframe src="http://maps.google.com/maps?q=%(address_1)s+%(city)s+%(state)s&amp;output=embed" 
+        frameborder="0" marginwidth="0" marginheight="0" scrolling="no" height="480" width="100%%"></iframe>
+<p class="discreet"><a style="text-align: left;" href="http://maps.google.com/maps?q=%(address_1)s+%(city)s+%(state)s">View Larger Map</a></p>
+
+        """ % {
+            'address_1' : office_info.get('address_1'),
+            'city' : office_info.get('city'),
+            'state' : office_info.get('state'),
+        })
+        directions = subsite['directions']
+        directions.setExcludeFromNav(True)
+        directions.reindexObject()
+        directions.unmarkCreationFlag()
+        
+    # Assign portlets
+    writeDebug('Creating portlets')
+    subsite_LeftColumn = getPortletAssignmentMapping(subsite, 'plone.leftcolumn')
+    subsite_RightColumn = getPortletAssignmentMapping(subsite, 'plone.rightcolumn')
+        
+    # Create Office Info portlet
+    writeDebug('Creating Office Info portlet')
+    office_text = """
+    <h2>Address</h2>
+    <p>%(address_1)s<br />
+    %(address_2)s
+    %(city)s, %(state)s %(zip)s</p>
+    <h2>Contact</h2>
+    <p>Phone: %(phone)s<br />
+    Fax: %(fax)s<br />
+    Email: <a href="mailto:%(email)s">%(email)s</a></p>
+    <h2>Office Hours</h2>
+    <p>%(office_hours)s</p>
+    <h2>Directions</h2>
+    <p><a href="/%(county)s/directions">Directions to our office</a></p>
+    """ % {
+        'county' : county_name.lower(),
+        'address_1' : office_info.get('address_1'),
+        'address_2' : office_info.get('address_2') and office_info.get('address_2') + '<br />' or '',
+        'city' : office_info.get('city'),
+        'state' : office_info.get('state'),
+        'zip' : office_info.get('zip'),
+        'phone' : office_info.get('phone'),
+        'fax' : office_info.get('fax'),
+        'email' : office_info.get('email'),
+        'office_hours' : office_info.get('office_hours'),
+    }
+    
+    
+    office_info_portlet = static.Assignment(header="Office Information",
+                                            text=office_text)
+
+    subsite_LeftColumn['office-information'] = office_info_portlet 
+    
+    
+    # Configure homepage
+    if 'front-page' in subsite.objectIds():
+        writeDebug("Configuring homepage")
+        front_page = subsite['front-page']
+        front_page.setLayout('document_subsite_view')
+
+        writeDebug("Configuring homepage portlets")
+        homepage_rightColumn = getPortletAssignmentMapping(front_page, 'plone.rightcolumn')
+
+        spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
+                                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
+                                        random=False,
+                                        show_more=False,
+                                        show_dates=False)
+
+        saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
+                                        
+        eventsCollectionPortlet = collection.Assignment(header=u"Upcoming Events",
+                                        limit=3,
+                                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.events.upcoming)),
+                                        random=False,
+                                        show_more=True,
+                                        show_dates=True)
+
+        saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
+
+        # Set homepage image
+        writeDebug("Setting homepage image")
+        portal_skins = getToolByName(subsite, 'portal_skins')
+        subsite_homepage_image = portal_skins.agsci_subsite['subsite_homepage_placeholder.jpg']._readFile(False)
+        front_page.getField(IMAGE_FIELD_NAME).set(front_page, subsite_homepage_image)
+
+    # Update Events criteria:  Remove location (path) and add Counties
+    if 'events' in subsite.objectIds() and 'upcoming' in subsite.events.objectIds():
+        writeDebug("Updating events collection")
+
+        upcoming = subsite.events.upcoming
+
+        #Deleting path criteria
+        upcoming.deleteCriterion('crit__path_ATPathCriterion')
+        
+        #Adding county criteria
+        county_crit = upcoming.addCriterion('Counties','ATSelectionCriterion')
+        county_crit.setValue(county_name) # Only list items in the current subsite
+
+
+    # Update News criteria:  Remove location (path) and  and add Counties
+    if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
+        writeDebug("Updating news collection")
+        latest = subsite.news.latest
+
+        #Deleting path criteria
+        latest.deleteCriterion('crit__path_ATPathCriterion')
+        
+        #Adding county criteria
+        county_crit = latest.addCriterion('Counties','ATSelectionCriterion')
+        county_crit.setValue(county_name) # Only list items in the current subsite     
+
+    #pdb.set_trace() 
+
+    return True
+
     
 # What we want to happen when we create a blog
 def onBlogCreation(blog, event):
@@ -370,9 +593,6 @@ def onBlogCreation(blog, event):
                                     show_dates=False)
 
     saveAssignment(latest_RightColumn, archiveCollectionPortlet)
-
-
-    writeDebug('Creating events folder')      
 
     writeDebug('Finished creating blog')     
     #pdb.set_trace() 

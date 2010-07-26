@@ -1,0 +1,26 @@
+Metadata-Version: 1.0
+Name: agsci.subsite
+Version: 1.0dev-r11944
+Summary: 'Create and configure subsite structure'
+Home-page: http://svn.plone.org/svn/plone/plone.example
+Author: Plone Foundation
+Author-email: plone-developers@lists.sourceforge.net
+License: GPL
+Description: Introduction
+        ============
+        
+        
+        
+        Changelog
+        =========
+        
+        1.0 - Unreleased
+        ----------------
+        
+        * Initial release
+        
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

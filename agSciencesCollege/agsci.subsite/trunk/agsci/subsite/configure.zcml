@@ -13,19 +13,25 @@
 
     <!-- Register an event handler for when a Subsite is created -->
     <subscriber for="agsci.subsite.content.interfaces.ISubsite
-          Products.Archetypes.interfaces.IObjectInitializedEvent"
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
         handler="agsci.subsite.events.onSubsiteCreation" 
+        />
+
+    <!-- Register an event handler for when a CountySite is created -->
+    <subscriber for="agsci.subsite.content.interfaces.ICountySite
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.subsite.events.onCountySiteCreation" 
         />
 
     <!-- Register an event handler for when a Section is created -->
     <subscriber for="agsci.subsite.content.interfaces.ISection
-          Products.Archetypes.interfaces.IObjectInitializedEvent"
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
         handler="agsci.subsite.events.onSectionCreation" 
         />
 
     <!-- Register an event handler for when a Blog is created -->
     <subscriber for="agsci.subsite.content.interfaces.IBlog
-          Products.Archetypes.interfaces.IObjectInitializedEvent"
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
         handler="agsci.subsite.events.onBlogCreation" 
         />
 

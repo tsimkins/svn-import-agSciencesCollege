@@ -18,6 +18,7 @@ def initialize(context):
     # import packages and types for registration
     # I really don't think I have to do these imports.
     from content import Subsite
+    from content import CountySite
     from content import Section
     from content import Blog
 

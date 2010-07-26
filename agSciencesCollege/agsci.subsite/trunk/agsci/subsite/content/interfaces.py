@@ -6,6 +6,10 @@ class ISubsite(Interface):
     """Subsites are folders designed specifically for subsites
     """
 
+class ICountySite(Interface):
+    """CountySites are folders designed specifically for Extension counties
+    """
+
 class ISection(Interface):
     """Sections are parts of a subsite with their own navigation
     """
