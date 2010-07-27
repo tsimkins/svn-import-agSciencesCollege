@@ -80,6 +80,19 @@ class _ProgramsField(ExtensionField, LinesField):
         else:
             return DisplayList([('N/A', 'N/A')])
 
+    def getDefault(self, instance, **kwargs):
+
+        for o in getAcquisitionChain(instance):
+            try:
+                v = self.get(o)
+                
+                if v:
+                    return v
+            except RuntimeError:
+                continue
+
+        return ()
+
             
 class ExtensionExtender(object):
     #adapts(IATFolder, IATEvent) #, IATNewsItem, IATDocument, IATLink, IATFile, IATImage)
@@ -91,7 +104,6 @@ class ExtensionExtender(object):
     fields = [
         _CountiesField(
             "extension_counties",
-                index_method='foobar',
                 required=False,
                 widget = InAndOutWidget(
                 label=u"Counties",
