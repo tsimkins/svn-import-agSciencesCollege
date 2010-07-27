@@ -44,9 +44,27 @@ def saveAssignment(mapping, assignment):
 # Write debug messages to log file
 def writeDebug(msg):
     LOG('agsci.subsite', INFO, msg)
+
+# Adds an editors group to the subsite
+def addEditorsGroup(subsite):
+    group_id = "%s-editors"% str(subsite.id)
+    group_title = "%s Editors"% str(subsite.Title())
     
+    grouptool = getToolByName(subsite, 'portal_groups')
+    
+    if grouptool.addEditorsGroup(group_id):
+        grouptool.getGroupById(group_id).title = group_title
+        
+    return group_id
+
+# Gives the add/edit/view/review roles on context to a group
+def setRoles(context, group):
+    context.manage_setLocalRoles(group, ['Contributor', 'Reviewer', 'Editor', 'Reader'])
+    context.reindexObjectSecurity()
+        
+ 
 # What we want to happen when we create a subsite
-def onSubsiteCreation(subsite, event):
+def onSubsiteCreation(subsite, event, add_group=True):
 
     writeDebug('Beginning post create script.')
 
@@ -55,6 +73,11 @@ def onSubsiteCreation(subsite, event):
 
     # Get portal_skins
     portal_skins = getToolByName(subsite, 'portal_skins')
+
+    # Add group for subsite and set permissions
+    if add_group:
+        editors_group = addEditorsGroup(subsite)
+        setRoles(subsite, editors_group)
 
     # Remove subsite from nav
     subsite.setExcludeFromNav(True)
@@ -287,6 +310,9 @@ def onSubsiteCreation(subsite, event):
 # What we want to happen when we create a subsite
 def onCountySiteCreation(subsite, event):
 
+    # Add an editors group for the subsite
+    editors_group = addEditorsGroup(subsite)
+    
     # Get URL tool
     urltool = getToolByName(subsite, 'portal_url')
 
@@ -314,11 +340,15 @@ def onCountySiteCreation(subsite, event):
             for x in range(0, len(header)):
                 office_info[header[x]] = fields[x]
 
+    # Add groups for site
+
     # Programs Folder
     writeDebug('Creating programs folder')
     if not 'programs' in subsite.objectIds():
         subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
         programs = subsite['programs']
+        
+        setRoles(programs, editors_group)
         
         # Set restrictions 
         programs.setConstrainTypesMode(1) # restrict what this folder can contain
@@ -361,10 +391,11 @@ def onCountySiteCreation(subsite, event):
     # Set county for subsite
     subsite.extension_counties = (county_name,)
 
-    # Add all the subsite goodies
+    # Add all the subsite goodies.  Don't add the group and set the permissions.  
+    # We're locking the county editing roles down to just News, Events, etc.
     writeDebug('Running subsite populations script')
-    onSubsiteCreation(subsite, event)
-    
+    onSubsiteCreation(subsite, event, add_group=False)
+
     # Directory 
     writeDebug('Adding directory collection')
     if not 'directory' in subsite.objectIds():
@@ -387,6 +418,7 @@ def onCountySiteCreation(subsite, event):
 
 
     # Directions 
+
     writeDebug('Adding directions page')
     if not 'directions' in subsite.objectIds():
         subsite.invokeFactory(type_name='Document', id='directions', 
@@ -406,6 +438,10 @@ def onCountySiteCreation(subsite, event):
         directions.setExcludeFromNav(True)
         directions.reindexObject()
         directions.unmarkCreationFlag()
+
+        # %%% Hide all portlets from directions  
+        directions_LeftColumnManager = getLocalPortletAssignmentManager(directions, 'plone.leftcolumn')
+        directions_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)  
 
     # Assign portlets
     writeDebug('Creating portlets')
@@ -493,9 +529,7 @@ def onCountySiteCreation(subsite, event):
     if 'events' in subsite.objectIds() and 'upcoming' in subsite.events.objectIds():
         writeDebug("Updating events collection")
 
-        # Set county for folder
-        #events = subsite.events
-        #events.extension_counties = (county_name,)
+        setRoles(subsite.events, editors_group)
 
         upcoming = subsite.events.upcoming
 
@@ -511,9 +545,7 @@ def onCountySiteCreation(subsite, event):
     if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
         writeDebug("Updating news collection")
 
-        # Set county for folder
-        #news = subsite.news
-        #news.extension_counties = (county_name,)
+        setRoles(subsite.news, editors_group)
 
         latest = subsite.news.latest
 
