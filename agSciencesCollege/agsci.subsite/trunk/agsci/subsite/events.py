@@ -14,10 +14,13 @@ from plone.app.portlets.portlets import navigation
 from plone.portlet.static import static
 from collective.portlet import feedmixer
 from plone.portlet.collection import collection
+from Products.agCommon.portlet import linkbutton, linkicon
 
 from datetime import datetime
 
 from zLOG import LOG, INFO
+
+from random import random, seed
 
 from zope.component.interfaces import ComponentLookupError
 
@@ -50,6 +53,9 @@ def onSubsiteCreation(subsite, event):
     # Get URL tool
     urltool = getToolByName(subsite, 'portal_url')
 
+    # Get portal_skins
+    portal_skins = getToolByName(subsite, 'portal_skins')
+
     # Remove subsite from nav
     subsite.setExcludeFromNav(True)
     subsite.reindexObject()
@@ -63,6 +69,20 @@ def onSubsiteCreation(subsite, event):
     subsite.manage_addProperty('site_title', str(subsite.title), 'string')
 
     writeDebug('Creating news folder')
+    
+    # Create 'background-images' folder
+    if 'background-images' not in subsite.objectIds():
+        subsite.invokeFactory(type_name='Folder', id='background-images', title='Background Images')
+        background_images = subsite['background-images']
+        background_images.setExcludeFromNav(True)
+        background_images.reindexObject()
+        background_images.unmarkCreationFlag()
+
+        background_images.invokeFactory(type_name='Image', id='homepage_placeholder.jpg',
+                                        title='Homepage Placeholder', 
+                                        image=portal_skins.agcommon_images['homepage_placeholder.jpg']._readFile(False))
+        homepage_placeholder = background_images['homepage_placeholder.jpg']
+        homepage_placeholder.unmarkCreationFlag()
     
     # Create Blog 'news' folder
     if 'news' not in subsite.objectIds():
@@ -88,7 +108,7 @@ def onSubsiteCreation(subsite, event):
             spotlight_obj = news['spotlight']
             spotlight_obj.setConstrainTypesMode(1) # restrict what this folder can contain
             spotlight_obj.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
-            spotlight_obj.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic'])
+            spotlight_obj.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Photo Folder'])
             spotlight_obj.unmarkCreationFlag()
             
             writeDebug('Creating recent spotlight topic')
@@ -273,10 +293,8 @@ def onCountySiteCreation(subsite, event):
     # Get county name
     # We ass-u-me that the subsite id is the county name, lowercased.
     county_name = str(subsite.id).title()
+    county_id = str(subsite.id).lower()
 
-    # Set county
-    subsite.extension_counties = (county_name,)
-    
     # Get the office info for the office
     office_info = {}
 
@@ -292,17 +310,21 @@ def onCountySiteCreation(subsite, event):
         
         county = fields[0].lower()
         
-        if county == county_name.lower():
+        if county == county_id:
             for x in range(0, len(header)):
                 office_info[header[x]] = fields[x]
 
-    
     # Programs Folder
     writeDebug('Creating programs folder')
     if not 'programs' in subsite.objectIds():
         subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
         programs = subsite['programs']
         
+        # Set restrictions 
+        programs.setConstrainTypesMode(1) # restrict what this folder can contain
+        programs.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
+        programs.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Subsite','Photo Folder'])
+            
         # Make 4-H and Master Gardeners folders
         programs.invokeFactory(type_name='Folder', id='4-h', title='4-H')
         programs['4-h'].unmarkCreationFlag()
@@ -335,7 +357,10 @@ def onCountySiteCreation(subsite, event):
             path_crit.setRecurse(False)
         
             sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')   
-        
+
+    # Set county for subsite
+    subsite.extension_counties = (county_name,)
+
     # Add all the subsite goodies
     writeDebug('Running subsite populations script')
     onSubsiteCreation(subsite, event)
@@ -381,7 +406,7 @@ def onCountySiteCreation(subsite, event):
         directions.setExcludeFromNav(True)
         directions.reindexObject()
         directions.unmarkCreationFlag()
-        
+
     # Assign portlets
     writeDebug('Creating portlets')
     subsite_LeftColumn = getPortletAssignmentMapping(subsite, 'plone.leftcolumn')
@@ -403,7 +428,7 @@ def onCountySiteCreation(subsite, event):
     <h2>Directions</h2>
     <p><a href="/%(county)s/directions">Directions to our office</a></p>
     """ % {
-        'county' : county_name.lower(),
+        'county' : county_id,
         'address_1' : office_info.get('address_1'),
         'address_2' : office_info.get('address_2') and office_info.get('address_2') + '<br />' or '',
         'city' : office_info.get('city'),
@@ -419,9 +444,13 @@ def onCountySiteCreation(subsite, event):
     office_info_portlet = static.Assignment(header="Office Information",
                                             text=office_text)
 
+    link_button = linkbutton.Assignment(items="%s_buttons" % county_id, show_header=False)
+    link_icons = linkicon.Assignment(items="%s_links" % county_id, show_header=False)
+        
     subsite_LeftColumn['office-information'] = office_info_portlet 
-    
-    
+    subsite_LeftColumn['buttons'] = link_button 
+    subsite_LeftColumn['icons'] = link_icons
+        
     # Configure homepage
     if 'front-page' in subsite.objectIds():
         writeDebug("Configuring homepage")
@@ -449,14 +478,24 @@ def onCountySiteCreation(subsite, event):
         saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
 
         # Set homepage image
+        # Pick from existing Extension images
         writeDebug("Setting homepage image")
         portal_skins = getToolByName(subsite, 'portal_skins')
-        subsite_homepage_image = portal_skins.agsci_subsite['subsite_homepage_placeholder.jpg']._readFile(False)
-        front_page.getField(IMAGE_FIELD_NAME).set(front_page, subsite_homepage_image)
+        background_images = portal_skins.agsci_subsite['background-images']
+
+        image_listing = background_images.objectIds('Filesystem Image')
+        image_index = int(random()*len(image_listing))
+                
+        random_image = background_images[image_listing[image_index]]
+        front_page.getField(IMAGE_FIELD_NAME).set(front_page, random_image._readFile(False))
 
     # Update Events criteria:  Remove location (path) and add Counties
     if 'events' in subsite.objectIds() and 'upcoming' in subsite.events.objectIds():
         writeDebug("Updating events collection")
+
+        # Set county for folder
+        #events = subsite.events
+        #events.extension_counties = (county_name,)
 
         upcoming = subsite.events.upcoming
 
@@ -471,6 +510,11 @@ def onCountySiteCreation(subsite, event):
     # Update News criteria:  Remove location (path) and  and add Counties
     if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
         writeDebug("Updating news collection")
+
+        # Set county for folder
+        #news = subsite.news
+        #news.extension_counties = (county_name,)
+
         latest = subsite.news.latest
 
         #Deleting path criteria
@@ -482,6 +526,9 @@ def onCountySiteCreation(subsite, event):
 
     #pdb.set_trace() 
 
+    # Unset county for subsite. 
+    subsite.extension_counties = ()
+    
     return True
 
     
@@ -518,7 +565,7 @@ def onBlogCreation(blog, event):
             archive_folder.setExcludeFromNav(True)
             archive_folder.setConstrainTypesMode(1) # restrict what this folder can contain
             archive_folder.setImmediatelyAddableTypes(['Link','News Item'])
-            archive_folder.setLocallyAllowedTypes(['Link','News Item'])
+            archive_folder.setLocallyAllowedTypes(['Link','News Item','Photo Folder'])
             archive_folder.setEffectiveDate("%s-01-01" % year)
             archive_folder.unmarkCreationFlag()
             archive_folder.reindexObject()
@@ -646,13 +693,19 @@ def onSectionCreation(section, event):
 
     section_LeftColumn['navigation'] = left_navigation 
     
+    # Add restrictions to section 
+    section.setConstrainTypesMode(1) # restrict what this folder can contain
+    section.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
+    section.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Subsite','Photo Folder'])
+           
     #Adding sample page
     
-    if 'sample' not in section.getObjectIds():
+    if 'sample' not in section.objectIds():
         section.invokeFactory(type_name='Document', id='sample', title='Sample Page', description='This is a sample Page', text='<p>You may delete this item</p>')
         section['sample'].unmarkCreationFlag()
     
     writeDebug('Finished creating section')     
     #pdb.set_trace() 
+    
     return True
 

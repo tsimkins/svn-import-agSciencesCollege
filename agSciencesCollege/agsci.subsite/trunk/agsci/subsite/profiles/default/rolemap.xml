@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="Subsite: Add Subsite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="CountySite: Add CountySite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="Section: Add Section" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="Blog: Add Blog" acquire="False">
+      <role name="Manager"/>
+    </permission>
+  </permissions>
+</rolemap>
