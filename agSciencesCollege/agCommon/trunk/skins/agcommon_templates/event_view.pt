@@ -165,6 +165,11 @@
                             <span i18n:translate="label_add_to_ical">iCal</span></a>
                     </td>
                 </tr>
+                <tr tal:condition="here/event_url|nothing">
+                    <td colspan="2" align="center">
+                        <metal:moreinfo metal:use-macro="here/event_view/macros/moreinfo" />
+                    </td>
+                </tr>
             </tbody>
         </table>
         </div>
@@ -174,7 +179,10 @@
         Body text
         </metal:field>
 
+
+        <tal:hasText condition="here/getText">
         <p tal:condition="here/event_url|nothing">
+        <metal:moreinfo define-macro="moreinfo">
             <a class="url"
                href="event_url"
                i18n:translate="event_more_information"
@@ -182,8 +190,10 @@
                         id="parent-fieldname-eventUrl"
                         tal:attributes="href here/event_url">
                     <span tal:replace="context/more_information|string:More information about this event" />&hellip;</a>
+        </metal:moreinfo>
         </p>
-
+        </tal:hasText>
+        
         </div>
 
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">
