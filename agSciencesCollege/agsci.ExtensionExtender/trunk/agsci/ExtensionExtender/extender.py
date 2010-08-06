@@ -104,6 +104,7 @@ class ExtensionExtender(object):
     fields = [
         _CountiesField(
             "extension_counties",
+                schemata="Basic Information",
                 required=False,
                 widget = InAndOutWidget(
                 label=u"Counties",
@@ -112,6 +113,7 @@ class ExtensionExtender(object):
         ),
         _ProgramsField(
             "extension_programs",
+                schemata="Basic Information",
                 required=False,
                 widget = InAndOutWidget(
                 label=u"Programs",
