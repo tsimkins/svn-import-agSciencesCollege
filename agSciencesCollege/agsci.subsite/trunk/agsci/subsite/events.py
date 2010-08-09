@@ -16,6 +16,8 @@ from collective.portlet import feedmixer
 from plone.portlet.collection import collection
 from Products.agCommon.portlet import linkbutton, linkicon
 
+from constants import getCountyWeather, topic_folders
+
 from datetime import datetime
 
 from zLOG import LOG, INFO
@@ -64,7 +66,7 @@ def setRoles(context, group):
         
  
 # What we want to happen when we create a subsite
-def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False):
+def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_county_site=False):
 
     writeDebug('Beginning post create script.')
 
@@ -274,8 +276,11 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False):
         # Grab path to news RSS feed, and make sure it's http://        
         agsci_rss = 'http://agsci.psu.edu/news/live.psu.edu/agsci/RSS'
         subsite_rss = subsite.absolute_url().replace('https:', 'http:') + '/news/latest/RSS'
-
-        if subsite_rss.count('localhost'):
+        county_rss = subsite.absolute_url().replace('https:', 'http:') + '/news/recent/RSS'
+        
+        if is_county_site:
+            feeds=[county_rss]
+        elif subsite_rss.count('localhost'):
             feeds=[agsci_rss]
         else:
             feeds=[agsci_rss,subsite_rss]
@@ -293,6 +298,22 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False):
                     assignment_context_path=None)
                     
         saveAssignment(homepage_centerColumn, subsite_news)
+
+        if is_county_site:
+
+            writeDebug('******* Making current issues portlet **********')
+
+            currentIssuesCollectionPortlet = collection.Assignment(header=u"Current Issues",
+                                            target_collection = '/current-issues',
+                                            random=False,
+                                            show_more=False,
+                                            show_dates=False)
+    
+            saveAssignment(homepage_rightColumn, currentIssuesCollectionPortlet)
+            
+        else:
+            writeDebug('not a county site')
+
 
         spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
                                         target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
@@ -404,7 +425,7 @@ def onCountySiteCreation(subsite, event):
     # Add all the subsite goodies.  Don't add the group and set the permissions.  
     # We're locking the county editing roles down to just News, Events, etc.
     writeDebug('Running subsite populations script')
-    onSubsiteCreation(subsite, event, add_group=False)
+    onSubsiteCreation(subsite, event, add_group=False, is_county_site=True)
 
     # Directory 
     writeDebug('Adding directory collection')
@@ -514,7 +535,7 @@ def onCountySiteCreation(subsite, event):
         feeds=['http://agsci.psu.edu/news/live.psu.edu/extension/RSS']
 
         subsite_news = feedmixer.portlet.Assignment(
-                    title="%s News" % 'Penn State Cooperative Extension News',
+                    title="Penn State Cooperative Extension News",
                     feeds="\n".join(feeds),
                     items_shown=3,
                     show_header=True,
@@ -619,9 +640,27 @@ def onCountySiteCreation(subsite, event):
         # Remove 'spotlight-county' tag from sample spotlight item.
 
         if 'spotlight' in news.objectIds() and 'sample' in news['spotlight'].objectIds():
-            sample = spotlight['sample']
-            sample.setSubject([])
-            sample.reindexObject()
+
+            spotlight = news['spotlight']
+
+            found_weather = False
+
+            for (title, url) in getCountyWeather(county_name):
+                found_weather = True
+                id = title.lower().replace(' ', '-')
+                spotlight.invokeFactory(type_name='Link', id=id, title=title, remote_url=url)
+                link_obj = spotlight[id]
+                link_obj.unmarkCreationFlag()
+                link_obj.setExcludeFromNav(True)
+                link_obj.reindexObject()
+                
+
+            if found_weather:
+                spotlight.manage_delObjects(['sample'])
+            else:
+                sample = spotlight['sample']
+                sample.setSubject([])
+                sample.reindexObject()
 
     # Create "Topics" folder as a section and create nav portlet
     
@@ -643,10 +682,6 @@ def onCountySiteCreation(subsite, event):
         
         topics.manage_delObjects(['sample'])
 
-        topic_folders = [
-            ['4-h-youth', '4-H and Youth'],             ['agriculture', 'Agriculture'],             ['community-development', 'Community Development'],             ['families-children', 'Families and Children'],             ['food-nutrition', 'Food and Nutrition'],             ['horticulture-gardening', 'Horticulture and Gardening'],             ['natural-resources', 'Natural Resources'], 
-        ]
-        
         for (id, title) in topic_folders:
             topics.invokeFactory(type_name='Folder', id=id, title=title)
             topics[id].unmarkCreationFlag()
