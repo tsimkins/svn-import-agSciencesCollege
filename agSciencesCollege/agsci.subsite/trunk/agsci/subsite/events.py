@@ -52,7 +52,7 @@ def addEditorsGroup(subsite):
     
     grouptool = getToolByName(subsite, 'portal_groups')
     
-    if grouptool.addEditorsGroup(group_id):
+    if grouptool.addGroup(group_id):
         grouptool.getGroupById(group_id).title = group_title
         
     return group_id
@@ -64,7 +64,7 @@ def setRoles(context, group):
         
  
 # What we want to happen when we create a subsite
-def onSubsiteCreation(subsite, event, add_group=True):
+def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False):
 
     writeDebug('Beginning post create script.')
 
@@ -79,17 +79,22 @@ def onSubsiteCreation(subsite, event, add_group=True):
         editors_group = addEditorsGroup(subsite)
         setRoles(subsite, editors_group)
 
-    # Remove subsite from nav
-    subsite.setExcludeFromNav(True)
-    subsite.reindexObject()
+    # We're cheating and reusing this code to lay out root Plone sites.
+    # Some things don't apply, so we set the default of 'is_plone_site' to
+    # False, and override with True when we're running this on a Plone site.
     
-    # Remove top menu
-    writeDebug('Removing top menu')
-    subsite.manage_addProperty('top-menu', 'none', 'string')
+    if not is_plone_site:
+       # Remove subsite from nav
+        subsite.setExcludeFromNav(True)
+        subsite.reindexObject()
+    
+        # Remove top menu
+        writeDebug('Removing top menu')
+        subsite.manage_addProperty('top-menu', 'none', 'string')
 
-    # Set subsite title
-    writeDebug('Setting subsite title')
-    subsite.manage_addProperty('site_title', str(subsite.title), 'string')
+        # Set subsite title
+        writeDebug('Setting subsite title')
+        subsite.manage_addProperty('site_title', str(subsite.title), 'string')
 
     writeDebug('Creating news folder')
     
@@ -142,14 +147,18 @@ def onSubsiteCreation(subsite, event, add_group=True):
             
             spotlight_obj.setDefaultPage('recent')
         
-            # Set the criteria for the folder
-            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
-            path_crit.setValue(subsite.UID()) # Only list items in the current subsite
-            path_crit.setRecurse(True)
+            if not is_plone_site:
+                # Set the criteria for the folder
+                path_crit = smart_obj.addCriterion('path','ATPathCriterion')
+                path_crit.setValue(subsite.UID()) # Only list items in the current subsite
+                path_crit.setRecurse(True)
+                spotlight_tag = "spotlight-%s" % subsite.id
+            else:
+                spotlight_tag = "spotlight"
     
             # Set the criteria for the folder
             tag_crit = smart_obj.addCriterion('Subject','ATSelectionCriterion')
-            tag_crit.setValue("spotlight-%s" % subsite.id) # Only list items in the current subsite
+            tag_crit.setValue(spotlight_tag) 
         
             sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')
             sort_crit.setReversed(True)
@@ -212,40 +221,41 @@ def onSubsiteCreation(subsite, event, add_group=True):
 
     writeDebug('Setting portlets')
     
-    # Set portlets
-    # Register some portlets for this subsite's context.
-    # Copied mostly from plone.portlets' README doctests.
-
-    subsite_LeftColumn = getPortletAssignmentMapping(subsite, 'plone.leftcolumn')
-    subsite_RightColumn = getPortletAssignmentMapping(subsite, 'plone.rightcolumn')
+    if not is_plone_site:
+        # Set portlets
+        # Register some portlets for this subsite's context.
+        # Copied mostly from plone.portlets' README doctests.
     
-    # Block the parent portlets
-    writeDebug('Blocking parent portlets')
+        subsite_LeftColumn = getPortletAssignmentMapping(subsite, 'plone.leftcolumn')
+        subsite_RightColumn = getPortletAssignmentMapping(subsite, 'plone.rightcolumn')
+        
+        # Block the parent portlets
+        writeDebug('Blocking parent portlets')
+    
+        writeDebug('Blocking plone.leftcolumn parent portlets')    
+        try:
+            subsite_LeftColumnManager = getLocalPortletAssignmentManager(subsite, 'plone.leftcolumn')
+            subsite_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+        except ComponentLookupError:
+            writeDebug('ERROR blocking plone.leftcolumn parent portlets')    
+    
+        writeDebug('Blocking plone.rightcolumn parent portlets')    
+        try:
+            subsite_RightColumnManager = getLocalPortletAssignmentManager(subsite, 'plone.rightcolumn')
+            subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+        except ComponentLookupError:
+            writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
+            pdb.set_trace() 
+    
+        # Set left navigation portlet
+        left_navigation = navigation.Assignment(name=u"",
+                                                root='/%s' % '/'.join(urltool.getRelativeContentPath(subsite)),
+                                                currentFolderOnly = False,
+                                                includeTop = True,
+                                                topLevel = 0,
+                                                bottomLevel = 3)
 
-    writeDebug('Blocking plone.leftcolumn parent portlets')    
-    try:
-        subsite_LeftColumnManager = getLocalPortletAssignmentManager(subsite, 'plone.leftcolumn')
-        subsite_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
-    except ComponentLookupError:
-        writeDebug('ERROR blocking plone.leftcolumn parent portlets')    
-
-    writeDebug('Blocking plone.rightcolumn parent portlets')    
-    try:
-        subsite_RightColumnManager = getLocalPortletAssignmentManager(subsite, 'plone.rightcolumn')
-        subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
-    except ComponentLookupError:
-        writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
-        pdb.set_trace() 
-
-    # Set left navigation portlet
-    left_navigation = navigation.Assignment(name=u"",
-                                            root='/%s' % '/'.join(urltool.getRelativeContentPath(subsite)),
-                                            currentFolderOnly = False,
-                                            includeTop = True,
-                                            topLevel = 0,
-                                            bottomLevel = 3)
-
-    subsite_LeftColumn['navigation'] = left_navigation 
+        subsite_LeftColumn['navigation'] = left_navigation 
 
     # Create homepage
     if 'front-page' not in subsite.objectIds():
@@ -345,7 +355,7 @@ def onCountySiteCreation(subsite, event):
     # Programs Folder
     writeDebug('Creating programs folder')
     if not 'programs' in subsite.objectIds():
-        subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
+        subsite.invokeFactory(type_name='Folder', id='programs', title='Local Programs')
         programs = subsite['programs']
         
         setRoles(programs, editors_group)
@@ -439,7 +449,7 @@ def onCountySiteCreation(subsite, event):
         directions.reindexObject()
         directions.unmarkCreationFlag()
 
-        # %%% Hide all portlets from directions  
+        # Hide all portlets from directions  
         directions_LeftColumnManager = getLocalPortletAssignmentManager(directions, 'plone.leftcolumn')
         directions_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)  
 
@@ -494,7 +504,31 @@ def onCountySiteCreation(subsite, event):
         front_page.setLayout('document_subsite_view')
 
         writeDebug("Configuring homepage portlets")
+
         homepage_rightColumn = getPortletAssignmentMapping(front_page, 'plone.rightcolumn')
+        homepage_centerColumn = getPortletAssignmentMapping(front_page, 'agcommon.centercolumn')
+        
+        
+        # Configure feedmixer in center column
+
+        feeds=['http://agsci.psu.edu/news/live.psu.edu/extension/RSS']
+
+        subsite_news = feedmixer.portlet.Assignment(
+                    title="%s News" % 'Penn State Cooperative Extension News',
+                    feeds="\n".join(feeds),
+                    items_shown=3,
+                    show_header=True,
+                    show_date=True,
+                    show_summary=True,
+                    show_image=False,
+                    show_footer=False,
+                    cache_timeout=1800,
+                    assignment_context_path=None)
+                    
+        saveAssignment(homepage_centerColumn, subsite_news)
+        
+        
+
 
         spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
                                         target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
@@ -543,20 +577,94 @@ def onCountySiteCreation(subsite, event):
 
     # Update News criteria:  Remove location (path) and  and add Counties
     if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
+
+        news = subsite['news']
+
         writeDebug("Updating news collection")
 
         setRoles(subsite.news, editors_group)
 
-        latest = subsite.news.latest
-
-        #Deleting path criteria
-        latest.deleteCriterion('crit__path_ATPathCriterion')
+        # Make a 'recent' collection of only the past three months
+        clipboard = news.manage_copyObjects(ids=['latest'])
+        results = news.manage_pasteObjects(clipboard)
+        new_id = results[0]['new_id']
+        news.manage_renameObjects(ids=[new_id], new_ids=['recent'])
+        recent = news.recent
+        recent.setExcludeFromNav(True)
+        recent.reindexObject()
         
-        #Adding county criteria
-        county_crit = latest.addCriterion('Counties','ATSelectionCriterion')
-        county_crit.setValue(county_name) # Only list items in the current subsite     
+        # Add criteria of 'published in last three months'
+        theCriteria = recent.addCriterion('effective', 'ATFriendlyDateCriteria')
+        theCriteria.setOperation('less') # Less than
+        theCriteria.setValue(92) # Three Months
+        theCriteria.setDateRange('-') # in the past
+        
+        # Make Spotlight only show items in Spotlight folder.
+        if 'spotlight' in news.objectIds() and 'recent' in news['spotlight'].objectIds():
 
-    #pdb.set_trace() 
+            spotlight = news['spotlight']
+            smart_obj = news['spotlight']['recent']
+
+            smart_obj.deleteCriterion('crit__path_ATPathCriterion')
+            smart_obj.deleteCriterion('crit__Subject_ATSelectionCriterion')
+
+            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
+            path_crit.setValue(spotlight.UID()) # Only list items in the current subsite
+            path_crit.setRecurse(False)
+
+            type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+            
+            type_crit.setValue(['File', 'Page', 'Link', 'Folder', 'Photo Folder']) # only our specified types
+
+        # Remove 'spotlight-county' tag from sample spotlight item.
+
+        if 'spotlight' in news.objectIds() and 'sample' in news['spotlight'].objectIds():
+            sample = spotlight['sample']
+            sample.setSubject([])
+            sample.reindexObject()
+
+    # Create "Topics" folder as a section and create nav portlet
+    
+    if 'topics' not in subsite.objectIds():
+        writeDebug('Creating topics section')
+        subsite.invokeFactory(type_name='Section', id='topics', title='Topics')
+        topics = subsite['topics']
+
+        onSectionCreation(topics, event)
+
+        topics.setConstrainTypesMode(1) # restrict what this folder can contain
+        topics.setImmediatelyAddableTypes([])
+        topics.setLocallyAllowedTypes(['Link','Folder'])
+
+        topics.unmarkCreationFlag() 
+
+        topics.setExcludeFromNav(True)
+        topics.reindexObject()
+        
+        topics.manage_delObjects(['sample'])
+
+        topic_folders = [
+            ['4-h-youth', '4-H and Youth'],             ['agriculture', 'Agriculture'],             ['community-development', 'Community Development'],             ['families-children', 'Families and Children'],             ['food-nutrition', 'Food and Nutrition'],             ['horticulture-gardening', 'Horticulture and Gardening'],             ['natural-resources', 'Natural Resources'], 
+        ]
+        
+        for (id, title) in topic_folders:
+            topics.invokeFactory(type_name='Folder', id=id, title=title)
+            topics[id].unmarkCreationFlag()
+
+        if 'front-page' in subsite.objectIds():
+            front_page = subsite['front-page']
+            homepage_rightColumn = getPortletAssignmentMapping(front_page, 'plone.rightcolumn')
+                
+            # Set left navigation portlet
+            topics_navigation = navigation.Assignment(name=u"Topics",
+                                                    root='/%s' % '/'.join(urltool.getRelativeContentPath(topics)),
+                                                    currentFolderOnly = False,
+                                                    includeTop = False,
+                                                    topLevel = 0,
+                                                    bottomLevel = 1)
+    
+            homepage_rightColumn['topics_navigation'] = topics_navigation 
+
 
     # Unset county for subsite. 
     subsite.extension_counties = ()
@@ -629,7 +737,8 @@ def onBlogCreation(blog, event):
         type_crit.setValue(['News Item', 'Link']) # only our specified types
         
         path_crit = smart_obj.addCriterion('path','ATPathCriterion')
-        path_crit.setValue(blog.UID()) # Only list news in the news folder
+        search_folders = [blog[x].UID() for x in archive_years]
+        path_crit.setValue(search_folders) # Only list news in the news year folders
         path_crit.setRecurse(True)
 
         sort_crit = smart_obj.addCriterion('effective','ATSortCriterion')
