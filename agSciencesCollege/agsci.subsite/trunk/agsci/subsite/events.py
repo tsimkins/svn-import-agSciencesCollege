@@ -299,22 +299,6 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                     
         saveAssignment(homepage_centerColumn, subsite_news)
 
-        if is_county_site:
-
-            writeDebug('******* Making current issues portlet **********')
-
-            currentIssuesCollectionPortlet = collection.Assignment(header=u"Current Issues",
-                                            target_collection = '/current-issues',
-                                            random=False,
-                                            show_more=False,
-                                            show_dates=False)
-    
-            saveAssignment(homepage_rightColumn, currentIssuesCollectionPortlet)
-            
-        else:
-            writeDebug('not a county site')
-
-
         spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
                                         target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
                                         random=False,
@@ -548,6 +532,14 @@ def onCountySiteCreation(subsite, event):
                     
         saveAssignment(homepage_centerColumn, subsite_news)
         
+
+        currentIssuesCollectionPortlet = collection.Assignment(header=u"Current Issues",
+                                        target_collection = '/current-issues',
+                                        random=False,
+                                        show_more=False,
+                                        show_dates=False)
+
+        saveAssignment(homepage_rightColumn, currentIssuesCollectionPortlet)
         
 
 
@@ -596,7 +588,7 @@ def onCountySiteCreation(subsite, event):
         county_crit.setValue(county_name) # Only list items in the current subsite
 
 
-    # Update News criteria:  Remove location (path) and  and add Counties
+    # Update News criteria
     if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
 
         news = subsite['news']
@@ -605,20 +597,7 @@ def onCountySiteCreation(subsite, event):
 
         setRoles(subsite.news, editors_group)
 
-        # Make a 'recent' collection of only the past three months
-        clipboard = news.manage_copyObjects(ids=['latest'])
-        results = news.manage_pasteObjects(clipboard)
-        new_id = results[0]['new_id']
-        news.manage_renameObjects(ids=[new_id], new_ids=['recent'])
-        recent = news.recent
-        recent.setExcludeFromNav(True)
-        recent.reindexObject()
-        
-        # Add criteria of 'published in last three months'
-        theCriteria = recent.addCriterion('effective', 'ATFriendlyDateCriteria')
-        theCriteria.setOperation('less') # Less than
-        theCriteria.setValue(92) # Three Months
-        theCriteria.setDateRange('-') # in the past
+
         
         # Make Spotlight only show items in Spotlight folder.
         if 'spotlight' in news.objectIds() and 'recent' in news['spotlight'].objectIds():
@@ -715,6 +694,7 @@ def onBlogCreation(blog, event):
 
     # Calculate dates
     now = datetime.now()
+    current_timestamp = now.strftime('%Y-%m-%d %H:%M')
     current_year = now.year
 
     # Get URL tool
@@ -752,33 +732,48 @@ def onBlogCreation(blog, event):
                                         title='Sample News Item', description='This is a sample News Item', 
                                         text='<p>You may delete this item</p>')
     sample = current_year_folder['sample']
-    sample.setEffectiveDate("%s-01-01" % str(current_year))
+    sample.setEffectiveDate(current_timestamp)
     sample.unmarkCreationFlag()        
         
 
     writeDebug('Creating latest news collection')
 
-    # create a smartfolder for latest news items, and set it as the default page
-    if 'latest' not in blog.objectIds():
-        blog.invokeFactory(type_name='Topic', id='latest', title='Latest News')
-        blog.setDefaultPage('latest')
-        
-        smart_obj = blog['latest']
-        smart_obj.unmarkCreationFlag()
+    # create 'recent' and 'latest' collections
     
-        # Set the criteria for the folder
-        type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
-        
-        type_crit.setValue(['News Item', 'Link']) # only our specified types
-        
-        path_crit = smart_obj.addCriterion('path','ATPathCriterion')
-        search_folders = [blog[x].UID() for x in archive_years]
-        path_crit.setValue(search_folders) # Only list news in the news year folders
-        path_crit.setRecurse(True)
+    for (id, title) in [['latest', 'Latest News'], ['recent', 'Recent News']]:
+    
+        if id not in blog.objectIds():
+            blog.invokeFactory(type_name='Topic', id=id, title=title)
+            
+            smart_obj = blog[id]
+            smart_obj.setExcludeFromNav(True)
+            smart_obj.unmarkCreationFlag()
+            smart_obj.reindexObject()
+                    
+            # Set the criteria for the folder
+            type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+            
+            type_crit.setValue(['News Item', 'Link']) # only our specified types
+            
+            path_crit = smart_obj.addCriterion('path','ATPathCriterion')
+            search_folders = [blog[x].UID() for x in archive_years]
+            path_crit.setValue(search_folders) # Only list news in the news year folders
+            path_crit.setRecurse(True)
+    
+            sort_crit = smart_obj.addCriterion('effective','ATSortCriterion')
+            sort_crit.setReversed(True)
+    
+    # Set default page to the latest news collection
+    blog.setDefaultPage('latest')
 
-        sort_crit = smart_obj.addCriterion('effective','ATSortCriterion')
-        sort_crit.setReversed(True)
 
+    # Add criteria of 'published in last three months' if collection is recent
+    recent = blog['recent']
+    theCriteria = recent.addCriterion('effective', 'ATFriendlyDateCriteria')
+    theCriteria.setOperation('less') # Less than
+    theCriteria.setValue(93) # Three Months
+    theCriteria.setDateRange('-') # in the past
+            
     writeDebug('Creating years collection')
 
     # create a smartfolder for archived news by year inside the folder
