@@ -16,6 +16,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping
 from plone.app.viewletmanager.manager import ManageViewlets
 from Products.CMFCore.WorkflowCore import WorkflowException
+from agsci.subsite.events import onSubsiteCreation
 from zLOG import LOG, INFO
 import os.path
 import string
@@ -94,7 +95,7 @@ def deleteUnusedFolders(context):
         if theFolder in site.objectIds():
 
             theFolderObject = getattr(site, theFolder)
-            if theFolderObject.getPortalTypeName() != 'Folder':            
+            if theFolderObject.getPortalTypeName() != 'Folder' and theFolderObject.getPortalTypeName() != 'Blog':            
                 urltool = getToolByName(site, "portal_url")
                 portal = urltool.getPortalObject()
                 portal.manage_delObjects([theFolder])
@@ -105,31 +106,52 @@ def deleteUnusedFolders(context):
 
 def createSiteFolders(context):
     site = context.getSite()
-    # Publish from http://svn.cosl.usu.edu/svndev/eduCommons3/branches/yale-3.0.2/setupHandlers.py
-    wftool =  getToolByName(site, 'portal_workflow')
 
-    for theArray in [['about', 'About Us'], ['news', 'News'], ['events', 'Events'], ['contact', 'Contact Us'], ['background-images', 'Background Images'], ['images', 'Images']]:
+    for theArray in [['about', 'About Us'], ['contact', 'Contact Us'], ['images', 'Images']]:
         (theId, theTitle) = theArray
         
         if theId not in site.objectIds():
             site.invokeFactory('Folder', id=theId, title=theTitle)
             
-            theObject = getattr(site, theId)
-            
-            try:
-                if wftool.getInfoFor(theObject, 'review_state') != 'Published':
-                    wftool.doActionFor(theObject, 'publish')
-            except WorkflowException:
-                LOG('agCommonPolicy.createSiteFolders', INFO, "Site has no workflow, not publishing folder")
-                
             if theId == 'background-images' or theId == 'images':
+                theObject = getattr(site, theId)
                 theObject.setExcludeFromNav(True)
                 theObject.reindexObject()
 
-            LOG('agCommonPolicy.createSiteFolders', INFO, "Created and published folder %s" % theId)
+            if theId == 'about':
+                site.moveObjectsToTop('about')
+                site.plone_utils.reindexOnReorder(site)
+
+            LOG('agCommonPolicy.createSiteFolders', INFO, "Created folder %s" % theId)
         else:
             LOG('agCommonPolicy.createSiteFolders', INFO, "Folder %s already exists." % theId)
+
+def publishSiteFolders(context):
+    site = context.getSite()
+
+    # Publish from http://svn.cosl.usu.edu/svndev/eduCommons3/branches/yale-3.0.2/setupHandlers.py
+    wftool =  getToolByName(site, 'portal_workflow')
+
+    for theId in ['news', 'events', 'about', 'contact', 'images', 'background-images']:
+
+        if theId in site.objectIds():
+
+            childObjects = [x[1] for x in site.ZopeFind(site[theId])]
             
+            childObjects.append(site[theId])
+            
+            for theObject in childObjects:
+            
+                try:
+                    if wftool.getInfoFor(theObject, 'review_state').lower() != 'published':
+                        wftool.doActionFor(theObject, 'publish')
+                        LOG('agCommonPolicy.publishSiteFolders', INFO, "Published folder %s" % theObject.id)
+                except WorkflowException:
+                    LOG('agCommonPolicy.publishSiteFolders', INFO, "Site has no workflow, not publishing folder %s" % theObject.id)
+                    
+
+
+      
 def configureFrontPage(context):
     site = context.getSite()
 
@@ -151,7 +173,7 @@ def configureFrontPage(context):
                 frontPage.portal_type = 'HomePage'
                 frontPage.reindexObject()
 
-                LOG('agCommonPolicy.configureFrontPage', INFO, "Configured front-page")        
+                LOG('agCommonPolicy.configureFrontPage', INFO, "Configured front-page")          
 
 def setSitePortlets(context):
 
@@ -337,12 +359,12 @@ def installAdditionalProducts(context):
     
     # This doesn't work, apparently gets called recursively?
     
-    return False
+    #return False
 
     toInstall = [
             'CacheSetup', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
-            'agCommonPolicy', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
-            'plone.app.imaging', 'plonegalleryview'
+            'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
+            'plone.app.imaging', 'plonegalleryview', 'agsci.subsite'
     ]
 
     site = context.getSite()
@@ -544,6 +566,19 @@ def configureKupu(context):
 
     LOG('agCommonPolicy.configureKupu', INFO, "Enabled embedding YouTube/etc. content")
 
+def setRestrictions(context):
+    site = context.getSite()
+    
+    if 'news' in site.objectIds() and site.news.getPortalTypeName() != 'Blog':
+        site.news.setConstrainTypesMode(1) # restrict what this site can contain
+        site.news.setImmediatelyAddableTypes(['News Item', 'Link'])
+        site.news.setLocallyAllowedTypes(['Topic', 'Folder', 'News Item', 'Link'])
+
+    if 'events' in site.objectIds():
+        site.events.setConstrainTypesMode(1) # restrict what this site can contain
+        site.events.setImmediatelyAddableTypes(['Event'])
+        site.events.setLocallyAllowedTypes(['Topic', 'Event'])          
+
 def setupHandlersWrapper(context):
 
     if context.readDataFile('agCommonPolicy.marker') is None:
@@ -552,16 +587,23 @@ def setupHandlersWrapper(context):
     
     site = context.getSite()
 
+    # We have to install the products that agCommon depends, especially agsci.subsite
     installAdditionalProducts(context)
 
     createUsers(context)
     
     deleteUnusedFolders(context)
-    
-    createSiteFolders(context)
+
+    # Run the subsite creation script, with a few exceptions since it's a Plone site, 
+    # not a subsite.
+    onSubsiteCreation(site, None, add_group=False, is_plone_site=True)
 
     configureFrontPage(context)
     
+    createSiteFolders(context)
+
+    publishSiteFolders(context)
+
     setSitePortlets(context)
 
     configureMimeTypes(context)
@@ -576,6 +618,8 @@ def setupHandlersWrapper(context):
     
     createRecentChanges(context)
 
+    setRestrictions(context)
+    
     #customizeViewlets(context)
         
  
