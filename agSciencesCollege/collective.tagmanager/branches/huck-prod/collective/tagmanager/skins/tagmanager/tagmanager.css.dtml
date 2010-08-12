@@ -34,6 +34,11 @@ div.simplemodal-wrap #buttons {
     margin: 1em 0.5em;
 }
 
+div#tag-button-container .tag-container {
+    float: left;
+    width: 35%;
+}
+
 ul.tagmanager li {
     width: 150px;
     display: block;

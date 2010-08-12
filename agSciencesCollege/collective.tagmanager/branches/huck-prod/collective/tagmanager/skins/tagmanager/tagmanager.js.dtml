@@ -11,16 +11,22 @@
         }
     }
 
-    function addButtonContainer()
-    {
-        jq('<div id="tag_button_container"></div>').insertAfter(jq('#subject_existing_keywords'))
+
+
+    function addTagCategory(label) {
+        // create a container div for this category which can be floated left
+        var containerId = 'category-' + label.toLowerCase().replace(/ /g, '-');
+        jq('#tag-button-container').append('<div id="' + containerId + '" class="tag-container"></div');
+        var categoryContainer = jq('#' + containerId);
+        if (label != '' && label.substr(0, 7) != 'noshow-') {
+            categoryContainer.append('<h3>' + label + '</h3>');
+        }
+        categoryContainer.append('<ul class="tagmanager"></ul>');
+        var tagList = jq('#' + containerId + ' ul.tagmanager');
+        return tagList;
     }
-    
-    function addTagCategory(label)
-    {
-          jq('<h3>' + label + '</h3>').appendTo('#tag_button_container');
-          return jq('<ul class="tagmanager"></ul>').appendTo('#tag_button_container');
-    }
+
+
 
     function setSelectedCategories()
     {
@@ -199,9 +205,20 @@
 
 jq(document).ready(
     function () {
-        addButtonContainer();
+        // hide the existing and new category divs
+        jq('#subject_keywords').parent().hide();
+        jq('#subject_existing_keywords').parent().hide();
+        
+        // create a container to hold the new buttons
+        jq('#archetypes-fieldname-subject').append('<div id="tag-button-container"></div>');
+        
+        // add the categories and the buttons in each category
         <dtml-var tagmanager_config>
-        setSelectedCategories();
-        hideTagMultiSelect()
+        
+        //setSelectedCategories();
+        //hideTagMultiSelect()
+
+        // clear the floats
+        jq('#archetypes-fieldname-subject').append('<div class="visualClear"></div>');
     }
 )
