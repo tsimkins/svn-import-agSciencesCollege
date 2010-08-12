@@ -4,19 +4,23 @@ from collective.tagmanager import outputConfig
 
 config = {
     'Administrative' : [
-        ['county', 'Counties'],
-        ['main', 'Topics'],
-        ['front', 'Front Page'],
-        ['department', 'Departments'],
+        ['campus', 'Campus Designation'],
+        ['findfacility', 'Facility Capabilities'],
+        ['faq', 'FAQ Sections'],
+        ['admin', 'Miscellaneous'],
     ],
-    'Programs' : [
-        ['disaster', 'Disaster'],
-        ['diabetes', 'Dining With Diabetes'],
-        ['energy', 'Energy'],    
-        ['farmbusiness', 'Farm Business'],    
-        ['green', 'Green Industry'],
-        ['naturalgas', 'Natural Gas'],
+    'For Content Providers' : [
+        ['events', 'Events'],
+        ['spotlight', 'Highlight/Promote'],
+        ['research', 'Institutes'],
+        ['center', 'Centers of Excellence'],
+        ['gradprg', 'Graduate Programs'],
+        ['facility', 'Shared Instrumentation Facilities'],
     ],
 }
 
-return outputConfig(config)
+keyOrder = config.keys()
+keyOrder.sort()
+keyOrder.reverse()
+
+return outputConfig( (config, keyOrder) )

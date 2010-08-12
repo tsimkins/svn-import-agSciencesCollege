@@ -9,19 +9,16 @@ registerDirectory('skins', GLOBALS)
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""
 
-def outputConfig(config):
-    final_config = ['']
-    config_keys = config.keys()
-    config_keys.sort()
-    
-    for key in config_keys:
-    
+def outputConfig(configOptions):
+    """Called from the javascript Ready() function and used to
+       process the configuration settings making javascript
+       function calls as necessary.
+       """
+    final_config = []
+    import pdb; pdb.set_trace()
+    for key in configOptions[1]:
         final_config.append('categoryList = addTagCategory("%s")' % key)
-    
-        items = config[key]
-        items.sort()
-        
-        for item in items:
+        for item in configOptions[0][key]:
             final_config.append('manageTags(categoryList, "%s", "%s")' % tuple(item));
     
     return ("\n"+" "*8).join(final_config)
