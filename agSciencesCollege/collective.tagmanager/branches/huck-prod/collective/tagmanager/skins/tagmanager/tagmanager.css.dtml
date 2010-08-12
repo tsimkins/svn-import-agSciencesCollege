@@ -12,13 +12,12 @@
 #simplemodal-container {
     background-color: #FFFFFF;
     padding: 1em;
-    border: 2px solid #333366;
-	width: 90% !important;
+    border: 2px solid #000000;
+	width: 70% !important;
 }
 
 div.simplemodal-wrap h1 {
     border: none;
-    color: #000033;
     margin-bottom: 0.5em;
 }
 
@@ -34,66 +33,70 @@ div.simplemodal-wrap #buttons {
     margin: 1em 0.5em;
 }
 
-div#tag-button-container .tag-container {
+div#tag-button-container .category-container {
     float: left;
     width: 35%;
 }
 
 ul.tagmanager li {
-    width: 150px;
-    display: block;
-    border: 1px solid &dtml-buttonBorder;;
     background-color: &dtml-buttonBackground;;
-	color: &dtml-buttonText; !important;
+    border: 1px solid &dtml-buttonBorder;;
+    color: &dtml-buttonText; !important;
+    cursor: pointer;
+    display: block;
+    font-size: 0.88em;
     margin-top: 3px;
     padding: 3px;
-	font-size: 0.88em;
-	text-align: left;
-	text-decoration: none;
-	cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    width: 150px;
 }
 
 ul.tagmanager li.hastags {
-    border: 1px solid &dtml-hasTagsButtonBorder;;
     background-color: &dtml-hasTagsButtonBackground;;
-	color: &dtml-hasTagsButtonText; !important;
+    border: 1px solid &dtml-hasTagsButtonBorder;;
+    color: &dtml-hasTagsButtonText; !important;
 }
 
 ul.tagmanager li:hover {
+    background-color: &dtml-buttonHoverBackground;;
     border: 1px solid &dtml-buttonHoverBorder;;
-	color: &dtml-buttonHoverText; !important;
+    color: &dtml-buttonHoverText; !important;
 }
 
 ul.tagmanager li.hastags:hover {
-	border: 1px solid &dtml-hasTagsButtonHoverBorder;;
-	color: &dtml-hasTagsButtonHoverText; !important;
+    background-color: &dtml-hasTagsButtonHoverBackground;;
+    border: 1px solid &dtml-hasTagsButtonHoverBorder;;
+    color: &dtml-hasTagsButtonHoverText; !important;
 }
 
 ul.tagmanager li {
-    list-style-image:none;
-    list-style-type:none;
+    list-style-image: none;
+    list-style-type: none;
 }
 
-.tag_container {
-	float: left;
-	display: block;
-	width: 25%;
+#modal-tags .tag-container {
+    display: block;
+    float: left;
+    width: 33%;
 }
 
-.tag_container input {
-	margin-right: 4px;
+#modal-tags .tag-container li {
+    list-style-image: none;
+    list-style-type: none;
+}
+
+#modal-tags .tag-container input {
+    margin-right: 4px;
 }
 
 
-#modal_buttons {
-	clear: left;
-	padding: 20px 0;
+#modal-buttons {
+    clear: left;
+    padding: 20px 0;
 }
+
 
 
 /* YOUR CSS RULES STOP HERE */
-
 /* </dtml-with> */
-
-
-

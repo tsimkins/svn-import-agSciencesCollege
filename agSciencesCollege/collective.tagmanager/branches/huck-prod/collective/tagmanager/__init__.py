@@ -15,7 +15,6 @@ def outputConfig(configOptions):
        function calls as necessary.
        """
     final_config = []
-    import pdb; pdb.set_trace()
     for key in configOptions[1]:
         final_config.append('categoryList = addTagCategory("%s")' % key)
         for item in configOptions[0][key]:
