@@ -16,8 +16,8 @@ def outputConfig(configOptions):
        """
     final_config = []
     for key in configOptions[1]:
-        final_config.append('categoryList = addTagCategory("%s")' % key)
+        final_config.append('categoryList = addTagCategory("%s");' % key)
         for item in configOptions[0][key]:
-            final_config.append('manageTags(categoryList, "%s", "%s")' % tuple(item));
+            final_config.append('manageTags(categoryList, "%s", "%s");' % tuple(item));
     
     return ("\n"+" "*8).join(final_config)
