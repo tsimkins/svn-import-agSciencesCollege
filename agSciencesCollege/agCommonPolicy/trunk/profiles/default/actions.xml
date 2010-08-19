@@ -21,4 +21,14 @@
    <property name="visible">True</property>
   </object>
  </object>
+ <object name="document_actions" meta_type="CMF Action Category" purge="False">
+  <object name="sendto" meta_type="CMF Action">
+   <property name="title">Email</property>
+  </object>
+  <object name="print" meta_type="CMF Action">
+   <property name="title">Print</property>
+  </object>
+ </object>
+
+
 </object>
