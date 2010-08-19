@@ -181,6 +181,22 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
     if 'events' not in subsite.objectIds():
         subsite.invokeFactory(type_name='Folder', id='events', title='Events')
         obj = subsite['events']
+        
+        # Create a 'files' folder if we're a county subsite.
+        # Normally this would go in the onCountySiteCreation method, but
+        # then we would have to mess with the addable types, and then set
+        # them back to what they should be.
+        
+        if is_county_site:
+            obj.invokeFactory(type_name='Folder', id='files', title='Files')
+            files = obj['files']
+            files.setConstrainTypesMode(1) # restrict what this folder can contain
+            files.setImmediatelyAddableTypes(['File'])
+            files.setLocallyAllowedTypes(['File','Folder'])
+            files.setExcludeFromNav(True)
+            files.reindexObject()
+            files.unmarkCreationFlag()
+        
         obj.setConstrainTypesMode(1) # restrict what this folder can contain
         obj.setImmediatelyAddableTypes(['Event'])
         obj.setLocallyAllowedTypes(['Event','Topic'])
@@ -375,12 +391,11 @@ def onCountySiteCreation(subsite, event):
         programs['4-h'].unmarkCreationFlag()
         programs['4-h'].setExcludeFromNav(True)
         programs['4-h'].reindexObject()
-
+        
         programs.invokeFactory(type_name='Folder', id='master-gardeners', title='Master Gardeners')        
         programs['master-gardeners'].unmarkCreationFlag()
         programs['master-gardeners'].setExcludeFromNav(True)
         programs['master-gardeners'].reindexObject()
-
 
         programs.unmarkCreationFlag()     
         
@@ -402,6 +417,37 @@ def onCountySiteCreation(subsite, event):
             path_crit.setRecurse(False)
         
             sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')   
+
+
+       # %%% Add events topic to each folder.
+        
+        for local_program in ['4-h', 'master-gardeners']:
+        
+            if 'events' not in programs[local_program].objectIds():
+                programs[local_program].invokeFactory(type_name='Topic', id='events', title='Upcoming Events')
+                
+                smart_obj = programs[local_program]['events']
+                smart_obj.unmarkCreationFlag()
+                        
+                # Set the criteria for the folder
+                type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+                
+                type_crit.setValue(['Event']) # only our specified event types
+                
+                date_crit = smart_obj.addCriterion('end', 'ATFriendlyDateCriteria')
+                date_crit.setValue(0) # Set date reference to now
+                date_crit.setDateRange('+') # Only list future events
+                date_crit.setOperation('more')
+                            
+                # Set the county criteria
+                county_crit = smart_obj.addCriterion('Counties','ATSelectionCriterion')
+                county_crit.setValue(county_name) # Only list items in the current subsite
+
+                # Set the program criteria
+    
+                sort_crit = smart_obj.addCriterion('start','ATSortCriterion')
+                
+
 
     # Set county for subsite
     subsite.extension_counties = (county_name,)
@@ -664,6 +710,7 @@ def onCountySiteCreation(subsite, event):
         for (id, title) in topic_folders:
             topics.invokeFactory(type_name='Folder', id=id, title=title)
             topics[id].unmarkCreationFlag()
+            setRoles(topics[id], editors_group)
 
         if 'front-page' in subsite.objectIds():
             front_page = subsite['front-page']
