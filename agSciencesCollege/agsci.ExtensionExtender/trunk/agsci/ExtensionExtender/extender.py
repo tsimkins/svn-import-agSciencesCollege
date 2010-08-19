@@ -1,5 +1,5 @@
 from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget
-from Products.ATContentTypes.interface import IATFolder, IATEvent, IATNewsItem, IATDocument, IATLink, IATFile, IATImage
+from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, IBrowserLayerAwareExtender
 from interfaces import IExtensionExtenderLayer, IExtensionExtender
@@ -93,10 +93,9 @@ class _ProgramsField(ExtensionField, LinesField):
 
         return ()
 
-            
-class ExtensionExtender(object):
-    #adapts(IATFolder, IATEvent) #, IATNewsItem, IATDocument, IATLink, IATFile, IATImage)
-    adapts(IExtensionExtender)
+
+class FSDExtensionExtender(object):
+    adapts(IPerson)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IExtensionExtenderLayer
@@ -114,6 +113,39 @@ class ExtensionExtender(object):
         _ProgramsField(
             "extension_programs",
                 schemata="Basic Information",
+                required=False,
+                widget = InAndOutWidget(
+                label=u"Programs",
+                description=u"Programs that this item is associated with",
+            ),
+        ),
+
+
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+       
+class ExtensionExtender(object):
+    adapts(IExtensionExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+    
+    fields = [
+        _CountiesField(
+            "extension_counties",
+                required=False,
+                widget = InAndOutWidget(
+                label=u"Counties",
+                description=u"Counties that this item is associated with",
+            ),
+        ),
+        _ProgramsField(
+            "extension_programs",
                 required=False,
                 widget = InAndOutWidget(
                 label=u"Programs",
