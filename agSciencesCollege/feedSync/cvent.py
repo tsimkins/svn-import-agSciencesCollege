@@ -51,7 +51,7 @@ def importEvents(context, emailUsers=['trs22']):
         
         for eventCell in eventRow.findAll('td', {'class':'BodyText1'}):
             eventLink = eventCell.find('a')
-            eventId = eventLink['evtstub']
+            eventId = eventLink['e']
             eventTitle = str(eventLink.contents[0])
             eventURL = summaryURL % eventId
         
