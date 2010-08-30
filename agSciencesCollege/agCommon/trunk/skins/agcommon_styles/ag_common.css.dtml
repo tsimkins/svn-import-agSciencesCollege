@@ -423,6 +423,12 @@ body {
     margin: 1em 0;
 }
 
+#portal-column-two dl.linkIcon .portletItem li {
+    background-color: none;
+    background-image: none;
+    padding: 1px 0;
+}
+
 #portal-column-one .linkIcon a,
 #portal-column-two .linkIcon a {
     text-decoration: none;
@@ -715,6 +721,11 @@ body {
 #portal-column-two ul.relatedItems li {
     margin-left: 2px;
 }
+
+#portal-column-two .portletItem a:hover {
+    background: transparent;
+}
+
 
 /* Person portlet */
 

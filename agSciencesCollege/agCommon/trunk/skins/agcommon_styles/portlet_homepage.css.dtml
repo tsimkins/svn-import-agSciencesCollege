@@ -70,11 +70,6 @@
     font-size: 110%;
 }
 
-#portal-column-two dl.linkIcon .portletItem li {
-    background-color: none;
-    padding: 1px 0;
-}
-
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
