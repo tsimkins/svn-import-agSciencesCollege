@@ -48,5 +48,11 @@
         title="Person Portlet"
         remove="True"
     />
+
+    <portlet
+        addview="agcommon.Contact"
+        title="Contact Portlet"
+        remove="True"
+    />
     
 </portlets>

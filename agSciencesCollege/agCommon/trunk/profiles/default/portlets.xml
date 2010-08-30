@@ -35,5 +35,10 @@
         addview="agcommon.Person"
         title="Person Portlet"
     />
+
+    <portlet
+        addview="agcommon.Contact"
+        title="Contact Portlet"
+    />
       
 </portlets>

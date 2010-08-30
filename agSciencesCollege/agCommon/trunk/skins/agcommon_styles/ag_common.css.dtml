@@ -267,16 +267,26 @@ body {
     margin-right: 5px;
 }
 
-#portal-column-one .portletStaticText .portletItem h2 {
+#portal-column-one .portletStaticText .portletItem h2,
+#portal-column-one .portletContact .portletItem h2,
+#portal-column-two .portletContact .portletItem h2 {
     border: none;
     font-size: 110%;
     font-weight: bold;
     margin-bottom: 0;
 }
 
-#portal-column-one .portletStaticText .portletItem p {
+#portal-column-one .portletStaticText .portletItem p,
+#portal-column-one .portletContact .portletItem p,
+#portal-column-two .portletContact .portletItem p {
     margin: 0;
 }
+
+#portal-column-one .portletContact .portletItem p strong,
+#portal-column-two .portletContact .portletItem p strong {
+    font-weight: normal;
+}
+
 
 #portal-column-one .portletStaticText img {
     width: 166px;

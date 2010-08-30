@@ -108,8 +108,16 @@
                 </metal:listing>
 
             </tal:atct_topic_view>
+
+            <tal:news_listing condition="python:folder_layout == 'news_listing'"
+                         define="folderContents subfolderContents">
+                <metal:listing metal:use-macro="here/news_listing/macros/listing">
+                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                </metal:listing>
+
+            </tal:news_listing>
             
-            <tal:folder_listing condition="python:['folder_summary_view','atct_album_view','atct_topic_view'].count(folder_layout) == 0"
+            <tal:folder_listing condition="python:['folder_summary_view','atct_album_view','atct_topic_view','news_listing'].count(folder_layout) == 0"
                          define="folderContents subfolderContents">
                 <metal:listing metal:use-macro="here/folder_listing/macros/listing">
                     <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>

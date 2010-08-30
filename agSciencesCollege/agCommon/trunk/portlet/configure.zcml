@@ -39,6 +39,15 @@
         editview=".person.EditForm"
         />
 
+    <plone:portlet
+        name="agcommon.Contact"
+        interface=".contact.IContact"
+        assignment=".contact.Assignment"
+        renderer=".contact.Renderer"
+        addview=".contact.AddForm"
+        editview=".contact.EditForm"
+        />
+
     <utility
       component=".vocabulary.PortalActionsVocabularyFactory"
       name="agcommon.portlet.portal_actions"
