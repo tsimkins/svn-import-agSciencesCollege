@@ -14,6 +14,8 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 
+import pdb
+
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 
@@ -240,6 +242,15 @@ class FBMetadataViewlet(CustomTitleViewlet):
 
         self.showFBMetadata = True
         
+        self.fb_url = self.context.absolute_url()
+        
+        try:
+            # Remove this page's id from the URL if it's a default page.
+            if self.context.id == self.context.default_page and  self.context.absolute_url().endswith("/%s" % self.context.id) :
+                self.fb_url = self.fb_url[0:-1*(len(self.context.id)+1)]
+        except:
+            pass
+
         try:
             leadImage_field = self.context.getField('leadImage', None)
             image_field = self.context.getField('image', None)
