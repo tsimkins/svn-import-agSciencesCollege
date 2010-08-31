@@ -44,8 +44,6 @@
         Body text
         </metal:field>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-        
     </tal:main-macro>
 </metal:main>
 

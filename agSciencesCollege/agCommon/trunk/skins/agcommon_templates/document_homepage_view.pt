@@ -27,8 +27,6 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-        
         <script type = "text/javascript" src = "background-images/getHomepageImage.js"></script>
 
     </tal:main-macro>
