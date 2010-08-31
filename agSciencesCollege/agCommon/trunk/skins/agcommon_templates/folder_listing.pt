@@ -101,7 +101,7 @@
                             </a>
                         </span>
 
-                        <span class="documentByLine"
+                        <span class="description"
                                 tal:condition="python: item_type == 'Event'"
                                 metal:define-macro="event_date"
                                 tal:define="item_start_day python:item_start and str(item_start).split()[0] or '';
@@ -115,7 +115,7 @@
                                     <abbr class="dtstart"
                                         tal:attributes="title python:item_start"
                                         tal:define="from_long python:test(item_start.endswith('00:00:00'), 0, 1)"
-                                        tal:content="python:toLocalizedTime(item_start,long_format=from_long)"
+                                        tal:replace="python:toLocalizedTime(item_start,long_format=from_long)"
                                         i18n:name="start">from date</abbr> 
                                         
                                     <span tal:replace="string:to" tal:condition="python:item_start != item_end" />
@@ -126,7 +126,7 @@
                                             tal:condition="python:item_start != item_end"
                                             tal:attributes="title python:item_end"
                                             tal:define="to_long python:test(item_end.endswith('00:00:00'), 0, 1)"
-                                            tal:content="python:toLocalizedTime(item_end,long_format=to_long)"
+                                            tal:replace="python:toLocalizedTime(item_end,long_format=to_long)"
                                             i18n:name="end">to date</abbr>
         
                                     </tal:differentday>
@@ -155,13 +155,13 @@
                                             tal:attributes="title python:item_end"
                                             tal:define="time_array python:toLocalizedTime(item_end,long_format=1).split();
                                                         time_string python:ampm and '%s %s' % (time_array[-2], time_array[-1]) or time_array[-1]"
-                                            tal:content="time_string"
+                                            tal:replace="time_string"
                                             i18n:name="end">to date</abbr>
                                             
                                     </tal:sameday>
                                 </div>
 
-                                <div>
+                                <div tal:condition="item/location">
                                     <strong>Where:</strong>
                                     <span tal:content="string:${item/location}"
                                         tal:condition="item/location"
