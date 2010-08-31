@@ -20,9 +20,7 @@
                 <img src="" alt=""
                  tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal')" />
             </div>
-                <div metal:use-macro="context/document_actions/macros/document_actions">
-                    [Document actions (print, sendto etc)]
-                </div>
+
                 <h1 tal:content="title_string | context/title_or_id" />
                 <ul tal:condition="context/getJobTitles" class="jobTitle">
                     <li tal:repeat="jobTitle context/getJobTitles" 
@@ -142,6 +140,9 @@
               </ul>
             </div>
 
+        </div>
+        <div metal:use-macro="context/document_actions/macros/document_actions">
+            [Document actions (print, sendto etc)]
         </div>
     </metal:fill>
   
