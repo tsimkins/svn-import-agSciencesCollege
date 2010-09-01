@@ -11,10 +11,9 @@ from plone.portlets.constants import CONTEXT_CATEGORY
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
 
 from plone.app.portlets.portlets import navigation
-from plone.portlet.static import static
 from collective.portlet import feedmixer
 from plone.portlet.collection import collection
-from Products.agCommon.portlet import linkbutton, linkicon
+from Products.agCommon.portlet import linkbutton, linkicon, contact
 
 from constants import getCountyWeather, topic_folders
 
@@ -163,7 +162,6 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
             tag_crit.setValue(spotlight_tag) 
         
             sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')
-            sort_crit.setReversed(True)
             
             # Create sample spotlight item
             writeDebug('Creating sample spotlight item')
@@ -174,7 +172,6 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                                             text='<p>You may delete this item</p>', subject=["spotlight-%s" % subsite.id])
                 spotlight_obj['sample'].unmarkCreationFlag()
             
-    
     writeDebug('Creating events folder')      
 
     # Create Events folder
@@ -236,6 +233,41 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
             path_crit.setRecurse(True)
         
             sort_crit = smart_obj.addCriterion('start','ATSortCriterion')
+
+    writeDebug('Creating photos folder') 
+
+    # Create 'Photos' collection (off by default)
+    if 'photos' not in subsite.objectIds():
+        
+        subsite.invokeFactory(type_name='Folder', id='photos', title='Photos')
+        
+        photos = subsite['photos']
+        photos.setExcludeFromNav(True)
+        photos.unmarkCreationFlag()
+        photos.reindexObject()
+            
+        if 'listing' not in photos.objectIds():
+
+            photos.invokeFactory(type_name='Topic', id='listing', title='Photos')
+            photos.setDefaultPage('listing')
+
+            listing = photos['listing']
+            listing.setLayout('news_listing')
+            listing.unmarkCreationFlag()
+                   
+            # Set the criteria for the folder
+            type_crit = listing.addCriterion('Type','ATPortalTypeCriterion')
+            
+            type_crit.setValue(['Photo Folder']) # only our specified types
+            
+            if not is_plone_site:
+                path_crit = listing.addCriterion('path','ATPathCriterion')
+                path_crit.setValue(subsite.UID()) 
+                path_crit.setRecurse(True)
+    
+            sort_crit = listing.addCriterion('effective','ATSortCriterion')
+            sort_crit.setReversed(True)
+            
 
     writeDebug('Setting portlets')
     
@@ -401,7 +433,7 @@ def onCountySiteCreation(subsite, event):
         
         # create a smartfolder for listing the programs in alphabetical order
         if 'listing' not in programs.objectIds():
-            programs.invokeFactory(type_name='Topic', id='listing', title='%s Programs' % county_name)
+            programs.invokeFactory(type_name='Topic', id='listing', title='%s County Programs' % county_name)
             programs.setDefaultPage('listing')
             
             smart_obj = programs['listing']
@@ -473,7 +505,6 @@ def onCountySiteCreation(subsite, event):
         type_crit.setValue(['Person']) # only our specified types
                 
         sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')
-        sort_crit.setReversed(True)
 
         smart_obj.unmarkCreationFlag()
 
@@ -510,37 +541,22 @@ def onCountySiteCreation(subsite, event):
     subsite_RightColumn = getPortletAssignmentMapping(subsite, 'plone.rightcolumn')
         
     # Create Office Info portlet
-    writeDebug('Creating Office Info portlet')
-    office_text = """
-    <h2>Address</h2>
-    <p>%(address_1)s<br />
-    %(address_2)s
-    %(city)s, %(state)s %(zip)s</p>
-    <h2>Contact</h2>
-    <p>Phone: %(phone)s<br />
-    Fax: %(fax)s<br />
-    Email: <a href="mailto:%(email)s">%(email)s</a></p>
-    <h2>Office Hours</h2>
-    <p>%(office_hours)s</p>
-    <h2>Directions</h2>
-    <p><a href="/%(county)s/directions">Directions to our office</a></p>
-    """ % {
-        'county' : county_id,
-        'address_1' : office_info.get('address_1'),
-        'address_2' : office_info.get('address_2') and office_info.get('address_2') + '<br />' or '',
-        'city' : office_info.get('city'),
-        'state' : office_info.get('state'),
-        'zip' : office_info.get('zip'),
-        'phone' : office_info.get('phone'),
-        'fax' : office_info.get('fax'),
-        'email' : office_info.get('email'),
-        'office_hours' : office_info.get('office_hours'),
-    }
     
+    office_address_lines = [office_info.get('address_1')]
     
-    office_info_portlet = static.Assignment(header="Office Information",
-                                            text=office_text)
-
+    if office_info.get('address_2'):
+        office_address_lines.append(office_info.get('address_2'))
+        
+    office_address_lines.append("%s, %s %s" % (office_info.get('city'), office_info.get('state'), office_info.get('zip')))
+    
+    office_address = "\n".join(office_address_lines)
+    
+    office_info_portlet = contact.Assignment(header=u"Office Information", show_header=True, 
+                                             address=office_address,
+                                             directions_text="Directions to our office", directions_link="/%s/directions" % county_id, 
+                                             office_hours=office_info.get('office_hours'), phone=office_info.get('phone'), 
+                                             fax=office_info.get('fax'), email=office_info.get('email'))
+    
     link_button = linkbutton.Assignment(items="%s_buttons" % county_id, show_header=False)
     link_icons = linkicon.Assignment(items="%s_links" % county_id, show_header=False)
         
@@ -766,7 +782,7 @@ def onBlogCreation(blog, event):
             archive_folder.setLayout('news_listing')
             archive_folder.setExcludeFromNav(True)
             archive_folder.setConstrainTypesMode(1) # restrict what this folder can contain
-            archive_folder.setImmediatelyAddableTypes(['Link','News Item'])
+            archive_folder.setImmediatelyAddableTypes(['Link','News Item',])
             archive_folder.setLocallyAllowedTypes(['Link','News Item','Photo Folder'])
             archive_folder.setEffectiveDate("%s-01-01" % year)
             archive_folder.unmarkCreationFlag()
@@ -793,6 +809,7 @@ def onBlogCreation(blog, event):
             blog.invokeFactory(type_name='Topic', id=id, title=title)
             
             smart_obj = blog[id]
+            smart_obj.setLayout('news_listing')
             smart_obj.setExcludeFromNav(True)
             smart_obj.unmarkCreationFlag()
             smart_obj.reindexObject()
@@ -800,7 +817,7 @@ def onBlogCreation(blog, event):
             # Set the criteria for the folder
             type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
             
-            type_crit.setValue(['News Item', 'Link']) # only our specified types
+            type_crit.setValue(['News Item', 'Link', 'Photo Folder']) # only our specified types
             
             path_crit = smart_obj.addCriterion('path','ATPathCriterion')
             search_folders = [blog[x].UID() for x in archive_years]
