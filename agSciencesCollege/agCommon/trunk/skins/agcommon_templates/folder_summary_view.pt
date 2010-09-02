@@ -58,7 +58,6 @@
                                        item_title_or_id item/pretty_title_or_id;
                                        item_description item/Description;
                                        item_type item/portal_type;
-                                       item_type python: ['Tour', 'Activity', 'Exhibit'].count(item_type) and 'Event' or item_type;
                                        item_type_title item/Type;
                                        item_type_class python: 'contenttype-' + normalizeString(item_type);
                                        item_modified item/ModificationDate;

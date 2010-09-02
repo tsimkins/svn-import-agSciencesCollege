@@ -7,5 +7,6 @@
   <element value="folder_noimage_listing"/>
   <element value="news_listing"/>
   <element value="subfolder_view"/>
+  <element value="agenda_view"/>
  </property>
 </object>

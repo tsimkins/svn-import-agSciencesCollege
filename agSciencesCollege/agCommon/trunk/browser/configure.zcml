@@ -272,6 +272,25 @@
         template="templates/collection.pt"
         layer=".interfaces.IThemeSpecific"
         />
-        
+
+    <!-- Views -->        
+    <browser:page
+        for="*"
+        name="agenda_view"
+        class=".views.AgendaView"
+        template="templates/agenda_view.pt"
+        permission="zope.Public"
+        title="Agenda View"
+        menu="plone_displayviews"
+    />
+    
+    <browser:menuItem
+        for=".views.IAgendaView"
+        menu="plone_displayviews"
+        title="Agenda View"
+        action="@@agenda_view"
+        description="A view of events in agenda format"
+    />
+
 
 </configure>
