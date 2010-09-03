@@ -40,5 +40,37 @@
         addview="agcommon.Contact"
         title="Contact Portlet"
     />
+    
+    <!-- Let's remove some portlets that we don't use, to minimize confusion -->
+    
+    <portlet
+        addview="portlets.Classic"
+        title="Removing portlet"
+        remove="True"
+    />
+
+    <portlet
+        addview="portlets.Events"
+        title="Removing portlet"
+        remove="True"
+    />
+    
+    <portlet
+        addview="portlets.Login"
+        title="Removing portlet"
+        remove="True"
+    />
+    
+    <portlet
+        addview="portlets.News"
+        title="Removing portlet"
+        remove="True"
+    />
+    
+    <portlet
+        addview="portlets.rss"
+        title="Removing portlet"
+        remove="True"
+    />
       
 </portlets>
