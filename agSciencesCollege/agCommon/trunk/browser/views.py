@@ -52,14 +52,26 @@ class AgendaView(BrowserView):
                 show_days = True
         except AttributeError:
             show_days = False
-
-        if self.context.portal_type == 'Topic':
-            events = self.context.queryCatalog()
             
-        else:
+        events = []
+        folder_path = ""
+        if self.context.portal_type == 'Topic':
+            try:
+                events = self.context.queryCatalog()
+            except AttributeError:
+                # We don't like a relative path here for some reason.
+                # Until we figure it out, fall through and just do the default query.
+                # That should work in most cases.
+                parent_physical_path = list(self.context.getPhysicalPath())
+                parent_physical_path.pop()
+                folder_path = '/'.join(parent_physical_path)
+                pass
+            
+        if not events:
             catalog = getToolByName(self.context, 'portal_catalog')
             
-            folder_path = '/'.join(self.context.getPhysicalPath())
+            if not folder_path:
+                folder_path = '/'.join(self.context.getPhysicalPath())
                                 
             events = catalog.searchResults({'portal_type' : 'Event', 
                                             'path' : {'query': folder_path, 'depth' : 4},
