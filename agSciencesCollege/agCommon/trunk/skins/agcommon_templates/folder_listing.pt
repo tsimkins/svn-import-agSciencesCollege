@@ -111,7 +111,6 @@
                                 <div>
                                     <strong>When:</strong>
                                     <metal:shortdate define-macro="short_event_date">
-                                    <span tal:replace="string:From" tal:condition="python:item_start != item_end" />
     
                                     <abbr class="dtstart"
                                         tal:attributes="title python:item_start"
