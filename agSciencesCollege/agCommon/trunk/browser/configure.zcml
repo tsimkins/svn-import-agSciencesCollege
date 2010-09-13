@@ -279,18 +279,53 @@
         name="agenda_view"
         class=".views.AgendaView"
         template="templates/agenda_view.pt"
-        permission="zope.Public"
-        title="Agenda View"
-        menu="plone_displayviews"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope.View"
     />
     
     <browser:menuItem
-        for=".views.IAgendaView"
+        for="Products.ATContentTypes.interface.IATFolder"
         menu="plone_displayviews"
         title="Agenda View"
         action="@@agenda_view"
+        layer=".interfaces.IThemeSpecific"
         description="A view of events in agenda format"
     />
 
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="Agenda View"
+        action="@@agenda_view"
+        layer=".interfaces.IThemeSpecific"
+        description="A view of events in agenda format"
+    />
+    
+    <browser:page
+        for="*"
+        name="event_table"
+        class=".views.EventTableView"
+        template="templates/event_table.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope.View"
+    />
+    
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATFolder"
+        menu="plone_displayviews"
+        title="Event Table"
+        action="@@event_table"
+        layer=".interfaces.IThemeSpecific"
+        description="A view of events in table format"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="Event Table"
+        action="@@event_table"
+        layer=".interfaces.IThemeSpecific"
+        description="A view of events in table format"
+    />
 
 </configure>

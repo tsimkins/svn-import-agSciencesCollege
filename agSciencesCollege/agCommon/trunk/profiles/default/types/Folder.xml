@@ -8,5 +8,6 @@
   <element value="news_listing"/>
   <element value="subfolder_view"/>
   <element value="agenda_view"/>
+  <element value="event_table"/>
  </property>
 </object>

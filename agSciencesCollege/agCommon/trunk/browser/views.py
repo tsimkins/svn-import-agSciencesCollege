@@ -15,6 +15,13 @@ class IAgendaView(Interface):
     def test():
         """ test method"""
 
+class IEventTableView(Interface):
+    """
+    event table view interface
+    """
+
+    def test():
+        """ test method"""
 
 class AgendaView(BrowserView):
     """
@@ -96,3 +103,8 @@ class AgendaView(BrowserView):
         return getToolByName(self.context, 'portal_url').getPortalObject()
 
 
+class EventTableView(AgendaView):
+    """
+    agenda browser view
+    """
+    implements(IEventTableView)

@@ -5,5 +5,6 @@
  <property name="view_methods" purge="False">
   <element value="news_listing"/>
   <element value="agenda_view"/>
+  <element value="event_table"/>
  </property>
 </object>
