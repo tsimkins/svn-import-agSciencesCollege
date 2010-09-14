@@ -595,8 +595,8 @@ def onCountySiteCreation(subsite, event):
         saveAssignment(homepage_centerColumn, subsite_news)
         
 
-        currentIssuesCollectionPortlet = collection.Assignment(header=u"Current Issues",
-                                        target_collection = '/current-issues',
+        currentIssuesCollectionPortlet = collection.Assignment(header=u"State-Wide Resources",
+                                        target_collection = '/state-wide-resources',
                                         random=False,
                                         show_more=False,
                                         show_dates=False)

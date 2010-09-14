@@ -1,1 +1,68 @@
-County	Address_1	Address_2	City	State	Zip	Phone	Fax	Email	Office_HoursCentre	420 Holmes Avenue	Willowbank Building, Rm 322	Bellefonte	PA	16823-1488	814-355-4897	814-355-6983	CentreExt@psu.edu	Monday-Friday, 8:30 to 4:30Potter	24 Maple View Lane		Coudersport	PA	16915-9406	814-274-8540	814-274-7891	PotterExt@psu.edu	Monday-Friday, 8:30 to 4:30York	112 Pleasant Acres Road		York	PA	17402-9041	717-840-7408	717-755-5968	YorkExt@psu.edu	Monday-Friday, 8:30 to 4:30Westmoreland	214 Donohoe Road, Suite E	Donohoe Center	Greensburg	PA	15601	724-837-1402	724-837-7613	WestmorelandExt@psu.edu	Monday-Friday, 8:30 to 4:30Allegheny	400 North Lexington Street		Pittsburgh	PA	15208-2521	412-472-2540	412-473-2768	AlleghenyExt@psu.edu	Monday-Friday, 8:30 to 4:30Clinton	47 Cooperation Lane		Mill Hall	PA	17751-8978	570-726-0022	570-726-2237	ClintonExt@psu.edu	Mon, Tue, Thurs Fri, 8:00am to 5:00pm. Wed, 8:00am to 12:30pm. 
+County	Address_1	Address_2	City	State	Zip	Phone	Fax	Email	Office_Hours
+Adams	670 Old Harrisburg Road, Suite 204		Gettysburg	PA	17325-3404	717-334-6271	717-334-0166	AdamsExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Allegheny 	400 North Lexington Street		Pittsburgh	PA	15208-2521	412-473-2540	412-473-2768	AlleghenyExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Armstrong	124 Armsdale Road, Suite 112	Armsdale Administration Bldg	Kittanning	PA	16201-3738	724-548-3447	724-545-3602	ArmstrongExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Beaver	2020 Beaver Avenue, Suite 200		Monaca	PA 	15061	724-774-3003	724-774-0971	BeaverExt@psu.edu	Monday-Friday 8:30 am - 5:00 pm
+Bedford 	120 West John Street, Suite 2		Bedford	PA	15522	814-623-4800	814-623-0318	BedfordExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Berks 	1238 County Welfare Road, Suite 110	Berks County Ag Center	Leesport	PA	19533-9709	610-378-1327	610-378-7961	BerksExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Blair	301 Valley View Blvd.	Valley View "E" Wing	Altoona	PA	16602	814-940-5989	814-940-5997	BlairExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Bradford 	701 South Fourth Street		Towanda	PA	18848-1023	570-265-2896	570-265-4371	BradfordExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Bucks 	1282 Almshouse Road	Neshaminy Manor Center	Doylestown	PA	18901-2896	215-345-3283	215-343-1653	BucksExt@psu.edu	Monday-Friday 8:00 am - 5:00 pm
+Butler 	101 Motor Pool Way		Butler	PA 	16001-3545	724-287-4761	724-287-5911	ButlerExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Cambria 	499 Manor Drive		Ebensburg	PA	15931	814-472-7986	814-472-7987	CambriaExt@psu.edu	Monday-Friday 9:00 am - 4:00 pm
+Cameron 	Courthouse, 20 East Fifth St.		Emporium	PA 	15834	814-486-3350	814-486-9391	CameronExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Carbon 	529 Lentz Trail		Jim Thorpe	PA 	18229	570-325-2788	570-325-2805	CarbonExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm, Closed 12:00 pm - 1:00 pm
+Centre 	420 Holmes Avenue	Willowbank Building, Room 322	Bellefonte	PA	16823-1488	814-355-4897	814-355-6983	CentreExt@psu.edu	Monday-Friday 8:30 am - 5:00 pm
+Chester 	601 Westtown Road, Suite 370	Government Services Center	West Chester	PA	19380-0990	610-696-3500	610-696-4831	ChesterExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Clarion 	8 Grant Street		Clarion	PA	16214	814-223-9028	814-223-9029	ClarionExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Clearfield 	650 Leonard Street	Suite 210	Clearfield	PA	16830-3243	814-765-7878	814-765-3236	ClearfieldExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Clinton 	47 Cooperation Lane	Clinton Co. Res. & Education Ctr.	Mill Hall	PA	17751-8978	570-726-0022	570-726-2237	ClintonExt@psu.edu	M,T,Th,F 8:00 am to 5:00 pm, Wednesday 8:00 am - 12:30 pm
+Columbia 	702 Sawmill Road, Suite 102		Bloomsburg	PA	17815-7727	570-784-6660	570-784-5769	ColumbiaExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Crawford	13400 Dunham Road, Suite A		Meadville	PA	16335-8344	814-333-7460	814-333-1590	CrawfordExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Cumberland	310 Allen Road, Suite 601		Carlisle	PA	17013	717-240-6500	717-240-6548	CumberlandExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Dauphin	1451 Peters Mountain Road		Dauphin	PA	17018-9504	717-921-8803	717-921-0135	DauphinExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Delaware	20 Paper Mill Road		Springfield	PA 	19064	610-690-2655	610-690-2676	DelawareExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Elk	240 Main Street	Courthouse, Basement	Ridgway	PA	15853	814-776-5331	814-776-5332	ElkExt@psu.edu	Monday-Thursday 8:30 - 4:00, Closed Friday
+Erie	850 East Gore Road		Erie	PA	16509-3798	814-825-0900	814-825-4783	ErieExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Fayette	34 West Peter Street	Federal Building	Uniontown	PA	15401-3336	724-438-0111	724-430-3063	FayetteExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Forest	668 Elm Street, Suite C		Tionesta	PA	16353-8802	814-755-3544	814-755-3960	ForestExt@psu.edu	Monday-Friday 9:00 am - 4:00 pm
+Franklin	181 Franklin Farm Lane		Chambersburg	PA	17202	717-263-9226	717-263-9228	FranklinExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Fulton	216 North 2nd Street, Suite 1		McConnellsburg	PA	17233-1170	717-485-4111	717485-5106	FultonExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Greene	26 West High Street, Room 1		Waynesburg	PA	15370-1324	724-627-3745	724-852-4318	GreeneExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Huntingdon	10722 Fairgrounds Road, Suite 6	Fairgrounds Road	Huntingdon	PA	16652	814-643-1660	814-643-1669	HuntingdonExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Indiana	827 Water Street		Indiana	PA	15701-1755	724-465-3880	724-465-3888	IndianaExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Jefferson	180 Main Street	Parker P Blood Block	Brookville	PA	15825-1234	814-849-7361	814-849-3106	JeffersonExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Juniata	Courthouse Annex	PO Box 147	Mifflintown	PA	17059-0147	717-436-7744 	717-436-7745	JuniataExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Lackawanna	200 Adams Avenue, Lower Level		Scranton	PA  	18503-1695	570-963-6842	570-963-6853	LackawannaExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Lancaster 	1383 Arcadia Road, Room 140		Lancaster	PA  	17601-3184	717-394-6851	717-394-3962	LancasterExt@psu.edu	Monday-Friday 8:30 am - 5:00 pm
+Lawrence	430 Court Street	Courthouse	New Castle	PA  	16101-3598	724-654-8370 	724-656-2298	LawrenceExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Lebanon	2120 Cornwall Road, Suite 1		Lebanon	PA	17042-9777	717-270-4391	717-675-2077	LebanonExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Lehigh	4184 Dorney Park Road, Room 104	Lehigh County Agricultural Center	Allentown	PA	18104-5798	610-391-9840	610-391-0683	LehighExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Luzerne	16 Luzerne Avenue, Suite 200		West Pittston	PA 	18643-2817	570-825-1701	570-825-1709	LuzerneExt@psu.edu	Monday-Friday 9:00 am - 4:30 pm
+Lycoming	542 County Farm Road, Suite 206	Lysock View Complex	Montoursville	PA  	17754-9621	570-433-3040	570-433-4331	LycomingExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+McKean	17129 Rt. 6	PO Box 1504	Smethport	PA 	16749-0504	814-887-5613	814-887-5645	McKeanExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Mercer	463 North Perry Highway	PO Box 530	Mercer	PA	16137-0530	724-662-3141	724-662-1933	MercerExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Mifflin	152 East Market Street, Suite 100		Lewistown	PA	17044-2125	717-248-9618	717-242-5462	MifflinExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Monroe 	724 Phillips Street, Suite 201		Stroudsburg	PA	18360-2224	570-421-6430	570-424-1984	MonroeExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Montgomery	1015 Bridge Road, Suite H		Collegeville	PA 	19426-1179	610-489-4315	610-489-9277	MontgomeryExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Montour	114 Woodbine Lane, Suite 102		Danville	PA	17821-9118	570-275-3731	570-275-1357	MontourExt@psu.edu	Monday-Friday 9:00 am - 4:00 pm
+Northampton	14 Gracedale Avenue		Nazareth	PA	18064	610-746-1970	610-746-1973	NorthamptonExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Northumberland 	443 Plum Creek Road		Sunbury	PA	17801	570-988-3950	570-988-3953	NorthumberlandEx@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Perry	8 S. Carlisle Street, Courthouse Annex	PO Box 129 	New Bloomfield	PA	17068-0129	717-582-5150	717-582-5183	PerryExt@psu.edu	Monday-Friday 8:00 am - 4:00 pm
+Philadelphia	111 N. 49th Street, Suite KN3-100	3rd Floor North	Philadelphia	PA	19139	215-471-2200	215-471-2231	PhiladelphiaExt@psu.edu	Monday-Friday 8:00 am - 5:00 pm
+Pike	514 Broad Street		Milford	PA	18337	570-296-3400	570-296-3406	PikeExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Potter	24 Maple View Lane		Coudersport	PA	16915-9406	814-274-8540	814-274-7891	PotterExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Schuylkill	1202 Ag Center Drive		Pottsville	PA	17901	570-622-4225	570-622-4481	SchuylkillExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Snyder	Snyder County Courthouse	PO Box 217	Middleburg	PA	17842-0217	570-837-4252	570-837-4250	SnyderExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Somerset 	6024 Glades Pike, Suite 101		Somerset	PA 	15501	814-445-8911, Ext. 7	814-443-6739	SomersetExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Sullivan	9219 Route 487 STE A		Dushore	PA	18614	570-928-8941	570-928-7469	SullivanExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+Susquehanna 	31 Public Avenue	County Office Building	Montrose	PA	18801-1219	570-278-1158	570-278-2497	SusquehannaExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Tioga	118 Main Street	Courthouse Annex	Wellsboro	PA	16901-1495	570-724-9120	570-724-8137	TiogaExt@psu.edu	Monday-Friday 9:00 am - 4:30 pm
+Union	343 Chestnut Street, Suite 3		Mifflinburg	PA	17844-1323	570-966-8194	570-966-8199	UnionExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
+Venango	867 Mercer Road		Franklin	PA	16323	814-437-7607	814-432-7123	VenangoExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Warren	100 Dillon Drive, Suite 101		Youngsville	PA	16371	814-563-9388	814-563-7288	WarrenExt@psu.edu	Monday-Friday 10:00 am - 4:30 pm, Closed 12:00 pm - 1:00 pm
+Washington	100 West Beau Street, Suite 601		Washington	PA	15301	724-228-6881	724-228-6883	WashingtonExt@psu.edu	Monday-Friday 9:00 am - 4:30 pm
+Wayne	648 Park Street, Suite E		Honesdale	PA 	18431	570-253-5970 Ext 4110	570-253-9478	WayneExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Westmoreland 	214 Donohoe Road, Suite E	Donohoe Center	Greensburg	PA	15601	724-837-1402	724-837-7613	WestmorelandExt@psu.edu	Monday-Friday 8:30 am - 4:30 pm
+Wyoming	71 Hollowcrest Road, Suite 2		Tunkhannock	PA	18657	570-836-3196	570-836-3697	WyomingExt@psu.edu	Monday-Friday 8:30 am - 4:00 pm
+York 	112 Pleasant Acres Road		York	PA	17402-9041	717-840-7408	717-755-5968	YorkExt@psu.edu	Monday-Friday 8:00 am - 4:30 pm
