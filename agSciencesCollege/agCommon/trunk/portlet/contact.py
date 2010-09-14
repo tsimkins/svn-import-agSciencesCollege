@@ -58,7 +58,7 @@ class IContact(IPortletDataProvider):
         description=_(u"Linked text for directions"),
         required=False)
         
-    directions_link = schema.URI(
+    directions_link = schema.TextLine(
         title=_(u"Directions URL"),
         description=_(u""),
         required=False)
