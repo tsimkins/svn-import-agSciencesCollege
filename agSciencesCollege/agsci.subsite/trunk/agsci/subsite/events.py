@@ -703,46 +703,6 @@ def onCountySiteCreation(subsite, event):
                 sample.setSubject([])
                 sample.reindexObject()
 
-    # Create "Topics" folder as a section and create nav portlet
-    
-    if 'topics' not in subsite.objectIds():
-        writeDebug('Creating topics section')
-        subsite.invokeFactory(type_name='Section', id='topics', title='Topics')
-        topics = subsite['topics']
-
-        onSectionCreation(topics, event)
-
-        topics.setConstrainTypesMode(1) # restrict what this folder can contain
-        topics.setImmediatelyAddableTypes([])
-        topics.setLocallyAllowedTypes(['Link','Folder'])
-
-        topics.unmarkCreationFlag() 
-
-        topics.setExcludeFromNav(True)
-        topics.reindexObject()
-        
-        topics.manage_delObjects(['sample'])
-
-        for (id, title) in topic_folders:
-            topics.invokeFactory(type_name='Folder', id=id, title=title)
-            topics[id].unmarkCreationFlag()
-            setRoles(topics[id], editors_group)
-
-        if 'front-page' in subsite.objectIds():
-            front_page = subsite['front-page']
-            homepage_rightColumn = getPortletAssignmentMapping(front_page, 'plone.rightcolumn')
-                
-            # Set left navigation portlet
-            topics_navigation = navigation.Assignment(name=u"Topics",
-                                                    root='/%s' % '/'.join(urltool.getRelativeContentPath(topics)),
-                                                    currentFolderOnly = False,
-                                                    includeTop = False,
-                                                    topLevel = 0,
-                                                    bottomLevel = 1)
-    
-            homepage_rightColumn['topics_navigation'] = topics_navigation 
-
-
     # Unset county for subsite. 
     subsite.extension_counties = ()
     
