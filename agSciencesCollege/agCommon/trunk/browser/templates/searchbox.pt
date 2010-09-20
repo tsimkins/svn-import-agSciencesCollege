@@ -22,10 +22,10 @@
                autocomplete="off"/>
 
 		<select id = "searchSource"
-		      tal:define="agsciHomepage python: view.site_url.endswith('agsci.psu.edu')">
+		      tal:define="showCollegeSearch python: view.site_url.endswith('agsci.psu.edu') or view.site_url.endswith('extension.psu.edu')">
 			<option value = "section">Search This Section</option>
-			<option value = "site" tal:attributes="selected python:agsciHomepage and '' or 'selected'">Search Site</option>
-			<option value = "college" tal:attributes="selected python:agsciHomepage and 'selected' or ''">Search College</option>
+			<option value = "site" tal:attributes="selected python:showCollegeSearch and '' or 'selected'">Search Site</option>
+			<option value = "college" tal:attributes="selected python:showCollegeSearch and 'selected' or ''">Search College</option>
 			<option value = "psu">Search Penn State</option>
 		</select>
 

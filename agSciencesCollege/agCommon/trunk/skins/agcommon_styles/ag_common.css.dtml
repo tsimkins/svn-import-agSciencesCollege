@@ -410,6 +410,13 @@ body {
     display: none;
 }
 
+/* RSS Image in right column */
+
+#portal-column-two dl.portletfeedmixer a.rssImage {
+    display: block;
+    text-align: left;
+    margin-top: 0.5em;
+}
 
 /* Link Icons */
 
