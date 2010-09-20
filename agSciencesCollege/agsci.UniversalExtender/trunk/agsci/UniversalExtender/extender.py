@@ -29,7 +29,7 @@ class FSDPersonExtender(object):
     fields = [
 
         _ExtensionStringField(
-            "fax",
+            "faxNumber",
             required=False,
             schemata="Contact Information",
             widget=StringWidget(
@@ -38,7 +38,7 @@ class FSDPersonExtender(object):
             ),
         ),
         _ExtensionStringField(
-            "twitter",
+            "twitter_url",
             required=False,
             schemata="Social Media",
             widget=StringWidget(
@@ -47,7 +47,7 @@ class FSDPersonExtender(object):
             ),
         ),
         _ExtensionStringField(
-            "facebook",
+            "facebook_url",
             required=False,
             schemata="Social Media",
             widget=StringWidget(
@@ -56,7 +56,7 @@ class FSDPersonExtender(object):
             ),
         ),
         _ExtensionStringField(
-            "linkedin",
+            "linkedin_url",
             required=False,
             schemata="Social Media",
             widget=StringWidget(
@@ -167,7 +167,7 @@ class EventExtender(object):
             "map_link",
             required=False,
             widget=StringWidget(
-                label=u"Map To Event",
+                label=u"Map To Location",
                 description=u"e.g. Google Maps link",
             ),
         ),
