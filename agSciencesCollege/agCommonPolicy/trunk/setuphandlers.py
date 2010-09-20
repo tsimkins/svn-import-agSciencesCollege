@@ -357,14 +357,10 @@ def configureScripts(context):
 
 def installAdditionalProducts(context):
     
-    # This doesn't work, apparently gets called recursively?
-    
-    #return False
-
     toInstall = [
             'CacheSetup', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
-            'plone.app.imaging', 'plonegalleryview', 'agsci.subsite'
+            'plone.app.imaging', 'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
     ]
 
     site = context.getSite()
