@@ -1297,6 +1297,12 @@ table.events td {
     vertical-align: top;
 }
 
+/* Hide Short Name on all screens.  Will be unhidden on the Edit screen by JS */
+
+#archetypes-fieldname-id {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

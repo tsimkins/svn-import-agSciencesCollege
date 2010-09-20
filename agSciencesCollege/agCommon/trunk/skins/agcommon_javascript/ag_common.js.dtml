@@ -154,6 +154,18 @@ jq(document).ready( function () {
     
 } );
 
+
+/* Hide Short Name from Add screen */
+
+jq(document).ready( function () {
+
+    if (jq("#archetypes-fieldname-id input").val())
+    {
+        jq("#archetypes-fieldname-id").show();
+    }
+    
+} );
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */
