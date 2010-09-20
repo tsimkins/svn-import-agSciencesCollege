@@ -113,9 +113,19 @@
                 <tr tal:condition="here/location">
                     <th i18n:translate="event_where">Where</th>
                     <td class="location">
-                        <metal:field use-macro="python:here.widget('location', mode='view')">
-                        Location
-                        </metal:field>
+                        <tal:map condition="here/map_link|nothing">
+                            <a tal:attributes="href context/map_link">
+                                <metal:field use-macro="python:here.widget('location', mode='view')">
+                                Location
+                                </metal:field>
+                            </a>
+                        </tal:map>
+                        
+                        <tal:nomap condition="not: here/map_link|nothing">
+                            <metal:field use-macro="python:here.widget('location', mode='view')">
+                            Location
+                            </metal:field>
+                        </tal:nomap>
                     </td>
                 </tr>
                 <tr tal:define="contact_email here/contact_email;
