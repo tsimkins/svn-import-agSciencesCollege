@@ -23,13 +23,21 @@
       />
 
     <adapter
+        name="agsci.ExtensionExtender.extender.ExtensionExtender"
         factory=".extender.ExtensionExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
     <adapter
+        name="agsci.ExtensionExtender.extender.FSDExtensionExtender"
         factory=".extender.FSDExtensionExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <adapter
+        name="agsci.ExtensionExtender.extender.FSDExtensionExtender.fiddle"
+        factory=".extender.FSDExtensionExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     /> 
 
     <five:implements
