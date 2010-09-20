@@ -39,10 +39,10 @@
                     <span i18n:translate="FacultyStaffDirectory_label_officePhone">Phone</span>:
                     <span tal:replace="context/getOfficePhone"/>
                 </div>
-                <div tal:condition="context/fax|nothing" 
+                <div tal:condition="context/faxNumber|nothing" 
                      class="officePhone">
                     <span>Fax</span>:
-                    <span tal:replace="context/fax"/>
+                    <span tal:replace="context/faxNumber"/>
                 </div>
 
                 <div tal:condition="context/getWebsites" class="websites">
@@ -58,9 +58,9 @@
             </div>
 
             <tal:socialmedia define="person_name title_string|context/title_or_id;
-                                     twitter_url here/twitter|nothing;
-                                     facebook_url here/facebook|nothing;
-                                     linkedin_url here/linkedin|nothing;"
+                                     twitter_url here/twitter_url|nothing;
+                                     facebook_url here/facebook_url|nothing;
+                                     linkedin_url here/linkedin_url|nothing;"
                              condition="python: twitter_url or facebook_url or linkedin_url">
 
             <h3>Connect with <span tal:replace="person_name" /> on:</h3>
