@@ -33,7 +33,6 @@
     enabled="True" expression="python:portal.id == 'thinkagain.psu.edu'" inline="False"/>
 
  <javascript id="semicolon-delimited.js"
-    cacheable="True" compression="safe" cookable="True"
-    enabled="True" inline="False"/>
+    remove="True"/>
 </object>
 
