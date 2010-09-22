@@ -101,7 +101,11 @@
 
   </head>
 
-  <body tal:define="custom_class context/custom_class|nothing;
+  <body tal:define="two_column here/two_column|nothing;
+                    two_column python:two_column and 'two-column' or '';
+                    custom_class context/custom_class|nothing;
+                    custom_class python: custom_class and custom_class or '';
+                    custom_class python: ' '.join([two_column, custom_class]).strip();
                     customClass python:custom_class and ' '.join(['custom-%s' % str(x) for x in custom_class.split()]) or ''" 
                     tal:attributes="class string:${here/getSectionFromURL} template-${template/id} ${customClass};
                         dir python:test(isRTL, 'rtl', 'ltr')">

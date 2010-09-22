@@ -1310,6 +1310,63 @@ table.events td {
     display: none;
 }
 
+#two-column-left, #two-column-right {
+    float: left;
+    width: 47%;
+    margin-top: 1em;
+}
+
+body.template-subfolder_view div#two-column-left, body.template-subfolder_view div#two-column-right {
+    font-size: 0.95em;
+    margin-top: 1.5em;
+}
+
+#two-column-left>dd, #two-column-right>dd, 
+div#two-column-left .tileItem dd, #two-column-right>dd {
+    margin-left: 15px;
+}
+
+#two-column-left {
+    padding-right: 1em;
+    border-right: 1px solid  &dtml-leftNavBorderColor;;
+}
+
+#two-column-right {
+    padding-left: 1em;
+    border-left: 1px solid  &dtml-leftNavBorderColor;;
+    margin-left: -1px;
+}
+
+#two-column-left>.tileItem:first-child, #two-column-right>.tileItem:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+#two-column-left>.tileItem>span.description, #two-column-right>.tileItem>span.description {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+
+
+#two-column-left a, #two-column-right a {
+    border-bottom: none;
+    text-decoration: underline;
+}
+
+#two-column-left h2.tileHeadline a, #two-column-right h2.tileHeadline a {
+    text-decoration: none;
+}
+
+#two-column-left .tileItem>dl>dt.nodescription, #two-column-right .tileItem>dl>dt.nodescription {
+    margin-bottom: 0.5em;
+}
+
+#two-column-left .tileItem>h2.tileHeadline, #two-column-right .tileItem>h2.tileHeadline {
+    margin-bottom: 0;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

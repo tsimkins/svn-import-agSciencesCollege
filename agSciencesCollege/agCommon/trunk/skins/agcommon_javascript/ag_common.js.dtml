@@ -204,6 +204,112 @@ jq(document).ready(
 )
 
 
+/* For folders with the 'two_column' property set, split the folder listing into two columns */
+
+jq(document).ready(
+	function () {
+
+        isTwoColumn = jq('body.custom-two-column').length;
+        
+        if (isTwoColumn)
+        {
+            // Grab items from Summary View
+
+            summary_items = jq('body.custom-two-column #content>div>.tileItem');
+            insert_after = jq('body.custom-two-column #content>div>.tileItem:last');
+    
+            if (summary_items.length == 0)
+            {
+                summary_items = jq('body.custom-two-column #region-content>div>.tileItem');
+                insert_after = jq('body.custom-two-column #region-content>div>.tileItem:last');
+            }
+
+
+            // Grab items from Standard View
+                
+            listing_items = jq('body.custom-two-column #content dl:not(#history) dt');
+
+
+            // Process Summary Items
+    
+            if (summary_items.length >= 1)
+            {
+                
+                first_column_items = Math.ceil(summary_items.length/2)
+    
+                two_column_left = jq('<div id="two-column-left"></div>');
+                two_column_right = jq('<div id="two-column-right"></div>');
+    
+                insert_after.after('<div class="visualClear">&nbsp;</div>');   
+                insert_after.after(two_column_right);        
+                insert_after.after(two_column_left);
+                
+                item_count = 0;
+    
+                summary_items.each(
+
+                    function()
+                    {
+                        item_count++;
+    
+                        if (item_count <= first_column_items)
+                        {
+                            two_column_left.append(this);
+                        }
+                        else
+                        {
+                            two_column_right.append(this);
+                        }
+    
+                    }
+                );
+                
+            }
+    
+            else if (listing_items.length >= 1)
+            {
+                first_column_items = Math.ceil(listing_items.length/2)
+    
+                two_column_left = jq('<dl id="two-column-left"></dl>');
+                two_column_right = jq('<dl id="two-column-right"></dl>');
+
+                theList = jq('body.custom-two-column #content dl:not(#history)');
+    
+                theList.before(two_column_left);
+                theList.before(two_column_right);  
+                theList.before('<div class="visualClear">&nbsp;</div>');   
+                
+                item_count = 0;
+    
+                jq('body.custom-two-column #content dl:not(#history)').children().each(
+                    function()
+                    {
+    
+                        if (this.nodeName == 'DT')
+                        {
+                            item_count++;
+                        }
+    
+                        if (item_count <= first_column_items)
+                        {
+                            two_column_left.append(this);
+                        }
+                        else
+                        {
+                            two_column_right.append(this);
+                        }
+    
+                    }
+                );
+                
+            }
+    	}
+	}
+)
+
+
+
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */
