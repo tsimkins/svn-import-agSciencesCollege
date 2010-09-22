@@ -34,12 +34,6 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
-    <adapter
-        name="agsci.ExtensionExtender.extender.FSDExtensionExtender.fiddle"
-        factory=".extender.FSDExtensionExtender"
-        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
-    /> 
-
     <five:implements
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.IExtensionExtender"

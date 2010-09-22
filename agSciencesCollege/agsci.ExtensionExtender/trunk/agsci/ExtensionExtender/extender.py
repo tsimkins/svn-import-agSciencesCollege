@@ -105,15 +105,18 @@ class FSDExtensionExtender(object):
             "extension_counties",
                 schemata="categorization",
                 required=False,
+                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
                 widget = InAndOutWidget(
                 label=u"Counties",
                 description=u"Counties that this item is associated with",
             ),
         ),
+
         _ProgramsField(
             "extension_programs",
                 schemata="categorization",
                 required=False,
+                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this item is associated with",
@@ -129,17 +132,6 @@ class FSDExtensionExtender(object):
     def getFields(self):
         return self.fields
         
-    def fiddle(self, schema):
-
-        # Restrict the image field to Personnel Managers
-        
-        for restricted_field in ['extension_counties', 'extension_programs']:
-            tmp_field = schema[restricted_field].copy()
-            tmp_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
-            schema[restricted_field] = tmp_field
-
-        return schema
-       
 class ExtensionExtender(object):
     adapts(IExtensionExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
