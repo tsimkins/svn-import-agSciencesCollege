@@ -1,9 +1,10 @@
-from Products.Archetypes.public import ImageField, ImageWidget, StringField, StringWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interface.event import IATEvent
+from Products.ATContentTypes.interface.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderExtender
 from zope.component import adapts
 from zope.interface import implements
 import pdb
@@ -11,6 +12,7 @@ from AccessControl import ClassSecurityInfo
 
 
 class _ExtensionStringField(ExtensionField, StringField): pass
+class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 
 # Add fax, twitter, facebook, linkedin to FSDPerson.
 #
@@ -201,6 +203,35 @@ class EventExtender(object):
         schema.moveField('startDate', before='endDate')
         
         return schema
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+# Adds a "two column" field to folders. This will set a class, and jQuery will dynamically create two near-equal columns.
+
+class FolderExtender(object):
+    adapts(IFolderExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+
+        _ExtensionBooleanField(
+            "two_column",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Two column display",
+                description=u"This will automatically display the contents of the folder in two columns.  This is best for short titles/descriptions.",
+                condition="python:member.has_role('Manager')"
+            ),
+        ),
+
+    ]
 
     def __init__(self, context):
         self.context = context

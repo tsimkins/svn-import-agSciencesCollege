@@ -45,7 +45,7 @@
         interface=".interfaces.IDefaultExcludeFromNav"
     /> 
 
-    <!--Event Map Link -->
+    <!-- Event Map Link -->
 
     <adapter
         name="agsci.UniversalExtender.extender.EventExtender"
@@ -58,5 +58,23 @@
         factory=".extender.EventExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
+
+    <!-- Folder Display Options -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FolderExtender"
+        factory=".extender.FolderExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.IFolderExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.IFolderExtender"
+    /> 
     
 </configure>
