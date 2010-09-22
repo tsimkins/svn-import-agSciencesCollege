@@ -123,8 +123,6 @@ function searchOnSubmit()
         else if (theSearchOption == "psu")
         {
             theSearchForm.q.value = theSearchBox.value;
-            theSearchForm.site.value = "PennState";
-            theSearchForm.proxystylesheet.value = "PennState";
             theSearchForm.submit();
             return false;
         }
