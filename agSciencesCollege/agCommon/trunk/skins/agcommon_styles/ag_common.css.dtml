@@ -1316,6 +1316,10 @@ table.events td {
     margin-top: 1em;
 }
 
+#portal-column-content.sr #two-column-left, #portal-column-content.sr #two-column-right {
+    width: 46%;
+}
+
 body.template-subfolder_view div#two-column-left, body.template-subfolder_view div#two-column-right {
     font-size: 0.95em;
     margin-top: 1.5em;
