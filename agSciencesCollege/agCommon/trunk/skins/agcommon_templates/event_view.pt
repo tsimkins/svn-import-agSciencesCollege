@@ -112,16 +112,17 @@
                 </tr>
                 <tr tal:condition="here/location">
                     <th i18n:translate="event_where">Where</th>
-                    <td class="location">
-                        <tal:map condition="here/map_link|nothing">
-                            <a tal:attributes="href context/map_link">
+                    <td class="location"
+                        tal:define="map_link context/map_link|nothing">
+                        <tal:map condition="map_link">
+                            <a tal:attributes="href map_link">
                                 <metal:field use-macro="python:here.widget('location', mode='view')">
                                 Location
                                 </metal:field>
                             </a>
                         </tal:map>
                         
-                        <tal:nomap condition="not: here/map_link|nothing">
+                        <tal:nomap condition="not: map_link">
                             <metal:field use-macro="python:here.widget('location', mode='view')">
                             Location
                             </metal:field>
