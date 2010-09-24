@@ -161,10 +161,29 @@
 
                                 <div tal:condition="item/location">
                                     <strong>Where:</strong>
-                                    <span metal:define-macro="location" 
-                                        tal:content="string:${item/location}"
-                                        tal:condition="item/location"
-                                        class="location">Oslo</span>
+                                    
+                                    <tal:location metal:define-macro="location"
+                                        define="item_object item/getObject;
+                                                map_link item_object/map_link|nothing">
+                                    
+                                        <tal:map condition="map_link">
+                                            <a tal:attributes="href map_link">
+                                                <span tal:content="string:${item/location}"
+                                                      tal:condition="item/location"
+                                                      class="location">Oslo</span>
+                                            </a>
+                                        </tal:map>
+                                        
+                                        <tal:nomap condition="not: map_link">
+                                                <span tal:content="string:${item/location}"
+                                                      tal:condition="item/location"
+                                                      class="location">Oslo</span>
+                                        </tal:nomap>
+                                    
+                                    </tal:location>
+                        
+                        
+                                    
                                 </div>
 
                         </span>
