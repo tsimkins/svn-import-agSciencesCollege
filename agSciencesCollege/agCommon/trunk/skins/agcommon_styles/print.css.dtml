@@ -248,6 +248,14 @@ img {
     display: none;
 }
 
+.relatedItems {
+    display: none;
+}
+
+#disclaimer {
+    border: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
