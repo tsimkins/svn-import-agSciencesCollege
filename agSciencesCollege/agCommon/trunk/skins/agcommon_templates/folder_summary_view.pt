@@ -109,7 +109,7 @@
                         </a>
                     </h2>
 
-                    <tal:event condition="python: item_type == 'Event'">
+                    <tal:event condition="python: item_type == 'Event' or item_type == 'TalkEvent'">
                          <div metal:use-macro="here/folder_listing/macros/event_date" />
                     </tal:event>
 

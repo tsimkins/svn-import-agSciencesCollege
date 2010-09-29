@@ -73,7 +73,7 @@
 
                     <dt metal:define-macro="listitem"
                     	tal:define="dt_class python:test(not item_description, 'nodescription', '');
-                    				dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
+                    				dt_class python:test(item_type == 'Event' or item_type == 'TalkEvent', ('%s vevent' % dt_class).strip(), dt_class)"
                         tal:attributes="class dt_class">
 
                         <span class="summary"
@@ -103,7 +103,7 @@
 
                         <span class="documentByLine">
 
-                            <span tal:condition="python: item_type == 'Event'"
+                            <span tal:condition="python: item_type == 'Event' or item_type == 'TalkEvent'"
                                   i18n:translate="label_event_byline">
 
                                 (<span tal:content="string:${item/location}"
@@ -149,7 +149,7 @@
 
                                 </tal:name>
 
-                                <tal:modified condition="python: item_type != 'Event'">
+                                <tal:modified condition="python: item_type != 'Event' and item_type != 'TalkEvent'">
                                     &mdash;
                                     <tal:mod i18n:translate="box_last_modified">
                                       last modified

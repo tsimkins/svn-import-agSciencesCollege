@@ -110,9 +110,9 @@
 
 
 
-                    <tal:event condition="python: item_type == 'Event'">
+                    <tal:event condition="python: item_type == 'Event' or item_type == 'TalkEvent'">
                     <div class="documentByLine">
-                         <span tal:condition="python: item_type == 'Event'"
+                         <span tal:condition="python: item_type == 'Event' or item_type == 'TalkEvent'"
                                i18n:translate="label_event_byline">
                              <span tal:content="string:${item/location}"
                                     class="location"

@@ -73,7 +73,7 @@
 
                     <dt metal:define-macro="listitem"
                     	tal:define="dt_class python:test(not item_description, 'nodescription', '');
-                    				dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
+                    				dt_class python:test(item_type == 'Event' or item_type == 'TalkEvent', ('%s vevent' % dt_class).strip(), dt_class)"
                         tal:attributes="class dt_class">
 
                         <span class="summary"
@@ -102,11 +102,13 @@
                         </span>
 
                         <span class="description"
-                                tal:condition="python: item_type == 'Event'"
+                                tal:condition="python: item_type == 'Event' or item_type == 'TalkEvent'"
                                 metal:define-macro="event_date"
                                 tal:define="item_start_day python:item_start and str(item_start).split()[0] or '';
                                             item_end_day python:item_end and str(item_end).split()[0] or ''"
                                 i18n:translate="label_event_byline">
+
+                                <div class="eventCanceled" tal:condition="item_object/eventCanceled|nothing">CANCELED</div>
 
                                 <div>
                                     <strong>When:</strong>
@@ -206,7 +208,7 @@
 
                                 </tal:name>
 
-                                <tal:modified condition="python: item_type != 'Event'">
+                                <tal:modified condition="python: item_type != 'Event' and item_type != 'TalkEvent'">
                                     &mdash;
                                     <tal:mod i18n:translate="box_last_modified">
                                       last modified

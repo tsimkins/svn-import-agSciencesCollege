@@ -29,7 +29,7 @@
              Title
             </span>
 
-			<tal:block tal:condition="python:item_type != 'Event'">
+			<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
             <span class="portletItemDetails"
                   tal:condition="view/data/show_dates"
                   tal:content="python:toLocalizedTime(obj.Date)">
@@ -37,7 +37,7 @@
             </span>
 			</tal:block>
 
-			<tal:block tal:condition="python:item_type == 'Event'">
+			<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
             <span class="portletItemDetails"
                   tal:condition="view/data/show_dates"
                   tal:content="python:toLocalizedTime(item_start)">

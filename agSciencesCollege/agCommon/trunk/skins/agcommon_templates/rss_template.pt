@@ -76,9 +76,9 @@
 			<dc:subject tal:content="item">Item</dc:subject>
 		</tal:block>
 		<tal:effectivedate condition="obj_item/effective_date|nothing">
-    		<dc:date tal:condition="python:obj_item_type == 'Event'"
+    		<dc:date tal:condition="python:obj_item_type == 'Event' or obj_item_type == 'TalkEvent'"
     	   	         tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
-    		<dc:date tal:condition="python:obj_item_type != 'Event'"
+    		<dc:date tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'"
     	   	         tal:content="python: obj_item['effective_date'].HTML4()">Effective date</dc:date>
         </tal:effectivedate>
 		<dc:date tal:content="python: obj_item.modified().HTML4()" tal:condition="not: obj_item/effective_date|nothing">Modification date</dc:date>
