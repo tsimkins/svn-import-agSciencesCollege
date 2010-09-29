@@ -843,6 +843,10 @@ body {
     font-weight: normal;
 }
 
+#region-content h3.speaker-institution {
+    margin: 0 0 15px;
+}
+
 #region-content .documentDescription {
     font-weight: normal;
     color: &dtml-documentDescriptionColor;;

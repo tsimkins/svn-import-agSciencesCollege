@@ -23,7 +23,7 @@
             </metal:field>
         </h1>
 
-        <h3 tal:condition="here/speakerInstitution|nothing" tal:content="here/speakerInstitution" />
+        <h3 class="speaker-institution" tal:condition="here/speakerInstitution|nothing" tal:content="here/speakerInstitution" />
 
         <div class="description" tal:condition="here/eventCanceled|nothing">CANCELLED</div>
 
