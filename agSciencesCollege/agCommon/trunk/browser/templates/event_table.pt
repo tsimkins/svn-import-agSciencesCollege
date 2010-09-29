@@ -119,6 +119,7 @@
                                tal:content="item/pretty_title_or_id">
                                 Item Title
                             </a>
+                            <div class="portalMessage" tal:define="item_object item/getObject" tal:condition="item_object/eventCanceled|nothing">This event has been canceled.</div>
                         </td>
                         <td>
                             <div metal:use-macro="here/folder_listing/macros/short_event_date" />

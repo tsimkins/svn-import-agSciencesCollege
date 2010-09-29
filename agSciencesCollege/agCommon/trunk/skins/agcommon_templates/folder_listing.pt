@@ -105,9 +105,9 @@
                                 tal:condition="python: item_type == 'Event' or item_type == 'TalkEvent'"
                                 metal:define-macro="event_date"
                                 tal:define="item_start_day python:item_start and str(item_start).split()[0] or '';
-                                            item_end_day python:item_end and str(item_end).split()[0] or ''"
+                                            item_end_day python:item_end and str(item_end).split()[0] or '';
+                                            item_object item/getObject"
                                 i18n:translate="label_event_byline">
-
                                 <div class="portalMessage" tal:condition="item_object/eventCanceled|nothing">This event has been canceled.</div>
 
                                 <div>
