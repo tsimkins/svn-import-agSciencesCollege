@@ -73,7 +73,7 @@ class AgendaView(BrowserView):
             if not folder_path:
                 folder_path = '/'.join(self.context.getPhysicalPath())
                                 
-            events = catalog.searchResults({'portal_type' : ['Event', 'TalkEvent']
+            events = catalog.searchResults({'portal_type' : ['Event', 'TalkEvent'],
                                             'path' : {'query': folder_path, 'depth' : 4},
                                             'start' : {'query' : DateTime(), 'range' : 'min'},
                                             'sort_on' : 'start' })
