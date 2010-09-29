@@ -25,7 +25,7 @@
 
         <h3 class="speaker-institution" tal:condition="here/speakerInstitution|nothing" tal:content="here/speakerInstitution" />
 
-        <div class="description" tal:condition="here/eventCanceled|nothing">CANCELLED</div>
+        <div class="portalMessage" tal:condition="here/eventCanceled|nothing">This event has been canceled.</div>
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 

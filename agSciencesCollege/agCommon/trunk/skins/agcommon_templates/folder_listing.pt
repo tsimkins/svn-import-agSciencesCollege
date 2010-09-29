@@ -108,7 +108,7 @@
                                             item_end_day python:item_end and str(item_end).split()[0] or ''"
                                 i18n:translate="label_event_byline">
 
-                                <div class="eventCanceled" tal:condition="item_object/eventCanceled|nothing">CANCELED</div>
+                                <div class="portalMessage" tal:condition="item_object/eventCanceled|nothing">This event has been canceled.</div>
 
                                 <div>
                                     <strong>When:</strong>
