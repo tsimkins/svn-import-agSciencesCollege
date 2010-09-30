@@ -38,8 +38,7 @@
                 </tal:item>
                 
                 <tal:item condition="view/data/email">
-                    <strong>Email:</strong>
-                    <a tal:attributes="href string: mailto:${view/data/email}" tal:content="view/data/email" /><br />
+                    <a tal:attributes="href string:mailto:${view/data/email}" tal:content="view/data/email" /><br />
                 </tal:item>
                 </p>
             </tal:contact>
