@@ -66,6 +66,16 @@ class FSDPersonExtender(object):
                 description=u"Example: http://www.linkedin.com/...",
             ),
         ),
+        _ExtensionStringField(
+            "primary_profile",
+            required=False,
+            schemata="settings",
+            condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
+            widget=StringWidget(
+                label=u"Primary Profile URL",
+                description=u"Providing a URL and setting the view to 'Person Alias' will redirect public users to this URL.",
+            ),
+        ),
     ]
 
     def fiddle(self, schema):
