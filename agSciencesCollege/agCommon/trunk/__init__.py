@@ -9,6 +9,8 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from subprocess import Popen,PIPE
 from zLOG import LOG, INFO, ERROR
 
+# For FSD Monkeypatch
+from Products.FacultyStaffDirectory.FacultyStaffDirectory import FacultyStaffDirectory
 
 import re
 
@@ -45,6 +47,16 @@ allow_module('re.compile')
 
 # Precompile phoneRegex
 phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
+
+
+# Monkeypatch for FSD to only show people in the 'active' workflow state.
+def getPeople(self):
+    """Return a list of people contained within this FacultyStaffDirectory."""
+    portal_catalog = getToolByName(self, 'portal_catalog')
+    results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active')
+    return [brain.getObject() for brain in results]
+
+FacultyStaffDirectory.getPeople = getPeople    
 
 # Given start and end colors (optionally width and height) returns a gradient png
 
