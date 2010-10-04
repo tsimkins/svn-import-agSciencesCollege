@@ -14,6 +14,15 @@
     <metal:fill fill-slot="main">
         <div class="facultyStaffDirectory personView">
 
+            <tal:redirect define="layout here/layout|nothing;
+                                  primary_profile context/primary_profile|nothing;">
+                                  
+                <div class="portalMessage" 
+                     tal:condition="python: not isAnon and primary_profile and layout=='person_redirect_view'">This profile is redirected to
+                     <a tal:attributes="href primary_profile" tal:content="primary_profile" /></div>
+
+            </tal:redirect>
+            
             <div class="caption">
               <div class="headshot"
                  tal:condition="context/image_normal|nothing">
