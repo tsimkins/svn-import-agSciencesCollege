@@ -361,6 +361,7 @@ def installAdditionalProducts(context):
             'CacheSetup', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
             'plone.app.imaging', 'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
+            'CacheableRedirects', 'WebLionHostingPolicy'
     ]
 
     site = context.getSite()
