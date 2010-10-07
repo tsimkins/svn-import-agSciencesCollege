@@ -189,7 +189,12 @@ class EventExtender(object):
     def fiddle(self, schema):
 
         # Put map link after location
-        schema.moveField('map_link', after='location')
+        try:
+            schema.moveField('map_link', after='location')
+        except KeyError:
+            # This angers TalkEvents
+            pass
+
         #pdb.set_trace()
 
         # Move subject/tags to Categorization tab
