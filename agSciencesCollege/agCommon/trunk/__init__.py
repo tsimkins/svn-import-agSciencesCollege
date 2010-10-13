@@ -359,7 +359,7 @@ def fixPhoneNumber(myPerson):
         return "%s: Phone OK" % myPerson.id
 
 # Intended to be used at the site root.  Returns a list of Plone sites.
-def getPloneSites(context):
+def getPloneSites(context, recursive=True):
 
     ploneSites = []
 
@@ -367,7 +367,7 @@ def getPloneSites(context):
         myChild = getattr(context, myKey)
 
         try:
-            myType = myChild.getPortalTypeName()
+            myType = myChild.meta_type
 
         except AttributeError:
            pass
@@ -375,9 +375,11 @@ def getPloneSites(context):
         else:
            if myType == 'Plone Site':
                ploneSites.append(myChild)
+           elif recursive and myType == 'Folder':
+               ploneSites.extend(getPloneSites(myChild, recursive=False))
 
     return ploneSites
-
+    
 # Reinstall agCommon and agCommonPolicy on Plone sites
 def reinstallAgCommon(site):
 
