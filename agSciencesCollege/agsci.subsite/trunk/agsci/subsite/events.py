@@ -295,7 +295,7 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
             subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
         except ComponentLookupError:
             writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
-            pdb.set_trace() 
+            #pdb.set_trace() 
     
         # Set left navigation portlet
         left_navigation = navigation.Assignment(name=u"",
@@ -347,22 +347,25 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                     
         saveAssignment(homepage_centerColumn, subsite_news)
 
-        spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
-                                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
-                                        random=False,
-                                        show_more=False,
-                                        show_dates=False)
+        if 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
+            spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
+                                            target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
+                                            random=False,
+                                            show_more=False,
+                                            show_dates=False)
+    
+            saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
 
-        saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
-                                        
-        eventsCollectionPortlet = collection.Assignment(header=u"Upcoming Events",
-                                        limit=3,
-                                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.events.upcoming)),
-                                        random=False,
-                                        show_more=True,
-                                        show_dates=True)
-
-        saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
+        if 'events' in subsite.objectIds() and 'upcoming' in subsite.events.objectIds():
+                         
+            eventsCollectionPortlet = collection.Assignment(header=u"Upcoming Events",
+                                            limit=3,
+                                            target_collection = '/'.join(urltool.getRelativeContentPath(subsite.events.upcoming)),
+                                            random=False,
+                                            show_more=True,
+                                            show_dates=True)
+    
+            saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
                                         
 
     writeDebug('Finished creating subsite')     
@@ -397,7 +400,7 @@ def onCountySiteCreation(subsite, event):
     for line in lines:
         fields = line.split('\t')
         
-        county = fields[0].lower()
+        county = fields[0].lower().strip()
         
         if county == county_id:
             for x in range(0, len(header)):
@@ -548,7 +551,7 @@ def onCountySiteCreation(subsite, event):
         office_address_lines.append(office_info.get('address_2'))
         
     office_address_lines.append("%s, %s %s" % (office_info.get('city'), office_info.get('state'), office_info.get('zip')))
-    
+
     office_address = "\n".join(office_address_lines)
     
     office_info_portlet = contact.Assignment(header=u"Office Information", show_header=True, 
@@ -876,7 +879,7 @@ def onSectionCreation(section, event):
         section_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
     except ComponentLookupError:
         writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
-        pdb.set_trace() 
+        #pdb.set_trace() 
 
     # Set left navigation portlet
     left_navigation = navigation.Assignment(name=u"",
