@@ -411,7 +411,7 @@ def onCountySiteCreation(subsite, event):
     # Programs Folder
     writeDebug('Creating programs folder')
     if not 'programs' in subsite.objectIds():
-        subsite.invokeFactory(type_name='Folder', id='programs', title='Local Programs')
+        subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
         programs = subsite['programs']
         
         setRoles(programs, editors_group)
@@ -507,7 +507,7 @@ def onCountySiteCreation(subsite, event):
         type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
         type_crit.setValue(['Person']) # only our specified types
                 
-        sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')
+        sort_crit = smart_obj.addCriterion('getSortableName','ATSortCriterion')
 
         smart_obj.unmarkCreationFlag()
 
