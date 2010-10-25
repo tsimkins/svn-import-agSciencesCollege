@@ -821,9 +821,14 @@ def onBlogCreation(blog, event):
         path_crit.setValue(blog.UID()) # Only list events in the news folder
         path_crit.setRecurse(True)
 
-        path_crit = smart_obj.addCriterion('getId','ATListCriterion')
-        path_crit.setValue(archive_years)
-    
+        id_crit = smart_obj.addCriterion('getId','ATListCriterion')
+        id_crit.setValue(archive_years)
+
+        effective_crit = smart_obj.addCriterion('effective', 'ATFriendlyDateCriteria')
+        effective_crit.setOperation('less') # Less than
+        effective_crit.setValue(0) # "Now"
+        effective_crit.setDateRange('-') # in the past
+
         sort_crit = smart_obj.addCriterion('getId','ATSortCriterion')
         sort_crit.setReversed(True)
 
@@ -833,6 +838,7 @@ def onBlogCreation(blog, event):
     latest_RightColumn = getPortletAssignmentMapping(blog['latest'], 'plone.rightcolumn')
     archiveCollectionPortlet = collection.Assignment(header=u"Archive",
                                     target_collection = '/'.join(urltool.getRelativeContentPath(blog.years)),
+                                    limit=5,
                                     random=False,
                                     show_more=False,
                                     show_dates=False)
