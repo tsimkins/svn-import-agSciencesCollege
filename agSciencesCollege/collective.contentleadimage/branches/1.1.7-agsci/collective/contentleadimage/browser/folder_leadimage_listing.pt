@@ -71,6 +71,9 @@
                                        item_has_leadimage item/hasContentLeadImage;
                                        item_object item/getObject;
                                        item_icon python:plone_view.getIcon(item);
+                                       agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                                       item_event_location_title python: agcommon_utilities.substituteEventLocation(item);
+                                       item_title_or_id python: item_event_location_title or item_title_or_id;
                                    ">
                      
                     <dt tal:attributes="class string:leadimage-listing tileItem visualIEFloatFix vevent ${item_type_class}">
