@@ -120,3 +120,29 @@ class EventTableView(AgendaView):
     agenda browser view
     """
     implements(IEventTableView)
+
+
+class IAgCommonUtilities(Interface):
+
+    def substituteEventLocation(self):
+        pass
+
+
+class AgCommonUtilities(BrowserView):
+
+    implements(IAgCommonUtilities)
+
+    def substituteEventLocation(self, item):
+
+        try:
+            show_event_location = aq_acquire(self.context, 'show_event_location')
+        except AttributeError:
+            show_event_location = False
+                
+        if show_event_location and item.portal_type == 'Event' or item.portal_type == 'TalkEvent' and item.location.strip():
+            return item.location.strip()
+        else:
+            return None        
+
+     
+     

@@ -18,14 +18,18 @@
         tal:define="oddrow repeat/obj/odd;
                     item_icon python:getIcon(obj);
                     item_type obj/portal_type;
-					item_start obj/start/ISO|obj/StartDate|nothing;"
+					item_start obj/start/ISO|obj/StartDate|nothing;
+					item_title_or_id obj/pretty_title_or_id;
+					agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
+					item_title_or_id python: item_event_location_title or item_title_or_id;"
         tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
         <a href="#"
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/at_download/file' % obj.getURL()) or obj.getURL();
                            title obj/Description">
             <img tal:replace="structure item_icon/html_tag" />
-            <span tal:replace="obj/pretty_title_or_id">
+            <span tal:replace="item_title_or_id">
              Title
             </span>
 

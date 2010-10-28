@@ -309,6 +309,15 @@
         layer=".interfaces.IThemeSpecific"
         permission="zope.View"
     />
+
+    <browser:page
+        for="*"
+        name="agcommon_utilities"
+        class=".views.AgCommonUtilities"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope.View"
+        allowed_interface=".views.IAgCommonUtilities"
+    />
     
     <browser:menuItem
         for="Products.ATContentTypes.interface.IATFolder"

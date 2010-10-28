@@ -69,6 +69,9 @@
                                        item_creator item/Creator;
                                        item_start item/start/ISO|item/StartDate|nothing;
                                        item_end item/end/ISO|item/EndDate|nothing;
+                                       agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                                       item_event_location_title python: agcommon_utilities.substituteEventLocation(item);
+                                       item_title_or_id python: item_event_location_title or item_title_or_id;
                                    ">
 
                     <dt metal:define-macro="listitem"
@@ -161,6 +164,8 @@
                                     </metal:shortdate>
                                 </div>
 
+                                <tal:substituteEventLocation condition="not:item_event_location_title"> 
+
                                 <div tal:condition="item/location">
                                     <strong>Where:</strong>
                                     
@@ -183,10 +188,10 @@
                                         </tal:nomap>
                                     
                                     </tal:location>
-                        
-                        
                                     
                                 </div>
+                                
+                                </tal:substituteEventLocation>
 
                         </span>
                         <span class="documentByLine">
