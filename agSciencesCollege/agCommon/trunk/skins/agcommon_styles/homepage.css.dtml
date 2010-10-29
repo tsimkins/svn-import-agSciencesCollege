@@ -141,11 +141,10 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletItem li {
-	background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 3px;
 	list-style-image: none;
 	list-style-type: none;
-	margin: 2px 5px 5px;
-	padding: 1px 0 1px 10px;
+	margin: 2px 0px 5px;
+	padding: 1px 0 1px 1px;
 	font-size: 1.00em;
 	color: &dtml-frontRightPortletTextColor;;
 }
@@ -428,6 +427,10 @@ h1, .documentByLine, .documentActions {
 
 .documentContent {
     font-size: 110%;
+}
+
+.contentLeadImageContainer {
+    display: none;
 }
 
 /* YOUR CSS RULES STOP HERE */

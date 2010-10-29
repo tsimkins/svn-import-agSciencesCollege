@@ -690,11 +690,10 @@ body {
 }
 
 #portal-column-two .portletItem li {
-    background: transparent url(&dtml-portal_url;/blue_bullet.gif) no-repeat scroll 0 4px;
     list-style-image: none;
     list-style-type: none;
-    margin: 2px 5px 5px;
-    padding: 1px 0 1px 13px;
+    margin: 2px 0px 5px;
+    padding: 1px 0 1px 1px;
     font-size: 1.00em;
     color: &dtml-insideRightPortletTextColor;;
 }

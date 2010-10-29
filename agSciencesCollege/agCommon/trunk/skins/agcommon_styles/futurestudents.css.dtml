@@ -195,10 +195,6 @@ ul.navTreeLevel1 {
     padding:0;
 }
 
-body.section-front-page #rightcolumn .portletItem li {
-    background: transparent url(&dtml-portal_url;/white_bullet.gif) no-repeat scroll 0 5px;
-}
-
 /* IE6 "Fixes" */
 
 * html body.template-document_homepage_view #centercolumnleft, 
