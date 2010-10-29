@@ -256,6 +256,34 @@ img {
     border: none;
 }
 
+/* Hide youtube videos */
+
+iframe.youtube-player, object, embed {
+    display: none;
+}
+
+/* Make tables printer friendly */
+
+table.listing {
+    border-collapse:collapse;
+}
+
+table.listing tr {
+    background-color: transparent;
+}
+
+table.listing td, table.listing th {
+    background-color: transparent;
+    border: 1px solid #666666;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 3px 6px;
+}
+
+table.listing td {
+    vertical-align: top;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
