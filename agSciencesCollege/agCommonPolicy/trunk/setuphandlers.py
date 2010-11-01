@@ -215,29 +215,63 @@ def setSitePortlets(context):
             ploneLeft['navigation'].topLevel = 0
 
 
-def addExtensionToMimeType(registry, extension, mimetype):
+def addExtensionToMimeType(registry, extension, mimetype, name=None, icon_path=None):
+
+    if not registry.lookup(mimetype):
+        glob = '*.%s' % extension
+        #pdb.set_trace()
+        registry.manage_addMimeType(name, [mimetype], [extension], icon_path, binary=0, globs=[glob])     
+    else:
+        for myMime in registry.lookup(mimetype):
+            glob = '*.%s' % extension
+            registry.register_extension(extension, myMime)
+            registry.register_glob(glob, myMime)
+    
+            newExtensions = list(myMime.extensions)
+            newExtensions.append(extension)
+            newExtensions = tuple(set(newExtensions))
+    
+            newGlobs = list(myMime.globs)
+            newGlobs.append(glob)
+            newGlobs = tuple(set(newGlobs))
+    
+            myMime.edit(myMime.name(), myMime.mimetypes, newExtensions, myMime.icon_path, globs=newGlobs)
+    
+        LOG('agCommonPolicy.addExtensionToMimeType', INFO, "Added extension %s to mimetype %s" % (extension, mimetype))
+
+def removeExtensionFromMimeType(registry, extension, mimetype):
     for myMime in registry.lookup(mimetype):
         glob = '*.%s' % extension
         registry.register_extension(extension, myMime)
         registry.register_glob(glob, myMime)
 
-        newExtensions = list(myMime.extensions)
-        newExtensions.append(extension)
+        newExtensions = list(set(myMime.extensions))
+        try:
+            newExtensions.remove(extension)
+        except ValueError:
+            pass
         newExtensions = tuple(newExtensions)
 
-        newGlobs = list(myMime.globs)
-        newGlobs.append(glob)
+        newGlobs = list(set(myMime.globs))
+        try:
+            newGlobs.remove(glob)
+        except ValueError:
+            pass
         newGlobs = tuple(newGlobs)
 
         myMime.edit(myMime.name(), myMime.mimetypes, newExtensions, myMime.icon_path, globs=newGlobs)
 
-        LOG('agCommonPolicy.addExtensionToMimeType', INFO, "Added extension %s to mimetype %s" % (extension, mimetype))
+        LOG('agCommonPolicy.removeExtensionFromMimeType', INFO, "Removed extension %s from mimetype %s" % (extension, mimetype))
 
 def configureMimeTypes(context):
     
     site = context.getSite()
     
     listOfMimeTypes = [
+        ['docm', 'application/vnd.ms-word.document.macroEnabled.12', 'Microsoft Office Word 2007 Document', 'doc.png'],        ['docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'Microsoft Office Word 2007 Document', 'doc.png'],        ['dotm', 'application/vnd.ms-word.template.macroEnabled.12', 'Microsoft Office Word 2007 Template', 'doc.png'],        ['dotx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.template', 'Microsoft Office Word 2007 Template', 'doc.png'],        ['potm', 'application/vnd.ms-powerpoint.template.macroEnabled.12', 'Microsoft PowerPoint 2007 Template', 'ppt.png'],        ['potx', 'application/vnd.openxmlformats-officedocument.presentationml.template', 'Microsoft PowerPoint 2007 Template', 'ppt.png'],        ['ppam', 'application/vnd.ms-powerpoint.addin.macroEnabled.12', 'Microsoft PowerPoint 2007 Add-in', 'ppt.png'],        ['ppsm', 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12', 'Microsoft PowerPoint 2007 Slideshow', 'ppt.png'],        ['ppsx', 'application/vnd.openxmlformats-officedocument.presentationml.slideshow', 'Microsoft PowerPoint 2007 Slideshow', 'ppt.png'],        ['pptm', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12', 'Microsoft PowerPoint 2007 Presentation', 'ppt.png'],        ['pptx', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'Microsoft PowerPoint 2007 Presentation', 'ppt.png'],        ['xlam', 'application/vnd.ms-excel.addin.macroEnabled.12', 'Microsoft Excel 2007 VBA Add-in', 'xls.png'],        ['xlsb', 'application/vnd.ms-excel.sheet.binary.macroEnabled.12', 'Microsoft Excel 2007 Document', 'xls.png'],        ['xlsm', 'application/vnd.ms-excel.sheet.macroEnabled.12', 'Microsoft Excel 2007 Document', 'xls.png'],        ['xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'Microsoft Excel 2007 Document', 'xls.png'],        ['xltm', 'application/vnd.ms-excel.template.macroEnabled.12', 'Microsoft Excel 2007 Template', 'xls.png'],        ['xltx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.template', 'Microsoft Excel 2007 Template', 'xls.png'],
+    ]
+
+    oldListOfMimeTypes = [
             ['docm', 'application/msword'],
             ['docx', 'application/msword'],
             ['dotm', 'application/msword'],
@@ -259,8 +293,12 @@ def configureMimeTypes(context):
 
     mimetypes_registry = getattr(site, 'mimetypes_registry')
 
-    for (extension, mimetype) in listOfMimeTypes:
-         addExtensionToMimeType(mimetypes_registry, extension, mimetype)
+    for (extension, mimetype) in oldListOfMimeTypes:
+         removeExtensionFromMimeType(mimetypes_registry, extension, mimetype)
+
+    #pdb.set_trace()
+    for (extension, mimetype, name, icon) in listOfMimeTypes:
+         addExtensionToMimeType(mimetypes_registry, extension, mimetype, name, icon)
 
 def configureFSD(context):
 
