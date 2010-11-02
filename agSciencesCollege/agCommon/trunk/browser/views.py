@@ -139,7 +139,7 @@ class AgCommonUtilities(BrowserView):
         except AttributeError:
             show_event_location = False
                 
-        if show_event_location and item.portal_type == 'Event' or item.portal_type == 'TalkEvent' and item.location.strip():
+        if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent') and item.location.strip():
             return item.location.strip()
         else:
             return None        
