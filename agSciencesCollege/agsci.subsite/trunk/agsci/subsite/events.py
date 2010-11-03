@@ -424,10 +424,10 @@ def onCountySiteCreation(subsite, event):
             
         # Make 4-H and Master Gardeners folders
         createProgram(subsite=subsite, programs=programs, program_id='4-h', program_name='4-H', 
-                      county_name=county_name, county_url=subsite.absolute_url().replace('https:', 'http:'))
+                      county_name=county_name)
 
         createProgram(subsite=subsite, programs=programs, program_id='master-gardeners', program_name='Master Gardeners', 
-                      county_name=county_name, county_url=subsite.absolute_url().replace('https:', 'http:'))
+                      county_name=county_name)
         
         # create a smartfolder for listing the programs in alphabetical order
         if 'listing' not in programs.objectIds():
@@ -878,8 +878,8 @@ def onSectionCreation(section, event):
     return True
 
 # What we want to happen when we create a 4-H programs folder
-def createProgram(subsite, programs, program_id, program_name, county_name="County Name", county_url="http://extension.psu.edu/county"):
-
+def createProgram(subsite, programs, program_id, program_name, county_name="County Name"):
+    urltool = getToolByName(subsite, 'portal_url')
     programs.invokeFactory(type_name='Folder', id=program_id, title=program_name)
     program_folder = programs[program_id]
     program_folder.unmarkCreationFlag()
