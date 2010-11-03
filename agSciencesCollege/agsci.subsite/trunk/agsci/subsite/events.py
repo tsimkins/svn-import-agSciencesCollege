@@ -13,7 +13,7 @@ from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from plone.app.portlets.portlets import navigation
 from collective.portlet import feedmixer
 from plone.portlet.collection import collection
-from Products.agCommon.portlet import linkbutton, linkicon, contact
+from Products.agCommon.portlet import linkbutton, linkicon, contact, person
 
 from constants import getCountyWeather, topic_folders
 
@@ -359,12 +359,12 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
         if 'events' in subsite.objectIds() and 'upcoming' in subsite.events.objectIds():
                          
             eventsCollectionPortlet = collection.Assignment(header=u"Upcoming Events",
-                                            limit=3,
-                                            target_collection = '/'.join(urltool.getRelativeContentPath(subsite.events.upcoming)),
-                                            random=False,
-                                            show_more=True,
-                                            show_dates=True)
-    
+                                    limit=3,
+                                    target_collection = '/'.join(urltool.getRelativeContentPath(subsite.events.upcoming)),
+                                    random=False,
+                                    show_more=True,
+                                    show_dates=True)
+
             saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
                                         
 
@@ -413,26 +413,21 @@ def onCountySiteCreation(subsite, event):
     if not 'programs' in subsite.objectIds():
         subsite.invokeFactory(type_name='Folder', id='programs', title='Programs')
         programs = subsite['programs']
-        
+        programs.unmarkCreationFlag()     
+
         setRoles(programs, editors_group)
         
         # Set restrictions 
         programs.setConstrainTypesMode(1) # restrict what this folder can contain
         programs.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
-        programs.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Subsite','Photo Folder'])
+        programs.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Photo Folder'])
             
         # Make 4-H and Master Gardeners folders
-        programs.invokeFactory(type_name='Folder', id='4-h', title='4-H')
-        programs['4-h'].unmarkCreationFlag()
-        programs['4-h'].setExcludeFromNav(True)
-        programs['4-h'].reindexObject()
-        
-        programs.invokeFactory(type_name='Folder', id='master-gardeners', title='Master Gardeners')        
-        programs['master-gardeners'].unmarkCreationFlag()
-        programs['master-gardeners'].setExcludeFromNav(True)
-        programs['master-gardeners'].reindexObject()
+        createProgram(subsite=subsite, programs=programs, program_id='4-h', program_name='4-H', 
+                      county_name=county_name, county_url=subsite.absolute_url().replace('https:', 'http:'))
 
-        programs.unmarkCreationFlag()     
+        createProgram(subsite=subsite, programs=programs, program_id='master-gardeners', program_name='Master Gardeners', 
+                      county_name=county_name, county_url=subsite.absolute_url().replace('https:', 'http:'))
         
         # create a smartfolder for listing the programs in alphabetical order
         if 'listing' not in programs.objectIds():
@@ -452,37 +447,6 @@ def onCountySiteCreation(subsite, event):
             path_crit.setRecurse(False)
         
             sort_crit = smart_obj.addCriterion('sortable_title','ATSortCriterion')   
-
-
-       # %%% Add events topic to each folder.
-        
-        for local_program in ['4-h', 'master-gardeners']:
-        
-            if 'events' not in programs[local_program].objectIds():
-                programs[local_program].invokeFactory(type_name='Topic', id='events', title='Upcoming Events')
-                
-                smart_obj = programs[local_program]['events']
-                smart_obj.unmarkCreationFlag()
-                        
-                # Set the criteria for the folder
-                type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
-                
-                type_crit.setValue(['Event']) # only our specified event types
-                
-                date_crit = smart_obj.addCriterion('end', 'ATFriendlyDateCriteria')
-                date_crit.setValue(0) # Set date reference to now
-                date_crit.setDateRange('+') # Only list future events
-                date_crit.setOperation('more')
-                            
-                # Set the county criteria
-                county_crit = smart_obj.addCriterion('Counties','ATSelectionCriterion')
-                county_crit.setValue(county_name) # Only list items in the current subsite
-
-                # Set the program criteria
-    
-                sort_crit = smart_obj.addCriterion('start','ATSortCriterion')
-                
-
 
     # Set county for subsite
     subsite.extension_counties = (county_name,)
@@ -913,3 +877,203 @@ def onSectionCreation(section, event):
     
     return True
 
+# What we want to happen when we create a 4-H programs folder
+def createProgram(subsite, programs, program_id, program_name, county_name="County Name", county_url="http://extension.psu.edu/county"):
+
+    programs.invokeFactory(type_name='Folder', id=program_id, title=program_name)
+    program_folder = programs[program_id]
+    program_folder.unmarkCreationFlag()
+    program_folder.setExcludeFromNav(True)
+    program_folder.reindexObject()
+
+    # Set restrictions 
+    program_folder.setConstrainTypesMode(1) # restrict what this folder can contain
+    program_folder.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
+    program_folder.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Photo Folder','Blog','HomePage'])
+
+    program_content = []
+    
+    if program_id == '4-h':
+        program_content = [
+            ['join', 'Document', 'Join', ''],
+            ['volunteers', 'Folder', 'For Volunteers', ''],
+            ['members', 'Folder', 'For Members', ''],
+            ['clubs', 'Folder', 'Our Clubs', ''],
+            ['about', 'Folder', 'About Us', ''],
+            ['donate', 'Document', 'Donate to 4-H', ''],
+            ['events', 'Topic', 'Upcoming Events', ''],
+            ['news', 'Blog', 'News', ''],
+            ['default', 'HomePage', '%s County 4-H' % county_name, ''],
+        ]
+
+    for (id, type_name, title, description) in program_content:
+        if id not in program_folder.objectIds():
+            program_folder.invokeFactory(type_name=type_name, id=id, title=title, description=description)
+            program_folder[id].unmarkCreationFlag()
+            
+            this_obj = program_folder[id]
+            
+            # Create events collection
+            if id == 'events':
+                # Set the criteria for the folder
+                type_crit = this_obj.addCriterion('Type','ATPortalTypeCriterion')
+                
+                type_crit.setValue(['Event']) # only our specified event types
+                
+                date_crit = this_obj.addCriterion('end', 'ATFriendlyDateCriteria')
+                date_crit.setValue(0) # Set date reference to now
+                date_crit.setDateRange('+') # Only list future events
+                date_crit.setOperation('more')
+                            
+                # Set the county criteria
+                county_crit = this_obj.addCriterion('Counties','ATSelectionCriterion')
+                county_crit.setValue(county_name) # Only list events for the current county
+
+                # Set the program criteria
+                program_crit = this_obj.addCriterion('Programs','ATSelectionCriterion')
+                program_crit.setValue(program_name) # Only list items in the current program
+                
+                sort_crit = this_obj.addCriterion('start','ATSortCriterion')
+                
+            if id == 'default':
+                this_obj.setLayout('document_subsite_view')
+                program_folder.setDefaultPage('default')
+                # Set portlets for homepage
+                homepage_centerColumn = getPortletAssignmentMapping(this_obj, 'agcommon.centercolumn')
+                homepage_rightColumn = getPortletAssignmentMapping(this_obj, 'plone.rightcolumn')
+        
+                # Configure feedmixer news and events in center column
+        
+                # Grab path to news RSS feed, and make sure it's http://        
+                program_news_rss = program_folder.absolute_url().replace('https:', 'http:') + '/news/latest/RSS'
+                program_events_rss = program_folder.absolute_url().replace('https:', 'http:') + '/events/upcoming/RSS'
+                
+                program_news = feedmixer.portlet.Assignment(
+                            title="%s County %s News" % (county_name, program_name),
+                            feeds=program_news_rss,
+                            items_shown=5,
+                            show_header=True,
+                            show_date=True,
+                            show_summary=True,
+                            show_image=False,
+                            show_footer=False,
+                            cache_timeout=1800,
+                            assignment_context_path=None)
+                            
+                saveAssignment(homepage_centerColumn, program_news)
+
+                program_events = feedmixer.portlet.Assignment(
+                            title="Upcoming Events",
+                            feeds=program_events_rss,
+                            items_shown=5,
+                            show_header=True,
+                            show_date=True,
+                            show_summary=True,
+                            show_image=False,
+                            show_footer=False,
+                            cache_timeout=1800,
+                            assignment_context_path=None)
+                            
+                saveAssignment(homepage_centerColumn, program_events)
+
+                # Put a person portlet as contact in the right column
+                contact_portlet = person.Assignment(
+                            header="Contact Us",
+                            show_header=True,
+                            people="abc123",
+                            show_address=True,
+                            show_image=False)
+                            
+                saveAssignment(homepage_rightColumn, contact_portlet)
+
+                if 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
+                    
+                    spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
+                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
+                        random=False,
+                        show_more=False,
+                        show_dates=False)
+    
+                    saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
+
+
+                # 4-H Specific Front Page Portlets
+                if program_id == '4-h':
+                    # Put the general 4-h info RSS portlet in the right column
+                    general_info = feedmixer.portlet.Assignment(
+                            title="General 4-H Information",
+                            feeds="http://extension.psu.edu/4-h/general-info/RSS",
+                            items_shown=100,
+                            show_header=True,
+                            show_date=False,
+                            show_summary=False,
+                            show_image=False,
+                            show_footer=False,
+                            cache_timeout=1800,
+                            assignment_context_path=None)
+                            
+                    saveAssignment(homepage_rightColumn, general_info)
+
+            # 4-H Volunteers portlets
+            if program_id == '4-h' and id == 'volunteers':
+
+                volunteers_rightColumn = getPortletAssignmentMapping(this_obj, 'plone.rightcolumn')
+
+                # Put the general 4-h info RSS portlet in the right column
+                statewide_forms = feedmixer.portlet.Assignment(
+                        title="State-Wide Volunteer Forms",
+                        feeds="http://extension.psu.edu/4-h/leaders/forms/default/RSS",
+                        items_shown=100,
+                        show_header=True,
+                        show_date=False,
+                        show_summary=False,
+                        show_image=False,
+                        show_footer=False,
+                        cache_timeout=1800,
+                        assignment_context_path=None)
+                        
+                saveAssignment(volunteers_rightColumn, statewide_forms)
+                
+    
+                # Put the general 4-h info RSS portlet in the right column
+                leader_resources = feedmixer.portlet.Assignment(
+                        title="Leader Resources",
+                        feeds="http://extension.psu.edu/4-h/volunteer-leader-resources/RSS",
+                        items_shown=100,
+                        show_header=True,
+                        show_date=False,
+                        show_summary=False,
+                        show_image=False,
+                        show_footer=False,
+                        cache_timeout=1800,
+                        assignment_context_path=None)
+                        
+                saveAssignment(volunteers_rightColumn, leader_resources)
+            # News
+            if id == 'news':
+                onBlogCreation(this_obj, None)
+
+            # About Staff
+            if id == 'about':
+
+                this_obj.invokeFactory(type_name="Topic", id="staff", title="Our Staff")
+
+                smart_obj = this_obj['staff']
+                smart_obj.setLayout('folder_summary_view')
+                smart_obj.unmarkCreationFlag()
+            
+                # Set the criteria for the folder
+                type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
+                type_crit.setValue(['Person']) # only our specified event types
+                
+                # Set the county criteria
+                county_crit = smart_obj.addCriterion('Counties','ATSelectionCriterion')
+                county_crit.setValue(county_name) # Only list events for the current county
+
+                # Set the program criteria
+                program_crit = smart_obj.addCriterion('Programs','ATSelectionCriterion')
+                program_crit.setValue(program_name) # Only list items in the current program
+                
+                sort_crit = smart_obj.addCriterion('getSortableName','ATSortCriterion')
+            
+            
