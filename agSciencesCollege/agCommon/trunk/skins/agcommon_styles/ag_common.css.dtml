@@ -1373,6 +1373,11 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
     margin-bottom: 0;
 }
 
+/* Hide folder text from form folder for editing */
+#formfolder-base-edit #archetypes-fieldname-folder_text {
+    display: none;
+}
+
 
 /* YOUR CSS RULES STOP HERE */
 
