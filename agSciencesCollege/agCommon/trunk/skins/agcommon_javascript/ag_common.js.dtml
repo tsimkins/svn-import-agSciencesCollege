@@ -161,7 +161,16 @@ jq(document).ready( function () {
     {
         jq("#archetypes-fieldname-id").show();
     }
-    
+    else
+    {
+        jq("body.template-atct_edit #archetypes-fieldname-title label.formQuestion").dblclick(function() {
+            if (confirm("Only set the short name if you absolutely have to."))
+            {
+                jq("body.template-atct_edit #archetypes-fieldname-id").show();
+            }
+        });
+    }
+
 } );
 
 
