@@ -431,7 +431,7 @@ def onCountySiteCreation(subsite, event):
         
         # create a smartfolder for listing the programs in alphabetical order
         if 'listing' not in programs.objectIds():
-            programs.invokeFactory(type_name='Topic', id='listing', title='%s County Programs' % county_name)
+            programs.invokeFactory(type_name='Topic', id='listing', title='%s County Programs' % county_name, itemCount=99999)
             programs.setDefaultPage('listing')
             
             smart_obj = programs['listing']
@@ -459,7 +459,7 @@ def onCountySiteCreation(subsite, event):
     # Directory 
     writeDebug('Adding directory collection')
     if not 'directory' in subsite.objectIds():
-        subsite.invokeFactory(type_name='Topic', id='directory', title='Directory')
+        subsite.invokeFactory(type_name='Topic', id='directory', title='Directory', itemCount=99999)
         smart_obj = subsite['directory']
         
         smart_obj.setLayout('folder_summary_view')
@@ -946,7 +946,7 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
         
                 # Grab path to news RSS feed, and make sure it's http://        
                 program_news_rss = program_folder.absolute_url().replace('https:', 'http:') + '/news/latest/RSS'
-                program_events_rss = program_folder.absolute_url().replace('https:', 'http:') + '/events/upcoming/RSS'
+                program_events_rss = program_folder.absolute_url().replace('https:', 'http:') + '/events/RSS'
                 
                 program_news = feedmixer.portlet.Assignment(
                             title="%s County %s News" % (county_name, program_name),
@@ -986,17 +986,6 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                             
                 saveAssignment(homepage_rightColumn, contact_portlet)
 
-                if 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
-                    
-                    spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
-                        target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
-                        random=False,
-                        show_more=False,
-                        show_dates=False)
-    
-                    saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
-
-
                 # 4-H Specific Front Page Portlets
                 if program_id == '4-h':
                     # Put the general 4-h info RSS portlet in the right column
@@ -1013,6 +1002,16 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                             assignment_context_path=None)
                             
                     saveAssignment(homepage_rightColumn, general_info)
+
+            if id == 'default' and 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
+                
+                spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
+                    target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
+                    random=False,
+                    show_more=False,
+                    show_dates=False)
+
+                saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
 
             # 4-H Volunteers portlets
             if program_id == '4-h' and id == 'volunteers':
@@ -1056,7 +1055,7 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
             # About Staff
             if id == 'about':
 
-                this_obj.invokeFactory(type_name="Topic", id="staff", title="Our Staff")
+                this_obj.invokeFactory(type_name="Topic", id="staff", title="Our Staff", itemCount=99999)
 
                 smart_obj = this_obj['staff']
                 smart_obj.setLayout('folder_summary_view')
