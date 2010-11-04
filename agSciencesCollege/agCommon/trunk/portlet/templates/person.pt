@@ -18,7 +18,7 @@
                 <a tal:attributes="href person/getURL">
                 <span class="given-name" tal:content="context/getFirstName">[First Name]</span>
                 <span class="additional-name" tal:content="context/getMiddleName | nothing">[Middle Name]</span>
-                <span class="family-name" tal:content="context/getLastName">[Last Name]</span>
+                <span class="family-name" tal:content="context/getLastName">[Last Name]</span><span tal:condition="context/getSuffix">,</span>
                 <span class="honorific-suffix" tal:content="context/getSuffix">[ suffix i.e. Dr]</span>
                 </a>
             </h2>
