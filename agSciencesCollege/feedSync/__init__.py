@@ -28,7 +28,7 @@ def sync(myContext):
     
         title = item.get('title', None)
         summary = item.get('summary_detail', {}).get('value')
-        link = item.get('links', [])[0].get('href', None)
+        link = item.get('links', [])[0].get('href', None).replace('#rss69', '')
         dateArray = list(item.get('updated_parsed')[0:7])
         dateArray[3] = int(item.get('updated').split(' ')[4].split(':')[0])
     
