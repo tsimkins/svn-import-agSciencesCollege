@@ -173,6 +173,11 @@ h1, .documentByLine, .documentActions {
 	display: block;
 }
 
+#centercolumn dl.portletfeedmixer .portletFooter a {
+    font-size:0.9em;
+    margin-bottom:1em;
+}
+ 
 #centercolumn dl.portletStaticText .portletItem {
     font-size: 1.1em;
 }

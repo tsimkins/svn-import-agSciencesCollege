@@ -68,6 +68,11 @@
     padding: 4px 9px 4px 11px;
 }
 
+#centercolumn dl.portletfeedmixer .portletFooter a {
+    font-size:0.9em;
+    margin-bottom:1em;
+}
+
 #centercolumn .portletfeedmixer dd.first {
 	border-width: 0px 0px 0px 0px;
 	padding-top: 3px;
