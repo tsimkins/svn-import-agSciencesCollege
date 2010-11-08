@@ -5,10 +5,11 @@
           action="search"
           tal:attributes="action string:${view/site_url}/search">
 
-        <label for="SearchableText" class="hiddenStructure"
-                    i18n:translate="text_search">Search Site</label>
-
         <div class="LSBox">
+        <label for="searchBox" class="hiddenStructure"
+                    i18n:translate="text_search">Search</label>
+        <label for="searchSource" class="hiddenStructure"
+                    i18n:translate="text_search">Search Source</label>
         <input name="SearchableText"
                id="searchBox"
                type="text"
@@ -21,7 +22,7 @@
                class="inputLabel" 
                autocomplete="off"/>
 
-		<select id = "searchSource"
+		<select id="searchSource"
 		      tal:define="showCollegeSearch context/show_college_search|nothing">
 			<option value = "section">Search This Section</option>
 			<option value = "site" tal:attributes="selected python:showCollegeSearch and '' or 'selected'">Search Site</option>
@@ -30,6 +31,7 @@
 		</select>
 
         <input class="searchButton"
+               alt="Search"
                type="image"
                tal:attributes="src string:${view/site_url}/go.gif"
                id = "goSearch"
