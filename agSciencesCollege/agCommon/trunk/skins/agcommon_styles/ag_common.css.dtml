@@ -1378,6 +1378,11 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
     display: none;
 }
 
+/* Remove the Visual Highlight Style */
+.visualHighlight {
+    background-color:transparent;
+}
+
 
 /* YOUR CSS RULES STOP HERE */
 
