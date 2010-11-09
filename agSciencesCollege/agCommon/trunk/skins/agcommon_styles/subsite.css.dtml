@@ -136,10 +136,13 @@
     text-align: right;
 }
 
+#centercolumn .portletfeedmixer .portletItem .rssImage img {
+    max-width: 128px;
+}
+
 #centercolumn .portletfeedmixer .portletItem .hasImage {
 	width: 370px;
 }
-
 
 #centercolumn .portlet dd:first-child {
 	border-width: 0px 0px 0px 0px;

@@ -313,6 +313,10 @@ h1, .documentByLine, .documentActions {
     text-align: right;
 }
 
+#centercolumn .portletfeedmixer .portletItem .rssImage img {
+    max-width: 128px;
+}
+
 #centercolumn .portletfeedmixer .portletItem .hasImage {
 	width: 370px;
 }
