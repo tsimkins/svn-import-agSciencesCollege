@@ -591,16 +591,35 @@ def configureKupu(context):
     stripped_tags = list(set(stripped_tags) - set(['object', 'param']))
     kupu.set_stripped_tags(stripped_tags)
     
-    # Set embed-tab filter
+    # Set toolbar buttons
     filteroptions = kupu.getFilterOptions()
 
+    removeButtons = ['justifycenter-button', 'definitionlist', 'anchors-button',]
+    addButtons = ['embed-tab',]
+
     for f in filteroptions:
-        if f["id"] == 'embed-tab':   
+        if addButtons.count(f["id"]):
             f["visible"] = True
+        elif removeButtons.count(f["id"]):
+            f["visible"] = False
     
     kupu.set_toolbar_filters(filteroptions,kupu._global_toolbar_filter)
 
-    LOG('agCommonPolicy.configureKupu', INFO, "Enabled embedding YouTube/etc. content")
+    # Remove Visual Highlight style
+    paragraphStyles = kupu.getParagraphStyles()
+    
+    removeStyles = ['visualHighlight', 'pageBreak']
+
+    for style in paragraphStyles:
+
+        styleName = style.split('|')[-1]
+
+        if removeStyles.count(styleName):
+            paragraphStyles.remove(style)
+
+    kupu.paragraph_styles = paragraphStyles
+
+    LOG('agCommonPolicy.configureKupu', INFO, "Updated Kupu settings and enabled embedding YouTube/etc. content")
 
 def setRestrictions(context):
     site = context.getSite()
