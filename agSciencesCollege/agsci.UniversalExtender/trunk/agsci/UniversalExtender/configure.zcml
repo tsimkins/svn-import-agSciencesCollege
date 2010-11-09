@@ -85,5 +85,18 @@
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IFolderExtender"
     /> 
+
+    <!-- Topic (Collection) Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.TopicExtender"
+        factory=".extender.TopicExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+    
+    <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.ITopicExtender"
+    /> 
     
 </configure>

@@ -4,7 +4,7 @@ from Products.ATContentTypes.interface.event import IATEvent
 from Products.ATContentTypes.interface.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderExtender, ITopicExtender
 from zope.component import adapts
 from zope.interface import implements
 import pdb
@@ -253,3 +253,22 @@ class FolderExtender(object):
 
     def getFields(self):
         return self.fields
+
+class TopicExtender(object):
+    adapts(ITopicExtender)
+    implements(ISchemaModifier, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    def __init__(self, context):
+        self.context = context
+
+    def fiddle(self, schema):
+
+        # Hide the 'Display as Table' and 'Table Columns' fields
+        tmp_field = schema['customView'].copy()
+        tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
+        schema['customView'] = tmp_field
+
+        tmp_field = schema['customViewFields'].copy()
+        tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
+        schema['customViewFields'] = tmp_field

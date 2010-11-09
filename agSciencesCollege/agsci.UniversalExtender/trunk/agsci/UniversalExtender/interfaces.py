@@ -12,3 +12,6 @@ class IDefaultExcludeFromNav(Interface):
     
 class IFolderExtender(Interface):
     """ marker interface """
+    
+class ITopicExtender(Interface):
+    """ marker interface """
