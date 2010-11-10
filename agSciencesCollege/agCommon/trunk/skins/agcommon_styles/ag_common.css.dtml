@@ -950,6 +950,11 @@ dd.portletItem p {
     margin:0.75em 0 0 2.5em;
 }
 
+/* Nested ul's */
+.documentContent ul ul {
+    margin-bottom: 1em;
+}
+
 p {
     margin: 1em 0;
 }
