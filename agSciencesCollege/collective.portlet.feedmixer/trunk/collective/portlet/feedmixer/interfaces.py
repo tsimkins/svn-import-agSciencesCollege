@@ -79,6 +79,14 @@ class IFeedMixer(IPortletDataProvider):
             default=True,
             required=True)
 
+    alternate_footer_link = schema.TextLine(
+            title=_(u"alternate_footer_link",
+                default=u"Alternate Footer Link"),
+            description=_(u"description_title",
+                default=u"Use this URL for the 'More' link, instead of the Feedmixer generated one."),
+            default=u"",
+            required=False)
+
     feeds = schema.ASCII(
             title=_(u"heading_feeds",
                 default=u"URL(s) for all feeds"),
@@ -88,6 +96,14 @@ class IFeedMixer(IPortletDataProvider):
                         u"and ATOM 1.0 feeds are supported."),
             required=True,
             constraint=isUrlList)
+
+    reverse_feed = schema.Bool(
+            title=_(u"reverse_feed",
+                default=u"Reverse"),
+            description=_(u"description_title",
+                default=u"Reverse order of items in feed."),
+            default=False,
+            required=False)   
 
     def entries():
         """Return feed entries for all feeds.

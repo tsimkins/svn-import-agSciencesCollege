@@ -33,6 +33,8 @@ class Assignment(base.Assignment):
     show_summary = False
     show_image = False
     show_footer = False
+    alternate_footer_link = None
+    reverse_feed = False
     cache_timeout = 900
     assignment_context_path = None
 
@@ -40,6 +42,8 @@ class Assignment(base.Assignment):
                  show_header=show_header, show_date=show_date, show_summary=show_summary, 
                  show_image=show_image, show_footer=show_footer,
                  cache_timeout=cache_timeout,
+                 alternate_footer_link=alternate_footer_link,
+                 reverse_feed=reverse_feed,
                  assignment_context_path=assignment_context_path):
         self.title=title
         self.feeds=feeds
@@ -49,6 +53,8 @@ class Assignment(base.Assignment):
         self.show_summary=show_summary
         self.show_image=show_image
         self.show_footer=show_footer
+        self.alternate_footer_link=alternate_footer_link
+        self.reverse_feed=reverse_feed
         self.cache_timeout=cache_timeout
         self.assignment_context_path = assignment_context_path
         
@@ -77,6 +83,12 @@ class Assignment(base.Assignment):
 
     def fetchFeed(self, url):
 
+        # http://www.feedparser.org/docs/changes-41.html
+        # I'm betting this is causing our hangs!
+        
+        # http://mxm-mad-science.blogspot.com/2009/01/small-trick-for-socket-timouts-in-plone.html
+        # Resetting back to original timeout as soon as the call completes
+
         orig_timeout = socket.getdefaulttimeout()
 
         socket.setdefaulttimeout(10)
@@ -97,12 +109,6 @@ class Assignment(base.Assignment):
         be fresh. Returned feeds have been cleaned using the cleanFeed method.
         """
 
-        # http://www.feedparser.org/docs/changes-41.html
-        # I'm betting this is causing our hangs!
-        
-        # http://mxm-mad-science.blogspot.com/2009/01/small-trick-for-socket-timouts-in-plone.html
-        # Resetting back to original timeout as soon as the call completes
-        
         now=time.time()
 
         chooser=getUtility(ICacheChooser)
@@ -189,10 +195,15 @@ class Renderer(base.Renderer):
 
     @property
     def entries(self):
-        return self.data.entries()[:self.data.items_shown]
+        entries = self.data.entries()
+        if self.data.reverse_feed:
+            entries.reverse()
+            return entries[:self.data.items_shown]
+        else:
+            return entries[:self.data.items_shown]
 
     @property
-    def more_url(self):
+    def auto_more_url(self):
         context_path = self.data.assignment_context_path
         if context_path is not None:
             state=getMultiAdapter((self.context, self.request), name="plone_portal_state")
@@ -211,6 +222,21 @@ class Renderer(base.Renderer):
                     (context.absolute_url(),
                      self.manager.__name__,
                      self.data.__name__)
+
+    @property
+    def more_url(self):
+
+        alternate_footer_link = self.data.alternate_footer_link
+
+        try:
+            more_url = self.auto_more_url
+        except:
+            more_url = ""
+
+        if alternate_footer_link:
+            return str(alternate_footer_link).strip()
+        else:
+            return more_url
 
 
 class AddForm(base.AddForm):
