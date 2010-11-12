@@ -422,11 +422,11 @@ def onCountySiteCreation(subsite, event):
         programs.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
         programs.setLocallyAllowedTypes(['Link','Folder','File','Document','Topic','Photo Folder'])
             
-        # Make 4-H and Master Gardeners folders
+        # Make 4-H and Master Gardener folders
         createProgram(subsite=subsite, programs=programs, program_id='4-h', program_name='4-H', 
                       county_name=county_name)
 
-        createProgram(subsite=subsite, programs=programs, program_id='master-gardeners', program_name='Master Gardeners', 
+        createProgram(subsite=subsite, programs=programs, program_id='master-gardener', program_name='Master Gardener', 
                       county_name=county_name)
         
         # create a smartfolder for listing the programs in alphabetical order
@@ -736,7 +736,8 @@ def onBlogCreation(blog, event):
             blog.invokeFactory(type_name='Topic', id=id, title=title)
             
             smart_obj = blog[id]
-            smart_obj.setLayout('news_listing')
+            smart_obj.setLayout('folder_leadimage_view')
+            smart_obj.manage_addProperty('show_date', True, 'boolean')
             smart_obj.setExcludeFromNav(True)
             smart_obj.unmarkCreationFlag()
             smart_obj.reindexObject()
@@ -1002,16 +1003,6 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                             assignment_context_path=None)
                             
                     saveAssignment(homepage_rightColumn, general_info)
-
-            if id == 'default' and 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
-                
-                spotlightCollectionPortlet = collection.Assignment(header=u"Spotlight",
-                    target_collection = '/'.join(urltool.getRelativeContentPath(subsite.news.spotlight.recent)),
-                    random=False,
-                    show_more=False,
-                    show_dates=False)
-
-                saveAssignment(homepage_rightColumn, spotlightCollectionPortlet)
 
             # 4-H Volunteers portlets
             if program_id == '4-h' and id == 'volunteers':
