@@ -261,10 +261,16 @@ class FBMetadataViewlet(CustomTitleViewlet):
             
         if leadImage_field and leadImage_field.get_size(self.context) > 0:
             self.fb_image = "%s/leadImage_mini" % self.context.absolute_url()
+            self.link_metadata_image = self.fb_image
+            self.link_mime_type = leadImage_field.getContentType(self.context)
         elif image_field and image_field.get_size(self.context) > 0:
             self.fb_image = "%s/image_mini" % self.context.absolute_url()
+            self.link_metadata_image = self.fb_image
+            self.link_mime_type = image_field.getContentType(self.context)
         else:
             self.fb_image = "%s/leftnavbg.jpg" % self.context.portal_url()
+            self.link_metadata_image = None
+            self.link_mime_type = None
             
 class KeywordsViewlet(ViewletBase):
     

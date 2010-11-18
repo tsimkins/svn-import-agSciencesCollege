@@ -4,6 +4,7 @@
 
 	<div id="addthis"
 		tal:condition="python: not hide_addthis and isAnon">
+                <h3>Share</h3>
 		<script type="text/javascript">
 		// From http://www.addthis.com/forum/viewtopic.php?f=8&amp;t=14972
 
@@ -16,14 +17,14 @@
 		<!-- AddThis Button BEGIN -->
 		<div class="addthis_toolbox addthis_default_style">
 
-		<a class="addthis_button_print"></a>
-		<a class="addthis_button_email"></a>
 		<a class="addthis_button_facebook"></a>
 		<a class="addthis_button_twitter"></a>
+		<a class="addthis_button_email"></a>
 		<a tal:condition="view/isSyndicationAllowed" 
 		   title="RSS Feed"
 		   tal:attributes="href string:RSS"><img width="16" height="16" alt="RSS Feed"
 		                                         tal:attributes="src string:${context/portal_url}/icons/rss.jpg" /></a>
+		<a class="addthis_button_print"></a>
 		</div>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=agsciences"></script>
 		

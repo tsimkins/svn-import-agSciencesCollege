@@ -7,4 +7,11 @@
     <meta property="og:url" tal:attributes="content view/fb_url"/>
     <meta property="og:fbadmins" tal:attributes="content string:agsciences"/>
     <meta tal:condition="context/Description" property="og:description" tal:attributes="content context/Description"/>    
+
+    <link rel="image_src" 
+          tal:condition="view/link_metadata_image"
+          tal:attributes="title view/fb_title;
+                          href view/link_metadata_image;
+                          type view/link_mime_type" />
+
 </tal:fbmetadata>

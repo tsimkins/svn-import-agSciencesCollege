@@ -482,8 +482,8 @@ body {
 
 #portal-column-one .linkButton strong,
 #portal-column-two .linkButton strong {
-    padding: 16;
-    margin: 8;
+    padding: 0;
+    margin: 0;
     border: 1px solid &dtml-backgroundColor;;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -878,8 +878,18 @@ body {
 #addthis a {
     text-decoration: none;
     color: #333333;
+    float:left;
 }
 
+#addthis h3 {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #999999;
+    color: #333333;
+    text-align: right;
+    font-size: 0.95em;
+    margin-top: 0;
+}
 
 /* = portal-footer ========================================= */
 
@@ -1387,7 +1397,6 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
 .visualHighlight {
     background-color:transparent;
 }
-
 
 /* YOUR CSS RULES STOP HERE */
 
