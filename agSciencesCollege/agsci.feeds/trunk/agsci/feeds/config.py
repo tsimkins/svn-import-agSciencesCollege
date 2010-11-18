@@ -1,7 +1,7 @@
 """Common configuration constants
 """
 
-PROJECTNAME = 'agsci.apdfeeds'
+PROJECTNAME = 'agsci.feeds'
 
 ADD_PERMISSIONS = {
     # -*- extra stuff goes here -*-

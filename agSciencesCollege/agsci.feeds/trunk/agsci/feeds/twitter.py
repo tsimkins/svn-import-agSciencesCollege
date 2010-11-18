@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import feedparser
-from agsci.apdfeeds import texttime
+from agsci.feeds import texttime
 from datetime import datetime
 from pytz import utc, timezone
 from urllib import quote_plus

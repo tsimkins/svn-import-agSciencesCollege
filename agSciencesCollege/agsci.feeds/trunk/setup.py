@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This module contains the tool of agsci.apdfeeds
+This module contains the tool of agsci.feeds
 """
 import os
 from setuptools import setup, find_packages
@@ -22,7 +22,7 @@ long_description = (
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
-    read('agsci', 'apdfeeds', 'README.txt')
+    read('agsci', 'feeds', 'README.txt')
     + '\n' +
     'Contributors\n'
     '************\n'
@@ -34,7 +34,7 @@ long_description = (
 
 tests_require = ['zope.testing']
 
-setup(name='agsci.apdfeeds',
+setup(name='agsci.feeds',
       version=version,
       description="Displays live Twitter and Event feeds",
       long_description=long_description,
@@ -59,7 +59,7 @@ setup(name='agsci.apdfeeds',
                         ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
-      test_suite='agsci.apdfeeds.tests.test_docs.test_suite',
+      test_suite='agsci.feeds.tests.test_docs.test_suite',
       entry_points="""
       # -*- entry_points -*-
       [z3c.autoinclude.plugin]

@@ -3,9 +3,9 @@ from zope.interface import implements
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
-from agsci.apdfeeds import apdfeedsMessageFactory as _
-from agsci.apdfeeds.browser.interfaces import IFeedDisplay
-from agsci.apdfeeds.twitter import getItems
+from agsci.feeds import feedsMessageFactory as _
+from agsci.feeds.browser.interfaces import IFeedDisplay
+from agsci.feeds.twitter import getItems
 from Acquisition import aq_acquire, aq_inner
 import pdb
 
