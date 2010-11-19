@@ -17,6 +17,16 @@
 
         <div class="vevent">
 
+            <tal:redirect define="layout here/layout|nothing;
+                                  eventUrl context/eventUrl|nothing;">
+                                  
+                <div class="portalMessage" 
+                     tal:condition="python: not isAnon and eventUrl and layout=='event_redirect_view'">This event is redirected to
+                     <a tal:attributes="href eventUrl" tal:content="eventUrl" /></div>
+
+            </tal:redirect>
+
+
         <h1 class="documentFirstHeading summary"> 
             <metal:field use-macro="python:here.widget('title', mode='view')">
             Title
