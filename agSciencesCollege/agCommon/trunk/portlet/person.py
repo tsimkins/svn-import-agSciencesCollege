@@ -29,8 +29,8 @@ class IPerson(IPortletDataProvider):
 
     people = schema.TextLine(
         title=_(u"Person id(s)"),
-        description=_(u"The id(s) of the person to show"),
-        required=True)
+        description=_(u"The id(s) of the person to show.  If blank, defaults to the author for News Items."),
+        required=False)
 
     show_address = schema.Bool(
         title=_(u"Show office address"),
@@ -94,19 +94,24 @@ class Renderer(base.Renderer):
         self.catalog = plone_tools.catalog()
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
-        
-        catalog = getToolByName(context, 'portal_catalog')
-        
-        peopleList = self.data.people.replace(' ', '').split(",")
+
+        if self.data.people:
+            peopleList = self.data.people.replace(' ', '').split(",")
+        elif self.context.portal_type in ['News Item']:
+            peopleList = list(self.context.listCreators())
+        else:
+            peopleList = None
         
         self.people = []
         
-        search_results = catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
-        
-        for id in peopleList:
-            for r in search_results:
-                if r.id == id:
-                    self.people.append(r)
+        if peopleList:
+            catalog = getToolByName(context, 'portal_catalog')
+            search_results = catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
+            
+            for id in peopleList:
+                for r in search_results:
+                    if r.id == id:
+                        self.people.append(r)
       
     def render(self):
         return xhtml_compress(self._template())

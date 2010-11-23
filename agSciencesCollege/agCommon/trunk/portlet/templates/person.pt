@@ -10,7 +10,8 @@
         
         <tal:person tal:define="context person/getObject">
 
-            <a tal:condition="view/data/show_image" tal:attributes="href person/getURL">
+            <a tal:condition="python:view.data.show_image and context.getWrappedField('image').get_size(context)" 
+                   tal:attributes="href person/getURL">
                 <img tal:replace="structure python:context.getWrappedField('image').tag(context, scale='thumb',  css_class='photo')" />
             </a>
 
