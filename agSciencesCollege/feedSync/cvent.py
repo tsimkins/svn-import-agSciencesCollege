@@ -105,7 +105,7 @@ def importEvents(context, emailUsers=['trs22'],
             myObject = getattr(context, eventId)
             myObject.manage_addProperty('cventid', eventId, 'string')
             myObject.setExcludeFromNav(True)
-            #myObject.setLayout("event_redirect_view")
+            myObject.setLayout("event_redirect_view")
             myObject.reindexObject()
     
             myStatus.append("Created event %s (id %s)" % (eventTitle, eventId))
