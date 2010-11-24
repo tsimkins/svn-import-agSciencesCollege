@@ -12,6 +12,10 @@ def fromFile(fileName, doCommit=True):
     createArgs = 14
     
     for line in open(fileName, 'r').readlines():
+
+        if line.startswith("#"):
+            continue
+            
         data = [x.strip() for x in line.split("\t")]
 
         while len(data) < createArgs:

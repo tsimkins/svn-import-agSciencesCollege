@@ -124,16 +124,11 @@ import urllib2
 """
 
 
-def setLocation(site, url):
-    print """
-mySite = getattr(app, '%s')
-""" % site
-
+def setLocation(url):
+    print "context = app"
     if url.startswith("/"):
         url = url.replace("/", "", 1)
     
-    print "context = mySite\n"
-
     urlArray = [x.strip() for x in url.split("/")]
 
     for fragment in urlArray:
@@ -153,7 +148,10 @@ def getBoilerPlate():
     setUser()
     print """
 app = makerequest(app)
+"""
 
+def getWorkflowTool():
+    print """
 portal = getSiteManager(context)
 wftool = getToolByName(portal, "portal_workflow")
 """
@@ -179,4 +177,8 @@ def scrub(html):
         html = html.replace(ent[0], ent[1])
     
     return html
+
+def toModule(stringObj):
+  print "def doit(app):"
+  print "\n".join(["    %s" % x for x in stringObj.getvalue().split("\n")])
     
