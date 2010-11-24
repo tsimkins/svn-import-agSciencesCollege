@@ -424,3 +424,12 @@ def reinstallAgCommon(site):
         LOG('agCommon.reinstallAgCommon', INFO,  "Reinstalling products [%s]" % ", ".join(toReinstall)  )
     except ComponentLookupError, e:
         LOG('agCommon.reinstallAgCommon', ERROR,  "ComponentLookupError: %s" % e  )
+
+
+def sortFolder(context):
+    folderContents = context.listFolderContents()
+    for obj in sorted(folderContents, key=lambda x: x.Title().lower(), reverse=True):
+        context.moveObjectsToTop(ids=[obj.id])
+    for obj in folderContents:
+        obj.reindexObject()
+        
