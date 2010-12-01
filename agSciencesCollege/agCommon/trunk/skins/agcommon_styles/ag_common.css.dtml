@@ -867,12 +867,11 @@ body {
 #addthis {
     font-size: 0.80em;
     color: #333333;
-    padding: 4px;
+    padding: 0 4px 4px 4px;
     border: 0 solid #CCCCCC;
     display: block;
     float: right;
-    margin: 0 0 3px 8px;
-    height: 1.6em;
+    margin: -4px 0 3px 8px;
 }
 
 #addthis a {
@@ -881,7 +880,7 @@ body {
     float:left;
 }
 
-#addthis h3 {
+#addthis p {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #999999;
@@ -889,6 +888,7 @@ body {
     text-align: right;
     font-size: 0.95em;
     margin-top: 0;
+    margin-bottom: 3px;
 }
 
 /* = portal-footer ========================================= */
