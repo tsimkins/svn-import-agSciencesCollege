@@ -26,11 +26,23 @@
     font-size: 0.88em;
 }
 
+#edit_county_tags, #edit_main_tags {
+    width: 120px;
+    display: block;
+    border: 1px solid #FF981F;
+    background-color: #EF9C3B;
+    margin-top: 3px;
+    padding: 3px;
+    font-size: 0.88em;
+    text-align: center;
+    color: #FFFFFF !important;
+    text-decoration: none;
+}
 
 /* --------------------------- Customizations to front page portlets -------------------------------- */
 
 body.section-front-page #portlets-above .portlet {
-    min-height: 34em;
+    min-height: 32em;
 }
 
 body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
@@ -42,8 +54,16 @@ body.section-front-page h1.documentFirstHeading {
 }
 
 body.section-front-page #region-content h2.documentDescription {
-    font-size: 1.1em;
-    margin: 0 0 1em 0;
+    font-size: 1.5em;
+    margin: 0 0 0.25em 0;
+}
+
+body.section-front-page #region-content p {
+    margin: 0 0 2em 0;
+}
+
+body.section-front-page #portlets-below {
+    display: none;
 }
 
 /* --------------------------- Front page portlet graphics -------------------------------- */
@@ -101,9 +121,17 @@ body.section-front-page #portlets-above .portletHeader a {
     background-image: none !important;
 }
 
+
+/* Remove lead image from sections with a custom tag of 'no-leadimage' */
+
+body.custom-no-leadimage .contentLeadImageContainer {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
+
 
 
 

@@ -38,6 +38,8 @@
             </metal:field>
         </h2>
 
+        <tal:bodytext tal:condition="context/getText|nothing" tal:content="structure context/getText" />
+
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <script tal:condition="python:'background-images' in context.keys()" type="text/javascript" src="background-images/getPortletHomepageImage.js"></script>
