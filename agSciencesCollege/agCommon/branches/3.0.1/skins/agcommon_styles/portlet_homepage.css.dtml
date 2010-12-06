@@ -1,0 +1,87 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+
+/* For Extension front page */
+
+#region-content {
+    margin:0;
+    padding-top: 0 !important;
+}
+
+#portlets-above {
+    display: block;
+}
+
+#portlets-above .portletHeader {
+    font-size:1.15em;
+    font-weight:bold;
+    padding:0.5em 0 0.25em 0;
+    text-transform:none;
+    background-position:left top;
+    background-repeat:no-repeat;
+    margin-left: 5px;
+    letter-spacing: -0.05em;
+}
+
+#portlets-above dl.portlet:first-child .portletHeader {
+    padding-top: 1em;
+}
+
+/* Fix for IE7 being dumb and putting bullets by the nav items.  */
+#portlets-above dl.portletNavigationTree li {
+    list-style-image: none;
+}
+
+#portal-columns {
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+#portal-column-two .portletHeader a {
+    color: &dtml-insideRightPortletHeaderTextColor;;
+}
+
+#portal-column-two .portlet {
+    border-bottom: none;
+}
+
+.documentContent dd a {
+    border-bottom: none;
+}
+
+#portal-content-wrapper {
+    padding: 13px 20px 0 20px !important;
+}
+
+#addthis {
+    display: none;
+}
+
+.documentActions {
+    display: none;
+}
+
+.documentContent {
+    font-size: 110%;
+}
+
+#centercolumn {
+    display: none;
+}
+
+#rightcolumn {
+    display: none;
+}
+
+#portal-column-two dl.linkIcon .portletItem li {
+    background-color: none;
+    padding: 1px 0;
+}
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */

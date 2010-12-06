@@ -1,0 +1,30 @@
+<div metal:define-macro="portal_logo"
+    id="portal-logo" 
+    tal:define="portal_title context/portal_title|view/portal_title;
+    navigation_root_url context/navigation_root_url|view/navigation_root_url">
+
+  <a href="http://www.psu.edu" target="_blank"><img 
+    id="logo-psu" 
+    tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
+    alt="Penn State University" /></a>
+    
+  <a href="http://agsci.psu.edu" target="_blank"><img 
+    id="logo-college"
+    tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
+    alt="College of Agricultural Sciences" /></a>
+
+    <img 
+        id="logo-print"
+        tal:attributes="src string:${view/navigation_root_url}/psu_logo_print.gif" 
+        alt="College of Agricultural Sciences" />
+
+    <div id="logo-site">
+        <a 
+            tal:content="portal_title"
+            accesskey="1" 
+            tal:attributes="href navigation_root_url; 
+                            title portal_title" 
+            i18n:domain="plone"
+            i18n:attributes="title" />
+    </div>
+</div>

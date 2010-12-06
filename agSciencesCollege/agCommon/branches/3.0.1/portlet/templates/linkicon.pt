@@ -1,0 +1,41 @@
+<tal:block condition="view/available"
+           i18n:domain="linkicon">
+<dl class="portlet linkIcon">
+
+    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+
+    <dd class="portletItem" tal:condition="view/linkIcons">
+           
+        <ul>
+        
+            <li tal:repeat="licon view/linkIcons"
+                tal:attributes="id string:linkicon-${licon/id}">
+                <tal:linkIcon  
+                    tal:define="title licon/title;
+                                id licon/id;
+                                description licon/description|licon/title;
+                                icon licon/icon|nothing">
+
+                        <a
+                           tal:condition="icon"
+                           tal:attributes="href licon/url;
+                                           title description;"
+                           ><img tal:attributes="
+                                src icon;
+                                alt title" /></a>
+                           <a
+                           tal:content="title"
+                           tal:attributes="href licon/url;
+                                           title description;"
+                           >Link</a>
+                  </tal:linkIcon>
+                   
+            </li>
+        
+        </ul>
+            
+    </dd>
+
+
+</dl>
+</tal:block>

@@ -1,0 +1,468 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR JAVASCRIPT START HERE */
+
+
+// This makes the left column and the center column the same size
+
+function resizeColumns()
+{
+    setTimeout("doresizeColumns()", 300);
+}
+
+function doresizeColumns()
+{
+    // For front page, equalize center column height 
+    var bodyClass = document.body.className;
+    var contentWrapper = document.getElementById("portal-column-content");
+    var centerColumn = document.getElementById("centercolumn");
+    var personalTools = document.getElementById("portal-personaltools");
+
+    if(!personalTools && bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() == 0))
+    {
+        centerColumn.style.height = "auto";
+        iHeight = centerColumn.offsetHeight;
+
+        // failsafe so we don't infinitely loop in case something isn't as we thought.
+        failsafe = 0;
+
+        // 3 is the margin between the right inside column and the bottom.  Otherwise we go into an infinite loop!
+
+        while (failsafe<500 && (centerColumn.offsetTop + centerColumn.offsetHeight) < (contentWrapper.offsetTop + contentWrapper.offsetHeight - 3))
+        {
+            iHeight++;
+            failsafe++;
+            centerColumn.style.height = iHeight + "px";
+        }
+        
+    }
+}
+
+function msieversion()
+{
+    var ua = window.navigator.userAgent
+    var msie = ua.indexOf ( "MSIE " )
+    
+    if ( msie > 0 )      // If Internet Explorer, return version number
+        return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+    else                 // If another browser, return 0
+        return 0
+
+}
+
+
+function getElement(theId, vPadding, IEvPadding)
+{
+    var theElement = document.getElementById(theId) ? document.getElementById(theId) : document.createElement("div");
+    theElement.elementHeight = theElement.offsetHeight ? theElement.offsetHeight : theElement.pixelHeight;
+    theElement.style.height = "auto";
+
+    if (!vPadding)
+    {
+        vPadding = 0;
+    }
+
+    if (document.all && IEvPadding)
+    {
+        theElement.vPadding = IEvPadding;
+    }
+    else
+    {
+        theElement.vPadding = vPadding;
+    }
+    
+    return theElement;
+}
+
+function setSearch()
+{
+    var theSearchButton = document.getElementById("goSearch");
+    var theSearchDropdown = document.getElementById("searchSource");    
+    var thePloneSearchForm = document.getElementById("plonesearchform");
+
+    if (theSearchButton && theSearchDropdown && thePloneSearchForm)
+    {
+        theSearchDropdown.style.display = "inline";
+
+        theSearchButton.onclick = function () {
+            return searchOnSubmit();
+        }
+        
+        thePloneSearchForm.onsubmit = function () {
+            return searchOnSubmit();
+        }
+    }        
+}
+
+function searchOnSubmit()
+{
+    var theSearchDropdown = document.getElementById("searchSource");            
+    var theSearchForm = document.getElementById("GoogleSearch");
+    var theSearchBox = document.getElementById("searchBox");
+    var theCustomSearchBox = document.getElementById("GoogleCustomSearch");
+    var currentfolderCheckbox = document.getElementById("searchbox_currentfolder_only");
+
+    if (theSearchDropdown && theSearchForm && theSearchBox && theCustomSearchBox && currentfolderCheckbox)
+    {
+        var theSearchOption = theSearchDropdown.options[theSearchDropdown.selectedIndex].value;
+
+        if (theSearchOption == "section")
+        {
+            currentfolderCheckbox.checked = true;
+            return true;
+        }
+        else if (theSearchOption == "college")
+        {
+            theCustomSearchBox.q.value = theSearchBox.value;
+            theCustomSearchBox.submit();
+            return false;
+        }
+        else if (theSearchOption == "psu")
+        {
+            theSearchForm.q.value = theSearchBox.value;
+            theSearchForm.submit();
+            return false;
+        }
+        else
+        {
+            currentfolderCheckbox.checked = false;
+            return true;
+        }
+    }
+    
+}
+
+registerPloneFunction(setSearch);
+registerPloneFunction(resizeColumns);
+
+/* Show mobile version link for mobile browsers */
+
+jq(document).ready( function () {
+    var mobileRegex = /(iphone|ipod|android|blackberry|symbian|midp|windows ce|treo|webos|mobile safari)/;
+    var userAgent = navigator.userAgent.toLowerCase();
+
+    if (mobileRegex.test(userAgent))
+    {
+        jq("#visual-portal-wrapper").prepend(jq('<div id="mobile-version"><a href="m">Mobile Version</a></div>'));
+    }
+
+    
+} );
+
+
+/* Hide Short Name from Add screen */
+
+jq(document).ready( function () {
+
+    if (jq("#archetypes-fieldname-id input").val())
+    {
+        jq("#archetypes-fieldname-id").show();
+    }
+    else
+    {
+        jq("body.template-atct_edit #archetypes-fieldname-title label.formQuestion").dblclick(function() {
+            if (confirm("Only set the short name if you absolutely have to."))
+            {
+                jq("body.template-atct_edit #archetypes-fieldname-id").show();
+            }
+        });
+    }
+
+} );
+
+
+/*
+   if body custom css class includes 'semicolon-delimited', then split the description into separate lines delimited by semicolon
+*/
+
+jq(document).ready(
+	function () {
+        jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription #parent-fieldname-description, body.custom-semicolon-delimited #content #parent-fieldname-description .documentDescription').each(
+        
+            function()
+            {
+                var lines = this.innerHTML.split(";");
+    
+                var new_html =  "<ul>";
+    
+                for (var i=0; i<lines.length; i++)
+                {
+                    var line_text = lines[i];
+                    
+                    if (line_text.match(":"))
+                    {
+                        list = line_text.split(":");
+                        line_text = "<strong>" + list[0] + ":</strong>" + list[1];
+                    }
+                    
+                    new_html = new_html + "<li>" + line_text + "</li>";
+                }
+    
+                new_html = new_html + "</ul>";
+                
+                this.innerHTML = new_html
+            }
+        );
+
+	}
+)
+
+
+/* For folders with the 'two_column' property set, split the folder listing into two columns */
+
+jq(document).ready(
+	function () {
+
+        isTwoColumn = jq('body.custom-two-column').length;
+        
+        if (isTwoColumn)
+        {
+            // Grab items from Summary View
+
+            summary_items = jq('body.custom-two-column #content>div>.tileItem');
+            insert_after = jq('body.custom-two-column #content>div>.tileItem:last');
+    
+            if (summary_items.length == 0)
+            {
+                summary_items = jq('body.custom-two-column #region-content>div>.tileItem');
+                insert_after = jq('body.custom-two-column #region-content>div>.tileItem:last');
+            }
+
+
+            // Grab items from Standard View
+                
+            listing_items = jq('body.custom-two-column #content dl:not(#history) dt');
+
+
+            // Process Summary Items
+    
+            if (summary_items.length >= 1)
+            {
+                
+                first_column_items = Math.ceil(summary_items.length/2)
+    
+                two_column_left = jq('<div id="two-column-left"></div>');
+                two_column_right = jq('<div id="two-column-right"></div>');
+    
+                insert_after.after('<div class="visualClear">&nbsp;</div>');   
+                insert_after.after(two_column_right);        
+                insert_after.after(two_column_left);
+                
+                item_count = 0;
+    
+                summary_items.each(
+
+                    function()
+                    {
+                        item_count++;
+    
+                        if (item_count <= first_column_items)
+                        {
+                            two_column_left.append(this);
+                        }
+                        else
+                        {
+                            two_column_right.append(this);
+                        }
+    
+                    }
+                );
+                
+            }
+    
+            else if (listing_items.length >= 1)
+            {
+                first_column_items = Math.ceil(listing_items.length/2)
+    
+                two_column_left = jq('<dl id="two-column-left"></dl>');
+                two_column_right = jq('<dl id="two-column-right"></dl>');
+
+                theList = jq('body.custom-two-column #content dl:not(#history)');
+    
+                theList.before(two_column_left);
+                theList.before(two_column_right);  
+                theList.before('<div class="visualClear">&nbsp;</div>');   
+                
+                item_count = 0;
+    
+                jq('body.custom-two-column #content dl:not(#history)').children().each(
+                    function()
+                    {
+    
+                        if (this.nodeName == 'DT')
+                        {
+                            item_count++;
+                        }
+    
+                        if (item_count <= first_column_items)
+                        {
+                            two_column_left.append(this);
+                        }
+                        else
+                        {
+                            two_column_right.append(this);
+                        }
+    
+                    }
+                );
+                
+            }
+    	}
+	}
+)
+
+
+/*
+   Makes event dates easier to work with.
+   From: https://weblion.psu.edu/trac/weblion/wiki/EventDates
+*/
+
+function getEventDate(dateType) {
+    // validate the dateType
+    if (dateType == "startDate") {
+        dateType += "_0";
+    } else if (dateType == "endDate") {
+        dateType += "_1";
+    } else {
+        dateType = "";
+    }
+
+    if (dateType != "") {
+        // grab all the fields for the date
+        year = jq("#edit_form_" + dateType + "_year").val();
+        month = jq("#edit_form_" + dateType + "_month").val();
+        day = jq("#edit_form_" + dateType + "_day").val();
+        hour = jq("#edit_form_" + dateType + "_hour").val();
+        minute = jq("#edit_form_" + dateType + "_minute").val();
+        ampm = jq("#edit_form_" + dateType + "_ampm").val();
+
+        // handle the ampm
+        if (hour == 12 && ampm == "AM") {
+            hour = 0;
+        } else if (hour < 12 && ampm == "PM") {
+            hour = parseInt(hour) + 12;
+        }
+
+        // convert the date fields to a javascript date object and return it
+        return new Date(year, month, day, hour, minute, 0, 0);
+
+    } else {
+        return "";
+    }
+}
+
+
+function setEventDate(dateType, dateObj) {
+    // validate the dateType
+    if (dateType == "startDate") {
+        dateType += "_0";
+    } else if (dateType == "endDate") {
+        dateType += "_1";
+    } else {
+        dateType = "";
+    }
+
+    if (dateType != "") {
+        // set the fields
+        jq("#edit_form_" + dateType + "_year").val( dateObj.getFullYear() );
+        jq("#edit_form_" + dateType + "_month").val( formatNumberForSelectBox(dateObj.getMonth()) );
+        jq("#edit_form_" + dateType + "_day").val( formatNumberForSelectBox(dateObj.getDate()) );
+        jq("#edit_form_" + dateType + "_minute").val( formatNumberForSelectBox(dateObj.getMinutes()) );
+
+        // handle the ampm
+        var hours = dateObj.getHours();
+        if (hours == 0) {
+            jq("#edit_form_" + dateType + "_hour").val("12");
+            jq("#edit_form_" + dateType + "_ampm").val("AM");
+        } else if (hours == 12) {
+            jq("#edit_form_" + dateType + "_hour").val("12");
+            jq("#edit_form_" + dateType + "_ampm").val("PM");
+        } else if (hours > 12) {
+            jq("#edit_form_" + dateType + "_hour").val( formatNumberForSelectBox(hours - 12) );
+            jq("#edit_form_" + dateType + "_ampm").val("PM");
+        } else {
+            jq("#edit_form_" + dateType + "_hour").val( formatNumberForSelectBox(hours) );
+            jq("#edit_form_" + dateType + "_ampm").val("AM");
+        }
+    }
+}
+
+
+function formatNumberForSelectBox(aNumber) {
+    // if the number is less than 10, add a 0 in front
+    if (aNumber < 10) {
+        aNumber = "0" + aNumber;
+    }
+
+    return aNumber;
+}
+
+
+function roundUpDateToNearestHour(dateObj) {
+    if (dateObj.getMinutes() != 0) {
+        dateObj.setMinutes(0);
+        dateObj.setTime(dateObj.getTime() + (60*60*1000));
+    }
+
+    return dateObj;
+}
+
+
+function onStartDateChange () {
+    if (okToChangeEventEndDate) {
+        var currentEndDate = getEventDate("endDate");
+        if (eventOriginalEndDate.getTime() == currentEndDate.getTime()) {
+            currentEndDate.setTime(getEventDate("startDate").getTime() + (60*60*1000));
+            setEventDate("endDate", currentEndDate);
+            eventOriginalEndDate = currentEndDate;
+        } else {
+            okToChangeEventEndDate = false;
+        }
+    }
+}
+
+
+var okToChangeEventEndDate = false;
+var eventOriginalEndDate = new Date();
+
+jq(document).ready(
+    function () {
+        // get the start date from the form 
+        var eventStartDate = getEventDate("startDate");
+
+        // does the start date match the end date (aka are we adding an event?)
+        if (eventStartDate.getTime() == getEventDate("endDate").getTime()) {
+
+            // the start date is the current date, so it's ok to mess with them
+            okToChangeEventEndDate = true;
+
+            // round up the start date to the nearest whole hour
+            eventStartDate = roundUpDateToNearestHour( eventStartDate );
+            setEventDate("startDate", eventStartDate);
+
+            // set the end date to be one hour from now
+            eventOriginalEndDate.setTime(eventStartDate.getTime() + (60*60*1000));
+            setEventDate("endDate", eventOriginalEndDate);
+
+
+            // assign change events for all the start date fields
+            jq("#edit_form_startDate_0_year").change( function () { onStartDateChange(); } );
+            jq("#edit_form_startDate_0_month").change( function () { onStartDateChange(); } );
+            jq("#edit_form_startDate_0_day").change( function () { onStartDateChange(); } );
+            jq("#edit_form_startDate_0_hour").change( function () { onStartDateChange(); } );
+            jq("#edit_form_startDate_0_minute").change( function () { onStartDateChange(); } );
+            jq("#edit_form_startDate_0_ampm").change( function () { onStartDateChange(); } );
+        }
+    }
+);
+
+
+
+
+/* YOUR JAVASCRIPT STOPS HERE */
+
+/* </dtml-with> */
+

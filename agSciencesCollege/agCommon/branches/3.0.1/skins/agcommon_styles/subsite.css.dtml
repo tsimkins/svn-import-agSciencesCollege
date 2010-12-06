@@ -1,0 +1,191 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+#image-header {
+    background-repeat: no-repeat;
+    background-position: top left;
+	margin: -25px 0 15px 0;
+	height: 145px;
+}
+
+#portal-breadcrumbs {
+	background-color: &dtml-breadcrumbBackgroundColor;;
+	color: &dtml-breadcrumbTextColor;;
+	padding: 4px 8px;
+	z-index: 20;
+	position: relative;
+	opacity: 0.80;
+	filter: alpha(opacity=80);	
+	margin: 0;
+	height: 17px;
+}
+
+#portal-breadcrumbs .breadcrumbSeparator {
+	color: &dtml-breadcrumbSeparatorColor;;
+}
+
+#portal-breadcrumbs a {
+	color: &dtml-breadcrumbLinkColor;;
+}
+
+.contentLeadImageContainer {
+    display: none;
+}
+
+#rightcolumn .managePortletsLink,
+#centercolumn .managePortletsLink {
+	display: none;
+}
+
+.agCommonPortlet {
+    display: block !important;
+    margin: 1.5em 0 0 0;
+}
+
+#rightcolumn {
+    display: none !important;
+}
+
+#centercolumn {
+	display: block;
+	margin: 0;
+	padding: 5px 0px 5px 0px;
+}
+
+/* RSS Feedmixer portlet in centercolumn */
+#centercolumn dl.portletfeedmixer .portletHeader {
+    display: block;
+    margin: -5px -7px 0px -8px;
+    font-size: 0.88em;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+    border: 0;
+    padding: 4px 9px 4px 11px;
+}
+
+#centercolumn dl.portletfeedmixer .portletFooter a {
+    font-size:0.9em;
+    margin-bottom:1em;
+}
+
+#centercolumn .portletfeedmixer dd.first {
+	border-width: 0px 0px 0px 0px;
+	padding-top: 3px;
+}
+
+#centercolumn {
+    font-size: 0.92em;
+}
+
+#centercolumn dl.portletfeedmixer .portletItem {
+    font-size: 1.1em;
+}
+
+#centercolumn dl.portletfeedmixer .portletHeader, 
+#centercolumn dl.portletfeedmixer .portletHeader a {
+	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
+	color: &dtml-frontRightPortletHeaderTextColor;; 
+	margin: 0px;
+}
+
+#centercolumn .portletItem a.more {
+	display: block;
+	font-size: 0.85em;
+	margin: 5px;
+	text-align: right;
+	text-decoration: none;
+	border: 0px;
+}
+
+#centercolumn dd {
+	padding: 0px;
+}
+
+#centercolumn .portletHeader {
+	display: none;
+}
+
+#centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
+	background-color: transparent;
+	border-width: 0px;
+	padding: 0px;
+}
+
+#centercolumn .portletfeedmixer .portletItem {
+	border-width: 1px 0px 0px 0px;
+	border-style: dashed;
+	border-color: #CCCCCC;
+	padding: 0px;
+}
+
+/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
+#centercolumn .portletfeedmixer .portletItem {
+    height: 1%;
+    overflow: hidden;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage {
+    float: right; 
+    margin: 10px 0 10px 10px;
+    width: 128px;
+    text-align: right;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage img {
+    max-width: 128px;
+}
+
+#centercolumn .portletfeedmixer .portletItem .hasImage {
+	width: 370px;
+}
+
+#centercolumn .portlet dd:first-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+#centercolumn .portletItem a.title {
+	font-size: 1.05em;
+	font-weight: bold;
+	margin-top: 7px;
+	text-decoration: none;
+	border-width: 0px;
+	display: block;
+}
+
+#centercolumn .portletItem span.date  {
+	color: #5B87B6;
+	font-size: 0.88em;
+	font-weight: normal;
+	text-align: left;
+}
+
+#centercolumn .portletItem span.summary {
+	color: #333333;
+	font-size: 0.92em;
+	margin: 10px 0px;
+	font-weight: normal;
+	text-align: left;
+}
+
+#centercolumn .portletFooter a {
+	color: #5B87B6;
+	display: block;
+	font-size: 0.81em;
+	margin: 5px 5px 0;
+	text-align: right;
+	text-decoration: none;
+	border-width: 0px;
+}
+
+.documentContent {
+    font-size: 110%;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
