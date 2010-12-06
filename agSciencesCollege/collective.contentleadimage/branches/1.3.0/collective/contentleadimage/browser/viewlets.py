@@ -7,10 +7,6 @@ from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 
-# We're going to display the lead image first, and then the news item image.
-# This gets the news item image out of the body and into the content lead image viewlet
-# for standardization purposes.
-
 class LeadImageViewlet(ViewletBase):
     """ A simple viewlet which renders leadimage """
 
@@ -19,21 +15,10 @@ class LeadImageViewlet(ViewletBase):
         portal = getUtility(IPloneSiteRoot)
         return ILeadImagePrefsForm(portal)
 
-    def bodyTag(self, css_class=''):
+    def bodyTag(self, css_class='newsImage'):
         """ returns img tag """
         context = aq_inner(self.context)
-        
-        # Use News Item image as Content Lead Image, if it exists
-        field = None
-        
-        leadimagefield = context.getField(IMAGE_FIELD_NAME)
-        newsitemfield =  context.getField('image')
-
-        if leadimagefield:
-            field = leadimagefield
-        if newsitemfield:
-            field = newsitemfield
-        
+        field = context.getField(IMAGE_FIELD_NAME)
         if field is not None and \
           field.getFilename(context) is not None and \
             field.get_size(context) != 0:
@@ -44,18 +29,7 @@ class LeadImageViewlet(ViewletBase):
     def descTag(self, css_class='tileImage'):
         """ returns img tag """
         context = aq_inner(self.context)
-
-        # Use News Item image as Content Lead Image image, if it exists
-        field = None
-        
-        leadimagefield = context.getField(IMAGE_FIELD_NAME)
-        newsitemfield =  context.getField('image')
-
-        if leadimagefield:
-            field = leadimagefield
-        if newsitemfield:
-            field = newsitemfield
-            
+        field = context.getField(IMAGE_FIELD_NAME)
         if field is not None and \
           field.getFilename(context) is not None and \
             field.get_size(context) != 0:
@@ -65,27 +39,12 @@ class LeadImageViewlet(ViewletBase):
 
     def caption(self):
         context = aq_inner(self.context)
-        
-        # Use News Item caption as Content Lead Image caption, if it exists
-        if context.getField(IMAGE_FIELD_NAME):
-            return context.widget(IMAGE_CAPTION_FIELD_NAME, mode='view')
-        elif context.getField('imageCaption'):
-            return context.widget('imageCaption', mode='view')
-        else:
-            return ''
-        
+        return context.widget(IMAGE_CAPTION_FIELD_NAME, mode='view')
+
     def render(self):
         context = aq_inner(self.context)
         portal_type = getattr(context, 'portal_type', None)
-        
-        # Special case for News Item
-        if portal_type in self.prefs.allowed_types or portal_type == 'News Item':
+        if portal_type in self.prefs.allowed_types:
             return super(LeadImageViewlet, self).render()
         else:
             return ''
-
-    # Used in page template to determine if we're working with a news item
-    def isNewsItem(self):
-        context = aq_inner(self.context)
-        portal_type = getattr(context, 'portal_type', None)
-        return portal_type == 'News Item'

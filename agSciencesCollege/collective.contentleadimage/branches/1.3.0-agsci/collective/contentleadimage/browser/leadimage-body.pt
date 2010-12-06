@@ -1,0 +1,31 @@
+<tal:comment tal:replace="nothing">
+    Changed newsImageContainer to contentLeadImageContainer so we can style it separately
+</tal:comment>
+
+<div class="contentLeadImageContainer" i18n:domain="collective.contentleadimage"
+     tal:define="tag python: view.bodyTag()"
+     tal:condition="tag">
+
+    <tal:comment tal:replace="nothing">
+        We need to format the link differently if our source data is a news item
+    </tal:comment>
+    
+    <a href="#"
+       tal:condition="view/isNewsItem"
+       tal:attributes="href string:${context/absolute_url}/image_view_fullscreen"
+       id="parent-fieldname-leadImage">
+       <img tal:replace="structure tag" src="" alt="" />
+    </a>
+    <a href="#"
+       tal:condition="not:view/isNewsItem"
+       tal:attributes="href string:${context/absolute_url}/leadImage/image_view_fullscreen"
+       id="parent-fieldname-leadImage">
+       <img tal:replace="structure tag" src="" alt="" />
+    </a>
+    <p class="discreet">
+        <metal:field use-macro="view/caption">
+        Image Caption
+        </metal:field>
+    </p>
+
+</div>
