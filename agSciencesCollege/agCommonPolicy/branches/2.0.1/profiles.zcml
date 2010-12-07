@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="agCommonPolicy">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="agCommonPolicy install profile"
+      directory="profiles/default"
+      description="Extension profile for agCommonPolicy."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+      
+</configure>

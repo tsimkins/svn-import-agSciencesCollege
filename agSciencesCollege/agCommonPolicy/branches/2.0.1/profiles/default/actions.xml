@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="user" meta_type="CMF Action Category" purge="False">
+  <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone" insert-before="preferences">
+   <property name="title" i18n:translate="">Site Setup</property>
+   <property
+      name="url_expr">string:${portal_url}/plone_control_panel</property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="topnavigation" meta_type="CMF Action Category" purge="False">
+  <property name="title"></property>
+  <object name="home" meta_type="CMF Action" insert-before="*">
+   <property name="title">Home</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/</property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="document_actions" meta_type="CMF Action Category" purge="False">
+  <object name="sendto" meta_type="CMF Action">
+   <property name="title">Email</property>
+  </object>
+  <object name="print" meta_type="CMF Action">
+   <property name="title">Print</property>
+  </object>
+ </object>
+
+
+</object>
