@@ -91,14 +91,27 @@ def randomPassword():
 
 def deleteUnusedFolders(context):
     site = context.getSite()
+    urltool = getToolByName(site, "portal_url")
+    portal = urltool.getPortalObject()
+
     for theFolder in ['Members', 'news', 'events']:
 
         if theFolder in site.objectIds():
 
             theFolderObject = getattr(site, theFolder)
-            if theFolderObject.getPortalTypeName() != 'Folder' and theFolderObject.getPortalTypeName() != 'Blog':            
-                urltool = getToolByName(site, "portal_url")
-                portal = urltool.getPortalObject()
+            
+            # Since Plone 4 no longer has the "Large Folder" type, our portal_type test for whether or not
+            # we replaced these folders is invalid.  Instead, we'll delete 'Members' always, and check for
+            # the default page of 'aggregator' for 'news' and 'events'.
+
+            deleteFolder = False
+            
+            if theFolder == 'Members':
+                deleteFolder = True
+            elif theFolderObject.getProperty('default_page') == 'aggregator':
+                deleteFolder = True
+            
+            if deleteFolder:        
                 portal.manage_delObjects([theFolder])
                 LOG('agCommonPolicy.deleteUnusedFolders', INFO, "deleted folder %s" % theFolder)
         else:
@@ -353,6 +366,10 @@ def configureScripts(context):
         {
             'src' : 'gradientBackground',
             'target' : 'topnav-alternate-gradientBackground.png'
+        },
+        {
+            'src' : 'bodyBackground',
+            'target' : 'bodyBackground.png'
         },
 
     ]
