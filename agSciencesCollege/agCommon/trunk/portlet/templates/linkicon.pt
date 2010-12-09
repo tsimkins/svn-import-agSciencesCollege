@@ -7,31 +7,26 @@
     <dd class="portletItem" tal:condition="view/linkIcons">
            
         <ul>
-        
-            <li tal:repeat="licon view/linkIcons"
-                tal:attributes="id string:linkicon-${licon/id}">
-                <tal:linkIcon  
+            <tal:linkIcon repeat="licon view/linkIcons">
+                <li tal:attributes="id string:linkicon-${licon/id};
+                                    class python: icon and 'icon' or ''"
                     tal:define="title licon/title;
                                 id licon/id;
                                 description licon/description|licon/title;
                                 icon licon/icon|nothing">
-
+                    <a  tal:condition="icon"
+                        tal:attributes="href licon/url;
+                                        title description;"
+                        ><img tal:attributes="
+                            src icon;
+                            alt title" /></a>
                         <a
-                           tal:condition="icon"
-                           tal:attributes="href licon/url;
-                                           title description;"
-                           ><img tal:attributes="
-                                src icon;
-                                alt title" /></a>
-                           <a
-                           tal:content="title"
-                           tal:attributes="href licon/url;
-                                           title description;"
-                           >Link</a>
-                  </tal:linkIcon>
-                   
-            </li>
-        
+                        tal:content="title"
+                        tal:attributes="href licon/url;
+                                        title description;"
+                        >Link</a>
+                </li>
+            </tal:linkIcon>        
         </ul>
             
     </dd>

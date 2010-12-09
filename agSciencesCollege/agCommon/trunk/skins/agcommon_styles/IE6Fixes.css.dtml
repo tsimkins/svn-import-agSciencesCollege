@@ -46,4 +46,15 @@ body.template-folder_leadimage_listing .leadimage-listing img {
 	background-image: none ;
 }
 
+#portlets-below dl.linkIcon dd ul {
+    margin-left: 0 !important;
+}
+
+/* Riddle me this, Batman... Why does this work? */
+#portlets-below dl.linkIcon dd ul li {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: &dtml-sitemapBackgroundColor; !important;
+}
+
 /* </dtml-with> */

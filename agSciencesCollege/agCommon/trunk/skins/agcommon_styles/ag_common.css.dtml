@@ -431,7 +431,7 @@ body {
 }
 
 #portal-column-two dl.linkIcon .portletItem li {
-    background-color: none;
+    background-color: transparent;
     background-image: none;
     padding: 1px 0;
 }
@@ -452,19 +452,17 @@ body {
 /* Link Buttons */
 
 #portal-column-one .linkButton,
-#portal-column-two .linkButton,
- {
+#portal-column-two .linkButton {
     margin: 30px 0;
 }
 
 #portal-column-one .linkButton ul,
-#portal-column-two .linkButton ul, {
+#portal-column-two .linkButton ul {
     margin: 10px 0;
 }
 
 #portal-column-one .linkButton li,
-#portal-column-two .linkButton .portletItem li
- {
+#portal-column-two .linkButton .portletItem li {
     display: block;
     padding: 0;
     border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
@@ -889,6 +887,10 @@ body {
     font-size: 0.95em;
     margin-top: 0;
     margin-bottom: 3px;
+}
+
+.comment #addthis {
+    display: none;
 }
 
 /* = portal-footer ========================================= */
