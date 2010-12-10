@@ -1,0 +1,102 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="agsci.UniversalExtender">
+
+    <include package="archetypes.schemaextender" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="UniversalExtender"
+        directory="profiles/default"
+        description="A universal extender for the AgSci sites, including field and GUI tweaks"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+   <genericsetup:registerProfile
+      name="uninstall"
+      title="UniversalExtender Uninstall Profile"
+      directory="profiles/uninstall"
+      description="Removes UniversalExtender."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+
+    <!-- FSD Person changes -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FSDPersonExtender"
+        factory=".extender.FSDPersonExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FSDPersonExtender.fiddle"
+        factory=".extender.FSDPersonExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    /> 
+
+    <!-- Link and File defaults -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.DefaultExcludeFromNav"
+        factory=".extender.DefaultExcludeFromNav"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+    
+    <five:implements
+        class="Products.ATContentTypes.content.link.ATLink"
+        interface=".interfaces.IDefaultExcludeFromNav"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.file.ATFile"
+        interface=".interfaces.IDefaultExcludeFromNav"
+    /> 
+
+    <!-- Event Map Link -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.EventExtender"
+        factory=".extender.EventExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <adapter
+        name="agsci.UniversalExtender.extender.EventExtender.fiddle"
+        factory=".extender.EventExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
+    <!-- Folder Display Options -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FolderExtender"
+        factory=".extender.FolderExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.IFolderExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.IFolderExtender"
+    /> 
+
+    <!-- Topic (Collection) Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.TopicExtender"
+        factory=".extender.TopicExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+    
+    <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.ITopicExtender"
+    /> 
+    
+</configure>

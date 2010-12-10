@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: agsci.UniversalExtender
+Version: 0.1
+Summary: A Universal extender and general UI tweaker for AgSci
+Home-page: http://weblion.psu.edu/
+Author: WebLion Documentation Group, Penn State University
+Author-email: support@weblion.psu.edu
+License: GPL
+Description: Description
+        
+        A Universal extender and general UI tweaker for AgSci
+        
+        Changelog
+        =========
+        
+        0.1 (Unreleased)
+        ----------------
+        Initial release
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
