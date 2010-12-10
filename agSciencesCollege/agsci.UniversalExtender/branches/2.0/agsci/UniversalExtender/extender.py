@@ -197,6 +197,8 @@ class EventExtender(object):
 
         #pdb.set_trace()
 
+        """
+        # Maybe Plone 4 fixed the silly Event categorizations?
         # Move subject/tags to Categorization tab
         tmp_field = schema['eventType'].copy()
         tmp_field.schemata = 'categorization'
@@ -204,7 +206,7 @@ class EventExtender(object):
 
         # And put it before the related items
         schema.moveField('eventType', before='relatedItems')
-               
+        """    
         # Hide the attendees field
         tmp_field = schema['attendees'].copy()
         tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
