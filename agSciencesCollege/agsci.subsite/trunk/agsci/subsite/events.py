@@ -894,6 +894,14 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
 
     program_content = []
     
+    if program_id == 'master-gardener':
+        program_content = [
+            ['members', 'Link', 'For Members', ''],
+            ['news', 'Blog', 'News', ''],
+            ['events', 'Topic', 'Upcoming Events', ''],
+            ['default', 'HomePage', '%s Master Gardener' % county_name, ''],
+        ]
+        
     if program_id == '4-h':
         program_content = [
             ['join', 'Document', 'Join', ''],
@@ -913,7 +921,13 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
             program_folder[id].unmarkCreationFlag()
             
             this_obj = program_folder[id]
-            
+
+            # Master Gardener For Members
+            if program_id == 'master-gardener' and id == 'members':
+                this_obj.setRemoteUrl('https://agsci.psu.edu/intranet/extension/master-gardener/counties/%s' % county_name.lower())
+                this_obj.setExcludeFromNav(False)
+                this_obj.reindexObject()
+
             # Create events collection
             if id == 'events':
                 # Set the criteria for the folder
@@ -1003,6 +1017,8 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                             assignment_context_path=None)
                             
                     saveAssignment(homepage_rightColumn, general_info)
+                    
+                    this_obj.manage_addProperty('custom_class', '4-h', 'string')
 
             # 4-H Volunteers portlets
             if program_id == '4-h' and id == 'volunteers':
