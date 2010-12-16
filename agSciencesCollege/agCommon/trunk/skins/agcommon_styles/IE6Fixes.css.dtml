@@ -23,6 +23,11 @@
 	background-color: transparent !important;
 }
 
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+    color: #000033 !important;
+    font-weight: bold !important;
+}
+
 #portal-columns {
     width: 100% !important;
 }

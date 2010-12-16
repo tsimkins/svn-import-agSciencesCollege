@@ -128,6 +128,15 @@ body.custom-no-leadimage .contentLeadImageContainer {
     display: none;
 }
 
+/* 4-H Logo for county subsites */
+body.custom-4-h #portal-column-two {
+    background-image:url('&dtml-portal_url;/4-h-clover.png');
+    background-position:center 10px;
+    background-repeat:no-repeat;
+    padding:150px 12px 12px;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
