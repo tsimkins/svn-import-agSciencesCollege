@@ -20,6 +20,7 @@ registerDirectory('skins', GLOBALS)
 # Allow us to use this module in scripts
 
 allow_module('Products.agCommon')
+allow_module('agsci.subsite.events')
 allow_module('feedparser')
 allow_module('datetime')
 allow_module('datetime.datetime')
