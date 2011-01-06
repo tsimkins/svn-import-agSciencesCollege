@@ -107,44 +107,6 @@ class FSDPersonExtender(object):
     def getFields(self):
         return self.fields
 
-"""
-# Hide extraneous tabs from mere mortals. Hide image field from
-# mere mortals so they can't upload a picture from 10 years ago
-# when they were 20 pounds lighter and had hair. Professional
-# portaits only!
-
-class FSDPersonModifier(object):
-    adapts(IPerson)
-    implements(ISchemaModifier, IBrowserLayerAwareExtender)
-    layer = IUniversalExtenderLayer
-
-    security = ClassSecurityInfo()
-
-    def __init__(self, context):
-        self.context = context
-
-    from Products.FacultyStaffDirectory.Person import schema
-
-
-    def fiddle(self, schema):
-
-        # Hide the administrative tabs for non-Managers
-        # https://weblion.psu.edu/trac/weblion/wiki/FacultyStaffDirectoryExtender
-        
-        for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
-            for fieldName in schema.getSchemataFields(hideme):
-                fieldName.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
-
-        # Restrict the image field to Personnel Managers
-        image_field = schema['image'].copy()
-        image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
-        schema['image'] = image_field
-
-        #pdb.set_trace()
-
-        return schema
-"""
-
 # Check the "Exclude from navigation" by default for Links
 # and Files.  99% of the time these should be hidden, but
 # occasionally they need a link or file to show up in the 
