@@ -415,8 +415,6 @@ def onCountySiteCreation(subsite, event):
         programs = subsite['programs']
         programs.unmarkCreationFlag()     
 
-        setRoles(programs, editors_group)
-        
         # Set restrictions 
         programs.setConstrainTypesMode(1) # restrict what this folder can contain
         programs.setImmediatelyAddableTypes(['Link','Folder','File','Document'])
@@ -424,9 +422,11 @@ def onCountySiteCreation(subsite, event):
             
         # Make 4-H and Master Gardener folders
         createProgram(subsite=subsite, programs=programs, program_id='4-h', program_name='4-H', 
+                      program_description="4-H is a educational program for youth.",
                       county_name=county_name)
 
         createProgram(subsite=subsite, programs=programs, program_id='master-gardener', program_name='Master Gardener', 
+                      program_description="Master Gardeners serve their communities by helping the public with horticulture, gardening, and pest management.",
                       county_name=county_name)
         
         # create a smartfolder for listing the programs in alphabetical order
@@ -435,6 +435,7 @@ def onCountySiteCreation(subsite, event):
             programs.setDefaultPage('listing')
             
             smart_obj = programs['listing']
+            smart_obj.setLayout("folder_leadimage_view")
             smart_obj.unmarkCreationFlag()
                     
             # Set the criteria for the folder
@@ -497,6 +498,9 @@ def onCountySiteCreation(subsite, event):
         directions.setExcludeFromNav(True)
         directions.reindexObject()
         directions.unmarkCreationFlag()
+
+        # Set permissions
+        setRoles(directions, editors_group)
 
         # Hide all portlets from directions  
         directions_LeftColumnManager = getLocalPortletAssignmentManager(directions, 'plone.leftcolumn')
@@ -879,13 +883,21 @@ def onSectionCreation(section, event):
     return True
 
 # What we want to happen when we create a 4-H programs folder
-def createProgram(subsite, programs, program_id, program_name, county_name="County Name"):
+def createProgram(subsite, programs, program_id, program_name, program_description="", county_name="County Name"):
+    # Get portal_skins and urltool
     urltool = getToolByName(subsite, 'portal_url')
-    programs.invokeFactory(type_name='Folder', id=program_id, title=program_name)
+    portal_skins = getToolByName(subsite, 'portal_skins')
+
+    # Create program folder
+    programs.invokeFactory(type_name='Folder', id=program_id, title=program_name, description=program_description)
     program_folder = programs[program_id]
     program_folder.unmarkCreationFlag()
     program_folder.setExcludeFromNav(True)
     program_folder.reindexObject()
+
+    # Set permissions for program folder
+    editors_group = "%s-editors" % county_name.lower()
+    setRoles(program_folder, editors_group)
 
     # Set restrictions 
     program_folder.setConstrainTypesMode(1) # restrict what this folder can contain
@@ -899,7 +911,7 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
             ['members', 'Link', 'For Members', ''],
             ['news', 'Blog', 'News', ''],
             ['events', 'Topic', 'Upcoming Events', ''],
-            ['default', 'HomePage', '%s Master Gardener' % county_name, ''],
+            ['front-page', 'HomePage', 'Master Gardener Program', 'Master Gardeners are volunteers trained by Penn State Cooperative Extension. Once they complete their training, Master Gardeners help Extension better serve the home gardening public by answering questions, speaking to groups, working with 4-H horticultural projects, participating in civic beautification, maintaining demonstration gardens, teaching plant sciences and horticulture, maintaining this web site, and in many other ways.'],
         ]
         
     if program_id == '4-h':
@@ -912,8 +924,12 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
             ['donate', 'Document', 'Donate to 4-H', ''],
             ['events', 'Topic', 'Upcoming Events', ''],
             ['news', 'Blog', 'News', ''],
-            ['default', 'HomePage', '%s County 4-H' % county_name, ''],
+            ['front-page', 'HomePage', '%s County 4-H' % county_name, ''],
         ]
+
+        # Set the clover for the lead image for the folder
+        clover = portal_skins.agcommon_images['4-h-clover.png']
+        program_folder.getField(IMAGE_FIELD_NAME).set(program_folder, clover._readFile(False))
 
     for (id, type_name, title, description) in program_content:
         if id not in program_folder.objectIds():
@@ -950,9 +966,9 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                 
                 sort_crit = this_obj.addCriterion('start','ATSortCriterion')
                 
-            if id == 'default':
+            if id == 'front-page':
                 this_obj.setLayout('document_subsite_view')
-                program_folder.setDefaultPage('default')
+                program_folder.setDefaultPage('front-page')
                 # Set portlets for homepage
                 homepage_centerColumn = getPortletAssignmentMapping(this_obj, 'agcommon.centercolumn')
                 homepage_rightColumn = getPortletAssignmentMapping(this_obj, 'plone.rightcolumn')
@@ -1001,8 +1017,13 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                             
                 saveAssignment(homepage_rightColumn, contact_portlet)
 
-                # 4-H Specific Front Page Portlets
+                # 4-H Specific Front Page actions
                 if program_id == '4-h':
+                
+                    # Set background image
+                    bg_image = portal_skins.agcommon_images['4-h-background.jpg']
+                    this_obj.getField(IMAGE_FIELD_NAME).set(this_obj, bg_image._readFile(False))
+
                     # Put the general 4-h info RSS portlet in the right column
                     general_info = feedmixer.portlet.Assignment(
                             title="General 4-H Information",
@@ -1019,6 +1040,27 @@ def createProgram(subsite, programs, program_id, program_name, county_name="Coun
                     saveAssignment(homepage_rightColumn, general_info)
                     
                     this_obj.manage_addProperty('custom_class', '4-h', 'string')
+
+                # Master Gardener Specific Front Page actions
+                if program_id == 'master-gardener':
+                
+                    bg_image = portal_skins.agcommon_images['mg-background.jpg']
+                    this_obj.getField(IMAGE_FIELD_NAME).set(this_obj, bg_image._readFile(False))
+                
+                    # Put the general Master Gardener info RSS portlet in the right column
+                    general_info = feedmixer.portlet.Assignment(
+                            title="General Master Gardener Information",
+                            feeds="http://extension.psu.edu/master-gardener/general-info/RSS",
+                            items_shown=100,
+                            show_header=True,
+                            show_date=False,
+                            show_summary=False,
+                            show_image=False,
+                            show_footer=False,
+                            cache_timeout=1800,
+                            assignment_context_path=None)
+                            
+                    saveAssignment(homepage_rightColumn, general_info)
 
             # 4-H Volunteers portlets
             if program_id == '4-h' and id == 'volunteers':
