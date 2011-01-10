@@ -50,6 +50,9 @@
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
                             batch folderContents;
+                            isAnon context/@@plone_portal_state/anonymous;
+                            normalizeString nocall: context/plone_utils/normalizeString;
+                            toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout;">
         <tal:listing condition="folderContents">
 
@@ -137,7 +140,8 @@
                                 &mdash;
 
                                 <tal:name tal:condition="item_creator"
-                                    tal:define="author python:mtool.getMemberInfo(item_creator)">
+                                    tal:define="mtool mtool|context/portal_membership; author python:mtool.getMemberInfo(item_creator)">
+
                                   <span i18n:translate="label_by_author">
                                     by
                                   <a href="#"

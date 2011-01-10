@@ -19,15 +19,6 @@
     <script type = "text/javascript" src = "background-images/getHomepageImage.js"></script>
 </metal:js>
 
-
-<metal:content-core fill-slot="content-core">
-    <metal:content-core define-macro="content-core">
-        <metal:field use-macro="python:context.widget('text', mode='view')">
-            Body text
-        </metal:field>
-    </metal:content-core>
-</metal:content-core>
-
 </body>
 </html>
 

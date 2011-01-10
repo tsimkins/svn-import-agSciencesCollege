@@ -49,7 +49,8 @@ Note: insert-before and -after accept the value "*" which means
     </order>
 
     <order manager="plone.abovecontent" skinname="agCommon">
-        <viewlet name="plone.personal_bar" insert-before="*" />
+        <viewlet name="plone.path_bar" insert-before="*"/>
+        <viewlet name="collective.contentleadimage.header" insert-after="plone.path_bar"/>
     </order>
     
     <order manager="plone.abovecontenttitle" skinname="agCommon">
@@ -57,8 +58,6 @@ Note: insert-before and -after accept the value "*" which means
     </order>
 
     <order manager="plone.contentviews" skinname="agCommon">
-        <viewlet name="plone.path_bar" insert-before="*"/>
-        <viewlet name="collective.contentleadimage.header" insert-before="plone.path_bar"/>
         <viewlet name="plone.contentviews" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="plone.contentactions" insert-after="plone.contentviews"/>
     </order>
@@ -89,6 +88,11 @@ Note: insert-before and -after accept the value "*" which means
     
     <!-- Hidden Viewlets -->
 
+    <hidden manager="plone.portaltop" skinname="agCommon">
+        <viewlet name="plone.app.i18n.locales.languageselector"/>
+        <viewlet name="plone.path_bar"/>
+    </hidden>
+
     <hidden manager="plone.htmlhead.links" skinname="agCommon">
         <viewlet name="plone.links.RSS" />
     </hidden>
@@ -100,7 +104,6 @@ Note: insert-before and -after accept the value "*" which means
     </hidden>
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
-        <viewlet name="plone.path_bar" />
         <viewlet name="plone.app.i18n.locales.languageselector" />
     </hidden>
 
@@ -111,11 +114,12 @@ Note: insert-before and -after accept the value "*" which means
     
     <hidden manager="plone.contentviews" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsabovecontent" />
+        <viewlet name="contentwellportlets.portletsabovecontent" />
     </hidden>
 
     <hidden manager="plone.belowcontenttitle" skinname="agCommon">
         <viewlet name="collective.contentleadimage.thumbnail" />
-        <viewlet name="plone.belowcontenttitle.keywords"/>
+        <viewlet name="collective.contentleadimage.header"/>
     </hidden>
     
     <hidden manager="plone.belowcontent" skinname="agCommon">
@@ -134,5 +138,6 @@ Note: insert-before and -after accept the value "*" which means
     <hidden manager="plone.portalfooter" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsbelowcontent" />
     </hidden>
+
 </object>
 

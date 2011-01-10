@@ -153,6 +153,7 @@
         Body text
         </metal:field>
 
+       <tal:hasText condition="here/getText">
         <p tal:condition="context/event_url|nothing">
             <a class="url"
                href="event_url"
@@ -164,8 +165,6 @@
         </p>
         </tal:hasText>
         
-        </div>
-
         <span class="visualClear"><!-- --></span>
 
     </metal:content-core>

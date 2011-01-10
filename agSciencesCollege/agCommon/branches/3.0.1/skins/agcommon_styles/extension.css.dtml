@@ -53,12 +53,12 @@ body.section-front-page h1.documentFirstHeading {
     display: none;
 }
 
-body.section-front-page #region-content h2.documentDescription {
+body.section-front-page #content h2.documentDescription {
     font-size: 1.5em;
     margin: 0 0 0.25em 0;
 }
 
-body.section-front-page #region-content p {
+body.section-front-page #content p {
     margin: 0 0 2em 0;
 }
 

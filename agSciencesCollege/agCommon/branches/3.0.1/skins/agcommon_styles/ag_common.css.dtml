@@ -55,6 +55,7 @@ body {
 
 #portal-searchbox {
     margin: 4px;
+    padding:0 0.25em 0 0
 }
 
 .searchSection {
@@ -290,7 +291,7 @@ body {
 }
 
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
-    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.75em;
+    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.6em;
     padding: 0 0.5em 0 1.25em;
     margin-left: 0.35em;
 }
@@ -304,12 +305,18 @@ body {
     border-bottom: 1px dashed #CCCCCC;
     font-size: 1em;
     margin: 0;
-    padding-bottom: 0;
+    padding: 0;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li a {
     font-size: 1em;
-    padding: 0.45em 0 0.5em 0;
+    padding: 0.45em 0 0.5em;
+    margin: 1px 0 0 0;
+}
+
+/* Fix the line-height */
+.icons-on #portal-column-one .portletNavigationTree span {
+    line-height: 1.5em !important;
 }
 
 #portal-column-one .navTreeItem a
@@ -326,6 +333,11 @@ body {
 #portal-column-one .portletNavigationTree a.state-published:hover,
 #portal-column-one .navTreeItem a:hover {
     color: &dtml-leftNavTextHoverColor; !important;
+}
+
+#portal-column-one ul.navTreeLevel1 .navTreeItem a, 
+#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a {
+    padding-top: 0.25em;
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeItem a, 
@@ -357,11 +369,6 @@ body {
 #portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
     background-color: &dtml-leftSubNavBackground;;    
 }
-
-#portal-column-one .portletNavigationTree ul.navTreeLevel2 li.navTreeItem {
-    margin-left: 0 !important;    
-}
-
 
 #portal-column-one .portletFooter {
     display: none;
@@ -747,6 +754,10 @@ body {
     padding: 0 0.5em;
 }
 
+.contentActions {
+    border-bottom: 1px solid &dtml-contentViewBorderColor;;
+}
+
 /* = content ======================================== */
 
 #content {
@@ -762,12 +773,12 @@ body {
     color: #3366CC;
 }
 
-#region-content h1.noBreadcrumbs { 
+#content h1.noBreadcrumbs { 
     margin-top: 0.75em;
 }
 
-#region-content h1, 
-#region-content h1.documentFirstHeading {
+#content h1, 
+#content h1.documentFirstHeading {
     color: &dtml-documentTitleColor;;
     font-weight: normal;
     border: none;
@@ -790,6 +801,10 @@ body {
     border-width: 0;
 }
 
+#content h2.tileHeadline a {
+    padding-left: 0 !important;
+}
+
 #content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
     font-size: 125%;
@@ -799,16 +814,17 @@ body {
     font-weight: normal;
 }
 
-#region-content h3.speaker-institution {
+#content h3.speaker-institution {
     margin: 0 0 15px;
 }
 
-#region-content .documentDescription {
+#content .documentDescription {
     font-weight: normal;
     color: &dtml-documentDescriptionColor;;
-    margin: 0 0 1.5em 0;
     font-size: 1.15em;
     border-width: 0;
+    margin: 0 0 0.75em;
+}
 }
 
 #content .tileItem {
@@ -951,6 +967,7 @@ span.description {
     font-size: 0.9em;
     line-height: 1.4em;
     margin-top: 0.25em;
+    font-weight: normal;
 }
 
 /* Restyle pull quote */
@@ -1043,15 +1060,15 @@ blockquote {
 
 /* = Edit UI =================================================== */
 
-#content.documentEditable {
+#portal-column-content .documentEditable {
     margin: 0;
 }
 
-#content.documentEditable .contentViews {
-    margin-top: 15px;
+#portal-column-content .documentEditable .contentViews {
+    margin-top: 12px;
 }
 
-#content.documentEditable #content {
+#portal-column-content .documentEditable #content {
     margin: 0;
     padding: 10px 10px 20px 10px !important;
 }
@@ -1067,8 +1084,6 @@ blockquote {
     padding: 0 0.75em;
     margin-right: 0.25em;
 }
-
-
 
 /* = Template workarounds ======================================= */
 
@@ -1354,6 +1369,25 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
 .visualHighlight {
     background-color:transparent;
 }
+
+/* Resolve different treatment of icons in Add New dropdown */
+
+.actionMenu .actionMenuContent li a {
+    padding: 0;
+    margin: 0.1em 0.25em
+}
+
+#portal-personaltools-wrapper .actionMenu.activated .actionMenuContent {
+    z-index:25;
+}
+
+/* fix the portalMessage at the top of the edit window */
+dl.portalMessage {
+    font-size: 100%;
+    margin: 0.75em 0;
+}
+
+
 
 /* YOUR CSS RULES STOP HERE */
 

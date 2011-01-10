@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<portlets>
+<portlets purge="False">
  
 	<portletmanager
 		name="agcommon.rightcolumn"
@@ -40,7 +40,7 @@
         addview="agcommon.Contact"
         title="Contact Portlet"
     />
-    
+
     <!-- Let's remove some portlets that we don't use, to minimize confusion -->
     
     <portlet
@@ -69,6 +69,12 @@
     
     <portlet
         addview="portlets.rss"
+        title="Removing portlet"
+        remove="True"
+    />
+
+    <portlet
+        addview="portlets.Calendar"
         title="Removing portlet"
         remove="True"
     />

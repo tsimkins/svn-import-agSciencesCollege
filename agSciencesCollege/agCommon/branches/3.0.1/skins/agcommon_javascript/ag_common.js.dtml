@@ -227,8 +227,8 @@ jq(document).ready(
     
             if (summary_items.length == 0)
             {
-                summary_items = jq('body.custom-two-column #region-content>div>.tileItem');
-                insert_after = jq('body.custom-two-column #region-content>div>.tileItem:last');
+                summary_items = jq('body.custom-two-column #content>div>.tileItem');
+                insert_after = jq('body.custom-two-column #content>div>.tileItem:last');
             }
 
 

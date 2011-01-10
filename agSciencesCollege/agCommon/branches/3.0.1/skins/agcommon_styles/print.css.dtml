@@ -100,7 +100,7 @@ body.template-document_homepage_view #homepageimage {
 
 /* Content */
 
-#portal-content-wrapper {
+#portal-column-content {
     border-left: none;
     border: none;
 }
@@ -109,7 +109,7 @@ body.template-document_homepage_view #homepageimage {
 	margin-left:0px;
 }
 
-#portal-column-content.sr #portal-content-wrapper {
+#portal-column-content.sr {
     border: none;
 }
 

@@ -79,7 +79,7 @@
 }
 
 #centercolumn {
-    font-size: 0.92em;
+    font-size: 0.85em;
 }
 
 #centercolumn dl.portletfeedmixer .portletItem {
@@ -184,6 +184,15 @@
 
 .documentContent {
     font-size: 110%;
+}
+
+.documentEditable  {
+    padding: 0 !important;
+}
+
+#content {
+    margin:0 15px;
+    padding:0 0 15px !important;
 }
 
 /* YOUR CSS RULES STOP HERE */

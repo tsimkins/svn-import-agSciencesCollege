@@ -122,7 +122,7 @@
     <!-- The breadcrumbs -->
     <browser:viewlet
         name="plone.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IContentViews"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".viewlets.PathBarViewlet"
         template="templates/path_bar.pt"
         layer=".interfaces.IThemeSpecific"
@@ -194,7 +194,7 @@
 
     <browser:viewlet
         name="collective.contentleadimage.header"
-        manager="plone.app.layout.viewlets.interfaces.IContentViews"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".viewlets.LeadImageHeader"
         template="templates/leadimage-header.pt"
         layer=".interfaces.IThemeSpecific"
@@ -295,7 +295,7 @@
         class=".views.AgendaView"
         template="templates/agenda_view.pt"
         layer=".interfaces.IThemeSpecific"
-        permission="zope.View"
+        permission="zope2.View"
     />
     
     <browser:menuItem
@@ -322,7 +322,7 @@
         class=".views.EventTableView"
         template="templates/event_table.pt"
         layer=".interfaces.IThemeSpecific"
-        permission="zope.View"
+        permission="zope2.View"
     />
 
     <browser:page
@@ -330,7 +330,7 @@
         name="agcommon_utilities"
         class=".views.AgCommonUtilities"
         layer=".interfaces.IThemeSpecific"
-        permission="zope.View"
+        permission="zope2.View"
         allowed_interface=".views.IAgCommonUtilities"
     />
     

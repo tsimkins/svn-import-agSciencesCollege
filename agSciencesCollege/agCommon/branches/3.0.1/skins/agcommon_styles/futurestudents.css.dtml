@@ -12,7 +12,7 @@ h1 {
     color: #00246b;
 }
 
-#region-content a:hover, #portal-column-one a:hover {
+#content a:hover, #portal-column-one a:hover {
     color:#FF8500;
 }
 
@@ -186,7 +186,7 @@ ul.navTreeLevel1 {
     margin-left: 0;
 }
 
-#portal-column-content.sl #portal-content-wrapper {
+#portal-column-content.sl {
     border-left-width: 0;
     margin-left: 0;
 }
