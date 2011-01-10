@@ -4,4 +4,8 @@
 
 /* <dtml-with base_properties> */
 
+#portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+} 
+
 /* </dtml-with> */

@@ -46,6 +46,7 @@ div.portletsBelowContentE {
 }
 
 #portlets-below .portletHeader {
+    color: &dtml-sitemapHeaderColor; !important;
 	text-transform: uppercase;
 	font-size: 1.1em;
 	font-weight: bold;
@@ -226,6 +227,29 @@ div.portletsAboveContentE {
     font-weight: normal;
 }
 
+/* Link Icon Portlet */
+
+#portlets-below dl.linkIcon li {
+    margin: 0;
+    padding: 0;
+}
+
+#portlets-below dl.linkIcon a {
+    padding: 0.25em 5px;
+}
+
+#portlets-below dl.linkIcon li.icon a,
+#portlets-below dl.linkIcon li.icon a:hover {
+    display: inline-block;
+    padding: 0.5em 0;
+	color: &dtml-sitemapLinkColor; !important;
+	background-color: &dtml-sitemapBackgroundColor; !important;
+}
+
+#portlets-below dl.linkIcon li.icon a:first-child {
+    display: inline-block;
+    margin-left: 5px;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

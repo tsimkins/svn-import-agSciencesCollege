@@ -56,4 +56,8 @@ body.template-portlet_homepage_view #rightcolumn .portletFooter{
     min-height: 0;
 }
 
+#portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+} 
+
 /* </dtml-with> */

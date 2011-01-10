@@ -23,6 +23,11 @@
 	background-color: transparent !important;
 }
 
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+    color: #000033 !important;
+    font-weight: bold !important;
+}
+
 #portal-columns {
     width: 100% !important;
 }
@@ -44,6 +49,17 @@ body.template-folder_leadimage_listing .leadimage-listing img {
 
 #portal-column-one .linkButton li {
 	background-image: none ;
+}
+
+#portlets-below dl.linkIcon dd ul {
+    margin-left: 0 !important;
+}
+
+/* Riddle me this, Batman... Why does this work? */
+#portlets-below dl.linkIcon dd ul li {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: &dtml-sitemapBackgroundColor; !important;
 }
 
 /* </dtml-with> */
