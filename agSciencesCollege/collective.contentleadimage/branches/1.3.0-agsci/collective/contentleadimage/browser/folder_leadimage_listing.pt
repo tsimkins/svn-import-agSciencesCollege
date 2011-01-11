@@ -76,7 +76,7 @@
                                        item_title_or_id python: item_event_location_title or item_title_or_id;
                                    ">
                      
-                    <dt tal:attributes="class string:leadimage-listing tileItem visualIEFloatFix vevent ${item_type_class}">
+                    <dt tal:attributes="class string:leadimage-listing tileItem visualIEFloatFix vevent">
                     <a href="#"
                        tal:condition="python:item_type != 'Link'"
                        tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
@@ -101,7 +101,7 @@
                     </a>
 
                     <span class="summary"
-                             tal:attributes="class string:$item_type_class summary"
+                             tal:attributes="class string: summary"
                              metal:define-macro="listitem">
                         <img tal:replace="structure item_icon/html_tag" />
                         <a href="#"
@@ -130,7 +130,7 @@
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
                     <tal:newsitem condition="python: item_type == 'News Item'">
                         <tal:name tal:condition="item_creator"
-                            tal:define="author python:mtool.getMemberInfo(item_creator)">
+                            tal:define="mtool mtool|context/portal_membership; author python:mtool.getMemberInfo(item_creator)">
                           <span i18n:translate="label_by_author">
                             by
                           <a href="#"
