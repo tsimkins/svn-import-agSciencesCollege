@@ -1,3 +1,7 @@
 setuptools
 archetypes.schemaextender
 plone.browserlayer
+plone.indexer
+
+[tests]
+collective.testcaselayer

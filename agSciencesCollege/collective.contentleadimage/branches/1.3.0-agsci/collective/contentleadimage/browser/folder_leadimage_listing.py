@@ -9,7 +9,6 @@ from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 class FolderLeadImageListing(BrowserView):
     
     template = ViewPageTemplateFile('folder_leadimage_listing.pt')
-    template.id = "folder_leadimage_listing"
 
     @property
     def prefs(self):
