@@ -16,6 +16,7 @@ agsci/ExtensionExtender/extender.py
 agsci/ExtensionExtender/interfaces.py
 agsci/ExtensionExtender/version.txt
 agsci/ExtensionExtender/Extensions/Install.py
+agsci/ExtensionExtender/profiles/default/actions.xml
 agsci/ExtensionExtender/profiles/default/browserlayer.xml
 agsci/ExtensionExtender/profiles/default/catalog.xml
 agsci/ExtensionExtender/profiles/default/metadata.xml

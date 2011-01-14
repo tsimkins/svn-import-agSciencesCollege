@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: agsci.ExtensionExtender
-Version: 0.1
+Version: 1.1
 Summary: A starting point for product development
 Home-page: http://agsci.psu.edu/
 Author: Tim Simkins
@@ -8,7 +8,7 @@ Author-email: trs22@psu.edu
 License: GPL
 Description: Description
         
-        The ExtensionExtender provides features that will only be used within the extension.psu.edu site
+            The ExtensionExtender provides features that will only be used within the extension.psu.edu site
         
         Changelog
         =========
