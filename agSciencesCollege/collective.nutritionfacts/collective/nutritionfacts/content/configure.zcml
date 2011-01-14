@@ -11,10 +11,6 @@
         permission="zope2.View"
         interface="..interfaces.IFood"
         />
-    <require
-        permission="cmf.ModifyPortalContent"
-        set_schema="..interfaces.IFood"
-        />
   </class>
 
 </configure>

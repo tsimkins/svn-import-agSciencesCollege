@@ -23,6 +23,7 @@ collective/nutritionfacts/browser/__init__.py
 collective/nutritionfacts/browser/configure.zcml
 collective/nutritionfacts/browser/food_view.py
 collective/nutritionfacts/browser/viewlets.py
+collective/nutritionfacts/browser/templates/._food_view.pt
 collective/nutritionfacts/browser/templates/food_view.pt
 collective/nutritionfacts/browser/templates/nutritionfacts.pt
 collective/nutritionfacts/content/__init__.py
