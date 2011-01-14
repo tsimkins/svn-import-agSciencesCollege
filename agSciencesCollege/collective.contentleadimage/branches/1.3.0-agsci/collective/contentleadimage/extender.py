@@ -52,7 +52,9 @@ if HAS_BLOB:
     class LeadimageBlobImageField(ExtensionField, BlobImageField):
         """Image Field with blob support that uses sizes defined in plone.app.imaging
         """
-        pass
+
+        def getFilename(self, context):
+            return IMAGE_FIELD_NAME
 
 captionField = LeadimageCaptionField(IMAGE_CAPTION_FIELD_NAME,
         required=False,
