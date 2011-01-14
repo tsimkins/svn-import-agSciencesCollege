@@ -84,6 +84,7 @@
                     </span>
 
                     <span class="documentByLine">
+                        <metal:shortdate define-macro="short_event_date">
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
                               i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
@@ -118,12 +119,34 @@
                                    tal:content="python:toLocalizedTime(item_end,long_format=1)"
                                    i18n:name="end">to date</abbr>
                         </span>
-                         <span tal:condition="python: item_type == 'Event' and item.location"
-                              i18n:translate="label_event_byline_location">&mdash;
-                             <span tal:content="string:${item/location}"
-                                   class="location"
-                                   i18n:name="location">Oslo</span>,
-                        </span>
+                        </metal:shortdate>
+
+                        <div tal:condition="python: item_type == 'Event' and item.location"
+                              i18n:translate="label_event_byline_location">
+                            
+                            <strong>Where:</strong>
+
+                            <tal:location metal:define-macro="event_location"
+                                define="item_object item/getObject;
+                                        map_link item_object/map_link|nothing">
+                            
+                                <tal:map condition="map_link">
+                                    <a tal:attributes="href map_link">
+                                        <span tal:content="string:${item/location}"
+                                                tal:condition="item/location"
+                                                class="location">Oslo</span>
+                                    </a>
+                                </tal:map>
+
+                                <tal:nomap condition="not: map_link">
+                                        <span tal:content="string:${item/location}"
+                                                tal:condition="item/location"
+                                                class="location">Oslo</span>
+                                </tal:nomap>
+                            
+                            </tal:location>
+                    </div>
+
                         <tal:byline condition="show_about">
                             &mdash;
 

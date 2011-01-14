@@ -188,36 +188,30 @@ def getHomepageImage(context):
         backgroundHeights = ['265']
     
     return """
-    var bodyClass = document.body.className;
-    
-    if(bodyClass.match(/template-document_homepage_view/))
-    {
-        var homepageImage = document.getElementById("homepageimage");
-    
-        if (homepageImage)
-        {
-            var backgrounds = "%s".split(";");
-            var backgroundAlignments = "%s".split(";");
-            var backgroundHeights = "%s".split(";");
-            var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-            homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
-            homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber];
-            homepageImage.style.height = backgroundHeights[randomnumber] + 'px';
-            
-            hpiDivs = homepageImage.getElementsByTagName("div");
-            
-            for (var i=0; i<hpiDivs.length; i++)
-            {
-                var div = hpiDivs[i];
 
-                if (div.className == 'overlay')
-                {
-                    div.style.height = backgroundHeights[randomnumber] + 'px';
-                }
+    jq(document).ready(
+        function () {
+            homepageImage = jq("body.template-document_homepage_view #homepageimage");
+            if (homepageImage)
+            {
+                var backgrounds = "%s".split(";");
+                var backgroundAlignments = "%s".split(";");
+                var backgroundHeights = "%s".split(";");
+                var randomnumber = Math.floor(Math.random()*backgrounds.length);
+    
+                homepageImage.css('background-image', "url(" + backgrounds[randomnumber] + ")");
+                homepageImage.css('background-position', backgroundAlignments[randomnumber] + " top");
+                homepageImage.css("height", backgroundHeights[randomnumber] + 'px');
+    
+                jq("body.template-document_homepage_view #homepageimage div.overlay").each(
+                    function () {
+                        jq(this).css("height", backgroundHeights[randomnumber] + 'px');
+                    }
+                );
+                
             }
         }
-    
-    }
+    );
     
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
 

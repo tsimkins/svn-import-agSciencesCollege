@@ -740,9 +740,11 @@ body {
     width: auto;
 }
 
-#content a[href^="http:"], 
+/* Removing because this breaks listings with icons */
+/* #content a[href^="http:"], 
+#content a[href^="https:"], */
+
 #content a.link-external,
-#content a[href^="https:"], 
 #content a.link-https {
     background-image: none;
     padding: 0;
@@ -986,6 +988,7 @@ span.description {
 
 .eventDetails {
     margin-top: 1.5em;
+    max-width: 250px;
 }
 
 
@@ -1389,7 +1392,29 @@ dl.portalMessage {
     margin: 0.75em 0;
 }
 
+/* Fix the lineheight set to 2em */
+.icons-on #content .contenttype-document,
+.icons-on #content .contenttype-event,
+.icons-on #content .contenttype-folder,
+.icons-on #content .contenttype-link,
+.icons-on #content .contenttype-news-item,
+.icons-on #content .contenttype-plone-site,
+.icons-on #content .contenttype-topic,
+.icons-on #plone-contentmenu-factories .contenttype-file,
+.icons-on #plone-contentmenu-factories .contenttype-image {
+    line-height: 1.5em !important;
+    display: block;
+}
 
+.icons-on #content .tileItem, .icons-on #content .item {
+    padding-top: 0;
+}
+
+q {
+    font-family: &dtml-fontFamily;;
+    font-size: 100%;
+    font-style: normal;
+}
 
 /* YOUR CSS RULES STOP HERE */
 

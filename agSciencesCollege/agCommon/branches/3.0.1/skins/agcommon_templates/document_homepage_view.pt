@@ -14,7 +14,7 @@
     </style>
 </metal:css>
 
-<metal:js fill-slot="javascript_slot">
+<metal:js fill-slot="javascript_head_slot">
     <!-- Homepage JavaScript -->
     <script type = "text/javascript" src = "background-images/getHomepageImage.js"></script>
 </metal:js>

@@ -72,7 +72,7 @@
    
     <!-- Render the keywords -->
     <browser:viewlet
-        name="agcommon.belowcontenttitle.keywords"
+        name="plone.belowcontenttitle.keywords"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".viewlets.KeywordsViewlet"
         permission="zope2.View"

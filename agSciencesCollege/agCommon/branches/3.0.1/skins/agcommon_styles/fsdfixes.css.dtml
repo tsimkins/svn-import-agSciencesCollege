@@ -54,6 +54,10 @@ body.template-fsd_atoz_view .facultyStaffDirectory h2 {
     border-width: 0;
 }
 
+#content .facultyStaffDirectory ul.jobTitle {
+    margin: 0.5em 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

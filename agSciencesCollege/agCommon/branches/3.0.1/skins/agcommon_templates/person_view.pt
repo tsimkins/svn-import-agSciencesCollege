@@ -15,7 +15,8 @@
         <div class="facultyStaffDirectory personView">
 
             <tal:redirect define="layout here/layout|nothing;
-                                  primary_profile context/primary_profile|nothing;">
+                                  primary_profile context/primary_profile|nothing;
+                                  isAnon context/@@plone_portal_state/anonymous;">
                                   
                 <div class="portalMessage" 
                      tal:condition="python: not isAnon and primary_profile and layout=='person_redirect_view'">This profile is redirected to
@@ -152,9 +153,6 @@
                 </dl>
             </div>
 
-        </div>
-        <div metal:use-macro="context/document_actions/macros/document_actions">
-            [Document actions (print, sendto etc)]
         </div>
     </metal:fill>
   

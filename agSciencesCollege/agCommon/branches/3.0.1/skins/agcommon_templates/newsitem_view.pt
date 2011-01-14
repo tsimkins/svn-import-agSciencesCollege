@@ -6,6 +6,13 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <body>
+
+<metal:additional fill-slot="content-additional"
+    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                effectiveDate here/EffectiveDate;">
+    <p class="effectiveDate">Posted: <span tal:replace="python:toLocalizedTime(effectiveDate,long_format=0)" /></p>
+</metal:additional>
+
     
 <metal:content-core fill-slot="content-core">
     <metal:block define-macro="content-core"
@@ -16,8 +23,6 @@
                       toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                       text python:context.CookedBody(stx_level=2);
                       len_text python:len(text.strip())">
-
-        <p class="effectiveDate">Posted: <span tal:replace="python:toLocalizedTime(effectiveDate,long_format=0)" /></p>
 
         <p tal:define="is_editable context/@@plone_context_state/is_editable"
            tal:condition="python: not len_text and is_editable"

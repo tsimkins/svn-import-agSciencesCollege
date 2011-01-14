@@ -145,6 +145,13 @@
                             </metal:title>
                             <div tal:replace="structure provider:plone.belowcontenttitle" />
 
+                            <metal:additional define-slot="content-additional">
+                                <metal:comment tal:content="nothing">
+                                    Allows us to put information such as posted date 
+                                    and contributors between the title and description.
+                                </metal:comment>
+                            </metal:additional>
+
                             <metal:description define-slot="content-description">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom description always use

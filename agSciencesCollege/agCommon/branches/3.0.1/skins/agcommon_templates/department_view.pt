@@ -12,10 +12,7 @@
                             classifications python:classificationsInRequest and [directory[c] for c in isinstance(classificationsInRequest, basestring) and [classificationsInRequest] or classificationsInRequest] or allClassifications; 
                            ">
         <div class="facultyStaffDirectory">
-            <div metal:use-macro="here/document_actions/macros/document_actions">
-                Document actions (print, sendto etc)
-            </div>
-    
+
             <h1 tal:content="object_title" class="documentFirstHeading">
               Title or id
             </h1>

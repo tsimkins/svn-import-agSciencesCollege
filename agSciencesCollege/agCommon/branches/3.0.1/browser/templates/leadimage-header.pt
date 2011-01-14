@@ -1,7 +1,7 @@
 <div id="image-header" 
-    tal:define="tag python: view.bodyTag(css_class='newsImage') and view.showHeader"
+    tal:define="tag python: view.bodyTag() and view.showHeader"
     tal:condition="tag" 
-    tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage)">
+    tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage_large)">
 <!-- -->
 </div>
 

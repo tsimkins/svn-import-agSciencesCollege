@@ -48,8 +48,8 @@
                 crumb
             </a>
             <span class="breadcrumbSeparator" tal:condition="not: is_last">
-                <tal:ltr condition="not: is_rtl">&rsaquo;</tal:ltr>
-                <tal:rtl condition="is_rtl">&lsaquo;</tal:rtl>
+                <tal:ltr condition="not: is_rtl">&raquo;</tal:ltr>
+                <tal:rtl condition="is_rtl">&laquo;</tal:rtl>
             </span>
             <span id="breadcrumbs-current"
                   tal:condition="is_last"

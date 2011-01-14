@@ -66,24 +66,15 @@
   </metal:css>
 
   <body>
-    <metal:fill fill-slot="main">
-      <metal:main_macro define-macro="main"
+    <metal:fill fill-slot="content-core">
+      <metal:main_macro define-macro="content-core"
             tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
             base_macros here/base/macros;
+            standalone_view python:True;
             view_template python:'%s_view' % portal_type;
             view_macros python:path('here/%s/macros|nothing' % view_template);
-            header_macro view_macros/header | header_macro | base_macros/header;
-            body_macro view_macros/body | body_macro | base_macros/body;
-            footer_macro view_macros/footer | footer_macro | base_macros/footer;
-            errors python:request.get('errors', {})">
-
-        <metal:use_header use-macro="header_macro" />
-        <p class="documentDescription" tal:condition="context/Description">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
-            Description
-            </metal:field>
-        </p>
-        <div tal:replace="structure provider:plone.abovecontentbody" />
+            errors python:request.get('errors', {});
+            toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 
         <table class="listing events">
             
@@ -104,11 +95,11 @@
                     tal:repeat="item folderContents">
                     <tr 
                         tal:define="oddrow repeat/item/odd;
-                                    item_start item/start/ISO|item/StartDate|nothing;
-                                    item_end item/end/ISO|item/EndDate|nothing;
                                     item_type item/portal_type;
-                                    item_start_day python:item_start and str(item_start).split()[0] or '';
-                                    item_end_day python:item_end and str(item_end).split()[0] or '';
+                                    item_start item/start|item/StartDate|nothing;
+                                    item_end item/end|item/EndDate|nothing;
+                                    item_sametime python: item_start == item_end;
+                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
                                     item_url item/getURL|item/absolute_url;
                                     "
                         tal:attributes="class python:oddrow and 'even' or 'odd'">
@@ -125,7 +116,7 @@
                             <div metal:use-macro="here/folder_listing/macros/short_event_date" />
                         </td>
                         <td>
-                            <div metal:use-macro="here/folder_listing/macros/location" />
+                            <div metal:use-macro="here/folder_listing/macros/event_location" />
                         </td>
                     </tr>
                 </tal:items>
@@ -134,9 +125,6 @@
         
         </table>
 
-
-
-        <metal:use_footer use-macro="footer_macro" />
 
       </metal:main_macro>
     </metal:fill>

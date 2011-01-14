@@ -91,11 +91,22 @@
                     </tr>
                     <tr tal:condition="context/location">
                         <th i18n:translate="event_where">Where</th>
-                        <td class="location">
 
-                            <metal:field use-macro="python:context.widget('location', mode='view')">
-                            Location
-                            </metal:field>
+                        <td class="location"
+                            tal:define="map_link context/map_link|nothing">
+                            <tal:map condition="map_link">
+                                <a tal:attributes="href map_link">
+                                    <metal:field use-macro="python:here.widget('location', mode='view')">
+                                    Location
+                                    </metal:field>
+                                </a>
+                            </tal:map>
+                            
+                            <tal:nomap condition="not: map_link">
+                                <metal:field use-macro="python:here.widget('location', mode='view')">
+                                Location
+                                </metal:field>
+                            </tal:nomap>
                         </td>
                     </tr>
                     <tr tal:define="contact_email context/contact_email;
@@ -145,6 +156,11 @@
                                 <span i18n:translate="label_add_to_ical">iCal</span></a>
                         </td>
                     </tr>
+                    <tr tal:condition="here/event_url|nothing">
+                        <td colspan="2" align="center">
+                            <metal:moreinfo metal:use-macro="here/event_view/macros/moreinfo" />
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -152,7 +168,8 @@
         <tal:redirect define="layout here/layout|nothing;
                                 eventUrl context/eventUrl|nothing;">
                                 
-            <div class="portalMessage" 
+            <div class="portalMessage"
+                    tal:define="isAnon context/@@plone_portal_state/anonymous;"
                     tal:condition="python: not isAnon and eventUrl and layout=='event_redirect_view'">This event is redirected to
                     <a tal:attributes="href eventUrl" tal:content="eventUrl" /></div>
 
@@ -162,8 +179,9 @@
         Body text
         </metal:field>
 
-       <tal:hasText condition="here/getText">
-        <p tal:condition="context/event_url|nothing">
+        <tal:hasText condition="here/getText">
+        <metal:moreinfo define-macro="moreinfo" tal:condition="context/event_url|nothing">
+        <p>
             <a class="url"
                href="event_url"
                i18n:translate="event_more_information"
@@ -172,6 +190,7 @@
                         tal:attributes="href context/event_url">
                <span tal:replace="context/more_information|string:More information about this event" />&hellip;</a>
         </p>
+        </metal:moreinfo>
         </tal:hasText>
         
         <span class="visualClear"><!-- --></span>

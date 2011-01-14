@@ -39,6 +39,7 @@
                  kssClassesView context/@@kss_field_decorator_view;
                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                  templateId template/getId;
+                 image_count python:12;
                  batch python:Batch(images, image_count, int(b_start), orphan=1)">
 
         <div class="photoAlbum">
