@@ -1,37 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plonegalleryview">
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
 
 <body>
 
-<div metal:fill-slot="main"
-     tal:define="view context/@@ploneGalleryView">
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                standalone_view python:True;
+                                templateId template/getId">
 
-  <tal:main-macro metal:define-macro="main" tal:omit-tag="">
     <div tal:define="albumResult python:here.atctListAlbum(images=1, folders=1, subimages=0, others=0);
                      images albumResult/images;
-                     albums albumResult/folders;"
+                     albums albumResult/folders;
+                     pgv_utilities python: context.restrictedTraverse('@@ploneGalleryView');"
          class="pgv_sg_carousel_view"> 
 
-    <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-      <h1 tal:content="object_title">
-        Title or id
-      </h1>
-
-      <div metal:use-macro="here/document_byline/macros/byline">
-        Get the byline - contains details about author and modification date.
-      </div>
-           
-      <p class="documentDescription"
-             tal:content="here/Description"
-             tal:condition="here/Description">
-        Description
-      </p>
-                     
-
-      <tal:SmoothGalleryJSCode tal:replace="structure python: view.genPGVSmoothGalleryJSCode(showCarousel='true', timed='false')" />
+      <tal:SmoothGalleryJSCode tal:replace="structure python: pgv_utilities.genPGVSmoothGalleryJSCode(showCarousel='true', timed='false')" />
 
       <div align="center">
         	<div id="myGallery" class="small">
@@ -76,8 +66,10 @@
         <div class="visualClear"><!-- clears floating areas --></div> 
         <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontentbody" />
     </div>
-  </tal:main-macro>
-</div>
-   
+
+
+</metal:block>
+</metal:content-core>
+
 </body>
-</html> 
+</html>

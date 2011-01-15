@@ -77,7 +77,7 @@ class PloneGalleryView(BrowserView):
         """
         
         # get PloneGalleryProperties from portal_properties
-        pgvProperties = self.context.getPGVProperties()
+        pgvProperties = self.getPGVProperties()
         
         if 'showArrows' in kw:
             showArrows = kw['showArrows']
