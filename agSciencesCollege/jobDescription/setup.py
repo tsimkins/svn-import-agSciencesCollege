@@ -34,7 +34,7 @@ long_description = (
 
 tests_require=['zope.testing']
 
-setup(name='jobDescription',
+setup(name='Products.jobDescription',
       version=version,
       description="",
       long_description=long_description,

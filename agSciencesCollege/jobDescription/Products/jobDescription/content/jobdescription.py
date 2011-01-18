@@ -11,7 +11,7 @@ from Products.jobDescription import jobDescriptionMessageFactory as _
 from Products.jobDescription.interfaces import IJobDescription
 from Products.jobDescription.config import PROJECTNAME
 
-from zope.app.annotation.interfaces import IAttributeAnnotatable, IAnnotations
+from zope.annotation.interfaces import IAttributeAnnotatable, IAnnotations
 
 from persistent.list import PersistentList
 from persistent.dict import PersistentDict

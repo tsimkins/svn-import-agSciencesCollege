@@ -12,7 +12,8 @@
     <metal:main-macro define-macro="main"
                       tal:define="kssClassesView context/@@kss_field_decorator_view;
                                   getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                  templateId template/getId">
+                                  templateId template/getId;
+                                  normalizeString nocall:context/plone_utils/normalizeString;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -67,7 +68,7 @@
                                        item_modified item/ModificationDate;
                                        item_created item/CreationDate;
                                        item_effective python:item.getEffectiveDate();
-                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
                                        item_location item/getJob_location;

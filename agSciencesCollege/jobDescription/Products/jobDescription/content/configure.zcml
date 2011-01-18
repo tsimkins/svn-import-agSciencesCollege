@@ -13,20 +13,11 @@
             interface="..interfaces.IJobDescriptionFolder"
             />
 
-        <require
-            permission="cmf.ModifyPortalContent"
-            set_schema="..interfaces.IJobDescriptionFolder"
-            />
-
     </class>
   <class class=".jobdescription.JobDescription">
     <require
         permission="zope2.View"
         interface="..interfaces.IJobDescription"
-        />
-    <require
-        permission="cmf.ModifyPortalContent"
-        set_schema="..interfaces.IJobDescription"
         />
   </class>
 
