@@ -23,6 +23,7 @@ Products/jobDescription/interfaces.py
 Products/jobDescription/profiles.zcml
 Products/jobDescription/browser/__init__.py
 Products/jobDescription/browser/configure.zcml
+Products/jobDescription/content/._jobdescriptionfolder.py
 Products/jobDescription/content/__init__.py
 Products/jobDescription/content/configure.zcml
 Products/jobDescription/content/jobdescription.py

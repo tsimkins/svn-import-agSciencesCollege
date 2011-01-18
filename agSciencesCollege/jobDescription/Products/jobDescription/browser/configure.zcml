@@ -7,4 +7,12 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <browser:page
+      for="*"
+      name="job_pageviews"
+      class=".views.JobPageviews"
+      allowed_interface="..interfaces.IJobDescriptionFolder"
+      permission="cmf.ModifyPortalContent"
+      />
+
 </configure>

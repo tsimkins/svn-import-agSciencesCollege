@@ -43,8 +43,13 @@
         <metal:listingmacro define-macro="listing">
         <tal:foldercontents define="folderContents here/getSortedEntries;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
+                            isEditor here/canModifyPortalContent
                             ">
         <tal:listing condition="folderContents">
+
+        <tal:download condition="isEditor">
+            <p>Admins: <a href="@@job_pageviews">Download Pageviews Report</a>.</p>
+        </tal:download>
 
 		<table class = "listing jobDescription">
 			<tr>
@@ -76,9 +81,7 @@
                                        item_status python:'%s/%s' % (item.getJob_type(), item.getJob_status()); 
                                        error_icon string:${portal_url}/error_icon.gif;
                                        isOldPosting item/isOldPosting;
-                                       dateThreshold item/dateThreshold;
-                                       isEditor item/canModifyPortalContent
-                                   "
+                                       dateThreshold item/dateThreshold;"
                      >
 
 					<tr tal:define="oddrow repeat/item/odd;"
@@ -119,6 +122,7 @@
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">
             <p class="discreet"
+               tal:define="isAnon context/@@plone_portal_state/anonymous"
                tal:condition="python: not folderContents and not isAnon"
                i18n:translate="description_no_items_in_folder">
                 There are currently no items in this folder.
