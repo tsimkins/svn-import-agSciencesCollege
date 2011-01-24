@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool" purge="False">
+ <object name="cli_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="title">Content Lead Image Properties</property>
+  <property name="allowed_types" type="lines">
+   <element value="Event"/>
+   <element value="Folder"/>
+   <element value="Link"/>
+   <element value="Document"/>
+   <element value="PhotoFolder"/>
+   <element value="HomePage"/>
+   <element value="File"/>
+   <element value="Food"/>
+   <element value="Topic"/>
+  </property>
+  <property name="image_width" type="int">250</property>
+  <property name="image_height" type="int">313</property>
+  <property name="desc_scale_name" type="string">thumb</property>
+  <property name="body_scale_name" type="string">leadimage</property>
+ </object>
+ <object name="imaging_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="title">Image handling properties</property>
+  <property name="allowed_sizes" type="lines" purge="False">
+   <element value="large 768:768"/>
+   <element value="preview 400:400"/>
+   <element value="mini 200:200"/>
+   <element value="thumb 128:128"/>
+   <element value="tile 64:64"/>
+   <element value="icon 32:32"/>
+   <element value="listing 16:16"/>
+   <element value="full-width 500:500"/>
+   <element value="half-width 300:300"/>
+   <element value="third-width 200:200"/>
+   <element value="quarter-width 150:150"/>
+   <element value="normal 200:200"/>
+   <element value="leadimage 250:313"/>
+   <element value="gallery 500:333"/>
+   <element value="galleryzoom 800:533"/>
+   <element value="feedmixer 128:192"/>
+  </property>
+ </object>
+ <object name="navtree_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="metaTypesNotToList" type="lines">
+   <element value="File"/>
+   <element value="Image"/>
+   <element value="Event"/>
+   <element value="News Item"/>
+   <element value="FSDPerson"/>
+   <element value="FSDFacultyStaffDirectoryTool"/>
+   <element value="PhotoFolder"/>
+   <element value="FormSelectionField"/>
+   <element value="FormMultiSelectionField"/>
+   <element value="FormLabelField"/>
+   <element value="FormDateField"/>
+   <element value="FormLinesField"/>
+   <element value="FormIntegerField"/>
+   <element value="FormBooleanField"/>
+   <element value="FormPasswordField"/>
+   <element value="FormFixedPointField"/>
+   <element value="FormStringField"/>
+   <element value="FormTextField"/>
+   <element value="FormRichTextField"/>
+   <element value="FormRichLabelField"/>
+   <element value="FormFileField"/>
+   <element value="FormLikertField"/>
+   <element value="FormSaveDataAdapter"/>
+   <element value="FormMailerAdapter"/>
+   <element value="FormCustomScriptAdapter"/>
+   <element value="FormThanksPage"/>
+   <element value="FieldsetFolder"/>
+   <element value="FormCaptchaField"/>
+   <element value="JobDescription"/>
+  </property>
+ </object>
+ <object name="site_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="localTimeFormat" type="string">%B %d, %Y</property>
+  <property name="localLongTimeFormat" type="string">%B %d, %Y %I:%M %p</property>
+  <property name="localTimeOnlyFormat" type="string">%I:%M %p</property>
+  <property name="visible_ids" type="boolean">True</property>
+  <property name="enable_livesearch" type="boolean">False</property>
+  <property name="webstats_js" type="string">
+     &lt;script type="text/javascript"&gt;  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));  &lt;/script&gt;  &lt;script type="text/javascript"&gt;  var pageTracker = _gat._getTracker("UA-4037316-1");  pageTracker._setDomainName("psu.edu");  pageTracker._initData();  pageTracker._trackPageview();  &lt;/script&gt;</property>
+  <property name="icon_visibility" type="string">authenticated</property>
+  <property name="enable_inline_editing" type="boolean">False</property>
+  <property name="enable_sitemap" type="boolean">True</property>
+ </object>
+ <object name="ploneformgen_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="mail_template" type="text">
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+
+  &lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;p tal:content=&quot;here/getBody_pre | nothing&quot; /&gt;
+
+        &lt;tal:block repeat=&quot;field options/wrappedFields&quot;&gt;
+            &lt;p&gt;&lt;strong tal:content=&quot;field/fgField/widget/label&quot; /&gt;:
+            &lt;span tal:content=&quot;structure python:field.htmlValue(request)&quot; /&gt;
+            &lt;/p&gt;
+        &lt;/tal:block&gt;
+
+    &lt;p tal:content=&quot;here/getBody_post | nothing&quot; /&gt;
+    &lt;pre tal:content=&quot;here/getBody_footer | nothing&quot; /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+  </property>
+ </object>
+</object>

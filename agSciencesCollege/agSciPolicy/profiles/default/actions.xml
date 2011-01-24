@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="user" meta_type="CMF Action Category" purge="False">
+  <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone" insert-before="preferences">
+   <property name="title" i18n:translate="">Site Setup</property>
+   <property
+      name="url_expr">string:${portal_url}/plone_control_panel</property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="topnavigation" meta_type="CMF Action Category" purge="False">
+  <property name="title">Default Top Navigation</property>
+  <object name="home" meta_type="CMF Action" insert-before="*">
+   <property name="title">Home</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/</property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ 
+ <object name="footerlinks" meta_type="CMF Action Category" purge="False">
+  <property name="title">Default Footer Links</property>
+  <object name="copyright" meta_type="CMF Action" insert-before="*">
+   <property name="title">Copyright</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://www.psu.edu/copyright.html</property>
+   <property name="visible">True</property>
+  </object>
+  <object name="privacy" meta_type="CMF Action" insert-after="home">
+   <property name="title">Privacy and Legal Statements</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://www.psu.edu/ur/legal.html</property>
+   <property name="visible">True</property>
+  </object>
+  <object name="contact" meta_type="CMF Action" insert-after="privacy">
+   <property name="title">Contact Us</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/contact</property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+
+ <object name="document_actions" meta_type="CMF Action Category" purge="False">
+  <object name="sendto" meta_type="CMF Action">
+   <property name="title">Email</property>
+  </object>
+  <object name="print" meta_type="CMF Action">
+   <property name="title">Print</property>
+  </object>
+ </object>
+
+
+</object>
