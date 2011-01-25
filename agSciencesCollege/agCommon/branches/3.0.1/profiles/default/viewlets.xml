@@ -118,7 +118,6 @@ Note: insert-before and -after accept the value "*" which means
     
     <hidden manager="plone.contentviews" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsabovecontent" />
-        <viewlet name="contentwellportlets.portletsabovecontent" />
     </hidden>
 
     <hidden manager="plone.belowcontenttitle" skinname="agCommon">
@@ -142,6 +141,7 @@ Note: insert-before and -after accept the value "*" which means
 	
     <hidden manager="plone.portalfooter" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsbelowcontent" />
+        <viewlet name="contentwellportlets.footerportlets" />
     </hidden>
 
 </object>

@@ -69,7 +69,7 @@
                                        item_effective item/EffectiveDate;
                                        item_icon python:plone_view.getIcon(item);
                                        item_type_class python:'contenttype-' + normalizeString(item_type);
-                                       item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
                                        item_start item/start/ISO|item/StartDate|nothing;

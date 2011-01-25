@@ -19,6 +19,7 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
+    /* background-image: url("http://webtools.cas.psu.edu/tmp/caution.png"); */
     background-color: &dtml-backgroundColor;;
     margin: 0 auto;
     padding: 0 6px 6px 6px;
@@ -825,7 +826,6 @@ body {
     border-width: 0;
     margin: 0 0 0.75em;
 }
-}
 
 #content .tileItem {
     border-top: 0;
@@ -1419,6 +1419,3 @@ q {
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
-
-
-
