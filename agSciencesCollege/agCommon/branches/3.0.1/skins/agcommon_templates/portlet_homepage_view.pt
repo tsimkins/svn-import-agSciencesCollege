@@ -9,13 +9,13 @@
 
 <metal:css fill-slot="style_slot">
     <!-- Portlet Homepage CSS -->
-        <style type="text/css" media="all" tal:condition="exists: portal/portlet_homepage.css"
+        <style type="text/css" media="all" 
                tal:content="string:@import url($portal_url/portlet_homepage.css);">
         </style>
 </metal:css>
 
-<metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
+<metal:main fill-slot="content-core">
+    <tal:main-macro metal:define-macro="content-core"
            tal:define="kssClassesView context/@@kss_field_decorator_view;
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                        templateId template/getId;

@@ -82,6 +82,17 @@
     background-color: none;
     padding: 1px 0;
 }
+
+.icons-on #portlets-above .portletItem a {
+    padding-left: 18px !important;
+    padding-top: 0.2em !important;
+}
+
+#portal-breadcrumbs {
+    margin-left: 0;
+    padding-top: 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
