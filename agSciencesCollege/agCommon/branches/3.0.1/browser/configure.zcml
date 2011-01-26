@@ -222,7 +222,7 @@
     <!-- Content Well Portlet Relocation -->
     <browser:viewlet
         name="contentwellportlets.portletsabovecontent"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
         class="Products.ContentWellPortlets.browser.viewlets.PortletsAboveViewlet"
         layer="Products.ContentWellPortlets.browser.interfaces.IContentWellPortlets"
         permission="zope2.View"

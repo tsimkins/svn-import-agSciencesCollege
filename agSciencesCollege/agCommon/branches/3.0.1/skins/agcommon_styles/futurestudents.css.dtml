@@ -39,24 +39,10 @@ margin: .5em 0;
 }
 
 
-#centercolumnleft h2:first-child {
+#centercolumn h2:first-child {
 margin: 0px 0px 10px;
 color: #FF5500;
 border-width: 0;
-}
-
-
-#centercolumnright h3:first-child {
-margin: 10px 0px 3px;
-}
-
-#centercolumnright h3 {
-color: #000000;
-margin: 15px 0px 3px;
-}
-
-body.template-document_homepage_view #centercolumn .portletfeedmixer .portletItem {
-width:240px;
 }
 
 body.template-document_homepage_view #portal-column-one {
@@ -65,13 +51,13 @@ body.template-document_homepage_view #portal-column-one {
 }
 
 #marqueecontainer{
-	position: relative;
-	width: 150px; /*marquee width */
-	height: 200px; /*marquee height */
-	overflow: hidden;
-	padding: 2px;
-	padding-left: 1px;
-	color: &dtml-insideRightPortletLinkColor;;
+    position: relative;
+    width: 150px; /*marquee width */
+    height: 200px; /*marquee height */
+    overflow: hidden;
+    padding: 2px;
+    padding-left: 1px;
+    color: &dtml-insideRightPortletLinkColor;;
 }
 
 body.template-document_homepage_view {
@@ -79,14 +65,14 @@ body.template-document_homepage_view {
 }
 
 #vmarquee{
-	position: absolute;
-	width: 98%;
-	padding-bottom: 10px;
+    position: absolute;
+    width: 98%;
+    padding-bottom: 10px;
 }
 
 #centercolumnright{
-	float:right;
-	width: 235px;
+    float:right;
+    width: 235px;
     background-color: #dbdbdb;
     padding-left: 10px;
     padding-bottom: 10px;
@@ -95,14 +81,32 @@ body.template-document_homepage_view {
 }
 
 #centercolumnleft{
-	margin-right: 5px;
-	width: 240px;
+    margin-right: 5px;
+    width: 240px;
+}
+
+ul.navTree,ul.navTreeLevel1 li.navTreeItem {
+    background-color: transparent;
+}
+
+ul.navTreeLevel1 {
+    padding-left: 0px;
+}
+
+.documentDescription {
+    font-family:Georgia,"Times New Roman",Times,serif;
+    font-size: 1.4em;
+    margin-bottom: 1.5em;
+    line-height: 1.3em;
 }
 
 
-
-ul.navTree,ul.navTreeLevel1 li.navTreeItem {
-	background-color: transparent;
+#portal-column-one {
+    border-width: 1px;
+    width: 187px;
+    background-color: &dtml-leftNavBackgroundColor;;
+    background-position: bottom center; 
+    padding-bottom: 80px;
 }
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeTitle:first-child {
@@ -111,66 +115,45 @@ ul.navTree,ul.navTreeLevel1 li.navTreeItem {
     padding-bottom:5px;
 }
 
-ul.navTreeLevel1 {
-	padding-left: 0px;
-}
-
-
-
-.documentDescription {
-	font-family:Georgia,"Times New Roman",Times,serif;
-	font-size: 1.4em;
-	margin-bottom: 1.5em;
-    line-height: 1.3em;
-}
-
-
-#portal-column-one {
-        border-width: 0;
-        width: 187px;
-        background-color: &dtml-leftNavBackgroundColor;;
-        background-position: bottom center; 
-}
-
 #portal-column-one .portletNavigationTree a.state-published {
-	color: &dtml-leftNavTextColor; !important;
+    color: &dtml-leftNavTextColor; !important;
 }
 
 #portal-column-one .portletNavigationTree a.state-published:hover {
-	color: &dtml-leftNavTextHoverColor; !important;
+    color: &dtml-leftNavTextHoverColor; !important;
 }
 
 #portal-column-one .portletNavigationTree {
-	padding: 0px 5px 18px 5px;
-	background-color: &dtml-topnavigationButtonBackgroundColor;;
-	margin-left: -10px;
-	margin-right: -10px;
+    padding: 0px 5px 18px 5px;
+    background-color: &dtml-topnavigationButtonBackgroundColor;;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle {
-	padding-left: 0px;
+    padding-left: 0px;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li {
-	border-bottom-width: 0px;
+    border-bottom-width: 0px;
 }
 
 #portal-column-one .portletNavigationTree a.navTreeCurrentItem {
-	color: &dtml-leftNavTextCurrentItem; !important;
+    color: &dtml-leftNavTextCurrentItem; !important;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a:hover {
-        background-color: &dtml-leftNavTitleBackground;;
-        color: &dtml-leftNavTitleHoverColor; !important;
+    background-color: &dtml-leftNavTitleBackground;;
+    color: &dtml-leftNavTitleHoverColor; !important;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li {
-        margin: 0 5px 0 15px;
-        padding-bottom: 0;
+    margin: 0 5px 0 15px;
+    padding-bottom: 0;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle {
-        padding-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li a {

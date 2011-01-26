@@ -168,6 +168,9 @@
                                     Page body text
                                 </metal:text>
                             </div>
+                            <metal:footer define-slot="footer" tal:content="nothing">
+                                Visual Footer
+                            </metal:footer>
                             <div tal:replace="structure provider:plone.belowcontentbody" />
                         </metal:main>
 

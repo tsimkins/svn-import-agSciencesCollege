@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+
+<metal:header fill-slot="header">
+
+<div id = "printheader">
+    <img tal:attributes="src string:${portal_url}/psu_logo_print.gif" alt = "Penn State College of Agricultural Sciences" />
+    <h1><span class = "small">Department of Entomology</span><br />
+    <span class = "big">Entomological Notes</span></h1>
+    <div class = "clearboth">&nbsp;</div>
+</div>
+
+</metal:header>
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+        <metal:field use-macro="python:context.widget('text', mode='view')">
+            Body text
+        </metal:field>
+    </metal:content-core>
+</metal:content-core>
+
+<metal:footer fill-slot="footer">
+
+<div id = "disclaimer"> <h2 style="font-size: 1.25em; border: none;">RENUNCIA</h2>
+
+<p>Esta publicaci&oacute;n esta disponible por media alterna por encargo. </p>
+
+<p>Donde se usen nombres de oficio, no hay intenci&oacute;n de discriminaci&oacute;n y ning&uacute;n patrocinio es implicado por la 
+Universidad de Pennsylvania State o el Departamento de Agricultura de Pennsylvania.</p>
+
+<p>Notas Entomol&oacute;gicas intentan servir como gu&iacute;as de referencia r&aacute;pidas y no deben ser utilizadas como 
+sustitutos de etiquetas de informaci&oacute;n de productos. La intenci&oacute;n al escribir estas Notas Entomol&oacute;gicas es para
+proveer informaci&oacute;n completa, oportuna y precisa. Los usuarios de pesticidas tienen la responsabilidad de consultar la
+etiqueta del pesticida y seguir dichas instrucciones.</p>
+
+<p>Publicado por adelantado por Cooperative Extensi&oacute;n Works, Actos de Congreso mayo 8 y junio 30, 1914, en cooperaci&oacute;n         
+con el Departamento de Agricultura de EU. y la Legislatura de Pennsylvania. D. Jackson, Director de Extensi&oacute;n Cooperativa, La
+Universidad de Pennsilvania State.</p>
+
+<p>La Universidad de Pennsylvania State esta comprometido con la pol&iacute;tica que toda persona tiene igual derecho a programas, 
+facilidades, admisi&oacute;n y empleo sin que se toma en cuenta caracter&iacute;sticas personales no relacionadas a habilidad,
+rendimiento o calificaci&oacute;n como es determinado por la pol&iacute;tica universitaria o por autoridades estatales o federales.
+Es pol&iacute;tica de la Universidad el mantener un ambiente acad&eacute;mico y de trabajo libre de discriminaci&oacute;n, incluyendo
+hostigamiento. La Universidad de Pennsylvania State proh&iacute;be discriminaci&oacute;n y hostigamiento contra cualquier persona
+debido a edad, descendencia, color, inhabilidad o incapacidad, origen nacional, raza, credo religioso, sexo, orientaci&oacute;n
+sexual o estado de veterano. Discriminaci&oacute;n u hostigamiento contra la facultad, empleados o estudiantes no ser&aacute;
+tolerado en la Universidad de Pennsilvania State. Dirija cualquier pregunta al respecto a la pol&iacute;tica de no
+discriminaci&oacute;n al Director de Affirmative Action, Universidad de Pennsilvania State, 201 Willard Building, University Park, PA
+16802-2801, Tel 814-865-4700/V, 814-863-1150/TTY.</p>
+</div>
+
+</metal:footer>
+
+</body>
+</html>
+

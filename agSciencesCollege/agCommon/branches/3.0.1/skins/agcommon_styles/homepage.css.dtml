@@ -36,7 +36,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #homepageimage h1 {
-	font-size: 1.9em;
+	font-size: 1.75em;
 	font-weight: 500;
 	color: &dtml-homepageH1TextColor;;
 	font-family: Georgia, Times New Roman, serif;

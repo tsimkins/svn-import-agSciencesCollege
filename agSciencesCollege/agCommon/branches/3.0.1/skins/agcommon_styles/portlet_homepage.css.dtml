@@ -58,16 +58,16 @@
     padding: 13px 20px 0 20px !important;
 }
 
+.icons-on #portal-column-content {
+    padding: 13px 10px 0 10px !important;
+}
+
 #addthis {
     display: none;
 }
 
 .documentActions {
     display: none;
-}
-
-.documentContent {
-    font-size: 110%;
 }
 
 #centercolumn {

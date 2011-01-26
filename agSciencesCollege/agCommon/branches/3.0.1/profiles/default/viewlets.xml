@@ -69,14 +69,14 @@ Note: insert-before and -after accept the value "*" which means
     
     <order manager="plone.abovecontentbody" skinname="agCommon">
         <viewlet name="agcommon.localsearchbox" insert-before="*"/>
-        <viewlet name="contentwellportlets.portletsabovecontent" insert-after="agcommon.localsearchbox"/>
         <viewlet name="collective.contentleadimage.full" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="agcommon.rightcolumn" insert-after="collective.contentleadimage.full" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.rightcolumn" />
     </order>
 
     <order manager="plone.belowcontentbody" skinname="agCommon">
-        <viewlet name="plone.nextprevious" insert-before="*"/>
+        <viewlet name="contentwellportlets.portletsabovecontent" insert-before="*" />
+        <viewlet name="plone.nextprevious" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="agcommon.fblike" insert-after="plone.nextprevious"/>
     </order>
     
@@ -137,7 +137,11 @@ Note: insert-before and -after accept the value "*" which means
 
     <hidden manager="plone.abovecontentbody" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsabovecontent" />
-	</hidden>
+    </hidden>
+
+    <hidden manager="plone.belowcontentbody" skinname="agCommon">
+        <viewlet name="contentwellportlets.portletsabovecontent" />
+    </hidden>
 	
     <hidden manager="plone.portalfooter" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsbelowcontent" />

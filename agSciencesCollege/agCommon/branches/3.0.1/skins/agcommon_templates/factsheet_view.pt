@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:header fill-slot="header">
+
+<div id = "printheader">
+    <img tal:attributes="src string:${portal_url}/psu_logo_print.gif" alt = "Penn State College of Agricultural Sciences" />
+    <h1><span class = "small">Department of Entomology</span><br />
+    <span class = "big">Entomological Notes</span></h1>
+    <div class = "clearboth">&nbsp;</div>
+</div>
+
+</metal:header>
+
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+        <metal:field use-macro="python:context.widget('text', mode='view')">
+            Body text
+        </metal:field>
+    </metal:content-core>
+</metal:content-core>
+
+<metal:footer fill-slot="footer">
+
+<div id = "disclaimer">
+<h2 style="font-size: 1.25em; border: none;">DISCLAIMER</h2>
+
+<p>This publication is available in alternative media on request.</p>
+
+<p>Where trade names are used, no discrimination is intended and no endorsement by The Pennsylvania State University or Pennsylvania         
+Department of Agriculture is implied.</p>
+
+<p>Entomological Notes are intended to serve as a quick reference guide and should not be used as a substitute for product label 
+information. Although every attempt is made to produce Entomological Notes that are complete, timely, and accurate, the pesticide
+user bears the responsibility of consulting the pesticide label and adhering to those directions.</p>
+
+<p>Issued in furtherance of Cooperative Extension Works, Acts of Congress May 8 and June 30, 1914, in cooperation with the U.S. 
+Department of Agriculture and the Pennsylvania Legislature. D. Jackson, Director of Cooperative Extension, The Pennsylvania State
+University.</p>
+
+<p>The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, 
+admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as
+determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and
+work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and
+harassment against any person because of age, ancestry, color, disability or handicap, national origin, race, religious creed, sex,
+sexual orientation, gender identity, or veteran status. Discrimination or harassment against faculty, staff, or students will not be
+tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action
+Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-2801; Tel 814-865-4700/V,
+814-863-1150/TTY.</p>
+
+</div>  
+
+</metal:footer>
+
+
+</body>
+</html>
+

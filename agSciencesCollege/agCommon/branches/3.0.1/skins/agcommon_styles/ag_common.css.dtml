@@ -19,7 +19,7 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-    /* background-image: url("http://webtools.cas.psu.edu/tmp/caution.png"); */
+    background-image: url("http://webtools.cas.psu.edu/tmp/caution.png");
     background-color: &dtml-backgroundColor;;
     margin: 0 auto;
     padding: 0 6px 6px 6px;

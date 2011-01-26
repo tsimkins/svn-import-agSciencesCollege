@@ -10,12 +10,15 @@
 
 body {
 	background-color: #FFFFFF;
+        background-image: none;
 }
 
 #visual-portal-wrapper {
 	max-width: auto;
 	min-width: auto;
 	width: 100%;
+        background: #FFFFFF;
+        background-image: none;
 }
 
 /* Remove vertical borders */
