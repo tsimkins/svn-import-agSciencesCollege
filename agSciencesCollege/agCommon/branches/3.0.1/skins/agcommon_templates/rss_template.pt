@@ -68,7 +68,8 @@
                     has_effective exists:obj_item/aq_explicit/effective_date;
                     effective python:has_effective and obj_item.effective().HTML4() or '';
                     modified python:obj_item.modified().HTML4();
-                    creator obj_item/Creator|nothing">
+                    creator obj_item/Creator|nothing;
+                    obj_item_type obj_item/portal_type">
     <title tal:content="obj_item/pretty_title_or_id">Title</title>
     <link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
     <link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
