@@ -195,6 +195,15 @@ body {
     display: none;
 }
 
+/* = portal-personaltools ======================================== */
+
+#portal-personaltools li {
+    color: black;
+}
+
+#portal-personaltools li a {
+    color: &dtml-globalFontColor;;
+}
 
 /* = portal-columns ======================================== */
 
