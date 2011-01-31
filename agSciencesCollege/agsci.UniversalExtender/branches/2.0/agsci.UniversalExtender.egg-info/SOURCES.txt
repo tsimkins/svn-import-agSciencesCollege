@@ -1,3 +1,4 @@
+HISTORY.txt
 README.txt
 setup.py
 agsci/__init__.py
@@ -10,5 +11,14 @@ agsci.UniversalExtender.egg-info/not-zip-safe
 agsci.UniversalExtender.egg-info/requires.txt
 agsci.UniversalExtender.egg-info/top_level.txt
 agsci/UniversalExtender/__init__.py
+agsci/UniversalExtender/configure.zcml
 agsci/UniversalExtender/extender.py
 agsci/UniversalExtender/interfaces.py
+agsci/UniversalExtender/version.txt
+agsci/UniversalExtender/Extensions/Install.py
+agsci/UniversalExtender/locales/en/LC_MESSAGES/plonelocales.mo
+agsci/UniversalExtender/locales/en/LC_MESSAGES/plonelocales.po
+agsci/UniversalExtender/profiles/default/browserlayer.xml
+agsci/UniversalExtender/profiles/default/metadata.xml
+agsci/UniversalExtender/profiles/uninstall/browserlayer.xml
+agsci/UniversalExtender/profiles/uninstall/metadata.xml
