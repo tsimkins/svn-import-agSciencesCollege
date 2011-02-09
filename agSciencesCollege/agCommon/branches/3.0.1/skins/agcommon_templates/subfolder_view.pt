@@ -13,7 +13,6 @@
                             templateId template/getId;
                             standalone_view python:False">
 
-
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading"> 
@@ -31,6 +30,8 @@
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <div metal:use-macro="here/folder_listing/macros/text-field-view" />
 
         <tal:subfolder metal:define-macro="subfolders_macro"
                       define="folderContents python:here.getFolderContents({'portal_type' : ['Topic','Folder']})"

@@ -73,7 +73,13 @@
             standalone_view python:True;
             view_template python:'%s_view' % portal_type;
             view_macros python:path('here/%s/macros|nothing' % view_template);
-            errors python:request.get('errors', {})">
+            errors python:request.get('errors', {});
+            toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+            kssClassesView context/@@kss_field_decorator_view;
+            getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+            templateId template/getId;">
+
+        <div metal:use-macro="here/folder_listing/macros/text-field-view" />
 
         <tal:bymonth repeat="month view/month_agenda">
             <tal:items define="folderContents python:month.get('items')">
