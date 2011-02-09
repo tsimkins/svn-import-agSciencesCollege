@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <adapters>
+  <adapter name="FolderText" factory="Products.FolderText.extender.FolderText"
+     for="Products.ATContentTypes.interfaces.folder.IATFolder"
+     provides="archetypes.schemaextender.interfaces.ISchemaExtender" remove="True"/>
+ </adapters>
+</componentregistry>

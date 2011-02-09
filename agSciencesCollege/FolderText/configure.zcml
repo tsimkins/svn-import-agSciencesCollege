@@ -16,15 +16,15 @@
       description="Extension profile for Folder -- Adds Text field, and Viewlet to display it."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-<!--
+
    <genericsetup:registerProfile
       name="uninstall"
-      title="FolderText"
+      title="FolderText Uninstall"
       directory="profiles/uninstall"
       description="Removes FolderText"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
--->
+
 </configure>
 
