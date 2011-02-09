@@ -1,19 +1,20 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interface.event import IATEvent
 from Products.ATContentTypes.interface.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderExtender, ITopicExtender
-from zope.component import adapts
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender
+from zope.component import adapts, provideAdapter
 from zope.interface import implements
-import pdb
 from AccessControl import ClassSecurityInfo
+from zope.interface import Interface
 
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
-
+class _TextExtensionField(ExtensionField, TextField): pass
+    
 # Add fax, twitter, facebook, linkedin to FSDPerson.
 #
 # Hide extraneous tabs from mere mortals. Hide image field from
@@ -92,8 +93,6 @@ class FSDPersonExtender(object):
         image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
         schema['image'] = image_field
 
-        #pdb.set_trace()
-
         return schema
 
     def __init__(self, context):
@@ -134,8 +133,6 @@ class FSDPersonModifier(object):
         image_field = schema['image'].copy()
         image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
         schema['image'] = image_field
-
-        #pdb.set_trace()
 
         return schema
 """
@@ -195,8 +192,6 @@ class EventExtender(object):
             # This angers TalkEvents
             pass
 
-        #pdb.set_trace()
-
         """
         # Maybe Plone 4 fixed the silly Event categorizations?
         # Move subject/tags to Categorization tab
@@ -229,8 +224,8 @@ class EventExtender(object):
 
 # Adds a "two column" field to folders. This will set a class, and jQuery will dynamically create two near-equal columns.
 
-class FolderExtender(object):
-    adapts(IFolderExtender)
+class FolderTopicExtender(object):
+    adapts(IFolderTopicExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
     layer = IUniversalExtenderLayer
 
@@ -255,6 +250,37 @@ class FolderExtender(object):
 
     def getFields(self):
         return self.fields
+
+"""
+    Replaces the FolderText product.  
+"""
+
+class FolderExtender(object):
+    adapts(IFolderExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+        _TextExtensionField('folder_text',
+            required=False,
+            widget=RichWidget(
+                label="Body Text",
+                label_msgid='folder_label_text',
+                i18n_domain='Folder',
+                description="",
+            ),
+            default_output_type="text/x-html-safe",
+            searchable=True,
+            validators=('isTidyHtmlWithCleanup',),
+        ),
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
 
 class TopicExtender(object):
     adapts(ITopicExtender)

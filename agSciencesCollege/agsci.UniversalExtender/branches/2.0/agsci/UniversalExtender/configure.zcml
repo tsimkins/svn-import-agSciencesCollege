@@ -2,12 +2,14 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            xmlns:five="http://namespaces.zope.org/five"
            i18n_domain="agsci.UniversalExtender"
+           xmlns:monkey="http://namespaces.plone.org/monkey"
            xmlns:i18n="http://namespaces.zope.org/i18n">
 
     <i18n:registerTranslations directory="locales" />
 
     <include package="archetypes.schemaextender" />
-
+    <include package="collective.monkeypatcher" />
+        
     <genericsetup:registerProfile
         name="default"
         title="UniversalExtender"
@@ -71,7 +73,7 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
 
-    <!-- Folder Display Options -->
+    <!-- Folder Extender -->
 
     <adapter
         name="agsci.UniversalExtender.extender.FolderExtender"
@@ -83,10 +85,24 @@
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.IFolderExtender"
     /> 
+
+
+    <!-- Folder and Topic Display Options -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FolderTopicExtender"
+        factory=".extender.FolderTopicExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.IFolderTopicExtender"
+    /> 
     
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
-        interface=".interfaces.IFolderExtender"
+        interface=".interfaces.IFolderTopicExtender"
     /> 
 
     <!-- Topic (Collection) Extender -->
@@ -101,5 +117,16 @@
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.ITopicExtender"
     /> 
+
+    <!-- Monkey Patch folder by adding 'getText' method -->
+
+    <monkey:patch
+        description="This adds a 'getText' method to the folder type"
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        replacement=".patch.folderGetText"
+        original="getText"
+        ignoreOriginal="True"
+        />
+
     
 </configure>

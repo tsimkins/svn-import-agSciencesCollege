@@ -10,8 +10,11 @@ class IFSDPersonExtender(Interface):
 class IDefaultExcludeFromNav(Interface):
     """ marker interface """
     
-class IFolderExtender(Interface):
+class IFolderTopicExtender(Interface):
     """ marker interface """
     
 class ITopicExtender(Interface):
+    """ marker interface """
+    
+class IFolderExtender(Interface):
     """ marker interface """
