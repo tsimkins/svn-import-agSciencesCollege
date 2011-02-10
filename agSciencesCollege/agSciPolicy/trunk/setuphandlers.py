@@ -413,10 +413,10 @@ def configureScripts(context):
 def installAdditionalProducts(context):
     
     toInstall = [
-            'plone.app.caching', 'FacultyStaffDirectory', 'FolderText', 'WebServerAuth', 
+            'plone.app.caching', 'FacultyStaffDirectory', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
-            'plone.app.imaging', 'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
-            'CacheableRedirects', 'WebLionHostingPolicy'
+            'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
+            'CacheableRedirects'
     ]
 
     site = context.getSite()
