@@ -34,7 +34,12 @@ def migrateToBlobs(context):
     logger.info('Migrating %d items' % cnt)
     for item in items:
         obj = item.getObject()
-        field = obj.getField(IMAGE_FIELD_NAME)
+        try:
+            field = obj.getField(IMAGE_FIELD_NAME)
+        except AttributeError, e:
+            logger.info("Error Migrating %s : %s" % (str(e), item.getURL()))
+            field = None
+
         if (field is not None) and not IBlobWrapper.providedBy(field.getUnwrapped(obj)):
             # this is apparently old content. AttributeError is raised 
             # when old site is upgraded to BLOB aware one
