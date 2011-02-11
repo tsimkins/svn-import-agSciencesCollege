@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <adapters>
+  <adapter remove="True" name="FolderText" factory="Products.FolderText.extender.FolderText"
+     for="Products.ATContentTypes.interfaces.folder.IATFolder"
+     provides="archetypes.schemaextender.interfaces.ISchemaExtender"/>
+ </adapters>
+ <subscribers/>
+ <utilities>
+  <utility interface="Products.CMFCore.interfaces.ICachingPolicyManager"
+     object="caching_policy_manager"/>
+  <utility interface="plone.registry.interfaces.IRegistry"
+      object="portal_registry"/>
+ </utilities>
+</componentregistry>
+

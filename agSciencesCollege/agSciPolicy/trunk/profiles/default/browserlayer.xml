@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layers name="" meta_type="ComponentRegistry">
+ <layer name="collective.contentleadimage"
+    interface="collective.contentleadimage.interfaces.ILeadImageSpecific"/>
+ <layer name="plone.app.z3cform"
+    interface="plone.app.z3cform.interfaces.IPloneFormLayer"/>
+ <layer name="agsci.UniversalExtender"
+    interface="agsci.UniversalExtender.interfaces.IUniversalExtenderLayer"/>
+</layers>
