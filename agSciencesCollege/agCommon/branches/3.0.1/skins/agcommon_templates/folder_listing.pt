@@ -84,7 +84,7 @@
                     </span>
                     <span class="description">
                     <div>
-                        <strong>When:</strong>
+                        <strong tal:condition="python: item_type == 'Event'">When:</strong>
                         <metal:shortdate define-macro="short_event_date">
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
                               i18n:translate="label_event_byline_onlyfrom">
