@@ -191,7 +191,8 @@ h1, .documentByLine, .documentActions {
 	background-color: &dtml-frontRightPortletBackgroundColor;; 
 }
 
-#rightcolumn .portletItem a {
+#rightcolumn .portletItem a, #rightcolumn .portletItem a:visited,
+ #content #rightcolumn .portlet dd a:visited {
 	color: &dtml-frontRightPortletTextColor;;
 	display: block;
 	font-size: 1.10em;
