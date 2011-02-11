@@ -562,12 +562,16 @@ def configureEditor(context):
 
     if nasty_tags.get('embed'):
         del nasty_tags['embed']
-        
+
+    if nasty_tags.get('script'):
+        del nasty_tags['script']
+
     valid_tags['object'] = 1
     valid_tags['embed'] = 1
     valid_tags['param'] = 1
     valid_tags['iframe'] = 1
-        
+    valid_tags['script'] = 1
+            
     # Obtain key/value structures from dicts
     
     nasty_tags_key = []
