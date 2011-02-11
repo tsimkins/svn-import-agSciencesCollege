@@ -66,3 +66,4 @@ Wayne	648 Park Street, Suite E		Honesdale	PA	18431	570-253-5970 Ext 4110	570-253
 Westmoreland	214 Donohoe Road, Suite E	Donohoe Center	Greensburg	PA	15601	724-837-1402	724-837-7613	WestmorelandExt@psu.edu	Monday-Friday 8:30 a.m. - 4:30 p.m. 
 Wyoming	71 Hollowcrest Road, Suite 2		Tunkhannock	PA	18657	570-836-3196	570-836-3697	WyomingExt@psu.edu	Monday-Friday 8:30 a.m. - 4:00 p.m. 
 York	112 Pleasant Acres Road		York	PA	17402-9041	717-840-7408	717-755-5968	YorkExt@psu.edu	Monday-Friday 8:00 a.m. - 4:30 p.m. 
+Keystone	112 Main Street		Anytown	PA	17345-0987	717-123-1234	717-456-7890	KeystoneExt@psu.edu	Monday-Friday 8:00 a.m. - 4:30 p.m. 

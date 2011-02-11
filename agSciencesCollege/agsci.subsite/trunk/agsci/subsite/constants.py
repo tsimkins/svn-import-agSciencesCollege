@@ -74,6 +74,7 @@ def getCountyWeather(county_name):
         'Westmoreland' : ['Westmoreland',],
         'Wyoming' : ['Wyoming',],
         'York' : ['York',],
+        'Keystone' : ['Centre',],
     }
     
     if county_links.get(county_name):
