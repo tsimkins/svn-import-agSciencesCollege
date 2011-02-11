@@ -201,6 +201,10 @@ body {
 
 /* ----- portlets ------------------------------------------ */
 
+#content .portlet dd a:visited {
+    color: #003399;
+}
+
 #portal-column-one .portletWrapper {
     margin: 0 10px 20px 10px;
     padding: 0;
