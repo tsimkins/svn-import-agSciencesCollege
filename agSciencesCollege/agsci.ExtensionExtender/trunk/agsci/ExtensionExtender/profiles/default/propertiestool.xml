@@ -77,9 +77,16 @@
     <element value="York" />
   </property>
   <property name="extension_programs" type="lines">
-    <element value="Program 1" />
-    <element value="Program 2" />
-    <element value="Program 3" />
+    <element value="4-H" />
+    <element value="Dining With Diabetes" />
+    <element value="Food Safety" />
+    <element value="Natural Gas" />
+    <element value="Kinship" />
+    <element value="Learning Today, Leading Tomorrow" />
+    <element value="Master Gardener" />
+    <element value="Vegetable and Small Fruit Production" />
+    <element value="Nutrition Links" />
+    <element value="Tobacco Prevention" />
   </property>
  </object>
 </object>

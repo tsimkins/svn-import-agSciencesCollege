@@ -57,14 +57,13 @@ class _CountiesField(ExtensionField, LinesField):
             return DisplayList([('N/A', 'N/A')])
 
     def getDefault(self, instance, **kwargs):
-
         for o in getAcquisitionChain(instance):
             try:
                 v = self.get(o)
                 
                 if v:
                     return v
-            except RuntimeError:
+            except:
                 continue
 
         return ()
@@ -88,7 +87,7 @@ class _ProgramsField(ExtensionField, LinesField):
                 
                 if v:
                     return v
-            except RuntimeError:
+            except:
                 continue
 
         return ()

@@ -2,1279 +2,1755 @@
 <object name="portal_actions" meta_type="Plone Actions Tool"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
- <object name="adams_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="adams_buttons" meta_type="CMF Action Category">
   <property name="title">Adams Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="adams_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Adams Links</property>
-  </object>
-
- <object name="allegheny_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="allegheny_buttons" meta_type="CMF Action Category">
   <property name="title">Allegheny Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="allegheny_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Allegheny Links</property>
-  </object>
-
- <object name="armstrong_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="armstrong_buttons" meta_type="CMF Action Category">
   <property name="title">Armstrong Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="armstrong_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Armstrong Links</property>
-  </object>
-
- <object name="beaver_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="beaver_buttons" meta_type="CMF Action Category">
   <property name="title">Beaver Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="beaver_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Beaver Links</property>
-  </object>
-
- <object name="bedford_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="bedford_buttons" meta_type="CMF Action Category">
   <property name="title">Bedford Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="bedford_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Bedford Links</property>
-  </object>
-
- <object name="berks_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="berks_buttons" meta_type="CMF Action Category">
   <property name="title">Berks Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="berks_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Berks Links</property>
-  </object>
-
- <object name="blair_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="blair_buttons" meta_type="CMF Action Category">
   <property name="title">Blair Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="blair_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Blair Links</property>
-  </object>
-
- <object name="bradford_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="bradford_buttons" meta_type="CMF Action Category">
   <property name="title">Bradford Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="bradford_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Bradford Links</property>
-  </object>
-
- <object name="bucks_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="bucks_buttons" meta_type="CMF Action Category">
   <property name="title">Bucks Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="bucks_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Bucks Links</property>
-  </object>
-
- <object name="butler_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="butler_buttons" meta_type="CMF Action Category">
   <property name="title">Butler Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="butler_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Butler Links</property>
-  </object>
-
- <object name="cambria_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="cambria_buttons" meta_type="CMF Action Category">
   <property name="title">Cambria Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="cambria_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Cambria Links</property>
-  </object>
-
- <object name="cameron_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="cameron_buttons" meta_type="CMF Action Category">
   <property name="title">Cameron Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="cameron_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Cameron Links</property>
-  </object>
-
- <object name="carbon_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="carbon_buttons" meta_type="CMF Action Category">
   <property name="title">Carbon Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="carbon_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Carbon Links</property>
-  </object>
-
- <object name="centre_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="centre_buttons" meta_type="CMF Action Category">
   <property name="title">Centre Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="centre_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Centre Links</property>
-  </object>
-
- <object name="chester_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="chester_buttons" meta_type="CMF Action Category">
   <property name="title">Chester Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="chester_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Chester Links</property>
-  </object>
-
- <object name="clarion_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="clarion_buttons" meta_type="CMF Action Category">
   <property name="title">Clarion Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="clarion_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Clarion Links</property>
-  </object>
-
- <object name="clearfield_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="clearfield_buttons" meta_type="CMF Action Category">
   <property name="title">Clearfield Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="clearfield_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Clearfield Links</property>
-  </object>
-
- <object name="clinton_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="clinton_buttons" meta_type="CMF Action Category">
   <property name="title">Clinton Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/clinton/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="clinton_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Clinton Links</property>
-  </object>
-
- <object name="columbia_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="columbia_buttons" meta_type="CMF Action Category">
   <property name="title">Columbia Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="columbia_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Columbia Links</property>
-  </object>
-
- <object name="crawford_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="crawford_buttons" meta_type="CMF Action Category">
   <property name="title">Crawford Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="crawford_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Crawford Links</property>
-  </object>
-
- <object name="cumberland_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="cumberland_buttons" meta_type="CMF Action Category">
   <property name="title">Cumberland Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="cumberland_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Cumberland Links</property>
-  </object>
-
- <object name="dauphin_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="dauphin_buttons" meta_type="CMF Action Category">
   <property name="title">Dauphin Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="dauphin_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Dauphin Links</property>
-  </object>
-
- <object name="delaware_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="delaware_buttons" meta_type="CMF Action Category">
   <property name="title">Delaware Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="delaware_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Delaware Links</property>
-  </object>
-
- <object name="elk_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="elk_buttons" meta_type="CMF Action Category">
   <property name="title">Elk Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="elk_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Elk Links</property>
-  </object>
-
- <object name="erie_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="erie_buttons" meta_type="CMF Action Category">
   <property name="title">Erie Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="erie_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Erie Links</property>
-  </object>
-
- <object name="fayette_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="fayette_buttons" meta_type="CMF Action Category">
   <property name="title">Fayette Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="fayette_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Fayette Links</property>
-  </object>
-
- <object name="forest_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="forest_buttons" meta_type="CMF Action Category">
   <property name="title">Forest Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="forest_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Forest Links</property>
-  </object>
-
- <object name="franklin_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="franklin_buttons" meta_type="CMF Action Category">
   <property name="title">Franklin Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="franklin_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Franklin Links</property>
-  </object>
-
- <object name="fulton_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="fulton_buttons" meta_type="CMF Action Category">
   <property name="title">Fulton Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="fulton_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Fulton Links</property>
-  </object>
-
- <object name="greene_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="greene_buttons" meta_type="CMF Action Category">
   <property name="title">Greene Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="greene_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Greene Links</property>
-  </object>
-
- <object name="huntingdon_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="huntingdon_buttons" meta_type="CMF Action Category">
   <property name="title">Huntingdon Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="huntingdon_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Huntingdon Links</property>
-  </object>
-
- <object name="indiana_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="indiana_buttons" meta_type="CMF Action Category">
   <property name="title">Indiana Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="indiana_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Indiana Links</property>
-  </object>
-
- <object name="jefferson_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="jefferson_buttons" meta_type="CMF Action Category">
   <property name="title">Jefferson Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="jefferson_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Jefferson Links</property>
-  </object>
-
- <object name="juniata_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="juniata_buttons" meta_type="CMF Action Category">
   <property name="title">Juniata Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="juniata_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Juniata Links</property>
-  </object>
-
- <object name="lackawanna_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lackawanna_buttons" meta_type="CMF Action Category">
   <property name="title">Lackawanna Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lackawanna_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lackawanna Links</property>
-  </object>
-
- <object name="lancaster_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lancaster_buttons" meta_type="CMF Action Category">
   <property name="title">Lancaster Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lancaster_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lancaster Links</property>
-  </object>
-
- <object name="lawrence_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lawrence_buttons" meta_type="CMF Action Category">
   <property name="title">Lawrence Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lawrence_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lawrence Links</property>
-  </object>
-
- <object name="lebanon_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lebanon_buttons" meta_type="CMF Action Category">
   <property name="title">Lebanon Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lebanon_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lebanon Links</property>
-  </object>
-
- <object name="lehigh_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lehigh_buttons" meta_type="CMF Action Category">
   <property name="title">Lehigh Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lehigh_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lehigh Links</property>
-  </object>
-
- <object name="luzerne_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="luzerne_buttons" meta_type="CMF Action Category">
   <property name="title">Luzerne Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="luzerne_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Luzerne Links</property>
-  </object>
-
- <object name="lycoming_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="lycoming_buttons" meta_type="CMF Action Category">
   <property name="title">Lycoming Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="lycoming_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Lycoming Links</property>
-  </object>
-
- <object name="mckean_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="mckean_buttons" meta_type="CMF Action Category">
   <property name="title">McKean Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="mckean_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">McKean Links</property>
-  </object>
-
- <object name="mercer_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="mercer_buttons" meta_type="CMF Action Category">
   <property name="title">Mercer Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="mercer_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Mercer Links</property>
-  </object>
-
- <object name="mifflin_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="mifflin_buttons" meta_type="CMF Action Category">
   <property name="title">Mifflin Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="mifflin_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Mifflin Links</property>
-  </object>
-
- <object name="monroe_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="monroe_buttons" meta_type="CMF Action Category">
   <property name="title">Monroe Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="monroe_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Monroe Links</property>
-  </object>
-
- <object name="montgomery_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="montgomery_buttons" meta_type="CMF Action Category">
   <property name="title">Montgomery Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="montgomery_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Montgomery Links</property>
-  </object>
-
- <object name="montour_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="montour_buttons" meta_type="CMF Action Category">
   <property name="title">Montour Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="montour_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Montour Links</property>
-  </object>
-
- <object name="northampton_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="northampton_buttons" meta_type="CMF Action Category">
   <property name="title">Northampton Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="northampton_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Northampton Links</property>
-  </object>
-
- <object name="northumberland_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="northumberland_buttons" meta_type="CMF Action Category">
   <property name="title">Northumberland Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="northumberland_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Northumberland Links</property>
-  </object>
-
- <object name="perry_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="perry_buttons" meta_type="CMF Action Category">
   <property name="title">Perry Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="perry_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Perry Links</property>
-  </object>
-
- <object name="philadelphia_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="philadelphia_buttons" meta_type="CMF Action Category">
   <property name="title">Philadelphia Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="philadelphia_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Philadelphia Links</property>
-  </object>
-
- <object name="pike_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="pike_buttons" meta_type="CMF Action Category">
   <property name="title">Pike Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="pike_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Pike Links</property>
-  </object>
-
- <object name="potter_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="potter_buttons" meta_type="CMF Action Category">
   <property name="title">Potter Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="potter_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Potter Links</property>
-  </object>
-
- <object name="schuylkill_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="schuylkill_buttons" meta_type="CMF Action Category">
   <property name="title">Schuylkill Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="schuylkill_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Schuylkill Links</property>
-  </object>
-
- <object name="snyder_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="snyder_buttons" meta_type="CMF Action Category">
   <property name="title">Snyder Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="snyder_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Snyder Links</property>
-  </object>
-
- <object name="somerset_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="somerset_buttons" meta_type="CMF Action Category">
   <property name="title">Somerset Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="somerset_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Somerset Links</property>
-  </object>
-
- <object name="sullivan_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="sullivan_buttons" meta_type="CMF Action Category">
   <property name="title">Sullivan Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="sullivan_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Sullivan Links</property>
-  </object>
-
- <object name="susquehanna_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="susquehanna_buttons" meta_type="CMF Action Category">
   <property name="title">Susquehanna Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="susquehanna_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Susquehanna Links</property>
-  </object>
-
- <object name="tioga_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="tioga_buttons" meta_type="CMF Action Category">
   <property name="title">Tioga Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="tioga_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Tioga Links</property>
-  </object>
-
- <object name="union_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="union_buttons" meta_type="CMF Action Category">
   <property name="title">Union Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="union_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Union Links</property>
-  </object>
-
- <object name="venango_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="venango_buttons" meta_type="CMF Action Category">
   <property name="title">Venango Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="venango_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Venango Links</property>
-  </object>
-
- <object name="warren_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="warren_buttons" meta_type="CMF Action Category">
   <property name="title">Warren Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="warren_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Warren Links</property>
-  </object>
-
- <object name="washington_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="washington_buttons" meta_type="CMF Action Category">
   <property name="title">Washington Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="washington_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Washington Links</property>
-  </object>
-
- <object name="wayne_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="wayne_buttons" meta_type="CMF Action Category">
   <property name="title">Wayne Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="wayne_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Wayne Links</property>
-  </object>
-
- <object name="westmoreland_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="westmoreland_buttons" meta_type="CMF Action Category">
   <property name="title">Westmoreland Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="westmoreland_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Westmoreland Links</property>
-  </object>
-
- <object name="wyoming_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="wyoming_buttons" meta_type="CMF Action Category">
   <property name="title">Wyoming Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="wyoming_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">Wyoming Links</property>
-  </object>
-
- <object name="york_buttons" meta_type="CMF Action Category" purge="False">
+ <object name="york_buttons" meta_type="CMF Action Category">
   <property name="title">York Buttons</property>
-  <object name="donate" meta_type="CMF Action" insert-before="*">
-   <property name="title">Make a Donation!</property>
-   <property name="description"></property>
-   <property name="url_expr">string:${portal_url}/donate</property>
-   <property name="visible">True</property>
-  </object>
-  <object name="edata" meta_type="CMF Action" insert-before="*">
+  <object name="edata" meta_type="CMF Action">
    <property name="title">e-data System</property>
    <property name="description"></property>
    <property name="url_expr">string:http://extension.psu.edu/edata</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="donate" meta_type="CMF Action">
+   <property name="title">Make a Donation!</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/donate</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
    <property name="visible">True</property>
   </object>
  </object>
-  <object name="york_links" meta_type="CMF Action Category" purge="False">
-  <property name="title">York Links</property>
+ <object name="small-grains-buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="cmeg" meta_type="CMF Action">
+   <property name="title">Crop Management Extension Group</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://extension.psu.edu/cmeg</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
   </object>
-
-
+  <object name="agronomy-guide" meta_type="CMF Action">
+   <property name="title">The Agronomy Guide</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://extension.psu.edu/agronomy-guide</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="field-crop-news" meta_type="CMF Action">
+   <property name="title">Field Crop News</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://fcn.agronomy.psu.edu/</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="buttons-start-farming" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="subscribe" meta_type="CMF Action">
+   <property name="title">Join this blog!</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://feedburner.google.com/fb/a/mailverify?uri=AgSciStartFarmingNews&amp;amp;loc=en_US</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="links-naturalgas" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="subscribe" meta_type="CMF Action">
+   <property name="title">Subscribe by e-mail</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://feedburner.google.com/fb/a/mailverify?uri=PennStateNaturalGas&amp;amp;loc=en_US</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/message.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="bedbugs_topnavigation" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="home" meta_type="CMF Action">
+   <property name="title">Home</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/bedbugs</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="travelers" meta_type="CMF Action">
+   <property name="title">Travelers</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/bedbugs/travelers</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="homeowners" meta_type="CMF Action">
+   <property name="title">Homeowners</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${portal_url}/bedbugs/homeowners</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="apartments" meta_type="CMF Action">
+   <property name="title">Apartments</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${portal_url}/bedbugs/apartments</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="hotels" meta_type="CMF Action">
+   <property name="title">Hotels</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/bedbugs/hotels</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="fruit-times-buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="subscribe" meta_type="CMF Action">
+   <property name="title">Subscribe to E-Mail Updates</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://feedburner.google.com/fb/a/mailverify?uri=agsci-fruit-times&amp;loc=en_US</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="veg-small-fruit-buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="aasl" meta_type="CMF Action">
+   <property
+      name="title">Agricultural Analytical Services Laboratory</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://www.aasl.psu.edu/</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+   <property name="internal" type="boolean">True</property>
+  </object>
+  <object name="subscribe" meta_type="CMF Action">
+   <property name="title">Subscribe To E-Mail Updates</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://feedburner.google.com/fb/a/mailverify?uri=agsci-veg-small-fruit-prod&amp;loc=en_US</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="green-industry-nav" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="home" meta_type="CMF Action">
+   <property name="title">Home</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/greenindustry</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="news" meta_type="CMF Action">
+   <property name="title">News</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${portal_url}/greenindustry/news</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="Events" meta_type="CMF Action">
+   <property name="title">Events</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${portal_url}/greenindustry/events</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="contact" meta_type="CMF Action">
+   <property name="title">Contact Us</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:${portal_url}/greenindustry/contact</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="ecd-links" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="subscribe" meta_type="CMF Action">
+   <property name="title">Subscribe by e-mail</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://feedburner.google.com/fb/a/mailverify?uri=PennStateAgSciECD&amp;loc=en_US</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/message.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="food-safety-links" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="blog" meta_type="CMF Action">
+   <property name="title">Food Safety Blog</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://pennstatefoodsafety.blogspot.com/</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/blogger.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="facebook" meta_type="CMF Action">
+   <property name="title">Food Safety Facebook</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://www.facebook.com/pages/Penn-State-Food-Safety/137415676311108</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/facebook.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="consumers-topnav" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="home" meta_type="CMF Action">
+   <property name="title">Home</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/consumers</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="children-teen" meta_type="CMF Action">
+   <property name="title">Children/Teen</property>
+   <property name="description"></property>
+   <property name="url_expr"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="young-adults" meta_type="CMF Action">
+   <property name="title">Young Adults</property>
+   <property name="description"></property>
+   <property name="url_expr"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="middle-aged" meta_type="CMF Action">
+   <property name="title">Middle Aged</property>
+   <property name="description"></property>
+   <property name="url_expr"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="empty-nesters" meta_type="CMF Action">
+   <property name="title">Empty Nesters</property>
+   <property name="description"></property>
+   <property name="url_expr"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="retirees" meta_type="CMF Action">
+   <property name="title">Retirees</property>
+   <property name="description"></property>
+   <property name="url_expr"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="cmeg-buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="agronomy-guide" meta_type="CMF Action">
+   <property name="title">The Agronomy Guide</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${portal_url}/agronomy-guide</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="field-crop-news" meta_type="CMF Action">
+   <property name="title">Field Crop News</property>
+   <property name="description"></property>
+   <property name="url_expr">string:http://fcn.agronomy.psu.edu/</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="crawford_4-h_links" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="facebook" meta_type="CMF Action">
+   <property name="title">Facebook</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://www.facebook.com/home.php#!/pages/4-H-in-Crawford-County-PA/188550204505487</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/facebook.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="clinton_4-h_links" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="blog" meta_type="CMF Action">
+   <property name="title">Clinton 4-H Blog</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://clintoncounty4-h.blogspot.com/</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/blogger.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+  <object name="facebook" meta_type="CMF Action">
+   <property name="title">Facebook</property>
+   <property name="description"></property>
+   <property
+      name="url_expr">string:http://www.facebook.com/#!/pages/Clinton-County-4-H/110517142346082</property>
+   <property
+      name="icon_expr">string:${portal_url}/icons/facebook.png</property>
+   <property name="available_expr"></property>
+   <property name="permissions"/>
+   <property name="visible">True</property>
+  </object>
+ </object>
 
 </object>
