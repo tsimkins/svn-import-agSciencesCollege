@@ -147,6 +147,7 @@
                             </tal:location>
                     </div>
                     </span>
+                    <span class="documentByLine">
                         <tal:byline condition="show_about">
                             &mdash;
 
@@ -185,6 +186,7 @@
                                 </tal:comment>
                             </metal:description>
                         </tal:byline>
+                    </span>
                 </dt>
 
                 <dd tal:condition="item_description|nothing">
