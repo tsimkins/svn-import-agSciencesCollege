@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+ <javascript id="pgv_sg_mootools.js"  remove="True" />
+ <javascript id="pgv_sg_jd.gallery.js"  remove="True" />
+ <javascript id="pgv_sg_slightbox.js"  remove="True" />
+</object>
+

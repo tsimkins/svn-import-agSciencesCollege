@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+ <object name="portal_skins" allow_any="False" cookie_persistence="False"
+        request_varname="plone_skin">
+ <object name="plonegalleryview"
+    meta_type="Filesystem Directory View"
+    directory="Products.plonegalleryview:skins/plonegalleryview"/>
+ <skin-path name="*">
+  <layer name="plonegalleryview"
+     insert-after="custom"/>
+ </skin-path>
+</object>
+

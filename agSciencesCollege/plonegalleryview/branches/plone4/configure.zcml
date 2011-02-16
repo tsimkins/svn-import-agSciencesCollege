@@ -1,6 +1,16 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
-           xmlns:five="http://namespaces.zope.org/five">
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="Products.plonegalleryview">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="plonegalleryview"
+        directory="profiles/default"
+        description="Plone Gallery View"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
    
     <browser:page
         for="*"
@@ -8,4 +18,5 @@
         class=".browser.plonegalleryview.PloneGalleryView"
         permission="zope.Public"
         allowed_interface=".browser.plonegalleryview.IPloneGalleryView" />
+
 </configure>

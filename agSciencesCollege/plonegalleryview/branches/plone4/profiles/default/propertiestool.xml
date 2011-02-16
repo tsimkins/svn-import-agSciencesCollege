@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="imaging_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="title">Image handling properties</property>
+  <property name="allowed_sizes" type="lines" purge="False">
+   <element value="gallery 500:333"/>
+   <element value="galleryzoom 800:533"/>
+  </property>
+ </object>
+ <object name="plonegalleryview_properties" meta_type="Plone Property Sheet">
+  <property name="title">Plone Gallery View properties</property>
+  <property name="pgv_sg_delay" type="string">7000</property>
+  <property name="pgv_sg_fadeDuration" type="string">700</property>
+  <property name="pgv_sg_thumbIdleOpacity" type="string">0.6</property>
+  <property name="pgv_sg_textShowCarousel"
+     type="string">show carousel</property>
+  <property name="pgv_sg_embedLinks" type="boolean">True</property>
+ </object>
+</object>
+

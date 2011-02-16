@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_css" meta_type="Stylesheets Registry" autogroup="True">
+ <stylesheet id="pgv_sg_jd.gallery.css" remove="True" />
+ <stylesheet id="pgv_sg_slightbox.css" remove="True" />
+ <stylesheet id="pgv_sg_styles.css" remove="True" />
+</object>
+
