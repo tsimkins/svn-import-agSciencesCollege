@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                standalone_view python:True;
+                                templateId template/getId">
+
+    <div tal:define="albumResult python:here.atctListAlbum(images=1, folders=1, subimages=0, others=0);
+                     images albumResult/images;
+                     albums albumResult/folders;
+                     pgv_utilities python: context.restrictedTraverse('@@ploneGalleryView');"
+         class="pgv_sg_carousel_view"> 
+
+      <tal:SmoothGalleryJSCode tal:replace="structure python: pgv_utilities.genPGVSmoothGalleryJSCode(showCarousel='true', timed='false')" />
+
+      <div align="center">
+        	<div id="myGallery" class="small">
+            	<tal:loop repeat="result images">
+            	  <div class="imageElement">
+      	              <h3 tal:content="result/Title"> Item 1 Title </h3>
+            		  <p tal:content="result/Description">Item 1 Description</p>
+                      <a tal:attributes="href python: result.absolute_url() + '/image_galleryzoom';" title="Zoom Image" class="open" target="_blank" rel="lightbox"></a>
+                      <img tal:attributes="alt python: result.Title() + ' - thumbnail';
+                  			  			   title python: '';
+                  						   class python: 'thumbnail';
+                  		  				   src python: result.absolute_url() + '/image_thumb';" />                  
+            		  <img tal:attributes="alt python: result.Title() + ' - small';
+                    					   title python: '';
+                    					   class python: 'full';
+                    					   src python: result.absolute_url() + '/image_gallery';" />   						       
+                </div>
+            	</tal:loop>              
+            
+            	<tal:loop repeat="album albums">
+                    <tal:vars define="images python:album.atctListAlbum(subimages=1)['subimages'];">
+            	        <tal:loop repeat="result images">
+            	            <div class="imageElement">
+                	            <h3 tal:content="result/Title"> Item 1 Title </h3>
+                      		    <p tal:content="result/Description">Item 1 Description</p>
+                      		    <a tal:attributes="href python: result.absolute_url() + '/image_galleryzoom';" title="Zoom Image" class="open" target="_blank" rel="lightbox"></a>
+                      		  	<img tal:attributes="alt python: result.Title + ' - thumbnail';
+                      			  			         title python: '';
+                      						         class python: 'thumbnail';
+                      		  				         src python: result.getURL() + '/image_thumb';" />
+                      		    <img tal:attributes="alt python: result.Title + ' - small';
+                      			  			         title python: '';
+                      						         class python: 'full';
+                      		  				         src python: result.getURL() + '/image_gallery';" />
+                            </div>
+              	        </tal:loop>
+                    </tal:vars>
+                </tal:loop>   
+            </div>      
+            <div id="myCarousel" class="jdGallery"><noscript>JavaScript must be enabled to view this slideshow.  Please enable JavaScript, or <a href="atct_album_view">View the thumbnails</a>.</noscript></div> 
+        </div>
+        <div class="visualClear"><!-- clears floating areas --></div> 
+        <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontentbody" />
+    </div>
+
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>
