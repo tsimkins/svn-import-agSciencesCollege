@@ -1034,17 +1034,27 @@ div.comment img.avatar {
 
 /* Related items */
 
-#relatedItemBox {
-    padding-bottom: 0.5em;
+dl#relatedItemBox {
+    border: 1px solid &dtml-globalBorderColor;;
+    line-height: 1.5em;
+    margin: 1em 0;
+    padding: 0 1em 0.5em 1em;
+    width: auto;
 }
 
-#relatedItemBox ul {
-    margin-left: 1.5em;
+#relatedItemBox dt {
+    margin-top: -0.8em;
+    background: #FFFFFF;
+    display: inline-block;
+    padding: 0 0.8em;
+    margin-top: -0.85em;
+    padding: 0 0.5em;
+    font-size: 0.9em;
 }
-   
-#relatedItemBox li {
-    margin-bottom: 1.5em;
-} 
+ 
+#relatedItemBox dd {
+    margin: 0.5em;
+}
 
 #relatedItemBox ul.visualNoMarker, #relatedItemBox ol.visualNoMarker {
     line-height: 1.5em;
@@ -1410,6 +1420,17 @@ dl.portalMessage {
     display: block;
 }
 
+.icons-on #portal-column-two .contenttype-document,
+.icons-on #portal-column-two .contenttype-event,
+.icons-on #portal-column-two .contenttype-folder,
+.icons-on #portal-column-two .contenttype-link,
+.icons-on #portal-column-two .contenttype-news-item,
+.icons-on #portal-column-two .contenttype-plone-site,
+.icons-on #portal-column-two .contenttype-topic {
+    line-height: 1.5em !important;
+    display: block;
+}
+
 .icons-on #content .tileItem, .icons-on #content .item {
     padding-top: 0;
 }
@@ -1418,6 +1439,15 @@ q {
     font-family: &dtml-fontFamily;;
     font-size: 100%;
     font-style: normal;
+}
+
+#commenting.reply fieldset {
+    margin: 0 20px 20px 20px !important;
+}
+
+.discussion {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 /* YOUR CSS RULES STOP HERE */
