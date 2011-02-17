@@ -62,4 +62,8 @@ body.template-folder_leadimage_listing .leadimage-listing img {
     border-color: &dtml-sitemapBackgroundColor; !important;
 }
 
+#relatedItemBox dt {
+    display: inline;
+}
+
 /* </dtml-with> */

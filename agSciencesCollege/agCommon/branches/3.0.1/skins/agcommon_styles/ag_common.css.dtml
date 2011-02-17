@@ -1429,6 +1429,7 @@ dl.portalMessage {
 .icons-on #portal-column-two .contenttype-topic {
     line-height: 1.5em !important;
     display: block;
+    padding-top: 3px;
 }
 
 .icons-on #content .tileItem, .icons-on #content .item {

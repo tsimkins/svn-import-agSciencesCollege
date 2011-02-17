@@ -77,7 +77,9 @@ Note: insert-before and -after accept the value "*" which means
     <order manager="plone.belowcontentbody" skinname="agCommon">
         <viewlet name="contentwellportlets.portletsabovecontent" insert-before="*" />
         <viewlet name="plone.nextprevious" insert-after="contentwellportlets.portletsabovecontent"/>
-        <viewlet name="agcommon.fblike" insert-after="plone.nextprevious"/>
+        <viewlet name="plone.belowcontentbody.relateditems" insert-after="plone.nextprevious"/>
+        <viewlet name="agcommon.fblike" insert-after="plone.belowcontentbody.relateditems"/>
+        <viewlet name="plone.abovecontenttitle.documentactions" insert-after="agcommon.fblike"/>
     </order>
     
     <order manager="plone.portalfooter" skinname="agCommon">
