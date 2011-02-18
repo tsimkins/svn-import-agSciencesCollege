@@ -8,7 +8,6 @@ from HTMLParser import HTMLParseError
 #import transaction
 
 # My imports
-import pdb
 from BeautifulSoup import BeautifulSoup
 from time import strptime, strftime
 import urllib2
@@ -96,7 +95,7 @@ def importEvents(context, emailUsers=['trs22'],
     
             context.invokeFactory(type_name="Event",
                     id=eventId,
-                    title=eventTitle,
+                    title=str(eventTitle),
                     start_date=eventDate,
                     end_date=eventDate,
                     event_url=eventURL,
