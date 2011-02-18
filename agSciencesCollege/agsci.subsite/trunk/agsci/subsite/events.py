@@ -3,7 +3,6 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.app.container.interfaces import INameChooser
-import pdb
 
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, ILocalPortletAssignmentManager
 
@@ -295,7 +294,6 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
             subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
         except ComponentLookupError:
             writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
-            #pdb.set_trace() 
     
         # Set left navigation portlet
         left_navigation = navigation.Assignment(name=u"",
@@ -369,7 +367,6 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                                         
 
     writeDebug('Finished creating subsite')     
-    #pdb.set_trace() 
     return True
 
 
@@ -815,7 +812,6 @@ def onBlogCreation(blog, event):
     saveAssignment(latest_RightColumn, archiveCollectionPortlet)
 
     writeDebug('Finished creating blog')     
-    #pdb.set_trace() 
     return True
     
 # What we want to happen when we create a section
@@ -854,7 +850,6 @@ def onSectionCreation(section, event):
         section_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
     except ComponentLookupError:
         writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
-        #pdb.set_trace() 
 
     # Set left navigation portlet
     left_navigation = navigation.Assignment(name=u"",
@@ -878,7 +873,6 @@ def onSectionCreation(section, event):
         section['sample'].unmarkCreationFlag()
     
     writeDebug('Finished creating section')     
-    #pdb.set_trace() 
     
     return True
 
