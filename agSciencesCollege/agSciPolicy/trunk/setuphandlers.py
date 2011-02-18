@@ -21,7 +21,6 @@ from zLOG import LOG, INFO
 import os.path
 import string
 import random
-import pdb
 
 random.seed()
 
@@ -231,7 +230,6 @@ def addExtensionToMimeType(registry, extension, mimetype, name=None, icon_path=N
 
     if not registry.lookup(mimetype):
         glob = '*.%s' % extension
-        #pdb.set_trace()
         registry.manage_addMimeType(name, [mimetype], [extension], icon_path, binary=0, globs=[glob])     
     else:
         for myMime in registry.lookup(mimetype):
@@ -308,7 +306,6 @@ def configureMimeTypes(context):
     for (extension, mimetype) in oldListOfMimeTypes:
          removeExtensionFromMimeType(mimetypes_registry, extension, mimetype)
 
-    #pdb.set_trace()
     for (extension, mimetype, name, icon) in listOfMimeTypes:
          addExtensionToMimeType(mimetypes_registry, extension, mimetype, name, icon)
 
@@ -440,7 +437,6 @@ def installAdditionalProducts(context):
 
 def updateBaseProperties(context):
     site = context.getSite()
-    #pdb.set_trace()
     resetProperties = site.getParentNode().get('resetProperties', '').split()
     LOG('agSciPolicy.updateBaseProperties', INFO, "Resetting %s" % ", ".join(resetProperties))
     
