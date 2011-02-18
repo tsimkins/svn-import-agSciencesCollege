@@ -150,9 +150,11 @@ class Assignment(base.Assignment):
 
         return entries
 
-    
-    @request.cache(get_key=lambda func,self:self.data.feed_urls,
-                   get_request="self.request")
+    # Removing because this breaks full.pt in Plone 4
+    # Also, it seems to be caching logic ('mergeEntriesFromFeeds') 
+    # rather than data, so it's not really helping anything.
+    # @request.cache(get_key=lambda func,self:self.data.feed_urls, get_request="self.request")
+
     def entries(self):
         feeds=[self.getFeed(url) for url in self.data.feed_urls]
         feeds=[feed for feed in feeds if feed is not None]
