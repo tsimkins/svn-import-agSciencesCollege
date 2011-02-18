@@ -8,7 +8,6 @@ from zope.interface import implements
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire
-from pdb import set_trace
 from Products.CMFCore.interfaces import ISiteRoot
 
 # From http://plone.org/documentation/manual/plone-community-developer-documentation/serving/traversing
