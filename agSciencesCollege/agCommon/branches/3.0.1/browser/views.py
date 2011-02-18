@@ -5,8 +5,6 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner
 from DateTime import DateTime
 
-import pdb
-
 class IAgendaView(Interface):
     """
     agenda view interface

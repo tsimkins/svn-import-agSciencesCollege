@@ -14,8 +14,6 @@ from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 
-import pdb
-
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 
