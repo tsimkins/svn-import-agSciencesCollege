@@ -19,7 +19,6 @@ body {
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-    background-image: url("http://webtools.cas.psu.edu/tmp/caution.png");
     background-color: &dtml-backgroundColor;;
     margin: 0 auto;
     padding: 0 6px 6px 6px;
@@ -379,8 +378,9 @@ body {
     display: none;
 }
 
-/* RSS Image in right column */
+/* RSS Image in right and left column */
 
+#portal-column-one dl.portletfeedmixer a.rssImage,
 #portal-column-two dl.portletfeedmixer a.rssImage {
     display: block;
     text-align: left;
@@ -1393,7 +1393,12 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
 
 .actionMenu .actionMenuContent li a {
     padding: 0;
-    margin: 0.1em 0.25em
+    display: block !important;
+    margin: 0.1em 0.25em;
+}
+
+.actionMenu .actionMenuContent li a:hover {
+    background-color: &dtml-contentViewBorderColor; !important;
 }
 
 #portal-personaltools-wrapper .actionMenu.activated .actionMenuContent {
@@ -1407,15 +1412,13 @@ dl.portalMessage {
 }
 
 /* Fix the lineheight set to 2em */
-.icons-on #content .contenttype-document,
-.icons-on #content .contenttype-event,
-.icons-on #content .contenttype-folder,
-.icons-on #content .contenttype-link,
-.icons-on #content .contenttype-news-item,
-.icons-on #content .contenttype-plone-site,
-.icons-on #content .contenttype-topic,
-.icons-on #plone-contentmenu-factories .contenttype-file,
-.icons-on #plone-contentmenu-factories .contenttype-image {
+.icons-on #portal-column-one .contenttype-document,
+.icons-on #portal-column-one .contenttype-event,
+.icons-on #portal-column-one .contenttype-folder,
+.icons-on #portal-column-one .contenttype-link,
+.icons-on #portal-column-one .contenttype-news-item,
+.icons-on #portal-column-one .contenttype-plone-site,
+.icons-on #portal-column-one .contenttype-topic {
     line-height: 1.5em !important;
     display: block;
 }
@@ -1449,6 +1452,28 @@ q {
 .discussion {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+/* Remove Plone site icon from top nav title */
+
+.icons-on .portletNavigationTree .navTreeTitle .contenttype-plone-site {
+    background-image: none;
+    padding-left: 5px !important;
+}
+
+#portal-column-one .portletfeedmixer .portletItem {
+    padding: 5px;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+#portal-column-one .portletfeedmixer .even {
+    background-color: transparent;
+}
+
+#portal-column-one .portletfeedmixer .date {
+    font-weight: normal;
+    color: #333333;
 }
 
 /* YOUR CSS RULES STOP HERE */
