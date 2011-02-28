@@ -82,7 +82,7 @@
                             Item Title
                         </a>
                     </span>
-                    <span class="description">
+                    <span class="description" metal:define-macro="event_date">
                     <div>
                         <strong tal:condition="python: item_type == 'Event'">When:</strong>
                         <metal:shortdate define-macro="short_event_date">
