@@ -69,8 +69,10 @@
                                        item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
-                                       item_start item/start/ISO|item/StartDate|nothing;
-                                       item_end item/end/ISO|item/EndDate|nothing;
+                                       item_start item/start|item/StartDate|nothing;
+                                       item_end item/end|item/EndDate|nothing;
+                                       item_sametime python: item_start == item_end;
+                                       item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False; 
                                        item_has_leadimage item/hasContentLeadImage;
                                        item_object item/getObject;
                                        item_icon python:plone_view.getIcon(item);
