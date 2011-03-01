@@ -398,8 +398,10 @@ def configureScripts(context):
             packageScript = getattr(templates, src)            
             
             newScript.write(packageScript.read())
-            
-            site[target].ZCacheable_setManagerId('HTTPCache')
+
+            # Removing cache settings since magic png provides own cache headers.
+            # Not sure if this works with plone.app.caching anyways!
+            #site[target].ZCacheable_setManagerId('HTTPCache')
             
             LOG('agSciPolicy.configureScripts', INFO, "Added script %s" % target)
 
