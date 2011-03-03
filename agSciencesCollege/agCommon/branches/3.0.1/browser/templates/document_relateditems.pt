@@ -32,11 +32,11 @@
                         Related Item
                     </a>
                     <tal:file tal:condition="python:item_type == 'File'"
-                        tal:define="size item/get_size|nothing">
-
+                        tal:define="item_obj item/getObject;
+                                    size item_obj/get_size|nothing">
                         <span class="discreet">
                             &mdash;
-                            <span tal:replace="python:item.lookupMime(item.getContentType())">ContentType</span>,
+                            <span tal:replace="python: item_obj.lookupMime(item_obj.getContentType())">ContentType</span>,
                             <tal:size content="python:'%sKb' % (size / 1024)">0Kb</tal:size>
                         </span>
 
