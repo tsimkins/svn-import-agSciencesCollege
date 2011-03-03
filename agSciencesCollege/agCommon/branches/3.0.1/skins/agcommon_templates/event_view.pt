@@ -95,7 +95,8 @@
                         <td class="location"
                             tal:define="map_link context/map_link|nothing">
                             <tal:map condition="map_link">
-                                <a tal:attributes="href map_link">
+                                <a tal:attributes="href map_link;
+                                                   title string:Directions to ${here/location}">
                                     <metal:field use-macro="python:here.widget('location', mode='view')">
                                     Location
                                     </metal:field>
