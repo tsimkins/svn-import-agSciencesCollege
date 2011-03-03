@@ -36,8 +36,6 @@
         <tal:subfolder metal:define-macro="subfolders_macro"
                       define="folderContents python:here.getFolderContents({'portal_type' : ['Topic','Folder']})">
                       
-        <tal:noContents condition="not:folderContents" metal:use-macro="here/folder_listing/macros/listing" />
-
         <tal:hasContents condition="folderContents"
                          repeat="subfolder_brain folderContents">
          <div class="tileItem"
