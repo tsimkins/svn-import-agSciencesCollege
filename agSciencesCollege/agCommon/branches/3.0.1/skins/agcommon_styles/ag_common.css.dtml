@@ -1479,6 +1479,11 @@ q {
     color: #333333;
 }
 
+/* No underlining in content area */
+#content-core u {
+    text-decoration: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
