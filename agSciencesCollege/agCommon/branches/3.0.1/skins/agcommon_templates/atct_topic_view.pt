@@ -136,11 +136,6 @@
                 Please add them using the 'criteria' tab.
             </p>
 
-            <!-- Navigation -->
-            <tal:batch condition="standalone_view">
-                <div metal:use-macro="here/batch_macros/macros/navigation" />
-            </tal:batch>
-
         </tal:topiccontents>
         </metal:listingmacro>
     </metal:body>

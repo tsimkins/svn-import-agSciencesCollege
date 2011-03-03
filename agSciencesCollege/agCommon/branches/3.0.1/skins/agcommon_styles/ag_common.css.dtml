@@ -995,6 +995,9 @@ span.description {
     max-width: 250px;
 }
 
+.eventDetails table.listing a {
+    text-decoration: underline;
+}
 
 .template-fg_base_view_p3 textarea {
     width: 450px;
