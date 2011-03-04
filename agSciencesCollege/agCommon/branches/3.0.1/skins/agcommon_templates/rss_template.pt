@@ -83,7 +83,12 @@
     <tal:block tal:repeat="item obj_item/Subject">
       <dc:subject tal:content="item">Item</dc:subject>
     </tal:block>
-    <dc:date tal:content="python: has_effective and effective or modified">Published or last modified date if no published date</dc:date>
+    <tal:effectivedate condition="obj_item/effective_date|nothing">
+    	<dc:date tal:condition="python:obj_item_type == 'Event' or obj_item_type == 'TalkEvent'"
+      	         tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
+    	<dc:date tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'"
+       	         tal:content="python: obj_item['effective_date'].HTML4()">Effective date</dc:date>
+    </tal:effectivedate>
     <dc:type tal:content="obj_item/Type">Type</dc:type>
     <enclosure
         tal:condition="python: leadImage_size > 0"
