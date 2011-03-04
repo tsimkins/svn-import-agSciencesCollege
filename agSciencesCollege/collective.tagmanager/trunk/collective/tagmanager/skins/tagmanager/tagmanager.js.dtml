@@ -13,7 +13,7 @@
 
     function addButtonContainer()
     {
-        jq('<div id="tag_button_container"></div>').insertAfter(jq('#subject_existing_keywords'))
+        jq('<div id="tag_button_container"></div>').insertAfter(jq('#archetypes-fieldname-subject select#subject'))
     }
     
     function addTagCategory(label)
@@ -43,7 +43,7 @@
 
     function getSelectedTags(prefix)
     {
-        return jq("#subject_existing_keywords option:selected[value^='" + prefix + "']");
+        return jq("#archetypes-fieldname-subject select#subject option:selected[value^='" + prefix + "']");
     }
 
     function getPrefixTags(prefix)
@@ -54,7 +54,7 @@
         
         if (prefix == 'other')
         {
-            not_buttons =  jq("#subject_existing_keywords option[status!='button']");
+            not_buttons =  jq("#archetypes-fieldname-subject select#subject option[status!='button']");
             
             if (not_buttons.size() > 0)
             {
@@ -62,20 +62,20 @@
             }
             else
             {
-                return jq("#subject_existing_keywords option[tagprefix^='" + prefix + "']");
+                return jq("#archetypes-fieldname-subject select#subject option[tagprefix^='" + prefix + "']");
             }
         }
         else
         {
-            return jq("#subject_existing_keywords option[value^='" + prefix + "']");
+            return jq("#archetypes-fieldname-subject select#subject option[value^='" + prefix + "']");
         }
 
     }
 
     function hideTagMultiSelect()
     {
-        all = jq('#subject_existing_keywords option').size();
-        button = jq('#subject_existing_keywords option[status="button"]').size();
+        all = jq('#archetypes-fieldname-subject select#subject option').size();
+        button = jq('#archetypes-fieldname-subject select#subject option[status="button"]').size();
         
         if (button < all)
         {
@@ -83,7 +83,7 @@
             manageTags(categoryList, 'other', 'Other Tags');
         }
         
-        jq('#subject_existing_keywords').hide();
+        jq('#archetypes-fieldname-subject select#subject').hide();
     }
 
     function manageTags(list, prefix, label)
@@ -163,7 +163,7 @@
                 submit.click(
                     function () {
                         newTags = jq('#modal_tags input');
-                        existingTags = jq('#subject_existing_keywords option');
+                        existingTags = jq('#archetypes-fieldname-subject select#subject option');
                         for (var i=0; i<=newTags.size(); i++)
                         {
                             newTag = newTags.eq(i);
