@@ -12,19 +12,19 @@
                i18n:translate="text_search">Search Site</label>
 
         <div class="LSBox">
-        <label for="searchBox" class="hiddenStructure"
+        <label for="SearchableText" class="hiddenStructure"
                     i18n:translate="text_search">Search</label>
         <label for="searchSource" class="hiddenStructure"
                     i18n:translate="text_search">Search Source</label>
-        <input name="SearchableText"
+        <input id="SearchableText"
+               name="SearchableText"
                type="text"
                size="18"
                value=""
                title="Search..."
                accesskey="4"
                i18n:attributes="title title_search_site;"
-               tal:attributes="value request/form/SearchableText|nothing;
-                               id search_input_id"
+               tal:attributes="value request/form/SearchableText|nothing;"
                class="inputLabel"
                autocomplete="off"/>
 

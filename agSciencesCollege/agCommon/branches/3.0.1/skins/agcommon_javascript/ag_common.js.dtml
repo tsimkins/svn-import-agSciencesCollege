@@ -101,7 +101,7 @@ function searchOnSubmit()
 {
     var theSearchDropdown = document.getElementById("searchSource");            
     var theSearchForm = document.getElementById("GoogleSearch");
-    var theSearchBox = document.getElementById("searchBox");
+    var theSearchBox = document.getElementById("SearchableText");
     var theCustomSearchBox = document.getElementById("GoogleCustomSearch");
     var currentfolderCheckbox = document.getElementById("searchbox_currentfolder_only");
 
