@@ -22,7 +22,7 @@
        id="parent-fieldname-leadImage">
        <img tal:replace="structure tag" src="" alt="" />
     </a>
-    <p class="discreet">
+    <p class="discreet" tal:condition="view/caption">
         <metal:field use-macro="view/caption">
         Image Caption
         </metal:field>

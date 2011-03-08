@@ -28,17 +28,31 @@ class LeadImageViewlet(ViewletBase):
         
         leadimagefield = context.getField(IMAGE_FIELD_NAME)
         newsitemfield =  context.getField('image')
+        
+        leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
+        newsitemcaption = context.getField('imageCaption')
+
+        imageCaption = None
 
         if leadimagefield:
             field = leadimagefield
+            if leadimagecaption:
+                imageCaption = str(leadimagecaption.get(context)).strip()
+
         if newsitemfield:
             field = newsitemfield
+            if newsitemcaption:
+                imageCaption = str(newsitemcaption.get(context)).strip()
+        
+        if not imageCaption:
+            imageCaption = context.Title()
         
         if field is not None and \
           field.getFilename(context) is not None and \
             field.get_size(context) != 0:
                 scale = self.prefs.body_scale_name
-                return field.tag(context, scale=scale, css_class=css_class)
+                
+                return field.tag(context, scale=scale, css_class=css_class,alt=imageCaption,title=imageCaption)
         return ''
 
     def descTag(self, css_class='tileImage'):
@@ -47,7 +61,7 @@ class LeadImageViewlet(ViewletBase):
 
         # Use News Item image as Content Lead Image image, if it exists
         field = None
-        
+
         leadimagefield = context.getField(IMAGE_FIELD_NAME)
         newsitemfield =  context.getField('image')
 
@@ -65,11 +79,17 @@ class LeadImageViewlet(ViewletBase):
 
     def caption(self):
         context = aq_inner(self.context)
-        
+
+        leadimagefield = context.getField(IMAGE_FIELD_NAME)
+        newsitemfield =  context.getField('image')
+
+        leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
+        newsitemcaption = context.getField('imageCaption')
+
         # Use News Item caption as Content Lead Image caption, if it exists
-        if context.getField(IMAGE_FIELD_NAME):
+        if leadimagefield and leadimagecaption and leadimagecaption.get(context):
             return context.widget(IMAGE_CAPTION_FIELD_NAME, mode='view')
-        elif context.getField('imageCaption'):
+        elif newsitemfield and newsitemcaption and newsitemcaption.get(context):
             return context.widget('imageCaption', mode='view')
         else:
             return ''
