@@ -4,13 +4,24 @@
     <!-- some properties are set in setuphandlers -->  
     <property name="title">Content Lead Image Properties</property>
     <property name="allowed_types" type="lines" purge="False">
-        <element value="Document" />
-        <element value="Folder" />
+       <element value="Event"/>
+       <element value="Folder"/>
+       <element value="Link"/>
+       <element value="Document"/>
+       <element value="PhotoFolder"/>
+       <element value="HomePage"/>
+       <element value="File"/>
+       <element value="Food"/>
+       <element value="Topic"/>
     </property>
+    <property name="image_width" type="int">250</property>
+    <property name="image_height" type="int">313</property>
+    <property name="desc_scale_name" type="string">thumb</property>
+    <property name="body_scale_name" type="string">leadimage</property>
   </object>
  <object name="imaging_properties">
   <property name="allowed_sizes" type="lines" purge="False">
-   <element value="leadimage 81:67"/>
+   <element value="leadimage 250:313"/>
   </property>
  </object>
 </object>
