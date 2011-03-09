@@ -1484,6 +1484,13 @@ q {
     text-decoration: none;
 }
 
+/* overlaycontent font size is too large */
+
+.pb-ajax .overlaycontent {
+    font-size: 90% !important;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
