@@ -1,6 +1,12 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:cache="http://namespaces.zope.org/cache">
 
- <include file="profiles.zcml" />
+    <configure zcml:condition="installed Products.CMFCore">
+        <cache:ruleset ruleset="plone.resource" for="Products.CMFCore.FSDTMLMethod.FSDTMLMethod" />
+    </configure>
+
+    <include file="profiles.zcml" />
 
 </configure>
