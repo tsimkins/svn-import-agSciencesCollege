@@ -14,4 +14,6 @@
                           href view/link_metadata_image;
                           type view/link_mime_type" />
 
+    <meta property="fb:page_id" content="53789486293" />
+
 </tal:fbmetadata>
