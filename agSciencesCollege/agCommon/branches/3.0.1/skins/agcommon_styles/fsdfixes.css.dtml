@@ -12,13 +12,13 @@
 }
 
 .facultyStaffDirectory.personView .headshot {
-    margin:5em 0 0;
+    margin: 5em 0 0 !important;
 }
 
 .facultyStaffDirectory.personView .headshot img {
     margin-right: 0;
     float: right;
-    border: none;
+    border: none !important;
 }
 
 body.template-department_standard_view #portal-column-content .visualClear {
@@ -42,7 +42,7 @@ body.template-classification_standard_view #portal-column-content .classificatio
 }
 
 .facultyStaffDirectory .standardView .headshot img {
-    border: none;
+    border: none !important;
 }
 
 .facultyStaffDirectory .standardView .caption {
