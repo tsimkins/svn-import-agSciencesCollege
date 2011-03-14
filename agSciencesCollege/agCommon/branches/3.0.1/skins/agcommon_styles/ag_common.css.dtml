@@ -1490,6 +1490,11 @@ q {
     font-size: 90% !important;
 }
 
+/* table header background for plain table */
+
+table.plain th {
+    background-color: #F5F5F5;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
