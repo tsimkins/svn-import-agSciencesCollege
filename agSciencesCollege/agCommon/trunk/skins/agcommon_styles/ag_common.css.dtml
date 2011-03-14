@@ -1409,6 +1409,10 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
     background-color:transparent;
 }
 
+table.plain th {
+    background-color: #F5F5F5;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
