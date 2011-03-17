@@ -63,6 +63,7 @@
                                    item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                    item_creator item/Creator;
+                                   item_tags item/Subject|nothing;
                                    item_start item/start|item/StartDate|nothing;
                                    item_end item/end|item/EndDate|nothing;
                                    item_sametime python: item_start == item_end;
@@ -82,7 +83,19 @@
                             Item Title
                         </a>
                     </span>
-                    <span class="description" metal:define-macro="event_date">
+                    <tal:taglisting 
+                        define="show_tags context/show_tags|nothing;
+                                tag_prefix context/tag_prefix|nothing;
+                                tag_prefix python: tag_prefix and tag_prefix + '-' or ''"
+                        condition="python: item_tags and show_tags and not isAnon">
+                        <span class="description discreet">
+                            <strong>Tags:</strong>
+                            <tal:tags tal:repeat="tag item_tags" >
+                            <span tal:replace="python:tag.replace(tag_prefix, '')" /><tal:separator condition="not: repeat/tag/end">,</tal:separator>
+                            </tal:tags>
+                        </span>
+                    </tal:taglisting>
+                    <span tal:condition="python: item_type == 'Event'" class="description" metal:define-macro="event_date">
                     <div>
                         <strong tal:condition="python: item_type == 'Event'">When:</strong>
                         <metal:shortdate define-macro="short_event_date">
