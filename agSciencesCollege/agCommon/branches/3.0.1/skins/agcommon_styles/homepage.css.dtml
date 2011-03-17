@@ -134,6 +134,7 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn .portletItem a:hover {
 	color: &dtml-frontRightPortletLinkHoverColor;;
+	background-color: transparent;
 }
 
 #rightcolumn .portletItem ul {
