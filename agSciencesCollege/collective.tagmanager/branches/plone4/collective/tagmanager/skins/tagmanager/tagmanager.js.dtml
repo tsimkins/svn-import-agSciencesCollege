@@ -1,5 +1,23 @@
 /* tagmanager.js */
 
+    function isAdmin()
+    {
+        // Kind of hard to determine this from a JS perspective, but I'm basing
+        // it off the presence of the 'Site-Setup' in the toolbar.
+
+        site_setup = jq('#portal-personaltools dd li#personaltools-plone_setup')
+    
+        if (site_setup.size())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     function findColumn(index, size, columns)
     {
         for (var i=1; i<=columns; i++)
@@ -18,8 +36,13 @@
     
     function addTagCategory(label)
     {
-          jq('<h3>' + label + '</h3>').appendTo('#tag_button_container');
-          return jq('<ul class="tagmanager"></ul>').appendTo('#tag_button_container');
+        if (label == 'Administrative' && !isAdmin())
+        {
+            return false;
+        }
+
+        jq('<h3>' + label + '</h3>').appendTo('#tag_button_container');
+        return jq('<ul class="tagmanager"></ul>').appendTo('#tag_button_container');
     }
 
     function setSelectedCategories()
@@ -43,7 +66,7 @@
 
     function getSelectedTags(prefix)
     {
-        return jq("#archetypes-fieldname-subject select#subject option:selected[value^='" + prefix + "']");
+        return jq("#archetypes-fieldname-subject select#subject option:selected[tagprefix='" + prefix + "']");
     }
 
     function getPrefixTags(prefix)
@@ -74,20 +97,28 @@
 
     function hideTagMultiSelect()
     {
-        all = jq('#archetypes-fieldname-subject select#subject option').size();
-        button = jq('#archetypes-fieldname-subject select#subject option[status="button"]').size();
+        var all = jq('#archetypes-fieldname-subject select#subject option').size();
+        var button = jq('#archetypes-fieldname-subject select#subject option[status="button"]').size();
         
         if (button < all)
         {
-            categoryList = addTagCategory("Other");
+            var categoryList = addTagCategory("Other");
             manageTags(categoryList, 'other', 'Other Tags');
         }
         
         jq('#archetypes-fieldname-subject select#subject').hide();
+
+        if (!isAdmin())
+        {
+            jq('#archetypes-fieldname-subject > div > span').hide();
+            jq('#archetypes-fieldname-subject > div > br').hide();
+            jq('#archetypes-fieldname-subject textarea#subject_keywords').parent().hide();
+        }
     }
 
     function manageTags(list, prefix, label)
     {
+        
         prefixTags = getPrefixTags(prefix);
         
         if (prefixTags.size() == 0)
@@ -102,100 +133,96 @@
             }
         );
 
-        mainTagLink = jq('<li title="' + label + ' (' + prefix + '-*)">' + label + '</li>');
-        mainTagLink.attr('tagprefix', prefix)
-        mainTagLink.attr('category', label)
+        mainTagLink = jq('<li tagprefix="' + prefix + '"><input class="tagbutton" title="' + label + ' (' + prefix + 
+                 '-*)" type="button" rel="#overlay-' + prefix + '" value="' + label + '" /> </li>');
+
         mainTagLink.appendTo(list);
 
-        mainTagLink.click(
-            function() 
-            { 
-                tagprefix = jq(this).attr('tagprefix');
-                category = jq(this).attr('category');                
-                
-                columnCount = 4;
-                
-                columnArray = new Array()
+        // Set up tag checkboxes
 
-                modalTags = jq('<div id="modal_tags"><h1>' + category + ':</h1></div>');
-                
-                for (var i=0; i<columnCount; i++)
-                {
-                    columnArray.push(jq('<div class="tag_container"></div>'));
-                    columnArray[i].appendTo(modalTags);
-                }
+        overlayItem = jq('<div class="overlay" id="overlay-' + prefix + '">' + 
+                                '<div class="pb-ajax">' +
+                                    '<div class="overlaycontent" ></div>' +
+                                    '<div class="visualClear">&nbsp;</div>' + 
+                                '</div>' +
+                            '</div>');
+                            
+        tagCheckboxes = overlayItem.find('.overlaycontent');
+        
+        tagprefix = prefix;
+        category = label;                
+        
+        columnCount = 4;
+        
+        columnArray = new Array()
 
-                existingTags = getPrefixTags(tagprefix);                
+        tagCheckboxes.append('<h1>' + category + '</h1>');
+        
+        for (var i=0; i<columnCount; i++)
+        {
+            columnArray.push(jq('<div class="tag_container"></div>'));
+            columnArray[i].appendTo(tagCheckboxes);
+        }
 
-                for (var i=0; i<existingTags.size(); i++)
-                {
-                    tag = existingTags.eq(i);
+        existingTags = getPrefixTags(tagprefix);                
 
-                    tagColumn = findColumn(i, existingTags.size(), columnCount);
-                    tagContainer = columnArray[tagColumn];
-                    tagItem = jq('<div></div>');
-                    
-                    if (tagprefix == 'other')
-                    {
-                        tagLabelValue = tag.val();
-                    }
-                    else
-                    {
-                        tagLabelValue = tag.val().substring(tagprefix.length+1,tag.val().length)
-                    }
-                    
-                    tagLabel = jq('<span>' + tagLabelValue + '</span><br />');
-                    checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" />')
+        for (var i=0; i<existingTags.size(); i++)
+        {
+            tag = existingTags.eq(i);
 
-                    if (tag.attr("selected"))
-                    {
-                        checkbox.attr("checked", "checked");
-                    }
-
-                    checkbox.appendTo(tagContainer);
-                    tagLabel.appendTo(tagContainer);
-
-                }
-                
-                buttons = jq('<div id="modal_buttons"></div>');
-                jq('<input type="button" value="Cancel" class="simplemodal-close" /> ').appendTo(buttons);
-                submit = jq('<input type="button" value="Submit" class="simplemodal-close" />');
-                submit.click(
-                    function () {
-                        newTags = jq('#modal_tags input');
-                        existingTags = jq('#archetypes-fieldname-subject select#subject option');
-                        for (var i=0; i<=newTags.size(); i++)
-                        {
-                            newTag = newTags.eq(i);
-
-                            if (newTag.attr("type") == "checkbox")
-                            {
-                                for (var j=0; j<existingTags.size(); j++)
-                                {
-                                    oldTag = existingTags.eq(j);
-
-                                    if (oldTag.val() == newTag.val())
-                                    {
-                                        oldTag.attr("selected", newTag.attr("checked"));
-                                    }
-                                }
-                            }
-
-                        }
-                        setSelectedCategories();
-                    }
-
-                );
-                submit.appendTo(buttons);
-                buttons.appendTo(modalTags);
-                
-                modalTags.modal({minHeight:'500px', minWidth:'90%'}); 
-                return false;
+            tagColumn = findColumn(i, existingTags.size(), columnCount);
+            tagContainer = columnArray[tagColumn];
+            tagItem = jq('<div></div>');
+            
+            if (tagprefix == 'other')
+            {
+                tagLabelValue = tag.val();
             }
-        )
+            else
+            {
+                tagLabelValue = tag.val().substring(tagprefix.length+1,tag.val().length)
+            }
+            
+            tagLabel = jq('<span>' + tagLabelValue + '</span><br />');
+            checkbox = jq('<input name="tagmanager" type="checkbox" value="' + tag.val() + '" />')
+
+            if (tag.attr("selected"))
+            {
+                checkbox.attr("checked", "checked");
+            }
+
+            checkbox.appendTo(tagContainer);
+            tagLabel.appendTo(tagContainer);
+
+        }
+
+        buttons = jq('<div class="tag_buttons"><input class="close" type="button" value="Submit" /></div>');
+        buttons.appendTo(tagCheckboxes);
+                
+        overlayItem.appendTo(mainTagLink);
 
     }
 
+
+function setTags()
+{
+    jq('.tagmanager input[name="tagmanager"]').each(
+        function () {
+            tag_name = this.value
+            is_checked = this.checked
+            if (is_checked)
+            {
+                jq("#archetypes-fieldname-subject select#subject option[value='" + tag_name + "']").selected(true);
+            }
+            else
+            {
+                jq("#archetypes-fieldname-subject select#subject option[value='" + tag_name + "']").selected(false);
+            }
+        }
+    );
+
+    setSelectedCategories();
+}
 
 jq(document).ready(
     function () {
@@ -203,5 +230,16 @@ jq(document).ready(
         <dtml-var tagmanager_config>
         setSelectedCategories();
         hideTagMultiSelect()
+        jq("ul.tagmanager li input").overlay({
+            oneInstance: true,
+            mask: '#333333',
+            closeOnClick: false,
+            close: '.tag_buttons input.close',
+            onClose: function () {
+                setTags()
+            },
+
+        });
+        
     }
 )

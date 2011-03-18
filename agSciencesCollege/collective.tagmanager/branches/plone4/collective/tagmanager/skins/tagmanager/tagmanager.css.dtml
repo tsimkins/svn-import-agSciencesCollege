@@ -5,37 +5,8 @@
 
 /* YOUR CSS RULES START HERE */
 
-#simplemodal-overlay {
-    background-color: #333333;
-}
-
-#simplemodal-container {
-    background-color: #FFFFFF;
-    padding: 1em;
-    border: 2px solid #333366;
-	width: 90% !important;
-}
-
-div.simplemodal-wrap h1 {
-    border: none;
-    color: #000033;
-    margin-bottom: 0.5em;
-}
-
-div.simplemodal-wrap input[type="checkbox"] {
-    margin-left: 1em;
-}
-
-div.simplemodal-wrap input[type="button"] {
-    margin: 0.5em;
-}
-
-div.simplemodal-wrap #buttons {
-    margin: 1em 0.5em;
-}
-
-ul.tagmanager li {
-    width: 150px;
+ul.tagmanager li input[type="button"].tagbutton {
+    min-width: 150px;
     display: block;
     border: 1px solid &dtml-buttonBorder;;
     background-color: &dtml-buttonBackground;;
@@ -46,20 +17,21 @@ ul.tagmanager li {
 	text-align: left;
 	text-decoration: none;
 	cursor: pointer;
+	background-image: none;
 }
 
-ul.tagmanager li.hastags {
+ul.tagmanager li.hastags [type="button"].tagbutton {
     border: 1px solid &dtml-hasTagsButtonBorder;;
     background-color: &dtml-hasTagsButtonBackground;;
 	color: &dtml-hasTagsButtonText; !important;
 }
 
-ul.tagmanager li:hover {
+ul.tagmanager li input:hover {
     border: 1px solid &dtml-buttonHoverBorder;;
 	color: &dtml-buttonHoverText; !important;
 }
 
-ul.tagmanager li.hastags:hover {
+ul.tagmanager li.hastags [type="button"].tagbutton {
 	border: 1px solid &dtml-hasTagsButtonHoverBorder;;
 	color: &dtml-hasTagsButtonHoverText; !important;
 }
@@ -79,12 +51,19 @@ ul.tagmanager li {
 	margin-right: 4px;
 }
 
-
-#modal_buttons {
-	clear: left;
-	padding: 20px 0;
+.tagmanager .overlay {
+    width: 800px;
+    background: #FFFFFF;
+    border: 1px solid black;
 }
 
+.tag_buttons {
+    clear: both;
+}
+
+.tag_buttons input[type="button"] {
+    margin: 8px 8px 8px 0;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
