@@ -1413,6 +1413,15 @@ table.plain th {
     background-color: #F5F5F5;
 }
 
+table.plain {
+    font-size: 85%;
+}
+
+table.plain th, table.plain td {
+    padding: 0.25em 0.5em;
+}
+
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
