@@ -24,7 +24,8 @@
                                 item_wf_state       item/review_state|python: getInfoFor(item, 'review_state', '');
                                 item_wf_state_class python: 'state-' + normalizeString(item_wf_state);
                                 item_url            item/absolute_url;
-                                item_url            python:item_type in use_view_action and item_type != 'File' and item_url+'/view' or item_url">
+                                item_url            python:item_type in use_view_action and item_type != 'File' and item_url+'/view' or item_url;
+                                item_url            python:item_type == 'Link' and item.getRemoteUrl() or item_url">
                             <span tal:attributes="class item_type_class">
                                 
                                 <a href="" class=""
