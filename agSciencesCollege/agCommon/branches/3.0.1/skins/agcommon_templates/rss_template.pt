@@ -63,8 +63,6 @@
                     image_field  python:obj_item.getField('image', None);
                     image_size python:image_field and image_field.get_size(obj_item) or 0;
                     image_content_type python:image_field and image_field.getContentType(obj_item) or None;
-                    has_text exists:obj_item/aq_explicit/getText;
-                    text python:has_text and obj_item.getText() or '';
                     has_effective exists:obj_item/aq_explicit/effective_date;
                     effective python:has_effective and obj_item.effective().HTML4() or '';
                     modified python:obj_item.modified().HTML4();
@@ -74,9 +72,6 @@
     <link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
     <link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
     <description tal:content="obj_item/Description">Description</description>
-    <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"
-        tal:condition="has_text"
-        tal:content="structure python:'&lt;![CDATA[' + str(text) + ']]&gt;'">Content</content:encoded>
     <dc:publisher tal:content="obj_item/Publisher">Publisher</dc:publisher>
     <dc:creator tal:condition="creator" tal:define="author python:getMemberInfo(creator)" tal:content="python:author and author['fullname'] or creator">Creator</dc:creator>
     <dc:rights tal:content="obj_item/Rights">Rights</dc:rights>
