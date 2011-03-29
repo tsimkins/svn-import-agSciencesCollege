@@ -155,7 +155,7 @@ def publishSiteFolders(context):
             for theObject in childObjects:
             
                 try:
-                    if wftool.getInfoFor(theObject, 'review_state').lower() != 'published':
+                    if not wftool.getInfoFor(theObject, 'review_state').lower().count('publish'):
                         wftool.doActionFor(theObject, 'publish')
                         LOG('agSciPolicy.publishSiteFolders', INFO, "Published folder %s" % theObject.id)
                 except WorkflowException:
@@ -318,10 +318,17 @@ def configureFSD(context):
     except AttributeError:
         LOG('agSciPolicy.configureFSD', INFO, "FSD not installed.")
     else:
-        fsdtool.setPhoneNumberDescription('555-555-5555')
-        fsdtool.setPhoneNumberRegex('^\d{3}-\d{3}-\d{4}$')
-        fsdtool.setUseInternalPassword(False)
-        LOG('agSciPolicy.configureFSD', INFO, "Configured FSD")
+        if site.id == 'extension.psu.edu':
+            fsdtool.setPhoneNumberDescription('555-555-5555 x555')
+            fsdtool.setPhoneNumberRegex('^\d{3}-\d{3}-\d{4}(\s+x\d+){0,1}$')
+            fsdtool.setUseInternalPassword(False)
+            LOG('agSciPolicy.configureFSD', INFO, "Configured FSD")
+        else:
+            fsdtool.setPhoneNumberDescription('555-555-5555')
+            fsdtool.setPhoneNumberRegex('^\d{3}-\d{3}-\d{4}$')
+            fsdtool.setUseInternalPassword(False)
+            LOG('agSciPolicy.configureFSD', INFO, "Configured FSD")
+
 
 def configureScripts(context):
     # We're going to copy the contents of scripts in agcommon_templates
@@ -342,6 +349,14 @@ def configureScripts(context):
         { 
             'src' : 'getPortletHomepageImage',
             'target' : 'getPortletHomepageImage.js'
+        },
+        { 
+            'src' : 'getPanoramaHomepageImage',
+            'target' : 'getPanoramaHomepageImage.js'
+        },
+        { 
+            'src' : 'getSubsiteHomepageImage',
+            'target' : 'getSubsiteHomepageImage.js'
         },
         { 
             'src' : 'gradientBackground',
