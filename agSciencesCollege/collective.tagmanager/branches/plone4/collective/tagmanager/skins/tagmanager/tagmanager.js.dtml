@@ -228,8 +228,8 @@ jq(document).ready(
     function () {
         addButtonContainer();
         <dtml-var tagmanager_config>
+        hideTagMultiSelect();
         setSelectedCategories();
-        hideTagMultiSelect()
         jq("ul.tagmanager li input").overlay({
             oneInstance: true,
             mask: '#333333',
