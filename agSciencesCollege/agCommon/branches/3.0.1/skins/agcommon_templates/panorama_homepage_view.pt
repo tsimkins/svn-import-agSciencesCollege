@@ -9,13 +9,13 @@
 
 <metal:css fill-slot="style_slot">
     <!-- Panorama Homepage CSS -->
-        <style type="text/css" media="all" 
-               tal:content="string:@import url($portal_url/panorama_homepage.css);">
-        </style>
-    <!-- Portlet Homepage CSS -->
-        <style type="text/css" media="all" 
-               tal:content="string:@import url($portal_url/portlet_homepage.css);">
-        </style>
+    <style type="text/css" media="all" 
+            tal:content="string:@import url($portal_url/subsite.css);">
+    </style>
+    
+    <style type="text/css" media="all" 
+            tal:content="string:@import url($portal_url/panorama_homepage.css);">
+    </style>
 </metal:css>
 
 <metal:main fill-slot="content-core">
@@ -27,7 +27,7 @@
 
         <tal:bodytext tal:condition="context/getText|nothing" tal:content="structure context/getText" />
 
-        <script tal:condition="python:'background-images' in context.keys()" type="text/javascript" src="background-images/getPortletHomepageImage.js"></script>
+        <script tal:condition="python:'background-images' in context.keys()" type="text/javascript" src="background-images/getPanoramaHomepageImage.js"></script>
         
     </tal:main-macro>
 </metal:main>

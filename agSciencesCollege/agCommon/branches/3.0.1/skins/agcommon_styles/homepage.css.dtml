@@ -453,6 +453,10 @@ h1, .documentByLine, .documentActions {
     display: none;
 }
 
+#portal-column-two {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

@@ -1,0 +1,78 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+
+#content {
+    margin:0;
+    padding-top: 0 !important;
+}
+
+#portal-columns {
+    background-position: left top;
+    background-repeat: no-repeat;
+    /* The below will put a border below the panorama image without letting it 'bleed' into the content area. */
+    /* border-top: 1px solid #666666; */
+}
+
+#portal-column-two .portletHeader a {
+    color: &dtml-insideRightPortletHeaderTextColor;;
+}
+
+#portal-column-two .portlet {
+    border-bottom: none;
+}
+
+.documentContent dd a {
+    border-bottom: none;
+}
+
+#portal-column-content {
+    padding: 13px 20px 0 20px !important;
+}
+
+.icons-on #portal-column-content {
+    padding: 13px 10px 0 10px !important;
+}
+
+#addthis {
+    display: none;
+}
+
+.documentActions {
+    display: none;
+}
+
+#rightcolumn {
+    display: none;
+}
+
+#portal-column-two dl.linkIcon .portletItem li {
+    background-color: none;
+    padding: 1px 0;
+}
+
+#portal-breadcrumbs {
+    margin-left: 0;
+    padding-top: 2px;
+}
+
+#panorama-homepage-image {
+    background-repeat: no-repeat;
+    font-size: 0px;
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #808080;
+    margin-top: -23px;
+}
+
+body.template-atct_edit #panorama-homepage-image {
+    display: none;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */

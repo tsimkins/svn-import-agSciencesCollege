@@ -1,7 +1,16 @@
-<div id="image-header" 
+<div id="image-header" class="leadimage"
     tal:define="tag python: view.bodyTag() and view.showHeader"
     tal:condition="tag" 
     tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage_large)">
 <!-- -->
 </div>
 
+<tal:multipleImages
+    tal:define="tag python: view.showHeader and not view.bodyTag();
+                backgroundImages python:'background-images' in context.keys()"
+    tal:condition="python: backgroundImages and tag">
+    <div id="image-header">
+        <!-- -->
+    </div>
+    <script type="text/javascript" src="background-images/getSubsiteHomepageImage.js"></script>
+</tal:multipleImages>

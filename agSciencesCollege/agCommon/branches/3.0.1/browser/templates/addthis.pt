@@ -20,7 +20,8 @@
             },
             url_transforms: {
                 shorten: {
-                    default: 'bitly'
+                    twitter : 'bitly',
+                    facebook : 'bitly'
                 },
             },
             shorteners: {

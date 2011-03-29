@@ -168,20 +168,8 @@ def bodyBackground(context, request):
 # Otherwise, it defaults to center.
 
 def getHomepageImage(context):
-    backgrounds = []
-    backgroundAlignments = []
-    backgroundHeights = []
-    
-    for myImage in context.listFolderContents(contentFilter={"portal_type" : "Image"}):
-        backgrounds.append(myImage.absolute_url())
-    
-        if myImage.hasProperty("align"):
-            backgroundAlignments.append(myImage.align)
-        else:
-            backgroundAlignments.append("center")
-    
-        backgroundHeights.append(str(myImage.getHeight()))
-        
+
+    (backgrounds, backgroundAlignments, backgroundHeights) = getBackgroundImages(context, maxHeight=265)
     
     if not len(backgrounds):
         backgrounds = ['homepage_placeholder.jpg']
@@ -216,7 +204,67 @@ def getHomepageImage(context):
     
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
 
-def getPortletHomepageImage(context):
+def getPortletHomepageImage(context, homepage_type="portlet"):
+    return getPanoramaHomepageImage(context, homepage_type="portlet")
+
+def getPanoramaHomepageImage(context, homepage_type="panorama"):
+
+    (backgrounds, backgroundAlignments, backgroundHeights) = getBackgroundImages(context, maxHeight=250)
+    
+    if len(backgrounds):
+    
+        return """
+    portalColumns = jq("body.template-%(homepage_type)s_homepage_view #portal-columns");
+    visualPortalWrapper = jq("body.template-%(homepage_type)s_homepage_view #visual-portal-wrapper");
+    breadcrumbs = jq("body.template-%(homepage_type)s_homepage_view #portal-breadcrumbs");
+    
+    if (portalColumns && visualPortalWrapper)
+    {
+        var backgrounds = "%(backgrounds)s".split(";");
+        var backgroundAlignments = "%(alignments)s".split(";");
+        var backgroundHeights = "%(heights)s".split(";");
+        var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+
+        var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
+        
+        homepageImage.insertBefore(portalColumns);
+        
+        homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
+        homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
+        homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
+
+        if (breadcrumbs)
+        {
+            breadcrumbs.detach();
+            breadcrumbs.insertBefore(homepageImage);
+        }
+    }
+    
+    """ % {'homepage_type' : homepage_type, 'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
+
+def getSubsiteHomepageImage(context):
+
+    (backgrounds, backgroundAlignments, backgroundHeights) = getBackgroundImages(context, maxHeight=188)
+    
+    if len(backgrounds):
+    
+        return """
+        var homepageImage = jq('#image-header');        
+
+        var backgrounds = "%(backgrounds)s".split(";");
+        var backgroundAlignments = "%(alignments)s".split(";");
+        var backgroundHeights = "%(heights)s".split(";");
+        var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+        
+        homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
+        homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
+        homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
+
+   
+    """ % {'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
+
+
+def getBackgroundImages(context, maxHeight=265):
     backgrounds = []
     backgroundAlignments = []
     backgroundHeights = []
@@ -228,45 +276,15 @@ def getPortletHomepageImage(context):
             backgroundAlignments.append(myImage.align)
         else:
             backgroundAlignments.append("left")
-    
-        backgroundHeights.append(str(myImage.getHeight()))
         
+        imageHeight = int(myImage.getHeight())
+        
+        if imageHeight > maxHeight:
+            imageHeight = maxHeight
     
-    if len(backgrounds):
-    
-        return """
-    var bodyClass = document.body.className;
-    
-    if(bodyClass.match(/template-portlet_homepage_view/))
-    {
-        portalColumns = document.getElementById("portal-columns");
-        visualPortalWrapper = document.getElementById("visual-portal-wrapper");
-
-        if (portalColumns && visualPortalWrapper)
-        {
-            var backgrounds = "%s".split(";");
-            var backgroundAlignments = "%s".split(";");
-            var backgroundHeights = "%s".split(";");
-            var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-
-            var homepageImage = document.createElement("div");
-            homepageImage.id="portet-homepage-image";
-            homepageImage.innerHTML = "&nbsp;";
-            
-            visualPortalWrapper.insertBefore(homepageImage, portalColumns);
-            
-            homepageImage.style.backgroundImage = "url(" + backgrounds[randomnumber] + ")";
-            homepageImage.style.backgroundPosition = backgroundAlignments[randomnumber] + " top";
-            homepageImage.style.backgroundRepeat = "no-repeat";
-            homepageImage.style.paddingTop = backgroundHeights[randomnumber] + 'px';
-            homepageImage.style.fontSize = '0px';
-            homepageImage.style.borderWidth = '0 1px';
-            homepageImage.style.borderStyle = 'solid';
-            homepageImage.style.borderColor = '#808080';
-        }
-    }
-    
-    """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
+        backgroundHeights.append(str(imageHeight))
+        
+    return (backgrounds, backgroundAlignments, backgroundHeights)
 
 def makePage(context):
     print context.portal_type
@@ -455,3 +473,45 @@ def sortFolder(context):
     for obj in folderContents:
         obj.reindexObject()
         
+
+
+# Replace from_tag with new_tag
+def replaceTag(context, from_tag, to_tag):
+
+    catalog = getToolByName(context, 'portal_catalog')
+    results = catalog.searchResults({'Subject' : from_tag})
+    items = [x.getObject() for x in catalog.searchResults({'Subject' : from_tag})]
+    
+    for item in items:
+    
+        tags = list(item.Subject())
+       
+        while tags.count(from_tag):
+            tags.remove(from_tag)
+
+        if not tags.count(to_tag):
+            tags.append(to_tag)
+    
+        item.setSubject(tags)
+        item.reindexObject()
+            
+    topics = [x.getObject() for x in catalog.searchResults({'portal_type' : 'Topic'})]
+    
+    for t in topics:
+        for o in t.objectIds():
+            if o.count('Subject'):
+                
+                tags = list(t[o].value)
+
+                if from_tag in tags:
+                    
+                    while tags.count(from_tag):
+                        tags.remove(from_tag)
+            
+                    if not tags.count(to_tag):
+                        tags.append(to_tag)
+                        
+                    t[o].setValue(tuple(tags))
+                    t[o].reindexObject()
+    
+

@@ -6,10 +6,17 @@
 /* YOUR CSS RULES START HERE */
 
 #image-header {
+	margin: -25px 0 15px 0;
+}
+
+#image-header.leadimage {
     background-repeat: no-repeat;
     background-position: top left;
-	margin: -25px 0 15px 0;
 	height: 145px;
+}
+
+body.template-atct_edit #image-header {
+    display: none;
 }
 
 #portal-breadcrumbs {

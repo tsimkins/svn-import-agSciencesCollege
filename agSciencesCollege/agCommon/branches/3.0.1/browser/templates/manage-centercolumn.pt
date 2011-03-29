@@ -21,7 +21,7 @@
 </div>
 
 <div metal:fill-slot="main"
-    tal:define="homepage_views python: ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'];
+    tal:define="homepage_views python: ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'];
                 isHomepage python: homepage_views.count(context.getLayout()) > 0">
   <h2 class="documentFirstHeading">Manage Center Column Portlets</h2>
   <span tal:condition="python: isHomepage" tal:replace="structure provider:agcommon.centercolumn" />

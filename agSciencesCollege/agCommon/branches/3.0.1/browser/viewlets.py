@@ -20,7 +20,7 @@ from zope.viewlet.interfaces import IViewlet
 from Products.Five.browser import BrowserView
 
 def isHomePage(context):
-    homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
+    homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'] 
 
     try:
         layout = context.getLayout()

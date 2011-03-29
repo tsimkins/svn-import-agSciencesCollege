@@ -8,11 +8,6 @@
 
 /* For Extension front page */
 
-#content {
-    margin:0;
-    padding-top: 0 !important;
-}
-
 #portlets-above {
     display: block;
 }
@@ -37,60 +32,13 @@
     list-style-image: none;
 }
 
-#portal-columns {
-    background-position: left top;
-    background-repeat: no-repeat;
-}
-
-#portal-column-two .portletHeader a {
-    color: &dtml-insideRightPortletHeaderTextColor;;
-}
-
-#portal-column-two .portlet {
-    border-bottom: none;
-}
-
-.documentContent dd a {
-    border-bottom: none;
-}
-
-#portal-column-content {
-    padding: 13px 20px 0 20px !important;
-}
-
-.icons-on #portal-column-content {
-    padding: 13px 10px 0 10px !important;
-}
-
-#addthis {
-    display: none;
-}
-
-.documentActions {
-    display: none;
-}
-
-#centercolumn {
-    display: none;
-}
-
-#rightcolumn {
-    display: none;
-}
-
-#portal-column-two dl.linkIcon .portletItem li {
-    background-color: none;
-    padding: 1px 0;
-}
-
 .icons-on #portlets-above .portletItem a {
     padding-left: 18px !important;
     padding-top: 0.2em !important;
 }
 
-#portal-breadcrumbs {
-    margin-left: 0;
-    padding-top: 0;
+#centercolumn {
+    display: none;
 }
 
 /* YOUR CSS RULES STOP HERE */
