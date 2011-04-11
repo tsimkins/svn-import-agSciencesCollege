@@ -28,13 +28,13 @@ def sync(myContext):
     
         title = item.get('title', None)
         summary = item.get('summary_detail', {}).get('value')
-        link = item.get('links', [])[0].get('href', None).replace('#rss69', '')
+        link = item.get('links', [])[0].get('href', None).split('#')[0]
         dateArray = list(item.get('updated_parsed')[0:7])
         dateArray[3] = int(item.get('updated').split(' ')[4].split(':')[0])
     
         date = datetime(*dateArray)
         dateStamp = str(date)
-        id = str(link.split("/")[4])
+        id = str(link.split("/")[4]).split('#')[0]
     
 
         if not hasattr(myContext, id):
@@ -78,7 +78,11 @@ def getImage(url):
     myImg = mySoup.findAll(id="article_image")
     
     if myImg:
-        imgSrc = "http://live.psu.edu%s"%  myImg[0]['src']
+    
+        if myImg[0]['src'].startswith('http'):
+            imgSrc = myImg[0]['src']
+        else:
+            imgSrc = "http://live.psu.edu%s"%  myImg[0]['src']
         
         try:
             imgFile = urllib2.urlopen(imgSrc)
