@@ -77,7 +77,8 @@
             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-            templateId template/getId;">
+            templateId template/getId;
+            limit_display python:99999;">
 
         <div metal:use-macro="here/folder_listing/macros/text-field-view" />
 
