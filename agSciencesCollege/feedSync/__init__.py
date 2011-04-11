@@ -88,11 +88,24 @@ def getImage(url):
             imgData = imgFile.read()            
             return imgData
 
-def setImage(theArticle):
-    url = theArticle.getRemoteUrl()
+def downloadImage(url):
+    try:
+        imgFile = urllib2.urlopen(url)
+    except HTTPError:
+        return None
+    else:
+        imgData = imgFile.read()            
+        return imgData
 
-    # Grab article image and set it as contentleadimage            
-    theImage = getImage(url)
+def setImage(theArticle, image_url=None):
+    if image_url:
+        url = image_url
+        # Grab article image and set it as contentleadimage            
+        theImage = downloadImage(url)
+    else:
+        url = theArticle.getRemoteUrl()
+        # Grab article image and set it as contentleadimage            
+        theImage = getImage(url)
 
     if theImage:
         theArticle.getField(IMAGE_FIELD_NAME).set(theArticle, theImage)
