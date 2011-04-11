@@ -7,6 +7,6 @@
     <property name="enable_addthis" type="boolean">True</property>
     <property name="enable_fblike" type="boolean">True</property>
     <property name="site_rss_title" type="string">Penn State College of Agricultural Sciences News</property>
-    <property name="site_rss_link" type="string">http://live.psu.edu/wirerss/69</property>
+    <property name="site_rss_link" type="string">http://live.psu.edu/tagrss/Agricultural_Sciences</property>
   </object>
 </object>
