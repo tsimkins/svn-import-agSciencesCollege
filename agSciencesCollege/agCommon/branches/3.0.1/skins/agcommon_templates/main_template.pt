@@ -72,7 +72,11 @@
                     sl python:plone_view.have_portlets('plone.leftcolumn', view);
                     sr python:plone_view.have_portlets('plone.rightcolumn', view);
                     body_class python:plone_view.bodyClass(template, view);
+                    two_column here/two_column|nothing;
+                    two_column python:two_column and 'two-column' or '';
                     custom_class context/custom_class|nothing;
+                    custom_class python: custom_class and custom_class or '';
+                    custom_class python: ' '.join([two_column, custom_class]).strip();
                     custom_class python:custom_class and ' '.join(['custom-%s' % str(x) for x in custom_class.split()]) or ''"
         tal:attributes="class string:${body_class} ${custom_class};
                         dir python: isRTL and 'rtl' or 'ltr'">
