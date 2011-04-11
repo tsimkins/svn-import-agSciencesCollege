@@ -8,7 +8,7 @@ from urllib2 import HTTPError
 from BeautifulSoup import BeautifulSoup 
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
 
-url = 'http://live.psu.edu/wirerss/69'
+url = 'http://live.psu.edu/tagrss/Agricultural_Sciences'
 
 def sync(myContext):
     # Be an admin
