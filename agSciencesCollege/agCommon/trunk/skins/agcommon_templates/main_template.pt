@@ -82,7 +82,7 @@
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
     <link rel="alternate" type="application/rss+xml" 
-		title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/wirerss/69" />
+		title="Penn State College of Agricultural Sciences News" href="http://live.psu.edu/tagrss/Agricultural_Sciences" />
 
     <!-- Disable IE6 image toolbar -->
     <meta http-equiv="imagetoolbar" content="no" />
