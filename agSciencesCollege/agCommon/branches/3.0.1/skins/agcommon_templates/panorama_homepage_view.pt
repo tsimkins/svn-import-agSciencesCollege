@@ -18,17 +18,38 @@
     </style>
 </metal:css>
 
-<metal:main fill-slot="content-core">
-    <tal:main-macro metal:define-macro="content-core"
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
            tal:define="kssClassesView context/@@kss_field_decorator_view;
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                        templateId template/getId;
                        text here/getText;">
 
-        <tal:bodytext tal:condition="context/getText|nothing" tal:content="structure context/getText" />
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription">
+            <metal:field use-macro="python:here.widget('description', mode='view')">
+            Description
+            </metal:field>
+        </p>
+
+        <metal:field use-macro="python:here.widget('text', mode='view')">
+        Body text
+        </metal:field>
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <script tal:condition="python:'background-images' in context.keys()" type="text/javascript" src="background-images/getPanoramaHomepageImage.js"></script>
-        
+
+
     </tal:main-macro>
 </metal:main>
 
