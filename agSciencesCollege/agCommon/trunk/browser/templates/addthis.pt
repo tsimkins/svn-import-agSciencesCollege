@@ -1,9 +1,10 @@
 <tal:addthis
-	tal:define="hide_addthis context/hide_addthis|nothing;
-			isAnon view/anonymous">
+	tal:define="hide_addthis view/hide_addthis;
+	            isHomePage view/isHomePage;
+                isAnon view/anonymous">
 
 	<div id="addthis"
-		tal:condition="python: not hide_addthis and isAnon">
+		tal:condition="python: not hide_addthis and not isHomePage and isAnon">
                 <p>Share</p>
 		<script type="text/javascript">
 		// From http://www.addthis.com/forum/viewtopic.php?f=8&amp;t=14972

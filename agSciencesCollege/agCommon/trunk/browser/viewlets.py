@@ -21,7 +21,20 @@ from zope.viewlet.interfaces import IViewlet
 
 from Products.Five.browser import BrowserView
 
-homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view'] 
+homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'] 
+
+def isHomePage(context):
+
+    try:
+        layout = context.getLayout()
+    except:
+        layout = None
+        
+    if homepage_views.count(layout) > 0:
+        return True
+    else:
+        return False
+        
 
 class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
@@ -137,6 +150,13 @@ class AddThisViewlet(ViewletBase):
         syntool = getToolByName(self.context, 'portal_syndication')
         self.isSyndicationAllowed = syntool.isSyndicationAllowed(self.context)
         self.anonymous = self.portal_state.anonymous()
+
+        self.isHomePage = isHomePage(self.context)
+
+        try:
+            self.hide_addthis = aq_acquire(self.context, 'hide_addthis')
+        except AttributeError:
+            self.hide_addthis = False
 
 
 class FBLikeViewlet(ViewletBase):   
