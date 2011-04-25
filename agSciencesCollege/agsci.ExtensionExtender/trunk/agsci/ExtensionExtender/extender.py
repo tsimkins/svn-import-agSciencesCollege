@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -9,6 +9,9 @@ from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire
 from Products.CMFCore.interfaces import ISiteRoot
+
+
+class _ExtensionLinesField(ExtensionField, LinesField): pass
 
 # From http://plone.org/documentation/manual/plone-community-developer-documentation/serving/traversing
 
@@ -118,6 +121,16 @@ class FSDExtensionExtender(object):
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this item is associated with",
+            ),
+        ),
+        
+        _ExtensionLinesField(
+            "extension_areas",
+                schemata="Professional Information",
+                required=False,
+                widget = LinesWidget(
+                    label=u"Areas of Expertise",
+                    description=u"One per line",
             ),
         ),
 
