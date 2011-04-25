@@ -55,6 +55,14 @@
                     <span tal:replace="context/faxNumber"/>
                 </div>
 
+                <tal:areas define="areas context/extension_areas|nothing" condition="areas">
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li tal:repeat="area areas" 
+                        tal:content="area" />
+                </ul>  
+                </tal:areas>
+                
                 <div tal:condition="context/getWebsites" class="websites">
                     <h3><span i18n:translate="FacultyStaffDirectory_label_websites">Websites</span>:</h3>
                     <ul>
@@ -154,6 +162,32 @@
             </div>
 
         </div>
+        <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
+                              member context/@@plone_portal_state/member;
+                              extension_counties context/extension_counties|nothing;
+                              extension_programs context/extension_programs|nothing;"                            
+                              condition="python: (not isAnon) and (extension_counties or extension_programs) and (member.has_role('Manager') or member.has_role('Personnel Manager'))">
+            <div>
+                <h2>Person Metadata</h2>
+                <tal:areas condition="extension_counties">
+                    <h3>Counties</h3>
+                    <ul>
+                        <li tal:repeat="x extension_counties" 
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+    
+                <tal:areas condition="extension_programs">
+                    <h3>Programs</h3>
+                    <ul>
+                        <li tal:repeat="x extension_programs" 
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+
+            </div>
+        </tal:metadata>
+                
     </metal:fill>
   
   </body>
