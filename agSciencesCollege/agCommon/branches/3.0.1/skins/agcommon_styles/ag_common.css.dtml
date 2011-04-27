@@ -1455,6 +1455,7 @@ q {
 .discussion {
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 1.5em;
 }
 
 /* Remove Plone site icon from top nav title */
@@ -1502,6 +1503,17 @@ table.plain {
 
 table.plain th, table.plain td {
     padding: 0.25em 0.5em;
+}
+
+/* Disclaimer for factsheets */
+
+#disclaimer {
+   font-size: 0.88em;
+   padding-top: 5px;
+   margin-top: 5px;
+   border-width: 1px 0 0 0;
+   border-style: solid;
+   border-color: #CCCCCC; 
 }
 
 /* YOUR CSS RULES STOP HERE */
