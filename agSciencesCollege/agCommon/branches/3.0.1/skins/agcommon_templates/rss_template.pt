@@ -78,12 +78,14 @@
     <tal:block tal:repeat="item obj_item/Subject">
       <dc:subject tal:content="item">Item</dc:subject>
     </tal:block>
-    <tal:effectivedate condition="obj_item/effective_date|nothing">
-    	<dc:date tal:condition="python:obj_item_type == 'Event' or obj_item_type == 'TalkEvent'"
-      	         tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
-    	<dc:date tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'"
-       	         tal:content="python: obj_item.effective_date.HTML4()">Effective date</dc:date>
-    </tal:effectivedate>
+    <tal:isEvent tal:condition="python:obj_item_type == 'Event' or obj_item_type == 'TalkEvent'">
+    	<dc:date tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
+    </tal:isEvent>
+    <tal:notEvent tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'">
+        <tal:effectivedate condition="obj_item/effective_date|nothing">
+        	<dc:date tal:content="python: obj_item.effective_date.HTML4()">Effective date</dc:date>
+        </tal:effectivedate>
+    </tal:notEvent>
     <dc:type tal:content="obj_item/Type">Type</dc:type>
     <enclosure
         tal:condition="python: leadImage_size > 0"
