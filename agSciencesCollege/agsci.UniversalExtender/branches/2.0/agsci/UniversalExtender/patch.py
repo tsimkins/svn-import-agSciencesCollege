@@ -26,3 +26,14 @@ def toLocalizedTime(self, time, long_format=None, time_only=None):
         theDate = theDate.replace('0', '', 1)
 
     return theDate.replace(' 0', ' ')
+    
+def collection_url(self):
+    collection = self.collection()
+    if collection is None:
+        return None
+    else:
+        parent = collection.getParentNode()
+        if collection.id == parent.getDefaultPage():
+            return parent.absolute_url()
+        else:
+            return collection.absolute_url()

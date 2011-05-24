@@ -136,5 +136,14 @@
         replacement=".patch.toLocalizedTime"
         original="toLocalizedTime"
         />
+        
+    <!-- Monkey Patch collection portlet to return parent URL if collection is default page -->
+
+    <monkey:patch
+        description="This makes the collection portlet return the parent URL if collection is default page"
+        class="plone.portlet.collection.collection.Renderer"
+        replacement=".patch.collection_url"
+        original="collection_url"
+        />
     
 </configure>
