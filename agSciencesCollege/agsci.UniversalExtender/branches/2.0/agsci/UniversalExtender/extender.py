@@ -9,6 +9,7 @@ from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
+from Products.CMFCore.utils import getToolByName
 
 
 class _ExtensionStringField(ExtensionField, StringField): pass
@@ -88,10 +89,15 @@ class FSDPersonExtender(object):
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
 
-        # Restrict the image field to Personnel Managers
-        image_field = schema['image'].copy()
-        image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
-        schema['image'] = image_field
+        # Check for "allow_person_image" in site_properties.  If it's not there and checked, remove the image.
+        ptool = getToolByName(self.context, 'portal_properties')
+        props = ptool.get("site_properties")
+
+        if props and not props.getProperty('allow_person_image'):
+            # Restrict the image field to Personnel Managers
+            image_field = schema['image'].copy()
+            image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
+            schema['image'] = image_field
 
         return schema
 
