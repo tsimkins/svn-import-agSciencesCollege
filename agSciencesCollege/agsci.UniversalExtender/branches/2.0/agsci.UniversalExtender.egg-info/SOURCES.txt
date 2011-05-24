@@ -14,6 +14,7 @@ agsci/UniversalExtender/__init__.py
 agsci/UniversalExtender/configure.zcml
 agsci/UniversalExtender/extender.py
 agsci/UniversalExtender/interfaces.py
+agsci/UniversalExtender/patch.py
 agsci/UniversalExtender/version.txt
 agsci/UniversalExtender/Extensions/Install.py
 agsci/UniversalExtender/locales/en/LC_MESSAGES/plonelocales.mo
