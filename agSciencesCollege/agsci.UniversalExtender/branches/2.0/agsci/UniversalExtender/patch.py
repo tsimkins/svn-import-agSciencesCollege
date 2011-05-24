@@ -22,10 +22,14 @@ def toLocalizedTime(self, time, long_format=None, time_only=None):
     util = getToolByName(context, 'translation_service')
     theDate = util.ulocalized_time(time, long_format, time_only, context=context,
                                 domain='plonelocales', request=self.request)
-    if theDate.startswith('0'):
-        theDate = theDate.replace('0', '', 1)
-
-    return theDate.replace(' 0', ' ')
+                                
+    if theDate:
+        if theDate.startswith('0'):
+            theDate = theDate.replace('0', '', 1)
+    
+        return theDate.replace(' 0', ' ')
+    else:
+        return None
     
 def collection_url(self):
     collection = self.collection()
