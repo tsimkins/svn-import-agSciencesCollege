@@ -104,23 +104,21 @@ class FSDExtensionExtender(object):
     fields = [
         _CountiesField(
             "extension_counties",
-                schemata="categorization",
+                schemata="Professional Information",
                 required=False,
-                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
                 widget = InAndOutWidget(
                 label=u"Counties",
-                description=u"Counties that this item is associated with",
+                description=u"Counties that this person is associated with",
             ),
         ),
 
         _ProgramsField(
             "extension_programs",
-                schemata="categorization",
+                schemata="Professional Information",
                 required=False,
-                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
                 widget = InAndOutWidget(
                 label=u"Programs",
-                description=u"Programs that this item is associated with",
+                description=u"Programs that this person is associated with",
             ),
         ),
         
