@@ -1529,8 +1529,9 @@ body.template-agenda_view #content .agendaLinks ul li {
     list-style-image: none;
 }    
 
-body.template-agenda_view #document-toc {
-    width: 16%;
+body.template-agenda_view #document-toc,
+body.template-agenda_view #portal-column-content.sr #document-toc {
+    width: 18%;
 }
 
 body.template-agenda_view #document-toc h3 {
