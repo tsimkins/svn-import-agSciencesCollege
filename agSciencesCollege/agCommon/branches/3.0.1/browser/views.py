@@ -47,12 +47,15 @@ class AgendaView(BrowserView):
 
         try:
             if aq_acquire(self.context, 'agenda_view_day'):
-                show_days = True
+                self.show_days = True
         except AttributeError:
-            show_days = False
+            self.show_days = False
             
         events = []
         folder_path = ""
+        
+        self.here_url = self.context.absolute_url()
+        
         if self.context.portal_type == 'Topic':
             try:
                 events = self.context.queryCatalog()
@@ -64,6 +67,12 @@ class AgendaView(BrowserView):
                 parent_physical_path.pop()
                 folder_path = '/'.join(parent_physical_path)
                 pass
+            
+            # If we're a collection (Topic), we may be a default page.  Figure out
+            # if we're the default page, and if so, set the here_url to our parent.
+            parent = self.context.getParentNode()
+            if self.context.id == parent.getDefaultPage():
+                self.here_url = parent.absolute_url()
             
         if not events:
             catalog = getToolByName(self.context, 'portal_catalog')
@@ -83,10 +92,12 @@ class AgendaView(BrowserView):
                 day = event_start.strftime('%Y-%m-%d')
                 
                 if not months.get(month):
-                    months[month] = {'label' : event_start.strftime(month_format), 'items' : []}
+                    months[month] = {'id' : event_start.strftime(month_format).lower().replace(' ', '-'), 
+                                     'label' : event_start.strftime(month_format), 'items' : []}
     
                 if not days.get(day):
-                    days[day] = {'label' : event_start.strftime(day_format), 'items' : []}
+                    days[day] = {'id' : event_start.strftime(day_format).lower().replace(' ', '-'),
+                                 'label' : event_start.strftime(day_format), 'items' : []}
                                     
                 months[month]['items'].append(e)
                 days[day]['items'].append(e)                
@@ -97,7 +108,7 @@ class AgendaView(BrowserView):
         for d in sorted(days.keys()):
             self.day_agenda.append(days[d])
             
-        if show_days:
+        if self.show_days:
             self.month_agenda = self.day_agenda
             
 
