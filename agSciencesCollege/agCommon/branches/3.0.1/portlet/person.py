@@ -9,7 +9,7 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.cache import render_cachekey
 
-from Acquisition import aq_inner
+from Acquisition import aq_acquire, aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
@@ -29,7 +29,7 @@ class IPerson(IPortletDataProvider):
 
     people = schema.TextLine(
         title=_(u"Person id(s)"),
-        description=_(u"The id(s) of the person to show.  If blank, defaults to the author for News Items."),
+        description=_(u"The id(s) of the person to show.  If blank, defaults to the author for News Items.  Set a ZMI 'lines' property of 'person_portlet_types' for additional portlet types."),
         required=False)
 
     show_address = schema.Bool(
@@ -95,9 +95,15 @@ class Renderer(base.Renderer):
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
 
+        try:
+            person_portlet_types = aq_acquire(self.context, 'person_portlet_types')
+        except AttributeError:
+            person_portlet_types = ['News Item']
+            
+
         if self.data.people:
             peopleList = self.data.people.replace(' ', '').split(",")
-        elif self.context.portal_type in ['News Item']:
+        elif self.context.portal_type in person_portlet_types:
             peopleList = list(self.context.listCreators())
         else:
             peopleList = None
