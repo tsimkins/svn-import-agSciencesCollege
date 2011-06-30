@@ -41,3 +41,30 @@ def collection_url(self):
             return parent.absolute_url()
         else:
             return collection.absolute_url()
+
+def _standard_results(self):
+    results = []
+    collection = self.collection()
+    if collection is not None:
+        limit = self.data.limit
+        if limit and limit > 0:
+            # pass on batching hints to the catalog
+            results = collection.queryCatalog(batch=True, b_size=limit)
+            results = results._sequence
+        else:
+            results = collection.queryCatalog()
+        if limit and limit > 0:
+            results = results[:limit]
+
+    # This verifies that collections have contents before displaying them.
+    # Intended to work with county sites in order to only show counties with
+    # [Events, People, etc.] in the collection.
+    
+    valid_results = []
+
+    for r in results:
+        if r.portal_type == 'Topic' and not len(r.getObject().queryCatalog()):
+            continue
+        valid_results.append(r)
+
+    return valid_results

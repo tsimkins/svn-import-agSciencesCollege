@@ -145,5 +145,14 @@
         replacement=".patch.collection_url"
         original="collection_url"
         />
-    
+
+    <!-- Monkey Patch collection portlet to not list empty collections -->
+
+    <monkey:patch
+        description="This makes the collection portlet not list empty collections"
+        class="plone.portlet.collection.collection.Renderer"
+        replacement=".patch._standard_results"
+        original="_standard_results"
+        />
+
 </configure>
