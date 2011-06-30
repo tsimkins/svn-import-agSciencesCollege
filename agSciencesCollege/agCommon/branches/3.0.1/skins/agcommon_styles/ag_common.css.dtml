@@ -1531,7 +1531,7 @@ body.template-agenda_view #content .agendaLinks ul li {
 
 body.template-agenda_view #document-toc,
 body.template-agenda_view #portal-column-content.sr #document-toc {
-    width: 18%;
+    width: 24%;
 }
 
 body.template-agenda_view #document-toc h3 {
