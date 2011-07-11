@@ -77,8 +77,14 @@ class Assignment(base.Assignment):
         for entry in feed.entries:
             entry["feed"]=feed.feed
             if not "published_parsed" in entry:
-                entry["published_parsed"]=entry["updated_parsed"]
-                entry["published"]=entry["updated"]
+                try:
+                    entry["published_parsed"]=entry["updated_parsed"]
+                    entry["published"]=entry["updated"]
+                except KeyError:
+                    entry["published_parsed"]=None
+                    entry["published"]=None
+                    entry["updated_parsed"]=None
+                    entry["updated"]=None
 
 
     def fetchFeed(self, url):

@@ -18,7 +18,7 @@
 
     <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-    <tal:entry
+    <div class="feedEntry"
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
         tal:repeat="entry view/entries">
 
@@ -51,7 +51,7 @@
         <p tal:replace="structure entry/description|nothing">
            This is the entry description itself
        </p>
-    </tal:entry>
+    </div>
 
     <div tal:replace="structure provider:plone.belowcontentbody" />
 </metal:main>
