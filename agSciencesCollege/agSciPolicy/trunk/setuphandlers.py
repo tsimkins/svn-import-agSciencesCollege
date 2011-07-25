@@ -29,17 +29,27 @@ def createUsers(context):
     site = context.getSite()
 
     users = [
-                ["trs22", "Simkins", "Tim", "trs22@psu.edu"],
-                ["cjm49", "More", "Chris", "cjm49@psu.edu"],
-                ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu"],
-                ["pgw105", "Warren", "Pete", "pgw105@psu.edu"],
-                ["mds118", "Spiegel", "Max", "mds118@psu.edu"],
+                ["trs22", "Simkins", "Tim", "trs22@psu.edu", True],
+                ["cjm49", "More", "Chris", "cjm49@psu.edu", True],
+                ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu", True],
+                ["pgw105", "Warren", "Pete", "pgw105@psu.edu", True],
+                ["mds118", "Spiegel", "Max", "mds118@psu.edu", True],
+                ["mfw10", "Wirth", "Mary", "mfw10@psu.edu", False],
             ]
 
     printed = []
     sm = getSiteManager(site)
     regtool = getToolByName(sm, 'portal_registration')
     grouptool = getToolByName(sm, 'portal_groups')
+    
+    # Create Editors Group and give it access to site
+    editors_group_id = "content-editors"
+    editors_group_title = "Content Editors"
+    grouptool.addGroup(editors_group_id)
+    editorsGroup = grouptool.getGroupById(editors_group_id)
+    editorsGroup.setGroupProperties({'title' : editors_group_title})
+    site.manage_setLocalRoles(editors_group_id, ['Contributor', 'Reviewer', 'Editor', 'Reader'])
+    site.reindexObjectSecurity()
     
     administratorsGroup = grouptool.getGroupById("Administrators")
     
@@ -48,8 +58,8 @@ def createUsers(context):
     
     for tokens in users:
     
-        if len(tokens) == 4:
-            id, last, first, email = tokens
+        if len(tokens) == 5:
+            id, last, first, email, isadmin = tokens
             properties = {
                 'username' : id,
                 'fullname' : '%s %s' % (first, last),
@@ -64,15 +74,18 @@ def createUsers(context):
             except ValueError, e:
                 printed.append("Couldn't add %s: %s" % (id, e))
     
-    
-            try:
-            
-                administratorsGroup.addMember(id) 
-                printed.append("Successfully added %s to Administrators group" % (id))
-                
-            except:
-    
-                printed.append("Couldn't add %s to Administrators group" % (id))
+            if isadmin:
+                try:
+                    administratorsGroup.addMember(id) 
+                    printed.append("Successfully added %s to Administrators group" % (id))
+                except:
+                    printed.append("Couldn't add %s to Administrators group" % (id))
+            else:
+                try:
+                    editorsGroup.addMember(id) 
+                    printed.append("Successfully added %s to Editors group" % (id))
+                except:
+                    printed.append("Couldn't add %s to Editors group" % (id))
     
         else:
             printed.append("Could not parse line %d because it had the following contents: '%s'" % (index, user))
