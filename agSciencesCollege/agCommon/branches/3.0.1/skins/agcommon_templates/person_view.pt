@@ -166,9 +166,10 @@
                               member context/@@plone_portal_state/member;
                               extension_counties context/extension_counties|nothing;
                               extension_programs context/extension_programs|nothing;"                            
-                              condition="python: (not isAnon) and (extension_counties or extension_programs) and (member.has_role('Manager') or member.has_role('Personnel Manager'))">
+                              condition="python: (not isAnon) and (extension_counties or extension_programs)">
             <div>
                 <h2>Person Metadata</h2>
+                <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the counties and programs the individual is associated with.</p>
                 <tal:areas condition="extension_counties">
                     <h3>Counties</h3>
                     <ul>
