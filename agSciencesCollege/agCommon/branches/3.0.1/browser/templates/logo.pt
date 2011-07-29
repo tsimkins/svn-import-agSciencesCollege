@@ -1,6 +1,6 @@
 <div metal:define-macro="portal_logo"
     id="portal-logo" 
-    tal:define="portal_title context/portal_title|view/portal_title;
+    tal:define="portal_title context/portal_title|context/@@plone_portal_state/portal_title|view/portal_title;
     navigation_root_url context/navigation_root_url|view/navigation_root_url">
 
   <a href="http://www.psu.edu" target="_blank"><img 
