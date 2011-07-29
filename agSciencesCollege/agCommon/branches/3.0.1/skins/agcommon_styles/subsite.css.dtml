@@ -57,6 +57,10 @@ body.template-atct_edit #image-header {
     display: none !important;
 }
 
+#rightcolumn dd {
+    margin-bottom: 0;
+}
+
 #centercolumn {
 	display: block;
 	margin: 0;
