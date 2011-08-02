@@ -26,11 +26,15 @@ random.seed()
 
 def createUsers(context):
 
-    site = context.getSite()
+    try:
+        site = context.getSite()
+    except AttributeError:
+        site = context
+        setSite(site)
 
     users = [
                 ["trs22", "Simkins", "Tim", "trs22@psu.edu", True],
-                ["cjm49", "More", "Chris", "cjm49@psu.edu", True],
+                ["gra104", "Angle", "Greg", "gra104@psu.edu", True],
                 ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu", True],
                 ["pgw105", "Warren", "Pete", "pgw105@psu.edu", True],
                 ["mds118", "Spiegel", "Max", "mds118@psu.edu", True],
@@ -53,6 +57,23 @@ def createUsers(context):
     
     administratorsGroup = grouptool.getGroupById("Administrators")
     
+    # Remove from Administrators group
+    for id in ['aln', 'axd159', 'cjm49', 'gxa2', 'tds194']:
+        administratorsGroup.removeMember(id)
+
+    # Remove from Plone site
+    for id in ['axd159', 'cjm49', 'tds194']:
+        # Holding off on this until confirmation that
+        # it doesn't break anything
+        continue
+        """
+        acl_users = context.acl_users
+        source_users = acl_users.source_users
+        try:
+            source_users.doDeleteUser(id)
+        except KeyError:
+            pass
+        """
     index = 1
     imported_count = 0
     
