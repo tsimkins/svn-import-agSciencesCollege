@@ -82,7 +82,10 @@
                         dir python: isRTL and 'rtl' or 'ltr'">
     
     <div id="visual-portal-wrapper">
-
+        <metal:header define-slot="header" tal:content="nothing">
+            Visual Header
+        </metal:header>
+                      
       <div id="portal-top" i18n:domain="plone">
         <div tal:replace="structure provider:plone.portaltop" tal:condition="not:ajax_load" />
       </div>
@@ -131,9 +134,7 @@
 
                     <metal:slot define-slot="body">
                     <div id="content">
-                      <metal:header define-slot="header" tal:content="nothing">
-                        Visual Header
-                      </metal:header>
+
                       <metal:bodytext define-slot="main">
 
                         <metal:main define-macro="main">

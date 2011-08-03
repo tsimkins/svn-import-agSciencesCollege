@@ -17,8 +17,12 @@ body {
 	max-width: auto;
 	min-width: auto;
 	width: 100%;
-        background: #FFFFFF;
-        background-image: none;
+    background: #FFFFFF;
+    background-image: none;
+    /* Remove Drop Shadow */
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 /* Remove vertical borders */
@@ -101,6 +105,16 @@ body.template-document_homepage_view #homepageimage {
 	display: none;
 }
 
+/* Headers */
+
+#content h1 {
+    line-height: 1.10em;
+}
+
+#content h2 {
+    line-height: 1.10em;
+}
+
 /* Content */
 
 #portal-column-content {
@@ -124,6 +138,7 @@ body.template-document_homepage_view #homepageimage {
 .contentLeadImageContainer .discreet {
 	line-height: 1.25em;
 	font-size: 0.92em;
+	font-family: Verdana, Arial, sans-serif;
 }
 
 /* Center Column */
@@ -223,6 +238,10 @@ body.custom-pullquote #region-content h2 {
     display: none;
 }
 
+#plone-document-byline, .managePortletsFallback {
+    display: none;
+}
+
 /* Actions and edit menu bar */
 
 .contentActions, .contentViews, .reviewHistory {
@@ -274,7 +293,7 @@ img {
 }
 
 #disclaimer {
-    border: none;
+    line-height: 1.25em;
 }
 
 /* Hide youtube videos */
@@ -303,6 +322,36 @@ table.listing td, table.listing th {
 
 table.listing td {
     vertical-align: top;
+}
+
+/* Lists */
+
+#content ul, #content ol {
+    margin-left: 0.5em;
+}
+
+
+/* Factsheet View */
+
+body.template-factsheet_view.two_column_print #content {
+    -moz-column-count: 2;
+    -moz-column-gap: 1.6em;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 1.6em;
+    column-count: 2;
+    column-gap: 1.6em;
+    font-size: 0.95em;
+    line-height: 1.25em;
+}
+
+body.template-factsheet_view #portal-breadcrumbs, body.template-factsheet_view #portal-header,
+body.template-factsheet_view #portal-footer {
+    display: none;
+}
+
+#printheader {
+    display: block;
+    margin-bottom: 20px;
 }
 
 /* YOUR CSS RULES STOP HERE */

@@ -467,6 +467,35 @@ jq(document).ready(
     }
 );
 
+/*
+    Using ugly browser version checking to add two-column factsheet printing to 
+    AddThis bar.  This only works in Firefox.
+*/
+
+jq(document).ready(
+    function () {
+        isFactSheet = jq('body.template-factsheet_view').length;
+
+        if (isFactSheet)
+        {
+            var browser_mozilla = jq.browser.mozilla;
+            var browser_version = jq.browser.version.split('.', 1);
+            if (browser_mozilla && browser_version >= 4)
+            {
+                var two_column = jq('body.template-factsheet_view .addthis_toolbox .two_column_print');
+                two_column.show();
+                two_column.click(function () {
+
+                
+                alert("This is an experimental feature for printing factsheets in two columns that is only available in Firefox 4 and above. If it doesn't print well, just click on the printer icon to print in a single column.\n\nRecommended settings:\n\n  * Check 'Ignore Scaling and Shrink To Fit Page Width' in 'Print' Dialog.\n  * Go to about:config and set print.print_margin_* to 0.25.");
+                jq('body').addClass('two_column_print');
+                window.print();
+                jq('body').removeClass('two_column_print');
+            });
+            }
+        }
+    }
+);
 
 /* YOUR JAVASCRIPT STOPS HERE */
 

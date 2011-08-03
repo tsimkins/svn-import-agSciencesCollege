@@ -27,7 +27,19 @@ def isHomePage(context):
     except:
         layout = None
         
-    if homepage_views.count(layout) > 0:
+    if layout in homepage_views:
+        return True
+    else:
+        return False
+
+def showTwoColumn(context):
+
+    try:
+        layout = context.getLayout()
+    except:
+        layout = None
+        
+    if layout in ['factsheet_view']:
         return True
     else:
         return False
@@ -124,7 +136,8 @@ class AddThisViewlet(ViewletBase):
         self.anonymous = self.portal_state.anonymous()
 
         self.isHomePage = isHomePage(self.context)
-
+        self.showTwoColumn = showTwoColumn(self.context)
+        
         ptool = getToolByName(self.context, "portal_properties")
         self.hide_addthis = not ptool.agcommon_properties.enable_addthis
 
