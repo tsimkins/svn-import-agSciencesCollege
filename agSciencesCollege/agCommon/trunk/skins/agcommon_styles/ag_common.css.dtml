@@ -67,6 +67,10 @@ body {
     padding: 0 6px 6px 6px;
     max-width: &dtml-maxWidth;;
     min-width: &dtml-minWidth;;
+    /* Drop Shadow */
+    -moz-box-shadow: 0 0 10px #333333;
+    -webkit-box-shadow: 0 0 10px #333333;
+    box-shadow: 0 0 10px #333333;
 }
 
 

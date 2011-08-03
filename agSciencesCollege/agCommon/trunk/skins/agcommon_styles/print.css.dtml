@@ -16,6 +16,10 @@ body {
 	max-width: auto;
 	min-width: auto;
 	width: 100%;
+    /* Remove Drop Shadow */
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 /* Remove vertical borders */
