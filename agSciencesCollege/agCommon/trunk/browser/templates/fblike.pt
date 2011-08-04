@@ -4,6 +4,7 @@
     tal:condition="not:view/isHomePage">
     <iframe 
         id="fblike" 
+        title="Recommend this on Facebook"
         alt="Recommend this on Facebook"
         tal:condition="python: not hide_fblike and isAnon"
         tal:define="likeurl view/likeurl;"

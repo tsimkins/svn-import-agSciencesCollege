@@ -7,9 +7,8 @@
 
         <div class="LSBox">
         <label for="searchBox" class="hiddenStructure"
-                    i18n:translate="text_search">Search</label>
-        <label for="searchSource" class="hiddenStructure"
-                    i18n:translate="text_search">Search Source</label>
+                    i18n:translate="text_search">Search Text</label>
+
         <input name="SearchableText"
                id="searchBox"
                type="text"
@@ -22,6 +21,7 @@
                class="inputLabel" 
                autocomplete="off"/>
 
+        <label for="searchSource" class="hiddenStructure">Search Source</label>
 		<select id="searchSource"
 		      tal:define="showCollegeSearch context/show_college_search|nothing">
 			<option value = "section">Search This Section</option>
@@ -30,12 +30,13 @@
 			<option value = "psu">Search Penn State</option>
 		</select>
 
+        <label for="goSearch" class="hiddenStructure">Search...</label>
         <input class="searchButton"
                alt="Search"
                type="image"
                tal:attributes="src string:${view/site_url}/go.gif"
-               id = "goSearch"
-               value = "Go"
+               id="goSearch"
+               value="Go"
 		/>
     
         <div class="searchSection">

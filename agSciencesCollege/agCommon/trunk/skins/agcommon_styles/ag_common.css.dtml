@@ -115,6 +115,9 @@ body {
     margin-top: -1px;
 }
 
+#portal-searchbox label.hiddenStructure {
+    display: none;
+}
 
 /* = portal-logo =========================================== */
 
