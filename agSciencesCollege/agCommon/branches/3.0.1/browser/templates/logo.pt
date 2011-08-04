@@ -3,12 +3,12 @@
     tal:define="portal_title context/portal_title|context/@@plone_portal_state/portal_title|view/portal_title;
     navigation_root_url context/navigation_root_url|view/navigation_root_url">
 
-  <a href="http://www.psu.edu" target="_blank"><img 
+  <a href="http://www.psu.edu"><img 
     id="logo-psu" 
     tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
     alt="Penn State University" /></a>
     
-  <a href="http://agsci.psu.edu" target="_blank"><img 
+  <a href="http://agsci.psu.edu"><img 
     id="logo-college"
     tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
     alt="College of Agricultural Sciences" /></a>
