@@ -218,12 +218,16 @@ class TitleViewlet(CustomTitleViewlet):
         page_title = escape(safe_unicode(self.page_title()))
         org_title = escape(safe_unicode(self.org_title))
 
-        if not org_title or org_title.lower() == 'none':
+        if page_title == portal_title == org_title:
+            return u"<title>%s</title>" % (org_title)
+        elif org_title == portal_title:
+            return u"<title>%s &mdash; %s</title>" % (page_title, org_title)
+        elif page_title == portal_title:
+            return u"<title>%s &mdash; %s</title>" % (portal_title, org_title)
+        elif not org_title or org_title.lower() == 'none':
             return u"<title>%s &mdash; %s</title>" % (
                 page_title,
                 portal_title)
-        elif page_title == portal_title:
-            return u"<title>%s &mdash; %s</title>" % (portal_title, org_title)
         else:
             return u"<title>%s &mdash; %s &mdash; %s</title>" % (
                 page_title,
