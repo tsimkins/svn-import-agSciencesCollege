@@ -45,7 +45,8 @@
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                         navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                        pas_member context/@@pas_member;">
+                        pas_member context/@@pas_member;
+                        show_event_location context/show_event_location|nothing;">
     <tal:listing condition="batch">
 
         <dl metal:define-slot="entries">
@@ -53,6 +54,9 @@
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
+                                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                                   item_event_location_title python: agcommon_utilities.substituteEventLocation(item);
+                                   item_title_or_id python: item_event_location_title or item_title_or_id;
                                    item_description item/Description;
                                    item_type item/portal_type;
                                    item_type_title item/Type;
@@ -134,7 +138,7 @@
                         </span>
                         </metal:shortdate>
                     </div>
-                        <div tal:condition="python: item_type == 'Event' and item.location"
+                        <div tal:condition="python: item_type == 'Event' and item.location and not show_event_location"
                               i18n:translate="label_event_byline_location">
                             
                             <strong>Where:</strong>
