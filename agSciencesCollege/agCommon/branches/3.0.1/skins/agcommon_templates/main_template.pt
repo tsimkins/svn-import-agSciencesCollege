@@ -82,7 +82,7 @@
                         dir python: isRTL and 'rtl' or 'ltr'">
     
     <div id="visual-portal-wrapper">
-        <metal:header define-slot="header" tal:content="nothing">
+        <metal:header define-slot="printheader" tal:content="nothing">
             Visual Header
         </metal:header>
                       
@@ -134,7 +134,10 @@
 
                     <metal:slot define-slot="body">
                     <div id="content">
-
+                      <metal:header define-slot="header" tal:content="nothing">
+                          Visual Header
+                      </metal:header>
+        
                       <metal:bodytext define-slot="main">
 
                         <metal:main define-macro="main">

@@ -73,6 +73,9 @@ body {
     margin-top: -1px;
 }
 
+#portal-searchbox label.hiddenStructure {
+    display: none;
+}
 
 /* = portal-logo =========================================== */
 
@@ -169,7 +172,7 @@ body {
     border-right: 1px #808080 solid;
     border-spacing: 0;
     width: 100%;
-} 
+}
 
 /* = portal-column-one ===================================== */
 
@@ -185,7 +188,7 @@ body {
 }
 
 #portal-column-one .visualPadding {
-    padding: 0; 
+    padding: 0;
 }
 
 #portal-column-one-visualPadding.visualPadding {
@@ -272,7 +275,7 @@ body {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -10px; 
+    margin: 0 -10px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -343,20 +346,20 @@ body {
     color: &dtml-leftNavTextHoverColor; !important;
 }
 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a, 
+#portal-column-one ul.navTreeLevel1 .navTreeItem a,
 #portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a {
     padding-top: 0.25em;
 }
 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a, 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a, 
+#portal-column-one ul.navTreeLevel1 .navTreeItem a,
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover,
+#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a,
 #portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
-    background-color: &dtml-leftSubNavBackground;; 
+    background-color: &dtml-leftSubNavBackground;;
     color: &dtml-leftNavTextColor;;
 }
 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover, 
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover,
 #portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover
 {
     color: &dtml-leftNavTextHoverColor;;
@@ -368,14 +371,14 @@ body {
     margin: 0 0.25em 0.75em 0.25em;
 }
 
-#portal-column-one .navTreeCurrentItem, 
+#portal-column-one .navTreeCurrentItem,
 #portal-column-one a.navTreeItemInPath {
     border-width: 0 !important;
     font-weight: bold;
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
-    background-color: &dtml-leftSubNavBackground;;    
+    background-color: &dtml-leftSubNavBackground;;
 }
 
 #portal-column-one .portletFooter {
@@ -547,7 +550,7 @@ body {
     display: inline-block;
     padding: 6px 8px 6px 8px;
     margin: 0 0 0 -4px;
-    white-space: nowrap;    
+    white-space: nowrap;
 }
 
 #portal-top-navigation li.alternate {
@@ -618,7 +621,7 @@ body {
 
 #portal-column-two .portletWrapper {
     background-color: transparent;
-    border: none;    
+    border: none;
     padding: 0;
     margin-bottom: 20px;
     font-size: 1em;
@@ -631,8 +634,8 @@ body {
 }
 
 #portal-column-two .portletHeader {
-    background-color: transparent; 
-    color: &dtml-insideRightPortletHeaderTextColor;; 
+    background-color: transparent;
+    color: &dtml-insideRightPortletHeaderTextColor;;
     font-size: 1em;
     font-weight: bold;
     padding: 2px 0;
@@ -640,11 +643,11 @@ body {
     text-transform: uppercase;
     border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: &dtml-insideRightPortletHeaderTextColor;; 
-    margin: 2px 0 0 0; 
+    border-color: &dtml-insideRightPortletHeaderTextColor;;
+    margin: 2px 0 0 0;
 }
 
-#portal-column-two .portletHeader a {  
+#portal-column-two .portletHeader a {
     color: &dtml-insideRightPortletHeaderTextColor;;
 }
 
@@ -678,7 +681,7 @@ body {
 }
 
 #portal-column-two .portletFooter {
-    background-color: &dtml-insideRightPortletBackgroundColor;; 
+    background-color: &dtml-insideRightPortletBackgroundColor;;
 }
 
 #portal-column-two ul li a {
@@ -750,7 +753,7 @@ body {
 }
 
 /* Removing because this breaks listings with icons */
-/* #content a[href^="http:"], 
+/* #content a[href^="http:"],
 #content a[href^="https:"], */
 
 #content a.link-external,
@@ -782,11 +785,11 @@ body {
     color: #3366CC;
 }
 
-#content h1.noBreadcrumbs { 
+#content h1.noBreadcrumbs {
     margin-top: 0.75em;
 }
 
-#content h1, 
+#content h1,
 #content h1.documentFirstHeading {
     color: &dtml-documentTitleColor;;
     font-weight: normal;
@@ -872,9 +875,9 @@ body {
     margin-bottom: 3px;
 }
 
-.comment #addthis { 
-    display: none; 
-} 
+.comment #addthis {
+    display: none;
+}
 
 /* = portal-footer ========================================= */
 
@@ -1058,7 +1061,7 @@ dl#relatedItemBox {
     padding: 0 0.5em;
     font-size: 0.9em;
 }
- 
+
 #relatedItemBox dd {
     margin: 0.5em;
 }
@@ -1069,7 +1072,7 @@ dl#relatedItemBox {
 
 #relatedItemBox img {
     display: none;
-} 
+}
 
 blockquote {
     border-left: none;
@@ -1099,14 +1102,14 @@ blockquote {
     padding: 10px 10px 20px 10px !important;
 }
 
-#portal-column-content .documentEditable .contentViews li a { 
+#portal-column-content .documentEditable .contentViews li a {
     padding: 0 1em;
     margin-right: 0.25em;
 }
 
 /* Squish tabs in edit view together when we have a right column */
 
-#portal-column-content.sr .documentEditable .contentViews li a { 
+#portal-column-content.sr .documentEditable .contentViews li a {
     padding: 0 0.75em;
     margin-right: 0.25em;
 }
@@ -1277,9 +1280,9 @@ body.template-pgv_sg_carousel_view #content {
 }
 
 #fblike {
-    border: none; 
-    overflow: hidden; 
-    width: 450px; 
+    border: none;
+    overflow: hidden;
+    width: 450px;
     margin-top: 25px;
 }
 
@@ -1342,7 +1345,7 @@ body.template-subfolder_view div#two-column-left, body.template-subfolder_view d
     margin-top: 1.5em;
 }
 
-#two-column-left>dd, #two-column-right>dd, 
+#two-column-left>dd, #two-column-right>dd,
 div#two-column-left .tileItem dd, #two-column-right>dd {
     margin-left: 15px;
 }
@@ -1518,21 +1521,21 @@ table.plain th, table.plain td {
    margin-top: 5px;
    border-width: 1px 0 0 0;
    border-style: solid;
-   border-color: #CCCCCC; 
+   border-color: #CCCCCC;
 }
 
 /* agendaLinks anchors for agenda view */
 
 body.template-agenda_view #content .agendaLinks ul {
     margin-left: 0.75em;
-} 
+}
 
 body.template-agenda_view #content .agendaLinks ul li {
     padding: 0;
     margin: 0.5em 0;
     list-style-type: none;
     list-style-image: none;
-}    
+}
 
 body.template-agenda_view #document-toc,
 body.template-agenda_view #portal-column-content.sr #document-toc {

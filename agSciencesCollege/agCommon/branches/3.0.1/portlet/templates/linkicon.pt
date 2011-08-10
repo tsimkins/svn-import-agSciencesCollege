@@ -8,15 +8,13 @@
            
         <ul>
             <tal:linkIcon repeat="licon view/linkIcons">
-                <li tal:attributes="id string:linkicon-${licon/id};
-                                    class python: icon and 'icon' or ''"
+                <li tal:attributes="class python: icon and 'icon' or ''"
                     tal:define="title licon/title;
-                                id licon/id;
                                 description licon/description|licon/title;
                                 icon licon/icon|nothing">
-                    <a  tal:condition="icon"
+                    <a tal:condition="icon"
                         tal:attributes="href licon/url;
-                                        title description;"
+                                        title title;"
                         ><img tal:attributes="
                             src icon;
                             alt title" /></a>

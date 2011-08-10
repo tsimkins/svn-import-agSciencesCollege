@@ -8,9 +8,9 @@
 <body>
 
 <metal:content-core fill-slot="header">
-    <metal:content-core define-macro="header">
+    <metal:content-core define-macro="printheader">
         <div id="printheader" align="center">
-            <img src="http://webtools.cas.psu.edu/tmp/extension-factsheet.png" />
+            <img alt="Penn State Extension Logo" tal:attributes="src string:${portal_url}/extension-factsheet.png" />
         </div>
     </metal:content-core>
 </metal:content-core>
