@@ -138,8 +138,9 @@
                         </span>
                         </metal:shortdate>
                     </div>
-                        <div tal:condition="python: item_type == 'Event' and item.location and not show_event_location"
-                              i18n:translate="label_event_byline_location">
+                        <div tal:define="show_event_location show_event_location|nothing"
+                             tal:condition="python: item_type == 'Event' and item.location and not show_event_location"
+                             i18n:translate="label_event_byline_location">
                             
                             <strong>Where:</strong>
 
