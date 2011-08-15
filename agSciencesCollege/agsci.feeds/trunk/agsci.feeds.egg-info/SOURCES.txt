@@ -34,7 +34,6 @@ agsci/feeds/profiles/default/types.xml
 agsci/feeds/tests/__init__.py
 agsci/feeds/tests/base.py
 agsci/feeds/tests/test_doctest.py
-dist/agsci.apdfeeds-1.0.tar.gz
 docs/HISTORY.txt
 docs/INSTALL.txt
 docs/LICENSE.GPL
