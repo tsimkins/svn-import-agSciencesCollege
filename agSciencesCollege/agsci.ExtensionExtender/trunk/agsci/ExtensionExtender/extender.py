@@ -11,7 +11,20 @@ from Acquisition import aq_acquire
 from Products.CMFCore.interfaces import ISiteRoot
 
 
-class _ExtensionLinesField(ExtensionField, LinesField): pass
+class _ExtensionLinesField(ExtensionField, LinesField):
+
+    def getDefault(self, instance, **kwargs):
+        for o in getAcquisitionChain(instance):
+            try:
+                v = self.get(o)
+                
+                if v:
+                    return v
+            except:
+                continue
+
+        return ()
+
 
 # From http://plone.org/documentation/manual/plone-community-developer-documentation/serving/traversing
 
@@ -47,7 +60,18 @@ def getAcquisitionChain(object):
 
         iter = iter.aq_parent
 
-class _CountiesField(ExtensionField, LinesField):
+class _TopicsField(_ExtensionLinesField):
+    def Vocabulary(self, content_instance):
+
+        ptool = getToolByName(content_instance, 'portal_properties')
+        props = ptool.get("extension_properties")
+
+        if props and props.extension_topics:
+            return DisplayList([(x.strip(), x.strip()) for x in sorted(props.extension_topics)])
+        else:
+            return DisplayList([('N/A', 'N/A')])
+
+class _CountiesField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
 
         ptool = getToolByName(content_instance, 'portal_properties')
@@ -58,19 +82,7 @@ class _CountiesField(ExtensionField, LinesField):
         else:
             return DisplayList([('N/A', 'N/A')])
 
-    def getDefault(self, instance, **kwargs):
-        for o in getAcquisitionChain(instance):
-            try:
-                v = self.get(o)
-                
-                if v:
-                    return v
-            except:
-                continue
-
-        return ()
-          
-class _ProgramsField(ExtensionField, LinesField):
+class _ProgramsField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
 
         ptool = getToolByName(content_instance, 'portal_properties')
@@ -80,20 +92,6 @@ class _ProgramsField(ExtensionField, LinesField):
             return DisplayList([(x.strip(), x.strip()) for x in sorted(props.extension_programs)])
         else:
             return DisplayList([('N/A', 'N/A')])
-
-    def getDefault(self, instance, **kwargs):
-
-        for o in getAcquisitionChain(instance):
-            try:
-                v = self.get(o)
-                
-                if v:
-                    return v
-            except:
-                continue
-
-        return ()
-
 
 class FSDExtensionExtender(object):
     adapts(IPerson)
@@ -119,6 +117,16 @@ class FSDExtensionExtender(object):
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this person is associated with",
+            ),
+        ),
+
+        _TopicsField(
+            "extension_topics",
+                schemata="Professional Information",
+                required=False,
+                widget = InAndOutWidget(
+                label=u"Topics",
+                description=u"Topics that this person is associated with",
             ),
         ),
         
@@ -164,6 +172,15 @@ class ExtensionExtender(object):
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this item is associated with",
+            ),
+        ),
+        _TopicsField(
+            "extension_topics",
+                schemata="categorization",
+                required=False,
+                widget = InAndOutWidget(
+                label=u"Topics",
+                description=u"Topics that this item is associated with",
             ),
         ),
 

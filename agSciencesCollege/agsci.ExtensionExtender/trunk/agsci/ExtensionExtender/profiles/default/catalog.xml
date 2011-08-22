@@ -6,9 +6,13 @@
  <index name="Programs" meta_type="KeywordIndex">
   <indexed_attr value="extension_programs"/>
  </index>
+ <index name="Topics" meta_type="KeywordIndex">
+  <indexed_attr value="extension_topics"/>
+ </index>
 
 
  <column value="extension_counties"/>
  <column value="extension_programs"/>
+ <column value="extension_topics"/>
 </object>
 

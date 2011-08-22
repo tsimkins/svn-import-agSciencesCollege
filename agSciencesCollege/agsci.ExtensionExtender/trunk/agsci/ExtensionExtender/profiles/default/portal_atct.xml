@@ -19,6 +19,15 @@
    <criteria>ATSelectionCriterion</criteria>
    <criteria>ATListCriterion</criteria>
   </index>
+
+  <index
+    name="Topics"
+    description="Topics"
+    enabled="True"
+    friendlyName="Topics">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
   
  </topic_indexes>
 
@@ -34,6 +43,12 @@
     description="Programs"
     enabled="True"
     friendlyName="Programs" />
+
+  <metadata
+    name="Topics"
+    description="Topics"
+    enabled="True"
+    friendlyName="Topics" />
 
  </topic_metadata> 
  

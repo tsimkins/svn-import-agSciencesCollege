@@ -77,24 +77,35 @@
     <element value="York" />
   </property>
   <property name="extension_programs" type="lines">
-    <element value="4-H" />
-    <element value="Better Kid Care" />
-    <element value="CMEG" />
-    <element value="Dining With Diabetes" />
-    <element value="Food Safety" />
-    <element value="Green Industry" />
-    <element value="Healthy Lifestyles" />
-    <element value="Kinship" />
-    <element value="Learning Today, Leading Tomorrow" />
-    <element value="Master Gardener" />
-    <element value="Natural Gas" />
-    <element value="Nutrition Links" />
-    <element value="PROSPER" />
-    <element value="Start Farming" />
-    <element value="Sustainable Agriculture" />
-    <element value="Tobacco Prevention" />
-    <element value="Vegetable and Small Fruit Production" />
-    <element value="Water Resources" />
+   <element value="4-H"/>
+   <element value="Dining With Diabetes"/>
+   <element value="Food Safety"/>
+   <element value="Natural Gas"/>
+   <element value="Kinship"/>
+   <element value="Learning Today, Leading Tomorrow"/>
+   <element value="Master Gardener"/>
+   <element value="Vegetable and Small Fruit Production"/>
+   <element value="Nutrition Links"/>
+   <element value="Tobacco Prevention"/>
+   <element value="Water Resources"/>
+   <element value="Green Industry"/>
+   <element value="Better Kid Care"/>
+   <element value="PROSPER"/>
+   <element value="Healthy Lifestyles"/>
+   <element value="Sustainable Agriculture"/>
+   <element value="CMEG"/>
+   <element value="Start Farming"/>
+   <element value="Sustainable Dairy Cropping Systems"/>
+   <element value="Private Forests"/>
+   <element value="StrongWomen"/>
+   <element value="Agriculture and Environment Center"/>
+   <element value="Family Fitness"/>
+   <element value="Herbs"/>
+   <element value="Pesticide Education"/>
+   <element value="Gardening"/>
+  </property>
+  <property name="extension_topics" type="lines">
+    <element value="Gardening" />
   </property>
  </object>
 </object>

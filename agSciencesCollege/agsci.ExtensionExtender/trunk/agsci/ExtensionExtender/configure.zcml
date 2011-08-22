@@ -43,6 +43,11 @@
         class="Products.ATContentTypes.content.event.ATEvent"
         interface=".interfaces.IExtensionExtender"
     /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.IExtensionExtender"
+    /> 
     
     <five:implements
         class="Products.FacultyStaffDirectory.Person.Person"
