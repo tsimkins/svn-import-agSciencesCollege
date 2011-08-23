@@ -1,3 +1,5 @@
+##title=Person Alias View
+
 """
 person_redirect_view
 Redirect to the person's website target URL, if and only if:

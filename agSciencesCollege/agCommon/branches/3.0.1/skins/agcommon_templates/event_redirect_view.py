@@ -1,3 +1,5 @@
+##title=Event Redirect View
+
 """
 event_redirect_view
 Redirect to the event's website target URL, if and only if:
