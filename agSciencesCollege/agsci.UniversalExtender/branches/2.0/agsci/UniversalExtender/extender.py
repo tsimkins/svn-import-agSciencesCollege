@@ -1,7 +1,8 @@
 from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
-from Products.ATContentTypes.interface.event import IATEvent
-from Products.ATContentTypes.interface.folder import IATFolder
+from Products.ATContentTypes.interfaces.event import IATEvent
+from Products.ATContentTypes.interfaces.news import IATNewsItem
+from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
 from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender
@@ -220,6 +221,64 @@ class EventExtender(object):
         schema.moveField('endDate', before='location')
         schema.moveField('startDate', before='endDate')
         
+        return schema
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+# Add a field for an Article Link to the News Item type
+
+class NewsItemExtender(object):
+    adapts(IATNewsItem)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+
+    fields = [
+
+        _ExtensionStringField(
+            "article_link",
+            required=False,
+            widget=StringWidget(
+                label=u"Article URL",
+                description=u"Use this field if the article lives at another place on the internet. Do not copy/paste the full article text from another source.",
+            ),
+        ),
+
+    ]
+
+    def fiddle(self, schema):
+
+        # Put map link after location
+        try:
+            schema.moveField('article_link', after="text")
+        except KeyError:
+            # This angers TalkEvents
+            pass
+
+        new_field = schema['text'].copy()
+        new_field.widget.description = 'Use this rich text editor for news you create.'
+        schema['text'] = new_field
+
+        new_field = schema['image'].copy()
+        new_field.widget.label = 'Lead image'
+        new_field.widget.description = 'You can upload lead image. This image will be displayed above the content. Uploaded image will be automatically scaled to size specified in the leadimage control panel.'
+        schema['image'] = new_field
+
+        new_field = schema['imageCaption'].copy()
+        new_field.widget.label = 'Lead image caption'
+        new_field.widget.description = 'You may enter lead image caption text'
+        schema['imageCaption'] = new_field
+
+        # Move image_file after the article_link to match with other lead image
+        schema.moveField('image', before='text')
+
+        # Move image_caption as well
+        schema.moveField('imageCaption', after='image')
+
         return schema
 
     def __init__(self, context):

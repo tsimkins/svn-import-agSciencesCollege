@@ -73,6 +73,20 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
 
+    <!-- News Item News Link -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.NewsItemExtender"
+        factory=".extender.NewsItemExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <adapter
+        name="agsci.UniversalExtender.extender.NewsItemExtender.fiddle"
+        factory=".extender.NewsItemExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
     <!-- Folder Extender -->
 
     <adapter
