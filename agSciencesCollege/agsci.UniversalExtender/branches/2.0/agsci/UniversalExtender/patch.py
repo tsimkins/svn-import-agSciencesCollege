@@ -1,5 +1,6 @@
 from Acquisition import aq_base, aq_inner
 from Products.CMFCore.utils import getToolByName
+from Products.agCommon.browser.views import AgCommonUtilities
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -53,6 +54,11 @@ def _standard_results(self):
             results = results._sequence
         else:
             results = collection.queryCatalog()
+        
+        if hasattr(collection, "order_by_id") and collection.order_by_id:
+            agcommon_utilities = self.context.restrictedTraverse('@@agcommon_utilities')
+            results = agcommon_utilities.reorderTopicContents(results, collection.order_by_id)
+        
         if limit and limit > 0:
             results = results[:limit]
 

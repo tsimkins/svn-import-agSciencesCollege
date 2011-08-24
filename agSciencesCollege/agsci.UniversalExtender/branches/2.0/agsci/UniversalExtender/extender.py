@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -16,6 +16,7 @@ from Products.CMFCore.utils import getToolByName
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _TextExtensionField(ExtensionField, TextField): pass
+class _ExtensionLinesField(ExtensionField, LinesField): pass
     
 # Add fax, twitter, facebook, linkedin to FSDPerson.
 #
@@ -349,11 +350,27 @@ class FolderExtender(object):
 
 class TopicExtender(object):
     adapts(ITopicExtender)
-    implements(ISchemaModifier, IBrowserLayerAwareExtender)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
     layer = IUniversalExtenderLayer
+
+    fields = [
+        _ExtensionLinesField(
+            "order_by_id",
+                schemata="settings",
+                required=False,
+                widget = LinesWidget(
+                    label=u"Order by id",
+                    description=u"The content will show items with the listed ids first, and then sort by the default sort order.  One per line.",
+            ),
+        ),
+    ]   
+
 
     def __init__(self, context):
         self.context = context
+
+    def getFields(self):
+        return self.fields
 
     def fiddle(self, schema):
 
