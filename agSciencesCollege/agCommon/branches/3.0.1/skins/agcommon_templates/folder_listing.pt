@@ -35,6 +35,9 @@
                         more_url more_url|request/more_url|string:folder_contents;
                         is_a_topic python:context.portal_type=='Topic';
                         folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                        order_by_id here/order_by_id|nothing;
+                        agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                        folderContents python: (is_a_topic and order_by_id) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id) or folderContents;
                         site_properties context/portal_properties/site_properties;
                         use_view_action site_properties/typesUseViewActionInListings|python:();
                         Batch python:modules['Products.CMFPlone'].Batch;
@@ -54,7 +57,6 @@
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
-                                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
                                    item_event_location_title python: agcommon_utilities.substituteEventLocation(item);
                                    item_title_or_id python: item_event_location_title or item_title_or_id;
                                    item_description item/Description;

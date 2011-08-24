@@ -136,6 +136,8 @@ class IAgCommonUtilities(Interface):
     def substituteEventLocation(self):
         pass
 
+    def reorderTopicContents(self):
+        pass
 
 class AgCommonUtilities(BrowserView):
 
@@ -152,6 +154,31 @@ class AgCommonUtilities(BrowserView):
             return item.location.strip()
         else:
             return None        
+     
+    def reorderTopicContents(self, topicContents, order_by_id):
+        # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
+        return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
+        
+        # Reference code
+        # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
+        # I left it in as an explanation of what the above is doing.
+        """
+        ordered = []
+        unordered = []
 
-     
-     
+        # Grab all the unordered items
+        for item in topicContents:
+            if item.getId not in order_by_id:
+                unordered.append(item)
+
+        # Grab the ordered items, in order
+        for id in order_by_id:
+            for item in topicContents:
+                if item.getId == id:
+                    ordered.append(item)
+
+        # Combine the two lists
+        ordered.extend(unordered)
+
+        return ordered
+        """

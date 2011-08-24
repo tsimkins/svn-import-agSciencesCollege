@@ -14,6 +14,9 @@
 
         <metal:listingmacro define-macro="listing">
         <tal:topiccontents define="topicContents python:here.queryCatalog(batch=True);
+                                   order_by_id here/order_by_id|nothing;
+                                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                                   topicContents python: order_by_id and agcommon_utilities.reorderTopicContents(topicContents, order_by_id) or topicContents;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    batch topicContents;">
 
