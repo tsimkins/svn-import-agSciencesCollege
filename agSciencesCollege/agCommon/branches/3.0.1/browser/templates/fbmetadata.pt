@@ -2,6 +2,13 @@
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 </tal:chartbeat>
 
+<script type="text/javascript">
+    // Anti-framing script
+    if (top.location != self.location) {
+        top.location = self.location.href
+    }
+</script>
+
 <tal:fbmetadata condition="view/showFBMetadata">
     <!-- Open Graph Protocol info for Facebook -->    
     <meta property="og:title" tal:attributes="content view/fb_title"/>

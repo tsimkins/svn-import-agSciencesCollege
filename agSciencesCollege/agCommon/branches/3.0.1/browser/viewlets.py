@@ -396,8 +396,10 @@ class AnalyticsViewlet(BrowserView):
         if self.anonymous:
             ptool = getToolByName(self.context, "portal_properties")
             snippet = safe_unicode(ptool.site_properties.webstats_js)
+
             # Chartbeat
-            site_domain = self.context.absolute_url().split("/")[2]
+            site_domain = self.context.absolute_url().split("/")[2].split(':')[0]
+
             if site_domain.endswith('psu.edu'):
                snippet += """\n\n<script type="text/javascript">
 var _sf_async_config={uid:27424,domain:"%s"};
