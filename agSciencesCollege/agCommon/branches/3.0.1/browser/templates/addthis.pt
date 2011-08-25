@@ -54,6 +54,7 @@
 		   style="display: none"
 		   tal:attributes="href string:#"><img width="16" height="16" alt="Print Two Column"
 		                                         tal:attributes="src string:${context/portal_url}/icons/two-column-layout.png" /></a>
+		<a class="addthis_button_google_plusone" g:plusone:size="small" g:plusone:count="false" title="Share: Google +1"></a>
 		</div>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=agsciences"></script>
 		
