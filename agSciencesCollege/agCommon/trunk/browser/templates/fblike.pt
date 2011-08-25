@@ -5,7 +5,6 @@
     <iframe 
         id="fblike" 
         title="Recommend this on Facebook"
-        alt="Recommend this on Facebook"
         tal:condition="python: not hide_fblike and isAnon"
         tal:define="likeurl view/likeurl;"
         tal:attributes="src string:http://www.facebook.com/plugins/like.php?href=${likeurl}&amp;layout=standard&amp;show_faces=true&amp;action=recommend&amp;colorscheme=light" 
