@@ -198,7 +198,8 @@ class CustomTitleViewlet(ViewletBase):
 
         self.page_title = self.context_state.object_title
         self.portal_title = self.portal_state.portal_title
-    
+        self.anonymous = self.portal_state.anonymous()
+
         try:
             self.site_title = aq_acquire(self.context, 'site_title')
             self.org_title = "Penn State College of Ag Sciences"
@@ -401,6 +402,31 @@ class AnalyticsViewlet(BrowserView):
         if self.anonymous:
             ptool = getToolByName(self.context, "portal_properties")
             snippet = safe_unicode(ptool.site_properties.webstats_js)
+
+            # Chartbeat
+            site_domain = self.context.absolute_url().split("/")[2].split(':')[0]
+
+            if site_domain.endswith('psu.edu'):
+               snippet += """\n\n<script type="text/javascript">
+var _sf_async_config={uid:27424,domain:"%s"};
+(function(){
+  function loadChartbeat() {
+    window._sf_endpt=(new Date()).getTime();
+    var e = document.createElement('script');
+    e.setAttribute('language', 'javascript');
+    e.setAttribute('type', 'text/javascript');
+    e.setAttribute('src',
+       (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+       "js/chartbeat.js");
+    document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+})();
+
+</script>""" % site_domain
+
         else:
             snippet = ""
         return snippet
