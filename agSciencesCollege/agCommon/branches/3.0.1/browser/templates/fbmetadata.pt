@@ -1,3 +1,6 @@
+<tal:chartbeat condition="view/anonymous|nothing">
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+</tal:chartbeat>
 
 <tal:fbmetadata condition="view/showFBMetadata">
     <!-- Open Graph Protocol info for Facebook -->    
