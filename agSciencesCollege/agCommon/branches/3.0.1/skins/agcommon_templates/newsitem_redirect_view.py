@@ -25,5 +25,8 @@ else:
     # newsitem_view.pt is a template in the plone_content skin layer
     request = container.REQUEST
     RESPONSE =  request.RESPONSE
-    RESPONSE.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, must-revalidate, public, must-revalidate, proxy-revalidate')
+    if can_edit:
+        RESPONSE.setHeader('Cache-Control', 'max-age=0, must-revalidate, private')
+    else:
+        RESPONSE.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, must-revalidate, public, proxy-revalidate')
     return context.newsitem_view()

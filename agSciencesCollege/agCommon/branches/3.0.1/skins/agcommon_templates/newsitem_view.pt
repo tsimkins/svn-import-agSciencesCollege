@@ -40,7 +40,7 @@
                       redirect_links context/article_link|nothing">
 
         <p tal:define="is_editable context/@@plone_context_state/is_editable"
-           tal:condition="python: not len_text and is_editable"
+           tal:condition="python: not len_text and is_editable and not redirect_links"
            i18n:translate="no_body_text"
            class="discreet">
             This item does not have any body text, click the edit tab to change it.
