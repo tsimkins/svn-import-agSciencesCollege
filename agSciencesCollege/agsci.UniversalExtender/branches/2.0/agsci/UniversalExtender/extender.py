@@ -51,6 +51,7 @@ class FSDPersonExtender(object):
                 label=u"Twitter URL",
                 description=u"Example: http://twitter.com/...",
             ),
+            validators = ('isURL'),
         ),
         _ExtensionStringField(
             "facebook_url",
@@ -60,6 +61,7 @@ class FSDPersonExtender(object):
                 label=u"Facebook URL",
                 description=u"Example: http://www.facebook.com/...",
             ),
+            validators = ('isURL'),
         ),
         _ExtensionStringField(
             "linkedin_url",
@@ -69,6 +71,7 @@ class FSDPersonExtender(object):
                 label=u"Linked In",
                 description=u"Example: http://www.linkedin.com/...",
             ),
+            validators = ('isURL'),
         ),
         _ExtensionStringField(
             "primary_profile",
@@ -79,6 +82,7 @@ class FSDPersonExtender(object):
                 label=u"Primary Profile URL",
                 description=u"Providing a URL and setting the view to 'Person Alias' will redirect public users to this URL.",
             ),
+            validators = ('isURL'),
         ),
     ]
 
@@ -247,6 +251,7 @@ class NewsItemExtender(object):
                 label=u"Article URL",
                 description=u"Use this field if the article lives at another place on the internet. Do not copy/paste the full article text from another source.",
             ),
+            validators = ('isURL'),
         ),
 
     ]
