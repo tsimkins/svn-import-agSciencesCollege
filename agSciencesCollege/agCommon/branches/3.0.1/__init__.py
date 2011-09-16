@@ -46,6 +46,15 @@ allow_module('re.compile')
 # Precompile phoneRegex
 phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
 
+#Ploneify
+def ploneify(toPlone, isFile=False):
+    if not isFile:
+        ploneString = re.sub("[^A-Za-z0-9]+", "-", toPlone).lower()
+    else:
+        ploneString = re.sub("[^A-Za-z0-9\.]+", "-", toPlone).lower()
+    ploneString = re.sub("-$", "", ploneString)
+    ploneString = re.sub("^-", "", ploneString)
+    return ploneString
 
 # Given start and end colors (optionally width and height) returns a gradient png
 
