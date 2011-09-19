@@ -37,8 +37,6 @@ def createUsers(context):
                 ["trs22", "Simkins", "Tim", "trs22@psu.edu", True],
                 ["gra104", "Angle", "Greg", "gra104@psu.edu", True],
                 ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu", True],
-                ["pgw105", "Warren", "Pete", "pgw105@psu.edu", True],
-                ["mds118", "Spiegel", "Max", "mds118@psu.edu", True],
                 ["mfw10", "Wirth", "Mary", "mfw10@psu.edu", False],
             ]
 
@@ -63,7 +61,7 @@ def createUsers(context):
         administratorsGroup.removeMember(id)
 
     # Remove from Plone site
-    for id in ['axd159', 'cjm49', 'tds194']:
+    for id in ['axd159', 'cjm49', 'tds194', 'pgw105', 'mds118']:
         # Holding off on this until confirmation that
         # it doesn't break anything
         continue
