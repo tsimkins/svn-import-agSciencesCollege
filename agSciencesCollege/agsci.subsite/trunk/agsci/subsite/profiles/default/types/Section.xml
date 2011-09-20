@@ -9,7 +9,7 @@
  <property name="content_meta_type">Section</property>
  <property name="product">agsci.subsite</property>
  <property name="factory">addSection</property>
- <property name="immediate_view">folder_summary_view</property>
+ <property name="immediate_view">folder_listing</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
@@ -18,13 +18,14 @@
 	<element value="Folder"/>
 	<element value="Document"/>
 	<element value="PhotoFolder"/>
+	<element value="FormFolder"/>
 	<element value="HomePage"/>
 	<element value="File"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">folder_summary_view</property>
+ <property name="default_view">folder_listing</property>
  <property name="view_methods">
-  <element value="folder_summary_view"/>
+  <element value="folder_listing"/>
   <element value="atct_album_view"/>
   <element value="folder_listing"/>
   <element value="subfolder_view"/>
