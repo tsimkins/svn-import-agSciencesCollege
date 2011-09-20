@@ -25,7 +25,7 @@
                      feed_title python: (not org_title or org_title.lower() == 'none') and '%s - %s' % (page_title, site_title) or (page_title == site_title) and '%s - %s' % (site_title, org_title) or '%s - %s - %s' % (page_title, site_title, org_title)"
         tal:content="feed_title">The title</title>
   <link tal:define="parent context/getParentNode;
-                    default_page parent/getDefaultPage;
+                    default_page parent/getDefaultPage|nothing;
                     link_obj python: context.id == default_page and parent or context"
         tal:content="link_obj/absolute_url">http://url.to.portal</link>
 
