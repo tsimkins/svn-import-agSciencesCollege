@@ -352,4 +352,6 @@
         description="A view of events in table format"
     />
 
+    <include file="fsd.zcml" />
+
 </configure>

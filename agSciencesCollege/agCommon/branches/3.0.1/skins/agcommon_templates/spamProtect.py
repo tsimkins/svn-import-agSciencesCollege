@@ -19,9 +19,9 @@ if cssid is None:
 else:
     cssid = ' id="%s"' % cssid
 if cssclass is None:
-    cssclass = ''
+    cssclass = ' class="email"'
 else:
-    cssclass = ' class="%s"' % cssclass
+    cssclass = ' class="email %s"' % cssclass
 
 return '<a title="' + link_title + '" href="&#0109;ailto&#0058;' + email + '"' + cssclass + cssid + '>' + mailname + '</a>'
 

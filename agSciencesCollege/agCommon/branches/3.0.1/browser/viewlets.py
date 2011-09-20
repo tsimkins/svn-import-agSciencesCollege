@@ -138,6 +138,13 @@ class AddThisViewlet(ViewletBase):
         self.isHomePage = isHomePage(self.context)
         self.showTwoColumn = showTwoColumn(self.context)
         
+        portal_type = getattr(self.context, 'portal_type', None)
+
+        if portal_type == 'FSDPerson':
+            self.isPerson = True
+        else:
+            self.isPerson = False
+        
         ptool = getToolByName(self.context, "portal_properties")
         self.hide_addthis = not ptool.agcommon_properties.enable_addthis
 

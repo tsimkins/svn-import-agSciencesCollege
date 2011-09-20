@@ -17,8 +17,13 @@
 
 .facultyStaffDirectory.personView .headshot img {
     margin-right: 0;
-    float: right;
     border: none !important;
+}
+
+.facultyStaffDirectory.personView #addthis {
+    clear: right;
+    margin-top: 4px;
+    padding-right: 0;
 }
 
 body.template-department_standard_view #portal-column-content .visualClear {
