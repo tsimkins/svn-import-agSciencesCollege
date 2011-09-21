@@ -74,3 +74,11 @@ def _standard_results(self):
         valid_results.append(r)
 
     return valid_results
+
+# The "UberSelectionWidget" used by the collection portlet (and soon to be used 
+# by the FeedMixer portlet) annoyingly has a hardcoded limit of 20 results.  This
+# sets that limit to 99999.  The reason?  We have 100+ Extension subsites, all
+# with a a standard layout, and a collection of 'upcoming'.
+
+def uber_limit_results():
+    return 99999

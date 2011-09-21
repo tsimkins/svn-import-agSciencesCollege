@@ -21,5 +21,7 @@ agsci/UniversalExtender/locales/en/LC_MESSAGES/plonelocales.mo
 agsci/UniversalExtender/locales/en/LC_MESSAGES/plonelocales.po
 agsci/UniversalExtender/profiles/default/browserlayer.xml
 agsci/UniversalExtender/profiles/default/metadata.xml
+agsci/UniversalExtender/profiles/default/types.xml
+agsci/UniversalExtender/profiles/default/types/News_Item.xml
 agsci/UniversalExtender/profiles/uninstall/browserlayer.xml
 agsci/UniversalExtender/profiles/uninstall/metadata.xml

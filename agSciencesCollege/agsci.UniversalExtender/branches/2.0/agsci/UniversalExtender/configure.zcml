@@ -175,4 +175,13 @@
         original="_standard_results"
         />
 
+    <!-- Monkey Patch UberSelectionWidget to not truncate results -->
+
+    <monkey:patch
+        description="This (effectively) removes the truncation by setting the limit to 99999"
+        class="plone.app.form.widgets.uberselectionwidget.UberSelectionWidget"
+        replacement=".patch.uber_limit_results"
+        original="limit_results"
+        />
+
 </configure>
