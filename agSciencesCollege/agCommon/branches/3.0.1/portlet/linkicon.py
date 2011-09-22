@@ -86,7 +86,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return not self.data.hide
+        return self.linkIcons and not self.data.hide
 
 
 class AddForm(base.AddForm):
