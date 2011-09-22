@@ -2,6 +2,8 @@ from plone.portlets.interfaces import IPortletDataProvider
 from collective.portlet.feedmixer import FeedMixerMessageFactory as _
 from zope import schema
 from Products.validation import validation
+from Products.ATContentTypes.interface import IATTopic
+from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 
 def isUrlList(data):
     verify=validation.validatorFor("isURL")
@@ -83,7 +85,7 @@ class IFeedMixer(IPortletDataProvider):
             title=_(u"alternate_footer_link",
                 default=u"Alternate Footer Link"),
             description=_(u"description_title",
-                default=u"Use this URL for the 'More' link, instead of the Feedmixer generated one."),
+                default=u"Use this URL for the 'More' link, instead of the Feedmixer generated one. Note: This will be ignored if the only source is a collection."),
             default=u"",
             required=False)
 
@@ -94,8 +96,16 @@ class IFeedMixer(IPortletDataProvider):
                 default=u"Enter the URLs for all feeds here, one URL per "
                         u"line. RSS 0.9x, RSS 1.0, RSS 2.0, CDF, Atom 0.3 "
                         u"and ATOM 1.0 feeds are supported."),
-            required=True,
+            required=False,
             constraint=isUrlList)
+
+    target_collection = schema.Choice(
+        title=_(u"Target collection"),
+        description=_(u"Include the results of collection in the feed."),
+        required=False,
+        source=SearchableTextSourceBinder(
+            {'object_provides': IATTopic.__identifier__},
+            default_query='path:'))
 
     reverse_feed = schema.Bool(
             title=_(u"reverse_feed",
