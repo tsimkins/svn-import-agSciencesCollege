@@ -586,7 +586,20 @@ def configureEditor(context):
 
     site = context.getSite()
     sm = getSiteManager(site)
+    kupu = getToolByName(sm, 'kupu_library_tool')
+    
+    has_images_library = False
+    
+    for lib in kupu.getLibraries(sm):
+        if lib['id'] == 'images':
+            has_images_library = True
+            break
         
+    if not has_images_library:
+        kupu.addLibrary('images', 'string:Images', 'string:${portal_url}/images', 
+            'string:${portal_url}/images/kupucollection.xml', 'string:${portal_url}/image_icon.gif')
+        LOG('agCommonPolicy.configureKupu', INFO, "Adding 'images' Kupu library")
+
     # Set up the nasty/stripped/custom tags 
     # http://plone.org/documentation/how-to/how-to-embed-content-flickr-youtube-or-myspace
     """
@@ -637,6 +650,52 @@ def configureEditor(context):
     kwargs = {'nasty_tags_key': nasty_tags_key,'nasty_tags_value': nasty_tags_value,'valid_tags_key': valid_tags_key, 'valid_tags_value': valid_tags_value}
     safe_html.set_parameters(**kwargs)
     safe_html.reload()
+
+    # True up the Kupu side of things
+    stripped_tags = kupu.get_stripped_tags()
+    stripped_tags = list(set(stripped_tags) - set(['object', 'param']))
+    kupu.set_stripped_tags(stripped_tags)
+    
+    # Set toolbar buttons
+    filteroptions = kupu.getFilterOptions()
+
+    removeButtons = ['justifycenter-button', 'definitionlist', 'anchors-button',]
+    addButtons = ['embed-tab',]
+
+    for f in filteroptions:
+        if addButtons.count(f["id"]):
+            f["visible"] = True
+        elif removeButtons.count(f["id"]):
+            f["visible"] = False
+    
+    kupu.set_toolbar_filters(filteroptions,kupu.getGlobalButtonFilter())
+
+    # Remove Visual Highlight style
+    paragraphStyles = kupu.getParagraphStyles()
+    
+    removeStyles = ['visualHighlight', 'pageBreak']
+
+    for style in paragraphStyles:
+
+        styleName = style.split('|')[-1]
+
+        if removeStyles.count(styleName):
+            paragraphStyles.remove(style)
+
+    kupu.paragraph_styles = paragraphStyles
+    
+    defaultTableClassnames = {'plain' : 'Subdued grid', 'listing' : 'Fancy listing', 'grid' : 'Grid', 'data' : 'Invisible grid'}
+    
+    tableClassnames = kupu.getTableClassnames()
+    
+    for t in tableClassnames:
+        if defaultTableClassnames.get(t):
+            tableClassnames[tableClassnames.index(t)] = "%s|%s" % (t, defaultTableClassnames.get(t))
+    
+    kupu.table_classnames = tableClassnames
+    
+    LOG('agCommonPolicy.configureKupu', INFO, "Updated Kupu settings and enabled embedding YouTube/etc. content")
+
 
 def setRestrictions(context):
     site = context.getSite()
