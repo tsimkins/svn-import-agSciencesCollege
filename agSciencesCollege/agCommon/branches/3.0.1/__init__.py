@@ -207,11 +207,13 @@ def getHomepageImage(context):
                     }
                 );
                 
+                %s
+                
             }
         }
     );
     
-    """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights))
+    """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights), getFlashOverlayCode(context))
 
 def getPortletHomepageImage(context, homepage_type="portlet"):
     return getPanoramaHomepageImage(context, homepage_type="portlet")
@@ -294,6 +296,24 @@ def getBackgroundImages(context, maxHeight=265):
         backgroundHeights.append(str(imageHeight))
         
     return (backgrounds, backgroundAlignments, backgroundHeights)
+
+def getFlashOverlayCode(context):
+
+    swf_file = ""
+    
+    for myFile in context.listFolderContents(contentFilter={"portal_type" : "File"}):
+        if myFile.absolute_url().endswith(".swf"):
+            swf_file = myFile.absolute_url()
+            break
+
+    if swf_file:
+        return """
+		var so = new SWFObject("%s", "thinkAgain", "585", "265", "8", "transparent");
+		so.addParam("wmode","transparent");
+		so.write("homepageimage");
+        """ % swf_file
+    else:
+        return "// No Flash overlay"
 
 def makePage(context):
     print context.portal_type

@@ -7,8 +7,17 @@
 
 /* Missing table border */
 
-.facultyStaffDirectory table.listing {
+#content .facultyStaffDirectory table.listing {
 	border: 1px solid &dtml-globalBorderColor;;
+	font-size: 1em;
+}
+
+#content .facultyStaffDirectory table.listing tbody {
+    border: none;
+}
+
+#content .facultyStaffDirectory .atozView .alphabetLinks ol li {
+    color: #CCCCCC;
 }
 
 .facultyStaffDirectory.personView .headshot {
