@@ -318,22 +318,20 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
         homepage_rightColumn = getPortletAssignmentMapping(front_page, 'agcommon.rightcolumn')
 
         # Configure feedmixer in center column
-
-        # Grab path to news RSS feed, and make sure it's http://        
-        agsci_rss = 'http://agsci.psu.edu/news/live.psu.edu/agsci/RSS'
-        subsite_rss = subsite.absolute_url().replace('https:', 'http:') + '/news/latest/RSS'
-        county_rss = subsite.absolute_url().replace('https:', 'http:') + '/news/recent/RSS'
+        
+        feeds = []
+        target_collection = ""
         
         if is_county_site:
-            feeds=[county_rss]
-        elif subsite_rss.count('localhost'):
-            feeds=[agsci_rss]
+            target_collection='/%s/news/recent' % '/'.join(urltool.getRelativeContentPath(subsite))
         else:
-            feeds=[agsci_rss,subsite_rss]
-
+            feeds=['http://agsci.psu.edu/news/live.psu.edu/agsci/RSS']
+            target_collection='/%s/news/latest' % '/'.join(urltool.getRelativeContentPath(subsite))
+            
         subsite_news = feedmixer.portlet.Assignment(
                     title="%s News" % subsite.title,
                     feeds="\n".join(feeds),
+                    target_collection=target_collection,
                     items_shown=3,
                     show_header=True,
                     show_date=True,
@@ -432,7 +430,7 @@ def onCountySiteCreation(subsite, event):
             programs.setDefaultPage('listing')
             
             smart_obj = programs['listing']
-            smart_obj.setLayout("folder_leadimage_view")
+            smart_obj.setLayout("folder_summary_view")
             smart_obj.unmarkCreationFlag()
                     
             # Set the criteria for the folder
@@ -969,13 +967,9 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
         
                 # Configure feedmixer news and events in center column
         
-                # Grab path to news RSS feed, and make sure it's http://        
-                program_news_rss = program_folder.absolute_url().replace('https:', 'http:') + '/news/latest/RSS'
-                program_events_rss = program_folder.absolute_url().replace('https:', 'http:') + '/events/RSS'
-                
                 program_news = feedmixer.portlet.Assignment(
                             title="%s County %s News" % (county_name, program_name),
-                            feeds=program_news_rss,
+                            target_collection='/%s/news/latest' % '/'.join(urltool.getRelativeContentPath(program_folder)),
                             items_shown=5,
                             show_header=True,
                             show_date=True,
@@ -989,7 +983,7 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
 
                 program_events = feedmixer.portlet.Assignment(
                             title="Upcoming Events",
-                            feeds=program_events_rss,
+                            target_collection='/%s/events' % '/'.join(urltool.getRelativeContentPath(program_folder)),
                             items_shown=5,
                             show_header=True,
                             show_date=True,
@@ -1021,7 +1015,7 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                     # Put the general 4-h info RSS portlet in the right column
                     general_info = feedmixer.portlet.Assignment(
                             title="General 4-H Information",
-                            feeds="http://extension.psu.edu/4-h/general-info/RSS",
+                            target_collection="/4-h/general-info",
                             items_shown=100,
                             show_header=True,
                             show_date=False,
@@ -1044,7 +1038,7 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                     # Put the general Master Gardener info RSS portlet in the right column
                     general_info = feedmixer.portlet.Assignment(
                             title="General Master Gardener Information",
-                            feeds="http://extension.psu.edu/master-gardener/general-info/RSS",
+                            target_collection="/master-gardener/general-info",
                             items_shown=100,
                             show_header=True,
                             show_date=False,
@@ -1064,7 +1058,7 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                 # Put the general 4-h info RSS portlet in the right column
                 statewide_forms = feedmixer.portlet.Assignment(
                         title="State-Wide Volunteer Forms",
-                        feeds="http://extension.psu.edu/4-h/leaders/forms/default/RSS",
+                        feeds="/4-h/leaders/forms/default",
                         items_shown=100,
                         show_header=True,
                         show_date=False,
@@ -1080,7 +1074,7 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                 # Put the general 4-h info RSS portlet in the right column
                 leader_resources = feedmixer.portlet.Assignment(
                         title="Leader Resources",
-                        feeds="http://extension.psu.edu/4-h/volunteer-leader-resources/RSS",
+                        target_collection="/4-h/volunteer-leader-resources",
                         items_shown=100,
                         show_header=True,
                         show_date=False,
@@ -1117,5 +1111,3 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                 program_crit.setValue(program_name) # Only list items in the current program
                 
                 sort_crit = smart_obj.addCriterion('getSortableName','ATSortCriterion')
-            
-            
