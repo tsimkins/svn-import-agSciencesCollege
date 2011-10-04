@@ -47,6 +47,17 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Skip to navigation Links -->
+
+    <browser:viewlet
+        name="plone.skip_links"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        permission="zope2.View" 
+        class="plone.app.layout.viewlets.common.SkipLinksViewlet"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/skip_links.pt"
+        />
+
 
     <!-- Links to RSS feed for syndicated content -->
 

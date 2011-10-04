@@ -2,17 +2,19 @@
     id="portal-logo" 
     tal:define="portal_title context/portal_title|context/@@plone_portal_state/portal_title|view/portal_title;
     navigation_root_url context/navigation_root_url|view/navigation_root_url;
-    portal_url view/portal_url;">
+    portal_url view/portal_url;
+    subsite not: context/main_site|nothing">
 
   <a href="http://www.psu.edu"><img 
     id="logo-psu" 
     tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
     alt="Penn State University" /></a>
     
-  <a href="http://agsci.psu.edu"><img 
-    id="logo-college"
-    tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
-    alt="College of Agricultural Sciences" /></a>
+  <a href="http://agsci.psu.edu"
+     tal:condition="subsite"><img 
+     id="logo-college"
+     tal:attributes="src string:${view/navigation_root_url}/blank.gif" 
+     alt="College of Agricultural Sciences" /></a>
 
     <img 
         id="logo-print"
@@ -20,18 +22,12 @@
         alt="College of Agricultural Sciences" />
 
     <div id="logo-site">
-        <a  tal:condition="python: portal_title != 'Penn State Extension'" 
-            tal:content="portal_title"
-            accesskey="1" 
-            tal:attributes="href navigation_root_url; 
-                            title portal_title" 
-            i18n:domain="plone"
-            i18n:attributes="title" />
-        <a  tal:condition="python: portal_title == 'Penn State Extension'" 
-            accesskey="1" 
-            tal:attributes="href navigation_root_url; 
-                            title portal_title" 
-            i18n:domain="plone"
-            i18n:attributes="title"><img tal:attributes="src string:${portal_url}/extension-header.png; alt portal_title" /></a>
+        <a tal:condition="python: portal_title != 'Penn State Extension'" 
+           tal:content="portal_title"
+           accesskey="1" 
+           tal:attributes="href navigation_root_url" />
+        <a tal:condition="python: portal_title == 'Penn State Extension'" 
+           accesskey="1" 
+           tal:attributes="href navigation_root_url"><img tal:attributes="src string:${portal_url}/extension-header.png; alt portal_title" /></a>
     </div>
 </div>
