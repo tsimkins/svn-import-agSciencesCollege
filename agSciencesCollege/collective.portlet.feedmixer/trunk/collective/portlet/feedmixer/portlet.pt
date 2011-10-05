@@ -15,8 +15,11 @@
         <dd class="portletItem"
             tal:define="oddrow repeat/entry/odd;
                         isFirst repeat/entry/start;
+                        show_summary view/show_summary|nothing;
+                        show_date view/show_date|nothing;
                         className string:portletItem;
                         className python:isFirst and className + ' first' or className;
+                        className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
                         imageURL python:hasImage and entry.enclosures[0].href + '_feedmixer' or None"
@@ -37,13 +40,13 @@
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
                                
                 <span class="portletItemDetails date"
-	                tal:condition="view/show_date|nothing"
+	                tal:condition="show_date"
                     tal:content="python:toLocalizedTime(entry['updated'])">
                     Nov 1
                 </span>
 
                 <span class="portletItemDetails summary"
-                    tal:condition="view/show_summary|nothing"
+                    tal:condition="show_summary"
                     tal:content="entry/summary_detail/value">
                     [Feed Summary]
                 </span>
