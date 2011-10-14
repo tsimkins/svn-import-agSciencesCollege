@@ -196,7 +196,7 @@ h1, .documentByLine, .documentActions {
  #content #rightcolumn .portlet dd a:visited {
 	color: &dtml-frontRightPortletTextColor;;
 	display: block;
-	font-size: 1.10em;
+	font-size: 1.15em;
 	text-decoration: none;
 	border: 0px;
 	font-weight: normal;
@@ -207,8 +207,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletItem .date {
-	color: #5B87B6;
-	font-size: 0.92em;
+	font-size: 1.1em;
 	font-weight: normal;
 }
 
@@ -232,6 +231,15 @@ h1, .documentByLine, .documentActions {
 #rightcolumn .portletItem a:hover,
 #centercolumn .portletItem a:hover {
 	color: #3366CC;
+}
+
+#rightcolumn .portletfeedmixer a.title {
+    margin-top: 0.2em;
+}
+
+#rightcolumn dl.portletfeedmixer span.summary {
+    font-size: 1.15em;
+    line-height: 1.45em;
 }
 
 #centercolumn {
@@ -286,7 +294,7 @@ h1, .documentByLine, .documentActions {
 
 #centercolumn .portletItem span.summary {
 	color: #333333;
-	font-size: 0.92em;
+	font-size: 1em;
 	margin: 10px 0px;
 	font-weight: normal;
 	text-align: left;

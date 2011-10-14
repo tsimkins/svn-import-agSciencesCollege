@@ -387,11 +387,35 @@ body {
 
 /* RSS Image in right and left column */
 
+#portal-column-one dl.portletfeedmixer a.title,
+#portal-column-two dl.portletfeedmixer a.title {
+    font-size: 1.04em;
+}
+
 #portal-column-one dl.portletfeedmixer a.rssImage,
 #portal-column-two dl.portletfeedmixer a.rssImage {
     display: block;
     text-align: left;
     margin-top: 0.5em;
+}
+
+#portal-column-one dl.portletfeedmixer dd.summary span.date,
+#portal-column-two dl.portletfeedmixer dd.summary span.date,
+#rightcolumn dl.portletfeedmixer dd.summary span.date {
+    text-align: left;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 0.5em;
+    padding-top: 0.25em;
+}
+
+
+#portal-column-one dl.portletfeedmixer span.summary,
+#portal-column-two dl.portletfeedmixer span.summary,
+#rightcolumn dl.portletfeedmixer span.summary {
+    text-align: left;
+    font-size: 1em;
+    margin-top: 0.5em;
+    color: #4D4D4D;
 }
 
 /* Link Icons */
