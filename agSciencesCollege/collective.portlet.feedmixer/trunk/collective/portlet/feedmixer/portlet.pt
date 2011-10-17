@@ -22,15 +22,15 @@
                         className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
-                        imageURL python:hasImage and entry.enclosures[0].href + '_feedmixer' or None"
+                        imageURL python:hasImage and entry.enclosures[0].href + '_feedmixer' or None;
+                        imageCaption python:hasImage and (hasattr(entry.enclosures[0], 'title') and entry.enclosures[0].title) or entry.title"
             tal:attributes="class className">
 
     
-            <a tal:attributes="href entry/link;
-                                title entry/title"
+            <a tal:attributes="href entry/link;"
                 class="rssImage" tal:condition="hasImage">
 
-                <img tal:attributes="src imageURL; alt entry/title" />
+                <img tal:attributes="src imageURL; alt imageCaption; title imageCaption" />
             
             </a>
 

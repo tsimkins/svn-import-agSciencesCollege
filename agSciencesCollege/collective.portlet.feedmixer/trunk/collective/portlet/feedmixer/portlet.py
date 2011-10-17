@@ -135,8 +135,10 @@ class Renderer(base.Renderer):
         except:
             more_url = ""
 
-        if self.data.target_collection and not self.feed_urls:
-            # Override with collection URL (or if collection is default page, parent folder)
+        if alternate_footer_link:
+            return str(alternate_footer_link).strip()
+        elif self.data.target_collection and not self.feed_urls:
+            # Collection URL (or if collection is default page, parent folder)
             collection = self.collection()
             if collection is None:
                 return None
@@ -146,8 +148,6 @@ class Renderer(base.Renderer):
                     return parent.absolute_url()
                 else:
                     return collection.absolute_url()
-        elif alternate_footer_link:
-            return str(alternate_footer_link).strip()
         else:
             return more_url
 
