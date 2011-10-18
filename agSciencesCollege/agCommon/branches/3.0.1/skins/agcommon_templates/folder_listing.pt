@@ -147,8 +147,7 @@
                             <strong>Where:</strong>
 
                             <tal:location metal:define-macro="event_location"
-                                define="item_object item/getObject;
-                                        map_link item_object/map_link|nothing">
+                                define="map_link item/map_link|nothing">
                             
                                 <tal:map condition="map_link">
                                     <a tal:attributes="href map_link">
