@@ -818,17 +818,17 @@ body {
     color: &dtml-documentTitleColor;;
     font-weight: normal;
     border: none;
-    font-size: 190%;
+    font-size: 2em;
 }
 
 #content h2, html.kupu-html h2 {
     color: &dtml-documentHeadingColor;;
-    font-size: 160%;
-    margin: 15px 0 5px;
-    padding: 0 0 0.17em 0;
+    font-size: 1.6875em;
+    margin: 1.5em 0 0.25em 0;
+    padding: 0 0 0.125em 0;
     border: 0;
     font-weight: normal;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 #content h2.tileHeadline {
@@ -843,11 +843,12 @@ body {
 
 #content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
-    font-size: 125%;
-    margin: 15px 0 5px;
+    font-size: 1.25em;
+    margin: 1.125em 0 0 0;
     padding: 0;
     border: 0;
-    font-weight: normal;
+    font-weight: bold;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
 }
 
 #content h3.speaker-institution {
@@ -857,9 +858,9 @@ body {
 #content .documentDescription {
     font-weight: normal;
     color: &dtml-documentDescriptionColor;;
-    font-size: 1.15em;
+    font-size: 1.25em;
     border-width: 0;
-    margin: 0 0 1.5em;
+    margin: 0 0 1.875em;
 }
 
 #content .tileItem {
@@ -969,7 +970,7 @@ dd.portletItem p {
 /* Paragraph and Unordered List readability per cmore */
 
 #content ul {
-    margin:0.75em 0 0 2.5em;
+    margin: 0.375em 0 1.125em 2.5em;
 }
 
 /* Nested ul's */
@@ -979,6 +980,10 @@ dd.portletItem p {
 
 p {
     margin: 1em 0;
+}
+
+#content p {
+    margin: 0.375em 0 1.125em 0;
 }
 
 /* Photo Album */
@@ -1101,6 +1106,7 @@ dl#relatedItemBox {
 blockquote {
     border-left: none;
     padding-left: 2em;
+    color: #000000;
 }
 
 /* ============================== MISC ========================== */
@@ -1315,7 +1321,7 @@ body.template-pgv_sg_carousel_view #content {
     background-color: &dtml-footerBackgroundColor;;
     color: &dtml-footerTextColor;;
     text-align: right;
-    padding: 0.25em 0.5em 0.33em 0.5em;
+    padding: 0.25em 0.5em 0.3125em 0.5em;
     margin: 0 -6px;
 }
 
@@ -1577,6 +1583,7 @@ body.template-agenda_view #document-toc h3 {
 #printheader {
     display: none;
 }
+
 
 /* YOUR CSS RULES STOP HERE */
 
