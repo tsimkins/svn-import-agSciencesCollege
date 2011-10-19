@@ -54,6 +54,8 @@
 	text-indent: 0;
 	overflow: hidden;
 	text-align: left;
+	min-height: 90px;
+	font-size: 0.9375em;
 }
 
 * html .jdGallery .slideInfoZone
@@ -64,20 +66,17 @@
 .jdGallery .slideInfoZone h2
 {
 	padding: 0;
-	font-size: 80% !important;
 	margin: 0;
 	margin: 2px 5px !important;
 	font-weight: normal;
-	color: #FFFFFF !important;
-	border-width: 0 !important;
+	color: #EEEEEE !important;
 }
 
 .jdGallery .slideInfoZone p
 {
 	padding: 0;
-	font-size: 60%;
 	margin: 2px 5px;
-	color: #eee;
+	color: #EEEEEE;
 }
 
 .jdGallery div.carouselContainer
@@ -161,7 +160,6 @@
 
 .jdGallery a
 {
-	font-size: 100%;
 	text-decoration: none;
 	color: inherit;
 }

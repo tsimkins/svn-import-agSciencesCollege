@@ -150,15 +150,14 @@ html{
 * html .jdGallery a.right { background: url('pgv_sg_fleche2.gif') no-repeat center right; }
 
 .jdGallery .slideInfoZone h2{
-    font-size:100%;
+    border-bottom-color: #666666 !important;
 }
 
 .jdGallery .slideInfoZone p{
-    font-size:90%;
-    margin: 0px;
-    padding: 3px;
-    line-height:1em;
-    text-align: justify;
+    margin: 0.1875em 0.875em !important;
+    padding: 0;
+    line-height: 1.1875em;
+    text-align: left;
 }
 
 .jdGallery .slideInfoZone
@@ -166,7 +165,7 @@ html{
 	position: absolute;
 	z-index: 10;
 	width: 100%;
-	margin: 0px;
+	margin: 0;
 	left: 0;
 	bottom: 0;
 	height: 5em;
@@ -203,7 +202,7 @@ html{
 .pgv_sg_carousel_view #myGallery{
 /*	width: 585px; */
     width: 99%;
-	height: 436px;
+	height: 475px;
 }
 .pgv_sg_carouseltimed_view #myCarousel,
 .pgv_sg_carousel_view #myCarousel{
