@@ -208,7 +208,8 @@ html{
 .pgv_sg_carousel_view #myCarousel{
 /*	width: 587px; */
 	width: 99%;
-	padding: 0px 1px;
+	padding: 0;
+    border: 1px solid #000000;
 }
 .pgv_sg_carouseltimed_view .jdGallery a.carouselBtn,
 .pgv_sg_carousel_view .jdGallery a.carouselBtn{
