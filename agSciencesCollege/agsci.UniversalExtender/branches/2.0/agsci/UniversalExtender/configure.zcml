@@ -184,4 +184,13 @@
         original="limit_results"
         />
 
+    <!-- Monkey Patch FSD directory list to not show hidden people -->
+
+    <monkey:patch
+        description="This only shows people in the 'active' workflow state in the directory view."
+        class="Products.FacultyStaffDirectory.FacultyStaffDirectory.FacultyStaffDirectory"
+        replacement=".patch.getPeople"
+        original="getPeople"
+        />
+
 </configure>

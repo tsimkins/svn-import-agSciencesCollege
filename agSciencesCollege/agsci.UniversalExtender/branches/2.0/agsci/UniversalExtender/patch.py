@@ -82,3 +82,12 @@ def _standard_results(self):
 
 def uber_limit_results():
     return 99999
+
+
+# Monkeypatch for FSD to only show people in the 'active' workflow state.
+
+def getPeople(self):
+    """Return a list of people contained within this FacultyStaffDirectory."""
+    portal_catalog = getToolByName(self, 'portal_catalog')
+    results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active')
+    return [brain.getObject() for brain in results]
