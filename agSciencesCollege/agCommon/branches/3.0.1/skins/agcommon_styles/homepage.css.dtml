@@ -22,14 +22,14 @@ h1, .documentByLine, .documentActions {
 	height: 265px;
 	margin: 0 0 3px 0;
 	text-align: left;
-	padding: 0px;
+	padding: 0;
 }
 
 /* Homepage Image overlay */
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
-	padding: 10px 10px 0px 12px;
+	padding: 10px 10px 0 12px;
 	margin: 0;
 	background-color: transparent;
 	border-width: 0;
@@ -93,7 +93,7 @@ h1, .documentByLine, .documentActions {
 #rightcolumn {
     display: block;
 	margin: 0;
-	padding: 0px;
+	padding: 0;
 	font-weight: normal;
 	background-color: &dtml-frontRightPortletBackgroundColor;;
 	color: &dtml-frontRightPortletTextColor;;
@@ -114,8 +114,8 @@ h1, .documentByLine, .documentActions {
 	padding: 4px;
 	text-align: center;
 	text-transform: uppercase;
-	border-width: 0px;
-	margin: 0px; 
+	border-width: 0;
+	margin: 0; 
 }
 
 #rightcolumn .portletHeader a {  
@@ -124,7 +124,7 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn .portletItem {
 	background-color: &dtml-frontRightPortletBackgroundColor;;
-	border-width: 0px;
+	border-width: 0;
 	color: &dtml-frontRightPortletTextColor;;
 }
 
@@ -138,14 +138,14 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletItem ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 #rightcolumn .portletItem li {
 	list-style-image: none;
 	list-style-type: none;
-	margin: 2px 0px 5px;
+	margin: 2px 0 5px;
 	padding: 1px 0 1px 1px;
 	font-size: 1.00em;
 	color: &dtml-frontRightPortletTextColor;;
@@ -171,7 +171,7 @@ h1, .documentByLine, .documentActions {
 #centercolumn dl.portletStaticText .portletHeader a  {
 	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
 	color: &dtml-frontRightPortletHeaderTextColor;; 
-	margin: 0px;
+	margin: 0;
 	display: block;
 }
 
@@ -194,11 +194,11 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn .portletItem a, #rightcolumn .portletItem a:visited,
  #content #rightcolumn .portlet dd a:visited {
-	color: &dtml-frontRightPortletTextColor;;
+	color: &dtml-frontRightPortletLinkColor;;
 	display: block;
 	font-size: 1.15em;
 	text-decoration: none;
-	border: 0px;
+	border: 0;
 	font-weight: normal;
 }
 
@@ -212,20 +212,15 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletWrapper {
-	border: 0px;
-	padding: 0px;
-	margin-left: 0px;
+	border: 0;
+	padding: 0;
+	margin-left: 0;
 }
 
 
 #rightcolumn .portletItem a.more,
 #centercolumn .portletItem a.more {
-/*	display: block;
-	font-size: 0.85em;
-	margin: 5px;
-	text-align: right; 
-	text-decoration: none;*/
-	border: 0px;
+	border: 0;
 }
 
 #rightcolumn .portletItem a:hover,
@@ -234,7 +229,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletfeedmixer a.title {
-    margin-top: 0.2em;
+    margin-top: 0.26em;
 }
 
 #rightcolumn dl.portletfeedmixer span.summary {
@@ -245,14 +240,14 @@ h1, .documentByLine, .documentActions {
 #centercolumn {
 	display: block;
 	margin: 0 0 0 8px;
-	padding: 5px 0px 5px 0px;
-	border-width: 0px 175px 0px 0px;
+	padding: 5px 0 5px 0;
+	border-width: 0 175px 0 0;
 	border-color: &dtml-frontRightPortletBackgroundColor;;
 	border-style: solid;
 }
 
 #centercolumn dd {
-	padding: 0px;
+	padding: 0;
 }
 
 #centercolumn .portletHeader {
@@ -261,33 +256,33 @@ h1, .documentByLine, .documentActions {
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
 	background-color: transparent;
-	border-width: 0px;
-	padding: 0px;
+	border-width: 0;
+	padding: 0;
 }
 
 #centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0px 0px 0px;
+	border-width: 1px 0 0 0;
 	border-style: dashed;
 	border-color: #CCCCCC;
-	padding: 0px;
+	padding: 0;
 }
 
 #centercolumn .portlet dd:first-child {
-	border-width: 0px 0px 0px 0px;
+	border-width: 0 0 0 0;
 }
 
 #centercolumn .portletItem a.title {
-	font-size: 1.05em;
+	font-size: 1.0625em;
 	font-weight: bold;
-	margin-top: 7px;
+	margin-top: 0.4375em;
 	text-decoration: none;
-	border-width: 0px;
+	border-width: 0;
 	display: block;
 }
 
 #centercolumn .portletItem span.date  {
-	color: #5B87B6;
-	font-size: 0.88em;
+	color: #76797C;
+	font-size: 0.875em;
 	font-weight: normal;
 	text-align: left;
 }
@@ -295,19 +290,19 @@ h1, .documentByLine, .documentActions {
 #centercolumn .portletItem span.summary {
 	color: #333333;
 	font-size: 1em;
-	margin: 10px 0px;
+	margin: 0.3125em 0 0.875em 0;
 	font-weight: normal;
 	text-align: left;
 }
 
 #centercolumn .portletFooter a {
-	color: #5B87B6;
+	color: #265FCF;
 	display: block;
 	font-size: 0.81em;
 	margin: 5px 5px 0;
 	text-align: right;
 	text-decoration: none;
-	border-width: 0px;
+	border-width: 0;
 }
 
 
@@ -338,7 +333,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #content, #content {
-	padding: 0px !important;
+	padding: 0 !important;
 }
 
 .documentEditable  {
@@ -361,7 +356,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #homepageimage {
-    margin-top: -28px;
+    margin-top: -30px;
 }
 
 #homepageimage.nobreadcrumbs {
@@ -398,7 +393,7 @@ h1, .documentByLine, .documentActions {
 #centercolumn dl.portletfeedmixer .portletHeader,
 #centercolumn dl.portletStaticText .portletHeader {
     display: block;
-    margin: -5px -7px 0px -8px;
+    margin: -5px -7px 0 -8px;
     font-size: 0.88em;
     font-weight: bold;
     text-align: left;
@@ -408,7 +403,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #centercolumn .portletfeedmixer dd.first {
-	border-width: 0px 0px 0px 0px;
+	border-width: 0 0 0 0;
 	padding-top: 3px;
 }
 
@@ -438,7 +433,7 @@ h1, .documentByLine, .documentActions {
 	opacity: 0.80;
 	filter: alpha(opacity=80);	
 	margin: 3px 3px 3px;
-	height: 17px;
+	height: 19px;
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {

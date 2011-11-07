@@ -210,7 +210,13 @@
 
                 <dd tal:condition="item_description|nothing">
                     <span class="description"
-                           tal:condition="item_description"
+                           tal:condition="item/render_description_as_markdown|nothing"
+                           tal:define="markdown python: agcommon_utilities.toMarkdown(item_description)"
+                           tal:content="structure markdown">
+                        description
+                    </span>
+                    <span class="description"
+                           tal:condition="not: item/render_description_as_markdown|nothing"
                            tal:content="item_description">
                         description
                     </span>

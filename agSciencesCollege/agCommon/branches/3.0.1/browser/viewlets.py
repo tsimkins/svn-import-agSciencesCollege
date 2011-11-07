@@ -55,8 +55,34 @@ class TopNavigationViewlet(ViewletBase):
             topMenu = aq_acquire(self.context, 'top-menu')
         except AttributeError:
             topMenu = 'topnavigation'
-        
+            
         self.topnavigation = context_state.actions().get(topMenu, None)
+
+        # URL that contains the section
+        self.container_url = None
+
+        if self.topnavigation:
+            matches = []
+    
+            for t in self.topnavigation:
+                t_url = t.get('url')
+                portal_url = self.context.portal_url()
+                context_url = self.context.absolute_url()
+
+                # Remove trailing / to normalize
+                if t_url.endswith("/"):
+                    t_url = t_url[0:-1]
+                if portal_url.endswith("/"):
+                    portal_url = portal_url[0:-1]
+                if context_url.endswith("/"):
+                    context_url = context_url[0:-1]
+                    
+                if portal_url != t_url and context_url.startswith(t_url):
+                    matches.append(t_url) # Remove trailing slash
+
+            if matches:
+                self.container_url = sorted(matches, key=lambda x:len(x), reverse=True)[0]
+
 
 class RightColumnViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/rightcolumn.pt')

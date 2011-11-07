@@ -6,6 +6,7 @@
 
 #portlets-below dl.linkIcon dd ul { 
     margin-left: 0 !important; 
+    margin-top: 0 !important;
 } 
 
 /* </dtml-with> */

@@ -80,8 +80,7 @@
                     creator obj_item/Creator|nothing;
                     obj_item_type obj_item/portal_type">
     <title tal:content="obj_item/pretty_title_or_id">Title</title>
-    <link tal:condition="python:obj_item_type != 'Link'" tal:content="obj_item/Identifier">Identifier</link>
-    <link tal:condition="python:obj_item_type == 'Link'" tal:content="obj_item/getRemoteUrl">Link</link>
+    <link tal:content="obj_item/Identifier">Identifier</link>
     <description tal:content="obj_item/Description">Description</description>
     <dc:publisher tal:content="obj_item/Publisher">Publisher</dc:publisher>
     <dc:creator tal:condition="creator" tal:define="author python:getMemberInfo(creator)" tal:content="python:author and author['fullname'] or creator">Creator</dc:creator>

@@ -152,7 +152,7 @@ def bodyBackground(context, request):
     stripe_3 = base_properties.getProperty('backgroundStripeThreeColor')
     background = base_properties.getProperty('bodyBackgroundColor')
 
-    heights = [65,10,29,300,600]
+    heights = [71,10,30,300,600]
     colors = [stripe_1, stripe_2, stripe_3, stripe_2]
 
     arguments = ['convert', '-size', '%sx%s' % (width, heights[-1]), 'gradient:%s-%s' % (stripe_2, background), 

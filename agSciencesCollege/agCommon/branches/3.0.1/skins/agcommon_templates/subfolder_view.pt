@@ -5,31 +5,14 @@
 
 <body>
 
-<div metal:fill-slot="main">
-<metal:main_macro define-macro="main">
+<metal:content-core fill-slot="content-core">
+<metal:main_macro define-macro="content-core">
     <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                             templateId template/getId;
+                            agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
                             standalone_view python:False">
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:here.widget('title', mode='view')">
-            Title
-            </metal:field>
-        </h1>
-
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p class="documentDescription" tal:condition="here/Description">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
-            Description
-            </metal:field>
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div metal:use-macro="here/folder_listing/macros/text-field-view" />
 
@@ -53,11 +36,23 @@
             </a>
           </h2>
 
-          <span class="description" tal:condition="subfolder/Description">
-            <metal:field use-macro="python:subfolder.widget('description', mode='view')">
-              Description
-            </metal:field>
-          </span>
+          <tal:description 
+            tal:define="subfolder_description subfolder/Description|nothing"
+            tal:condition="subfolder_description">
+
+                    <span class="description"
+                           tal:condition="subfolder/render_description_as_markdown|nothing"
+                           tal:define="markdown python: agcommon_utilities.toMarkdown(subfolder_description)"
+                           tal:content="structure markdown">
+                        description
+                    </span>
+                    <span class="description"
+                           tal:condition="not: subfolder/render_description_as_markdown|nothing"
+                           tal:content="subfolder_description">
+                        description
+                    </span>
+
+          </tal:description>
 
           <tal:define define="here nocall:subfolder;
                               here_url subfolder/absolute_url;">
@@ -154,11 +149,8 @@
 
     </metal:body>
 
-    <div tal:replace="structure provider:plone.belowcontentbody" />
-
 </metal:main_macro>
-
-</div>
+</metal:content-core>
 
 </body>
 </html>

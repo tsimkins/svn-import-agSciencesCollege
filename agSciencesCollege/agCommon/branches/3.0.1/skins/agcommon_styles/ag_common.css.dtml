@@ -13,6 +13,7 @@ body {
     color: #000000;
     background-repeat: repeat-x;
     background-position: left top;
+    font-size: 100% !important;
 }
 
 
@@ -21,13 +22,13 @@ body {
 #visual-portal-wrapper {
     background-color: &dtml-backgroundColor;;
     margin: 0 auto;
-    padding: 0 6px 6px 6px;
+    padding: 0 0.375em 0.375em 0.375em;
     max-width: &dtml-maxWidth;;
     min-width: &dtml-minWidth;;
     /* Drop Shadow */
-    -moz-box-shadow: 0 0 10px #333333;
-    -webkit-box-shadow: 0 0 10px #333333;
-    box-shadow: 0 0 10px #333333;
+    -moz-box-shadow: 0 0 0.625em #333333;
+    -webkit-box-shadow: 0 0 0.625em #333333;
+    box-shadow: 0 0 0.625em #333333;
 }
 
 
@@ -35,8 +36,8 @@ body {
 
 #portal-top {
     margin: 0;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #808080;
+    border-left: 0.0625em solid #808080;
+    border-right: 0.0625em solid #808080;
 }
 
 
@@ -44,8 +45,8 @@ body {
 
 #portal-header {
     background: &dtml-backgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
-    height: 75px;
-    margin: 1px 0 0 0;
+    height: 4.6875em;
+    margin: 0.0625em 0 0 0;
     padding: 0;
 }
 
@@ -58,8 +59,8 @@ body {
 /* = portal-searchbox ====================================== */
 
 #portal-searchbox {
-    margin: 4px;
-    padding:0 0.25em 0 0
+    margin: 0.25em;
+    padding: 0 0.25em 0 0
 }
 
 .searchSection {
@@ -70,11 +71,26 @@ body {
     background-color: transparent;
     border: 0;
     padding: 0;
-    margin-top: -1px;
+    margin: 0;
+    vertical-align: middle;
 }
 
 #portal-searchbox label.hiddenStructure {
     display: none;
+}
+
+#portal-searchbox #SearchableText {
+    font-size: 0.6875em;
+    padding: 0.1875em 0.125em;
+    border: 0.0625em solid #999999;
+    vertical-align: middle;
+}
+
+#portal-searchbox #searchSource {
+    font-size: 0.6875em;
+    padding: 0.125em;
+    margin-top: 0.0625em;
+    vertical-align: middle;
 }
 
 /* = portal-logo =========================================== */
@@ -136,15 +152,16 @@ body {
 #portal-breadcrumbs {
     background-color: &dtml-insideBreadcrumbBackgroundColor;;
     color: &dtml-insideBreadcrumbTextColor;;
-    font-size: 0.92em;
+    font-size: 0.6875em;
+    line-height: 1.5em;
     font-weight: bold;
     letter-spacing: 0.025em;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     border-bottom: 0;
-    margin: 0px 20px;
+    margin: 0.4375em 1.875em 0 1.875em;
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {
@@ -168,8 +185,8 @@ body {
     padding: 0;
     background-color: transparent;
     border-collapse: separate;
-    border-left: 1px #808080 solid;
-    border-right: 1px #808080 solid;
+    border-left: 0.0625em #808080 solid;
+    border-right: 0.0625em #808080 solid;
     border-spacing: 0;
     width: 100%;
 }
@@ -180,7 +197,7 @@ body {
     background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
     border-color: &dtml-leftNavBorderColor;;
     border-style: solid;
-    border-width: 0 1px 0 0;
+    border-width: 0 0.0625em 0 0;
     width: 186px;
     padding:0;
     margin: 0;
@@ -192,38 +209,41 @@ body {
 }
 
 #portal-column-one-visualPadding.visualPadding {
-    margin-bottom:150px;
+    margin-bottom: 9.375em;
     padding: 0;
 }
 
 #portal-column-one a {
-    color: #003399;
+    color: #265FCF;
 }
 
 #portal-column-one a:hover {
-    color: #3366CC;
+    color: #003399;
 }
 
 
 /* ----- portlets ------------------------------------------ */
 
 #content .portlet dd a:visited {
-    color: #003399;
+    color: #265FCF;
 }
 
 #portal-column-one .portletWrapper {
-    margin: 0 10px 20px 10px;
+    margin: 0 0.875em 1.25em 0.875em;
     padding: 0;
+    font-size: 0.71875em;
 }
 
 #portal-column-one .portletHeader {
-    background-color: &dtml-leftButtonBackground_external;;
-    color: &dtml-leftButtonTextColor_external;;
+    background-color: transparent;
+    color: &dtml-leftButtonBackgroundBorder_external;;
     border-color: &dtml-leftButtonBackgroundBorder_external;;
-    padding: 3px 8px;
-    font-size: 1em;
+    border-width: 0 0 1px 0;
+    padding: 0.1875em 0;
+    font-size: 0.9375em;
     font-weight: bold;
     text-transform: uppercase;
+    line-height: 1.375em;
 }
 
 #portal-column-one .portlet {
@@ -232,15 +252,15 @@ body {
 }
 
 #portal-column-one .portletStaticText .portletItem {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 0.3125em;
+    margin-right: 0.3125em;
 }
 
 #portal-column-one .portletStaticText .portletItem h2,
 #portal-column-one .portletContact .portletItem h2,
 #portal-column-two .portletContact .portletItem h2 {
     border: none;
-    font-size: 110%;
+    font-size: 1.125em;
     font-weight: bold;
     margin-bottom: 0;
 }
@@ -256,42 +276,86 @@ body {
     font-weight: normal;
 }
 
+#portal-column-two .portletContact .portletItem {
+    padding: 0;
+}
 
 #portal-column-one .portletStaticText img {
     width: 166px;
     display: block;
-    margin-top: 15px;
+    margin-top: 0.9375em;
 }
 
 #portal-column-one .portletNavigationTree .portletHeader {
     display: none;
 }
 
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li:first-child {
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle,
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li:first-child {
     margin-top: 1em;
 }
 
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle:first-child {
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-weight: bold;
-    border-bottom: 1px solid &dtml-leftNavBorderColor;;
+    margin: 0 -0.875em;
+    padding: 0.875em;
+    border-bottom: 0.0625em solid &dtml-leftNavBorderColor;;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
     background-color: transparent;
     color: &dtml-leftNavTitleColor; !important;
-    font-size: 1.3em;
+    font-size: 1.375em;
     line-height: 1.4em;
-    padding: 0.1em 0;
+    padding: 0;
+    margin: 0;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+    font-weight: bold;
 }
 
+/* Section Navigation */
+
+/*
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.parentNode {
+    border-bottom: 1px solid #8E94AF !important;
+    font-weight: bold !important;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+*/
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.sectionNode {
+    font-weight: normal;
+    font-size: 1.1875em;
+    font-weight: normal !important;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle {
+    border-bottom: none;
+}
+
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle a {
+    color: #1B243F;
+    font-weight: bold;
+    font-size: 1.125em;
+    border-bottom: 0.0625em solid #999999;
+    padding-bottom: 0.25em;
+}
+
+/*
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle {
+    background-color: #F5F5F5;
+}
+
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.underSectionNode {
+    color: #000000 !important;
+    font-weight: normal;
+    font-size: 1.1875em;
+    font-weight: normal !important;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+*/
 #portal-column-one .portletItem {
     padding: 0;
     border: none;
@@ -302,10 +366,16 @@ body {
 }
 
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
-    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.6em;
-    padding: 0 0.5em 0 1.25em;
-    margin-left: 0.35em;
+    padding: 0 0.5em 0 1em;
+    margin-left: 0.25em;
+    background-color: &dtml-leftSubNavBackground;;
 }
+
+#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
+#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode {
+    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.png) no-repeat 0.3125em 0.625em;
+}
+
 
 #portal-column-one .portletNavigationTree .portletItem li li,
 #portal-column-one .navTreeItem a {
@@ -314,13 +384,11 @@ body {
 
 #portal-column-one .portletNavigationTree .portletItem li {
     border-bottom: 1px dashed #CCCCCC;
-    font-size: 1em;
     margin: 0;
     padding: 0;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li a {
-    font-size: 1em;
     padding: 0.45em 0 0.5em;
     margin: 1px 0 0 0;
 }
@@ -374,7 +442,8 @@ body {
 #portal-column-one .navTreeCurrentItem,
 #portal-column-one a.navTreeItemInPath {
     border-width: 0 !important;
-    font-weight: bold;
+/*    color: #265FCF; */
+    font-weight: bold; 
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
@@ -387,12 +456,7 @@ body {
 
 /* RSS Image in right and left column */
 
-#portal-column-one dl.portletfeedmixer a.title,
-#portal-column-two dl.portletfeedmixer a.title {
-    font-size: 1.04em;
-}
-
-#portal-column-one dl.portletfeedmixer a.rssImage,
+ag #portal-column-one dl.portletfeedmixer a.rssImage,
 #portal-column-two dl.portletfeedmixer a.rssImage {
     display: block;
     text-align: left;
@@ -413,7 +477,7 @@ body {
 #portal-column-two dl.portletfeedmixer span.summary,
 #rightcolumn dl.portletfeedmixer span.summary {
     text-align: left;
-    font-size: 1em;
+    font-size: 0.6875em;
     margin-top: 0.5em;
     color: #4D4D4D;
 }
@@ -495,7 +559,7 @@ body {
     display: block;
     color: &dtml-leftButtonTextColor_external;;
     font-weight: normal;
-    font-size: 1.1em;
+    font-size: 1.0625em;
     padding: 8px;
     margin-left: 0px;
     border: none;
@@ -540,26 +604,27 @@ body {
 /* = portal-top-navigation ================================= */
 
 #portal-top-navigation {
-    margin: 0;
+    margin: 0.375em 0 0 0;
     padding: 0;
     background-color: &dtml-topnavigationBackgroundColor;;
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
     background-repeat: repeat-x;
     background-position: bottom left;
-
 }
 
 #portal-top-navigation.empty {
-    height: 3px;
+    height: 0.1875em;
 }
 
 #portal-top-navigation ul {
     display: block;
     text-align: left;
     margin: 0 auto;
-    padding: 0 0 0 3px;
+    padding: 0 0 0 0.375em;
     border: 0;
     list-style-type: none;
+    font-size: 0.78125em;
+    letter-spacing: 0.01em;
 }
 
 #portal-top-navigation li {
@@ -568,12 +633,12 @@ body {
     background-repeat: repeat-x;
     background-position: bottom left;
     border-color: &dtml-topnavigationBackgroundColor;;
-    border-width: 0 0 0 2px;
+    border-width: 0 0 0 0.1875em;
     border-style: solid;
     display: -moz-inline-box;
     display: inline-block;
-    padding: 6px 8px 6px 8px;
-    margin: 0 0 0 -4px;
+    padding: 0.375em 0.56251em 0.375em 0.56252em;
+    margin: 0 0 0 -0.375em;
     white-space: nowrap;
 }
 
@@ -582,7 +647,7 @@ body {
     background-color: &dtml-topnavigationAlternateBackgroundColor;;
     background-repeat: repeat-x;
     background-position: bottom left;
-    border-color: &dtml-topnavigationAlternateBackgroundColor;;
+    /* border-color: &dtml-topnavigationAlternateBackgroundColor;; */
 }
 
 #portal-top-navigation li.alternate a {
@@ -603,12 +668,11 @@ body {
 
 #portal-top-navigation a {
     color:&dtml-topnavigationTextColor; !important;
-    letter-spacing: 0.01em;
     display: inline;
-    font-size: 1.1em;
     color: &dtml-topnavigationTextColor;;
     text-decoration: none;
     border: 0;
+    line-height: 1.6875em;
 }
 
 #portal-top-navigation a:hover {
@@ -627,7 +691,7 @@ body {
 }
 
 #portal-column-two h3 {
-    font-size: 1em;
+    font-size: 0.6875em;
 }
 
 #portal-column-two .visualPadding {
@@ -648,7 +712,7 @@ body {
     border: none;
     padding: 0;
     margin-bottom: 20px;
-    font-size: 1em;
+    font-size: 0.6875em;
 }
 
 #portal-column-two .portlet {
@@ -660,7 +724,6 @@ body {
 #portal-column-two .portletHeader {
     background-color: transparent;
     color: &dtml-insideRightPortletHeaderTextColor;;
-    font-size: 1em;
     font-weight: bold;
     padding: 2px 0;
     text-align: left;
@@ -669,6 +732,7 @@ body {
     border-style: solid;
     border-color: &dtml-insideRightPortletHeaderTextColor;;
     margin: 2px 0 0 0;
+    line-height: 1.375em;
 }
 
 #portal-column-two .portletHeader a {
@@ -692,7 +756,6 @@ body {
     list-style-type: none;
     margin: 2px 0px 5px;
     padding: 1px 0 1px 1px;
-    font-size: 1.00em;
     color: &dtml-insideRightPortletTextColor;;
 }
 
@@ -710,7 +773,6 @@ body {
 
 #portal-column-two ul li a {
     color: &dtml-insideRightPortletLinkColor;;
-    font-size: 1.00em;
     text-decoration: none;
     border: 0;
     padding: 0;
@@ -734,7 +796,12 @@ body {
 /* Person portlet */
 
 #portal-column-two dl.people .portletItem img.photo {
-    margin-top: 1.5em;
+    margin-top: 0.5em;
+    display: block;
+}
+
+#portal-column-two dl.people .portletItem {
+    margin-bottom: 0.75em;
     display: block;
 }
 
@@ -748,20 +815,21 @@ body {
 
 #portal-column-two dl.people h2 {
     border-bottom: none;
-    font-size: 1.15em;
+    font-size: 1.125em;
     font-weight: bold;
     margin-bottom: 0em;
+    margin-top: 0.5em;
 }
 
 #portal-column-two dl.people .title {
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 1em;
     line-height: 1.25em;
     margin-bottom: 0.5em;
 }
 
 #portal-column-two dl.people .adr {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.9375em;
     line-height: 1.35em;
 }
 
@@ -769,6 +837,10 @@ body {
 
 #content {
     background-color: transparent;
+    padding: 0 0 1.5em 0 !important;
+    font-size: 0.84375em;
+    margin: 0 1.5em 0 1.5em;
+    letter-spacing: -0.005em;
 }
 
 #portal-column-content.sr #content {
@@ -794,19 +866,12 @@ body {
     border-bottom: 1px solid &dtml-contentViewBorderColor;;
 }
 
-/* = content ======================================== */
-
-#content {
-    padding: 0 0 20px 0 !important;
-    margin: 0 20px 0 20px;
-}
-
 #content a {
-    color: #003399;
+    color: #265FCF;
 }
 
 #content a:hover {
-    color: #3366CC;
+    color: #003399;
 }
 
 #content h1.noBreadcrumbs {
@@ -832,7 +897,7 @@ body {
 }
 
 #content h2.tileHeadline {
-    font-size: 1.3em;
+    font-size: 1.3125em;
     margin-top: 0;
     border-width: 0;
 }
@@ -843,7 +908,6 @@ body {
 
 #content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
-    font-size: 1.25em;
     margin: 1.125em 0 0 0;
     padding: 0;
     border: 0;
@@ -871,16 +935,20 @@ body {
     border: 0;
 }
 
+.documentByLine {
+    font-size: 0.875em;
+}
+
 /* = addthis =============================================== */
 
 #addthis {
-    font-size: 0.80em;
+    font-size: 1.25em;
     color: #333333;
     padding: 0 4px 4px 4px;
     border: 0 solid #CCCCCC;
     display: block;
     float: right;
-    margin: -4px 0 3px 8px;
+    margin: -4px 0 0 8px;
 }
 
 #addthis a {
@@ -895,8 +963,8 @@ body {
     border-bottom-color: #999999;
     color: #333333;
     text-align: right;
-    font-size: 0.95em;
-    margin-top: 0 !important;
+    font-size: 0.625em;
+    margin-top: 0;
     margin-bottom: 3px !important;
 }
 
@@ -913,6 +981,8 @@ body {
     border-color: #808080;
     background-color: &dtml-footerBackgroundColor;;
     color: &dtml-footerTextColor;;
+    font-size: 0.71875em;
+    padding: 0.5em 0;
 }
 
 #portal-footer a, #portal-footer a:visited {
@@ -944,15 +1014,15 @@ dd.portletItem p {
     max-width: 267px;
     width: auto;
     float: right;
-    margin: 0 0 0.5em 0;
+    margin: 0.375em 0 0.5em 0;
 }
 
 .contentLeadImageContainer img {
-    border-left: 15px solid &dtml-backgroundColor;;
+    margin-left: 1em;
 }
 
 .contentLeadImageContainer p.discreet {
-    margin-left: 15px;
+    padding-left: 1.125em;
 }
 
 .portletFooter {
@@ -961,10 +1031,6 @@ dd.portletItem p {
 
 .image-left, .image-right {
     border: 0;
-}
-
-#content {
-    font-size: 120%;
 }
 
 /* Paragraph and Unordered List readability per cmore */
@@ -1008,10 +1074,10 @@ dt.nodescription {
 
 span.description {
     display: block;
-    font-size: 0.9em;
     line-height: 1.4em;
     margin-top: 0.25em;
     font-weight: normal;
+    font-size: 0.875em;
 }
 
 /* Restyle pull quote */
@@ -1022,7 +1088,7 @@ span.description {
     border-color: #CC9933;
     color: #9D7627;
     padding: 1em;
-    font-size: 1.1em;
+    font-size: 0.75em;
     line-height: 1.5em;
 }
 
@@ -1048,11 +1114,11 @@ div.comment img.avatar {
 /* Tile Headline Link */
 
 .tileHeadline a {
-    color: #003399 !important;
+    color: #265FCF !important;
 }
 
 .tileHeadline a:hover {
-    color: #3366CC !important;
+    color: #003399 !important;
     text-decoration: underline;
 }
 
@@ -1088,7 +1154,7 @@ dl#relatedItemBox {
     padding: 0 0.8em;
     margin-top: -0.85em;
     padding: 0 0.5em;
-    font-size: 0.9em;
+    font-size: 0.5625em;
 }
 
 #relatedItemBox dd {
@@ -1113,7 +1179,7 @@ blockquote {
 
 .portletItemDetails {
     color: #666666;
-    font-size: 0.92em;
+    font-size: 0.625em;
 }
 
 
@@ -1169,7 +1235,7 @@ body.template-news_listing #portal-column-two dd {
 
 body.template-newsitem_view .effectiveDate {
     color: #76797C;
-    font-size: 85%;
+    font-size: 0.84375em;
     margin-bottom: 1em;
     margin-top: 0;
 }
@@ -1183,7 +1249,7 @@ body.template-folder_leadimage_view #content .tileImage {
 }
 
 body.template-subfolder_view #content .tileItem h2.tileHeadline {
-    font-size: 125%;
+    font-size: 1.25em;
 }
 
 body.template-subfolder_view #content .tileItem>h2.tileHeadline a {
@@ -1191,13 +1257,12 @@ body.template-subfolder_view #content .tileItem>h2.tileHeadline a {
 }
 
 body.template-subfolder_view #content .tileItem .tileItem h2.tileHeadline {
-    font-size: 1em;
+    font-size: 0.6875em;
 }
 
 body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory {
-    font-size: 0.9em;
+    font-size: 0.625em;
 }
-
 
 body.template-subfolder_view #content .tileItem .tileItem,
 body.template-subfolder_view #content .tileItem dl,
@@ -1216,6 +1281,12 @@ body.template-subfolder_view #content .tileItem .photoAlbum {
 #portlet-prefs {
     float: left;
     width: 187px;
+    font-size: 0.75em;
+    margin: 1em 0.5em;
+}
+
+#portlet-prefs ul.configlets li {
+    margin-bottom: 0.75em;
 }
 
 #content .tileItem.leadimage-listing {
@@ -1237,7 +1308,7 @@ body.template-pgv_sg_carousel_view #content {
     background-color: &dtml-leftSubNavBackground;;
     border: &dtml-leftNavBorderColor; solid 1px;
     padding: 0.75em;
-    font-size: 85%;
+    font-size: 0.84375em;
     width: 25%;
     margin-bottom: 1em;
     margin-left: 1em;
@@ -1264,8 +1335,7 @@ body.template-pgv_sg_carousel_view #content {
 }
 
 #document-toc .portletItem li {
-    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.gif) no-repeat 3px 0.3em;
-    padding: 0 0.5em 0 1.25em;
+    padding: 0 0.5em 0 0.75em;
     list-style-type: none;
 }
 
@@ -1274,7 +1344,7 @@ body.template-pgv_sg_carousel_view #content {
     background-image: none;
     background-color: transparent;
     padding: 0;
-    margin-left: 1.5em;
+    margin-left: 1.625em;
     color: &dtml-leftNavTextColor;;
 }
 
@@ -1327,7 +1397,7 @@ body.template-pgv_sg_carousel_view #content {
 
 #mobile-version a {
     color: &dtml-footerLinkColor;;
-    font-size: 0.92em;
+    font-size: 0.625em;
 }
 
 table.listing tr.separator td,  table.listing tr.separator {
@@ -1338,7 +1408,7 @@ table.listing tr.separator td,  table.listing tr.separator {
 
 table.listing tr.section-title th {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.75em;
     text-align: left;
     background: transparent;
     border: none;
@@ -1371,7 +1441,7 @@ table.events td {
 }
 
 body.template-subfolder_view div#two-column-left, body.template-subfolder_view div#two-column-right {
-    font-size: 0.95em;
+    font-size: 0.9375em;
     margin-top: 1.5em;
 }
 
@@ -1442,13 +1512,17 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
     background-color: &dtml-contentViewBorderColor; !important;
 }
 
+#portal-personaltools-wrapper {
+    font-size: 0.6875em;
+    margin-bottom: -6px;
+}
+
 #portal-personaltools-wrapper .actionMenu.activated .actionMenuContent {
     z-index:25;
 }
 
 /* fix the portalMessage at the top of the edit window */
 dl.portalMessage {
-    font-size: 100%;
     margin: 0.75em 0;
 }
 
@@ -1460,6 +1534,17 @@ dl.portalMessage {
 .icons-on #portal-column-one .contenttype-news-item,
 .icons-on #portal-column-one .contenttype-plone-site,
 .icons-on #portal-column-one .contenttype-topic {
+    line-height: 1.5em !important;
+    display: block;
+}
+
+.icons-on #content .contenttype-document,
+.icons-on #content .contenttype-event,
+.icons-on #content .contenttype-folder,
+.icons-on #content .contenttype-link,
+.icons-on #content .contenttype-news-item,
+.icons-on #content .contenttype-plone-site,
+.icons-on #content .contenttype-topic {
     line-height: 1.5em !important;
     display: block;
 }
@@ -1482,7 +1567,7 @@ dl.portalMessage {
 
 q {
     font-family: &dtml-fontFamily;;
-    font-size: 100%;
+    font-size: 0.6875em;
     font-style: normal;
 }
 
@@ -1526,7 +1611,7 @@ q {
 /* overlaycontent font size is too large */
 
 .pb-ajax .overlaycontent {
-    font-size: 90% !important;
+    font-size: 0.5625em !important;
 }
 
 /* table header background for plain table */
@@ -1536,7 +1621,7 @@ table.plain th {
 }
 
 table.plain {
-    font-size: 85%;
+    font-size: 0.5625em;
 }
 
 table.plain th, table.plain td {
@@ -1546,7 +1631,7 @@ table.plain th, table.plain td {
 /* Disclaimer for factsheets */
 
 #disclaimer {
-   font-size: 0.88em;
+   font-size: 0.875em;
    padding-top: 5px;
    margin-top: 5px;
    border-width: 1px 0 0 0;
@@ -1575,7 +1660,7 @@ body.template-agenda_view #portal-column-content.sr #document-toc {
 body.template-agenda_view #document-toc h3 {
     margin: 0;
     padding: 0;
-    font-size: 100%;
+    font-size: 0.6875em;
     font-weight: bold;
     color: #333333;
 }
@@ -1584,7 +1669,84 @@ body.template-agenda_view #document-toc h3 {
     display: none;
 }
 
+/* Event summary in event listing */
 
+#content .eventSummary a {
+    text-decoration: none;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+#content .eventSummary a.img {
+    margin-left: 0.5em;
+    margin-right: -0.125em;
+}
+
+
+#content .eventSummary div {
+    padding: 0.2em 0;
+}
+
+#content .eventSummary h3 {
+    font-size: 1em; 
+    font-weight: bold;
+    border-bottom-width: 0;
+    display: inline;
+}
+
+#content .eventSummary h3:after {
+    content: ":";
+}
+
+#content .hiddenStructure, #portal-top-navigation .hiddenStructure {
+    margin: -1px 0 0 -1px !important;
+    padding: 0 !important;
+    position: absolute;
+    margin-left: -10000px;
+}
+
+#content .eventDateLocation {
+    margin-bottom: 1.5em;
+    padding: 0 0 0.5em 0;
+}
+
+#content .eventWebsite {
+    margin-top: 1.5em;
+    font-size: 1em;
+}
+
+#edit-bar {
+    font-size: 0.6875em;
+}
+
+#portal-column-one .managePortletsLink {
+    font-size: 0.5625em;
+    font-size: 0.625rem;
+}
+
+.managePortletsLink {
+    font-size: 0.875em;
+    font-size: 0.625rem;
+}
+
+html.kupu-html {
+    font-size: 0.84375em;
+}
+
+.portletAssignments {
+    font-size: 0.6875em;
+}
+
+#content .portletAssignments {
+    font-size: 1em;
+}
+
+body.template-search #portal-breadcrumbs {
+    display: none;
+}
+
+body.template-search #content {
+    padding-top: 2em !important;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

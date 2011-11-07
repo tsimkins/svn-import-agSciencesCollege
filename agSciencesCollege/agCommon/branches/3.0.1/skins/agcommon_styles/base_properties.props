@@ -69,10 +69,10 @@ topnavigationTextColor:string=#FFFFFF
 topnavigationTextHoverColor:string=#FFEB8F
 topnavigationGradientBackground:string=#C83400
 
-topnavigationAlternateBackgroundColor:string=#FEB30F
-topnavigationAlternateGradientBackground:string=#9F7213
-topnavigationAlternateTextColor:string=#FFFFFF
-topnavigationAlternateTextHoverColor:string=#C83400
+topnavigationAlternateBackgroundColor:string=#FFD07F
+topnavigationAlternateGradientBackground:string=#DF9845
+topnavigationAlternateTextColor:string=#4F2605
+topnavigationAlternateTextHoverColor:string=#6F3507
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
 bodyBackgroundColor:string=#99B4DF
@@ -80,9 +80,9 @@ backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#2B3D7B
-frontRightPortletHeaderBackgroundColor:string=#EFC177
-frontRightPortletLinkColor:string=#003399
+frontRightPortletHeaderTextColor:string=#5F3B12
+frontRightPortletHeaderBackgroundColor:string=#FFD86F
+frontRightPortletLinkColor:string=#265FCF
 frontRightPortletLinkHoverColor:string=#3366CC
 frontRightPortletTextColor:string=#47568B
 frontRightPortletBackgroundColor:string=#F5F5F5
@@ -110,9 +110,9 @@ leftLinkTextColor:string=#003399
 leftLinkTextHoverColor:string=#3366CC
 
 leftButtonArrowBackground_external:string=#F3A72E
-leftButtonBackground_external:string=#FBE2B9
+leftButtonBackground_external:string=#DFB27D
 leftButtonBackgroundBorder_external:string=#6D4300
-leftButtonTextColor_external:string=#4F3000
+leftButtonTextColor_external:string=#1F1204
 
 leftButtonArrowBackground_internal:string=#487aab
 leftButtonBackground_internal:string=#155595

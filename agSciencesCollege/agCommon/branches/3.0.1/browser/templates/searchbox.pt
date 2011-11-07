@@ -39,7 +39,7 @@
         <input class="searchButton"
                alt="Search"
                type="image"
-               tal:attributes="src string:${navigation_root_url}/go.gif"
+               tal:attributes="src string:${navigation_root_url}/go.png"
                id="goSearch"
                value="Search"
                i18n:attributes="value label_search;" />

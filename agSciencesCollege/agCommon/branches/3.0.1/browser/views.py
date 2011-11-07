@@ -139,6 +139,9 @@ class IAgCommonUtilities(Interface):
     def reorderTopicContents(self):
         pass
 
+    def toMarkdown(self):
+        pass
+
 class AgCommonUtilities(BrowserView):
 
     implements(IAgCommonUtilities)
@@ -182,3 +185,7 @@ class AgCommonUtilities(BrowserView):
 
         return ordered
         """
+        
+    def toMarkdown(self, text):
+        portal_transforms = getToolByName(self.context, 'portal_transforms')
+        return portal_transforms.convert('markdown_to_html', text)

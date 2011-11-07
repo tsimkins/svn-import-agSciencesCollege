@@ -22,9 +22,14 @@
                         tal:define="kssClassesView context/@@kss_field_decorator_view;
                                     getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                     templateId template/getId;
-                                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+                                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                                    map_link context/map_link|nothing;
+                                    contact_email context/contact_email;
+                                    contact_name python:context.contact_name() or None;
+                                    here_url context/@@plone_context_state/object_url;
+                                    show_event_table context/show_event_table|nothing">
 
-        <div class="eventDetails vcard">
+        <div tal:condition="show_event_table" class="eventDetails vcard">
             <table class="vertical listing"
                    summary="Event details" i18n:attributes="summary summary_event_details;">
 
@@ -33,6 +38,7 @@
                     <tr>
                         <th i18n:translate="event_when">When</th>
                         <td>
+                            <metal:table define-macro="event_when">
                             <tal:differentday tal:condition="python:not context.start().Date() == context.end().Date()"
                                               i18n:translate="event_when_differentday">
                                 <abbr i18n:name="startdate"
@@ -49,7 +55,7 @@
                                   </span>
                                 </abbr> 
                                 to
-                                <br i18n:name="linebreak" />
+                                <br tal:condition="show_event_table" i18n:name="linebreak" />
                                 <abbr i18n:name="enddate"
                                       metal:define-macro="enddate-field-view"
                                       tal:define="kss_class python:getKssClasses('endDate',
@@ -72,7 +78,7 @@
                                 <span tal:replace="python:toLocalizedTime(context.start())"
                                       i18n:name="date">
                                     Start Date Time</span>
-                                <br i18n:name="linebreak" />
+                                <br tal:condition="show_event_table" i18n:name="linebreak" />
                                 from
                                 <abbr metal:define-macro="startdatesame-field-view"
                                       tal:define="kss_class python:getKssClasses('startDate',
@@ -97,13 +103,14 @@
                                             tal:content="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
                                 </abbr>
                             </tal:sameday>
+                            </metal:table>
                         </td>
                     </tr>
                     <tr tal:condition="context/location">
                         <th i18n:translate="event_where">Where</th>
 
-                        <td class="location"
-                            tal:define="map_link context/map_link|nothing">
+                        <td class="location">
+                            <metal:table define-macro="event_where">
                             <tal:map condition="map_link">
                                 <a tal:attributes="href map_link;
                                                    title string:Directions to ${here/location}">
@@ -118,13 +125,13 @@
                                 Location
                                 </metal:field>
                             </tal:nomap>
+                            </metal:table>
                         </td>
                     </tr>
-                    <tr tal:define="contact_email context/contact_email;
-                                    contact_name python:context.contact_name() or None;"
-                        tal:condition="python:contact_name or contact_email">
+                    <tr tal:condition="python:contact_name or contact_email">
                         <th i18n:translate="contact_name">Contact Name</th>
                         <td>
+                            <metal:table define-macro="event_contact_name">
                             <a id="parent-fieldname-contactEmail"
                                tal:condition="contact_email"
                                tal:replace="structure python: context.spamProtect(mailaddress=contact_email, mailname=contact_name, cssclass='email fn')"
@@ -132,6 +139,7 @@
                             <span class="fn"
                                   tal:condition="not: contact_email"
                                   tal:content="contact_name" />
+                            </metal:table>
                         </td>
                     </tr>
                     <tr tal:condition="context/contact_phone">
@@ -152,8 +160,10 @@
                     </tr>
                     <tr>
                         <th i18n:translate="heading_add_to_calendar">Add event to calendar</th>
-                        <td tal:define="here_url context/@@plone_context_state/object_url;">
-                            <a href="#"
+                        <td>
+                            <metal:table define-macro="event_add_calendar">
+                            <a class="img"
+                               href="#"
                                tal:attributes="href string:$here_url/vcs_view"
                                title="Download this event in vCal format"
                                i18n:attributes="title title_add_to_vcal;">
@@ -162,8 +172,11 @@
                                tal:attributes="href string:$here_url/vcs_view"
                                title="Download this event in vCal format"
                                i18n:attributes="title title_add_to_vcal;">
-                                <span i18n:translate="label_add_to_vcal">vCal</span></a><br />
-                            <a href="#"
+                                <span i18n:translate="label_add_to_vcal">vCal</span></a>
+                            &nbsp;
+                            <br tal:condition="show_event_table" />
+                            <a class="img"
+                               href="#"
                                tal:attributes="href string:$here_url/ics_view"
                                title="Download this event in iCal format"
                                i18n:attributes="title title_add_to_ical;">
@@ -173,11 +186,20 @@
                                title="Download this event in iCal format"
                                i18n:attributes="title title_add_to_ical;">
                                 <span i18n:translate="label_add_to_ical">iCal</span></a>
+                            </metal:table>
                         </td>
                     </tr>
                     <tr tal:condition="here/event_url|nothing">
                         <td colspan="2" align="center">
-                            <metal:moreinfo metal:use-macro="here/event_view/macros/moreinfo" />
+                            <p>
+                                <a class="url"
+                                href="event_url"
+                                i18n:translate="event_more_information"
+                                tal:define="field python:context.getField('eventUrl');"
+                                            id="parent-fieldname-eventUrl"
+                                            tal:attributes="href context/event_url">
+                                <span tal:replace="context/more_information|string:More information about this event" />&hellip;</a>
+                            </p>
                         </td>
                     </tr>
                     <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
@@ -213,23 +235,55 @@
             </table>
         </div>
 
+        <tal:wherewhen condition="not: show_event_table">
+            <div class="eventSummary vcard eventDateLocation">
+                <h2 class="hiddenStructure">Date and Location</h2>
+                <div>
+                    <h3>When</h3> <metal:when metal:use-macro="here/event_view/macros/event_when" />
+                </div>
+                <div tal:condition="context/location">
+                    <h3>Where</h3> <metal:when metal:use-macro="here/event_view/macros/event_where" />
+                </div>
+                <div>
+                    <h3>Add to calendar</h3> <metal:when metal:use-macro="here/event_view/macros/event_add_calendar" />
+                </div>
+
+                <metal:moreinfo define-macro="moreinfo" tal:condition="context/event_url|nothing">
+                <div class="eventWebsite">
+                    <strong> 
+                    <a class="url"
+                       href="event_url"
+                       i18n:translate="event_more_information"
+                       tal:define="field python:context.getField('eventUrl');"
+                                id="parent-fieldname-eventUrl"
+                                tal:attributes="href context/event_url">
+                        <span tal:replace="context/more_information|string:Go To Event Website" /></a>
+                    </strong>
+                </div>
+                </metal:moreinfo>
+                
+            </div>
+        </tal:wherewhen>
+
         <metal:field use-macro="python:context.widget('text', mode='view')">
         Body text
         </metal:field>
 
-        <tal:hasText condition="here/getText">
-        <metal:moreinfo define-macro="moreinfo" tal:condition="context/event_url|nothing">
-        <p>
-            <a class="url"
-               href="event_url"
-               i18n:translate="event_more_information"
-               tal:define="field python:context.getField('eventUrl');"
-                        id="parent-fieldname-eventUrl"
-                        tal:attributes="href context/event_url">
-               <span tal:replace="context/more_information|string:More information about this event" />&hellip;</a>
-        </p>
-        </metal:moreinfo>
-        </tal:hasText>
+
+        <tal:contact condition="not: show_event_table">
+            <div class="eventSummary vcard">
+                <h2>Contact Information</h2>
+
+                <div tal:condition="python:contact_name or contact_email">
+                    <h3>Contact</h3> <metal:when metal:use-macro="here/event_view/macros/event_contact_name" />
+                </div>
+                <div tal:condition="context/contact_phone">
+                    <h3>Phone</h3> <metal:when metal:use-macro="python:context.widget('contactPhone', mode='view')" />
+                </div>
+            </div>
+        </tal:contact>
+
+
         
         <span class="visualClear"><!-- --></span>
 
