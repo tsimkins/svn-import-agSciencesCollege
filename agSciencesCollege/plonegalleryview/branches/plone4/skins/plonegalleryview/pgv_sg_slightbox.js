@@ -264,9 +264,9 @@ var lightboxforsmoothgallery = Lightbox.extend({
 		this.fullsize = new Element('div').setProperty('id', 'lbFullSize').injectInside(this.bottom);
 		this.fullsizeLink = new Element('a').setProperty('href', '#').injectInside(this.fullsize).setHTML("Full Size");
 
-		this.title = new Element('div').setProperty('id', 'lbTitle').injectInside(this.description);
+		this.title = new Element('h2').setProperty('id', 'lbTitle').injectInside(this.description);
 		new Element('div').setStyle('clear', 'both').injectInside(this.description);
-		this.caption = new Element('div').setProperty('id', 'lbCaption').injectInside(this.description);
+		this.caption = new Element('p').setProperty('id', 'lbCaption').injectInside(this.description);
 		new Element('div').setStyle('clear', 'both').injectInside(this.bottom);
 		
 		var nextEffect = this.nextEffect.bind(this);
@@ -292,8 +292,8 @@ var lightboxforsmoothgallery = Lightbox.extend({
 		this.close = new Element('a').setProperties({id: 'lbCloseLink', href: '#'}).injectInside(this.bottom).onclick = this.overlay.onclick = this.close.bind(this);
 		new Element('div').setProperty('id', 'lbDescription').injectInside(this.bottom);
 		this.number = new Element('div').setProperty('id', 'lbNumber').injectInside(this.bottom);
-		this.title = new Element('div').setProperty('id', 'lbTitle').injectInside(this.description);
-		this.caption = new Element('div').setProperty('id', 'lbCaption').injectInside(this.description);
+		this.title = new Element('h2').setProperty('id', 'lbTitle').injectInside(this.description);
+		this.caption = new Element('p').setProperty('id', 'lbCaption').injectInside(this.description);
 		new Element('div').setStyle('clear', 'both').injectInside(this.bottom);
 	},
 	open: function(num) {
