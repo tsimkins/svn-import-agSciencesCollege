@@ -27,7 +27,9 @@ def toLocalizedTime(self, time, long_format=None, time_only=None):
     if theDate:
         if theDate.startswith('0'):
             theDate = theDate.replace('0', '', 1)
-    
+
+        theDate = theDate.replace('12:00 AM', '').strip()
+
         return theDate.replace(' 0', ' ')
     else:
         return None
