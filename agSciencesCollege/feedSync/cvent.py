@@ -125,7 +125,7 @@ def importEvents(context, emailUsers=['trs22'],
             mTo = "%s@psu.edu" % myUser
         
             mMsg = "\n".join(["\n\n", mTitle, "<ul>", statusText, "<ul>"])
-            mailHost.secureSend(mMsg, mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
+            mailHost.secureSend(mMsg.encode('utf-8'), mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
 
     #transaction.commit()
     myStatus.append("Finished Loading")
