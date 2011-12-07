@@ -178,7 +178,7 @@ def publishSiteFolders(context):
 
     for theId in ['news', 'events', 'about', 'contact', 'images', 'background-images']:
 
-        if theId in site.objectIds():
+        if theId in site.objectIds() and not wftool.getInfoFor(site[theId], 'review_state').lower().count('publish'):
 
             childObjects = [x[1] for x in site.ZopeFind(site[theId])]
             
@@ -187,7 +187,7 @@ def publishSiteFolders(context):
             for theObject in childObjects:
             
                 try:
-                    if theObject.portal_type in ['Blog', 'Folder', 'Document', 'Image', 'Topic'] and not wftool.getInfoFor(theObject, 'review_state').lower().count('publish'):
+                    if not wftool.getInfoFor(theObject, 'review_state').lower().count('publish'):
                         wftool.doActionFor(theObject, 'publish')
                         LOG('agSciPolicy.publishSiteFolders', INFO, "Published folder %s" % theObject.id)
                     else:
