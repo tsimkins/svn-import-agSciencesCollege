@@ -26,6 +26,7 @@
                                     map_link context/map_link|nothing;
                                     contact_email context/contact_email;
                                     contact_name python:context.contact_name() or None;
+                                    contact_phone context/contact_phone;
                                     here_url context/@@plone_context_state/object_url;
                                     show_event_table context/show_event_table|nothing">
 
@@ -296,12 +297,12 @@
 
         <tal:contact condition="not: show_event_table">
             <div class="eventSummary vcard">
-                <h2>Contact Information</h2>
+                <h2 tal:condition="python:contact_phone or contact_name or contact_email">Contact Information</h2>
 
                 <div tal:condition="python:contact_name or contact_email">
                     <h3>Contact</h3> <metal:when metal:use-macro="here/event_view/macros/event_contact_name" />
                 </div>
-                <div tal:condition="context/contact_phone">
+                <div tal:condition="contact_phone">
                     <h3>Phone</h3> <metal:when metal:use-macro="python:context.widget('contactPhone', mode='view')" />
                 </div>
             </div>
