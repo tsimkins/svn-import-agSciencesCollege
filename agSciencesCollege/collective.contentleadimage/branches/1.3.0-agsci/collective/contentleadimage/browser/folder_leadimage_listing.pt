@@ -83,20 +83,7 @@
                      
                     <dt tal:attributes="class string:leadimage-listing tileItem visualIEFloatFix vevent">
                     <a href="#"
-                       tal:condition="python:item_type != 'Link'"
                        tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
-                        <img src="" alt=""
-                             tal:condition="exists:item_object/image_thumb"
-                             tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
-                        <img src="" alt=""
-                             tal:condition="exists:item_has_leadimage"
-                             tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
-                    </a>
-
-                    <a href="#"
-                       class="link-plain"
-                       tal:condition="python:item_type == 'Link'"
-                       tal:attributes="href item/getRemoteUrl">
                         <img src="" alt=""
                              tal:condition="exists:item_object/image_thumb"
                              tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
@@ -111,19 +98,11 @@
                         <img tal:replace="structure item_icon/html_tag" />
                         <a href="#"
                            class="summary url"
-                           tal:condition="python:item_type != 'Link'"
                            tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url"
                            tal:content="item_title_or_id">
                             Item Title
                         </a>
 
-                        <a href="#"
-                           class="link-plain"
-                           tal:condition="python:item_type == 'Link'"
-                           tal:content="item_title_or_id"
-                           tal:attributes="href item/getRemoteUrl;">
-                            External Link
-                        </a>
                     </span>
 
                     <div class="documentByLine effectiveDate" tal:condition="view/show_date"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
