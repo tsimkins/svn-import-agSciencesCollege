@@ -187,9 +187,11 @@ def publishSiteFolders(context):
             for theObject in childObjects:
             
                 try:
-                    if not wftool.getInfoFor(theObject, 'review_state').lower().count('publish'):
+                    if theObject.portal_type in ['Blog', 'Folder', 'Document', 'Image', 'Topic'] and not wftool.getInfoFor(theObject, 'review_state').lower().count('publish'):
                         wftool.doActionFor(theObject, 'publish')
                         LOG('agSciPolicy.publishSiteFolders', INFO, "Published folder %s" % theObject.id)
+                    else:
+                        LOG('agSciPolicy.publishSiteFolders', INFO, "Skipping %s" % theObject.id)
                 except WorkflowException:
                     LOG('agSciPolicy.publishSiteFolders', INFO, "Site has no workflow, not publishing folder %s" % theObject.id)
                     
@@ -459,7 +461,7 @@ def configureScripts(context):
 def installAdditionalProducts(context):
     
     toInstall = [
-            'plone.app.caching', 'FacultyStaffDirectory', 'WebServerAuth', 
+            'kupu', 'plone.app.caching', 'FacultyStaffDirectory', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
             'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
             'CacheableRedirects'
