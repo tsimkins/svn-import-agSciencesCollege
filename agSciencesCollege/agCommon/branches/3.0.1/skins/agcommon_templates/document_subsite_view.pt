@@ -30,7 +30,7 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <p class="documentDescription">
+        <p class="documentDescription" tal:condition="here/Description">
             <metal:field use-macro="python:here.widget('description', mode='view')">
             Description
             </metal:field>

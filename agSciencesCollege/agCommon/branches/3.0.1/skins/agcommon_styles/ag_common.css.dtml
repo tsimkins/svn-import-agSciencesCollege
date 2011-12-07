@@ -36,8 +36,8 @@ body {
 
 #portal-top {
     margin: 0;
-    border-left: 0.0625em solid #808080;
-    border-right: 0.0625em solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
 }
 
 
@@ -60,7 +60,7 @@ body {
 
 #portal-searchbox {
     margin: 0.25em;
-    padding: 0 0.25em 0 0
+    padding: 0 0.25em 0 0;
 }
 
 .searchSection {
@@ -69,9 +69,10 @@ body {
 
 #portal-searchbox input.searchButton {
     background-color: transparent;
+    background-image: none;
     border: 0;
-    padding: 0;
-    margin: 0;
+    padding: 0.125em 0 0 0;
+    margin: 0 0 0 -0.125em;
     vertical-align: middle;
 }
 
@@ -82,7 +83,7 @@ body {
 #portal-searchbox #SearchableText {
     font-size: 0.6875em;
     padding: 0.1875em 0.125em;
-    border: 0.0625em solid #999999;
+    border: 1px solid #999999;
     vertical-align: middle;
 }
 
@@ -152,31 +153,29 @@ body {
 #portal-breadcrumbs {
     background-color: &dtml-insideBreadcrumbBackgroundColor;;
     color: &dtml-insideBreadcrumbTextColor;;
-    font-size: 0.6875em;
-    line-height: 1.5em;
     font-weight: bold;
     letter-spacing: 0.025em;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.375em;
+    padding-bottom: 0.375em;
     border-bottom: 0;
-    margin: 0.4375em 1.875em 0 1.875em;
+    margin: 0 1.375em 0 1.375em;
+    line-height: 1.125em;
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {
     color: &dtml-insideBreadcrumbSeparatorColor;;
 }
 
+#portal-breadcrumbs>span {
+    font-size: 0.625em;
+}
+
 #portal-breadcrumbs a {
     color: &dtml-insideBreadcrumbLinkColor;;
     font-weight: normal;
 }
-
-#breadcrumbs-you-are-here {
-    display: none;
-}
-
 
 /* = portal-columns ======================================== */
 
@@ -185,8 +184,8 @@ body {
     padding: 0;
     background-color: transparent;
     border-collapse: separate;
-    border-left: 0.0625em #808080 solid;
-    border-right: 0.0625em #808080 solid;
+    border-left: 1px #808080 solid;
+    border-right: 1px #808080 solid;
     border-spacing: 0;
     width: 100%;
 }
@@ -197,7 +196,7 @@ body {
     background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
     border-color: &dtml-leftNavBorderColor;;
     border-style: solid;
-    border-width: 0 0.0625em 0 0;
+    border-width: 0 1px 0 0;
     width: 186px;
     padding:0;
     margin: 0;
@@ -269,6 +268,7 @@ body {
 #portal-column-one .portletContact .portletItem p,
 #portal-column-two .portletContact .portletItem p {
     margin: 0;
+/*    white-space: nowrap; */
 }
 
 #portal-column-one .portletContact .portletItem p strong,
@@ -286,6 +286,8 @@ body {
     margin-top: 0.9375em;
 }
 
+/* Portal-column-one Navigation */
+
 #portal-column-one .portletNavigationTree .portletHeader {
     display: none;
 }
@@ -301,7 +303,7 @@ body {
     color: &dtml-backgroundColor;;
     margin: 0 -0.875em;
     padding: 0.875em;
-    border-bottom: 0.0625em solid &dtml-leftNavBorderColor;;
+    border-bottom: 1px solid &dtml-leftNavBorderColor;;
 }
 
 #portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
@@ -315,47 +317,6 @@ body {
     font-weight: bold;
 }
 
-/* Section Navigation */
-
-/*
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.parentNode {
-    border-bottom: 1px solid #8E94AF !important;
-    font-weight: bold !important;
-    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
-}
-*/
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.sectionNode {
-    font-weight: normal;
-    font-size: 1.1875em;
-    font-weight: normal !important;
-    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
-}
-
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle {
-    border-bottom: none;
-}
-
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle a {
-    color: #1B243F;
-    font-weight: bold;
-    font-size: 1.125em;
-    border-bottom: 0.0625em solid #999999;
-    padding-bottom: 0.25em;
-}
-
-/*
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li.navTreeSectionTitle {
-    background-color: #F5F5F5;
-}
-
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a.underSectionNode {
-    color: #000000 !important;
-    font-weight: normal;
-    font-size: 1.1875em;
-    font-weight: normal !important;
-    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
-}
-*/
 #portal-column-one .portletItem {
     padding: 0;
     border: none;
@@ -368,12 +329,12 @@ body {
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
     padding: 0 0.5em 0 1em;
     margin-left: 0.25em;
-    background-color: &dtml-leftSubNavBackground;;
+    background-color: transparent;
 }
 
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode {
-    background: &dtml-leftSubNavBackground; url(&dtml-portal_url;/blue_bullet.png) no-repeat 0.3125em 0.625em;
+    background: transparent url(&dtml-portal_url;/blue_bullet.png) no-repeat 0.375em 0.75em;
 }
 
 
@@ -393,6 +354,10 @@ body {
     margin: 1px 0 0 0;
 }
 
+#portal-column-one .portletNavigationTree .portletItem li a {
+    padding: 0.45em 0 0.5em;
+}
+
 /* Fix the line-height */
 .icons-on #portal-column-one .portletNavigationTree span {
     line-height: 1.5em !important;
@@ -406,7 +371,7 @@ body {
 }
 
 #portal-column-one .portletNavigationTree a.state-published {
-    color: &dtml-leftNavTextColor; !important;
+    color: &dtml-leftNavTextColor; !important; 
 }
 
 #portal-column-one .portletNavigationTree a.state-published:hover,
@@ -414,24 +379,21 @@ body {
     color: &dtml-leftNavTextHoverColor; !important;
 }
 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a,
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a {
+#portal-column-one ul.navTreeLevel1 .navTreeItem a {
     padding-top: 0.25em;
+    padding-bottom: 0.45em;
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeItem a,
-#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover,
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a,
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover {
-    background-color: &dtml-leftSubNavBackground;;
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover {
+    background-color: transparent;
     color: &dtml-leftNavTextColor;;
 }
 
-#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover,
-#portal-column-one ul.navTreeLevel1 dd.portletItem .navTreeItem a:hover
-{
+#portal-column-one ul.navTreeLevel1 .navTreeItem a:hover {
     color: &dtml-leftNavTextHoverColor;;
 }
+
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
     background-color: &dtml-leftSubNavBackground;;
@@ -439,15 +401,20 @@ body {
     margin: 0 0.25em 0.75em 0.25em;
 }
 
-#portal-column-one .navTreeCurrentItem,
-#portal-column-one a.navTreeItemInPath {
+#portal-column-one .navTreeItem .navTreeCurrentItem,
+#portal-column-one .navTreeItem .navTreeCurrentNode,
+#portal-column-one .navTreeItem .navTreeItemInPath,
+#portal-column-one ul.navTreeLevel1 .navTreeItem .navTreeCurrentItem {
     border-width: 0 !important;
-/*    color: #265FCF; */
-    font-weight: bold; 
+}
+#portal-column-one .navTreeItem .navTreeCurrentItem>a,
+#portal-column-one .navTreeItem .navTreeCurrentNode>a,
+#portal-column-one .navTreeItem .navTreeItemInPath>a {
+    font-weight: bold;  
 }
 
 #portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
-    background-color: &dtml-leftSubNavBackground;;
+    background-color: transparent;
 }
 
 #portal-column-one .portletFooter {
@@ -456,7 +423,7 @@ body {
 
 /* RSS Image in right and left column */
 
-ag #portal-column-one dl.portletfeedmixer a.rssImage,
+#portal-column-one dl.portletfeedmixer a.rssImage,
 #portal-column-two dl.portletfeedmixer a.rssImage {
     display: block;
     text-align: left;
@@ -633,7 +600,7 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     background-repeat: repeat-x;
     background-position: bottom left;
     border-color: &dtml-topnavigationBackgroundColor;;
-    border-width: 0 0 0 0.1875em;
+    border-width: 0 0 0 1px;
     border-style: solid;
     display: -moz-inline-box;
     display: inline-block;
@@ -662,10 +629,6 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     border-width: 0;
 }
 
-#portal-top-navigation img {
-    display: none;
-}
-
 #portal-top-navigation a {
     color:&dtml-topnavigationTextColor; !important;
     display: inline;
@@ -690,6 +653,10 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     vertical-align: top;
 }
 
+#portal-column-two h2 {
+    font-size: 1em;
+}
+
 #portal-column-two h3 {
     font-size: 0.6875em;
 }
@@ -704,6 +671,8 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
 
 #portal-column-two .date {
     font-weight: normal;
+    font-size: 0.9375em;
+    color: #666666;
 }
 /* ----- portlets ------------------------------------------ */
 
@@ -744,6 +713,7 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     border-width: 0;
     color: &dtml-insideRightPortletTextColor;;
     padding: 0;
+    font-size: 1.0625em;
 }
 
 #portal-column-two .portletItem ul {
@@ -778,7 +748,8 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     padding: 0;
 }
 
-#portal-column-two .navTreeCurrentItem {
+#portal-column-two .navTreeCurrentItem, 
+#portal-column-two .navTreeItemInPath {
     border: 0 !important;
     font-weight: bold;
     background-color: transparent;
@@ -789,7 +760,7 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
 }
 
 #portal-column-two .portletItem a:hover {
-    background: transparent;
+    background-color: transparent;
 }
 
 
@@ -902,10 +873,6 @@ ag #portal-column-one dl.portletfeedmixer a.rssImage,
     border-width: 0;
 }
 
-#content h2.tileHeadline a {
-    padding-left: 0 !important;
-}
-
 #content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
     margin: 1.125em 0 0 0;
@@ -1002,7 +969,8 @@ dd.portletItem {
 }
 
 dd.portletItem p {
-    padding: 0 0 1em 0;
+    padding: 0;
+    margin: 0 0 1em 0;
 }
 
 .portlet {
@@ -1040,10 +1008,6 @@ dd.portletItem p {
 }
 
 /* Nested ul's */
-.documentContent ul ul {
-    margin-bottom: 1em;
-}
-
 p {
     margin: 1em 0;
 }
@@ -1149,12 +1113,11 @@ dl#relatedItemBox {
 
 #relatedItemBox dt {
     margin-top: -0.8em;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     display: inline-block;
     padding: 0 0.8em;
     margin-top: -0.85em;
     padding: 0 0.5em;
-    font-size: 0.5625em;
 }
 
 #relatedItemBox dd {
@@ -1174,14 +1137,6 @@ blockquote {
     padding-left: 2em;
     color: #000000;
 }
-
-/* ============================== MISC ========================== */
-
-.portletItemDetails {
-    color: #666666;
-    font-size: 0.625em;
-}
-
 
 /* = Edit UI =================================================== */
 
@@ -1252,16 +1207,21 @@ body.template-subfolder_view #content .tileItem h2.tileHeadline {
     font-size: 1.25em;
 }
 
-body.template-subfolder_view #content .tileItem>h2.tileHeadline a {
-    color: &dtml-documentSubHeadingColor; !important;
+body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a {
+    border-bottom: 1px solid #DDDDDD;
 }
 
-body.template-subfolder_view #content .tileItem .tileItem h2.tileHeadline {
-    font-size: 0.6875em;
+body.template-subfolder_view #content-core>.tileItem>.tileItem>h2.tileHeadline {
+    font-size: 1.125em;
 }
 
-body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory {
-    font-size: 0.625em;
+body.template-subfolder_view #content-core>.tileItem>.tileItem .facultyStaffDirectory {
+    font-size: 0.875em;
+}
+
+body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory .jobTitle {
+    font-size: 0.9375em;
+    font-weight: bold;
 }
 
 body.template-subfolder_view #content .tileItem .tileItem,
@@ -1310,8 +1270,7 @@ body.template-pgv_sg_carousel_view #content {
     padding: 0.75em;
     font-size: 0.84375em;
     width: 25%;
-    margin-bottom: 1em;
-    margin-left: 1em;
+    margin: 1em 0 1em 1em;
     clear: right;
     position: relative;
 }
@@ -1410,7 +1369,7 @@ table.listing tr.section-title th {
     font-weight: bold;
     font-size: 0.75em;
     text-align: left;
-    background: transparent;
+    background-color: transparent;
     border: none;
     padding-left: 0;
     padding-bottom: 5px;
@@ -1442,7 +1401,7 @@ table.events td {
 
 body.template-subfolder_view div#two-column-left, body.template-subfolder_view div#two-column-right {
     font-size: 0.9375em;
-    margin-top: 1.5em;
+    margin-top: 0;
 }
 
 #two-column-left>dd, #two-column-right>dd,
@@ -1546,6 +1505,19 @@ dl.portalMessage {
 .icons-on #content .contenttype-plone-site,
 .icons-on #content .contenttype-topic {
     line-height: 1.5em !important;
+    display: block;
+}
+
+/* Folder Items table needs 2em */
+
+.icons-on #content #listing-table .contenttype-document,
+.icons-on #content #listing-table .contenttype-event,
+.icons-on #content #listing-table .contenttype-folder,
+.icons-on #content #listing-table .contenttype-link,
+.icons-on #content #listing-table .contenttype-news-item,
+.icons-on #content #listing-table .contenttype-plone-site,
+.icons-on #content #listing-table .contenttype-topic {
+    line-height: 2em !important;
     display: block;
 }
 
@@ -1660,7 +1632,7 @@ body.template-agenda_view #portal-column-content.sr #document-toc {
 body.template-agenda_view #document-toc h3 {
     margin: 0;
     padding: 0;
-    font-size: 0.6875em;
+    font-size: 1em;
     font-weight: bold;
     color: #333333;
 }
@@ -1747,6 +1719,13 @@ body.template-search #portal-breadcrumbs {
 body.template-search #content {
     padding-top: 2em !important;
 }
+
+/* For deleted events */
+
+a.state-deleted {
+    text-decoration: line-through;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

@@ -26,10 +26,6 @@
     border-bottom: none;
 }
 
-.documentContent dd a {
-    border-bottom: none;
-}
-
 #portal-column-content {
     padding: 13px 20px 0 20px !important;
 }

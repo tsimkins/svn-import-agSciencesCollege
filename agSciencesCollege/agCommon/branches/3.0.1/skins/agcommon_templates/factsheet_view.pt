@@ -47,9 +47,11 @@ Where trade names appear, no discrimination is intended, and noendorsement by P
 			tal:define="now modules/DateTime/DateTime" 
 			tal:content="now/year">[date last modified]</span>
 	</p>
+    <tal:hide condition="python:False">
 	<p tal:condition="context/effective_date|nothing">
 		Updated <span tal:replace="python: context.effective_date.strftime('%B, %Y')" />
 	</p>
+	</tal:hide>
 </div>  
 
 </metal:footer>

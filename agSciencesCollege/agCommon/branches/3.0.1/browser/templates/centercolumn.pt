@@ -1,4 +1,7 @@
-<div id="centercolumn" tal:condition="view/isHomePage">
+<div id="centercolumn" tal:condition="view/isHomePage"
+     tal:define="plone_view context/@@plone;
+                 hsr python:plone_view.have_portlets('agcommon.rightcolumn', view);"
+     tal:attributes="class python:hsr and 'sr' or ''">
 
 	<tal:block replace="structure provider:agcommon.centercolumn" />
 

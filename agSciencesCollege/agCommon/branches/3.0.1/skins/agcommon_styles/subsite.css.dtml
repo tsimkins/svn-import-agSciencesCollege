@@ -6,7 +6,7 @@
 /* YOUR CSS RULES START HERE */
 
 #image-header {
-	margin: -25px 0 15px 0;
+	margin: -1.9375em 0.1875em 0.1875em 0.1875em;
 }
 
 #image-header.leadimage {
@@ -22,13 +22,21 @@ body.template-atct_edit #image-header {
 #portal-breadcrumbs {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
-	padding: 4px 8px;
+	padding: 0 0.5em 0.1875em 0.5em;
+	line-height: 1.5em;
 	z-index: 20;
 	position: relative;
 	opacity: 0.80;
 	filter: alpha(opacity=80);	
-	margin: 0;
-	height: 17px;
+	margin: 0.1875em;
+}
+
+#portal-column-content.sr #portal-breadcrumbs {
+    margin: 0;
+}
+
+#portal-column-content.sr #image-header {
+	margin: -1.75em 0 0 0;
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {
@@ -37,6 +45,10 @@ body.template-atct_edit #image-header {
 
 #portal-breadcrumbs a {
 	color: &dtml-breadcrumbLinkColor;;
+}
+
+#content h1, #content h1.documentFirstHeading {
+    margin-top: 0.25em;
 }
 
 .contentLeadImageContainer {
@@ -191,10 +203,6 @@ body.template-atct_edit #image-header {
 	text-align: right;
 	text-decoration: none;
 	border-width: 0px;
-}
-
-.documentContent {
-    font-size: 110%;
 }
 
 .documentEditable  {

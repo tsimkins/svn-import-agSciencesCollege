@@ -22,37 +22,13 @@
                             li_class python:selectedClass and ' navTreeCurrentNode' or '';"
                 tal:condition="view/include_top"
                 tal:attributes="class string:navTreeItem navTree navTreeTitle navTreeTopNode${li_class}">
-                <div class="sectionNavigation"
-                    tal:condition="python: root.portal_type == 'Section'"
-                    tal:define="parent_node root/getParentNode">
-                   <a tal:attributes="href parent_node/absolute_url;
-                                      title parent_node/Description;"
-                      tal:content="parent_node/Title"
-                      class="parentNode" /><!--
-                   <a tal:attributes="href root/absolute_url;
-                                      title root/Description;"
-                      tal:content="root/Title"
-                      class="sectionNode" />-->
-                </div>
-                <div
-                    tal:condition="python: root.portal_type != 'Section'">
+                <div tal:define="rootIsPortal view/root_is_portal;">
                    <a tal:attributes="href root/absolute_url;
                                       title root/Description;
-                                      class string:contenttype-plone-site $selectedClass;"
-                      tal:content="root/Title">
+                                      class string:contenttype-plone-site $selectedClass;">
+                   <span 
+                         tal:replace="root/Title">Root item title</span>
                    </a>
-                </div>
-            </li>
-            <li tal:condition="python: root.portal_type == 'Section' and view.include_top"
-                tal:define="selectedClass view/root_item_class;
-                            li_class python:selectedClass and ' navTreeCurrentNode' or '';"
-                tal:attributes="class string:navTreeItem navTree __navTreeTitle navTreeSectionTitle navTreeTopNode${li_class}">
-                <div class="sectionNavigation"
-                    tal:define="parent_node root/getParentNode">
-                   <a tal:attributes="href root/absolute_url;
-                                      title root/Description;"
-                      tal:content="root/Title"
-                      class="underSectionNode" />
                 </div>
             </li>
             <li tal:replace="structure view/createNavTree">

@@ -5,8 +5,9 @@
                  is_rtl view/is_rtl">
 
     <tal:agsci tal:condition="python:view.site != 'agsci.psu.edu'">
-        <a href="http://agsci.psu.edu">AgSci</a>
-    
+        <span id="breadcrumbs-agsci">
+            <a href="http://agsci.psu.edu">AgSci</a>
+        </span>    
         <span class="breadcrumbSeparator">
             <tal:ltr condition="not: is_rtl">&raquo;</tal:ltr>
             <tal:rtl condition="is_rtl">&laquo;</tal:rtl>
@@ -19,7 +20,7 @@
         tal:condition="python: parent_url and parent_breadcrumb">
         <a tal:content="parent_breadcrumb"
            tal:attributes="href parent_url">[Custom Parent Title]</a>
-        <span tal:condition="breadcrumbs" class="breadcrumbSeparator">
+        <span class="breadcrumbSeparator">
             <tal:ltr condition="not: is_rtl">&raquo;</tal:ltr>
             <tal:rtl condition="is_rtl">&laquo;</tal:rtl>
         </span>

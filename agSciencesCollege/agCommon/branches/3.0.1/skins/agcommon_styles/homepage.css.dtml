@@ -11,8 +11,6 @@ h1, .documentByLine, .documentActions {
 	display: none;
 }
 
-
-
 /* ================ Homepage Image ================ */
 
 #homepageimage {
@@ -20,23 +18,27 @@ h1, .documentByLine, .documentActions {
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: 0 0 3px 0;
+	margin: -1.875em 0 0.1875em 0;
 	text-align: left;
 	padding: 0;
+}
+
+#homepageimage.nobreadcrumbs {
+	margin-top: 0;
 }
 
 /* Homepage Image overlay */
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
-	padding: 10px 10px 0 12px;
 	margin: 0;
+	padding: 0;
 	background-color: transparent;
 	border-width: 0;
 }
 
 #homepageimage h1 {
-	font-size: 1.75em;
+	font-size: 1.4375em;
 	font-weight: 500;
 	color: &dtml-homepageH1TextColor;;
 	font-family: Georgia, Times New Roman, serif;
@@ -44,37 +46,63 @@ h1, .documentByLine, .documentActions {
 }
 
 #homepageimage h2 {
-	font-size: 1.0em;
+	font-size: 0.8125em;
 	font-weight: normal;
 	color: &dtml-homepageH2TextColor;;
 	font-family: Georgia, Times New Roman, serif;
 	letter-spacing: 0.07em;
+	padding-top: 0.5em;
 }
 
 #homepageimage .text {
 	position: absolute;
 	margin: 0;
-	padding: 0;
-	width: 200px;
+	padding: 0.625em 0.625em 0 0.75em;
+	width: 11.4375em;
 	z-index: 10;
 	margin-top: 0.5em;
 }
 
 #homepageimage div.overlay {
     display: block;
-	width: 200px;
+	width: 12.5em;
 	height: 265px;
 	margin: 0 0 0 0;
 	padding: 0;
 	background-color: &dtml-homepageTransparentOverlayColor;;
-	opacity: 0.70;
-	filter: alpha(opacity = 70);
+	opacity: 0.75;
+	filter: alpha(opacity = 75);
 	z-index: 5;
 	position: absolute;
 }
 
 
+/* ================= Columns and Portlets =====================*/
 
+#rightcolumn .portletHeader, #centercolumn .portletHeader {
+	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
+	color: &dtml-frontRightPortletHeaderTextColor;; 
+	font-weight: bold;
+	padding: 0.25em;
+	text-transform: uppercase;
+	border-width: 0;
+	margin: 0;
+	line-height: 1.75em;
+	font-size: 0.6875em;
+}
+
+#centercolumn .portletHeader {
+	padding-left: 0.75em;
+	padding-right: 0.5em;
+}
+
+#rightcolumn .portletHeader {
+	text-align: center;
+}
+
+#rightcolumn .portletHeader a, #centercolumn .portletHeader a {  
+	color: &dtml-frontRightPortletHeaderTextColor;;
+}
 
 /* ================= Center Column =====================*/
 
@@ -82,8 +110,9 @@ h1, .documentByLine, .documentActions {
 	display: block;
 }
 
-#centercolumn .portletWrapper {
-	margin-right: 10px;
+#centercolumn.sr .portletWrapper,
+.icons-on #centercolumn .portletWrapper {
+	margin-right: 0.1875em;
 }
 
 
@@ -97,29 +126,12 @@ h1, .documentByLine, .documentActions {
 	font-weight: normal;
 	background-color: &dtml-frontRightPortletBackgroundColor;;
 	color: &dtml-frontRightPortletTextColor;;
-	width: 175px;
-	font-size: 0.75em;
+	width: 11em;
 	float: right;
 }
 
 #rightcolumn .portlet {
     border-bottom: none;
-}
-
-#rightcolumn .portletHeader {
-	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	font-size: 1em;
-	font-weight: bold;
-	padding: 4px;
-	text-align: center;
-	text-transform: uppercase;
-	border-width: 0;
-	margin: 0; 
-}
-
-#rightcolumn .portletHeader a {  
-	color: &dtml-frontRightPortletHeaderTextColor;;
 }
 
 #rightcolumn .portletItem {
@@ -145,14 +157,15 @@ h1, .documentByLine, .documentActions {
 #rightcolumn .portletItem li {
 	list-style-image: none;
 	list-style-type: none;
-	margin: 2px 0 5px;
-	padding: 1px 0 1px 1px;
-	font-size: 1.00em;
+	margin: 0.25em 0 0.5em;
+	padding: 0.125em 0 0.125em 0.125em;
 	color: &dtml-frontRightPortletTextColor;;
 }
 
 #rightcolumn .portletFooter {
 	background-color: &dtml-frontRightPortletBackgroundColor;; 
+	font-size: 0.6875em;
+    border: 0;
 }
 
 #rightcolumn .navTreeCurrentItem {
@@ -164,39 +177,15 @@ h1, .documentByLine, .documentActions {
     color: &dtml-frontRightPortletTextColor;;
 }
 
-#rightcolumn .portletHeader, #rightcolumn .portletHeader a,
-#centercolumn dl.portletfeedmixer .portletHeader, 
-#centercolumn dl.portletfeedmixer .portletHeader a,
-#centercolumn dl.portletStaticText .portletHeader, 
-#centercolumn dl.portletStaticText .portletHeader a  {
-	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	margin: 0;
-	display: block;
-}
-
-#centercolumn dl.portletfeedmixer .portletFooter a {
-    font-size:0.9em;
-    margin-bottom:1em;
-}
- 
-#centercolumn dl.portletStaticText .portletItem {
-    font-size: 1.1em;
-}
-
-#centercolumn dl.portletStaticText .portletItem p {
+#centercolumn .portletItem {
     padding: 0;
-}
-
-#rightcolumn .portletFooter {
-	background-color: &dtml-frontRightPortletBackgroundColor;; 
+    font-size: 0.8125em;
 }
 
 #rightcolumn .portletItem a, #rightcolumn .portletItem a:visited,
  #content #rightcolumn .portlet dd a:visited {
 	color: &dtml-frontRightPortletLinkColor;;
 	display: block;
-	font-size: 1.15em;
 	text-decoration: none;
 	border: 0;
 	font-weight: normal;
@@ -204,11 +193,14 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn .portletItem {
 	background-color: &dtml-frontRightPortletBackgroundColor;;
+	font-size: 0.75em;
+	padding: 0.5em 0.7em;
 }
 
 #rightcolumn .portletItem .date {
-	font-size: 1.1em;
+	color: #666666;
 	font-weight: normal;
+	font-size: 0.9375em;
 }
 
 #rightcolumn .portletWrapper {
@@ -229,29 +221,25 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletfeedmixer a.title {
-    margin-top: 0.26em;
+    margin-top: 0.25em;
 }
 
 #rightcolumn dl.portletfeedmixer span.summary {
-    font-size: 1.15em;
-    line-height: 1.45em;
+    line-height: 1.5em;
 }
 
 #centercolumn {
 	display: block;
-	margin: 0 0 0 8px;
-	padding: 5px 0 5px 0;
-	border-width: 0 175px 0 0;
+}
+
+#centercolumn.sr, body.icons-on #centercolumn {
+	border-width: 0 11em 0 0;
 	border-color: &dtml-frontRightPortletBackgroundColor;;
 	border-style: solid;
-}
+}    
 
 #centercolumn dd {
 	padding: 0;
-}
-
-#centercolumn .portletHeader {
-	display: none;
 }
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
@@ -264,7 +252,14 @@ h1, .documentByLine, .documentActions {
 	border-width: 1px 0 0 0;
 	border-style: dashed;
 	border-color: #CCCCCC;
-	padding: 0;
+}
+
+#centercolumn .portletItem {
+    margin: 0 0.5625em;
+}
+
+#centercolumn .portletItem p {
+    padding: 0;
 }
 
 #centercolumn .portlet dd:first-child {
@@ -272,9 +267,8 @@ h1, .documentByLine, .documentActions {
 }
 
 #centercolumn .portletItem a.title {
-	font-size: 1.0625em;
 	font-weight: bold;
-	margin-top: 0.4375em;
+	margin-top: 0.5em;
 	text-decoration: none;
 	border-width: 0;
 	display: block;
@@ -282,27 +276,28 @@ h1, .documentByLine, .documentActions {
 
 #centercolumn .portletItem span.date  {
 	color: #76797C;
-	font-size: 0.875em;
 	font-weight: normal;
 	text-align: left;
+	font-size: 0.8125em;
 }
 
 #centercolumn .portletItem span.summary {
 	color: #333333;
-	font-size: 1em;
-	margin: 0.3125em 0 0.875em 0;
+	margin: 0.5em 0 0.875em 0;
 	font-weight: normal;
 	text-align: left;
+	font-size: 0.9375em;
 }
 
 #centercolumn .portletFooter a {
 	color: #265FCF;
 	display: block;
-	font-size: 0.81em;
-	margin: 5px 5px 0;
+	margin: 0.5em 0.5em 0 0;
 	text-align: right;
 	text-decoration: none;
 	border-width: 0;
+    margin-bottom: 1em;
+    font-size: 0.6875em;
 }
 
 
@@ -314,7 +309,7 @@ h1, .documentByLine, .documentActions {
 
 #centercolumn .portletfeedmixer .portletItem .rssImage {
     float: right; 
-    margin: 10px 0 10px 10px;
+    margin: 0.625em 0 0.625em 0.625em;
     width: 128px;
     text-align: right;
 }
@@ -328,8 +323,9 @@ h1, .documentByLine, .documentActions {
 }
 
 #content {
-    margin: 3px 3px 0 3px;
+    margin: 0.1875em;
     width: auto;
+    font-size: 1em;
 }
 
 #content, #content {
@@ -341,26 +337,14 @@ h1, .documentByLine, .documentActions {
 }
 
 #portal-column-content .documentEditable #content {
-    padding: 3px 3px 0 3px !important;
+    padding: 0.25em 0.25em 0 0.25em !important;
 	border-width: 0 0 1px 0;
-}
-
-#content {
-    margin: 3px;
 }
 
 .documentEditable .contentActions {
     border-left: none;
     border-right: none;
     border-bottom: 1px solid &dtml-contentViewBorderColor;;
-}
-
-#homepageimage {
-    margin-top: -30px;
-}
-
-#homepageimage.nobreadcrumbs {
-	margin-top: 0;
 }
 
 /* =================== Portlets =================== */
@@ -385,38 +369,13 @@ h1, .documentByLine, .documentActions {
     margin: 2em 0 0 0;
 }
 
-#rightcolumn .portletFooter {
-    border: 0;
-}
-
-/* RSS Feedmixer portlet in centercolumn */
-#centercolumn dl.portletfeedmixer .portletHeader,
-#centercolumn dl.portletStaticText .portletHeader {
-    display: block;
-    margin: -5px -7px 0 -8px;
-    font-size: 0.88em;
-    font-weight: bold;
-    text-align: left;
-    text-transform: uppercase;
-    border: 0;
-    padding: 4px 9px 4px 11px;
-}
-
 #centercolumn .portletfeedmixer dd.first {
 	border-width: 0 0 0 0;
-	padding-top: 3px;
-}
-
-#centercolumn {
-    font-size: 0.85em;
+	padding-top: 0.25em;
 }
 
 #centercolumn dl.portlet {
-    margin-bottom: 2em;
-}
-
-#centercolumn dl.portletfeedmixer .portletItem {
-    font-size: 1.1em;
+    margin-bottom: 1em;
 }
 
 /* Don't show addthis on homepage */ 
@@ -427,13 +386,13 @@ h1, .documentByLine, .documentActions {
 #portal-breadcrumbs {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
-	padding: 4px 8px;
+	padding: 0 0.75em 0.1875em 0.75em;
 	z-index: 20;
 	position: relative;
 	opacity: 0.80;
 	filter: alpha(opacity=80);	
-	margin: 3px 3px 3px;
-	height: 19px;
+	margin: 0.1875em;
+	line-height: 1.5em; 
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {
@@ -442,10 +401,6 @@ h1, .documentByLine, .documentActions {
 
 #portal-breadcrumbs a {
 	color: &dtml-breadcrumbLinkColor;;
-}
-
-.documentContent {
-    font-size: 110%;
 }
 
 .contentLeadImageContainer {

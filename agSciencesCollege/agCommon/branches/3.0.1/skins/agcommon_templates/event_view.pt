@@ -38,7 +38,9 @@
                     <tr>
                         <th i18n:translate="event_when">When</th>
                         <td>
-                            <metal:table define-macro="event_when">
+                            <metal:table define-macro="event_when" 
+                                   tal:define="from_long python:test(str(here.start().AMPMMinutes()).endswith('12:00 am'), 0, 1);
+                                               to_long python:test(str(here.end().AMPMMinutes()).endswith('12:00 am'), 0, 1)">
                             <tal:differentday tal:condition="python:not context.start().Date() == context.end().Date()"
                                               i18n:translate="event_when_differentday">
                                 <abbr i18n:name="startdate"
@@ -79,29 +81,51 @@
                                       i18n:name="date">
                                     Start Date Time</span>
                                 <br tal:condition="show_event_table" i18n:name="linebreak" />
-                                from
-                                <abbr metal:define-macro="startdatesame-field-view"
-                                      tal:define="kss_class python:getKssClasses('startDate',
-                                                  templateId=templateId, macro='startdatesame-field-view');"
-                                      id="parent-fieldname-startDate"
-                                      tal:attributes="class string:$kss_class dtstart;
-                                                      title python:context.start().ISO8601()"
-                                      i18n:name="starttime">
-                                      <span metal:define-slot="inside" 
-                                            class="explain"
-                                            tal:content="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
-                                </abbr> to
-                                <abbr metal:define-macro="enddatesame-field-view"
-                                      tal:define="kss_class python:getKssClasses('endDate',
-                                                  templateId=templateId, macro='enddatesame-field-view');"
-                                      id="parent-fieldname-endDate"
-                                      tal:attributes="class string:$kss_class dtend;
-                                                      title python:context.end().ISO8601()"
-                                      i18n:name="endtime">
-                                      <span metal:define-slot="inside" 
-                                            class="explain"
-                                            tal:content="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
-                                </abbr>
+
+                                <tal:sametime condition="python: context.start().Time() == context.end().Time() and context.start().Time() != '00:00:00'">
+                                    <abbr tal:define="kss_class python:getKssClasses('startDate',
+                                          templateId=templateId, macro='startdatesame-field-view');"
+                                          id="parent-fieldname-startDate"
+                                          tal:attributes="class string:$kss_class dtstart;
+                                                          title python:context.start().ISO8601()"
+                                          i18n:name="starttime">
+                                          <span metal:define-slot="inside" 
+                                                class="explain"
+                                                tal:content="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
+                                    </abbr>
+                                </tal:sametime>
+
+                                <tal:differenttime condition="python: context.start().Time() != context.end().Time()">
+
+                                    <tal:from condition="python: context.start().Time() != '00:00:00'">
+                                        from
+                                        <abbr metal:define-macro="startdatesame-field-view"
+                                              tal:define="kss_class python:getKssClasses('startDate',
+                                                          templateId=templateId, macro='startdatesame-field-view');"
+                                              id="parent-fieldname-startDate"
+                                              tal:attributes="class string:$kss_class dtstart;
+                                                              title python:context.start().ISO8601()"
+                                              i18n:name="starttime">
+                                              <span metal:define-slot="inside" 
+                                                    class="explain"
+                                                    tal:content="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
+                                        </abbr>
+                                    </tal:from>
+                                    <tal:to condition="python: context.end().Time() != '00:00:00'"> 
+                                        to
+                                        <abbr metal:define-macro="enddatesame-field-view"
+                                              tal:define="kss_class python:getKssClasses('endDate',
+                                                          templateId=templateId, macro='enddatesame-field-view');"
+                                              id="parent-fieldname-endDate"
+                                              tal:attributes="class string:$kss_class dtend;
+                                                              title python:context.end().ISO8601()"
+                                              i18n:name="endtime">
+                                              <span metal:define-slot="inside" 
+                                                    class="explain"
+                                                    tal:content="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
+                                        </abbr>
+                                    </tal:to>
+                                </tal:differenttime>
                             </tal:sameday>
                             </metal:table>
                         </td>

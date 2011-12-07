@@ -130,7 +130,7 @@ body.template-document_homepage_view #homepageimage {
     border: none;
 }
 
-#content, .documentContent {
+#content {
 	padding: 0px !important;
 	line-height: 1.5em;
 }
