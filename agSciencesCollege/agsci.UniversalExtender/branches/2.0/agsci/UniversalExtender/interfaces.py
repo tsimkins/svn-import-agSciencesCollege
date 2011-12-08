@@ -18,3 +18,6 @@ class ITopicExtender(Interface):
     
 class IFolderExtender(Interface):
     """ marker interface """
+
+class IMarkdownDescriptionExtender(Interface):
+    """ marker interface """

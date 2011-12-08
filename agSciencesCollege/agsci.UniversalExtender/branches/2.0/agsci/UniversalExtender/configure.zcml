@@ -138,6 +138,39 @@
         interface=".interfaces.ITopicExtender"
     /> 
 
+    <!-- Markdown Description Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.MarkdownDescriptionExtender"
+        factory=".extender.MarkdownDescriptionExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+%%%
+    <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.IMarkdownDescriptionExtender"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.IMarkdownDescriptionExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.link.ATLink"
+        interface=".interfaces.IMarkdownDescriptionExtender"
+    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.file.ATFile"
+        interface=".interfaces.IMarkdownDescriptionExtender"
+    />     
+
+    <five:implements
+        class="Products.ATContentTypes.content.document.ATDocument"
+        interface=".interfaces.IMarkdownDescriptionExtender"
+    />    
+
     <!-- Monkey Patch folder by adding 'getText' method -->
 
     <monkey:patch

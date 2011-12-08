@@ -5,7 +5,7 @@ from Products.ATContentTypes.interfaces.news import IATNewsItem
 from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -387,3 +387,31 @@ class TopicExtender(object):
         tmp_field = schema['customViewFields'].copy()
         tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
         schema['customViewFields'] = tmp_field
+
+
+class MarkdownDescriptionExtender(object):
+    adapts(IMarkdownDescriptionExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+
+        _ExtensionBooleanField(
+            "render_description_as_markdown",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Render description as Markdown",
+                description=u"This will allow you to use Markdown formatting in the description field",
+                condition="python:member.has_role('Manager')"
+            ),
+        ),
+    ]   
+
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
