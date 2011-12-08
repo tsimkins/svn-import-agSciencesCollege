@@ -577,6 +577,9 @@ body {
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
     background-repeat: repeat-x;
     background-position: bottom left;
+    /* Fix bleed-through of image in Safari and Chrome */
+    z-index: 50;
+    position: relative;
 }
 
 #portal-top-navigation.empty {
@@ -1161,8 +1164,8 @@ blockquote {
 /* Squish tabs in edit view together when we have a right column */
 
 #portal-column-content.sr .documentEditable .contentViews li a {
-    padding: 0 0.75em;
-    margin-right: 0.25em;
+    padding: 0 0.5em;
+    margin-right: 0;
 }
 
 /* = Template workarounds ======================================= */

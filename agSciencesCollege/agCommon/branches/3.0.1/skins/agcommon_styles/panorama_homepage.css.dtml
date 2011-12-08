@@ -27,11 +27,11 @@
 }
 
 #portal-column-content {
-    padding: 13px 20px 0 20px !important;
+    padding: 0.8125em 1.25em 0 1.25em !important;
 }
 
 .icons-on #portal-column-content {
-    padding: 13px 10px 0 10px !important;
+    padding: 0.8125em 0.625em 0 0.625em !important;
 }
 
 #addthis {
@@ -47,22 +47,21 @@
 }
 
 #portal-column-two dl.linkIcon .portletItem li {
-    background-color: none;
-    padding: 1px 0;
+    background-color: transparent;
+    padding: 0.0625em 0;
 }
 
 #portal-breadcrumbs {
-    margin-left: 0;
-    padding-top: 2px;
+    margin: 0;
+    padding-top: 0;
 }
 
 #panorama-homepage-image {
     background-repeat: no-repeat;
-    font-size: 0px;
     border-width: 0 1px;
     border-style: solid;
     border-color: #808080;
-    margin-top: -23px;
+    margin-top: -1.75em;
 }
 
 body.template-atct_edit #panorama-homepage-image {

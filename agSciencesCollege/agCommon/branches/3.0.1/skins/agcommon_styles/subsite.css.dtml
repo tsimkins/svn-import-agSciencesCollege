@@ -181,7 +181,7 @@ body.template-atct_edit #image-header {
 }
 
 #centercolumn .portletItem span.date  {
-	color: #5B87B6;
+	color: #76797C;
 	font-size: 0.88em;
 	font-weight: normal;
 	text-align: left;
