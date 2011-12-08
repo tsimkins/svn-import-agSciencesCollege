@@ -1,0 +1,147 @@
+<metal:page define-macro="master">
+<metal:block define-slot="top_slot" />
+
+<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html PUBLIC
+  &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" />
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xml:lang="en"
+      lang="en"
+      tal:define="portal_state context/@@plone_portal_state;
+                  context_state context/@@plone_context_state;
+                  plone_view context/@@plone;
+                  lang portal_state/language;
+                  view nocall:view | nocall: plone_view;
+                  dummy python: plone_view.mark_view(view);
+                  portal_url portal_state/portal_url;
+                  checkPermission nocall: context/portal_membership/checkPermission;
+                  site_properties context/portal_properties/site_properties;
+                  ajax_load request/ajax_load | nothing"
+      tal:attributes="lang lang;
+                      xml:lang lang">
+
+  <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
+    Get the global cache headers located in global_cache_settings.
+  </metal:cache>
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <tal:comment tal:condition="nothing">
+      Internet Explorer fix, forces IE8 into newest possible rendering
+      engine even if it's on an intranet. This has to be defined before any
+      script/style tags.
+    </tal:comment>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <metal:baseslot define-slot="base">
+      <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+    </metal:baseslot>
+
+    <tal:notajax tal:condition="not:ajax_load">
+
+        <!-- Disable IE6 image toolbar -->
+        <meta http-equiv="imagetoolbar" content="no" />
+
+        <tal:comment replace="nothing"> A slot where you can insert elements in the header from a template </tal:comment>
+        <metal:headslot define-slot="head_slot" />
+
+        <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
+        <metal:styleslot define-slot="style_slot" />
+
+        <tal:comment replace="nothing"> This is deprecated, please use style_slot instead. </tal:comment>
+        <metal:cssslot define-slot="css_slot" />
+
+        <tal:comment replace="nothing"> A slot where you can insert javascript in the header from a template </tal:comment>
+        <metal:javascriptslot define-slot="javascript_head_slot" />
+    </tal:notajax>
+
+  </head>
+
+<body tal:define="isRTL portal_state/is_rtl;
+                    sl python:plone_view.have_portlets('plone.leftcolumn', view);
+                    sr python:plone_view.have_portlets('plone.rightcolumn', view);
+                    body_class python:plone_view.bodyClass(template, view);"
+        tal:attributes="dir python: isRTL and 'rtl' or 'ltr'">
+    
+    <metal:block define-slot="content">
+        <div metal:define-macro="content"
+            tal:define="show_border context/@@plone/showEditableBorder"
+            tal:attributes="class python:show_border and 'documentEditable' or ''">
+    
+        
+            <metal:slot define-slot="body">
+        
+                <div id="content">
+                    <metal:header define-slot="header" tal:content="nothing">
+                        Visual Header
+                    </metal:header>
+            
+                    <metal:bodytext define-slot="main">
+            
+                        <metal:main define-macro="main">
+                            <metal:title define-slot="content-title">
+                                <metal:comment tal:content="nothing">
+                                    If you write a custom title always use
+                                    <h1 class="documentFirstHeading"></h1> for it.
+                                </metal:comment>
+                                <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+                                    Generic KSS Title. Is rendered with class="documentFirstHeading".
+                                </h1>
+                            </metal:title>
+                
+                            <metal:additional define-slot="content-additional">
+                                <metal:comment tal:content="nothing">
+                                    Allows us to put information such as posted date 
+                                    and contributors between the title and description.
+                                </metal:comment>
+                            </metal:additional>
+                
+                            <metal:description define-slot="content-description">
+                                <metal:comment tal:content="nothing">
+                                    If you write a custom description always use
+                                    <div class="documentDescription"></div> for it.
+                                </metal:comment>
+
+                                <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+                                    Generic KSS Description. Is rendered with class="documentDescription".
+                                </div>
+
+                            </metal:description>
+
+                            <metal:additional define-slot="content-summary">
+                                <metal:comment tal:content="nothing">
+                                    Content Summary
+                                </metal:comment>
+                            </metal:additional>
+
+                            <metal:portlets define-slot="portlets_two_slot">
+                                <tal:block replace="structure provider:plone.rightcolumn" />
+                            </metal:portlets>
+
+
+                            <div id="content-core">
+                                <metal:text define-slot="content-core" tal:content="nothing">
+                                    Page body text
+                                </metal:text>
+                            </div>
+            
+                            <metal:footer define-slot="footer" tal:content="nothing">
+                                Visual Footer
+                            </metal:footer>
+                
+                        </metal:main>
+            
+                    </metal:bodytext>
+                </div>
+            </metal:slot>
+        </div>
+    </metal:block>
+</body>
+</html>
+</metal:page>

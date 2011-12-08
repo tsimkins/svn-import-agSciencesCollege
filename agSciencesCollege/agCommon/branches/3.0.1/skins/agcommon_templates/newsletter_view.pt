@@ -1,0 +1,213 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/plain_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<metal:style fill-slot="style_slot">
+<style type="text/css">
+
+body {
+    font-family: "Times New Roman",Times,serif;
+}
+
+h1, h2, h3, .portletHeader {
+    display: block;
+    font-weight: bold;
+    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    color: #000000;
+    align: left;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0 0.25em 0;
+}
+
+.portletHeader, h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0 0.25em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0 0.25em 0;
+}
+
+.effectiveDate {
+    font-size: 0.875em;
+    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    color: #666666;
+    margin: 0 0 0.25em 0;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+</style>
+
+</metal:style>
+
+<metal:summary fill-slot="content-summary">
+    <h2>In This Issue</h2>
+    <ul tal:define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
+                    contentFilter contentFilter|request/contentFilter|custom_sort;
+                    contentFilter python:contentFilter and dict(contentFilter) or {};
+                    limit_display limit_display|request/limit_display|nothing;
+                    limit_display python:limit_display and int(limit_display) or None;
+                    more_url more_url|request/more_url|string:folder_contents;
+                    is_a_topic python:context.portal_type=='Topic';
+                    folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                    site_properties context/portal_properties/site_properties;
+                    use_view_action site_properties/typesUseViewActionInListings|python:();
+                    Batch python:modules['Products.CMFPlone'].Batch;
+                    b_start python:request.get('b_start', 0);
+                    batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, limit_display or 100, int(b_start), orphan=1);
+                    isAnon context/@@plone_portal_state/anonymous;
+                    normalizeString nocall: context/plone_utils/normalizeString;
+                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                    show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                    navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                    pas_member context/@@pas_member;">
+        <tal:entry tal:repeat="item batch">
+            <li tal:content="item/pretty_title_or_id" />
+        </tal:entry>
+    </ul>
+</metal:summary>
+
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                standalone_view python:True;
+                                templateId template/getId">
+
+    <div metal:define-macro="text-field-view"
+         id="parent-fieldname-text" class="stx"
+         tal:define="kss_class python:getKssClasses('text',
+                     templateId=templateId, macro='text-field-view');
+                     has_text exists:context/aq_explicit/getText;
+                     text python:has_text and here.getText() or ''"
+         tal:condition="text"
+         tal:attributes="class python:test(context.Format() in ('text/structured',
+                                               'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
+        <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+    </div>
+
+    <metal:listingmacro define-macro="listing">
+    <tal:foldercontents define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
+                        contentFilter contentFilter|request/contentFilter|custom_sort;
+                        contentFilter python:contentFilter and dict(contentFilter) or {};
+                        limit_display limit_display|request/limit_display|nothing;
+                        limit_display python:limit_display and int(limit_display) or None;
+                        more_url more_url|request/more_url|string:folder_contents;
+                        is_a_topic python:context.portal_type=='Topic';
+                        folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                        site_properties context/portal_properties/site_properties;
+                        use_view_action site_properties/typesUseViewActionInListings|python:();
+                        Batch python:modules['Products.CMFPlone'].Batch;
+                        b_start python:request.get('b_start', 0);
+                        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, limit_display or 100, int(b_start), orphan=1);
+                        isAnon context/@@plone_portal_state/anonymous;
+                        normalizeString nocall: context/plone_utils/normalizeString;
+                        toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                        show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                        navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                        pas_member context/@@pas_member;">
+    <tal:listing condition="batch">
+
+        <h2>Featured Articles</h2>
+        <tal:list metal:define-slot="entries">
+            <tal:entry tal:repeat="item batch" metal:define-macro="entries">
+            <tal:block tal:define="item_url item/getURL|item/absolute_url;
+                                   item_id item/getId|item/id;
+                                   item_title_or_id item/pretty_title_or_id;
+                                   item_description item/Description;
+                                   item_type item/portal_type;
+                                   item_type_title item/Type;
+                                   item_modified item/ModificationDate;
+                                   item_effective item/EffectiveDate;
+                                   item_created item/CreationDate;
+                                   item_icon python:plone_view.getIcon(item);
+                                   item_type_class python:'contenttype-' + normalizeString(item_type);
+                                   item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                   item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                   item_creator item/Creator;
+                                   item_tags item/Subject|nothing;
+                                   item_start item/start|item/StartDate|nothing;
+                                   item_end item/end|item/EndDate|nothing;
+                                   item_sametime python: item_start == item_end;
+                                   item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
+                <metal:block define-slot="entry">
+                <tal:item metal:define-macro="listitem"
+                    tal:define="dt_class python:test(not item_description, 'nodescription', '');
+                                dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
+                    tal:attributes="class dt_class">
+
+                    <h3>
+                        <a href="#"
+                           tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);
+                                           class string:$item_type_class $item_wf_state_class url"
+                           tal:content="item_title_or_id">
+                            Item Title
+                        </a>
+                    </h3>
+
+                    <span class="documentByLine">
+                        <div class="effectiveDate"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
+                        <tal:byline condition="show_about">
+                            &mdash;
+
+                            <tal:name tal:condition="item_creator"
+                                tal:define="author python:pas_member.info(item_creator);
+                                            creator_short_form author/username;
+                                            creator_long_form string:?author=${author/username};
+                                            creator_is_openid python:'/' in creator_short_form;
+                                            creator_id python:(creator_short_form, creator_long_form)[creator_is_openid];">
+                              <span i18n:translate="label_by_author">
+                                by
+                              <a href="#"
+                                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                                 tal:content="author/name_or_id"
+                                 tal:omit-tag="not:author"
+                                 i18n:name="author">
+                                Bob Dobalina
+                              </a>
+                              </span>
+
+                            </tal:name>
+
+                            <metal:description define-slot="description_slot">
+                                <tal:comment replace="nothing">
+                                    Place custom listing info for custom types here
+                                </tal:comment>
+                            </metal:description>
+                        </tal:byline>
+                    </span>
+
+
+                <p tal:condition="item_description|nothing"
+                           tal:content="item_description">
+                        description
+                </p>
+                </tal:item>
+            </metal:block>
+            </tal:block>
+            </tal:entry>
+        </tal:list>
+
+    </tal:listing>
+
+    </tal:foldercontents>
+    </metal:listingmacro>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>
