@@ -8,7 +8,7 @@
 /* This is site-level customizations in CSS */
 
 h1 {
-    font-size:190%;
+    font-size: 1.9375em;
     color: #00246b;
 }
 
@@ -17,7 +17,7 @@ h1 {
 }
 
 #portal-column-one-visualPadding.visualPadding {
-    margin-bottom:0px;
+    margin-bottom:0;
     padding: 0;
 }
 
@@ -28,21 +28,38 @@ h1 {
 }
 
 #homepageimage .text {
-color: #000000;
-padding: 0px 10px;
-width:200px;
-font-size: .9em;
+    color: #000000;
+    padding: 0px 10px;
+    width:200px;
+    font-size: 0.9375em;
 }
 
 #homepageimage p {
-margin: .5em 0;
+    margin: 0.5em 0;
 }
 
+#centercolumn p.description {
+    color: #333333;
+    margin: 0 0 0.1875em;
+    font-weight: normal;
+}
+
+#centercolumn {
+    padding: 0.25em 0.375em;
+}
+
+#centercolumn p.links {
+    font-size: 0.75em;
+}
+
+#centercolumn .portletStaticText {
+    margin: 0.5em;
+}
 
 #centercolumn h2:first-child {
-margin: 0px 0px 10px;
-color: #FF5500;
-border-width: 0;
+    margin: 0.875em 0 0.625em 0;
+    color: #FF5500;
+    border-width: 0;
 }
 
 body.template-document_homepage_view #portal-column-one {

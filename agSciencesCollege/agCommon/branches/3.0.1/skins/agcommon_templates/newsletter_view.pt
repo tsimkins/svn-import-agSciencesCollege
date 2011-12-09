@@ -12,6 +12,19 @@
 
 body {
     font-family: "Times New Roman",Times,serif;
+    background-color: #0F1A2F;
+    padding: 0.25em 2em;
+    text-align: center;
+}
+
+#visual-portal-wrapper {
+    width: auto;
+    background-color: #FFFFFF;
+    border: 3px solid #DDDDDD;
+    padding: 1em;
+    max-width: 56em;
+    text-align: left;
+    margin: 0 auto;
 }
 
 h1, h2, h3, .portletHeader {
@@ -23,13 +36,32 @@ h1, h2, h3, .portletHeader {
 }
 
 h1 {
+    border-bottom: 1px solid #000000;
     font-size: 2em;
     margin: 0.67em 0 0.25em 0;
+}
+
+h2 a, dt.portletHeader a {
+    color: #000000;
+    text-decoration: none;
 }
 
 .portletHeader, h2 {
     font-size: 1.5em;
     margin: 0.83em 0 0.25em 0;
+}
+
+.portletItem .date {
+    padding-left: 0.25em;
+    color: #666666;
+}
+
+.portletFooter {
+    margin-top: 0.5em;
+}
+
+.portletFooter a {
+    font-size: 0.9375em;
 }
 
 h3 {
@@ -38,7 +70,7 @@ h3 {
 }
 
 .effectiveDate {
-    font-size: 0.875em;
+    font-size: 0.75em;
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     color: #666666;
     margin: 0 0 0.25em 0;
@@ -52,10 +84,25 @@ p {
 
 </metal:style>
 
+<metal:title fill-slot="content-title"
+    tal:define="site_title context/site_title|context/org_title|nothing">
+    
+    <div align="center">
+        <img tal:attributes="src string:${portal_url}/extension-header.png" alt="Penn State Extension" />
+    </div>
+    
+    <h1 class="documentFirstHeading" 
+        tal:condition="site_title" 
+        tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
+    <h1 class="documentFirstHeading" 
+        tal:condition="not: site_title" 
+        tal:content="context/pretty_title_or_id" />
+
+</metal:title>
+
 <metal:summary fill-slot="content-summary">
     <h2>In This Issue</h2>
-    <ul tal:define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
-                    contentFilter contentFilter|request/contentFilter|custom_sort;
+    <ul tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
                     limit_display limit_display|request/limit_display|nothing;
                     limit_display python:limit_display and int(limit_display) or None;
@@ -80,6 +127,18 @@ p {
 </metal:summary>
 
 
+<metal:footer fill-slot="footer"
+    tal:define="templateId template/getId">
+    <tal:about
+        define="has_text exists:context/aq_explicit/getText;
+                text python:has_text and here.getText() or ''"
+        tal:condition="text">
+    <h2>About This Newsletter</h2>
+    <div tal:replace="structure text">The body</div>
+    </tal:about>
+    <p><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '')">View this newsletter online</a>.</p>
+</metal:footer>
+
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
                     tal:define="kssClassesView context/@@kss_field_decorator_view;
@@ -87,21 +146,8 @@ p {
                                 standalone_view python:True;
                                 templateId template/getId">
 
-    <div metal:define-macro="text-field-view"
-         id="parent-fieldname-text" class="stx"
-         tal:define="kss_class python:getKssClasses('text',
-                     templateId=templateId, macro='text-field-view');
-                     has_text exists:context/aq_explicit/getText;
-                     text python:has_text and here.getText() or ''"
-         tal:condition="text"
-         tal:attributes="class python:test(context.Format() in ('text/structured',
-                                               'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
-        <div metal:define-slot="inside" tal:replace="structure text">The body</div>
-    </div>
-
     <metal:listingmacro define-macro="listing">
-    <tal:foldercontents define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
-                        contentFilter contentFilter|request/contentFilter|custom_sort;
+    <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
                         contentFilter python:contentFilter and dict(contentFilter) or {};
                         limit_display limit_display|request/limit_display|nothing;
                         limit_display python:limit_display and int(limit_display) or None;

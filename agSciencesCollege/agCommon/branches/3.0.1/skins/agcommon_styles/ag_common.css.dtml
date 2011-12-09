@@ -578,7 +578,7 @@ body {
     background-repeat: repeat-x;
     background-position: bottom left;
     /* Fix bleed-through of image in Safari and Chrome */
-    z-index: 50;
+    z-index: 20;
     position: relative;
 }
 
@@ -1211,7 +1211,7 @@ body.template-subfolder_view #content .tileItem h2.tileHeadline {
 }
 
 body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a {
-    border-bottom: 1px solid #DDDDDD;
+    text-decoration: underline;
 }
 
 body.template-subfolder_view #content-core>.tileItem>.tileItem>h2.tileHeadline {
@@ -1698,7 +1698,7 @@ body.template-agenda_view #document-toc h3 {
     font-size: 0.625rem;
 }
 
-.managePortletsLink {
+.managePortletsLink, .managePortletsFallback {
     font-size: 0.875em;
     font-size: 0.625rem;
 }
