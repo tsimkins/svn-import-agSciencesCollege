@@ -1596,7 +1596,7 @@ table.plain th {
 }
 
 table.plain {
-    font-size: 0.5625em;
+    font-size: 0.875em;
 }
 
 table.plain th, table.plain td {
