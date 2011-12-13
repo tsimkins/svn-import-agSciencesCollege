@@ -1,17 +1,15 @@
+<h2 class="portletHeader">
+    <a href=""
+        tal:attributes="href view/siteurl"
+        tal:content="view/title"
+        class="tile">
+        Tags
+    </a>
+</h2>
+
 <dl class="portlet portletRss"
     i18n:domain="plone"
     tal:condition="view/enabled">
-
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <a href=""
-           tal:attributes="href view/siteurl"
-           tal:content="view/title"
-           class="tile">
-            Tags
-        </a>
-        <span class="portletTopRight"></span>
-    </dt>
 
     <tal:rss tal:condition="view/feedAvailable"
                 tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"

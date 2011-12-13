@@ -1,20 +1,15 @@
 <tal:block i18n:domain="plone">
 
-<h2 tal:define="navigation_title python:view.title() != 'Navigation' and '%s Navigation' % view.title() or view.title()"
-    class="hiddenStructure"
-    tal:content="navigation_title" />
+<h2 class="hiddenStructure"
+    tal:define="navigation_title python:view.title() != 'Navigation' and '%s Navigation' % view.title() or view.title()">
+    <a href="#"
+        class="tile"
+        tal:attributes="href string:${root/absolute_url}"
+        tal:content="navigation_title">Navigation</a>
+</h2>
 
 <dl class="portlet portletNavigationTree"
     tal:define="root view/navigation_root">
-
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <a href="#"
-           class="tile"
-           tal:attributes="href string:${root/absolute_url}"
-           tal:content="view/title">Navigation</a>
-        <span class="portletTopRight"></span>
-    </dt>
 
     <dd class="portletItem lastItem">
         <ul class="navTree navTreeLevel0">

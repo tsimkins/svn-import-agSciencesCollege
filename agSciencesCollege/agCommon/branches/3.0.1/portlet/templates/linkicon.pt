@@ -1,8 +1,10 @@
 <tal:block condition="view/available"
            i18n:domain="linkicon">
-<dl class="portlet linkIcon">
 
-    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+<h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+
+
+<dl class="portlet linkIcon">
 
     <dd class="portletItem" tal:condition="view/linkIcons">
            

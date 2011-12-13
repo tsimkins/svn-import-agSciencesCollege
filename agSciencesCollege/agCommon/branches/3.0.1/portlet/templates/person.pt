@@ -1,8 +1,9 @@
 <tal:block condition="view/available"
            i18n:domain="people">
-<dl class="portlet people">
 
-    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+<h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+    
+<dl class="portlet people">
 
     <dd class="portletItem"
         tal:repeat="person view/people"

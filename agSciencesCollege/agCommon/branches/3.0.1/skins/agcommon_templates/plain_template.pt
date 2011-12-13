@@ -61,6 +61,10 @@
         <metal:javascriptslot define-slot="javascript_head_slot" />
     </tal:notajax>
 
+    <metal:title define-slot="page-title">
+        <title tal:content="context/pretty_title_or_id" />
+    </metal:title>
+
   </head>
 
 <body tal:define="isRTL portal_state/is_rtl;
@@ -70,6 +74,7 @@
         tal:attributes="dir python: isRTL and 'rtl' or 'ltr'">
     
     <metal:block define-slot="content">
+    <div id="blah">
         <div id="visual-portal-wrapper" metal:define-macro="content">
     
         
@@ -139,6 +144,7 @@
                 </div>
             </metal:slot>
         </div>
+    </div>
     </metal:block>
 </body>
 </html>

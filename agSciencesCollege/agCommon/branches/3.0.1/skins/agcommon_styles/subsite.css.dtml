@@ -76,28 +76,31 @@ body.template-atct_edit #image-header {
 #centercolumn {
 	display: block;
 	margin: 0;
-	padding: 5px 0px 5px 0px;
+	padding: 5px 0 5px 0;
 }
 
 /* RSS Feedmixer portlet in centercolumn */
-#centercolumn dl.portletfeedmixer .portletHeader {
+#centercolumn .portletHeader {
     display: block;
-    margin: -5px -7px 0px -8px;
+    margin: -5px -7px 0 -8px;
     font-size: 0.88em;
     font-weight: bold;
     text-align: left;
     text-transform: uppercase;
     border: 0;
     padding: 4px 9px 4px 11px;
+	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
+	color: &dtml-frontRightPortletHeaderTextColor;; 
 }
 
-#centercolumn dl.portletfeedmixer .portletFooter a {
-    font-size:0.9em;
-    margin-bottom:1em;
+#centercolumn .portletHeader a {
+	color: &dtml-frontRightPortletHeaderTextColor;; 
+	margin: 0;
+	text-decoration: none;
 }
 
 #centercolumn .portletfeedmixer dd.first {
-	border-width: 0px 0px 0px 0px;
+	border-width: 0 0 0 0;
 	padding-top: 3px;
 }
 
@@ -109,41 +112,35 @@ body.template-atct_edit #image-header {
     font-size: 1.1em;
 }
 
-#centercolumn dl.portletfeedmixer .portletHeader, 
-#centercolumn dl.portletfeedmixer .portletHeader a {
-	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	margin: 0px;
-}
-
 #centercolumn .portletItem a.more {
 	display: block;
 	font-size: 0.85em;
 	margin: 5px;
 	text-align: right;
 	text-decoration: none;
-	border: 0px;
+	border: 0;
+}
+
+#centercolumn .portletStaticText .portletItem {
+    padding: 0.75em 0;
+    font-size: 1.125em;
 }
 
 #centercolumn dd {
-	padding: 0px;
-}
-
-#centercolumn .portletHeader {
-	display: none;
+	padding: 0;
 }
 
 #centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
 	background-color: transparent;
-	border-width: 0px;
-	padding: 0px;
+	border-width: 0;
+	padding: 0;
 }
 
 #centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0px 0px 0px;
+	border-width: 1px 0 0 0;
 	border-style: dashed;
 	border-color: #CCCCCC;
-	padding: 0px;
+	padding: 0;
 }
 
 /* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
@@ -168,7 +165,7 @@ body.template-atct_edit #image-header {
 }
 
 #centercolumn .portlet dd:first-child {
-	border-width: 0px 0px 0px 0px;
+	border-width: 0 0 0 0;
 }
 
 #centercolumn .portletItem a.title {
@@ -176,7 +173,7 @@ body.template-atct_edit #image-header {
 	font-weight: bold;
 	margin-top: 7px;
 	text-decoration: none;
-	border-width: 0px;
+	border-width: 0;
 	display: block;
 }
 
@@ -190,19 +187,19 @@ body.template-atct_edit #image-header {
 #centercolumn .portletItem span.summary {
 	color: #333333;
 	font-size: 0.92em;
-	margin: 10px 0px;
+	margin: 10px 0;
 	font-weight: normal;
 	text-align: left;
 }
 
 #centercolumn .portletFooter a {
+    font-size:0.9em;
+    margin-bottom:1em;
 	color: #5B87B6;
 	display: block;
-	font-size: 0.81em;
-	margin: 5px 5px 0;
 	text-align: right;
 	text-decoration: none;
-	border-width: 0px;
+	border-width: 0;
 }
 
 .documentEditable  {

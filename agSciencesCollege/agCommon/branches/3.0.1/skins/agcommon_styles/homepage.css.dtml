@@ -182,6 +182,10 @@ h1, .documentByLine, .documentActions {
     font-size: 0.8125em;
 }
 
+#centercolumn .portletStaticText .portletItem {
+    padding: 0.75em 0;
+}
+
 #rightcolumn .portletItem a, #rightcolumn .portletItem a:visited,
  #content #rightcolumn .portlet dd a:visited {
 	color: &dtml-frontRightPortletLinkColor;;
@@ -189,6 +193,14 @@ h1, .documentByLine, .documentActions {
 	text-decoration: none;
 	border: 0;
 	font-weight: normal;
+}
+
+#rightcolumn dl.people .portletItem{
+    color: #333333;
+}
+
+#rightcolumn dl.people .portletItem h2 a{
+    font-weight: bold !important;
 }
 
 #rightcolumn .portletItem {
@@ -226,6 +238,11 @@ h1, .documentByLine, .documentActions {
 
 #rightcolumn dl.portletfeedmixer span.summary {
     line-height: 1.5em;
+}
+
+#rightcolumn .people h2 {
+    border: none;
+    font-size: 1.25em;
 }
 
 #centercolumn {

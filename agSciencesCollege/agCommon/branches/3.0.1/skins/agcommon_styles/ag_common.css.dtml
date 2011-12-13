@@ -708,7 +708,7 @@ body {
 }
 
 #portal-column-two .portletHeader a {
-    color: &dtml-insideRightPortletHeaderTextColor;;
+    color: &dtml-insideRightPortletHeaderTextColor; !important;
 }
 
 #portal-column-two .portletItem {
@@ -732,11 +732,13 @@ body {
     color: &dtml-insideRightPortletTextColor;;
 }
 
-#portal-column-two .portletItem a {
+#portal-column-two .portletItem a,
+#portal-column-two .portletFooter a {
     color: &dtml-insideRightPortletLinkColor;;
 }
 
-#portal-column-two .portletItem a:hover {
+#portal-column-two .portletItem a:hover,
+#portal-column-two .portletFooter a:hover {
     color: &dtml-insideRightPortletLinkHoverColor;;
 }
 
@@ -769,40 +771,40 @@ body {
 
 /* Person portlet */
 
-#portal-column-two dl.people .portletItem img.photo {
+dl.people .portletItem img.photo {
     margin-top: 0.5em;
     display: block;
 }
 
-#portal-column-two dl.people .portletItem {
+dl.people .portletItem {
     margin-bottom: 0.75em;
     display: block;
 }
 
-#portal-column-two dl.people h2 a {
+dl.people h2 a {
     color: &dtml-insideRightPortletLinkColor; !important;
 }
 
-#portal-column-two dl.people h2 a:hover {
+dl.people h2 a:hover {
     color: &dtml-insideRightPortletLinkHoverColor; !important;
 }
 
-#portal-column-two dl.people h2 {
+dl.people h2 {
     border-bottom: none;
-    font-size: 1.125em;
-    font-weight: bold;
+    font-size: 1.125em !important;
+    font-weight: bold !important;
     margin-bottom: 0em;
     margin-top: 0.5em;
 }
 
-#portal-column-two dl.people .title {
+dl.people .title {
     font-weight: bold;
     font-size: 1em;
-    line-height: 1.25em;
+    line-height: 1.25em !important;
     margin-bottom: 0.5em;
 }
 
-#portal-column-two dl.people .adr {
+dl.people .adr {
     margin-bottom: 0.9375em;
     line-height: 1.35em;
 }
@@ -858,6 +860,10 @@ body {
     font-weight: normal;
     border: none;
     font-size: 2em;
+}
+
+html.kupu-html {
+    font-size: 0.8125em !important;
 }
 
 #content h2, html.kupu-html h2 {
@@ -1166,6 +1172,10 @@ blockquote {
 #portal-column-content.sr .documentEditable .contentViews li a {
     padding: 0 0.5em;
     margin-right: 0;
+}
+
+#portal-column-content.sr .documentEditable li.formTab a {
+    padding: 0.125em 0.5em;
 }
 
 /* = Template workarounds ======================================= */
@@ -1709,6 +1719,7 @@ html.kupu-html {
 
 .portletAssignments {
     font-size: 0.6875em;
+    padding: 0 0.5em;
 }
 
 #content .portletAssignments {
@@ -1727,6 +1738,11 @@ body.template-search #content {
 
 a.state-deleted {
     text-decoration: line-through;
+}
+
+/* Portlets */
+#portal-column-one div.managedPortlet {
+    padding: 0.5em;
 }
 
 /* YOUR CSS RULES STOP HERE */

@@ -299,6 +299,12 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <plone:portletRenderer
+        portlet="plone.portlet.static.static.IStaticPortlet"
+        template="templates/static.pt"
+        layer=".interfaces.IThemeSpecific"
+        />
+
     <!-- Views -->        
     <browser:page
         for="*"

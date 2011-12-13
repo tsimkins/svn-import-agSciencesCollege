@@ -1,3 +1,10 @@
+<h2 class="portletHeader"
+    tal:define="collection_url view/collection_url;">
+    <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
+        <span tal:content="view/data/header" />
+    </a>
+</h2>
+    
 <dl class="portlet portletCollection"
     i18n:domain="plone"
     tal:define="collection_url view/collection_url;
@@ -5,14 +12,6 @@
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
                 getIcon nocall:plone_view/getIcon;">
 
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
-            <span tal:content="view/data/header" />
-        </a>
-        <span class="portletTopRight"></span>
-    </dt>
-    
     <tal:events tal:repeat="obj view/results">
     <dd class="portletItem"
         tal:define="oddrow repeat/obj/odd;
@@ -55,7 +54,7 @@
     <dd class="portletFooter" tal:condition="view/data/show_more">
         <span class="portletBottomLeft"></span>
         <span>
-        <a tal:attributes="href collection_url" i18n:translate="more_url">
+        <a tal:condition="collection_url" tal:attributes="href collection_url" i18n:translate="more_url">
              More&hellip;
              </a>
         </span>

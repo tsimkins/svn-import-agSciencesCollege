@@ -1,8 +1,9 @@
 <tal:block condition="view/available"
            i18n:domain="Products.agCommon">
-<dl class="portlet portletContact">
 
-    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+<h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
+
+<dl class="portlet portletContact">
 
     <dd class="portletItem">
         

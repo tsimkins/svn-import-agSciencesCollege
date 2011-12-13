@@ -12,14 +12,14 @@
 
 body {
     font-family: "Times New Roman",Times,serif;
-    background-color: #0F1A2F;
+    background-color: #FFFFFF;
     padding: 0.25em 2em;
     text-align: center;
 }
 
 #visual-portal-wrapper {
     width: auto;
-    background-color: #FFFFFF;
+    background: #FFFFFF;
     border: 3px solid #DDDDDD;
     padding: 1em;
     max-width: 56em;
@@ -27,12 +27,12 @@ body {
     margin: 0 auto;
 }
 
-h1, h2, h3, .portletHeader {
+h1, h2, h3, .portletHeader, .documentDescription {
     display: block;
     font-weight: bold;
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     color: #000000;
-    align: left;
+    text-align: left;
 }
 
 h1 {
@@ -76,31 +76,55 @@ h3 {
     margin: 0 0 0.25em 0;
 }
 
+.documentDescription {
+    font-size: 1.125em;
+}
+
 p {
     margin: 0 0 1em 0;
 }
+
+.view-online {
+    margin: 1.25em 0;
+}
+
+/* Special gift for OWA */
+
+h1.documentFirstHeading {
+    font-size: 2em;
+}   
 
 </style>
 
 </metal:style>
 
-<metal:title fill-slot="content-title"
+<metal:title fill-slot="page-title"
     tal:define="site_title context/site_title|context/org_title|nothing">
     
-    <div align="center">
-        <img tal:attributes="src string:${portal_url}/extension-header.png" alt="Penn State Extension" />
-    </div>
-    
-    <h1 class="documentFirstHeading" 
+    <title 
         tal:condition="site_title" 
         tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
-    <h1 class="documentFirstHeading" 
+    <title 
         tal:condition="not: site_title" 
         tal:content="context/pretty_title_or_id" />
 
 </metal:title>
 
-<metal:summary fill-slot="content-summary">
+<metal:title fill-slot="content-title"
+    tal:define="site_title context/site_title|context/org_title|nothing">
+    
+    <h1 style="font-size: 200%;" class="documentFirstHeading" 
+        tal:condition="site_title" 
+        tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
+    <h1 style="font-size: 200%;" class="documentFirstHeading" 
+        tal:condition="not: site_title" 
+        tal:content="context/pretty_title_or_id" />
+
+</metal:title>
+
+<metal:summary fill-slot="content-summary"
+    tal:define="utm string:utm_source=newsletter_view&utm_medium=email&utm_campaign=newsletter">
+    <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View this newsletter online</a>.</p>
     <h2>In This Issue</h2>
     <ul tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
@@ -127,8 +151,7 @@ p {
 </metal:summary>
 
 
-<metal:footer fill-slot="footer"
-    tal:define="templateId template/getId">
+<metal:footer fill-slot="footer">
     <tal:about
         define="has_text exists:context/aq_explicit/getText;
                 text python:has_text and here.getText() or ''"
@@ -136,10 +159,10 @@ p {
     <h2>About This Newsletter</h2>
     <div tal:replace="structure text">The body</div>
     </tal:about>
-    <p><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '')">View this newsletter online</a>.</p>
 </metal:footer>
 
-<metal:content-core fill-slot="content-core">
+<metal:content-core fill-slot="content-core"
+     tal:define="utm string:utm_source=newsletter_view&utm_medium=email&utm_campaign=newsletter">
 <metal:block define-macro="content-core"
                     tal:define="kssClassesView context/@@kss_field_decorator_view;
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
@@ -163,6 +186,7 @@ p {
                         normalizeString nocall: context/plone_utils/normalizeString;
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                        show_date context/show_date|nothing;
                         navigation_root_url context/@@plone_portal_state/navigation_root_url;
                         pas_member context/@@pas_member;">
     <tal:listing condition="batch">
@@ -197,15 +221,15 @@ p {
 
                     <h3>
                         <a href="#"
-                           tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);
+                           tal:attributes="href string:${item_url}?${utm};
                                            class string:$item_type_class $item_wf_state_class url"
                            tal:content="item_title_or_id">
                             Item Title
                         </a>
                     </h3>
 
-                    <span class="documentByLine">
-                        <div class="effectiveDate"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
+                    <div class="documentByLine">
+                        <span class="effectiveDate" tal:condition="show_date" tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                         <tal:byline condition="show_about">
                             &mdash;
 
@@ -234,7 +258,7 @@ p {
                                 </tal:comment>
                             </metal:description>
                         </tal:byline>
-                    </span>
+                    </div>
 
 
                 <p tal:condition="item_description|nothing"
