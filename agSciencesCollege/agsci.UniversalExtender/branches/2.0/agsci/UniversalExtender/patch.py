@@ -1,6 +1,7 @@
 from Acquisition import aq_base, aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import AgCommonUtilities
+from zope.component import getMultiAdapter
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -36,7 +37,15 @@ def toLocalizedTime(self, time, long_format=None, time_only=None):
     
 def collection_url(self):
     collection = self.collection()
+    limit = self.data.limit
+    self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
     if collection is None:
+        return None
+    elif limit and limit > 0 and self.portal_state.anonymous() and len(collection.queryCatalog()) <= limit:
+        # Don't show a URL if there is a limit, the user is anonymous 
+        # (so people managing through the "More..." link can still use it)
+        # and number of items are under a limit
         return None
     else:
         parent = collection.getParentNode()
