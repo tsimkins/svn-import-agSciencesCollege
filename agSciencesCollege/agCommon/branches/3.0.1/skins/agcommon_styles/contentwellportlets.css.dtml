@@ -40,7 +40,7 @@ div.portletsBelowContentE {
 	border: 0;
 }
 
-#portlets-below dl.portlet {
+#portlets-below .portletWrapper {
     padding: 0.5em 0 0.5em 0.75em;
     margin: 0.5em;
 }
@@ -51,6 +51,7 @@ div.portletsBelowContentE {
 	font-size: 1.1em;
 	font-weight: bold;
 	padding: 0.5em 0em 0.25em 5px;
+	margin-top: 0;
 }
 
 #portlets-below dd.portletItem
@@ -162,7 +163,8 @@ div.portletsAboveContentE {
 	display: block !important;
 }
 
-#portlets-above .portletWrapper .hiddenStructure {
+#portlets-above .portletWrapper .hiddenStructure,
+#portlets-below .portletWrapper .hiddenStructure {
     width: auto;
     overflow: visible;
     margin: auto !important;
@@ -182,7 +184,8 @@ div.portletsAboveContentE {
     padding: 0;
 }
 
-#portlets-above ul {
+#portlets-above ul,
+#portlets-below ul {
 	margin: 0;
 }
 
