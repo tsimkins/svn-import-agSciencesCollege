@@ -12,14 +12,14 @@
     display: block;
 }
 
-#portlets-above .portletHeader {
+#portlets-above .portletWrapper .portletHeader {
     font-size:1.15em;
     font-weight:bold;
     padding:0.5em 0 0.25em 0;
     text-transform:none;
     background-position:left top;
     background-repeat:no-repeat;
-    margin-left: 5px;
+    margin-left: 0.3125em !important;
     letter-spacing: -0.05em;
 }
 

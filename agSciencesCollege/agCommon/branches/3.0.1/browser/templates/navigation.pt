@@ -1,7 +1,7 @@
 <tal:block i18n:domain="plone">
 
-<h2 class="hiddenStructure"
-    tal:define="navigation_title python:view.title() != 'Navigation' and '%s Navigation' % view.title() or view.title()">
+<h2 class="hiddenStructure portletHeader"
+    tal:define="navigation_title view/title">
     <a href="#"
         class="tile"
         tal:attributes="href string:${root/absolute_url}"

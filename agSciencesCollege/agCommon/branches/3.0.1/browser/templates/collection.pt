@@ -1,8 +1,6 @@
 <h2 class="portletHeader"
     tal:define="collection_url view/collection_url;">
-    <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
         <span tal:content="view/data/header" />
-    </a>
 </h2>
     
 <dl class="portlet portletCollection"
@@ -10,7 +8,9 @@
     tal:define="collection_url view/collection_url;
                 plone_view context/@@plone;
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
-                getIcon nocall:plone_view/getIcon;">
+                getIcon nocall:plone_view/getIcon;
+    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');"
+    tal:attributes="style python:agcommon_utilities.getInlineStyles(context, key='portlet_dd')">
 
     <tal:events tal:repeat="obj view/results">
     <dd class="portletItem"
@@ -19,10 +19,10 @@
                     item_type obj/portal_type;
 					item_start obj/start/ISO|obj/StartDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
-					agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
 					item_title_or_id python: item_event_location_title or item_title_or_id;"
-        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd';
+                        style python:agcommon_utilities.getInlineStyles(context, key='portlet_dd')">
         <a href="#"
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/at_download/file' % obj.getURL()) or obj.getURL();
@@ -33,19 +33,19 @@
             </span>
         </a>
 			<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
-            <span class="portletItemDetails date"
+            <div class="portletItemDetails date"
                   tal:condition="view/data/show_dates"
                   tal:content="python:toLocalizedTime(obj.Date)">
                 Date
-            </span>
+            </div>
 			</tal:block>
 
 			<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
-            <span class="portletItemDetails date"
+            <div class="portletItemDetails date"
                   tal:condition="view/data/show_dates"
                   tal:content="python:toLocalizedTime(item_start)">
                 Date
-            </span>
+            </div>
 			</tal:block>
 
     </dd>

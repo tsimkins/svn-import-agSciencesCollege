@@ -4,6 +4,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner
 from DateTime import DateTime
+from urllib import urlencode
 
 class IAgendaView(Interface):
     """
@@ -142,6 +143,12 @@ class IAgCommonUtilities(Interface):
     def toMarkdown(self):
         pass
 
+    def getUTM(self):
+        pass
+
+    def getInlineStyles(self):
+        pass
+
 class AgCommonUtilities(BrowserView):
 
     implements(IAgCommonUtilities)
@@ -189,3 +196,27 @@ class AgCommonUtilities(BrowserView):
     def toMarkdown(self, text):
         portal_transforms = getToolByName(self.context, 'portal_transforms')
         return portal_transforms.convert('markdown_to_html', text)
+        
+    def getUTM(self, source=None, medium=None, campaign=None, content=None):
+        data = {}
+
+        if source:
+            data["utm_source"] = source
+
+        if medium:
+            data["utm_medium"] = medium
+
+        if campaign:
+            data["utm_campaign"] = campaign
+
+        if content:
+            data["utm_content"] = content
+
+        return urlencode(data)
+        
+    def getInlineStyles(self, context, key=None):
+        if key == 'portlet_dd' and context.getLayout() == 'newsletter_view':
+            return "margin: 0 0 0.5em 0 !important; padding: 0 !important"
+        else:
+            return None
+

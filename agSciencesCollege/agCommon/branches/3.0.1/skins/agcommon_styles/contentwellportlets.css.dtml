@@ -141,8 +141,8 @@ div.portletsAboveContentE {
 	border: 0;
 }
 
-#portlets-above dl.portlet {
-    padding: 0.5em 0 0.5em 0.75em;
+#portlets-above .portletWrapper {
+    padding: 0.5em 0;
     margin: 0.5em;
 }
 
@@ -157,12 +157,18 @@ div.portletsAboveContentE {
 #portlets-above .portletHeader {
     font-size:1.1em;
     font-weight:bold;
-    padding:0.5em 0 0.25em 0;
+    padding:0.5em 0 0.25em 0 !important;
     text-transform: uppercase;
-	display: block;
+	display: block !important;
 }
 
-
+#portlets-above .portletWrapper .hiddenStructure {
+    width: auto;
+    overflow: visible;
+    margin: auto !important;
+    height: auto;
+    position: relative;
+}
 
 #portlets-above dd.portletItem
 {
@@ -205,7 +211,7 @@ div.portletsAboveContentE {
 #portlets-above .portletItem a, #portlets-above .portletItem .state-published
 {
 	color: &dtml-bodySitemapLinkColor; !important;
-	padding: 0.3em 5px !important; 
+	padding: 0.375em 0.375em !important; 
 	display: block;
 }
 

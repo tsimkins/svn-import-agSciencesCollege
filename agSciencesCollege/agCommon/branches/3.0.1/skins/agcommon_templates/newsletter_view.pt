@@ -11,20 +11,20 @@
 <style type="text/css">
 
 body {
-    font-family: "Times New Roman",Times,serif;
+    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     background-color: #FFFFFF;
-    padding: 0.25em 2em;
+    margin: 0.5em;
+    padding: 0;
     text-align: center;
 }
 
-#visual-portal-wrapper {
-    width: auto;
+#portal-columns {
     background: #FFFFFF;
-    border: 3px solid #DDDDDD;
-    padding: 1em;
-    max-width: 56em;
+    padding: 0;
     text-align: left;
-    margin: 0 auto;
+    margin: 1em auto;
+    max-width: 56em;
+    min-width: 38em;
 }
 
 h1, h2, h3, .portletHeader, .documentDescription {
@@ -36,9 +36,8 @@ h1, h2, h3, .portletHeader, .documentDescription {
 }
 
 h1 {
-    border-bottom: 1px solid #000000;
     font-size: 2em;
-    margin: 0.67em 0 0.25em 0;
+    margin: 0 0 0.25em 0;
 }
 
 h2 a, dt.portletHeader a {
@@ -49,6 +48,11 @@ h2 a, dt.portletHeader a {
 .portletHeader, h2 {
     font-size: 1.5em;
     margin: 0.83em 0 0.25em 0;
+}
+
+#content h2:first-child,
+#portal-column-two .portletWrapper h2:first-child {
+    margin-top: 0;
 }
 
 .portletItem .date {
@@ -88,11 +92,26 @@ p {
     margin: 1.25em 0;
 }
 
-/* Special gift for OWA */
+#portal-column-two {
+    font-size: 0.9375em;
+    background: #f5f5f5;
+}
 
-h1.documentFirstHeading {
-    font-size: 2em;
-}   
+#portal-column-two .portlet dd {
+    margin-left: 0;
+}
+
+.portletItem .date {
+    color: #333333;
+    display: block;
+    margin-bottom: 0.5em;
+    padding-left: 0;
+}
+
+body.logged-in {
+    background-image: url("http://webtools.cas.psu.edu/caution.png");
+    background-repeat: repeat;
+}
 
 </style>
 
@@ -113,19 +132,49 @@ h1.documentFirstHeading {
 <metal:title fill-slot="content-title"
     tal:define="site_title context/site_title|context/org_title|nothing">
     
-    <h1 style="font-size: 200%;" class="documentFirstHeading" 
+	<div tal:condition="is_extension"
+        align="center" style="margin-bottom: 0.875em">
+        <a href="http://extension.psu.edu">
+        <img tal:attributes="src string:${portal_url}/extension-header.png" 
+                             alt="Penn State Extension" width="274" 
+                             border="0"
+                             height="20"/></a>
+    </div>
+
+    
+    <h1 style="font-size: 200%; margin: 0 0 0.25em 0;" class="documentFirstHeading" 
         tal:condition="site_title" 
         tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
-    <h1 style="font-size: 200%;" class="documentFirstHeading" 
+    <h1 style="font-size: 200%; margin: 0 0 0.25em 0;" class="documentFirstHeading" 
         tal:condition="not: site_title" 
         tal:content="context/pretty_title_or_id" />
+    <hr size="1" />
 
 </metal:title>
 
-<metal:summary fill-slot="content-summary"
-    tal:define="utm string:utm_source=newsletter_view&utm_medium=email&utm_campaign=newsletter">
+<metal:description fill-slot="content-description">
+    <p class="documentDescription" style="font-weight: bold; font-size: 
+1.125em;" tal:content="context/Description" />
+
     <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View this newsletter online</a>.</p>
-    <h2>In This Issue</h2>
+
+</metal:description>
+
+<metal:mark fill-slot="content-mark">
+	<div tal:condition="not: is_extension"
+        align="center">
+        <a href="http://agsci.psu.edu">
+        <img tal:attributes="src string:${portal_url}/college-mark.png" 
+                             alt="Penn State College of Agricultural Sciences" 
+                             width="165" 
+                             border="0"
+                             height="65"/></a>
+    </div>
+</metal:mark>
+
+<metal:summary fill-slot="content-additional">
+
+    <h2 style="margin-bottom: 0.25em">In This Issue</h2>
     <ul tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
                     limit_display limit_display|request/limit_display|nothing;
@@ -143,7 +192,8 @@ h1.documentFirstHeading {
                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                     show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                    pas_member context/@@pas_member;">
+                    pas_member context/@@pas_member;"
+         style="padding-left:1.75em">
         <tal:entry tal:repeat="item batch">
             <li tal:content="item/pretty_title_or_id" />
         </tal:entry>
@@ -156,13 +206,12 @@ h1.documentFirstHeading {
         define="has_text exists:context/aq_explicit/getText;
                 text python:has_text and here.getText() or ''"
         tal:condition="text">
-    <h2>About This Newsletter</h2>
+    <h2 style="margin-bottom: 0.25em">About This Newsletter</h2>
     <div tal:replace="structure text">The body</div>
     </tal:about>
 </metal:footer>
 
-<metal:content-core fill-slot="content-core"
-     tal:define="utm string:utm_source=newsletter_view&utm_medium=email&utm_campaign=newsletter">
+<metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
                     tal:define="kssClassesView context/@@kss_field_decorator_view;
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
@@ -191,7 +240,7 @@ h1.documentFirstHeading {
                         pas_member context/@@pas_member;">
     <tal:listing condition="batch">
 
-        <h2>Featured Articles</h2>
+        <h2 style="margin-bottom: 0.25em">Featured Articles</h2>
         <tal:list metal:define-slot="entries">
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
@@ -219,7 +268,7 @@ h1.documentFirstHeading {
                                 dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
                     tal:attributes="class dt_class">
 
-                    <h3>
+                    <h3 style="margin-bottom: 0.25em">
                         <a href="#"
                            tal:attributes="href string:${item_url}?${utm};
                                            class string:$item_type_class $item_wf_state_class url"
@@ -261,7 +310,8 @@ h1.documentFirstHeading {
                     </div>
 
 
-                <p tal:condition="item_description|nothing"
+                <p 
+style="margin-top: 0" tal:condition="item_description|nothing"
                            tal:content="item_description">
                         description
                 </p>
