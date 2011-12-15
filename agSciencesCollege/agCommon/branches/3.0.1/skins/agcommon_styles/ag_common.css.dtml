@@ -453,7 +453,7 @@ body {
 
 #portal-column-one .linkIcon,
 #portal-column-two .linkIcon {
-    margin: 30px -2px 20px -2px;
+    margin: 1em -0.125em 1em -0.125em;
 }
 
 #portal-column-one .linkIcon li,
@@ -1682,7 +1682,9 @@ body.template-agenda_view #document-toc h3 {
     content: ":";
 }
 
-#content .hiddenStructure, #portal-top-navigation .hiddenStructure {
+#content .hiddenStructure, 
+#portal-top-navigation .hiddenStructure, 
+#portal-column-one .hiddenStructure {
     margin: -1px 0 0 -1px !important;
     padding: 0 !important;
     position: absolute;
