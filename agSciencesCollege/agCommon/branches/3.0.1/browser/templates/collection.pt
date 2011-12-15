@@ -9,8 +9,7 @@
                 plone_view context/@@plone;
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
                 getIcon nocall:plone_view/getIcon;
-    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');"
-    tal:attributes="style python:agcommon_utilities.getInlineStyles(context, key='portlet_dd')">
+    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');">
 
     <tal:events tal:repeat="obj view/results">
     <dd class="portletItem"
@@ -21,8 +20,7 @@
 					item_title_or_id obj/pretty_title_or_id;
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
 					item_title_or_id python: item_event_location_title or item_title_or_id;"
-        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd';
-                        style python:agcommon_utilities.getInlineStyles(context, key='portlet_dd')">
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd';">
         <a href="#"
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/at_download/file' % obj.getURL()) or obj.getURL();

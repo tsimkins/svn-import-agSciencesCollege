@@ -146,9 +146,6 @@ class IAgCommonUtilities(Interface):
     def getUTM(self):
         pass
 
-    def getInlineStyles(self):
-        pass
-
 class AgCommonUtilities(BrowserView):
 
     implements(IAgCommonUtilities)
@@ -213,10 +210,3 @@ class AgCommonUtilities(BrowserView):
             data["utm_content"] = content
 
         return urlencode(data)
-        
-    def getInlineStyles(self, context, key=None):
-        if key == 'portlet_dd' and context.getLayout() == 'newsletter_view':
-            return "margin: 0 0 0.5em 0 !important; padding: 0 !important"
-        else:
-            return None
-

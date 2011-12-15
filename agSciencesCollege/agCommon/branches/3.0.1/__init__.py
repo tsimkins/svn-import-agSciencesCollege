@@ -18,6 +18,7 @@ registerDirectory('skins', GLOBALS)
 
 allow_module('Products.agCommon')
 allow_module('feedparser')
+allow_module('premailer')
 allow_module('datetime')
 allow_module('datetime.datetime')
 allow_module('Products.feedSync')

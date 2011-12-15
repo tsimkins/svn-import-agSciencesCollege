@@ -118,7 +118,7 @@
                     </tr>
                 </metal:block>
                 <tr>
-                    <td id="portal-column-content" valign="top" width="66%" bgcolor="#ffffff" align="left">
+                    <td id="portal-column-content" valign="top" width="357"  cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">
             
@@ -150,7 +150,7 @@
                             </div>
                         </metal:slot>
                     </td>
-                    <td id="portal-column-two" valign="top" width="33%" bgcolor="#f5f5f5" align="left">
+                    <td id="portal-column-two" valign="top" width="178" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
                         <metal:mark define-slot="content-mark" />
                         <metal:portlets define-slot="portlets_two_slot">
                             <tal:block replace="structure provider:plone.rightcolumn" />

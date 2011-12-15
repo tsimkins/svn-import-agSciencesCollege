@@ -11,32 +11,33 @@
 <style type="text/css">
 
 body {
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     background-color: #FFFFFF;
     margin: 0.5em;
     padding: 0;
     text-align: center;
+    font-size: 14pt;
+}
+
+body, p, li, h1, h2, h3, div, span {
+    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
 }
 
 #portal-columns {
     background: #FFFFFF;
     padding: 0;
-    text-align: left;
+    text-align: center;
     margin: 1em auto;
-    max-width: 56em;
-    min-width: 38em;
 }
 
 h1, h2, h3, .portletHeader, .documentDescription {
     display: block;
     font-weight: bold;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     color: #000000;
     text-align: left;
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 26pt;
     margin: 0 0 0.25em 0;
 }
 
@@ -46,7 +47,7 @@ h2 a, dt.portletHeader a {
 }
 
 .portletHeader, h2 {
-    font-size: 1.5em;
+    font-size: 18pt;
     margin: 0.83em 0 0.25em 0;
 }
 
@@ -65,23 +66,23 @@ h2 a, dt.portletHeader a {
 }
 
 .portletFooter a {
-    font-size: 0.9375em;
+    font-size: 10pt;
 }
 
 h3 {
-    font-size: 1.17em;
+    font-size: 16pt;
     margin: 1em 0 0.25em 0;
 }
 
 .effectiveDate {
-    font-size: 0.75em;
+    font-size: 10pt;
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     color: #666666;
     margin: 0 0 0.25em 0;
 }
 
 .documentDescription {
-    font-size: 1.125em;
+    font-size: 16pt;
 }
 
 p {
@@ -93,12 +94,13 @@ p {
 }
 
 #portal-column-two {
-    font-size: 0.9375em;
+    font-size: 12pt;
     background: #f5f5f5;
 }
 
 #portal-column-two .portlet dd {
     margin-left: 0;
+    margin-bottom: 0.5em;
 }
 
 .portletItem .date {
@@ -111,6 +113,19 @@ p {
 body.logged-in {
     background-image: url("http://webtools.cas.psu.edu/caution.png");
     background-repeat: repeat;
+}
+
+#visual-portal-wrapper {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table td {
+    padding: 15px;
 }
 
 </style>
@@ -133,7 +148,7 @@ body.logged-in {
     tal:define="site_title context/site_title|context/org_title|nothing">
     
 	<div tal:condition="is_extension"
-        align="center" style="margin-bottom: 0.875em">
+        align="center">
         <a href="http://extension.psu.edu">
         <img tal:attributes="src string:${portal_url}/extension-header.png" 
                              alt="Penn State Extension" width="274" 
@@ -142,10 +157,10 @@ body.logged-in {
     </div>
 
     
-    <h1 style="font-size: 200%; margin: 0 0 0.25em 0;" class="documentFirstHeading" 
+    <h1 class="documentFirstHeading" 
         tal:condition="site_title" 
         tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
-    <h1 style="font-size: 200%; margin: 0 0 0.25em 0;" class="documentFirstHeading" 
+    <h1 class="documentFirstHeading" 
         tal:condition="not: site_title" 
         tal:content="context/pretty_title_or_id" />
     <hr size="1" />
@@ -153,8 +168,7 @@ body.logged-in {
 </metal:title>
 
 <metal:description fill-slot="content-description">
-    <p class="documentDescription" style="font-weight: bold; font-size: 
-1.125em;" tal:content="context/Description" />
+    <p class="documentDescription" tal:content="context/Description" />
 
     <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View this newsletter online</a>.</p>
 
@@ -174,7 +188,7 @@ body.logged-in {
 
 <metal:summary fill-slot="content-additional">
 
-    <h2 style="margin-bottom: 0.25em">In This Issue</h2>
+    <h2>In This Issue</h2>
     <ul tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
                     limit_display limit_display|request/limit_display|nothing;
@@ -192,8 +206,7 @@ body.logged-in {
                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                     show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                    pas_member context/@@pas_member;"
-         style="padding-left:1.75em">
+                    pas_member context/@@pas_member;">
         <tal:entry tal:repeat="item batch">
             <li tal:content="item/pretty_title_or_id" />
         </tal:entry>
@@ -206,7 +219,7 @@ body.logged-in {
         define="has_text exists:context/aq_explicit/getText;
                 text python:has_text and here.getText() or ''"
         tal:condition="text">
-    <h2 style="margin-bottom: 0.25em">About This Newsletter</h2>
+    <h2>About This Newsletter</h2>
     <div tal:replace="structure text">The body</div>
     </tal:about>
 </metal:footer>
@@ -240,7 +253,7 @@ body.logged-in {
                         pas_member context/@@pas_member;">
     <tal:listing condition="batch">
 
-        <h2 style="margin-bottom: 0.25em">Featured Articles</h2>
+        <h2>Featured Articles</h2>
         <tal:list metal:define-slot="entries">
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
@@ -268,7 +281,7 @@ body.logged-in {
                                 dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
                     tal:attributes="class dt_class">
 
-                    <h3 style="margin-bottom: 0.25em">
+                    <h3>
                         <a href="#"
                            tal:attributes="href string:${item_url}?${utm};
                                            class string:$item_type_class $item_wf_state_class url"
@@ -310,8 +323,7 @@ body.logged-in {
                     </div>
 
 
-                <p 
-style="margin-top: 0" tal:condition="item_description|nothing"
+                <p tal:condition="item_description|nothing"
                            tal:content="item_description">
                         description
                 </p>
