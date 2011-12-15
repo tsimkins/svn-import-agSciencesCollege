@@ -163,6 +163,7 @@ div.portletsAboveContentE {
 	display: block !important;
 }
 
+#portal-column-two .portletWrapper .hiddenStructure,
 #portlets-above .portletWrapper .hiddenStructure,
 #portlets-below .portletWrapper .hiddenStructure {
     width: auto;
