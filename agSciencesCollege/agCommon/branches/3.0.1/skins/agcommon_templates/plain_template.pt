@@ -9,8 +9,6 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      xml:lang="en"
-      lang="en"
       tal:define="portal_state context/@@plone_portal_state;
                   context_state context/@@plone_context_state;
                   plone_view context/@@plone;
@@ -87,9 +85,12 @@
 
     <metal:block define-slot="content">
 
-        <div id="visual-portal-wrapper" metal:define-macro="content">
+        <tal:main-content metal:define-macro="content">
 
-            <table id="portal-columns" cellspacing="0" cellpadding="15" width="600" align="center">
+            <table id="portal-columns" cellspacing="0" cellpadding="15" width="600"
+                   align="left"
+                   tal:attributes="class python: sr and 'two-column' or 'one-column'">
+                <tbody>
                 <tal:warning condition="not: isAnon">
                     <tr>
                         <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#00FFB2">
@@ -99,7 +100,7 @@
                 </tal:warning>
                 <metal:block define-slot="content-header">
                     <tr tal:condition="is_extension">
-                        <td class="header" tal:attributes="colspan python: sr and '2' or None" align="left" width="570">
+                        <td class="header" tal:attributes="colspan python: sr and '2' or None" align="left" width="600">
                             <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom title always use
@@ -164,11 +165,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="footer" tal:attributes="colspan python: sr and '2' or None" align="center" bgcolor="#ffffff" style="font-size: 0.75em">
+                    <td class="footer" tal:attributes="colspan python: sr and '2' or None" align="center" bgcolor="#ffffff">
 
                         <hr size="1" />
 
-                    	<p style="margin: 0 0 0.25em 0">
+                    	<p>
                     		&copy;
                             <span tal:omit-tag=""
                                 tal:define="now modules/DateTime/DateTime" 
@@ -178,7 +179,7 @@
                     		
                     	</p>
                     
-                        <p style="margin: 0">
+                        <p>
                             
                             <a title="" id="copyright" href="http://www.psu.edu/copyright.html">Copyright</a>
                             &mdash;
@@ -195,8 +196,10 @@
 
                     </td>
                 </tr>
+                </tbody>
             </table>
-        </div>
+
+        </tal:main-content>
 
     </metal:block>
 </body>

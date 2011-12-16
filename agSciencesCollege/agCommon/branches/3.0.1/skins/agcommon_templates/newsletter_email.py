@@ -20,5 +20,5 @@ tags = ['dl', 'dt', 'dd']
 for tag in tags:
     html = html.replace("<%s" % tag, "<div")
     html = html.replace("</%s" % tag, "</div")
-    
+
 return html
