@@ -123,7 +123,7 @@
                     </tr>
                 </metal:block>
                 <tr>
-                    <td id="portal-column-content" valign="top" tal:attributes="width python:sr and '357' or '570'"  cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
+                    <td id="portal-column-content" valign="top" tal:attributes="width python:sr and '390' or '570'" cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">
             
@@ -156,7 +156,7 @@
                         </metal:slot>
                     </td>
                     <td tal:condition="sr"
-                        id="portal-column-two" valign="top" width="178" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
+                        id="portal-column-two" valign="top" width="165" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
                         <metal:mark define-slot="content-mark" />
                         <metal:portlets define-slot="portlets_two_slot">
                             <tal:block replace="structure provider:plone.rightcolumn" />
