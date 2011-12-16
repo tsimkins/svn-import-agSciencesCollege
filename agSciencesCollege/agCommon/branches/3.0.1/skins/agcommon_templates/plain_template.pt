@@ -24,7 +24,12 @@
                   ajax_load request/ajax_load | nothing;
                   is_extension python: 'extension' in context.absolute_url();
                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                  utm python:agcommon_utilities.getUTM(source=context.Title(), medium='email', campaign='newsletter');"
+                  alternate_title context/alternate_title|nothing;
+                  context_title context/Title;
+                  site_title context/site_title|nothing;
+                  newsletter_title python:site_title and '%s: %s' % (site_title, context_title) or context_title;
+                  newsletter_title python: alternate_title and alternate_title or newsletter_title;
+                  utm python:agcommon_utilities.getUTM(source=newsletter_title, medium='email', campaign='newsletter');"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -63,7 +68,7 @@
     </tal:notajax>
 
     <metal:title define-slot="page-title">
-        <title tal:content="context/pretty_title_or_id" />
+        <title tal:content="newsletter_title" />
     </metal:title>
 
   </head>
@@ -87,14 +92,14 @@
             <table id="portal-columns" cellspacing="0" cellpadding="15" width="600" align="center">
                 <tal:warning condition="not: isAnon">
                     <tr>
-                        <td colspan="2" align="left" valign="top" bgcolor="#00FFB2">
+                        <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#00FFB2">
                             <strong>Warning:</strong> This is the logged-in view of the newsletter.  Log out (go to the http:// URL) before emailing.  Do not attempt to email this newsletter, or users will be asked to log in before viewing articles.
                         </td>
                     </tr>
                 </tal:warning>
                 <metal:block define-slot="content-header">
                     <tr tal:condition="is_extension">
-                        <td colspan="2" align="left">
+                        <td class="header" tal:attributes="colspan python: sr and '2' or None" align="left" width="570">
                             <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom title always use
@@ -118,7 +123,7 @@
                     </tr>
                 </metal:block>
                 <tr>
-                    <td id="portal-column-content" valign="top" width="357"  cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
+                    <td id="portal-column-content" valign="top" tal:attributes="width python:sr and '357' or '570'"  cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">
             
@@ -150,7 +155,8 @@
                             </div>
                         </metal:slot>
                     </td>
-                    <td id="portal-column-two" valign="top" width="178" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
+                    <td tal:condition="sr"
+                        id="portal-column-two" valign="top" width="178" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
                         <metal:mark define-slot="content-mark" />
                         <metal:portlets define-slot="portlets_two_slot">
                             <tal:block replace="structure provider:plone.rightcolumn" />
@@ -158,13 +164,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center" bgcolor="#ffffff" style="font-size: 0.75em">
+                    <td class="footer" tal:attributes="colspan python: sr and '2' or None" align="center" bgcolor="#ffffff" style="font-size: 0.75em">
 
                         <hr size="1" />
 
                     	<p style="margin: 0 0 0.25em 0">
                     		&copy;
-                    		2011
+                            <span tal:omit-tag=""
+                                tal:define="now modules/DateTime/DateTime" 
+                                tal:content="now/year">[date last modified]</span>
                     		
                     	      <a href="http://agsci.psu.edu">College of Agricultural Sciences</a>
                     		

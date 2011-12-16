@@ -15,11 +15,11 @@ body {
     margin: 0.5em;
     padding: 0;
     text-align: center;
-    font-size: 14pt;
 }
 
 body, p, li, h1, h2, h3, div, span {
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-size: 12pt;
 }
 
 #portal-columns {
@@ -70,7 +70,7 @@ h2 a, dt.portletHeader a {
 }
 
 h3 {
-    font-size: 16pt;
+    font-size: 15pt;
     margin: 1em 0 0.25em 0;
 }
 
@@ -121,11 +121,27 @@ body.logged-in {
 
 table {
     border-collapse: collapse;
-    table-layout: fixed;
 }
 
 table td {
-    padding: 15px;
+    padding: 5px 15px;
+    text-align: left;
+}
+
+table td.footer {
+    text-align: center;
+}
+
+table td.footer p {
+    font-size: 10pt;
+}
+
+.graphic-header {
+    margin: 1em 0 1.5em 0;
+}
+
+.this-issue li {
+    margin-bottom: 0.5em;
 }
 
 </style>
@@ -136,11 +152,7 @@ table td {
     tal:define="site_title context/site_title|context/org_title|nothing">
     
     <title 
-        tal:condition="site_title" 
-        tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
-    <title 
-        tal:condition="not: site_title" 
-        tal:content="context/pretty_title_or_id" />
+        tal:content="newsletter_title" />
 
 </metal:title>
 
@@ -148,35 +160,46 @@ table td {
     tal:define="site_title context/site_title|context/org_title|nothing">
     
 	<div tal:condition="is_extension"
-        align="center">
+        align="center"
+        class="graphic-header">
         <a href="http://extension.psu.edu">
         <img tal:attributes="src string:${portal_url}/extension-header.png" 
                              alt="Penn State Extension" width="274" 
                              border="0"
-                             height="20"/></a>
+                             height="20" /></a>
     </div>
 
+
+	<div tal:condition="python: not sr and not is_extension"
+        align="center"
+        class="graphic-header">
+        <a href="http://agsci.psu.edu">
+        <img tal:attributes="src string:${portal_url}/college-mark-long.png" 
+                             alt="Penn College of Agricultural Sciences" width="570" 
+                             border="0"
+                             height="55" /></a>
+    </div>
     
     <h1 class="documentFirstHeading" 
-        tal:condition="site_title" 
-        tal:content="string: ${site_title}: ${context/pretty_title_or_id}" />
-    <h1 class="documentFirstHeading" 
-        tal:condition="not: site_title" 
-        tal:content="context/pretty_title_or_id" />
+        tal:content="newsletter_title" />
     <hr size="1" />
 
 </metal:title>
 
-<metal:description fill-slot="content-description">
+<metal:description fill-slot="content-description"
+    tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <p class="documentDescription" tal:content="context/Description" />
 
-    <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View this newsletter online</a>.</p>
+<p class="effectiveDate" tal:content="python:toLocalizedTime(DateTime()).replace(' 0', ' ')">[Date]</p>
+
+    <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View this newsletter online</a></p>
 
 </metal:description>
 
 <metal:mark fill-slot="content-mark">
-	<div tal:condition="not: is_extension"
-        align="center">
+	<div class="graphic-header" 
+	     tal:condition="not: is_extension"
+         align="center">
         <a href="http://agsci.psu.edu">
         <img tal:attributes="src string:${portal_url}/college-mark.png" 
                              alt="Penn State College of Agricultural Sciences" 
@@ -189,7 +212,8 @@ table td {
 <metal:summary fill-slot="content-additional">
 
     <h2>In This Issue</h2>
-    <ul tal:define="contentFilter contentFilter|request/contentFilter|nothing;
+    <ul class="this-issue"
+        tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
                     limit_display limit_display|request/limit_display|nothing;
                     limit_display python:limit_display and int(limit_display) or None;

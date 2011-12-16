@@ -1,10 +1,11 @@
 <tal:block i18n:domain="plone">
 
 <h2 class="hiddenStructure portletHeader"
-    tal:define="navigation_title view/title">
+    tal:define="navigation_title view/title;
+                root view/navigation_root">
     <a href="#"
         class="tile"
-        tal:attributes="href string:${root/absolute_url}"
+        tal:attributes="href root/absolute_url"
         tal:content="navigation_title">Navigation</a>
 </h2>
 
