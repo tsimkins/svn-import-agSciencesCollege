@@ -1,32 +1,36 @@
-<tal:block i18n:domain="plone">
+<tal:block i18n:domain="plone"
+    tal:define="include_top view/include_top">
 
-<h2 class="hiddenStructure portletHeader"
+<tal:header
     tal:define="navigation_title view/title;
-                root view/navigation_root">
+                root view/navigation_root;
+                rootIsPortal view/root_is_portal;">
+                
+<h2 class="hiddenStructure"
+    tal:condition="not: include_top">
+
     <a href="#"
-        class="tile"
         tal:attributes="href root/absolute_url"
         tal:content="navigation_title">Navigation</a>
 </h2>
 
-<dl class="portlet portletNavigationTree"
-    tal:define="root view/navigation_root">
+<h2 class="portletHeader portletNavigationHeader"
+    tal:condition="include_top">
+    <a tal:attributes="href root/absolute_url;
+                        title root/Description;">
+    <span 
+            tal:replace="root/Title">Root item title</span>
+    </a>
+</h2>
+
+</tal:header>
+
+<dl tal:define="root view/navigation_root;
+                nav_class python:include_top and 'headerNavigationTree' or 'standaloneNavigationTree';"
+    tal:attributes="class string:portlet portletNavigationTree ${nav_class}">
 
     <dd class="portletItem lastItem">
         <ul class="navTree navTreeLevel0">
-            <li tal:define="selectedClass view/root_item_class;
-                            li_class python:selectedClass and ' navTreeCurrentNode' or '';"
-                tal:condition="view/include_top"
-                tal:attributes="class string:navTreeItem navTree navTreeTitle navTreeTopNode${li_class}">
-                <div tal:define="rootIsPortal view/root_is_portal;">
-                   <a tal:attributes="href root/absolute_url;
-                                      title root/Description;
-                                      class string:contenttype-plone-site $selectedClass;">
-                   <span 
-                         tal:replace="root/Title">Root item title</span>
-                   </a>
-                </div>
-            </li>
             <li tal:replace="structure view/createNavTree">
                 SUBTREE
             </li>

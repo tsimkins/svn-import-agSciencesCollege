@@ -83,7 +83,7 @@ h1, .documentByLine, .documentActions {
 	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
 	color: &dtml-frontRightPortletHeaderTextColor;; 
 	font-weight: bold;
-	padding: 0.25em;
+	padding: 0.25em !important;
 	text-transform: uppercase;
 	border-width: 0;
 	margin: 0;
@@ -92,8 +92,8 @@ h1, .documentByLine, .documentActions {
 }
 
 #centercolumn .portletHeader {
-	padding-left: 0.75em;
-	padding-right: 0.5em;
+	padding-left: 0.75em !important;
+	padding-right: 0.5em !important;
 }
 
 #rightcolumn .portletHeader {
@@ -101,7 +101,7 @@ h1, .documentByLine, .documentActions {
 }
 
 #rightcolumn .portletHeader a, #centercolumn .portletHeader a {  
-	color: &dtml-frontRightPortletHeaderTextColor;;
+	color: &dtml-frontRightPortletHeaderTextColor; !important;
 }
 
 /* ================= Center Column =====================*/
@@ -157,7 +157,7 @@ h1, .documentByLine, .documentActions {
 #rightcolumn .portletItem li {
 	list-style-image: none;
 	list-style-type: none;
-	margin: 0.25em 0 0.5em;
+	margin: 0 0 0.25em;
 	padding: 0.125em 0 0.125em 0.125em;
 	color: &dtml-frontRightPortletTextColor;;
 }

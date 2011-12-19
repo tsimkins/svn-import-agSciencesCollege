@@ -288,28 +288,20 @@ body {
 
 /* Portal-column-one Navigation */
 
-#portal-column-one .portletNavigationTree .portletHeader {
-    display: none;
-}
-
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle,
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0 > li:first-child {
-    margin-top: 1em;
-}
-
-#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel0>li.navTreeTitle {
+#portal-column-one .portletNavigationHeader {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -0.875em;
-    padding: 0.875em;
+    margin: 0 -0.9375em;
+    padding: 0.9375em;
     border-bottom: 1px solid &dtml-leftNavBorderColor;;
+    text-transform: none;
 }
 
-#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+#portal-column-one .portletNavigationHeader a {
     background-color: transparent;
     color: &dtml-leftNavTitleColor; !important;
-    font-size: 1.375em;
+    font-size: 1.5em;
     line-height: 1.4em;
     padding: 0;
     margin: 0;
@@ -320,6 +312,10 @@ body {
 #portal-column-one .portletItem {
     padding: 0;
     border: none;
+}
+
+#portal-column-one .standaloneNavigationTree {
+    margin-top: 1em;
 }
 
 #portal-column-one .portletNavigationTree .portletItem ul {
@@ -1568,7 +1564,7 @@ q {
 
 /* Remove Plone site icon from top nav title */
 
-.icons-on .portletNavigationTree .navTreeTitle .contenttype-plone-site {
+.icons-on .portletNavigationHeader .contenttype-plone-site {
     background-image: none;
     padding-left: 5px !important;
 }
