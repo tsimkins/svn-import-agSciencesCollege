@@ -8,6 +8,7 @@
 
 <body>
 <metal:style fill-slot="style_slot">
+
 <style type="text/css">
 
 body {
@@ -29,15 +30,11 @@ p {
     margin: 0 0 16pt 0;
 }
 
-#visual-portal-wrapper {
-    text-align: center;
-}
-
 #portal-columns {
     border-collapse: collapse;
     background: #FFFFFF;
     padding: 0;
-    margin: 12pt;
+    margin: 6pt 12pt;
 }
 
 h1, h2, h3, .portletHeader, .documentDescription {
@@ -91,6 +88,7 @@ h2 a, dt.portletHeader a {
 h3 {
     font-size: 11pt;
     margin: 16pt 0 3pt 0;
+    font-weight: normal;
 }
 
 .effectiveDate {
@@ -99,8 +97,8 @@ h3 {
     color: #666666;
 }
 
-div.effectiveDate {
-    margin: 0 0 6pt 0;
+div.subheader {
+    margin: 0 0 12pt 0;
 }
 
 .documentByLine {
@@ -109,7 +107,7 @@ div.effectiveDate {
 
 div.documentDescription {
     font-size: 11pt;
-    margin: 6pt 0 6pt 0;
+    margin: 0 0 6pt 0;
 }
 
 p {
@@ -117,7 +115,7 @@ p {
 }
 
 .view-online {
-    margin: 15pt 0;
+    font-size: 8.5pt;
 }
 
 #portal-column-two {
@@ -129,7 +127,7 @@ p {
 }
 
 body.logged-in {
-    background-image: url("http://webtools.cas.psu.edu/caution.png");
+    background-image: url(caution.png);
     background-repeat: repeat;
 }
 
@@ -139,11 +137,11 @@ table td {
 
 table td.footer {
     text-align: center;
-    padding: 4pt 0;
+    padding: 0 0 4pt 0;
 }
 
 table td.header {
-    padding: 5px 0;
+    padding: 5px 0 0 0;
 }
 
 table td.footer p {
@@ -152,9 +150,12 @@ table td.footer p {
     margin: 6pt 0 0 0;
 }
 
-.graphic-header {
+.graphic-header-agsci {
+    margin: 12pt 0 8pt 0;
+}
+
+.graphic-header-extension {
     margin: 12pt 0 18pt 0;
-    text-align: center;
 }
 
 ul.this-issue {
@@ -171,10 +172,6 @@ table td#portal-column-content {
 
 table.one-column td#portal-column-content {
     padding: 5px 0 0 0;
-}
-
-#content {
-    text-align: left !important;
 }
 
 hr {
@@ -196,23 +193,20 @@ hr {
 </metal:title>
 
 <metal:title fill-slot="content-title"
-    tal:define="site_title context/site_title|context/org_title|nothing;
-                toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    tal:define="site_title context/site_title|context/org_title|nothing;">
     
 	<div tal:condition="is_extension"
-        align="center"
-        class="graphic-header">
+        class="graphic-header-extension">
         <a href="http://extension.psu.edu">
-        <img tal:attributes="src string:${portal_url}/extension-header.png" 
-                             alt="Penn State Extension" width="274" 
+        <img tal:attributes="src string:${portal_url}/extension-newsletter-header.png" 
+                             alt="Penn State Extension" width="600" 
                              border="0"
                              height="20" /></a>
     </div>
 
 
-	<div tal:condition="python: not sr and not is_extension"
-        align="center"
-        class="graphic-header">
+	<div tal:condition="not: is_extension"
+        class="graphic-header-agsci">
         <a href="http://agsci.psu.edu">
         <img tal:attributes="src string:${portal_url}/college-mark-long.png" 
                              alt="Penn College of Agricultural Sciences" width="600" 
@@ -223,11 +217,24 @@ hr {
     <h1 class="documentFirstHeading" 
         tal:content="newsletter_title" />
 
-    <div class="effectiveDate" tal:content="python:toLocalizedTime(DateTime()).replace(' 0', ' ')" />
-
-    <hr size="1" />
-
 </metal:title>
+
+<metal:subheader fill-slot="content-subheader"
+                 tal:define="templateId template/getId;
+                             show_date context/show_date|nothing;
+                             toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+    <div class="subheader">
+        <tal:date condition="not: show_date">
+            <span class="effectiveDate"> 
+                  <span tal:replace="python:toLocalizedTime(DateTime()).replace(' 0', ' ')" />
+            | </span>
+        </tal:date>
+
+        <a class="view-online" tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View 
+                <span tal:replace="context/Title" /> online</a>
+    </div>
+
+</metal:subheader>
 
 <metal:description fill-slot="content-description"
     tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
@@ -235,22 +242,8 @@ hr {
 
 
 
-    <p class="view-online" tal:define="templateId template/getId"><a tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View <span tal:replace="newsletter_title" /> online</a></p>
 
 </metal:description>
-
-<metal:mark fill-slot="content-mark">
-	<div class="graphic-header" 
-	     tal:condition="not: is_extension"
-         align="center">
-        <a href="http://agsci.psu.edu">
-        <img tal:attributes="src string:${portal_url}/college-mark.png" 
-                             alt="Penn State College of Agricultural Sciences" 
-                             width="165" 
-                             border="0"
-                             height="65"/></a>
-    </div>
-</metal:mark>
 
 <metal:summary fill-slot="content-additional">
 

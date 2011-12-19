@@ -27,7 +27,7 @@
                   site_title context/site_title|nothing;
                   newsletter_title python:site_title and '%s: %s' % (site_title, context_title) or context_title;
                   newsletter_title python: alternate_title and alternate_title or newsletter_title;
-                  utm python:agcommon_utilities.getUTM(source=newsletter_title, medium='email', campaign='newsletter');"
+                  utm python:agcommon_utilities.getUTM(source='newsletter', medium='email', campaign=newsletter_title);"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -99,8 +99,9 @@
                     </tr>
                 </tal:warning>
                 <metal:block define-slot="content-header">
-                    <tr tal:condition="is_extension">
-                        <td class="header" tal:attributes="colspan python: sr and '2' or None" align="left" width="600">
+                    <tr>
+                        <td class="header" colspan="2"
+                            align="left" width="600">
                             <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom title always use
@@ -110,7 +111,7 @@
                                     Generic KSS Title. Is rendered with class="documentFirstHeading".
                                 </h1>
                             </metal:title>
-                
+
                             <metal:description define-slot="content-description">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom description always use
@@ -120,6 +121,11 @@
                                     Generic KSS Description. Is rendered with class="documentDescription".
                                 </div>
                             </metal:description>
+
+                            <metal:subheader define-slot="content-subheader" />
+
+                            <hr size="1" />
+
                         </td>
                     </tr>
                 </metal:block>
@@ -128,37 +134,30 @@
         
                         <metal:slot define-slot="body">
             
-                            <div id="content">
-                                <tal:not_extension condition="not: is_extension">
-                                    <metal:header define-slot="content-title" />
-                                    <metal:description define-slot="content-description" />
-                                </tal:not_extension>
+                            <metal:additional define-slot="content-additional" />
 
-                                <metal:additional define-slot="content-additional" />
+                            <metal:bodytext define-slot="main">
+                    
+                                <metal:main define-macro="main">
+        
+                                    <div id="content-core">
+                                        <metal:text define-slot="content-core" tal:content="nothing">
+                                            Page body text
+                                        </metal:text>
+                                    </div>
+                    
+                                    <metal:footer define-slot="footer" tal:content="nothing">
+                                        Visual Footer
+                                    </metal:footer>
+                        
+                                </metal:main>
+                    
+                            </metal:bodytext>
 
-                                <metal:bodytext define-slot="main">
-                        
-                                    <metal:main define-macro="main">
-            
-                                        <div id="content-core">
-                                            <metal:text define-slot="content-core" tal:content="nothing">
-                                                Page body text
-                                            </metal:text>
-                                        </div>
-                        
-                                        <metal:footer define-slot="footer" tal:content="nothing">
-                                            Visual Footer
-                                        </metal:footer>
-                            
-                                    </metal:main>
-                        
-                                </metal:bodytext>
-                            </div>
                         </metal:slot>
                     </td>
                     <td tal:condition="sr"
                         id="portal-column-two" valign="top" width="165" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
-                        <metal:mark define-slot="content-mark" />
                         <metal:portlets define-slot="portlets_two_slot">
                             <tal:block replace="structure provider:plone.rightcolumn" />
                         </metal:portlets>
