@@ -1,32 +1,27 @@
 <tal:block i18n:domain="plone"
-    tal:define="include_top view/include_top">
+    tal:define="include_top view/include_top;
+                root view/navigation_root;">
 
 <tal:header
-    tal:define="navigation_title view/title;
-                root view/navigation_root;
-                rootIsPortal view/root_is_portal;">
+    tal:define="navigation_title python: view.title() != 'Navigation' and view.title() or root.Title();">
                 
 <h2 class="hiddenStructure"
     tal:condition="not: include_top">
 
     <a href="#"
-        tal:attributes="href root/absolute_url"
-        tal:content="navigation_title">Navigation</a>
+        tal:attributes="href root/absolute_url">Navigation</a>
 </h2>
 
 <h2 class="portletHeader portletNavigationHeader"
     tal:condition="include_top">
     <a tal:attributes="href root/absolute_url;
-                        title root/Description;">
-    <span 
-            tal:replace="root/Title">Root item title</span>
-    </a>
+                       title root/Description;"
+                       tal:content="navigation_title" />
 </h2>
 
 </tal:header>
 
-<dl tal:define="root view/navigation_root;
-                nav_class python:include_top and 'headerNavigationTree' or 'standaloneNavigationTree';"
+<dl tal:define="nav_class python:include_top and 'headerNavigationTree' or 'standaloneNavigationTree';"
     tal:attributes="class string:portlet portletNavigationTree ${nav_class}">
 
     <dd class="portletItem lastItem">
@@ -35,8 +30,6 @@
                 SUBTREE
             </li>
         </ul>
-        <span class="portletBottomLeft"></span>
-        <span class="portletBottomRight"></span>
     </dd>
 </dl>
 </tal:block>
