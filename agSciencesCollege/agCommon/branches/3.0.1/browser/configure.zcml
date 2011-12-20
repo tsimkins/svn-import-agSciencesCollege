@@ -344,6 +344,24 @@
 
     <browser:page
         for="*"
+        name="newsletter_view"
+        class=".views.NewsletterView"
+        template="templates/newsletter_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="newsletter_email"
+        class=".views.NewsletterEmail"
+        template="templates/newsletter_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
         name="agcommon_utilities"
         class=".views.AgCommonUtilities"
         layer=".interfaces.IThemeSpecific"

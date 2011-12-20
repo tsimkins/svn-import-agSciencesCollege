@@ -87,8 +87,10 @@ h2 a, dt.portletHeader a {
 
 h3 {
     font-size: 11pt;
-    margin: 16pt 0 3pt 0;
+    margin: 10pt 0 3pt 0;
     font-weight: normal;
+    clear: both;
+    width: 390px;
 }
 
 .effectiveDate {
@@ -111,7 +113,13 @@ div.documentDescription {
 }
 
 p {
-    margin: 0 0 12pt 0;
+    margin: 0 0 16pt 0;
+}
+
+
+#portal-column-two p {
+    margin: 0 0 24pt 0;
+    width: 390px;
 }
 
 .view-online {
@@ -178,14 +186,26 @@ hr {
     margin: 0;
     padding: 0;
     text-align: left;
+    color: #333333;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+img.leadimage {
+    background-color: #EEEEEE; 
+    border: 1px solid #DDDDDD; 
+    color: #666666; 
+    float: right; 
+    font-size: 8pt; 
+    margin: 0 0 12pt 12pt; 
+    text-align: right;
 }
 
 </style>
 
 </metal:style>
 
-<metal:title fill-slot="page-title"
-    tal:define="site_title context/site_title|context/org_title|nothing">
+<metal:title fill-slot="page-title">
     
     <title 
         tal:content="newsletter_title" />
@@ -226,12 +246,15 @@ hr {
     <div class="subheader">
         <tal:date condition="not: show_date">
             <span class="effectiveDate"> 
-                  <span tal:replace="python:toLocalizedTime(DateTime()).replace(' 0', ' ')" />
+                  <span tal:replace="python:toLocalizedTime(view.currentDate).replace(' 0', ' ')" />
             | </span>
         </tal:date>
 
-        <a class="view-online" tal:attributes="href python:context.absolute_url().replace('/' + templateId, '') + '?' + utm">View 
-                <span tal:replace="context/Title" /> online</a>
+        <a class="view-online" 
+            tal:define="more_url python:context.absolute_url().replace('/' + templateId, '');
+                        more_url context/more_url|more_url"
+            tal:attributes="href string:${more_url}?${utm}">View 
+                <span tal:replace="context/newsletter_title|context/Title" /> online</a>
     </div>
 
 </metal:subheader>
@@ -316,7 +339,9 @@ hr {
         <h2>Featured Articles</h2>
         <tal:list metal:define-slot="entries">
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
-            <tal:block tal:define="item_url item/getURL|item/absolute_url;
+            <tal:block tal:define="item_object item/getObject;
+                                   item_has_leadimage item/hasContentLeadImage;
+                                   item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
                                    item_description item/Description;
@@ -337,8 +362,8 @@ hr {
                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
                 <metal:block define-slot="entry">
                 <tal:item metal:define-macro="listitem"
-                    tal:define="dt_class python:test(not item_description, 'nodescription', '');
-                                dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
+                    tal:define="dt_class python:not item_description and 'nodescription' or '';
+                                dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
                     tal:attributes="class dt_class">
 
                     <h3>
@@ -374,19 +399,29 @@ hr {
 
                             </tal:name>
 
-                            <metal:description define-slot="description_slot">
-                                <tal:comment replace="nothing">
-                                    Place custom listing info for custom types here
-                                </tal:comment>
-                            </metal:description>
                         </tal:byline>
                     </div>
 
 
-                <p tal:condition="item_description|nothing"
-                           tal:content="item_description">
-                        description
+                <p tal:condition="item_description|nothing">
+
+                    <tal:newsitem
+                         tal:condition="exists:item_object/image_thumb"
+                         tal:define="image_caption item_object/imageCaption|nothing">
+                            <img align="right"
+                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
+                    </tal:newsitem>
+
+                    <tal:otheritem
+                         tal:condition="exists:item_has_leadimage">
+                            <img align="right"
+                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
+                    </tal:otheritem>
+
+                    <span tal:replace="item_description" />
+                    
                 </p>
+
                 </tal:item>
             </metal:block>
             </tal:block>

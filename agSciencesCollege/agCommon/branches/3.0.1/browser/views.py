@@ -3,8 +3,13 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner
+from collective.contentleadimage.config import IMAGE_FIELD_NAME
+from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
 from DateTime import DateTime
 from urllib import urlencode
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+import premailer
+from BeautifulSoup import BeautifulSoup
 
 class IAgendaView(Interface):
     """
@@ -22,6 +27,76 @@ class IEventTableView(Interface):
     def test():
         """ test method"""
 
+class INewsletterView(Interface):
+
+    def test():
+        """ test method"""
+
+class INewsletterEmail(Interface):
+
+    def test():
+        """ test method"""
+
+class NewsletterView(BrowserView):
+
+    implements(INewsletterView)
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.currentDate = DateTime()
+
+    def getBodyText(self):
+        return self.context.getBodyText()
+
+    def tag(self, obj, css_class='tileImage', scale='thumb'):
+        context = aq_inner(obj)
+        field = context.getField(IMAGE_FIELD_NAME)
+        titlef = context.getField(IMAGE_CAPTION_FIELD_NAME)
+        if titlef is not None:
+            title = titlef.get(context)
+        else:
+            title = ''
+        if field is not None:
+            if field.get_size(context) != 0:
+                return field.tag(context, scale=scale, css_class=css_class, title=title, alt=title)
+        return ''
+
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    @property
+    def portal(self):
+        return getToolByName(self.context, 'portal_url').getPortalObject()
+
+class NewsletterEmail(NewsletterView):
+
+    implements(INewsletterEmail)
+
+    def render(self):
+        return self.index()
+        
+    def __call__(self):
+    
+        html = self.render()
+    
+        soup = BeautifulSoup(html)
+        
+        for img in soup.findAll('img', {'class' : 'leadimage'}):
+            img['hspace'] = 8
+            img['vspace'] = 8
+    
+        html = premailer.transform(soup.prettify())
+
+        tags = ['dl', 'dt', 'dd']
+        
+        for tag in tags:
+            html = html.replace("<%s" % tag, "<div")
+            html = html.replace("</%s" % tag, "</div")
+            
+        return html
+    
 class AgendaView(BrowserView):
     """
     agenda browser view

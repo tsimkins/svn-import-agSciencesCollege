@@ -22,7 +22,7 @@
                   ajax_load request/ajax_load | nothing;
                   is_extension python: 'extension' in context.absolute_url();
                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                  alternate_title context/alternate_title|nothing;
+                  alternate_title context/newsletter_title|nothing;
                   context_title context/Title;
                   site_title context/site_title|nothing;
                   newsletter_title python:site_title and '%s: %s' % (site_title, context_title) or context_title;
