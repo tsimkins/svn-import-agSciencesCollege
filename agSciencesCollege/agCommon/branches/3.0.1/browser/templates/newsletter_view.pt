@@ -229,7 +229,7 @@ img.leadimage {
         class="graphic-header-agsci">
         <a href="http://agsci.psu.edu">
         <img tal:attributes="src string:${portal_url}/college-mark-long.png" 
-                             alt="Penn College of Agricultural Sciences" width="600" 
+                             alt="Penn State College of Agricultural Sciences" width="600" 
                              border="0"
                              height="55" /></a>
     </div>
