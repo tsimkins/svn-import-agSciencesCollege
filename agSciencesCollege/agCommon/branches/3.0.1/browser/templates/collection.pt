@@ -16,7 +16,7 @@
         tal:define="oddrow repeat/obj/odd;
                     item_icon python:getIcon(obj);
                     item_type obj/portal_type;
-					item_start obj/start/ISO|obj/StartDate|nothing;
+					item_start obj/start|obj/StartDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
 					item_title_or_id python: item_event_location_title or item_title_or_id;"
