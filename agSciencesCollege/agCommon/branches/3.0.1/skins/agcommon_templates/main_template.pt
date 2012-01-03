@@ -180,6 +180,7 @@
                             </metal:description>
 
                             <div tal:replace="structure provider:plone.abovecontentbody" />
+
                             <div id="content-core">
                                 <metal:text define-slot="content-core" tal:content="nothing">
                                     Page body text

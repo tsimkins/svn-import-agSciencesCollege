@@ -10,6 +10,7 @@ from urllib import urlencode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import premailer
 from BeautifulSoup import BeautifulSoup
+from zope.component import getMultiAdapter
 
 class IAgendaView(Interface):
     """
@@ -36,6 +37,65 @@ class INewsletterEmail(Interface):
 
     def test():
         """ test method"""
+
+class ISearchView(Interface):
+
+    def test():
+        """ test method"""
+
+class SearchView(BrowserView):
+
+    implements(ISearchView)
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+
+    def page_title(self):
+        if 'FSDPerson' in self.request.form.get('portal_type', []):
+            return 'Search People'
+        elif 'Event' in self.request.form.get('portal_type', []):
+            return 'Search Events'
+        elif 'News Item' in self.request.form.get('portal_type', []):
+            return 'Search News'
+        else:
+            return 'Search'
+
+    def sort_order(self):
+        if self.sort_on() in ['created', 'modified', 'effective']:
+            return 'descending'
+        else:
+            return 'ascending'
+
+    def sort_on(self):
+        if self.request.form.get('sort_on'):
+            return self.request.form['sort_on']
+        elif 'FSDPerson' in self.request.form.get('portal_type', []):
+            return 'getSortableName'
+        elif 'Event' in self.request.form.get('portal_type', []):
+            return 'start'
+        elif 'News Item' in self.request.form.get('portal_type', []):
+            return 'effective'
+        else:
+            return None
+
+    def getResults(self):
+        now = DateTime()
+
+        filtered_results = []
+
+        use_types_blacklist = self.request.form.get("use_types_blacklist", True) 
+        use_navigation_root = self.request.form.get("use_navigation_root", True)
+
+        results = self.context.queryCatalog(REQUEST=self.request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root)
+        for r in results:
+            if self.anonymous and r.portal_type == 'Event' and r.end < now:
+                continue
+            filtered_results.append(r)
+        return filtered_results
 
 class NewsletterView(BrowserView):
 

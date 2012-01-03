@@ -227,10 +227,14 @@ class CustomTitleViewlet(ViewletBase):
         self.context_state = getMultiAdapter((self.context, self.request),
                                              name=u'plone_context_state')
 
-        self.page_title = self.context_state.object_title
+        try:
+            self.page_title = self.view.page_title
+        except AttributeError:
+            self.page_title = self.context_state.object_title
+        
         self.portal_title = self.portal_state.portal_title
         self.anonymous = self.portal_state.anonymous()
-    
+
         try:
             self.site_title = aq_acquire(self.context, 'site_title')
             self.org_title = "Penn State College of Ag Sciences"

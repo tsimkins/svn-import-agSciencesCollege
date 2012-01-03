@@ -66,7 +66,7 @@
                         </span>
                     </tal:newsitem>
                     </div>
-                    <div tal:condition="python:item_type =='FSDPerson'" class="facultyStaffDirectory" >
+                    <div metal:define-macro="fsd_summary" tal:condition="python:item_type =='FSDPerson'" class="facultyStaffDirectory" >
                         <ul tal:condition="item_object/getJobTitles" class="jobTitle">
                             <li tal:repeat="jobTitle item_object/getJobTitles" tal:content="jobTitle" />
                         </ul>

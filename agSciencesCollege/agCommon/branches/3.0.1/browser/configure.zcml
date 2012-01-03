@@ -362,6 +362,15 @@
 
     <browser:page
         for="*"
+        name="search_z3"
+        class=".views.SearchView"
+        template="templates/search_z3.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
         name="agcommon_utilities"
         class=".views.AgCommonUtilities"
         layer=".interfaces.IThemeSpecific"

@@ -1,6 +1,11 @@
 <div id="portal-localsearchbox"
      i18n:domain="plone"
-     tal:condition="context/localsearch|nothing">
+     tal:condition="context/localsearch|nothing"
+     tal:define="localsearch_title string:Search this section;
+                 localsearch_title context/localsearch_title|localsearch_title;
+                 portal_types context/localsearch_type|nothing;
+                 folder_path view/folder_path;
+                 localsearch_entire_site context/localsearch_entire_site|nothing">
     <form id="plonelocalsearchform" 
           name="searchform"
           action="search"
@@ -17,31 +22,22 @@
                    value=""
                    title="Search this section..."
                    accesskey="4"
-                   i18n:attributes="title title_search_site;"
-                   tal:attributes="value request/SearchableText|nothing"
+                   tal:attributes="value request/SearchableText|nothing;
+                                   title localsearch_title"
                    class="inputLabel" 
                    autocomplete="off"/>
+
+            <metal:portal_type use-macro="context/search_z3/macros/portal_type" />
+            <tal:localsearch condition="not: localsearch_entire_site">
+                <metal:localsearch use-macro="context/search_z3/macros/localsearch" />
+            </tal:localsearch>
     
             <input class="searchButton"
                    type="submit"
                    id = "goSearch"
                    value = "Go"
     		/>
-        
-            <div class="searchSection">
-                <input id="localsearchbox_currentfolder_only" 
-                       class="noborder"
-                       type="checkbox" 
-                       name="path"
-                       checked="checked"
-                       tal:attributes="value view/folder_path"
-                       />
-                <label for="searchbox_currentfolder_only" 
-                       i18n:translate="label_searchbox_currentfolder_only"
-                       style="cursor: pointer">
-                    only in current section
-                </label>
-            </div>
+
         </div>
     </form>
 

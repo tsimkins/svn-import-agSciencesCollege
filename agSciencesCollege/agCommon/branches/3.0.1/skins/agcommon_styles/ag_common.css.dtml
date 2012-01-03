@@ -905,6 +905,7 @@ html.kupu-html {
 
 #content .tileImage {
     border: 0;
+    margin-top: 0.5em;
 }
 
 .documentByLine {
@@ -1208,10 +1209,6 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
     display: none;
 }
 
-body.template-folder_leadimage_view #content .tileImage {
-    margin-top: 1.5em;
-}
-
 body.template-subfolder_view #content .tileItem h2.tileHeadline {
     font-size: 1.25em;
 }
@@ -1327,7 +1324,8 @@ body.template-pgv_sg_carousel_view #content {
 #portal-localsearchbox {
     background-color: #F9F9F9;
     border: 1px solid #E0E0E0;
-    padding: 8px;
+    padding: 0.6875em;
+    margin-top: 1em;
 }
 
 #localSearchBox {
@@ -1592,7 +1590,7 @@ q {
 /* overlaycontent font size is too large */
 
 .pb-ajax .overlaycontent {
-    font-size: 0.5625em !important;
+    font-size: 0.875em !important;
 }
 
 /* table header background for plain table */
@@ -1724,12 +1722,19 @@ html.kupu-html {
     font-size: 1em;
 }
 
-body.template-search #portal-breadcrumbs {
+body.template-search #portal-breadcrumbs, 
+body.template-search_z3 #portal-breadcrumbs {
     display: none;
 }
 
-body.template-search #content {
+body.template-search #content, 
+body.template-search_z3 #content {
     padding-top: 2em !important;
+}
+
+body.template-search form.searchPage input, 
+body.template-search_z3 form.searchPage input {
+    font-size: 1.5em !important;
 }
 
 /* For deleted events */
