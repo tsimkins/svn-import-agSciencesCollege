@@ -119,7 +119,6 @@ p {
 
 #portal-column-two p {
     margin: 0 0 24pt 0;
-    width: 390px;
 }
 
 .view-online {
