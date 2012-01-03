@@ -69,6 +69,10 @@ h2 a, dt.portletHeader a {
     font-size: 9.5pt;
 }
 
+#portal-column-two .portletItem p {
+    font-size: 9.5pt;
+}
+
 #portal-column-two .portletItem .date {
     display: block;
     font-size: 8.5pt;
@@ -82,7 +86,7 @@ h2 a, dt.portletHeader a {
 }
 
 .portletFooter a {
-    font-size: 10pt;
+    font-size: 8.5pt;
 }
 
 h3 {
