@@ -104,6 +104,7 @@ class FSDExtensionExtender(object):
             "extension_counties",
                 schemata="Professional Information",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Counties",
                 description=u"Counties that this person is associated with",
@@ -114,6 +115,7 @@ class FSDExtensionExtender(object):
             "extension_programs",
                 schemata="Professional Information",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this person is associated with",
@@ -124,6 +126,7 @@ class FSDExtensionExtender(object):
             "extension_topics",
                 schemata="Professional Information",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Topics",
                 description=u"Topics that this person is associated with",
@@ -134,6 +137,7 @@ class FSDExtensionExtender(object):
             "extension_areas",
                 schemata="Professional Information",
                 required=False,
+                searchable=True,
                 widget = LinesWidget(
                     label=u"Areas of Expertise",
                     description=u"One per line",
@@ -160,6 +164,7 @@ class ExtensionExtender(object):
             "extension_counties",
                 schemata="categorization",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Counties",
                 description=u"Counties that this item is associated with",
@@ -169,6 +174,7 @@ class ExtensionExtender(object):
             "extension_programs",
                 schemata="categorization",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Programs",
                 description=u"Programs that this item is associated with",
@@ -178,6 +184,7 @@ class ExtensionExtender(object):
             "extension_topics",
                 schemata="categorization",
                 required=False,
+                searchable=True,
                 widget = InAndOutWidget(
                 label=u"Topics",
                 description=u"Topics that this item is associated with",
