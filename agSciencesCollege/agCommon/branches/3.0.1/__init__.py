@@ -8,8 +8,14 @@ from zope.component.interfaces import ComponentLookupError
 from Products.CMFCore.WorkflowCore import WorkflowException
 from subprocess import Popen,PIPE
 from zLOG import LOG, INFO, ERROR
+from zope.component import getUtility
+from Acquisition import aq_inner
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+from plone.i18n.normalizer import FILENAME_REGEX
 
 import re
+
+ATTEMPTS = 100
 
 GLOBALS = globals()
 registerDirectory('skins', GLOBALS)
@@ -543,5 +549,40 @@ def replaceTag(context, from_tag, to_tag):
                         
                     t[o].setValue(tuple(tags))
                     t[o].reindexObject()
-    
 
+# Stolen from plone.app.content.namechooser because the "check_id" in portal_skins/plone_scripts
+# isn't picking up the duplicates.
+def findUniqueId(context, name):
+    """Find a unique name in the parent folder, based on the given id, by
+    appending -n, where n is a number greater than 1, or just the id if
+    it's ok.
+    """
+    parent = aq_inner(context)
+    parent_ids = parent.objectIds()
+    check_id = lambda id: id in parent_ids
+
+    if not check_id(name):
+        return name
+
+    ext  = ''
+    m = FILENAME_REGEX.match(name)
+    if m is not None:
+        name = m.groups()[0]
+        ext  = '.' + m.groups()[1]
+
+    idx = 1
+    while idx <= ATTEMPTS:
+        new_name = "%s-%d%s" % (name, idx, ext)
+        if not check_id(new_name):
+            return new_name
+        idx += 1
+
+    raise ValueError("Cannot find a unique name based on %s after %d attemps." % (name, ATTEMPTS,))
+
+def cleverInvokeFactory(context, **kwargs):
+
+    item_title = kwargs['title']
+    normalizer = getUtility(IIDNormalizer)
+    item_id = normalizer.normalize(item_title)
+    item_id = findUniqueId(context, item_id)
+    return context.invokeFactory(id=item_id, **kwargs)
