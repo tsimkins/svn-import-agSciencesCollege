@@ -429,6 +429,13 @@ var eventOriginalEndDate = new Date();
 
 jq(document).ready(
     function () {
+
+        // If we're in edit mode, don't do anything.
+        if (jq("#archetypes-fieldname-id input").val())
+        {
+            return false;
+        }
+
         // get the start date from the form 
         var eventStartDate = getEventDate("startDate");
 
