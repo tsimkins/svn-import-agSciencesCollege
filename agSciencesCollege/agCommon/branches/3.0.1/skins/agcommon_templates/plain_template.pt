@@ -198,6 +198,8 @@
                 </tbody>
             </table>
 
+            <div style="clear: both"><!-- --></div>
+
         </tal:main-content>
 
     </metal:block>
