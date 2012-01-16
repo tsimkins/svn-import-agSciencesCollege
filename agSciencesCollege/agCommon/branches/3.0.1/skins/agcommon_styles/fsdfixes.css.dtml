@@ -24,6 +24,7 @@
     margin: 5em 0 0 !important;
     padding-right: 0;
     text-align: right;
+    float: right;
 }
 
 .facultyStaffDirectory.personView .headshot img {
@@ -35,6 +36,10 @@
     clear: right;
     margin-top: 4px;
     padding-right: 0;
+}
+
+#content .facultyStaffDirectory.personView .adr {
+    margin-top: 0;
 }
 
 body.template-department_standard_view #portal-column-content .visualClear {
@@ -82,6 +87,15 @@ body.template-fsd_atoz_view #portal-localsearchbox {
     margin: -0.5625em 0 0 0;
 }
 
+#content .personView .websites ul {
+    list-style-image: url(&dtml-portal_url;/bullet.png);
+    list-style-type: square;
+    margin: 0.375em 0 1.125em 2.5em;
+}
+
+#content .personView .websites h3 {
+    margin: 1.125em 0 0;
+}
 
 /* YOUR CSS RULES STOP HERE */
 
