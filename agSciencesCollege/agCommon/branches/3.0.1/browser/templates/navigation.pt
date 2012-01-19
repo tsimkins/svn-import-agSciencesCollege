@@ -3,8 +3,8 @@
                 root view/navigation_root;">
 
 <tal:header
-    tal:define="navigation_title python: view.title() != 'Navigation' and view.title() or root.Title();">
-                
+    tal:define="navigation_title python: view.title().lower() != 'navigation' and view.title() or root.Title();">
+
 <h2 class="hiddenStructure"
     tal:condition="not: include_top">
 
