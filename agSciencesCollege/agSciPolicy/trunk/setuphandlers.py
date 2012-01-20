@@ -37,6 +37,7 @@ def createUsers(context):
                 ["gra104", "Angle", "Greg", "gra104@psu.edu", True],
                 ["mjw174", "Wodecki", "Mary", "mjw174@psu.edu", True],
                 ["mfw10", "Wirth", "Mary", "mfw10@psu.edu", False],
+                ["rad2", "Dickerson", "Rob", "rad2@psu.edu", True],
             ]
 
     printed = []
