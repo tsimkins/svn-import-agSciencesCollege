@@ -735,8 +735,9 @@ def onBlogCreation(blog, event):
             blog.invokeFactory(type_name='Topic', id=id, title=title)
             
             smart_obj = blog[id]
-            smart_obj.setLayout('folder_leadimage_view')
-            smart_obj.manage_addProperty('show_date', True, 'boolean')
+            smart_obj.setLayout('folder_summary_view')
+            smart_obj.show_date = True
+            smart_obj.show_images = True
             smart_obj.setExcludeFromNav(True)
             smart_obj.unmarkCreationFlag()
             smart_obj.reindexObject()
