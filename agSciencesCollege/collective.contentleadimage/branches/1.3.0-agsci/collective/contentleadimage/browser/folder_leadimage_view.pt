@@ -80,16 +80,18 @@
                                    "
                      tal:attributes="class string:tileItem visualIEFloatFix vevent">
 
-                    <a href="#"
-                       tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
-                        <img src="" alt=""
-                             tal:condition="exists:item_object/image_thumb"
-                             tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
-                        <img src="" alt=""
-                             tal:condition="exists:item_has_leadimage"
-                             tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
-                    </a>
-
+                    <div class="contentLeadImageContainer">
+                        <a href="#"
+                           tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
+                            <img src="" alt=""
+                                 tal:condition="exists:item_object/image_thumb"
+                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
+                            <img src="" alt=""
+                                 tal:condition="exists:item_has_leadimage"
+                                 tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
+                        </a>
+                    </div>
+                        
                     <h2 class="tileHeadline"
                         metal:define-macro="listitem">
 
@@ -106,7 +108,7 @@
                     <div class="documentByLine effectiveDate" tal:condition="view/show_date"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
 
                     <tal:event condition="python: item_type == 'Event'">
-                         <div metal:use-macro="here/folder_listing/macros/event_date" />
+                         <div metal:use-macro="here/@@folder_listing_z3/macros/event_date" />
                     </tal:event>
 
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">

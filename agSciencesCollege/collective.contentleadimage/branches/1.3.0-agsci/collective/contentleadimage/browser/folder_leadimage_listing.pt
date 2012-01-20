@@ -108,7 +108,7 @@
                     <div class="documentByLine effectiveDate" tal:condition="view/show_date"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
                     
                     <tal:event condition="python: item_type == 'Event'">
-                         <div metal:use-macro="here/folder_listing/macros/event_date" />
+                         <div metal:use-macro="here/@@folder_listing_z3/macros/event_date" />
                     </tal:event>
                     
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
