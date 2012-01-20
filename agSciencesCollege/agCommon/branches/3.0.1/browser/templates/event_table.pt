@@ -4,13 +4,13 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
   <head><title></title></head>
 
   <metal:javascript_head fill-slot="javascript_head_slot">
-    <tal:block define="macro here/archetypes_custom_js/macros/javascript_head | nothing"
+    <tal:block define="macro context/archetypes_custom_js/macros/javascript_head | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
@@ -32,7 +32,7 @@
     </tal:js>
     <tal:block define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                        view_template python:'%s_view' % portal_type;
-                       view_macros python:path('here/%s/macros|nothing' % view_template);
+                       view_macros python:path('context/%s/macros|nothing' % view_template);
                        macro view_macros/js | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
@@ -58,7 +58,7 @@
     </tal:css>
     <tal:block define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                        view_template python:'%s_view' % portal_type;
-                       view_macros python:path('here/%s/macros|nothing' % view_template);
+                       view_macros python:path('context/%s/macros|nothing' % view_template);
                        macro view_macros/css | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
@@ -69,26 +69,26 @@
     <metal:fill fill-slot="content-core">
       <metal:main_macro define-macro="content-core"
             tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
-            base_macros here/base/macros;
+            base_macros context/base/macros;
             standalone_view python:True;
             view_template python:'%s_view' % portal_type;
-            view_macros python:path('here/%s/macros|nothing' % view_template);
+            view_macros python:path('context/%s/macros|nothing' % view_template);
             errors python:request.get('errors', {});
             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
             templateId template/getId;">
 
-        <div metal:use-macro="here/folder_listing/macros/text-field-view" />
+        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
         <table class="listing events">
             
             <tal:bymonth repeat="month view/month_agenda">
                 <tr class="section-title">
                     <th colspan="3">
-                        <strong>
+                        <h3>
                         <span tal:replace="month/label" />
-                        </strong>
+                        </h3>
                     </th>
                 </tr>
                 <tr>
@@ -118,10 +118,10 @@
                             <div class="portalMessage" tal:define="item_object item/getObject" tal:condition="item_object/eventCanceled|nothing">This event has been canceled.</div>
                         </td>
                         <td>
-                            <div metal:use-macro="here/folder_listing/macros/short_event_date" />
+                            <div metal:use-macro="context/@@folder_listing_z3/macros/short_event_date" />
                         </td>
                         <td>
-                            <div metal:use-macro="here/folder_listing/macros/event_location" />
+                            <div metal:use-macro="context/@@folder_listing_z3/macros/event_location" />
                         </td>
                     </tr>
                 </tal:items>

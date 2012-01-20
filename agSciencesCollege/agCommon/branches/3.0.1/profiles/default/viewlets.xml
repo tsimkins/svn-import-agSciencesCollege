@@ -72,6 +72,7 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="collective.contentleadimage.full" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="agcommon.rightcolumn" insert-after="collective.contentleadimage.full" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.rightcolumn" />
+        <viewlet name="agcommon.tableofcontents" insert-after="*" />
     </order>
 
     <order manager="plone.belowcontentbody" skinname="agCommon">
@@ -142,6 +143,7 @@ Note: insert-before and -after accept the value "*" which means
     </hidden>
 
     <hidden manager="plone.abovecontentbody" skinname="agCommon">
+        <viewlet name="plone.tableofcontents" />
         <viewlet name="contentwellportlets.portletsabovecontent" />
     </hidden>
 

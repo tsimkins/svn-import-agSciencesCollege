@@ -4,13 +4,13 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
   <head><title></title></head>
 
   <metal:javascript_head fill-slot="javascript_head_slot">
-    <tal:block define="macro here/archetypes_custom_js/macros/javascript_head | nothing"
+    <tal:block define="macro context/archetypes_custom_js/macros/javascript_head | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
@@ -32,7 +32,7 @@
     </tal:js>
     <tal:block define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                        view_template python:'%s_view' % portal_type;
-                       view_macros python:path('here/%s/macros|nothing' % view_template);
+                       view_macros python:path('context/%s/macros|nothing' % view_template);
                        macro view_macros/js | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
@@ -58,7 +58,7 @@
     </tal:css>
     <tal:block define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                        view_template python:'%s_view' % portal_type;
-                       view_macros python:path('here/%s/macros|nothing' % view_template);
+                       view_macros python:path('context/%s/macros|nothing' % view_template);
                        macro view_macros/css | nothing"
                condition="macro">
       <metal:block use-macro="macro" />
@@ -69,22 +69,23 @@
     <metal:fill fill-slot="content-core">
       <metal:main_macro define-macro="content-core"
             tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
-            base_macros here/base/macros;
+            base_macros context/base/macros;
             standalone_view python:True;
             view_template python:'%s_view' % portal_type;
-            view_macros python:path('here/%s/macros|nothing' % view_template);
+            view_macros python:path('context/%s/macros|nothing' % view_template);
             errors python:request.get('errors', {});
             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
             templateId template/getId;
             here_url view/here_url|nothing;
-            agenda_anchors here/agenda_anchors|nothing;
+            agenda_anchors context/agenda_anchors|nothing;
             show_days view/show_days|nothing;
-            limit_display python:99999;">
+            limit_display python:99999;
+            test nocall:view/test">
 
         <div id="document-toc" class="portlet toc agendaLinks" tal:condition="agenda_anchors">
-            <h3 tal:content="python: show_days and 'Days' or 'Months'" />
+            <h2 class="portletHeader" tal:content="python: show_days and 'Days' or 'Months'" />
             <ul>
                 <li tal:repeat="month view/month_agenda|nothing">
                     <a tal:attributes="href string:${here_url}#${month/id}" tal:content="month/label" />
@@ -92,13 +93,13 @@
             </ul>
         </div>
 
-        <div metal:use-macro="here/folder_listing/macros/text-field-view" />
+        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
         <tal:bymonth repeat="month view/month_agenda|nothing">
             <tal:items define="folderContents python:month.get('items')">
             <a tal:condition="agenda_anchors" tal:attributes="name month/id" />
             <h2 tal:content="month/label" />
-            <div metal:use-macro="here/folder_listing/macros/listing" />
+            <div metal:use-macro="context/@@folder_listing_z3/macros/listing" />
             </tal:items>
         </tal:bymonth>
 

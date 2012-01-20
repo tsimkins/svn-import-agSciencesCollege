@@ -1,16 +1,18 @@
 from zope.interface import implements, Interface
-
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner
-from collective.contentleadimage.config import IMAGE_FIELD_NAME
-from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
+from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
 from DateTime import DateTime
 from urllib import urlencode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import premailer
 from BeautifulSoup import BeautifulSoup
-from zope.component import getMultiAdapter
+from zope.component import getUtility, getMultiAdapter
+from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
+import re
+
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 class IAgendaView(Interface):
     """
@@ -43,7 +45,72 @@ class ISearchView(Interface):
     def test():
         """ test method"""
 
-class SearchView(BrowserView):
+class IFolderView(Interface):
+
+    def test():
+        """ test method"""
+
+#--
+
+class FolderView(BrowserView):
+
+    implements(IFolderView)
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+                                        
+        try:
+            show_date = aq_acquire(self.context, 'show_date')
+        except AttributeError:
+            show_date = False
+        
+        self.show_date = show_date
+
+        try:
+            show_image = aq_acquire(self.context, 'show_image')
+        except AttributeError:
+            show_image = False
+        
+        self.show_image = show_image
+
+        try:
+            show_read_more = aq_acquire(self.context, 'show_read_more')
+        except AttributeError:
+            show_read_more = False
+        
+        self.show_read_more = show_read_more
+
+
+    def test(self, a, b, c):
+        if a:
+            return b
+        else:
+            return c
+
+    @property
+    def prefs(self):
+        portal = getUtility(IPloneSiteRoot)
+        return ILeadImagePrefsForm(portal)
+
+    def tag(self, obj, css_class='tileImage'):
+        context = aq_inner(obj)
+        field = context.getField(IMAGE_FIELD_NAME)
+        titlef = context.getField(IMAGE_CAPTION_FIELD_NAME)
+        if titlef is not None:
+            title = titlef.get(context)
+        else:
+            title = ''
+        if field is not None:
+            if field.get_size(context) != 0:
+                scale = self.prefs.desc_scale_name
+                return field.tag(context, scale=scale, css_class=css_class, title=title)
+        return ''
+
+class SearchView(FolderView):
 
     implements(ISearchView)
     
@@ -157,7 +224,7 @@ class NewsletterEmail(NewsletterView):
             
         return html
     
-class AgendaView(BrowserView):
+class AgendaView(FolderView):
     """
     agenda browser view
     """
@@ -297,33 +364,55 @@ class AgCommonUtilities(BrowserView):
         else:
             return None        
      
-    def reorderTopicContents(self, topicContents, order_by_id):
+    def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
         # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
-        return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
-        
-        # Reference code
-        # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
-        # I left it in as an explanation of what the above is doing.
-        """
-        ordered = []
-        unordered = []
-
-        # Grab all the unordered items
-        for item in topicContents:
-            if item.getId not in order_by_id:
-                unordered.append(item)
-
-        # Grab the ordered items, in order
-        for id in order_by_id:
+        if order_by_id:
+            return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
+            
+            # Reference code
+            # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
+            # I left it in as an explanation of what the above is doing.
+            """
+            ordered = []
+            unordered = []
+    
+            # Grab all the unordered items
             for item in topicContents:
-                if item.getId == id:
+                if item.getId not in order_by_id:
+                    unordered.append(item)
+    
+            # Grab the ordered items, in order
+            for id in order_by_id:
+                for item in topicContents:
+                    if item.getId == id:
+                        ordered.append(item)
+    
+            # Combine the two lists
+            ordered.extend(unordered)
+    
+            return ordered
+            """
+        elif order_by_title:
+            ordered = []
+            uuids = {}
+  
+            for t in order_by_title:
+                r = re.compile(t)
+  
+                # Pull out matching items
+                for item in topicContents:
+                    if not uuids.get(item.UID) and r.search(item.Title):
+                        ordered.append(item)
+                        uuids[item.UID] = 1
+  
+            for item in topicContents:
+                if not uuids.get(item.UID):
                     ordered.append(item)
+                    uuids[item.UID] = 1
 
-        # Combine the two lists
-        ordered.extend(unordered)
-
-        return ordered
-        """
+            return ordered
+        else:
+            return topicContents
         
     def toMarkdown(self, text):
         portal_transforms = getToolByName(self.context, 'portal_transforms')

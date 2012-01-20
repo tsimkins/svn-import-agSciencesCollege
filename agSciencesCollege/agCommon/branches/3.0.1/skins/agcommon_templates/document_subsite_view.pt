@@ -22,24 +22,33 @@
                        templateId template/getId;
                        text here/getText;">
 
-        <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:here.widget('title', mode='view')">
-            Title
+        <tal:show_title condition="context/Description">
+            <h1 class="documentFirstHeading"> 
+                <metal:field use-macro="python:here.widget('title', mode='view')">
+                Title
+                </metal:field>
+            </h1>
+
+            <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+            <p class="documentDescription" tal:condition="here/Description">
+                <metal:field use-macro="python:here.widget('description', mode='view')">
+                    Description
+                </metal:field>
+            </p>
+
+            <metal:field use-macro="python:here.widget('text', mode='view')">
+                Body text
             </metal:field>
-        </h1>
 
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p class="documentDescription" tal:condition="here/Description">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
-            Description
-            </metal:field>
-        </p>
-
-        <metal:field use-macro="python:here.widget('text', mode='view')">
-        Body text
-        </metal:field>
-
+        </tal:show_title>
+        <tal:no_title condition="not:context/Description">
+            <h1 class="hiddenStructure"> 
+                <metal:field use-macro="python:here.widget('title', mode='view')">
+                Title
+                </metal:field>
+            </h1>
+        </tal:no_title>
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <div tal:replace="structure provider:plone.abovecontentbody" />

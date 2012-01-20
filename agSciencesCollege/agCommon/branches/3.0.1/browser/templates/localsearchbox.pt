@@ -27,9 +27,9 @@
                    class="inputLabel" 
                    autocomplete="off"/>
 
-            <metal:portal_type use-macro="context/search_z3/macros/portal_type" />
+            <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
             <tal:localsearch condition="not: localsearch_entire_site">
-                <metal:localsearch use-macro="context/search_z3/macros/localsearch" />
+                <metal:localsearch use-macro="context/@@search_z3/macros/localsearch" />
             </tal:localsearch>
     
             <input class="searchButton"

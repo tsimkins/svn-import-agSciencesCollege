@@ -1,11 +1,11 @@
 from zope.component import getMultiAdapter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.layout.viewlets.common import ViewletBase
+from plone.app.layout.viewlets.common import ViewletBase, TableOfContentsViewlet
 from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
-from Acquisition import aq_acquire, aq_inner
+from Acquisition import aq_acquire, aq_inner, aq_base
 from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
@@ -30,6 +30,35 @@ def isHomePage(context):
     if layout in homepage_views:
         return True
     else:
+        for v in homepage_views:
+            if v in context.absolute_url():
+                return True
+
+        return False
+
+def isFolderFullView(context):
+    folder_views = ['folder_full_view_item', 'folder_full_view'] 
+    parent = context.getParentNode()
+    default_page = parent.getDefaultPage()
+    
+    if default_page and default_page in parent.objectIds():
+        try:
+            layout = parent[default_page].getLayout()
+        except:
+            layout = None
+    else:
+        try:
+            layout = parent.getLayout()
+        except:
+            layout = None
+
+    if layout in folder_views:
+        return True
+    else:
+        for v in folder_views:
+            if v in context.absolute_url():
+                return True
+
         return False
 
 def showTwoColumn(context):
@@ -178,6 +207,10 @@ class AddThisViewlet(ViewletBase):
             self.hide_addthis = aq_acquire(self.context, 'hide_addthis')
         except AttributeError:
             pass
+
+        # %%% If in folder_full_view_item, hide it on the individual items.
+        if isFolderFullView(self.context):
+            self.hide_addthis = True
 
 
 
@@ -487,3 +520,25 @@ class SiteRSSViewlet(ViewletBase):
             
         
     render = ViewPageTemplateFile('templates/site_rss.pt')    
+
+class TableOfContentsViewlet(ViewletBase):
+
+    index = ViewPageTemplateFile('templates/toc.pt')
+
+    def update(self):
+        obj = aq_base(self.context)
+        getTableContents = getattr(obj, 'getTableContents', None)      
+
+        self.enabled = False
+
+        if getTableContents is not None:
+            try:
+                self.enabled = getTableContents()
+            except KeyError:   
+                # schema not updated yet
+                self.enabled = False
+
+        if isFolderFullView(self.context):
+            self.enabled = False
+
+

@@ -206,12 +206,12 @@
 
                     <tal:event 
                          condition="python: result_type == 'Event'">
-                         <div metal:use-macro="here/folder_listing/macros/event_date" />
+                         <div metal:use-macro="context/@@folder_listing_z3/macros/event_date" />
                     </tal:event>
 
                     <tal:person 
                          condition="python: result_type == 'FSDPerson'">
-                         <div metal:use-macro="here/folder_summary_view/macros/fsd_summary" />
+                         <div metal:use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
                     </tal:person>
                     
                     <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">

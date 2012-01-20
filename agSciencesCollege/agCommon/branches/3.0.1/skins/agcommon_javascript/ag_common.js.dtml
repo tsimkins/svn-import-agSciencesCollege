@@ -234,8 +234,7 @@ jq(document).ready(
 
             // Grab items from Standard View
                 
-            listing_items = jq('body.custom-two-column #content dl:not(#history) dt');
-
+            listing_items = jq('body.custom-two-column #content .tileTitle');
 
             // Process Summary Items
     
@@ -288,11 +287,10 @@ jq(document).ready(
                 
                 item_count = 0;
     
-                jq('body.custom-two-column #content dl:not(#history)').children().each(
+                jq('body.custom-two-column #content .tileTitle').each(
                     function()
                     {
-    
-                        if (this.nodeName == 'DT')
+                        if (this.nodeName == 'H3')
                         {
                             item_count++;
                         }

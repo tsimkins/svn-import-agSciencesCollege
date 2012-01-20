@@ -1,6 +1,7 @@
 from plonetheme.classic.browser.interfaces import IThemeSpecific as IClassicTheme
 from zope.viewlet.interfaces import IViewletManager
 from plone.app.portlets.interfaces import IColumn
+from zope.interface import Interface
 
 class IThemeSpecific(IClassicTheme):
     """Marker interface that defines a Zope 3 skin layer bound to a Skin
@@ -25,3 +26,7 @@ class IHomepageImage(IColumn):
 class ICenterColumn(IColumn):
 	"""A viewlet manager that sits inside the main content area.  Used for news on the front page
 	"""
+
+class ITableOfContents(Interface):
+    """These are the content types that can have a table of contents
+    """

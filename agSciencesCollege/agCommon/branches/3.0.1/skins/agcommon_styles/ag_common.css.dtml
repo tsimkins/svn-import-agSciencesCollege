@@ -403,9 +403,10 @@ body {
 #portal-column-one ul.navTreeLevel1 .navTreeItem .navTreeCurrentItem {
     border-width: 0 !important;
 }
-#portal-column-one .navTreeItem .navTreeCurrentItem>a,
-#portal-column-one .navTreeItem .navTreeCurrentNode>a,
-#portal-column-one .navTreeItem .navTreeItemInPath>a {
+
+#portal-column-one .navTreeCurrentItem>a,
+#portal-column-one .navTreeCurrentNode>a,
+#portal-column-one .navTreeItemInPath>a {
     font-weight: bold;  
 }
 
@@ -872,11 +873,108 @@ html.kupu-html {
     border-bottom: 1px solid #CCCCCC;
 }
 
-#content h2.tileHeadline {
-    font-size: 1.3125em;
-    margin-top: 0;
+#content h2.tileHeadline,
+#content h3.tileHeadline {
+    font-size: 1.375em;
+    margin: 0;
+    padding: 0;
     border-width: 0;
+    font-family: &dtml-headingFontFamily;;
+    font-weight: normal;
 }
+
+#content h2.tileTitle,
+#content h3.tileTitle {
+    font-size: 1em;
+    margin: 0;
+    font-weight: normal;
+    border-width: 0;
+    font-family: &dtml-headingFontFamily;;
+}
+
+#content h2.tileTitle a,
+#content h3.tileTitle a {
+    text-decoration: underline;
+}
+
+#content .tileDescription {
+    font-size: 1em;
+    margin: 0.25em 0 0 2em;
+    font-weight: normal;
+    font-size: 0.875em
+}
+
+#content .tileDescription p {
+    margin: 0.25em 0 0.5em 0;
+    line-height: 1.375em;
+}
+
+#content .tileBody {
+    margin: 0.375em 0 1em 0;
+    font-size: 0.9375;
+}
+
+#content .tileText {
+    font-size: 0.9375em;
+}
+
+#content .tileText p {
+    margin: 0 0 0.5em 0;
+    line-height: 1.375em;
+}
+
+#content .tileBody p {
+    margin: 0 0 0.5em 0;
+    line-height: 1.375em;
+}
+
+#content .tileFooter {
+    margin-top: 0;
+    font-size: 0.9375em;
+}
+
+#content .tileFooter p {
+    margin: 0.25em 0;
+}
+
+/* Handle lead image listing */
+
+#content .tileItemLeadImage {
+    border-top: 1px solid #DDDDDD !important;
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+    margin-top: 0.375em !important
+}
+
+#content #content-core .tileItemLeadImage:first-child,
+#content #content-core .tileSummary:first-child {
+    border-top: none !important;
+    margin-top: 2em;
+}
+
+#content .tileItemLeadImage .tileTitle,
+#content .tileItemLeadImage .documentByLine,
+#content .tileItemLeadImage .tileDescription,
+#content .tileItemLeadImage .facultyStaffDirectory,
+#content .tileItemLeadImage .tileHeadline {
+    margin-left: 136px;
+    margin-left: 8.5rem;
+}
+
+#content .tileItemLeadImage .contentLeadImageContainer {
+    float: left;
+    margin: 0 0.5em 0 0;
+    width: 128px;
+    text-align: center;
+}
+
+#content .tileItemLeadImage .contentLeadImageContainer img,
+#content .tileItemLeadImage .contentLeadImageContainer img.tileImage {
+    margin: 0 !important;
+    padding: 0;
+    float: none;
+}
+
 
 #content h3, html.kupu-html h3 {
     color: &dtml-documentSubHeadingColor;;
@@ -901,11 +999,19 @@ html.kupu-html {
 
 #content .tileItem {
     border-top: 0;
+    margin: 0.375em 0 0 0;
+    padding: 0.25em 0;
+}
+
+#content .tileSummary {
+    margin: 1em 0 0 0;
+    border-top: 1px solid #DDDDDD !important;
+    padding-top: 1em;
 }
 
 #content .tileImage {
     border: 0;
-    margin-top: 0.5em;
+    margin-top: 0;
 }
 
 .documentByLine {
@@ -1042,12 +1148,17 @@ dt.nodescription {
     margin-bottom: 1em;
 }
 
-span.description {
+div.nodescription {
+    display: none;
+}
+
+.description {
     display: block;
-    line-height: 1.4em;
-    margin-top: 0.25em;
+    line-height: 1.375em;
+    margin-top: 0.125em;
+    margin-bottom: 0;
     font-weight: normal;
-    font-size: 0.875em;
+    font-size: 0.9375em;
 }
 
 /* Restyle pull quote */
@@ -1083,11 +1194,11 @@ div.comment img.avatar {
 
 /* Tile Headline Link */
 
-.tileHeadline a {
+.tileHeadline a, .tileTitle a {
     color: #265FCF !important;
 }
 
-.tileHeadline a:hover {
+.tileHeadline a:hover, .tileTitle a:hover{
     color: #003399 !important;
     text-decoration: underline;
 }
@@ -1112,7 +1223,7 @@ div.comment img.avatar {
 dl#relatedItemBox {
     border: 1px solid &dtml-globalBorderColor;;
     line-height: 1.5em;
-    margin: 1em 0;
+    margin: 2.5em 0;
     padding: 0 1em 0.5em 1em;
     width: auto;
 }
@@ -1183,10 +1294,11 @@ body.popup, body.atrefbrowser {
 
 body.template-news_listing .effectiveDate,
 body.template-folder_leadimage_listing .effectiveDate,
-body.template-folder_leadimage_view .effectiveDate
- {
-    margin-bottom: 0.1em;
-    margin-top: 0.4em;
+body.template-folder_leadimage_view .effectiveDate,
+body.template-folder_listing_z3 .effectiveDate,
+body.template-folder_summary_view_z3 .effectiveDate {
+    margin-bottom: 0.6875em;
+    margin-top: 0.25em;
 }
 
 body.template-news_listing dd {
@@ -1210,7 +1322,7 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 }
 
 body.template-subfolder_view #content .tileItem h2.tileHeadline {
-    font-size: 1.25em;
+    font-size: 1.375em;
 }
 
 body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a {
@@ -1230,10 +1342,14 @@ body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory
     font-weight: bold;
 }
 
-body.template-subfolder_view #content .tileItem .tileItem,
-body.template-subfolder_view #content .tileItem dl,
-body.template-subfolder_view #content .tileItem .tileFooter  {
-    margin-left: 20px;
+body.template-subfolder_view #content .tileSubItem .tileItem {
+    margin-left: 1.5em;
+    margin-top: 0;
+}
+
+body.template-subfolder_view #content .tileSubItem .tileSummary {
+    font-size: 0.875em;
+    margin-top: 0.5em;
 }
 
 body.template-subfolder_view #content .tileItem .tileItem .tileFooter  {
@@ -1291,6 +1407,13 @@ body.template-pgv_sg_carousel_view #content {
     padding: 0;
     font-weight: bold;
     color: &dtml-leftNavTextColor;;
+    margin: 0;
+    font-size: 1em;
+}
+
+#document-toc .portlet {
+    background-color: transparent;
+    border: none;
 }
 
 #document-toc .portletItem {
@@ -1366,6 +1489,10 @@ body.template-pgv_sg_carousel_view #content {
     font-size: 0.625em;
 }
 
+table.listing th {
+    font-weight: bold;
+}
+
 table.listing tr.separator td,  table.listing tr.separator {
     border-left: 1px solid #FFFFFF;
     border-right: none;
@@ -1374,7 +1501,6 @@ table.listing tr.separator td,  table.listing tr.separator {
 
 table.listing tr.section-title th {
     font-weight: bold;
-    font-size: 0.75em;
     text-align: left;
     background-color: transparent;
     border: none;
@@ -1396,6 +1522,8 @@ table.events td {
     display: none;
 }
 
+/* Two Column CSS */
+
 #two-column-left, #two-column-right {
     float: left;
     width: 47%;
@@ -1411,9 +1539,24 @@ body.template-subfolder_view div#two-column-left, body.template-subfolder_view d
     margin-top: 0;
 }
 
-#two-column-left>dd, #two-column-right>dd,
-div#two-column-left .tileItem dd, #two-column-right>dd {
-    margin-left: 15px;
+#two-column-left>.tileItem>.tileSubItem, #two-column-right>.tileItem>.tileSubItem {
+    margin: 0.25em 0 0.75em 0;
+}
+
+#two-column-left>.tileItem>.tileSubItem .tileTitle, #two-column-right>.tileItem>.tileSubItem .tileTitle {
+    margin-top: 0em;
+}
+
+#two-column-left>.tileItem>.tileSubItem div.nodescription, #two-column-right>.tileItem>.tileSubItem div.nodescription {
+    display: none;
+}
+
+#two-column-left>.tileItem>.tileTitle, #two-column-right>.tileItem>.tileTitle {
+    margin-top: 0.5em;
+}
+
+#two-column-left>.tileItem>.tileDescription, #two-column-right>.tileItem>.tileDescription {
+    margin-top: 0.25em;
 }
 
 #two-column-left {
@@ -1444,16 +1587,27 @@ div#two-column-left .tileItem dd, #two-column-right>dd {
     text-decoration: underline;
 }
 
-#two-column-left h2.tileHeadline a, #two-column-right h2.tileHeadline a {
+#two-column-left h2.tileHeadline a, #two-column-right h2.tileHeadline a,
+#two-column-left h3.tileHeadline a, #two-column-right h3.tileHeadline a {
     text-decoration: none;
+    font-family: &dtml-headingFontFamily;;
 }
 
-#two-column-left .tileItem>dl>dt.nodescription, #two-column-right .tileItem>dl>dt.nodescription {
+#two-column-left .tileItem>dl>dt.nodescription, #two-column-right .tileItem>dl>dt.nodescription,
+#two-column-left .tileItem>h2.nodescription, #two-column-right .tileItem>h2.nodescription {
+    margin-top: 0.5em;
     margin-bottom: 0.5em;
+    font-family: &dtml-headingFontFamily;;
 }
 
-#two-column-left .tileItem>h2.tileHeadline, #two-column-right .tileItem>h2.tileHeadline {
+#two-column-left .tileItem>div.nodescription, #two-column-right .tileItem>div.nodescription {
+    display: none;
+}
+
+#two-column-left .tileItem>h2.tileHeadline, #two-column-right .tileItem>h2.tileHeadline,
+#two-column-left .tileItem>h3.tileHeadline, #two-column-right .tileItem>h3.tileHeadline {
     margin-bottom: 0;
+    font-family: &dtml-headingFontFamily;;
 }
 
 /* Hide folder text from form folder for editing */
@@ -1544,6 +1698,10 @@ dl.portalMessage {
     padding-top: 0;
 }
 
+.icons-on #content .tileSummary {
+    padding-top: 1em;
+}
+
 q {
     font-family: &dtml-fontFamily;;
     font-size: 0.6875em;
@@ -1566,6 +1724,17 @@ q {
     background-image: none;
     padding-left: 5px !important;
 }
+
+/* Collection portlet in left column */
+
+#portal-column-one .portletCollection dd {
+    font-size: 1.03125em;
+    padding: 0.375em 0;
+    background: transparent;
+    line-height: 1.375em;
+}
+
+/* Feedmixer in left column */
 
 #portal-column-one .portletfeedmixer .portletItem {
     padding: 5px;
@@ -1722,19 +1891,27 @@ html.kupu-html {
     font-size: 1em;
 }
 
-body.template-search #portal-breadcrumbs, 
+/* Search screen */
+
+body.template-search #portal-breadcrumbs,
 body.template-search_z3 #portal-breadcrumbs {
     display: none;
 }
 
-body.template-search #content, 
+body.template-search #content,
 body.template-search_z3 #content {
     padding-top: 2em !important;
 }
 
-body.template-search form.searchPage input, 
+body.template-search form.searchPage input,
 body.template-search_z3 form.searchPage input {
     font-size: 1.5em !important;
+}
+
+/* Form Thanks Page */
+
+body.template-fg_thankspage_view_p3 #content blockquote dt {
+    font-weight: bold;
 }
 
 /* For deleted events */
@@ -1746,6 +1923,28 @@ a.state-deleted {
 /* Portlets */
 #portal-column-one div.managedPortlet {
     padding: 0.5em;
+}
+
+/* Grid table */
+
+table.grid th {
+    border: 1px solid &dtml-globalBorderColor;;
+    padding: 0.5em;
+    vertical-align: middle;
+    background-color: &dtml-globalBackgroundColor;;
+}
+
+/* Folder Full View */
+
+body.template-folder_full_view #content-core .item {
+    border: none;
+}
+
+#content h1.headline {
+    color: #000000;
+    font-size: 1.875em;
+    font-weight: bold;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
 }
 
 /* YOUR CSS RULES STOP HERE */

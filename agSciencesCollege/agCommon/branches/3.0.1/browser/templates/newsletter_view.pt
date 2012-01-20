@@ -26,10 +26,6 @@ body, li, p {
     font-size: 10pt;
 }
 
-p {
-    margin: 0 0 16pt 0;
-}
-
 #portal-columns {
     border-collapse: collapse;
     background: #FFFFFF;
@@ -118,8 +114,11 @@ div.documentDescription {
 
 p {
     margin: 0 0 16pt 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 16pt;
 }
-
 
 #portal-column-two p {
     margin: 0 0 24pt 0;
@@ -281,7 +280,12 @@ img.leadimage {
                     limit_display python:limit_display and int(limit_display) or None;
                     more_url more_url|request/more_url|string:folder_contents;
                     is_a_topic python:context.portal_type=='Topic';
-                    folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                    folderContents folderContents|nothing; 
+                    folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                    order_by_id here/order_by_id|nothing;
+                    order_by_title here/order_by_title|nothing;
+                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                    folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;
                     site_properties context/portal_properties/site_properties;
                     use_view_action site_properties/typesUseViewActionInListings|python:();
                     Batch python:modules['Products.CMFPlone'].Batch;
@@ -325,6 +329,10 @@ img.leadimage {
                         more_url more_url|request/more_url|string:folder_contents;
                         is_a_topic python:context.portal_type=='Topic';
                         folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                        order_by_id here/order_by_id|nothing;
+                        order_by_title here/order_by_title|nothing;
+                        agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                        folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;
                         site_properties context/portal_properties/site_properties;
                         use_view_action site_properties/typesUseViewActionInListings|python:();
                         Batch python:modules['Products.CMFPlone'].Batch;
