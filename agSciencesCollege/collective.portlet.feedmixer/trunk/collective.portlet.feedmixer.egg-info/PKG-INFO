@@ -32,7 +32,7 @@ Description: Introduction
         python path or in the lib/python directory of your Zope instance. If you
         have setuptools installed you can do this using easy_install::
         
-        easy_install FeedParser
+          easy_install FeedParser
         
         If you do not have setuptools you can install it manually using the setup.py
         script in the feedparser source. If you want to install feedparser inside
@@ -49,7 +49,7 @@ Description: Introduction
         collective.portlet.feedmixer-configure.zcml file in the etc/pakage-includes
         directory with this content::
         
-        <include package="collective.portlet.feedmixer" />
+          <include package="collective.portlet.feedmixer" />
         
         or, alternatively, you can add that line to the configure.zcml in a
         package or Product that is already registered.
@@ -61,9 +61,9 @@ Description: Introduction
         collective.portlet.feedmixer is even simpler. You can install it by adding
         it to the eggs line for your instance::
         
-        [instance]
-        eggs = collective.portlet.feedmixer
-        zcml = collective.portlet.feedmixer
+          [instance]
+          eggs = collective.portlet.feedmixer
+          zcml = collective.portlet.feedmixer
         
         The last line tells buildout to generate a zcml snippet that tells Zope
         to configure collective.portlet.feedmixer.
@@ -89,19 +89,19 @@ Description: Introduction
         Feedmixer portlets have several configurable options:
         
         Portlet Title
-        This will be used as the title of the portlet.
+          This will be used as the title of the portlet.
         
         Maximum time to cache feed data
-        This determins how long feeds can be cached before feedmixer will attempt
-        to refresh the feed data. In order to reduce the load on other servers
-        it is advisable to set this to a reasonably large value.
+          This determins how long feeds can be cached before feedmixer will attempt
+          to refresh the feed data. In order to reduce the load on other servers
+          it is advisable to set this to a reasonably large value.
         
         Number of items to display
-        How many items to show in the portlet.
+          How many items to show in the portlet.
         
         URL(s) for all feeds
-        A list of URLs for all feeds. All standard RSS and Atom feeds are
-        supported as well as CDF feeds.
+          A list of URLs for all feeds. All standard RSS and Atom feeds are
+          supported as well as CDF feeds.
         
         
         Performance
@@ -150,26 +150,26 @@ Description: Introduction
         ----------------
         
         * Fix the "More ..." link of the portlet. We have to store the path to the
-        context of the portlet assignment, because plone[.app].portlets doesn't
-        expose it. This workaround was taken from ely.portlets.image.
-        This will only work for newly created feedmixer portlets, existing ones
-        will still create wrong urls in subfolders.
-        [fschulze]
+          context of the portlet assignment, because plone[.app].portlets doesn't
+          expose it. This workaround was taken from ely.portlets.image.
+          This will only work for newly created feedmixer portlets, existing ones
+          will still create wrong urls in subfolders.
+          [fschulze]
         
         * Added french translation and made some i18n fixes.
-        [glenfant]
+          [glenfant]
         
         1.1 - 2007-11-28
         ----------------
         
         * Correct caching of mixed feed entries: caching per instance instead of
-        per request meant we would never update our feed as long as the ZODB
-        did not expire the assignment. Instead to cache per request and using the
-        list of feed_urls of the assignment.
-        [wichert]
+          per request meant we would never update our feed as long as the ZODB
+          did not expire the assignment. Instead to cache per request and using the
+          list of feed_urls of the assignment. 
+          [wichert]
         
         * Fix typo in the portletBottomLeft CSS class name.
-        [daftdog]
+          [daftdog]
         
         1.0 - 2007-11-05
         ----------------

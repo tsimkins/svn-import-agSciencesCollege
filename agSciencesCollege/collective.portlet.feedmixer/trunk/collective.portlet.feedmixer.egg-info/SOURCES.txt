@@ -1,4 +1,6 @@
+PKG-INFO
 README.txt
+setup.cfg
 setup.py
 collective/__init__.py
 collective.portlet.feedmixer.egg-info/PKG-INFO
@@ -21,6 +23,8 @@ collective/portlet/feedmixer/vocabulary.py
 collective/portlet/feedmixer/locales/collective.portlet.feedmixer.pot
 collective/portlet/feedmixer/locales/da/LC_MESSAGES/collective.portlet.feedmixer.mo
 collective/portlet/feedmixer/locales/da/LC_MESSAGES/collective.portlet.feedmixer.po
+collective/portlet/feedmixer/locales/es/LC_MESSAGES/collective.portlet.feedmixer.mo
+collective/portlet/feedmixer/locales/es/LC_MESSAGES/collective.portlet.feedmixer.po
 collective/portlet/feedmixer/locales/fr/LC_MESSAGES/collective.portlet.feedmixer.mo
 collective/portlet/feedmixer/locales/fr/LC_MESSAGES/collective.portlet.feedmixer.po
 collective/portlet/feedmixer/profiles/default/portlets.xml

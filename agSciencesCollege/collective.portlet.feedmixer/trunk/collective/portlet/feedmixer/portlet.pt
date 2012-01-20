@@ -1,13 +1,8 @@
+
+<h2 class="portletHeader" tal:condition="view/show_header|nothing" tal:content="structure view/title" />
+
 <dl class="portlet portletfeedmixer"
     i18n:domain="collective.portlet.feedmixer">
-
-    <dt class="portletHeader" tal:condition="view/show_header|nothing">
-        <span class="portletTopLeft"></span>
-        <span tal:content="structure view/title">
-           Header
-        </span>
-        <span class="portletTopRight"></span>
-    </dt>
 
     <tal:entry
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
