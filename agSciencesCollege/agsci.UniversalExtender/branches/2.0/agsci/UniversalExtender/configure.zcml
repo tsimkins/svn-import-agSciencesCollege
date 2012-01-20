@@ -145,7 +145,7 @@
         factory=".extender.MarkdownDescriptionExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     />
-%%%
+
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IMarkdownDescriptionExtender"
@@ -170,6 +170,23 @@
         class="Products.ATContentTypes.content.document.ATDocument"
         interface=".interfaces.IMarkdownDescriptionExtender"
     />    
+
+    <!-- Table of Contents Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.TableOfContentsExtender"
+        factory=".extender.TableOfContentsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.event.ATEvent"
+        interface=".interfaces.ITableOfContentsExtender"    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.ITableOfContentsExtender"
+    /> 
 
     <!-- Monkey Patch folder by adding 'getText' method -->
 
@@ -226,4 +243,22 @@
         original="getPeople"
         />
 
+    <!-- Monkey Patch other content types to add 'getTableContents' method -->
+
+    <monkey:patch
+        description="This adds a 'getTableContents' method to the news item type"
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        replacement=".patch.customTableContents"
+        original="getTableContents"
+        ignoreOriginal="True"
+        />
+        
+    <monkey:patch
+        description="This adds a 'getTableContents' method to the folder type"
+        class="Products.ATContentTypes.content.event.ATEvent"
+        replacement=".patch.customTableContents"
+        original="getTableContents"
+        ignoreOriginal="True"
+        />
+        
 </configure>

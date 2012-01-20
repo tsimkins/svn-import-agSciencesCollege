@@ -21,3 +21,6 @@ class IFolderExtender(Interface):
 
 class IMarkdownDescriptionExtender(Interface):
     """ marker interface """
+
+class ITableOfContentsExtender(Interface):
+    """ marker interface """

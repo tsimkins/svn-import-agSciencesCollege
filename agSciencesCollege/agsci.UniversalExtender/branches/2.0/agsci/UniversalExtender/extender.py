@@ -5,7 +5,7 @@ from Products.ATContentTypes.interfaces.news import IATNewsItem
 from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -303,6 +303,39 @@ class FolderTopicExtender(object):
     fields = [
 
         _ExtensionBooleanField(
+            "show_image",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show lead image",
+                description=u"This will show the lead image for each item in the folder listing.",
+            ),
+        ),
+
+        _ExtensionBooleanField(
+            "show_date",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show date",
+                description=u"This will show the publication date for each item in the folder listing.",
+            ),
+        ),
+
+        _ExtensionBooleanField(
+            "show_read_more",
+            required=False,
+            default=True,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show \"Read More...\"",
+                description=u"This will show the \"Read More...\" for each item in the folder listing when using the Summary View.",
+            ),
+        ),
+
+        _ExtensionBooleanField(
             "two_column",
             required=False,
             default=False,
@@ -313,7 +346,7 @@ class FolderTopicExtender(object):
                 condition="python:member.has_role('Manager')"
             ),
         ),
-
+        
     ]
 
     def __init__(self, context):
@@ -368,6 +401,16 @@ class TopicExtender(object):
                     description=u"The content will show items with the listed ids first, and then sort by the default sort order.  One per line.",
             ),
         ),
+
+        _ExtensionLinesField(
+            "order_by_title",
+                schemata="settings",
+                required=False,
+                widget = LinesWidget(
+                    label=u"Order by Title",
+                    description=u"The content will show items matching the specified regex patterns first, and then sort by the default sort order.  One per line.",
+            ),
+        ),
     ]   
 
 
@@ -389,6 +432,8 @@ class TopicExtender(object):
         schema['customViewFields'] = tmp_field
 
 
+# Adds a Markdown bool to render descriptions as Markdown
+
 class MarkdownDescriptionExtender(object):
     adapts(IMarkdownDescriptionExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
@@ -405,6 +450,32 @@ class MarkdownDescriptionExtender(object):
                 label=u"Render description as Markdown",
                 description=u"This will allow you to use Markdown formatting in the description field",
                 condition="python:member.has_role('Manager')"
+            ),
+        ),
+    ]   
+
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+        
+class TableOfContentsExtender(object):
+    adapts(ITableOfContentsExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+
+        _ExtensionBooleanField(
+            "tableContents",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Table of contents",
+                description=u"If selected, this will show a table of contents at the top of the page.",
             ),
         ),
     ]   

@@ -17,6 +17,19 @@ def folderGetText(self):
     except:
         return ''
 
+def customTableContents(self):
+    # Monkeypatching this function into the other content types so the viewlet works appropriately
+
+    # Acquisition.aq_base strips the acquisition layer from an object.
+    # See: https://weblion.psu.edu/trac/weblion/wiki/OverridingPloneAcquisition
+    self = aq_base(self)
+
+    try:
+        return self.tableContents
+    except:
+        return False
+
+
 def toLocalizedTime(self, time, long_format=None, time_only=None):
     """Convert time to localized time
     """
