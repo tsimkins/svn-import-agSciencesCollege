@@ -949,7 +949,6 @@ html.kupu-html {
 #content #content-core .tileItemLeadImage:first-child,
 #content #content-core .tileSummary:first-child {
     border-top: none !important;
-    margin-top: 2em;
 }
 
 #content .tileItemLeadImage .tileTitle,
@@ -1003,7 +1002,7 @@ html.kupu-html {
     padding: 0.25em 0;
 }
 
-#content .tileSummary {
+#content .tileItemLeadImage, #content .tileSummaryLeadImage {
     margin: 1em 0 0 0;
     border-top: 1px solid #DDDDDD !important;
     padding-top: 1em;
@@ -1945,6 +1944,10 @@ body.template-folder_full_view #content-core .item {
     font-size: 1.875em;
     font-weight: bold;
     font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+
+#content #parent-fieldname-text p:first-child {
+    margin-top: 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

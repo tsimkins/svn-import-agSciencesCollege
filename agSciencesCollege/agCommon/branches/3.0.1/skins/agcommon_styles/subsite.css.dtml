@@ -76,7 +76,7 @@ body.template-atct_edit #image-header {
 #centercolumn {
 	display: block;
 	margin: 0;
-	padding: 5px 0 5px 0;
+	padding: 1em 0;
 }
 
 /* RSS Feedmixer portlet in centercolumn */
@@ -202,6 +202,11 @@ body.template-atct_edit #image-header {
 	border-width: 0;
 }
 
+#centercolumn .portletWrapper {
+    margin-bottom: 1em;
+    margin-top: 0.25em;    
+}
+
 .documentEditable  {
     padding: 0 !important;
 }
@@ -209,6 +214,10 @@ body.template-atct_edit #image-header {
 #content {
     margin:0 15px;
     padding:0 0 15px !important;
+}
+
+#content .documentDescription {
+    margin-bottom: 1em;
 }
 
 /* YOUR CSS RULES STOP HERE */
