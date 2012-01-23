@@ -22,7 +22,7 @@
                        templateId template/getId;
                        text here/getText;">
 
-        <tal:show_title condition="context/Description">
+        <tal:show_title condition="python: context.Description() or context.getText()">
             <h1 class="documentFirstHeading"> 
                 <metal:field use-macro="python:here.widget('title', mode='view')">
                 Title
