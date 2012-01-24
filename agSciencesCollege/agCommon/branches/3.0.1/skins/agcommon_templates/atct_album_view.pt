@@ -16,6 +16,8 @@
                  kssClassesView context/@@kss_field_decorator_view;
                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                  templateId template/getId;
+                 view nocall:context/@@folder_listing_z3;
+                 test nocall:view/test;
                  batch python:Batch(images, 12, int(b_start), orphan=1)">
     
     <div metal:define-macro="text-field-view"
