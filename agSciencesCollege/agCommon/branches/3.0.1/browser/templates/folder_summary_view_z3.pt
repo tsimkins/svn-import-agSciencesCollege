@@ -69,23 +69,24 @@
                             </span>
                         </tal:newsitem>
                         </div>
-                        <div tal:define="item_object item/getObject"
-                            metal:define-macro="fsd_summary" tal:condition="python:item_type =='FSDPerson'" class="facultyStaffDirectory" >
-                            <ul tal:condition="item_object/getJobTitles" class="jobTitle">
-                                <li tal:repeat="jobTitle item_object/getJobTitles" tal:content="jobTitle" />
+                        <div tal:define="person item/getObject;"
+                            tal:condition="python:item_type =='FSDPerson'" class="facultyStaffDirectory" >
+                            <metal:fsd_summary define-macro="fsd_summary">
+                            <ul tal:condition="person/getJobTitles" class="jobTitle">
+                                <li tal:repeat="jobTitle person/getJobTitles" tal:content="jobTitle" />
                             </ul>
 
                             <p>
-                                <span tal:condition="item_object/getEmail">
-                                    <span tal:replace="structure python:context.spamProtect(item_object.getEmail())" />
+                                <span tal:condition="person/getEmail">
+                                    <span tal:replace="structure python:context.spamProtect(person.getEmail())" />
                                 </span>
                                 <br />
-                                <span tal:condition="item_object/getOfficePhone" class="phone">
-                                    <span tal:replace="item_object/getOfficePhone" />
+                                <span tal:condition="person/getOfficePhone" class="phone">
+                                    <span tal:replace="person/getOfficePhone" />
                                 </span>
                             </p>
 
-                            <tal:areas tal:define="areas item_object/extension_areas|nothing" tal:condition="areas">
+                            <tal:areas tal:define="areas person/extension_areas|nothing" tal:condition="areas">
 
                                 <div>Areas of Expertise:</div>
                                 <ul class="areasExpertise">
@@ -93,7 +94,7 @@
                                 </ul>
 
                             </tal:areas>
-
+                            </metal:fsd_summary>
 
                         </div>
 

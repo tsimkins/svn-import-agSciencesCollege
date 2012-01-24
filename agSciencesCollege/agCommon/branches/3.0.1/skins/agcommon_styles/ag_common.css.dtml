@@ -947,7 +947,8 @@ html.kupu-html {
 }
 
 #content #content-core .tileItemLeadImage:first-child,
-#content #content-core .tileSummary:first-child {
+#content #content-core .tileSummary:first-child,
+#content .standardView .classificationListing .tileItemLeadImage:first-child {
     border-top: none !important;
 }
 
