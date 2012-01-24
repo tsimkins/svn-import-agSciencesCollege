@@ -186,7 +186,7 @@
                              tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                     </metal:show-date>
 
-                   <div tal:define="dt_class python:test(item_description, 'tileDescription', 'tileDescription nodescription');"
+                   <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription nodescription');"
                            tal:attributes="class dt_class">
                        <tal:event-date tal:condition="python: item_type == 'Event'" metal:define-macro="event_date">
                            <div>

@@ -39,7 +39,10 @@ def isHomePage(context):
 def isFolderFullView(context):
     folder_views = ['folder_full_view_item', 'folder_full_view'] 
     parent = context.getParentNode()
-    default_page = parent.getDefaultPage()
+    try:
+        default_page = parent.getDefaultPage()
+    except AttributeError:
+        default_page = None
     
     if default_page and default_page in parent.objectIds():
         try:
