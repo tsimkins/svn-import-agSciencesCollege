@@ -34,14 +34,17 @@
                                  test nocall:view/test;"
                            metal:define-macro="list_people"
                            class="standardView">
-                    <div class="classificationListing" tal:condition="people">
-                        <metal:block define-slot="classification_header" tal:condition="nocall:classificationExists">
-                            <h2>
-                            <metal:block define-macro="classification_header_link">
-                                <a tal:define="normalizeString nocall:context/@@plone/normalizeString" tal:attributes="name python:normalizeString(classificationContext.Title()); href python:'%s?classification=%s' % (here.absolute_url(), classification.id)" tal:content="classificationContext/Title"><tal:comment replace="nothing">[classification]</tal:comment></a>
-                            </metal:block>
-                            </h2>
+
+                    <metal:block define-slot="classification_header" tal:condition="nocall:classificationExists">
+                        <h2>
+                        <metal:block define-macro="classification_header_link">
+                            <a tal:define="normalizeString nocall:context/@@plone/normalizeString" tal:attributes="name python:normalizeString(classificationContext.Title()); href python:'%s?classification=%s' % (here.absolute_url(), classification.id)" tal:content="classificationContext/Title"><tal:comment replace="nothing">[classification]</tal:comment></a>
                         </metal:block>
+                        </h2>
+                    </metal:block>
+
+
+                    <div class="classificationListing" tal:condition="people">
 
                         <div class="tileItem tileItemLeadImage" tal:repeat="person people">
                             <div class="contentLeadImageContainer">
@@ -66,6 +69,7 @@
                                 </h3>
                                 <div class="facultyStaffDirectory">
                                     <metal:fsd_summary use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
+                                    <metal:additional_info define-slot="person_additional_info" />
                                 </div>
                             </metal:block>
 
