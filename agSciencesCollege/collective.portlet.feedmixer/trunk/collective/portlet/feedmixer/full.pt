@@ -8,52 +8,44 @@
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
 <body>
-<metal:main fill-slot="main">
+<metal:description fill-slot="content-description">
+</metal:description>
+<metal:main fill-slot="content-core">
 
-    <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-    <h1 class="noBreadcrumbs documentFirstHeading" tal:content="structure view/title">
-        Feed Title
-    </h1>
-
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-    <div class="feedEntry"
+    <div class="tileItem tileSummary tileSummaryLeadImage"
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
         tal:repeat="entry view/entries">
 
-        <a href=""
-           tal:attributes="href entry/link;
-                           title entry/title">
-            <h2 tal:content="structure entry/title">
-                Feed Entry Title
-            </h2>
-        </a>
+
+            <h3 class="tileHeadline">
+                <a href=""
+                   tal:content="structure entry/title"
+                   tal:attributes="href entry/link;
+                                   title entry/title">
+                        Feed Entry Title
+                </a>
+            </h3>
+
 
         <p class="discreet">
             <span tal:condition="exists:entry/author"
                   tal:omit-tag=""
                   i18n:translate="feed_entry_author">
-                  <tal:block condition="exists:entry/feed/title"> From <span i18n:name="feed_title" tal:replace="structure entry/feed/title"> feed title</span></tal:block>.
-            </span>
-            <span tal:condition="python:'author' not in entry and 'title' in entry['feed']"
-                  tal:omit-tag=""
-                  i18n:translate="feed_entry_no_author">
-                  From <span i18n:name="feed_title" tal:replace="structure entry/feed/title">feed title</span>.
-            </span>
+                  <tal:block condition="exists:entry/feed/title"> From <span i18n:name="feed_title" tal:replace="structure entry/feed/title"> feed title</span></tal:block>
+            </span> <br />
             <span tal:omit-tag="" i18n:translate="feed_entry_modified">
                 Published on <span name="publication_time"
                     tal:content="python:toLocalizedTime(entry['updated'])">
                     Nov 1</span>.
             </span>
         </p>
-
-        <p tal:replace="structure entry/description|nothing">
-           This is the entry description itself
-       </p>
+        <div class="tileBody">
+            <p tal:content="structure entry/description|nothing">
+               This is the entry description itself
+            </p>
+        </div>
     </div>
 
-    <div tal:replace="structure provider:plone.belowcontentbody" />
 </metal:main>
 </body>
 </html>

@@ -251,6 +251,11 @@ class Renderer(base.Renderer):
 
     @property
     def entries(self):
+        entries = self.allEntries()
+        return entries[:self.data.items_shown]
+
+    @property
+    def allEntries(self):
         feeds=[self.getFeed(url) for url in self.feed_urls]
             
         if self.data.target_collection:
@@ -259,11 +264,11 @@ class Renderer(base.Renderer):
         feeds=[feed for feed in feeds if feed is not None]
 
         entries=self.mergeEntriesFromFeeds(feeds)
-
+        
         if self.data.reverse_feed:
-            return [x for x in reversed(entries)][:self.data.items_shown]
+            return [x for x in reversed(entries)]
         else:
-            return entries[:self.data.items_shown]
+            return entries
 
     @memoize
     def collection(self):

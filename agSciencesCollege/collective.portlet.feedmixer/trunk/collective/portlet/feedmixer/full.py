@@ -1,4 +1,5 @@
 from Products.Five.browser import BrowserView
+from collective.portlet.feedmixer.portlet import Renderer
 
 class FullFeedView(BrowserView):
 
@@ -8,4 +9,5 @@ class FullFeedView(BrowserView):
 
     @property
     def entries(self):
-        return self.aq_acquire('context').entries
+        portlet_renderer = Renderer(self.aq_acquire('context'), None, None, None, self.aq_acquire('context').data)
+        return portlet_renderer.allEntries
