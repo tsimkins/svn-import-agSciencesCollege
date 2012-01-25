@@ -20,7 +20,7 @@
         <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
         <tal:subfolder metal:define-macro="subfolders_macro"
-                      define="folderContents python:here.getFolderContents({'portal_type' : ['Topic','Folder']})">
+                      define="folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']})">
 
             <tal:noContents condition="python: len(folderContents) == 0">
                 <metal:listing metal:use-macro="context/@@folder_listing_z3/macros/listing" />
@@ -81,7 +81,7 @@
                                                        limit python:portal_type == 'Topic' and here.getItemCount() > 0 and here.getItemCount() or 1000;
                                                        subfolderContents python:here.getFolderContents() or (portal_type == 'Topic' and here.queryCatalog(sort_limit=limit)[:limit]) or [];
                                                        batch subfolderContents;">
-                    
+
                                 <tal:listing condition="subfolderContents">
 
                                     <tal:folder_summary_view condition="python:folder_layout == 'folder_summary_view'"

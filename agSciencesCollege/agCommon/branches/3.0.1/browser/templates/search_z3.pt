@@ -210,7 +210,8 @@
                     </tal:event>
 
                     <tal:person 
-                         condition="python: result_type == 'FSDPerson'">
+                         condition="python: result_type == 'FSDPerson'"
+                         tal:define="person nocall:item_object">
                          <div metal:use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
                     </tal:person>
                     

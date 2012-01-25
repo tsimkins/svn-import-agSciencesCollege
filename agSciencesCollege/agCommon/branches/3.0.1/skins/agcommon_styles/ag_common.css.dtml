@@ -1323,6 +1323,7 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
 
 body.template-subfolder_view #content .tileItem h2.tileHeadline {
     font-size: 1.375em;
+    margin-bottom: 0.375em;
 }
 
 body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a {
