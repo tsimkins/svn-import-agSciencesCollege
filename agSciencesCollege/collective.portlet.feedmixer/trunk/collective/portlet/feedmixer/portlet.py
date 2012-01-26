@@ -251,7 +251,7 @@ class Renderer(base.Renderer):
 
     @property
     def entries(self):
-        entries = self.allEntries()
+        entries = self.allEntries
         return entries[:self.data.items_shown]
 
     @property
