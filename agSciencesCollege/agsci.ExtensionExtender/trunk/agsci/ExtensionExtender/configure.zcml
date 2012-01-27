@@ -5,6 +5,8 @@
 
     <include package="archetypes.schemaextender" />
 
+    <include package=".browser" />
+    
     <genericsetup:registerProfile
         name="default"
         title="ExtensionExtender"
