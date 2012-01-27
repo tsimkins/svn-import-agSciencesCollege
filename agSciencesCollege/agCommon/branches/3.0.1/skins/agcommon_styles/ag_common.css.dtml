@@ -1665,6 +1665,27 @@ dl.portalMessage {
     margin: 0.75em 0;
 }
 
+dl.portalMessageOneColumn dt,
+dl.portalMessageOneColumn dd {
+    float: none;
+    font-size: 1.25em;
+}
+
+dl.portalMessageOneColumn {
+    background-color: #FFF9EF;
+}
+
+dl.portalMessageOneColumn dt {
+    margin: 0;
+    background-color: #DF6929;
+}
+
+dl.portalMessageOneColumn dd {
+    margin: 0 0.25em;
+    font-size: 1.125em;
+}
+
+
 /* Fix the lineheight set to 2em */
 .icons-on #portal-column-one .contenttype-document,
 .icons-on #portal-column-one .contenttype-event,
@@ -1749,7 +1770,7 @@ q {
 #portal-column-one .portletCollection dd {
     font-size: 1.03125em;
     padding: 0.375em 0;
-    background: transparent;
+    background-color: transparent;
     line-height: 1.375em;
 }
 
@@ -1873,7 +1894,31 @@ body.template-agenda_view #document-toc h3 {
     margin-left: -10000px;
 }
 
-#content .eventDateLocation {
+#content .eventDateLocation.canceled,
+table.events td.canceled span {
+    text-decoration: line-through;
+    -moz-opacity: 0.40;
+    -khtml-opacity: 0.40;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+    filter:alpha(opacity=40);
+    opacity: 0.40;
+}
+
+#content .listingWarning {
+    color: #DF6929;
+    font-size: 1.25em;
+    font-variant: small-caps;
+    font-weight: bold;
+    margin: 0.5em 0;
+    padding: 0;
+}
+
+#content table.events .listingWarning {
+    font-size: 1em;
+}
+
+#content .eventDateLocationLocation {
     margin-bottom: 1.5em;
     padding: 0 0 0.5em 0;
 }

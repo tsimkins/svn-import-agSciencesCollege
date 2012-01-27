@@ -49,6 +49,7 @@
 
 #content .facultyStaffDirectory.personView .adr {
     margin-top: 0;
+    margin-bottom: 1em;
 }
 
 body.template-department_standard_view #portal-column-content .visualClear {

@@ -106,6 +106,7 @@
                                     item_sametime python: item_start == item_end;
                                     item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
                                     item_url item/getURL|item/absolute_url;
+                                    isCanceled item/eventCanceled|nothing;
                                     "
                         tal:attributes="class python:oddrow and 'even' or 'odd'">
                         <td>
@@ -115,12 +116,12 @@
                                tal:content="item/pretty_title_or_id">
                                 Item Title
                             </a>
-                            <div class="portalMessage" tal:define="item_object item/getObject" tal:condition="item_object/eventCanceled|nothing">This event has been canceled.</div>
+                            <div class="listingWarning" tal:define="item_object item/getObject" tal:condition="isCanceled">Event Canceled</div>
                         </td>
-                        <td>
+                        <td tal:attributes="class python:isCanceled and 'canceled' or ''">
                             <div metal:use-macro="context/@@folder_listing_z3/macros/short_event_date" />
                         </td>
-                        <td>
+                        <td tal:attributes="class python:isCanceled and 'canceled' or ''">
                             <div metal:use-macro="context/@@folder_listing_z3/macros/event_location" />
                         </td>
                     </tr>
