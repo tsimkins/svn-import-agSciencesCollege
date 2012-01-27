@@ -192,6 +192,25 @@ class EventExtender(object):
                 description=u"e.g. Google Maps link",
             ),
         ),
+        _ExtensionBooleanField(
+            "eventCanceled",
+            required=False,
+            default=False,
+            widget=BooleanWidget(
+                label=u"This event has been canceled",
+                description=u"Check this box if an event has been canceled, and provide any addition information under 'Event Cancellation Information'",
+            ),
+        ),
+        _TextExtensionField(
+            "eventCanceledInfo",
+            required=False,
+            widget=RichWidget(
+                label=u"Event Cancellation Information",
+                description=u"",
+            ),
+            default_output_type="text/x-html-safe",
+            validators=('isTidyHtmlWithCleanup',),
+        ),
 
     ]
 
@@ -221,6 +240,20 @@ class EventExtender(object):
 
         # Move text after the meta information
         schema.moveField('text', after='contactPhone')
+
+        # Put eventCanceled after text
+        try:
+            schema.moveField('eventCanceled', after='text')
+        except KeyError:
+            # This angers TalkEvents
+            pass
+
+        # Put eventCanceledInfo after eventCanceled
+        try:
+            schema.moveField('eventCanceledInfo', after='eventCanceled')
+        except KeyError:
+            # This angers TalkEvents
+            pass
 
         # Move dates above location
         schema.moveField('endDate', before='location')
