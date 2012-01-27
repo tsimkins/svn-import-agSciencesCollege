@@ -315,6 +315,8 @@ body {
     color: #293C6F !important;
     margin: 0;
     padding: 0.5em 0 0.375em 0;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+    font-weight: bold;
     border-bottom: 1px solid &dtml-leftNavBorderColor;;
     text-transform: none;
 }
@@ -881,9 +883,9 @@ html.kupu-html {
 
 #content h2, html.kupu-html h2 {
     color: &dtml-documentHeadingColor;;
-    font-size: 1.6875em;
+    font-size: 1.625em;
     margin: 1.25em 0 0.5em 0;
-    padding: 0 0 0.125em 0;
+    padding: 0 0 0.0625em 0;
     border: 0;
     font-weight: normal;
     border-bottom: 1px solid #CCCCCC;
