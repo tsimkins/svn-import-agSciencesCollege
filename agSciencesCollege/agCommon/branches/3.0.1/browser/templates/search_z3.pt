@@ -215,9 +215,9 @@
                          <div metal:use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
                     </tal:person>
                     
-                    <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
+                    <p tal:content="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
                         Cropped description
-                    </span>
+                    </p>
 
                 <span class="documentByLine"
                       tal:condition="python:not isAnon or site_properties.allowAnonymousViewAbout">

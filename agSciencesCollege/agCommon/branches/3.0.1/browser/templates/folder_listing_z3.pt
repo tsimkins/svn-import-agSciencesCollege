@@ -66,7 +66,7 @@
                                    item_title_or_id python: item_event_location_title or item_title_or_id;
                                    item_description item/Description;
                                    item_type item/portal_type;
-                                   item_type_title item/Type;
+                                   item_type_title item/Type/lower;
                                    item_modified item/ModificationDate;
                                    item_created item/CreationDate;
                                    item_icon python:plone_view.getIcon(item);
@@ -82,7 +82,7 @@
                                    item_has_leadimage item/hasContentLeadImage;
                                    item_effective item/EffectiveDate;">
                 <metal:block define-slot="entry">
-                    <div tal:define="div_class string:tileItem visualIEFloatFix;
+                    <div tal:define="div_class string:tileItem visualIEFloatFix contenttype-${item_type_title};
                                      div_class python:show_image and '%s tileItemLeadImage' % div_class or div_class"
                          tal:attributes="class div_class">
                     <tal:dt metal:define-macro="listitem">

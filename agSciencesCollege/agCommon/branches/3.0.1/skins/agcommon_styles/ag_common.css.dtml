@@ -1918,13 +1918,13 @@ table.events td.canceled span {
     font-size: 1em;
 }
 
-#content .eventDateLocationLocation {
-    margin-bottom: 1.5em;
-    padding: 0 0 0.5em 0;
+#content .contenttype-event .tileDescription p {
+    margin-top: 0.5em;
 }
 
 #content .eventWebsite {
     margin-top: 1.5em;
+    margin-bottom: 1.5em;
     font-size: 1em;
 }
 

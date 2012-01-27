@@ -17,6 +17,20 @@
 
 </metal:header>
 
+<metal:canceled fill-slot="content-additional">
+       <dl tal:attributes="class string:portalMessage info portalMessageOneColumn ${leadImageClass}"
+               tal:define="layout here/layout|nothing;
+                           eventCanceled context/eventCanceled|nothing;
+                           eventCanceledInfo context/eventCanceledInfo|nothing;
+                           isAnon context/@@plone_portal_state/anonymous;
+                           hasLeadImage item/hasLeadImage|nothing;
+                           leadImageClass python:hasLeadImage and 'leadimage' or ''"
+               tal:condition="eventCanceled">
+                   <dt>Event Canceled</dt>
+                   <dd tal:condition="eventCanceledInfo" tal:content="structure eventCanceledInfo" />
+       </dl>
+</metal:canceled>
+
 
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core"
@@ -232,16 +246,6 @@
                 </tbody>
             </table>
         </div>
-
-       <dl class="portalMessage info portalMessageOneColumn"
-               tal:define="layout here/layout|nothing;
-                           eventCanceled context/eventCanceled|nothing;
-                           eventCanceledInfo context/eventCanceledInfo|nothing;
-                           isAnon context/@@plone_portal_state/anonymous;"
-               tal:condition="eventCanceled">
-                   <dt>Event Canceled</dt>
-                   <dd tal:condition="eventCanceledInfo" tal:content="structure eventCanceledInfo" />
-       </dl>
 
         <tal:wherewhen condition="not: show_event_table">
             <div tal:define="isCanceled context/eventCanceled|nothing;
