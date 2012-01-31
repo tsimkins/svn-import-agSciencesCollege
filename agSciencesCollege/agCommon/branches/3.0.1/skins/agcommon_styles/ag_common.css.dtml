@@ -1489,9 +1489,9 @@ body.template-pgv_sg_carousel_view #content {
 
 #fblike {
     border: none;
-    overflow: hidden;
+    overflow: visible;
     width: 450px;
-    margin: 1.5em 0;
+    margin: 1.5em 0 2em 0;
 }
 
 /* mobile version */
