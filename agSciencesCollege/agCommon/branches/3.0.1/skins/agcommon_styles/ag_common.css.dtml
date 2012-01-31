@@ -929,7 +929,7 @@ html.kupu-html {
 
 #content .tileBody {
     margin: 0.375em 0 1em 0;
-    font-size: 0.9375;
+    font-size: 0.9375em;
 }
 
 #content .tileText {
@@ -1491,7 +1491,7 @@ body.template-pgv_sg_carousel_view #content {
     border: none;
     overflow: hidden;
     width: 450px;
-    margin-top: 25px;
+    margin: 1.5em 0;
 }
 
 /* mobile version */
@@ -1749,7 +1749,25 @@ q {
 }
 
 #commenting.reply fieldset {
-    margin: 0 20px 20px 20px !important;
+    margin: 0 0 1.5em 0 !important;
+}
+
+#commenting.reply fieldset legend {
+    font-weight: bold;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+
+#commenting.reply fieldset .discreet {
+    font-size: 0.75em;
+    margin-left: 1.25em;
+}
+
+#commenting.reply fieldset iframe {
+    width: 630px !important;
+}
+
+#portal-column-content.sr #commenting.reply fieldset iframe {
+    width: 450px !important;
 }
 
 .discussion {

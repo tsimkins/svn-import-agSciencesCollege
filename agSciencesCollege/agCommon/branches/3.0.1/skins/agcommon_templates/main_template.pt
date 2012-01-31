@@ -9,6 +9,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:fb="http://ogp.me/ns/fb#"
       xml:lang="en"
       lang="en"
       tal:define="portal_state context/@@plone_portal_state;
@@ -80,7 +81,16 @@
                     custom_class python:custom_class and ' '.join(['custom-%s' % str(x) for x in custom_class.split()]) or ''"
         tal:attributes="class string:${body_class} ${custom_class};
                         dir python: isRTL and 'rtl' or 'ltr'">
-    
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <div id="visual-portal-wrapper">
         <metal:header define-slot="printheader" tal:content="nothing">
             Visual Header
