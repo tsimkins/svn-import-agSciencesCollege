@@ -210,7 +210,7 @@ img.leadimage {
 <metal:title fill-slot="page-title">
     
     <title 
-        tal:content="newsletter_title" />
+        tal:content="view/newsletter_title" />
 
 </metal:title>
 
@@ -237,7 +237,7 @@ img.leadimage {
     </div>
     
     <h1 class="documentFirstHeading" 
-        tal:content="newsletter_title" />
+        tal:content="view/newsletter_title" />
 
 </metal:title>
 
@@ -255,7 +255,7 @@ img.leadimage {
         <a class="view-online" 
             tal:define="more_url python:context.absolute_url().replace('/' + templateId, '');
                         more_url context/more_url|more_url"
-            tal:attributes="href string:${more_url}?${utm}">View 
+            tal:attributes="href more_url">View 
                 <span tal:replace="context/newsletter_title|context/Title" /> online</a>
     </div>
 
@@ -379,7 +379,7 @@ img.leadimage {
 
                     <h3>
                         <a href="#"
-                           tal:attributes="href string:${item_url}?${utm};
+                           tal:attributes="href item_url;
                                            class string:$item_type_class $item_wf_state_class url"
                            tal:content="item_title_or_id">
                             Item Title

@@ -50,6 +50,107 @@ class IFolderView(Interface):
     def test():
         """ test method"""
 
+class IAgCommonUtilities(Interface):
+
+    def substituteEventLocation(self):
+        pass
+
+    def reorderTopicContents(self):
+        pass
+
+    def toMarkdown(self):
+        pass
+
+    def getUTM(self):
+        pass
+
+class AgCommonUtilities(BrowserView):
+
+    implements(IAgCommonUtilities)
+
+    def substituteEventLocation(self, item):
+
+        try:
+            show_event_location = aq_acquire(self.context, 'show_event_location')
+        except AttributeError:
+            show_event_location = False
+                
+        if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent') and item.location.strip():
+            return item.location.strip()
+        else:
+            return None        
+     
+    def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
+        # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
+        if order_by_id:
+            return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
+            
+            # Reference code
+            # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
+            # I left it in as an explanation of what the above is doing.
+            """
+            ordered = []
+            unordered = []
+    
+            # Grab all the unordered items
+            for item in topicContents:
+                if item.getId not in order_by_id:
+                    unordered.append(item)
+    
+            # Grab the ordered items, in order
+            for id in order_by_id:
+                for item in topicContents:
+                    if item.getId == id:
+                        ordered.append(item)
+    
+            # Combine the two lists
+            ordered.extend(unordered)
+    
+            return ordered
+            """
+        elif order_by_title:
+            ordered = []
+            uuids = {}
+  
+            for t in order_by_title:
+                r = re.compile(t)
+  
+                # Pull out matching items
+                for item in topicContents:
+                    if not uuids.get(item.UID) and r.search(item.Title):
+                        ordered.append(item)
+                        uuids[item.UID] = 1
+  
+            for item in topicContents:
+                if not uuids.get(item.UID):
+                    ordered.append(item)
+                    uuids[item.UID] = 1
+
+            return ordered
+        else:
+            return topicContents
+        
+    def toMarkdown(self, text):
+        portal_transforms = getToolByName(self.context, 'portal_transforms')
+        return portal_transforms.convert('markdown_to_html', text)
+        
+    def getUTM(self, source=None, medium=None, campaign=None, content=None):
+        data = {}
+
+        if source:
+            data["utm_source"] = source
+
+        if medium:
+            data["utm_medium"] = medium
+
+        if campaign:
+            data["utm_campaign"] = campaign
+
+        if content:
+            data["utm_content"] = content
+
+        return urlencode(data)
+
 #--
 
 class FolderView(BrowserView):
@@ -196,8 +297,28 @@ class NewsletterView(BrowserView):
     @property
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
+        
+    @property
+    def newsletter_title(self):
+        try:
+            newsletter_title = aq_acquire(self.context, 'newsletter_title')
+        except AttributeError:
+            newsletter_title = None
+        try:
+            site_title = aq_acquire(self.context, 'site_title')
+        except AttributeError:
+            site_title = None
+                   
+        context_title = self.context.Title();
 
-class NewsletterEmail(NewsletterView):
+        if newsletter_title:
+            return newsletter_title
+        elif site_title:
+            return '%s: %s' % (site_title, context_title)
+        else:
+            return context_title
+
+class NewsletterEmail(NewsletterView, AgCommonUtilities):
 
     implements(INewsletterEmail)
 
@@ -213,7 +334,16 @@ class NewsletterEmail(NewsletterView):
         for img in soup.findAll('img', {'class' : 'leadimage'}):
             img['hspace'] = 8
             img['vspace'] = 8
-    
+
+
+        utm  = self.getUTM(source='newsletter', medium='email', campaign=self.newsletter_title);
+
+        for a in soup.findAll('a'):
+            if '?' in a['href']:
+                a['href'] = '%s&%s' % (a['href'], utm) 
+            else:
+                a['href'] = '%s?%s' % (a['href'], utm)            
+
         html = premailer.transform(soup.prettify())
 
         tags = ['dl', 'dt', 'dd']
@@ -334,103 +464,3 @@ class EventTableView(AgendaView):
     implements(IEventTableView)
 
 
-class IAgCommonUtilities(Interface):
-
-    def substituteEventLocation(self):
-        pass
-
-    def reorderTopicContents(self):
-        pass
-
-    def toMarkdown(self):
-        pass
-
-    def getUTM(self):
-        pass
-
-class AgCommonUtilities(BrowserView):
-
-    implements(IAgCommonUtilities)
-
-    def substituteEventLocation(self, item):
-
-        try:
-            show_event_location = aq_acquire(self.context, 'show_event_location')
-        except AttributeError:
-            show_event_location = False
-                
-        if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent') and item.location.strip():
-            return item.location.strip()
-        else:
-            return None        
-     
-    def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
-        # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
-        if order_by_id:
-            return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
-            
-            # Reference code
-            # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
-            # I left it in as an explanation of what the above is doing.
-            """
-            ordered = []
-            unordered = []
-    
-            # Grab all the unordered items
-            for item in topicContents:
-                if item.getId not in order_by_id:
-                    unordered.append(item)
-    
-            # Grab the ordered items, in order
-            for id in order_by_id:
-                for item in topicContents:
-                    if item.getId == id:
-                        ordered.append(item)
-    
-            # Combine the two lists
-            ordered.extend(unordered)
-    
-            return ordered
-            """
-        elif order_by_title:
-            ordered = []
-            uuids = {}
-  
-            for t in order_by_title:
-                r = re.compile(t)
-  
-                # Pull out matching items
-                for item in topicContents:
-                    if not uuids.get(item.UID) and r.search(item.Title):
-                        ordered.append(item)
-                        uuids[item.UID] = 1
-  
-            for item in topicContents:
-                if not uuids.get(item.UID):
-                    ordered.append(item)
-                    uuids[item.UID] = 1
-
-            return ordered
-        else:
-            return topicContents
-        
-    def toMarkdown(self, text):
-        portal_transforms = getToolByName(self.context, 'portal_transforms')
-        return portal_transforms.convert('markdown_to_html', text)
-        
-    def getUTM(self, source=None, medium=None, campaign=None, content=None):
-        data = {}
-
-        if source:
-            data["utm_source"] = source
-
-        if medium:
-            data["utm_medium"] = medium
-
-        if campaign:
-            data["utm_campaign"] = campaign
-
-        if content:
-            data["utm_content"] = content
-
-        return urlencode(data)
