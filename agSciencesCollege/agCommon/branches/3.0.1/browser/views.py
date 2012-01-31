@@ -147,7 +147,7 @@ class SearchView(FolderView):
         elif 'News Item' in self.request.form.get('portal_type', []):
             return 'effective'
         else:
-            return None
+            return 'sortable_title'
 
     def getResults(self):
         now = DateTime()
