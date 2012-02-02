@@ -55,7 +55,7 @@
         layer=".interfaces.IThemeSpecific"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
         view="plone.app.layout.globals.interfaces.IViewView"
-        class="plone.app.discussion.browser.comments.CommentsViewlet"    
+        class=".viewlets.CustomCommentsViewlet"    
         template="templates/comments.pt"
         permission="zope2.View"
         />

@@ -20,8 +20,8 @@
             <fb:comments 
                 tal:attributes="href context/absolute_url;
                                 url context/absolute_url;
-                                returnurl context/absolute_url" 
-                xid="5bc0777ef092ee80e71830febace8dd3" 
+                                returnurl context/absolute_url;
+                                xid view/xid" 
                 canpost="true" 
                 publish_feed="true" 
                 numposts="20" />

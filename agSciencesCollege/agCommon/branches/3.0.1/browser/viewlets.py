@@ -13,9 +13,10 @@ from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 from zope.app.component.hooks import getSite
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
-
+from plone.app.discussion.browser.comments import CommentsViewlet
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
+from hashlib import md5
 
 from Products.Five.browser import BrowserView
 
@@ -567,3 +568,8 @@ class TableOfContentsViewlet(ViewletBase):
             self.enabled = False
 
 
+class CustomCommentsViewlet(CommentsViewlet):
+
+    def update(self):       
+        super(CustomCommentsViewlet, self).update()   
+        self.xid = md5(self.context.absolute_url()).hexdigest()
