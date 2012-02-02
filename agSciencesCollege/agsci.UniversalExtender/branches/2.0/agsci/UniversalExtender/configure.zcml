@@ -260,5 +260,15 @@
         original="getTableContents"
         ignoreOriginal="True"
         />
+
+    <!-- Monkey patch navigation portlet to get manager -->
+    
+    <monkey:patch
+        description="This adds a 'isLeftColumn' method to the navigation renderer"
+        class="plone.app.portlets.portlets.navigation.Renderer"
+        replacement=".patch.navigation_portlet_left_column"
+        original="isLeftColumn"
+        ignoreOriginal="True"
+        />
         
 </configure>

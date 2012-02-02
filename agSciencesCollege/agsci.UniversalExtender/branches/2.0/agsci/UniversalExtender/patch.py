@@ -2,6 +2,7 @@ from Acquisition import aq_base, aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import AgCommonUtilities
 from zope.component import getMultiAdapter
+from plone.app.portlets.portlets import base
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -115,3 +116,13 @@ def getPeople(self):
     portal_catalog = getToolByName(self, 'portal_catalog')
     results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active')
     return [brain.getObject() for brain in results]
+
+
+def navigation_portlet_left_column(self):
+    try:
+        if self.data.__parent__.__portlet_metadata__.get('manager') == 'plone.leftcolumn':
+            return True
+        else:
+            return False
+    except AttributeError, KeyError:
+        return False
