@@ -102,7 +102,7 @@
 
       <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
 
-      <table id="portal-columns">
+      <table id="portal-columns" metal:define-slot="portal-columns">
         <tbody>
           <tr>
             <tal:notajax tal:condition="not:ajax_load">
