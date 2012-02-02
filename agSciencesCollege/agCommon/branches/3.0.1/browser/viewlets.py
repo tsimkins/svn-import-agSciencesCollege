@@ -211,7 +211,7 @@ class AddThisViewlet(ViewletBase):
         except AttributeError:
             pass
 
-        # %%% If in folder_full_view_item, hide it on the individual items.
+        # If in folder_full_view_item, hide it on the individual items.
         if isFolderFullView(self.context):
             self.hide_addthis = True
 
@@ -367,6 +367,28 @@ class FBMetadataViewlet(CustomTitleViewlet):
             self.fb_image = "%s/leftnavbg.jpg" % self.context.portal_url()
             self.link_metadata_image = None
             self.link_mime_type = None
+
+        # FB config %%%
+        self.fbadmins = ['100001031380608','9324502','9370853','1485890864']
+
+        try:
+            self.fbadmins.extend(aq_acquire(self.context, 'fbadmins'))
+        except AttributeError:
+            pass
+            
+        self.fbadmins = ','.join(self.fbadmins)
+
+        try:
+            self.fbappid = aq_acquire(self.context, 'fbappid')
+        except AttributeError:
+            self.fbappid = '374493189244485'
+
+        try:
+            self.fbpageid = aq_acquire(self.context, 'fbpageid')
+        except AttributeError:
+            self.fbpageid = '53789486293'
+            
+
             
 class KeywordsViewlet(ViewletBase):
     
