@@ -48,6 +48,18 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Facebook Comments -->
+    <browser:viewlet
+        name="plone.comments"
+        for="Products.CMFCore.interfaces.IContentish"
+        layer=".interfaces.IThemeSpecific"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        class="plone.app.discussion.browser.comments.CommentsViewlet"    
+        template="templates/comments.pt"
+        permission="zope2.View"
+        />
+
     <!-- Skip to navigation Links -->
 
     <browser:viewlet
