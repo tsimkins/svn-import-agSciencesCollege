@@ -571,5 +571,8 @@ class TableOfContentsViewlet(ViewletBase):
 class CustomCommentsViewlet(CommentsViewlet):
 
     def update(self):       
-        super(CustomCommentsViewlet, self).update()   
-        self.xid = md5(self.context.absolute_url()).hexdigest()
+        super(CustomCommentsViewlet, self).update()
+        try:
+            self.xid = md5(self.context.UID()).hexdigest()
+        except AttributeError:
+            self.xid = md5(self.context.absolute_url()).hexdigest()
