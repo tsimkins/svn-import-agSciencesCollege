@@ -114,7 +114,12 @@
                         <li tal:repeat="website context/getWebsites">
                             <a class='url' href=""
                                tal:attributes="href website"
-                               tal:content="website" />
+                               tal:content="website"
+                               tal:condition="python: '|' not in website" />
+                            <a class='url' href=""
+                               tal:attributes="href python:website.split('|')[0]"
+                               tal:content="python:website.split('|')[1]"
+                               tal:condition="python: '|' in website" />
                         </li>
                     </ul>
                 </div>

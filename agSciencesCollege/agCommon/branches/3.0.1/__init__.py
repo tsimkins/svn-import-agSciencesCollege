@@ -12,6 +12,8 @@ from zope.component import getUtility
 from Acquisition import aq_inner
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.i18n.normalizer import FILENAME_REGEX
+from collective.contentleadimage.config import IMAGE_FIELD_NAME
+from Products.Archetypes.Field import HAS_PIL
 
 import re
 
@@ -586,3 +588,103 @@ def cleverInvokeFactory(context, **kwargs):
     item_id = normalizer.normalize(item_title)
     item_id = findUniqueId(context, item_id)
     return context.invokeFactory(id=item_id, **kwargs)
+
+def calculateDimensions(imageObj, max_size=(1200,1200)):
+
+    if imageObj.width > max_size[0] or imageObj.height > max_size[1]:
+
+        factor = min(float(max_size[0])/float(imageObj.width),
+                        float(max_size[1])/float(imageObj.height))
+
+        w = int(factor*imageObj.width)
+        h = int(factor*imageObj.height)
+        return(w,h)
+
+    else:
+        return (imageObj.width, imageObj.height)
+
+
+
+def rescaleOriginal(context, max_size=(1200,1200), dry_run=True):
+
+    """
+    Steps:
+        * If Image, use own data --or--
+        * If News Item, use image field --or--
+        * Use leadImage field
+        * Determine if it's greater than max dimensions (size)
+        * If yes, scale it down and reset
+    """
+    if not HAS_PIL:
+        return False
+
+    portal_type = context.portal_type
+
+    if portal_type == 'Image':
+        pass # for now
+
+    else:
+
+        if portal_type == 'News Item':
+            imageField = context.getField('image')
+        else:
+            imageField = context.getField(IMAGE_FIELD_NAME)
+
+        imageObj = imageField.get(context)
+        
+        if not imageObj:
+            status = False
+            width = height = 0
+            new_dimensions = (0,0)
+        elif imageObj.content_type not in ('image/jpeg', 'image/png', 'image/gif'):
+            status = False
+            width = height = 0
+            new_dimensions = (0,0)
+            LOG('Products.agCommon.rescaleOriginal', INFO, "Invalid image type %s for %s" % (imageObj.content_type, context.absolute_url) )
+        else:
+
+            width = imageObj.width
+            height = imageObj.height
+            
+            new_dimensions = calculateDimensions(imageObj, max_size=max_size)
+            
+            if (width, height) > new_dimensions:
+                if not dry_run:
+                    if isinstance(imageObj.data, str):
+                        imageData = imageObj.data
+                    else:
+                        imageData = imageObj.data.data
+                    (resizedImage, format) = imageField.scale(imageData, *new_dimensions)
+                    imageField.set(context, resizedImage.read())
+                status = True
+            else:
+                status = False
+
+        return (status, portal_type, context.absolute_url(), (width, height), new_dimensions)
+            
+def findOversizedImages(context,  dry_run=True):
+    
+    rv = []
+    
+    portal_catalog = getToolByName(context, 'portal_catalog')
+    
+    results = [x for x in portal_catalog.searchResults({'hasContentLeadImage' : True})]
+    results.extend([x for x in portal_catalog.searchResults({'portal_type' : 'News Item'})])
+    
+    for r in results:
+        obj = r.getObject()
+        try:
+            rr = rescaleOriginal(obj, dry_run=dry_run)
+            if rr[0]:
+                rv.append(rr)
+        except AttributeError:
+            LOG('Products.agCommon.findOversizedImages', ERROR, "AttributeError for %s" % obj.absolute_url())
+    return rv
+        
+
+
+
+
+
+
+
