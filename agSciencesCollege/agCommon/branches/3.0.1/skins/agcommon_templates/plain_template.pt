@@ -192,7 +192,7 @@
                 </tbody>
             </table>
 
-            <p style="clear: both">&nbsp;</p>
+            <br style="clear: both" />
 
         </tal:main-content>
 

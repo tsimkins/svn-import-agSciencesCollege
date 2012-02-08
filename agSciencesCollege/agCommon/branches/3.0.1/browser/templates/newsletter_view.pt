@@ -55,6 +55,11 @@ h2 a, dt.portletHeader a {
     margin: 10pt 0 0 0;
 }
 
+h2 {
+    font-size: 13pt;
+    margin: 10pt 0 10pt 0;
+}
+
 #portal-column-two h2 {
      font-size: 11pt;
 }
@@ -87,10 +92,17 @@ h2 a, dt.portletHeader a {
 
 h3 {
     font-size: 11pt;
-    margin: 10pt 0 3pt 0;
+    margin: 0 0 3pt 0;
     font-weight: normal;
     clear: both;
     width: 390px;
+    clear: both;
+}
+
+br.separator {
+    clear: both;
+    font-size: 10pt;
+    height: 10pt;
 }
 
 .effectiveDate {
@@ -154,6 +166,12 @@ table td.header {
     padding: 5px 0 0 0;
 }
 
+table td.header div,
+table td.header h1,
+table td.header hr {
+    width: 600px;
+}
+
 table td.footer p {
     font-size: 9pt;
     text-align: center;
@@ -199,7 +217,7 @@ img.leadimage {
     color: #666666; 
     float: right; 
     font-size: 8pt; 
-    margin: 0 0 12pt 12pt; 
+    margin: 6pt 0 12pt 12pt; 
     text-align: right;
 }
 
@@ -378,12 +396,27 @@ img.leadimage {
                     tal:attributes="class dt_class">
 
                     <h3>
+
+                    <tal:newsitem
+                         tal:condition="exists:item_object/image_thumb"
+                         tal:define="image_caption item_object/imageCaption|nothing">
+                            <img align="right"
+                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
+                    </tal:newsitem>
+
+                    <tal:otheritem
+                         tal:condition="exists:item_has_leadimage">
+                            <img align="right"
+                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
+                    </tal:otheritem>
+                    
                         <a href="#"
                            tal:attributes="href item_url;
                                            class string:$item_type_class $item_wf_state_class url"
                            tal:content="item_title_or_id">
                             Item Title
                         </a>
+                        
                     </h3>
 
                     <div class="documentByLine">
@@ -416,23 +449,12 @@ img.leadimage {
 
                 <p tal:condition="item_description|nothing">
 
-                    <tal:newsitem
-                         tal:condition="exists:item_object/image_thumb"
-                         tal:define="image_caption item_object/imageCaption|nothing">
-                            <img align="right"
-                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
-                    </tal:newsitem>
-
-                    <tal:otheritem
-                         tal:condition="exists:item_has_leadimage">
-                            <img align="right"
-                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
-                    </tal:otheritem>
-
                     <span tal:replace="item_description" />
                     
                 </p>
 
+                <br class="separator" />
+                    
                 </tal:item>
             </metal:block>
             </tal:block>
