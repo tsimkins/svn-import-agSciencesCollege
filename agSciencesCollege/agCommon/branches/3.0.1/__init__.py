@@ -681,9 +681,26 @@ def findOversizedImages(context,  dry_run=True):
             LOG('Products.agCommon.findOversizedImages', ERROR, "AttributeError for %s" % obj.absolute_url())
     return rv
         
+def recreateScales(obj):
 
+    try:
+        state = obj._p_changed
+    except ConflictError:
+        raise
+    except Exception:
+        state = 0
 
+    field = obj.getField('image')
+    
+    if field is None:
+        field = obj.getField(IMAGE_FIELD_NAME)
+    
+    if field is not None:
+        field.removeScales(obj)
+        field.createScales(obj)
 
+    if state is None:
+        obj._p_deactivate()
 
 
 
