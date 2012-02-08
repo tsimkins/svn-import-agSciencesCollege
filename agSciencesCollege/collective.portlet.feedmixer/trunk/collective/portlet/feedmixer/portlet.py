@@ -40,7 +40,9 @@ class Assignment(base.Assignment):
     cache_timeout = 900
     assignment_context_path = None
     target_collection = None
-
+    image_position = 'right'
+    image_size = 'small'
+    
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
                  show_header=show_header, show_date=show_date, show_summary=show_summary, 
                  show_image=show_image, show_footer=show_footer,
@@ -48,7 +50,8 @@ class Assignment(base.Assignment):
                  alternate_footer_link=alternate_footer_link,
                  reverse_feed=reverse_feed,
                  assignment_context_path=assignment_context_path,
-                 target_collection=target_collection):
+                 target_collection=target_collection, image_position=image_position, 
+                 image_size=image_size):
         self.title=title
         self.feeds=feeds
         self.items_shown=items_shown
@@ -62,6 +65,8 @@ class Assignment(base.Assignment):
         self.cache_timeout=cache_timeout
         self.assignment_context_path = assignment_context_path
         self.target_collection = target_collection
+        self.image_position = image_position
+        self.image_size = image_size
         
     def Title(self):
         """Returns the title. The function is used by Plone to render <title> correctly."""
@@ -103,6 +108,27 @@ class Renderer(base.Renderer):
     @property
     def target_collection(self):
         return self.data.target_collection
+
+    @property
+    def image_position(self):
+        if self.data.image_position:
+            return self.data.image_position
+        else:
+            return 'right'
+            
+    @property
+    def image_size(self):
+        if self.data.image_size:
+            return self.data.image_size
+        else:
+            return 'small'
+
+    @property
+    def image_suffix(self):
+        if self.image_size == 'large':
+            return '_feedmixerlarge'
+        else:
+            return '_feedmixer'
 
     @property
     def auto_more_url(self):

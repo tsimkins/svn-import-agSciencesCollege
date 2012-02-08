@@ -73,6 +73,24 @@ class IFeedMixer(IPortletDataProvider):
             default=False,
             required=True)
 
+    image_position = schema.Choice(
+            title=_(u"heading_image_position",
+                default=u"Image Position"),
+            description=_(u"description_image_position",
+                default=u""),
+            default='right',
+            required=True,
+            vocabulary="collective.portlet.feedmixer.image_position")
+
+    image_size = schema.Choice(
+            title=_(u"heading_image_size",
+                default=u"Image Size"),
+            description=_(u"description_image_size",
+                default=u""),
+            default='small',
+            required=True,
+            vocabulary="collective.portlet.feedmixer.image_size")
+
     show_footer = schema.Bool(
             title=_(u"heading_show_footer",
                 default=u"Show Portlet Footer"),

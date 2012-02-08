@@ -28,6 +28,16 @@
       component=".vocabulary.CacheTimeoutVocabularyFactory"
       name="collective.portlet.feedmixer.timeouts"
       />
+      
+    <utility
+      component=".vocabulary.ImagePositionVocabularyFactory"
+      name="collective.portlet.feedmixer.image_position"
+      />
+      
+    <utility
+      component=".vocabulary.ImageSizeVocabularyFactory"
+      name="collective.portlet.feedmixer.image_size"
+      />
  
     <plone:portlet
         name="collective.portlet.feedmixer.FeedMixer"

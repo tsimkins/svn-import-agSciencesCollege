@@ -19,3 +19,30 @@ class CacheTimeoutVocabulary(object):
 
 CacheTimeoutVocabularyFactory = CacheTimeoutVocabulary()
 
+
+
+class ImagePositionVocabulary(object):
+    """Vocabulary factory for image position.
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        return SimpleVocabulary([
+            SimpleTerm('right', title=_(u"Right")),
+            SimpleTerm('left', title=_(u"Left")),
+            ])
+
+ImagePositionVocabularyFactory = ImagePositionVocabulary()
+
+class ImageSizeVocabulary(object):
+    """Vocabulary factory for image size.
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        return SimpleVocabulary([
+            SimpleTerm('small', title=_(u"Small")),
+            SimpleTerm('large', title=_(u"Large")),
+            ])
+
+ImageSizeVocabularyFactory = ImageSizeVocabulary()

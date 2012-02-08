@@ -1,7 +1,7 @@
 
 <h2 class="portletHeader" tal:condition="view/show_header|nothing" tal:content="structure view/title" />
 
-<dl class="portlet portletfeedmixer"
+<dl tal:attributes="class string:portlet portletfeedmixer portletfeedmixerimage${view/image_position} portletfeedmixerimage${view/image_size};"
     i18n:domain="collective.portlet.feedmixer">
 
     <tal:entry
@@ -17,7 +17,7 @@
                         className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
-                        imageURL python:hasImage and entry.enclosures[0].href + '_feedmixer' or None;
+                        imageURL python:hasImage and entry.enclosures[0].href + view.image_suffix or None;
                         imageCaption python:hasImage and (hasattr(entry.enclosures[0], 'title') and entry.enclosures[0].title) or entry.title"
             tal:attributes="class className">
 
