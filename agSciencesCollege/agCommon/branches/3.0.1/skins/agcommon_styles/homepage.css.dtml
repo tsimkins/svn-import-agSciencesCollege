@@ -331,45 +331,8 @@ h1, .documentByLine, .documentActions {
     text-align: right;
 }
 
-#centercolumn .portletfeedmixerimageleft .portletItem .rssImage {
-    float: left; 
-    margin: 0.625em 0.625em 0.625em 0;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage {
-    width: 225px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem .title,
-#centercolumn .portletfeedmixerimageleft .portletItem .date,
-#centercolumn .portletfeedmixerimageleft .portletItem .summary {
-    margin-left: 138px;
-}
-
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
-    margin-left: 235px;
-}
-
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
-    margin-right: 235px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem {
-	border-style: none;
-	margin: 0 0.5625em 1em 0.5625em;
-}
-
 #centercolumn .portletfeedmixer .portletItem .rssImage img {
     max-width: 128px;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage img {
-    max-width: 225px;
 }
 
 #centercolumn .portletfeedmixer .portletItem .hasImage {

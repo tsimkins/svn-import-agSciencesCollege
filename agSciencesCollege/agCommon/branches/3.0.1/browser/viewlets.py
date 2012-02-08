@@ -20,133 +20,76 @@ from hashlib import md5
 
 from Products.Five.browser import BrowserView
 
-class AgCommonViewlet(ViewletBase):
+def isHomePage(context):
+    homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'] 
 
-    def update(self):
-        pass
-
-    @property
-    def portal_state(self):
-        return getMultiAdapter((self.context, self.request),
-                                name=u'plone_portal_state')
-
-    @property
-    def context_state(self):
-        return getMultiAdapter((self.context, self.request),
-                                name=u'plone_context_state')
-
-    @property
-    def anonymous(self):
-        return self.portal_state.anonymous()
-
-    @property
-    def homepage_h1(self):
-        try:
-            return aq_acquire(self.context, 'homepage_h1')
-        except AttributeError:
-            return None
-
-    @property
-    def homepage_h2(self):
-        try:
-            return aq_acquire(self.context, 'homepage_h2')
-        except AttributeError:
-            return None
-
-    @property
-    def hide_breadcrumbs(self):
-        # Determine if we should hide breadcrumbs
-
-        if self.homepage_h1 or self.homepage_h2:
-            return True
-    
-        try:
-            return aq_acquire(self.context, 'hide_breadcrumbs')
-        except AttributeError:
-            return False
-
-    @property
-    def isHomePage(self):
-        homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'] 
-    
-        try:
-            layout = self.context.getLayout()
-        except:
-            layout = None
-            
-        if layout in homepage_views:
-            return True
-        else:
-            for v in homepage_views:
-                if v in self.context.absolute_url():
-                    return True
-    
-            return False
-
-    @property    
-    def isFolderFullView(self):
-        folder_views = ['folder_full_view_item', 'folder_full_view'] 
-        parent = self.context.getParentNode()
-        try:
-            default_page = parent.getDefaultPage()
-        except AttributeError:
-            default_page = None
+    try:
+        layout = context.getLayout()
+    except:
+        layout = None
         
-        if default_page and default_page in parent.objectIds():
-            try:
-                layout = parent[default_page].getLayout()
-            except:
-                layout = None
-        else:
-            try:
-                layout = parent.getLayout()
-            except:
-                layout = None
+    if layout in homepage_views:
+        return True
+    else:
+        for v in homepage_views:
+            if v in context.absolute_url():
+                return True
+
+        return False
+
+def isFolderFullView(context):
+    folder_views = ['folder_full_view_item', 'folder_full_view'] 
+    parent = context.getParentNode()
+    try:
+        default_page = parent.getDefaultPage()
+    except AttributeError:
+        default_page = None
     
-        if layout in folder_views:
-            return True
-        else:
-            for v in folder_views:
-                if v in self.context.absolute_url():
-                    return True
-    
-            return False
-    
-    @property
-    def showTwoColumn(self):
-    
+    if default_page and default_page in parent.objectIds():
         try:
-            layout = self.context.getLayout()
+            layout = parent[default_page].getLayout()
         except:
             layout = None
-            
-        if layout in ['factsheet_view']:
-            return True
-        else:
-            return False
+    else:
+        try:
+            layout = parent.getLayout()
+        except:
+            layout = None
 
+    if layout in folder_views:
+        return True
+    else:
+        for v in folder_views:
+            if v in context.absolute_url():
+                return True
 
-class PortletViewlet(AgCommonViewlet):
+        return False
 
-    def can_manage_portlets(self):
+def showTwoColumn(context):
 
-        if not ILocalPortletAssignable.providedBy(self.context):
-            return False
-        mtool = getToolByName(self.context, 'portal_membership')
-        return mtool.checkPermission("Portlets: Manage portlets", self.context)
+    try:
+        layout = context.getLayout()
+    except:
+        layout = None
+        
+    if layout in ['factsheet_view']:
+        return True
+    else:
+        return False
 
-
-class TopNavigationViewlet(AgCommonViewlet):   
+class TopNavigationViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
 
     def update(self):
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
                                         
         try:
             topMenu = aq_acquire(self.context, 'top-menu')
         except AttributeError:
             topMenu = 'topnavigation'
             
-        self.topnavigation = self.context_state.actions().get(topMenu, None)
+        self.topnavigation = context_state.actions().get(topMenu, None)
 
         # URL that contains the section
         self.container_url = None
@@ -174,27 +117,86 @@ class TopNavigationViewlet(AgCommonViewlet):
                 self.container_url = sorted(matches, key=lambda x:len(x), reverse=True)[0]
 
 
-class RightColumnViewlet(PortletViewlet):   
+class RightColumnViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/rightcolumn.pt')
 
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
+        self.isHomePage = isHomePage(self.context)
 
-class CenterColumnViewlet(PortletViewlet):   
+    def can_manage_portlets(self):
+
+        if not ILocalPortletAssignable.providedBy(self.context):
+            return False
+        mtool = getToolByName(self.context, 'portal_membership')
+        return mtool.checkPermission("Portlets: Manage portlets", self.context)
+        
+
+class CenterColumnViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/centercolumn.pt')
 
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
+        self.isHomePage = isHomePage(self.context)
 
-class HomepageImageViewlet(AgCommonViewlet):   
+    def can_manage_portlets(self):
+
+        if not ILocalPortletAssignable.providedBy(self.context):
+            return False
+        mtool = getToolByName(self.context, 'portal_membership')
+        return mtool.checkPermission("Portlets: Manage portlets", self.context)
+
+class HomepageImageViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/homepageimage.pt')
 
+    def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
+        self.isHomePage = isHomePage(self.context)
 
-class AddThisViewlet(AgCommonViewlet):   
+        try:
+            self.homepage_h1 = aq_acquire(self.context, 'homepage_h1')
+        except AttributeError:
+            self.homepage_h1 = None
+
+        try:
+            self.homepage_h2 = aq_acquire(self.context, 'homepage_h2')
+        except AttributeError:
+            self.homepage_h2 = None
+            
+        # Determine if we should hide breadcrumbs
+
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            if self.homepage_h1 or self.homepage_h2:
+                self.hide_breadcrumbs = True
+            else:
+                self.hide_breadcrumbs = False    
+
+
+class AddThisViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/addthis.pt')
 
     def update(self):
-
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
         syntool = getToolByName(self.context, 'portal_syndication')
-
         self.isSyndicationAllowed = syntool.isSyndicationAllowed(self.context)
+        self.anonymous = self.portal_state.anonymous()
 
+        self.isHomePage = isHomePage(self.context)
+        self.showTwoColumn = showTwoColumn(self.context)
+        
         portal_type = getattr(self.context, 'portal_type', None)
 
         if portal_type == 'FSDPerson':
@@ -203,7 +205,6 @@ class AddThisViewlet(AgCommonViewlet):
             self.isPerson = False
         
         ptool = getToolByName(self.context, "portal_properties")
-
         self.hide_addthis = not ptool.agcommon_properties.enable_addthis
 
         try:
@@ -212,25 +213,39 @@ class AddThisViewlet(AgCommonViewlet):
             pass
 
         # If in folder_full_view_item, hide it on the individual items.
-        if self.isFolderFullView:
+        if isFolderFullView(self.context):
             self.hide_addthis = True
 
 
-class FBLikeViewlet(AgCommonViewlet):   
+
+class FBLikeViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/fblike.pt')
 
     def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+        
         self.likeurl = escape(safe_unicode(self.context.absolute_url()))
 
+        self.isHomePage = isHomePage(self.context)
+
+    
+
         
-class FooterViewlet(AgCommonViewlet):   
+class FooterViewlet(ViewletBase):   
     index = ViewPageTemplateFile('templates/footer.pt')
 
     def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.anonymous = self.portal_state.anonymous()
+
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
 
         # Get copyright info
         ptool = getToolByName(self.context, "portal_properties")
-
         self.footer_copyright = ptool.agcommon_properties.footer_copyright
         self.footer_copyright_link = ptool.agcommon_properties.footer_copyright_link
         
@@ -238,18 +253,24 @@ class FooterViewlet(AgCommonViewlet):
             footerlinks = aq_acquire(self.context, 'footerlinks')
         except AttributeError:
             footerlinks = 'footerlinks'
-
-        self.footerlinks = self.context_state.actions().get(footerlinks, None)
         
-class CustomTitleViewlet(AgCommonViewlet):
+        self.footerlinks = context_state.actions().get(footerlinks, None)
+        
+class CustomTitleViewlet(ViewletBase):
 
     def update(self):
+        self.portal_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_portal_state')
+        self.context_state = getMultiAdapter((self.context, self.request),
+                                             name=u'plone_context_state')
+
         try:
             self.page_title = self.view.page_title
         except AttributeError:
             self.page_title = self.context_state.object_title
         
         self.portal_title = self.portal_state.portal_title
+        self.anonymous = self.portal_state.anonymous()
 
         try:
             self.site_title = aq_acquire(self.context, 'site_title')
@@ -370,7 +391,7 @@ class FBMetadataViewlet(CustomTitleViewlet):
             
 
             
-class KeywordsViewlet(AgCommonViewlet):
+class KeywordsViewlet(ViewletBase):
     
     index = ViewPageTemplateFile('templates/keywords.pt')
     
@@ -378,20 +399,24 @@ class KeywordsViewlet(AgCommonViewlet):
 
         super(KeywordsViewlet, self).update()
         
+        context_state = getMultiAdapter((self.context, self.request),
+        name=u'plone_context_state')
         tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
         
         sm = getSecurityManager()
         
-        self.user_actions = self.context_state.actions().get('user', None)
+        self.user_actions = context_state.actions().get('user', None)
         
         plone_utils = getToolByName(self.context, 'plone_utils')
         
         self.getIconFor = plone_utils.getIconFor
         
+        self.anonymous = self.portal_state.anonymous()
+        
 class NextPreviousViewlet(ViewletBase, NextPreviousView):
     render = ZopeTwoPageTemplateFile('templates/nextprevious.pt')
 
-class PathBarViewlet(AgCommonViewlet):
+class PathBarViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/path_bar.pt')
         
     def update(self):
@@ -405,10 +430,32 @@ class PathBarViewlet(AgCommonViewlet):
                                            name='breadcrumbs_view')
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
         
+        self.isHomePage = isHomePage(self.context)
+        
         # Get the site id
+        
         self.site = getSite()['id']
 
-class LeadImageHeader(LeadImageViewlet, AgCommonViewlet):
+        # Determine if we should hide breadcrumbs
+        try:
+            if aq_acquire(self.context, 'hide_breadcrumbs'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            self.hide_breadcrumbs = False
+
+        try:
+            if aq_acquire(self.context, 'homepage_h1'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+        try:
+            if aq_acquire(self.context, 'homepage_h2'):
+                self.hide_breadcrumbs = True
+        except AttributeError:
+            pass
+
+class LeadImageHeader(LeadImageViewlet):
 
     def update(self):
     
@@ -466,14 +513,16 @@ class UnitAnalyticsViewlet(AnalyticsViewlet):
         return snippet
         
 
-class RSSViewlet(AgCommonViewlet):
+class RSSViewlet(ViewletBase):
     def update(self):
         super(RSSViewlet, self).update()
         syntool = getToolByName(self.context, 'portal_syndication')
         if syntool.isSyndicationAllowed(self.context):
             self.allowed = True
-            self.url = '%s/RSS' % self.context_state.object_url()
-            self.page_title = self.context_state.object_title
+            context_state = getMultiAdapter((self.context, self.request),
+                                            name=u'plone_context_state')
+            self.url = '%s/RSS' % context_state.object_url()
+            self.page_title = context_state.object_title
         else:
             self.allowed = False
 
@@ -498,7 +547,7 @@ class SiteRSSViewlet(ViewletBase):
         
     render = ViewPageTemplateFile('templates/site_rss.pt')    
 
-class TableOfContentsViewlet(AgCommonViewlet):
+class TableOfContentsViewlet(ViewletBase):
 
     index = ViewPageTemplateFile('templates/toc.pt')
 
@@ -515,7 +564,7 @@ class TableOfContentsViewlet(AgCommonViewlet):
                 # schema not updated yet
                 self.enabled = False
 
-        if self.isFolderFullView:
+        if isFolderFullView(self.context):
             self.enabled = False
 
 
