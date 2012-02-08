@@ -11,6 +11,7 @@
 
      <metal:content-core metal:fill-slot="content-core"
          tal:define="view nocall:context/@@folder_listing_z3;
+                     test nocall:view/test;
                      standalone_view python:True;">
 
         <metal:body_macro metal:define-macro="body">

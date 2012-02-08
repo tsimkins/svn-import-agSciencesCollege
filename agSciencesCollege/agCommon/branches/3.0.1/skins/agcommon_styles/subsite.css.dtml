@@ -19,6 +19,18 @@ body.template-atct_edit #image-header {
     display: none;
 }
 
+#portal-column-content.sr #image-header {
+	margin: -1.75em 0 0 0;
+}
+
+#image-header.nobreadcrumbs {
+    margin-top: 0.1875em;
+}
+
+#portal-column-content.sr #image-header.nobreadcrumbs {
+    margin-top: 0;
+}
+
 #portal-breadcrumbs {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
@@ -33,10 +45,6 @@ body.template-atct_edit #image-header {
 
 #portal-column-content.sr #portal-breadcrumbs {
     margin: 0;
-}
-
-#portal-column-content.sr #image-header {
-	margin: -1.75em 0 0 0;
 }
 
 #portal-breadcrumbs .breadcrumbSeparator {
@@ -136,38 +144,6 @@ body.template-atct_edit #image-header {
 	padding: 0;
 }
 
-#centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0 0 0;
-	border-style: dashed;
-	border-color: #CCCCCC;
-	padding: 0;
-}
-
-/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
-#centercolumn .portletfeedmixer .portletItem {
-    height: 1%;
-    overflow: hidden;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage {
-    float: right; 
-    margin: 10px 0 10px 10px;
-    width: 128px;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage img {
-    max-width: 128px;
-}
-
-#centercolumn .portletfeedmixer .portletItem .hasImage {
-	width: 370px;
-}
-
-#centercolumn .portlet dd:first-child {
-	border-width: 0 0 0 0;
-}
-
 #centercolumn .portletItem a.title {
 	font-size: 1.05em;
 	font-weight: bold;
@@ -190,6 +166,75 @@ body.template-atct_edit #image-header {
 	margin: 10px 0;
 	font-weight: normal;
 	text-align: left;
+}
+
+#centercolumn .portletfeedmixer .portletItem {
+	border-width: 1px 0 0 0;
+	border-style: dashed;
+	border-color: #CCCCCC;
+	padding: 0;
+}
+
+/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
+#centercolumn .portletfeedmixer .portletItem {
+    height: 1%;
+    overflow: hidden;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage {
+    float: right; 
+    margin: 10px 0 10px 10px;
+    width: 128px;
+    text-align: right;
+}
+
+#centercolumn .portletfeedmixerimageleft .portletItem .rssImage {
+    float: left; 
+    margin: 0.625em 0.625em 0.625em 0;
+    text-align: right;
+}
+
+#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage {
+    width: 225px;
+}
+
+#centercolumn .portletfeedmixerimageleft .portletItem .title,
+#centercolumn .portletfeedmixerimageleft .portletItem .date,
+#centercolumn .portletfeedmixerimageleft .portletItem .summary {
+    margin-left: 138px;
+}
+
+#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
+#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
+#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
+    margin-left: 235px;
+}
+
+#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
+#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
+#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
+    margin-right: 235px;
+}
+
+#centercolumn .portletfeedmixerimageleft .portletItem {
+	border-style: none;
+	margin: 0 0.5625em 1em 0.5625em;
+}
+
+#centercolumn .portletfeedmixer .portletItem .rssImage img {
+    max-width: 128px;
+}
+
+#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage img {
+    max-width: 225px;
+}
+
+#centercolumn .portletfeedmixer .portletItem .hasImage {
+	width: 370px;
+}
+
+#centercolumn .portlet dd:first-child {
+	border-width: 0 0 0 0;
 }
 
 #centercolumn .portletFooter a {

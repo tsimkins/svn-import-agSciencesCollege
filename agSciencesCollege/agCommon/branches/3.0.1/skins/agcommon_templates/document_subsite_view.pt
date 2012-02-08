@@ -37,9 +37,14 @@
                 </metal:field>
             </p>
 
-            <metal:field use-macro="python:here.widget('text', mode='view')">
-                Body text
-            </metal:field>
+            <tal:bodytext                 
+                 condition="context/getText|nothing">
+
+                <metal:field use-macro="python:here.widget('text', mode='view')">
+                    Body text
+                </metal:field>
+
+            </tal:bodytext>
 
         </tal:show_title>
         <tal:no_title condition="not:context/Description">

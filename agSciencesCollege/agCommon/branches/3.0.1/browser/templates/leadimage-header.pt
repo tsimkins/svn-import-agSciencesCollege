@@ -1,16 +1,20 @@
-<div id="image-header" class="leadimage"
-    tal:define="tag python: view.bodyTag() and view.showHeader"
-    tal:condition="tag" 
-    tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage_large)">
-<!-- -->
-</div>
-
-<tal:multipleImages
-    tal:define="tag python: view.showHeader and not view.bodyTag();
-                backgroundImages python:'background-images' in context.keys()"
-    tal:condition="python: backgroundImages and tag">
-    <div id="image-header">
-        <!-- -->
+<tal:breadcrumbs define="div_class python: (view.hide_breadcrumbs or not view.anonymous) and 'nobreadcrumbs' or ''">
+    <div id="image-header" 
+        tal:define="tag python: view.bodyTag() and view.showHeader"
+        tal:condition="tag" 
+        tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage_large);
+                        class string:leadimage ${div_class}">
+    <!-- -->
     </div>
-    <script type="text/javascript" src="background-images/getSubsiteHomepageImage.js"></script>
-</tal:multipleImages>
+    
+    <tal:multipleImages
+        tal:define="tag python: view.showHeader and not view.bodyTag();
+                    backgroundImages python:'background-images' in context.keys()"
+        tal:condition="python: backgroundImages and tag">
+        <div id="image-header"
+             tal:attributes="class div_class">
+            <!-- -->
+        </div>
+        <script type="text/javascript" src="background-images/getSubsiteHomepageImage.js"></script>
+    </tal:multipleImages>
+</tal:breadcrumbs>
