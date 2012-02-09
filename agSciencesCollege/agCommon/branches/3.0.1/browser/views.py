@@ -11,6 +11,7 @@ from BeautifulSoup import BeautifulSoup
 from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 import re
+from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
@@ -81,9 +82,17 @@ class AgCommonUtilities(BrowserView):
             return None        
      
     def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
-        # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
+
         if order_by_id:
-            return sorted(topicContents, key=lambda x: x.getId in order_by_id and (order_by_id.index(x.getId) + 1) or (len(order_by_id) + 1))
+
+            def getId(item):
+                if isinstance(item, AbstractCatalogBrain):
+                    return item.getId
+                else:
+                    return item.getId()
+
+            # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
+            return sorted(topicContents, key=lambda x: getId(x) in order_by_id and (order_by_id.index(getId(x)) + 1) or (len(order_by_id) + 1))
             
             # Reference code
             # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
@@ -111,20 +120,32 @@ class AgCommonUtilities(BrowserView):
         elif order_by_title:
             ordered = []
             uuids = {}
-  
+
+            def getUID(item):
+                if isinstance(item, AbstractCatalogBrain):
+                    return item.UID
+                else:
+                    return item.UID()
+
+            def getTitle(item):
+                if isinstance(item, AbstractCatalogBrain):
+                    return item.Title
+                else:
+                    return item.Title()
+
             for t in order_by_title:
                 r = re.compile(t)
   
                 # Pull out matching items
                 for item in topicContents:
-                    if not uuids.get(item.UID) and r.search(item.Title):
+                    if not uuids.get(getUID(item)) and r.search(getTitle(item)):
                         ordered.append(item)
-                        uuids[item.UID] = 1
+                        uuids[getUID(item)] = 1
   
             for item in topicContents:
-                if not uuids.get(item.UID):
+                if not uuids.get(getUID(item)):
                     ordered.append(item)
-                    uuids[item.UID] = 1
+                    uuids[getUID(item)] = 1
 
             return ordered
         else:
