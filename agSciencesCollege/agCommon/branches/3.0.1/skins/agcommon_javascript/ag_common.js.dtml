@@ -506,7 +506,7 @@ jq(document).ready(
 jq(document).ready(
     function () {
 
-        jq('body.portaltype-formsavedataadapter #content form').submit(
+        jq('body.portaltype-formsavedataadapter #content form input[name="clearSavedFormInput"]').parent().submit(
             function(event) {
                 return confirm('Are you sure you want to clear the saved data?');
             }
