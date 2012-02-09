@@ -2040,6 +2040,10 @@ body.template-folder_full_view #content-core .item {
     margin-top: 0;
 }
 
+.pfg-form span.required {
+    color: #ff0000;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
