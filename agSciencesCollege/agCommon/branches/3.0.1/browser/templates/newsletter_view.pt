@@ -95,8 +95,6 @@ h3 {
     margin: 0 0 3pt 0;
     font-weight: normal;
     clear: both;
-    width: 390px;
-    clear: both;
 }
 
 br.separator {
