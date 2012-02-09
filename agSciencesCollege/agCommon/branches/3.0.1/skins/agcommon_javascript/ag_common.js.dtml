@@ -502,6 +502,18 @@ jq(document).ready(
     }
 );
 
+/* Add an 'Are you SURE you want to delete your data?' prompt to the 'Clear Saved Input' box on the save data adapter. */
+jq(document).ready(
+    function () {
+
+        jq('body.portaltype-formsavedataadapter #content form').submit(
+            function(event) {
+                return confirm('Are you sure you want to clear the saved data?');
+            }
+        );
+
+    }
+);
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */
