@@ -248,17 +248,21 @@ def getPanoramaHomepageImage(context, homepage_type="panorama"):
                 var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
         
                 var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
-                
+                                
                 homepageImage.insertBefore(portalColumns);
                 
                 homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
                 homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
                 homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
         
-                if (breadcrumbs)
+                if (breadcrumbs.length)
                 {
                     breadcrumbs.detach();
                     breadcrumbs.insertBefore(homepageImage);
+                }
+                else
+                {
+                    homepageImage.addClass("nobreadcrumbs");
                 }
             }
         }

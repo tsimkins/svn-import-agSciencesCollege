@@ -21,7 +21,9 @@
         
         <metal:js fill-slot="javascript_head_slot">
             <!-- Homepage JavaScript -->
-            <script type = "text/javascript" src = "background-images/getHomepageImage.js"></script>
+            <script tal:condition="python:'background-images' in context.keys()" 
+                    type="text/javascript" 
+                    src="background-images/getHomepageImage.js"></script>
         </metal:js>
         
         <metal:title fill-slot="content-title" tal:condition="not:view/hasText">

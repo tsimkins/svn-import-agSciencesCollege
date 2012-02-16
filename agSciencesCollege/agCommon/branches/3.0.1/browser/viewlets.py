@@ -362,7 +362,7 @@ class FBMetadataViewlet(CustomTitleViewlet):
             self.link_metadata_image = None
             self.link_mime_type = None
 
-        # FB config %%%
+        # FB config
         self.fbadmins = ['100001031380608','9324502','9370853','1485890864']
 
         try:

@@ -21,10 +21,6 @@
 	margin-top: 0.1875em;
 }
 
-body.icons-on #homepageimage {
-    margin-top: 0;
-}
-
 /* -------------- Homepage Image overlay ------------------ */
 
 #homepageimage h1, #homepageimage h2 {
