@@ -70,7 +70,7 @@ body {
 #portal-searchbox input.searchButton {
     background-color: transparent;
     background-image: none;
-    border: 0;
+    border: none;
     padding: 0.125em 0 0 0;
     margin: 0 0 0 -0.125em;
     vertical-align: middle;
@@ -606,7 +606,7 @@ body {
     text-align: left;
     margin: 0 auto;
     padding: 0 0 0 0.375em;
-    border: 0;
+    border: none;
     list-style-type: none;
     font-size: 0.78125em;
     letter-spacing: 0.01em;
@@ -652,7 +652,7 @@ body {
     display: inline;
     color: &dtml-topnavigationTextColor;;
     text-decoration: none;
-    border: 0;
+    border: none;
     line-height: 1.6875em;
 }
 
@@ -703,7 +703,7 @@ body {
 }
 
 #portal-column-two .portlet {
-    border-width: 0;
+    border: none;
     margin: 0;
     background-color: transparent;
 }
@@ -764,13 +764,13 @@ body {
 #portal-column-two ul li a {
     color: &dtml-insideRightPortletLinkColor;;
     text-decoration: none;
-    border: 0;
+    border: none;
     padding: 0;
 }
 
 #portal-column-two .navTreeCurrentItem, 
 #portal-column-two .navTreeItemInPath {
-    border: 0 !important;
+    border: none !important;
     font-weight: bold;
     background-color: transparent;
 }
@@ -886,7 +886,7 @@ html.kupu-html {
     font-size: 1.625em;
     margin: 1.25em 0 0.5em 0;
     padding: 0 0 0.0625em 0;
-    border: 0;
+    border: none;
     font-weight: normal;
     border-bottom: 1px solid #CCCCCC;
 }
@@ -998,7 +998,7 @@ html.kupu-html {
     color: &dtml-documentSubHeadingColor;;
     margin: 1.125em 0 0 0;
     padding: 0;
-    border: 0;
+    border: none;
     font-weight: bold;
     font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
 }
@@ -1028,7 +1028,7 @@ html.kupu-html {
 }
 
 #content .tileImage {
-    border: 0;
+    border: none;
     margin-top: 0;
 }
 
@@ -1042,7 +1042,7 @@ html.kupu-html {
     font-size: 1.25em;
     color: #333333;
     padding: 0 4px 4px 4px;
-    border: 0 solid #CCCCCC;
+    border: none;
     display: block;
     float: right;
     margin: -4px 0 0 8px;
@@ -1105,6 +1105,7 @@ dd.portletItem p {
 
 .portlet {
     margin: 0;
+    border: none;
 }
 
 .contentLeadImageContainer {
@@ -1128,7 +1129,7 @@ dd.portletItem p {
 }
 
 .image-left, .image-right {
-    border: 0;
+    border: none;
 }
 
 /* Paragraph and Unordered List readability per cmore */

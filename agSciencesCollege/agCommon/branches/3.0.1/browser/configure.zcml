@@ -194,6 +194,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="agcommon.homepage_text"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.HomepageTextViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <!-- The related items --> 
     <browser:viewlet
         name="plone.belowcontentbody.relateditems"
@@ -343,7 +351,66 @@
         layer=".interfaces.IThemeSpecific"
         />
 
-    <!-- Views -->        
+    <!-- Views -->
+    
+    <!-- Homepage View --> 
+    <browser:page
+        for="*"
+        name="document_homepage_view"
+        class=".views.HomepageView"
+        template="templates/document_homepage_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATDocument"
+        menu="plone_displayviews"
+        title="Homepage View"
+        action="@@document_homepage_view"
+        layer=".interfaces.IThemeSpecific"
+        description="Homepage View with a right column"
+    />
+
+    <!-- Subsite View -->
+    <browser:page
+        for="*"
+        name="document_subsite_view"
+        class=".views.HomepageView"
+        template="templates/document_subsite_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATDocument"
+        menu="plone_displayviews"
+        title="Subsite View"
+        action="@@document_subsite_view"
+        layer=".interfaces.IThemeSpecific"
+        description="Homepage View with no right column, shorter image size"
+    />
+
+    <!-- Panorama Homepage View -->
+    <browser:page
+        for="*"
+        name="panorama_homepage_view"
+        class=".views.HomepageView"
+        template="templates/panorama_homepage_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATDocument"
+        menu="plone_displayviews"
+        title="Panorama Homepage View"
+        action="@@panorama_homepage_view"
+        layer=".interfaces.IThemeSpecific"
+        description="Homepage View with a panoramic image at the top"
+    />
+
+    <!-- Agenda View -->
     <browser:page
         for="*"
         name="agenda_view"
@@ -370,7 +437,9 @@
         layer=".interfaces.IThemeSpecific"
         description="A view of events in agenda format"
     />
-    
+
+    <!-- Event Table View -->
+
     <browser:page
         for="*"
         name="event_table"
@@ -380,6 +449,25 @@
         permission="zope2.View"
     />
 
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATFolder"
+        menu="plone_displayviews"
+        title="Event Table"
+        action="@@event_table"
+        layer=".interfaces.IThemeSpecific"
+        description="A view of events in table format"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="Event Table"
+        action="@@event_table"
+        layer=".interfaces.IThemeSpecific"
+        description="A view of events in table format"
+    />
+
+    <!-- Newsletter View -->
     <browser:page
         for="*"
         name="newsletter_view"
@@ -389,6 +477,7 @@
         permission="zope2.View"
     />
 
+    <!-- Newsletter Email View -->
     <browser:page
         for="*"
         name="newsletter_email"
@@ -397,6 +486,8 @@
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
     />
+
+    <!-- Z3 Replacement Folder Views -->
 
     <browser:page
         for="*"
@@ -425,6 +516,8 @@
         permission="zope2.View"
     />
 
+    <!-- Utilities View -->
+    
     <browser:page
         for="*"
         name="agcommon_utilities"
@@ -434,23 +527,6 @@
         allowed_interface=".views.IAgCommonUtilities"
     />
     
-    <browser:menuItem
-        for="Products.ATContentTypes.interface.IATFolder"
-        menu="plone_displayviews"
-        title="Event Table"
-        action="@@event_table"
-        layer=".interfaces.IThemeSpecific"
-        description="A view of events in table format"
-    />
-
-    <browser:menuItem
-        for="Products.ATContentTypes.interface.IATTopic"
-        menu="plone_displayviews"
-        title="Event Table"
-        action="@@event_table"
-        layer=".interfaces.IThemeSpecific"
-        description="A view of events in table format"
-    />
 
     <include file="fsd.zcml" />
 

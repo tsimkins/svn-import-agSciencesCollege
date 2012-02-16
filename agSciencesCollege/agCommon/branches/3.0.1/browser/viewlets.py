@@ -65,22 +65,32 @@ class AgCommonViewlet(ViewletBase):
         except AttributeError:
             return False
 
-    @property
-    def isHomePage(self):
-        homepage_views = ['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'] 
-    
+    def isLayout(self, views=[]):
         try:
             layout = self.context.getLayout()
         except:
             layout = None
             
-        if layout in homepage_views:
+        if layout in views:
             return True
         else:
-            for v in homepage_views:
+            for v in views:
                 if v in self.context.absolute_url():
                     return True
     
+            return False
+
+    @property
+    def isHomePage(self):
+        return self.isLayout(views=['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'])
+
+    @property
+    def showHomepageText(self):
+        if self.context.getText() and self.isLayout(views=['document_homepage_view']):
+            return True
+        elif ( self.context.getText() or self.context.Description ) and self.isLayout(views=['document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view']):
+            return True
+        else:
             return False
 
     @property    
@@ -180,6 +190,10 @@ class RightColumnViewlet(PortletViewlet):
 
 class CenterColumnViewlet(PortletViewlet):   
     index = ViewPageTemplateFile('templates/centercolumn.pt')
+
+
+class HomepageTextViewlet(AgCommonViewlet):   
+    index = ViewPageTemplateFile('templates/homepagetext.pt')
 
 
 class HomepageImageViewlet(AgCommonViewlet):   

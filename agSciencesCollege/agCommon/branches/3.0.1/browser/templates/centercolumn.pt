@@ -1,11 +1,11 @@
-<div id="centercolumn" tal:condition="view/isHomePage"
+<div id="centercolumn" class="agCommonPortlet" tal:condition="view/isHomePage"
      tal:define="plone_view context/@@plone;
                  hsr python:plone_view.have_portlets('agcommon.rightcolumn', view);"
-     tal:attributes="class python:hsr and 'sr' or ''">
+     tal:attributes="class python:hsr and 'sr agCommonPortlet' or 'agCommonPortlet'">
 
 	<tal:block replace="structure provider:agcommon.centercolumn" />
 
-    <div class="managePortletsLink agCommonPortlet" tal:condition="view/can_manage_portlets">
+    <div class="managePortletsLink customManagePortletsLink" tal:condition="view/can_manage_portlets">
         <a title="Center Column portlet management screen"
             tal:attributes="href string:${context/absolute_url}/@@manage-centercolumn"
             >Manage Center Column</a>

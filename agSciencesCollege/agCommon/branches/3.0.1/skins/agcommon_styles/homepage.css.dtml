@@ -5,12 +5,6 @@
 
 /* YOUR CSS RULES START HERE */
 
-/* Hide h1, byline and documentactions */
-
-h1, .documentByLine, .documentActions {
-	display: none;
-}
-
 /* ================ Homepage Image ================ */
 
 #homepageimage {
@@ -18,16 +12,20 @@ h1, .documentByLine, .documentActions {
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: -1.875em 0 0.1875em 0;
+	margin: -1.875em 0.1875em 0.1875em 0.1875em;
 	text-align: left;
 	padding: 0;
 }
 
 #homepageimage.nobreadcrumbs {
-	margin-top: 0;
+	margin-top: 0.1875em;
 }
 
-/* Homepage Image overlay */
+body.icons-on #homepageimage {
+    margin-top: 0;
+}
+
+/* -------------- Homepage Image overlay ------------------ */
 
 #homepageimage h1, #homepageimage h2 {
 	display: block;
@@ -76,402 +74,19 @@ h1, .documentByLine, .documentActions {
 	position: absolute;
 }
 
-
-/* ================= Columns and Portlets =====================*/
-
-#rightcolumn .portletHeader, #centercolumn .portletHeader {
-	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	font-weight: bold;
-	padding: 0.25em !important;
-	text-transform: uppercase;
-	border-width: 0;
-	margin: 0;
-	line-height: 1.75em;
-	font-size: 0.6875em;
-}
-
-#centercolumn .portletHeader {
-	padding-left: 0.75em !important;
-	padding-right: 0.5em !important;
-}
-
-#rightcolumn .portletHeader {
-	text-align: center;
-}
-
-#rightcolumn .portletHeader a, #centercolumn .portletHeader a {  
-	color: &dtml-frontRightPortletHeaderTextColor; !important;
-}
-
-/* ================= Center Column =====================*/
-
-#centercolumn h1.documentFirstHeading {
-	display: block;
-}
-
-#centercolumn.sr .portletWrapper,
-.icons-on #centercolumn .portletWrapper {
-	margin-right: 0.1875em;
-}
-
-
-
-/* ================= Right Column =====================*/
-
-#rightcolumn {
-    display: block;
-	margin: 0;
-	padding: 0;
-	font-weight: normal;
-	background-color: &dtml-frontRightPortletBackgroundColor;;
-	color: &dtml-frontRightPortletTextColor;;
-	width: 11em;
-	float: right;
-}
-
-#rightcolumn .portlet {
-    border-bottom: none;
-}
-
-#rightcolumn .portletItem {
-	background-color: &dtml-frontRightPortletBackgroundColor;;
-	border-width: 0;
-	color: &dtml-frontRightPortletTextColor;;
-}
-
-#rightcolumn .portletItem a {
-	color: &dtml-frontRightPortletLinkColor;;
-}
-
-#rightcolumn .portletItem a:hover {
-	color: &dtml-frontRightPortletLinkHoverColor;;
-	background-color: transparent;
-}
-
-#rightcolumn .portletItem ul {
-	margin: 0;
-	padding: 0;
-}
-
-#rightcolumn .portletItem li {
-	list-style-image: none;
-	list-style-type: none;
-	margin: 0 0 0.25em;
-	padding: 0.125em 0 0.125em 0.125em;
-	color: &dtml-frontRightPortletTextColor;;
-}
-
-#rightcolumn .portletFooter {
-	background-color: &dtml-frontRightPortletBackgroundColor;; 
-	font-size: 0.6875em;
-    border: 0;
-}
-
-#rightcolumn .navTreeCurrentItem {
-    border: 0 !important;
-    font-weight: bold;
-}
-
-#rightcolumn .portletItem li, #rightcolumn .portletItem p {
-    color: &dtml-frontRightPortletTextColor;;
-}
-
-#centercolumn .portletItem {
-    padding: 0;
-    font-size: 0.8125em;
-}
-
-#centercolumn .portletStaticText .portletItem {
-    padding: 0.75em 0;
-}
-
-#rightcolumn .portletItem a, #rightcolumn .portletItem a:visited,
- #content #rightcolumn .portlet dd a:visited {
-	color: &dtml-frontRightPortletLinkColor;;
-	display: block;
-	text-decoration: none;
-	border: 0;
-	font-weight: normal;
-}
-
-#rightcolumn dl.people .portletItem{
-    color: #333333;
-}
-
-#rightcolumn dl.people .portletItem h2 a{
-    font-weight: bold !important;
-}
-
-#rightcolumn .portletItem {
-	background-color: &dtml-frontRightPortletBackgroundColor;;
-	font-size: 0.75em;
-	padding: 0.5em 0.7em;
-}
-
-#rightcolumn .portletItem .date {
-	color: #666666;
-	font-weight: normal;
-	font-size: 0.9375em;
-}
-
-#rightcolumn .portletWrapper {
-	border: 0;
-	padding: 0;
-	margin-left: 0;
-}
-
-
-#rightcolumn .portletItem a.more,
-#centercolumn .portletItem a.more {
-	border: 0;
-}
-
-#rightcolumn .portletItem a:hover,
-#centercolumn .portletItem a:hover {
-	color: #3366CC;
-}
-
-#rightcolumn .portletfeedmixer a.title {
-    margin-top: 0.25em;
-}
-
-#rightcolumn dl.portletfeedmixer span.summary {
-    line-height: 1.5em;
-}
-
-#rightcolumn .people h2 {
-    border: none;
-    font-size: 1.25em;
-}
-
-#centercolumn {
-	display: block;
-}
-
-#centercolumn.sr, body.icons-on #centercolumn {
-	border-width: 0 11em 0 0;
-	border-color: &dtml-frontRightPortletBackgroundColor;;
-	border-style: solid;
-}    
-
-#centercolumn dd {
-	padding: 0;
-}
-
-#centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background-color: transparent;
-	border-width: 0;
-	padding: 0;
-}
-
-#centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0 0 0;
-	border-style: dashed;
-	border-color: #CCCCCC;
-}
-
-#centercolumn .portletItem {
-    margin: 0 0.5625em;
-}
-
-#centercolumn .portletItem p {
-    padding: 0;
-}
-
-#centercolumn .portlet dd:first-child {
-	border-width: 0 0 0 0;
-}
-
-#centercolumn .portletItem a.title {
-	font-weight: bold;
-	margin-top: 0.5em;
-	text-decoration: none;
-	border-width: 0;
-	display: block;
-}
-
-#centercolumn .portletItem span.date  {
-	color: #76797C;
-	font-weight: normal;
-	text-align: left;
-	font-size: 0.8125em;
-}
-
-#centercolumn .portletItem span.summary {
-	color: #333333;
-	margin: 0.5em 0 0.875em 0;
-	font-weight: normal;
-	text-align: left;
-	font-size: 0.9375em;
-}
-
-#centercolumn .portletFooter a {
-	color: #265FCF;
-	display: block;
-	margin: 0.5em 0.5em 0 0;
-	text-align: right;
-	text-decoration: none;
-	border-width: 0;
-    margin-bottom: 1em;
-    font-size: 0.6875em;
-}
-
-
-/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
-#centercolumn .portletfeedmixer .portletItem {
-    height: 1%;
-    overflow: hidden;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage {
-    float: right; 
-    margin: 0.625em 0 0.625em 0.625em;
-    width: 128px;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem .rssImage {
-    float: left; 
-    margin: 0.625em 0.625em 0.625em 0;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage {
-    width: 225px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem .title,
-#centercolumn .portletfeedmixerimageleft .portletItem .date,
-#centercolumn .portletfeedmixerimageleft .portletItem .summary {
-    margin-left: 138px;
-}
-
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
-    margin-left: 235px;
-}
-
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
-    margin-right: 235px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem {
-	border-style: none;
-	margin: 0 0.5625em 1em 0.5625em;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage img {
-    max-width: 128px;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage img {
-    max-width: 225px;
-}
-
-#centercolumn .portletfeedmixer .portletItem .hasImage {
-	width: 370px;
-}
-
-#content {
-    margin: 0.1875em;
-    width: auto;
-    font-size: 1em;
-}
-
-#content, #content {
-	padding: 0 !important;
-}
-
-.documentEditable  {
-    padding: 0 !important;
-}
-
-#portal-column-content .documentEditable #content {
-    padding: 0.25em 0.25em 0 0.25em !important;
-	border-width: 0 0 1px 0;
-}
-
-.documentEditable .contentActions {
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid &dtml-contentViewBorderColor;;
-}
-
 /* =================== Portlets =================== */
-
-/* Hide managePortletsLink in homegrown portlets. */
-
-#rightcolumn .managePortletsLink,
-#homepageimage .managePortletsLink,
-#centercolumn .managePortletsLink {
-	display: none;
-}
-
-/* manage agCommonPortlets */
-
-.agCommonPortlet {
-    display: block !important;
-    margin: 1.5em 0 0 0;
-}
-
-#rightcolumn .agCommonPortlet {
-    width: 175px;
-    margin: 2em 0 0 0;
-}
-
-#centercolumn .portletfeedmixer dd.first {
-	border-width: 0 0 0 0;
-	padding-top: 0.25em;
-}
-
-#centercolumn dl.portlet {
-    margin-bottom: 1em;
-}
-
-/* Don't show addthis on homepage */ 
-#addthis {
-	display: none;
-}
-
-#portal-breadcrumbs {
-	background-color: &dtml-breadcrumbBackgroundColor;;
-	color: &dtml-breadcrumbTextColor;;
-	padding: 0 0.75em 0.1875em 0.75em;
-	z-index: 20;
-	position: relative;
-	opacity: 0.80;
-	filter: alpha(opacity=80);	
-	margin: 0.1875em;
-	line-height: 1.5em; 
-}
-
-#portal-breadcrumbs .breadcrumbSeparator {
-	color: &dtml-breadcrumbSeparatorColor;;
-}
-
-#portal-breadcrumbs a {
-	color: &dtml-breadcrumbLinkColor;;
-}
-
-.contentLeadImageContainer {
-    display: none;
-}
-
-#parent-fieldname-description {
-    display: none;
-}
 
 #portal-column-two {
     display: none;
 }
 
+/* ================== Homepage Text ================= */
+
+#content #homepage-text.sr {
+    margin-right: 12.125em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
-
-
 

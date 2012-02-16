@@ -26,14 +26,6 @@
     border-bottom: none;
 }
 
-#portal-column-content {
-    padding: 0.8125em 1.25em 0 1.25em !important;
-}
-
-.icons-on #portal-column-content {
-    padding: 0.8125em 0.625em 0 0.625em !important;
-}
-
 #addthis {
     display: none;
 }

@@ -1,8 +1,8 @@
-<div id="rightcolumn" tal:condition="view/isHomePage">
+<div id="rightcolumn" class="agCommonPortlet" tal:condition="view/isHomePage">
 
 	<tal:block replace="structure provider:agcommon.rightcolumn" />
 
-    <div class="managePortletsLink agCommonPortlet" tal:condition="view/can_manage_portlets">
+    <div class="managePortletsLink customManagePortletsLink" tal:condition="view/can_manage_portlets">
         <a title="Right Column portlet management screen"
             tal:attributes="href string:${context/absolute_url}/@@manage-rightcolumn"
             >Manage Right Column</a>

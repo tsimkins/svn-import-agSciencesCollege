@@ -5,6 +5,8 @@
 
 /* YOUR CSS RULES START HERE */
 
+/* ================== Image header ================ */
+
 #image-header {
 	margin: -1.9375em 0.1875em 0.1875em 0.1875em;
 }
@@ -31,239 +33,24 @@ body.template-atct_edit #image-header {
     margin-top: 0;
 }
 
-#portal-breadcrumbs {
-	background-color: &dtml-breadcrumbBackgroundColor;;
-	color: &dtml-breadcrumbTextColor;;
-	padding: 0 0.5em 0.1875em 0.5em;
-	line-height: 1.5em;
-	z-index: 20;
-	position: relative;
-	opacity: 0.80;
-	filter: alpha(opacity=80);	
-	margin: 0.1875em;
+/* ========== Center column ========= */
+#centercolumn,
+#centercolumn.sr {
+    border: none;
+    margin: 0 0.5em;
 }
 
-#portal-column-content.sr #portal-breadcrumbs {
-    margin: 0;
+#centercolumn .portletWrapper {
+	margin: 0 0 1em 0;
 }
 
-#portal-breadcrumbs .breadcrumbSeparator {
-	color: &dtml-breadcrumbSeparatorColor;;
-}
 
-#portal-breadcrumbs a {
-	color: &dtml-breadcrumbLinkColor;;
-}
-
-#content h1, #content h1.documentFirstHeading {
-    margin-top: 0.25em;
-}
-
-.contentLeadImageContainer {
-    display: none;
-}
-
-#rightcolumn .managePortletsLink,
-#centercolumn .managePortletsLink {
-	display: none;
-}
-
-.agCommonPortlet {
-    display: block !important;
-    margin: 1.5em 0 0 0;
-}
+/* ========== Right column ========= */
 
 #rightcolumn {
     display: none !important;
 }
 
-#rightcolumn dd {
-    margin-bottom: 0;
-}
-
-#centercolumn {
-	display: block;
-	margin: 0;
-	padding: 1em 0;
-}
-
-/* RSS Feedmixer portlet in centercolumn */
-#centercolumn .portletHeader {
-    display: block;
-    margin: -5px -7px 0 -8px;
-    font-size: 0.88em;
-    font-weight: bold;
-    text-align: left;
-    text-transform: uppercase;
-    border: 0;
-    padding: 4px 9px 4px 11px;
-	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-}
-
-#centercolumn .portletHeader a {
-	color: &dtml-frontRightPortletHeaderTextColor;; 
-	margin: 0;
-	text-decoration: none;
-}
-
-#centercolumn .portletfeedmixer dd.first {
-	border-width: 0 0 0 0;
-	padding-top: 3px;
-}
-
-#centercolumn {
-    font-size: 0.85em;
-}
-
-#centercolumn dl.portletfeedmixer .portletItem {
-    font-size: 1.1em;
-}
-
-#centercolumn .portletItem a.more {
-	display: block;
-	font-size: 0.85em;
-	margin: 5px;
-	text-align: right;
-	text-decoration: none;
-	border: 0;
-}
-
-#centercolumn .portletStaticText .portletItem {
-    padding: 0.75em 0;
-    font-size: 1.125em;
-}
-
-#centercolumn dd {
-	padding: 0;
-}
-
-#centercolumn .portletFooter, #centercolumn .portlet, #centercolumn .portletItem {
-	background-color: transparent;
-	border-width: 0;
-	padding: 0;
-}
-
-#centercolumn .portletItem a.title {
-	font-size: 1.05em;
-	font-weight: bold;
-	margin-top: 7px;
-	text-decoration: none;
-	border-width: 0;
-	display: block;
-}
-
-#centercolumn .portletItem span.date  {
-	color: #76797C;
-	font-size: 0.88em;
-	font-weight: normal;
-	text-align: left;
-}
-
-#centercolumn .portletItem span.summary {
-	color: #333333;
-	font-size: 0.92em;
-	margin: 10px 0;
-	font-weight: normal;
-	text-align: left;
-}
-
-#centercolumn .portletfeedmixer .portletItem {
-	border-width: 1px 0 0 0;
-	border-style: dashed;
-	border-color: #CCCCCC;
-	padding: 0;
-}
-
-/* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
-#centercolumn .portletfeedmixer .portletItem {
-    height: 1%;
-    overflow: hidden;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage {
-    float: right; 
-    margin: 10px 0 10px 10px;
-    width: 128px;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem .rssImage {
-    float: left; 
-    margin: 0.625em 0.625em 0.625em 0;
-    text-align: right;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage {
-    width: 225px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem .title,
-#centercolumn .portletfeedmixerimageleft .portletItem .date,
-#centercolumn .portletfeedmixerimageleft .portletItem .summary {
-    margin-left: 138px;
-}
-
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
-    margin-left: 235px;
-}
-
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
-#centercolumn .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
-    margin-right: 235px;
-}
-
-#centercolumn .portletfeedmixerimageleft .portletItem {
-	border-style: none;
-	margin: 0 0.5625em 1em 0.5625em;
-}
-
-#centercolumn .portletfeedmixer .portletItem .rssImage img {
-    max-width: 128px;
-}
-
-#centercolumn .portletfeedmixerimagelarge .portletItem .rssImage img {
-    max-width: 225px;
-}
-
-#centercolumn .portletfeedmixer .portletItem .hasImage {
-	width: 370px;
-}
-
-#centercolumn .portlet dd:first-child {
-	border-width: 0 0 0 0;
-}
-
-#centercolumn .portletFooter a {
-    font-size:0.9em;
-    margin-bottom:1em;
-	color: #5B87B6;
-	display: block;
-	text-align: right;
-	text-decoration: none;
-	border-width: 0;
-}
-
-#centercolumn .portletWrapper {
-    margin-bottom: 1em;
-    margin-top: 0.25em;    
-}
-
-.documentEditable  {
-    padding: 0 !important;
-}
-
-#content {
-    margin:0 15px;
-    padding:0 0 15px !important;
-}
-
-#content .documentDescription {
-    margin-bottom: 1em;
-}
 
 /* YOUR CSS RULES STOP HERE */
 

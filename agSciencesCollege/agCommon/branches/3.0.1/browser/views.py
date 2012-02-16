@@ -15,6 +15,10 @@ from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
+"""
+    Interface Definitions
+"""
+
 class IAgendaView(Interface):
     """
     agenda view interface
@@ -64,6 +68,10 @@ class IAgCommonUtilities(Interface):
 
     def getUTM(self):
         pass
+
+"""
+    Class Definitions
+"""
 
 class AgCommonUtilities(BrowserView):
 
@@ -231,7 +239,7 @@ class FolderView(BrowserView):
                 scale = self.prefs.desc_scale_name
                 return field.tag(context, scale=scale, css_class=css_class, title=title)
         return ''
-
+            
 class SearchView(FolderView):
 
     implements(ISearchView)
@@ -485,3 +493,27 @@ class EventTableView(AgendaView):
     implements(IEventTableView)
 
 
+class HomepageView(FolderView):
+
+    implements(IFolderView)
+
+    @property
+    def hasDescriptionOrText(self):
+        if self.hasDescription or self.hasText:
+            return True
+        else:
+            return False
+
+    @property
+    def hasDescription(self):
+        if self.context.Description:
+            return True
+        else:
+            return False
+
+    @property
+    def hasText(self):
+        if self.context.getText():
+            return True
+        else:
+            return False

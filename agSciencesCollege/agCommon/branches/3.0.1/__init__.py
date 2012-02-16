@@ -234,32 +234,35 @@ def getPanoramaHomepageImage(context, homepage_type="panorama"):
     if len(backgrounds):
     
         return """
-    portalColumns = jq("body.template-%(homepage_type)s_homepage_view #portal-columns");
-    visualPortalWrapper = jq("body.template-%(homepage_type)s_homepage_view #visual-portal-wrapper");
-    breadcrumbs = jq("body.template-%(homepage_type)s_homepage_view #portal-breadcrumbs");
-    
-    if (portalColumns && visualPortalWrapper)
-    {
-        var backgrounds = "%(backgrounds)s".split(";");
-        var backgroundAlignments = "%(alignments)s".split(";");
-        var backgroundHeights = "%(heights)s".split(";");
-        var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-
-        var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
+    jq(document).ready(
+        function () {
+            portalColumns = jq("body.template-%(homepage_type)s_homepage_view #portal-columns");
+            visualPortalWrapper = jq("body.template-%(homepage_type)s_homepage_view #visual-portal-wrapper");
+            breadcrumbs = jq("body.template-%(homepage_type)s_homepage_view #portal-breadcrumbs");
+            
+            if (portalColumns && visualPortalWrapper)
+            {
+                var backgrounds = "%(backgrounds)s".split(";");
+                var backgroundAlignments = "%(alignments)s".split(";");
+                var backgroundHeights = "%(heights)s".split(";");
+                var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
         
-        homepageImage.insertBefore(portalColumns);
+                var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
+                
+                homepageImage.insertBefore(portalColumns);
+                
+                homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
+                homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
+                homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
         
-        homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
-        homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
-        homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
-
-        if (breadcrumbs)
-        {
-            breadcrumbs.detach();
-            breadcrumbs.insertBefore(homepageImage);
+                if (breadcrumbs)
+                {
+                    breadcrumbs.detach();
+                    breadcrumbs.insertBefore(homepageImage);
+                }
+            }
         }
-    }
-    
+    );
     """ % {'homepage_type' : homepage_type, 'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
 
 def getSubsiteHomepageImage(context):
