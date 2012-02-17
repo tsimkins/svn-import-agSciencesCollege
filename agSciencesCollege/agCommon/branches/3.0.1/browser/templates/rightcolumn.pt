@@ -1,4 +1,4 @@
-<div id="rightcolumn" class="agCommonPortlet" tal:condition="view/isHomePage">
+<div id="rightcolumn" class="agCommonPortlet" tal:condition="python: view.isLayout(views=['document_homepage_view'])">
 
 	<tal:block replace="structure provider:agcommon.rightcolumn" />
 

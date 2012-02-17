@@ -13,13 +13,13 @@
                     tal:content="string:@import url($portal_url/common-homepage.css);">
             </style>
 
-            <!-- Subsite JavaScript -->
+            <!-- Subsite CSS -->
             <style type="text/css" media="all"
                     tal:content="string:@import url($portal_url/subsite.css);">
             </style>
         
         </metal:css>
-
+        
         <metal:title fill-slot="content-title" tal:condition="not:view/hasDescriptionOrText">
         
             <h1 class="documentFirstHeading hiddenStructure"> 

@@ -7,7 +7,7 @@
 
 /* ============= Breadcrumbs ================ */
 
-#portal-breadcrumbs {
+#portal-breadcrumbs.homepage {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
 	padding: 0 0.5em 0.1875em 0.5em;
@@ -19,15 +19,15 @@
 	line-height: 1.5em; 
 }
 
-#portal-breadcrumbs .breadcrumbSeparator {
+#portal-breadcrumbs.homepage .breadcrumbSeparator {
 	color: &dtml-breadcrumbSeparatorColor;;
 }
 
-#portal-breadcrumbs a {
+#portal-breadcrumbs.homepage a {
 	color: &dtml-breadcrumbLinkColor;;
 }
 
-#portal-column-content.sr #portal-breadcrumbs {
+#portal-column-content.sr #portal-breadcrumbs.homepage {
     margin: 0;
 }
 

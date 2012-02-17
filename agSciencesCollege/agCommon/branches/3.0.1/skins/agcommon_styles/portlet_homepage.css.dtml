@@ -6,10 +6,26 @@
 /* YOUR CSS RULES START HERE */
 
 
-/* For Extension front page */
+#content {
+    padding: 0 1.25em 0 !important
+}
+
+#portal-column-content .documentEditable {
+    margin: 0.875em 0;
+}
+
+#portal-column-content .documentEditable #content {
+    margin: 0 1em !important;
+}
+
+#content #homepage-text {
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
 #portlets-above {
     display: block;
+    font-size: 0.84375em;
 }
 
 #portlets-above .portletWrapper .portletHeader {

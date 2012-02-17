@@ -199,7 +199,8 @@ def getHomepageImage(context):
     jq(document).ready(
         function () {
             homepageImage = jq("body.template-document_homepage_view #homepageimage");
-            if (homepageImage)
+            breadcrumbs = jq("body.template-document_homepage_view #portal-breadcrumbs");
+            if (homepageImage.length)
             {
                 var backgrounds = "%s".split(";");
                 var backgroundAlignments = "%s".split(";");
@@ -215,7 +216,12 @@ def getHomepageImage(context):
                         jq(this).css("height", backgroundHeights[randomnumber] + 'px');
                     }
                 );
-                
+
+                if (backgrounds.length && breadcrumbs.length)
+                {
+                    breadcrumbs.addClass("homepage");
+                }
+
                 %s
                 
             }
@@ -246,23 +252,27 @@ def getPanoramaHomepageImage(context, homepage_type="panorama"):
                 var backgroundAlignments = "%(alignments)s".split(";");
                 var backgroundHeights = "%(heights)s".split(";");
                 var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-        
-                var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
-                                
-                homepageImage.insertBefore(portalColumns);
-                
-                homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
-                homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
-                homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
-        
-                if (breadcrumbs.length)
+
+                if (backgrounds.length) 
                 {
-                    breadcrumbs.detach();
-                    breadcrumbs.insertBefore(homepageImage);
-                }
-                else
-                {
-                    homepageImage.addClass("nobreadcrumbs");
+                    var homepageImage = jq('<div id="panorama-homepage-image"><!-- --></div>');
+                                    
+                    homepageImage.insertBefore(portalColumns);
+                    
+                    homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
+                    homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
+                    homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
+            
+                    if (breadcrumbs.length)
+                    {
+                        breadcrumbs.detach();
+                        breadcrumbs.insertBefore(homepageImage);
+                        breadcrumbs.addClass("homepage");
+                    }
+                    else
+                    {
+                        homepageImage.addClass("nobreadcrumbs");
+                    }
                 }
             }
         }
@@ -276,17 +286,27 @@ def getSubsiteHomepageImage(context):
     if len(backgrounds):
     
         return """
-        var homepageImage = jq('#image-header');        
+    jq(document).ready(
+        function () {
+            var homepageImage = jq('#image-header');        
+    
+            var backgrounds = "%(backgrounds)s".split(";");
+            var backgroundAlignments = "%(alignments)s".split(";");
+            var backgroundHeights = "%(heights)s".split(";");
+            var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
+            
+            homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
+            homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
+            homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
+            
+            breadcrumbs = jq("#portal-breadcrumbs");
 
-        var backgrounds = "%(backgrounds)s".split(";");
-        var backgroundAlignments = "%(alignments)s".split(";");
-        var backgroundHeights = "%(heights)s".split(";");
-        var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-        
-        homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
-        homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
-        homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
-
+            if (backgrounds.length && breadcrumbs.length)
+            {
+                breadcrumbs.addClass("homepage");
+            }
+        }
+    );
    
     """ % {'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
 

@@ -43,7 +43,6 @@
 
 body.section-front-page #portlets-above .portlet {
     min-height: 32em;
-    font-size: 0.84375em;
 }
 
 body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
@@ -54,19 +53,9 @@ body.section-front-page h1.documentFirstHeading {
     display: none;
 }
 
-body.section-front-page #content #homepage-text {
-    margin: 0;
-    padding: 0;
-}
-
 body.section-front-page #content #homepage-text p.documentDescription {
     font-size: 1.25em;
-    margin: 0 0 0.25em 0;
-}
-
-body.section-front-page #content,
-body.section-front-page #portal-column-content.sr #content {
-    padding: 0.8125em 1.25em 0 1.25em !important;
+    margin: 0.75em 0 0.25em 0;
 }
 
 body.section-front-page #content p {

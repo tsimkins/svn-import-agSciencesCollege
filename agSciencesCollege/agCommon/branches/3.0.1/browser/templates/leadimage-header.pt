@@ -5,6 +5,13 @@
         tal:attributes="style string:background-image: url(${context/absolute_url}/leadImage_large);
                         class string:leadimage ${div_class}">
     <!-- -->
+        <script type="text/javascript">
+            jq(document).ready(
+                function () {
+                    breadcrumbs = jq("#portal-breadcrumbs").addClass("homepage");
+                }
+            );
+        </script>
     </div>
     
     <tal:multipleImages
@@ -14,7 +21,11 @@
         <div id="image-header"
              tal:attributes="class div_class">
             <!-- -->
+            <!-- Subsite JavaScript -->
+            <script type="text/javascript" 
+                    src="background-images/getSubsiteHomepageImage.js"></script>
+
         </div>
-        <script type="text/javascript" src="background-images/getSubsiteHomepageImage.js"></script>
+
     </tal:multipleImages>
 </tal:breadcrumbs>
