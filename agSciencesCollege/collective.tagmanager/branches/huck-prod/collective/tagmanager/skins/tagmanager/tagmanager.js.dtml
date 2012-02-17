@@ -253,9 +253,9 @@
 jq(document).ready(
     function () {
         // make sure that the categoryWidgetFieldName is right
-        if (jq('#' + categoryWidgetFieldName + '_keywords').length <= 0) {
+        if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
             categoryWidgetFieldName = 'eventType';
-            if (jq('#' + categoryWidgetFieldName + '_keywords').length <= 0) {
+            if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
                 categoryWidgetFieldName = '';
             }
         }
