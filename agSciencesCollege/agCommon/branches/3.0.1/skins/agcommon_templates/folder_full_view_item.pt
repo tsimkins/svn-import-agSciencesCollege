@@ -20,7 +20,7 @@
                      site_properties context/portal_properties/site_properties;
                      item_type context/portal_type;
                      item_layout here/getLayout;
-                     override python: {'Link': 'link_view'};
+                     override python: {'Link': 'link_view', 'News Item' : 'newsitem_view'};
                      item_macro python:path('here/%s/macros/content-core | nothing' % override.get(item_type, item_layout));
                      use_view_action site_properties/typesUseViewActionInListings|python:();
                      item_url context/absolute_url;
@@ -29,8 +29,6 @@
                      kss_inline_editable python:False;
                      isAnon context/@@plone_portal_state/anonymous;
                      ">
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="headline">
             <a href="#" class="summary url" tal:content="context/Title"
@@ -42,11 +40,11 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <div class="documentDescription"
+        <p class="documentDescription"
              tal:content="context/Description"
              tal:condition="context/Description">
             Description
-        </div>
+        </p>
 
         <tal:block tal:condition="item_macro">
 
@@ -57,14 +55,6 @@
             </div>
 
         </tal:block>
-
-        <p class="more" tal:condition="not:item_macro">
-            <a href=""
-               tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);"
-               i18n:translate="read_more">
-                Read More&hellip;
-            </a>
-        </p>
 
         <div class="visualClear"><!-- --></div>
 

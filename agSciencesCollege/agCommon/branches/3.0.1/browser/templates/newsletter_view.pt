@@ -1,3 +1,4 @@
+<metal:page define-macro="master">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -151,6 +152,10 @@ body.logged-in {
     background-repeat: repeat;
 }
 
+body.logged-in #portal-columns {
+    border: 20px solid #FFFFFF;
+}
+
 table td {
     padding: 5px 15px;
 }
@@ -219,7 +224,37 @@ img.leadimage {
     text-align: right;
 }
 
+li.nobullet, ul.nobullet li {
+    list-style-type: none;
+}
+
+ul.inline {
+    margin: 10pt 0;
+    padding: 0;
+}
+
+ul.inline li {
+    display: inline;
+    margin: 0 10pt;
+    padding: 0;
+}
+
+.discreet {
+    font-size: 0.75em;
+    color: #76797c;
+}
+
+.managePortletsLink {
+    display: none;
+}
+
 </style>
+
+<metal:local_style_slot define-slot="local_style_slot">
+    <style type="text/css">
+        /* No local Styles */
+    </style>
+</metal:local_style_slot>
 
 </metal:style>
 
@@ -268,27 +303,70 @@ img.leadimage {
             | </span>
         </tal:date>
 
-        <a class="view-online" 
-            tal:define="more_url python:context.absolute_url().replace('/' + templateId, '');
-                        more_url context/more_url|more_url"
-            tal:attributes="href more_url">View 
-                <span tal:replace="context/newsletter_title|context/Title" /> online</a>
+        <metal:view-online define-slot="view-online">
+            <a class="view-online" 
+                tal:define="more_url python:context.absolute_url().replace('/' + templateId, '');
+                            more_url context/more_url|more_url"
+                tal:attributes="href more_url">View 
+                    <span tal:replace="context/newsletter_title|context/Title" /> online</a>
+            <tal:print condition="context/show_print_newsletter|nothing">
+                <br />
+                <a class="view-online" 
+                    tal:define="more_url python:'%s/newsletter_print' % context.absolute_url().replace('/' + templateId, '');"
+                    tal:attributes="href more_url">Print 
+                        this newsletter</a>
+            </tal:print>                    
+        </metal:view-online>
     </div>
 
 </metal:subheader>
 
 <metal:description fill-slot="content-description"
     tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+
     <div class="documentDescription" tal:content="context/Description" />
-
-
-
-
+    
 </metal:description>
 
-<metal:summary fill-slot="content-additional">
+<metal:summary fill-slot="content-additional" define-slot="content-additional">
 
     <h2>In This Issue</h2>
+    <form id="enable-items-form" tal:omit-tag="context/@@plone_portal_state/anonymous" method="POST" action="@@newsletter_modify">
+    <div class="discreet" tal:condition="not: isAnon">
+        <label for="is_enabled">Checked items will show up in the newsletter.</label>
+        <ul class="nobullet inline">
+            <li>
+                <input type="button" id="enable-all" value="Enable All" />
+            </li>
+            <li>
+                <input type="button" id="disable-all" value="Disable All" />
+            </li>
+            <li>
+                <input type="submit" value="Submit">
+            </li>
+        </ul>
+       
+        <script type="text/javascript">
+            function toggleInput(isChecked)
+            {
+                input_items = document.getElementById("enable-items-form").getElementsByTagName("input");
+                for (var i in input_items)
+                {   
+                    item = input_items[i];
+                    if (item['type'] == 'checkbox')
+                    {
+                        item.checked=isChecked;
+                        item.style.opacity='0.5';
+                    }
+                }
+
+                document.getElementById("enable-items-form").submit();
+            }
+            
+            document.getElementById("enable-all").onclick = function() {toggleInput(true)};
+            document.getElementById("disable-all").onclick = function() {toggleInput(false)};
+        </script>
+    </div>
     <ul class="this-issue"
         tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
@@ -297,11 +375,9 @@ img.leadimage {
                     more_url more_url|request/more_url|string:folder_contents;
                     is_a_topic python:context.portal_type=='Topic';
                     folderContents folderContents|nothing; 
-                    folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
                     order_by_id here/order_by_id|nothing;
                     order_by_title here/order_by_title|nothing;
-                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                    folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;
+                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
                     site_properties context/portal_properties/site_properties;
                     use_view_action site_properties/typesUseViewActionInListings|python:();
                     Batch python:modules['Products.CMFPlone'].Batch;
@@ -314,9 +390,22 @@ img.leadimage {
                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
                     pas_member context/@@pas_member;">
         <tal:entry tal:repeat="item batch">
-            <li tal:content="item/pretty_title_or_id" />
+            <li tal:attributes="class python:not isAnon and 'nobullet' or ''"
+                tal:condition="python:view.showItem(item)">
+                <input tal:condition="not:isAnon" 
+                       tal:attributes="value item/UID;
+                                       checked python:view.isEnabled(item) and 'checked' or ''"
+                       name="enabled_items"
+                       type="checkbox" />
+                <span tal:content="item/pretty_title_or_id" />
+            </li>
         </tal:entry>
+        <li class="nobullet" tal:condition="not:isAnon">
+            <input type="submit" value="Submit">
+        </li>
+
     </ul>
+    </form>
 </metal:summary>
 
 
@@ -344,11 +433,10 @@ img.leadimage {
                         limit_display python:limit_display and int(limit_display) or None;
                         more_url more_url|request/more_url|string:folder_contents;
                         is_a_topic python:context.portal_type=='Topic';
-                        folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                        folderContents folderContents|nothing; 
                         order_by_id here/order_by_id|nothing;
                         order_by_title here/order_by_title|nothing;
-                        agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                        folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;
+                        folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
                         site_properties context/portal_properties/site_properties;
                         use_view_action site_properties/typesUseViewActionInListings|python:();
                         Batch python:modules['Products.CMFPlone'].Batch;
@@ -360,10 +448,12 @@ img.leadimage {
                         show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                         show_date context/show_date|nothing;
                         navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                        pas_member context/@@pas_member;">
+                        pas_member context/@@pas_member;"
+                        condition="isAnon">
     <tal:listing condition="batch">
-
-        <h2>Featured Articles</h2>
+        <metal:featured-articles define-slot="featured-articles">
+            <h2>Featured Articles</h2>
+        </metal:featured-articles>
         <tal:list metal:define-slot="entries">
             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_object item/getObject;
@@ -391,7 +481,8 @@ img.leadimage {
                 <tal:item metal:define-macro="listitem"
                     tal:define="dt_class python:not item_description and 'nodescription' or '';
                                 dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
-                    tal:attributes="class dt_class">
+                    tal:attributes="class dt_class"
+                    tal:condition="python:view.showItem(item)">
 
                     <h3>
 
@@ -467,5 +558,18 @@ img.leadimage {
 </metal:block>
 </metal:content-core>
 
+<metal:portlets define-slot="portlets_two_slot" fill-slot="portlets_two_slot">
+    <tal:block replace="structure provider:plone.rightcolumn" />
+</metal:portlets>
+
+<metal:portlets define-slot="portlets_bottom_slot" fill-slot="portlets_bottom_slot">
+
+</metal:portlets>
+
+<metal:analytics define-slot="analytics_viewlet" fill-slot="analytics_viewlet">
+
+</metal:analytics>
+
 </body>
 </html>
+</metal:page>

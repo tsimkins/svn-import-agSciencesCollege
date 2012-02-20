@@ -87,7 +87,7 @@
                 <tbody>
                 <tal:warning condition="not: isAnon">
                     <tr>
-                        <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#00FFB2">
+                        <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#FFB900">
                             <strong>Warning:</strong> This is the logged-in view of the newsletter.  Log out (go to the http:// URL) before emailing.  Do not attempt to email this newsletter, or users will be asked to log in before viewing articles.
                         </td>
                     </tr>
@@ -139,7 +139,9 @@
                                             Page body text
                                         </metal:text>
                                     </div>
-                    
+                        <metal:portlets define-slot="portlets_bottom_slot">
+
+                        </metal:portlets>                    
                                     <metal:footer define-slot="footer" tal:content="nothing">
                                         Visual Footer
                                     </metal:footer>
@@ -153,10 +155,11 @@
                     <td tal:condition="sr"
                         id="portal-column-two" valign="top" width="165" bgcolor="#f5f5f5" align="left" cellspacing="0" cellpadding="15" >
                         <metal:portlets define-slot="portlets_two_slot">
-                            <tal:block replace="structure provider:plone.rightcolumn" />
+                            
                         </metal:portlets>
                     </td>
                 </tr>
+
                 <tr>
                     <td class="footer" tal:attributes="colspan python: sr and '2' or None" align="center" bgcolor="#ffffff">
 
@@ -171,7 +174,7 @@
                     	      <a href="http://agsci.psu.edu">College of Agricultural Sciences</a>
                     		
                     	</p>
-                    
+
                         <p>
                             
                             <a title="" id="copyright" href="http://www.psu.edu/copyright.html">Copyright</a>
@@ -193,6 +196,10 @@
             </table>
 
             <br style="clear: both" />
+
+            <metal:analytics define-slot="analytics_viewlet">
+            
+            </metal:analytics>
 
         </tal:main-content>
 

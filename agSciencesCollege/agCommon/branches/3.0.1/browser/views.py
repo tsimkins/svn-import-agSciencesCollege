@@ -15,6 +15,16 @@ from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
+# For registry
+
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
+
+from plone.registry.record import Record
+from plone.registry.registry import Registry
+from plone.registry import field
+
+
 """
     Interface Definitions
 """
@@ -36,11 +46,6 @@ class IEventTableView(Interface):
         """ test method"""
 
 class INewsletterView(Interface):
-
-    def test():
-        """ test method"""
-
-class INewsletterEmail(Interface):
 
     def test():
         """ test method"""
@@ -294,7 +299,7 @@ class SearchView(FolderView):
             filtered_results.append(r)
         return filtered_results
 
-class NewsletterView(BrowserView):
+class NewsletterView(AgCommonUtilities):
 
     implements(INewsletterView)
     
@@ -302,6 +307,11 @@ class NewsletterView(BrowserView):
         self.context = context
         self.request = request
         self.currentDate = DateTime()
+
+    @property
+    def anonymous(self):
+        self.portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+        return self.portal_state.anonymous()
 
     def getBodyText(self):
         return self.context.getBodyText()
@@ -347,9 +357,72 @@ class NewsletterView(BrowserView):
         else:
             return context_title
 
-class NewsletterEmail(NewsletterView, AgCommonUtilities):
+    def isEnabled(self, item):
 
-    implements(INewsletterEmail)
+        enabled_items = self.getItems
+        
+        # Check to make sure at least one of the items in folderContents is enabled%%%
+        if self.context.portal_type == 'Topic':
+            contents_uid = set([x.UID for x in self.folderContents()])
+        else:
+            contents_uid = set([x.UID() for x in self.folderContents()])
+
+        if set(contents_uid).intersection(set(enabled_items)):
+            return item.UID in enabled_items
+        else:
+            return self.anonymous
+        
+    def showItem(self, item):
+        if self.isEnabled(item):
+            return True
+        else:
+            return not self.anonymous
+
+
+    def folderContents(self, folderContents=[], contentFilter={}, order_by_id=None, order_by_title=None):
+        if folderContents:
+            # Already has folder contents
+            pass
+        elif self.context.portal_type == 'Topic':
+            folderContents = self.context.queryCatalog(batch=True, **contentFilter)
+            if order_by_id or order_by_title:
+                folderContents = self.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) 
+        else:
+            self.context.getFolderContents(contentFilter, batch=True)
+
+        return folderContents   
+
+    @property
+    def registry(self):
+        return getUtility(IRegistry)
+
+    @property
+    def getItems(self):
+        try:
+            return self.registry.records[self.getRegistryKey()].value
+        except KeyError:
+            return []
+        
+    def setItems(self, enabled_items=[]):
+        self.registry.records[self.getRegistryKey()] = Record(field.List(title=u"Item UIDs"), enabled_items)
+        
+    def getRegistryKey(self):
+        return 'agsci.newsletter.uid_%s' % self.context.UID()
+
+class NewsletterModify(NewsletterView):
+    def __call__(self):
+        enabled_items = self.request.form.get('enabled_items', [])
+
+        if not isinstance(enabled_items, list):
+            enabled_items = [enabled_items]
+
+        self.setItems(enabled_items)
+
+        self.request.response.redirect(self.context.absolute_url())
+        
+class NewsletterEmail(NewsletterView):
+
+    implements(INewsletterView)
 
     def render(self):
         return self.index()
@@ -382,7 +455,13 @@ class NewsletterEmail(NewsletterView, AgCommonUtilities):
             html = html.replace("</%s" % tag, "</div")
             
         return html
-    
+
+class NewsletterPrint(NewsletterView):
+
+    implements(INewsletterView)
+
+    pass
+
 class AgendaView(FolderView):
     """
     agenda browser view

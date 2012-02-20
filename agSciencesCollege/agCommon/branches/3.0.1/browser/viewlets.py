@@ -95,7 +95,7 @@ class AgCommonViewlet(ViewletBase):
 
     @property    
     def isFolderFullView(self):
-        folder_views = ['folder_full_view_item', 'folder_full_view'] 
+        folder_views = ['folder_full_view_item', 'folder_full_view', 'newsletter_view', 'newsletter_email', 'newsletter_print'] 
         parent = self.context.getParentNode()
         try:
             default_page = parent.getDefaultPage()
