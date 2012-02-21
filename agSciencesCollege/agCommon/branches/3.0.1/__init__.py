@@ -616,7 +616,7 @@ def cleverInvokeFactory(context, **kwargs):
     item_id = findUniqueId(context, item_id)
     return context.invokeFactory(id=item_id, **kwargs)
 
-def calculateDimensions(imageObj, max_size=(1200,1200)):
+def calculateDimensions(imageObj, max_size=(1200,900)):
 
     if imageObj.width > max_size[0] or imageObj.height > max_size[1]:
 
@@ -632,7 +632,7 @@ def calculateDimensions(imageObj, max_size=(1200,1200)):
 
 
 
-def rescaleOriginal(context, max_size=(1200,1200), dry_run=True):
+def rescaleOriginal(context, max_size=(1200,900), dry_run=True):
 
     """
     Steps:
