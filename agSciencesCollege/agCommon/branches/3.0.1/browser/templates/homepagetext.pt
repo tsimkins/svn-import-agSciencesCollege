@@ -1,4 +1,4 @@
-<div id="homepage-text" tal:condition="view/showHomepageText"
+<div id="homepage-text" tal:condition="view/showHomepageText|nothing"
      tal:define="plone_view context/@@plone;
                  hsr python:plone_view.have_portlets('agcommon.rightcolumn', view);"
      tal:attributes="class python:hsr and 'sr' or ''">
