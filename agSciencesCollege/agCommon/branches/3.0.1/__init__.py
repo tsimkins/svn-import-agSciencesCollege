@@ -667,7 +667,7 @@ def rescaleOriginal(context, max_size=(1200,900), dry_run=True):
             status = False
             width = height = 0
             new_dimensions = (0,0)
-            LOG('Products.agCommon.rescaleOriginal', INFO, "Invalid image type %s for %s" % (imageObj.content_type, context.absolute_url) )
+            LOG('Products.agCommon.rescaleOriginal', INFO, "Invalid image type %s for %s" % (imageObj.content_type, context.absolute_url()) )
         else:
 
             width = imageObj.width
