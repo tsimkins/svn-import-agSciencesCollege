@@ -11,6 +11,7 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
+from Products.agCommon.browser.interfaces import IContributors
 
 
 class _ExtensionStringField(ExtensionField, StringField): pass
@@ -77,10 +78,10 @@ class FSDPersonExtender(object):
             "primary_profile",
             required=False,
             schemata="settings",
-            condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
             widget=StringWidget(
                 label=u"Primary Profile URL",
                 description=u"Providing a URL and setting the view to 'Person Alias' will redirect public users to this URL.",
+                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
             ),
             validators = ('isURL'),
         ),
@@ -336,6 +337,18 @@ class FolderTopicExtender(object):
     fields = [
 
         _ExtensionBooleanField(
+            "show_description",
+            required=False,
+            default=True,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show description",
+                description=u"This will show the description for each item in the folder listing.",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+
+        _ExtensionBooleanField(
             "show_image",
             required=False,
             default=False,
@@ -354,6 +367,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show date",
                 description=u"This will show the publication date for each item in the folder listing.",
+                condition="python:member.has_role('Manager')",
             ),
         ),
 
@@ -365,6 +379,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show \"Read More...\"",
                 description=u"This will show the \"Read More...\" for each item in the folder listing when using the Summary View.",
+                condition="python:member.has_role('Manager')",
             ),
         ),
 
@@ -376,7 +391,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Two column display",
                 description=u"This will automatically display the contents of the folder in two columns.  This is best for short titles/descriptions.",
-                condition="python:member.has_role('Manager')"
+                condition="python:member.has_role('Manager')",
             ),
         ),
         
@@ -519,3 +534,23 @@ class TableOfContentsExtender(object):
 
     def getFields(self):
         return self.fields
+        
+        
+# Change the "Contributors" field to "Contact Information"
+# and add instructions
+
+class ContributorsExtender(object):
+    adapts(IContributors)
+    implements(ISchemaModifier, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    def __init__(self, context):
+        self.context = context
+
+    def fiddle(self, schema):
+        new_field = schema['contributors'].copy()
+        new_field.widget.label = 'Contact Information'
+        new_field.widget.description = 'Add the PSU id(s) of the article authors. For non-PSU individuals, add their information on a format of "Name|Job Title|E-mail"'
+        schema['contributors'] = new_field
+
+        return schema

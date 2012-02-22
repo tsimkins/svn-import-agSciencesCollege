@@ -188,6 +188,15 @@
         interface=".interfaces.ITableOfContentsExtender"
     /> 
 
+
+    <!-- Contributors Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.ContributorsExtender.fiddle"
+        factory=".extender.ContributorsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
     <!-- Monkey Patch folder by adding 'getText' method -->
 
     <monkey:patch
