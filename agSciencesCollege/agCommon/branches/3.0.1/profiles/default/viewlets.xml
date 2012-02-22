@@ -79,7 +79,8 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="contentwellportlets.portletsabovecontent" insert-before="*" />
         <viewlet name="plone.nextprevious" insert-after="contentwellportlets.portletsabovecontent"/>
         <viewlet name="plone.belowcontentbody.relateditems" insert-after="plone.nextprevious"/>
-        <viewlet name="agcommon.fblike" insert-after="plone.belowcontentbody.relateditems"/>
+        <viewlet name="agcommon.contributors" insert-after="plone.belowcontentbody.relateditems"/>
+        <viewlet name="agcommon.fblike" insert-after="agcommon.contributors"/>
         <viewlet name="plone.comments" insert-after="agcommon.fblike"/>
         <viewlet name="plone.abovecontenttitle.documentactions" insert-after="plone.comments"/>
     </order>

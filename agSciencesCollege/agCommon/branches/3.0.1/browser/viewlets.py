@@ -17,6 +17,7 @@ from plone.app.discussion.browser.comments import CommentsViewlet
 from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from hashlib import md5
+import re
 
 from Products.Five.browser import BrowserView
 
@@ -532,6 +533,47 @@ class TableOfContentsViewlet(AgCommonViewlet):
         if self.isFolderFullView:
             self.enabled = False
 
+class ContributorsViewlet(AgCommonViewlet):
+
+    index = ViewPageTemplateFile('templates/contributors.pt')
+    
+    def update(self):
+        psuid_re = re.compile("^[A-Za-z][A-Za-z0-9_]*$") # Using one from FSD
+        
+        self.people = []
+        
+        peopleList = [x.strip() for x in self.context.Contributors()]
+        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        search_results = portal_catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
+
+
+        
+        for id in peopleList:
+            found = False
+
+            for r in search_results:
+                if r.id == id:
+
+                    obj = r.getObject()
+
+                    self.people.append({'name' : obj.pretty_title_or_id(), 
+                                        'title' : obj.getJobTitles()[0], 
+                                        'url' : obj.absolute_url()})
+                    found = True
+
+            if not found and not psuid_re.match(id):
+                parts = id.split("|")
+                parts.extend(['']*(3-len(parts)))
+                (name, title, url) = parts
+                
+                if '@' in url:
+                    url = "mailto:%s" % url
+                elif not url.startswith('http'):
+                    url = ''
+                
+                self.people.append({'name' : name, 
+                                        'title' : title, 
+                                        'url' : url})
 
 class CustomCommentsViewlet(CommentsViewlet):
 

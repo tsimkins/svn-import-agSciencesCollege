@@ -285,6 +285,37 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Document byline viewlet-->
+    <browser:viewlet
+        name="plone.belowcontenttitle.documentbyline"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class="plone.app.layout.viewlets.content.DocumentBylineViewlet"
+        permission="zope2.View"
+        template="templates/document_byline.pt"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+
+    <!-- Contributors Viewlet -->
+    <browser:viewlet
+        name="agcommon.contributors"
+        for=".interfaces.IContributors"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.ContributorsViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
+    <five:implements
+        class="Products.ATContentTypes.content.document.ATDocument"
+        interface=".interfaces.IContributors"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.IContributors"
+    /> 
+
     <!-- Table of Contents Viewlet -->
     <browser:viewlet
         name="agcommon.tableofcontents"

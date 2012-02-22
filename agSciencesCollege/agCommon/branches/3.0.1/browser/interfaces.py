@@ -30,3 +30,8 @@ class ICenterColumn(IColumn):
 class ITableOfContents(Interface):
     """These are the content types that can have a table of contents
     """
+    
+
+class IContributors(Interface):
+    """These are the content types that can have a contributors listing
+    """

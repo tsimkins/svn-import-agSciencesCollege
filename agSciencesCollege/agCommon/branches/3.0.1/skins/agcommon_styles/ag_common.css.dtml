@@ -2045,6 +2045,32 @@ body.template-folder_full_view #content-core .item {
     color: #ff0000;
 }
 
+#lock-icon {
+    margin-top: 0.75em;
+}
+
+.documentContributors {
+    font-size: 0.875em;
+}
+
+#content .documentContributors h2 {
+    color: &dtml-documentSubHeadingColor;;
+    margin: 1.125em 0 0 0;
+    font-size: 1.375em;
+    padding: 0;
+    border: none;
+    font-weight: bold;
+    font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
+}
+
+#content .documentContributors h3.tileHeadline {
+    font-size: 1.1875em;
+} 
+
+#content .documentContributors .tileItemLeadImage:first-child {
+    border: none !important;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
