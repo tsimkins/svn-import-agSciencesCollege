@@ -248,7 +248,14 @@ class FooterViewlet(AgCommonViewlet):
 
         self.footer_copyright = ptool.agcommon_properties.footer_copyright
         self.footer_copyright_link = ptool.agcommon_properties.footer_copyright_link
-        
+
+        try:
+            self.footer_copyright_2 = ptool.agcommon_properties.footer_copyright_2
+            self.footer_copyright_link_2 = ptool.agcommon_properties.footer_copyright_link_2
+        except AttributeError:  
+            self.footer_copyright_2 = None
+            self.footer_copyright_link_2 = None
+      
         try:
             footerlinks = aq_acquire(self.context, 'footerlinks')
         except AttributeError:

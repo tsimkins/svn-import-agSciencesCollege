@@ -6,6 +6,10 @@
 			tal:content="now/year">[date last modified]</span>
 		
 	      <a tal:attributes="href view/footer_copyright_link" tal:content="view/footer_copyright" />
+          <tal:partner condition="python: view.footer_copyright_2 and view.footer_copyright_link_2">
+          /
+    	      <a tal:attributes="href view/footer_copyright_link_2" tal:content="view/footer_copyright_2" />
+    	  </tal:partner>
 		
 	</p>
 
