@@ -41,6 +41,8 @@
         </div>
     </form>
 
-    <div style="clear: both;"><!-- --></div>
+    <div class="visualClear"><!-- --></div>
 
 </div>
+
+<div class="visualClear"><!-- --></div>
