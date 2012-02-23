@@ -45,4 +45,4 @@
 
 </div>
 
-<div class="visualClear"><!-- --></div>
+<div tal:condition="context/localsearch|nothing" class="visualClear"><!-- --></div>
