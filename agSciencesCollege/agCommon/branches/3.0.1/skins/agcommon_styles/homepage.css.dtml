@@ -79,7 +79,8 @@
 /* ================== Homepage Text ================= */
 
 #content #homepage-text.sr {
-    margin-right: 12.125em;
+    border-right: 11em solid &dtml-frontRightPortletBackgroundColor;;;
+    margin-right: 0.1875em;
 }
 
 /* YOUR CSS RULES STOP HERE */
