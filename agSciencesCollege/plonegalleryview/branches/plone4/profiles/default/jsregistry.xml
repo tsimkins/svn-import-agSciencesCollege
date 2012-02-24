@@ -2,15 +2,15 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
  <javascript cacheable="True" compression="safe" cookable="False"
     enabled="True"
-    expression="python: here.meta_type in ['ATFolder','ATTopic']"
+    expression="python: here.meta_type in ['ATFolder','ATTopic','PhotoFolder']"
     id="pgv_sg_mootools.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="False"
     enabled="True"
-    expression="python: here.meta_type in ['ATFolder','ATTopic']"
+    expression="python: here.meta_type in ['ATFolder','ATTopic','PhotoFolder']"
     id="pgv_sg_jd.gallery.js" inline="False"/>
  <javascript cacheable="True" compression="none" cookable="False"
     enabled="True"
-    expression="python: here.meta_type in ['ATFolder','ATTopic']"
+    expression="python: here.meta_type in ['ATFolder','ATTopic','PhotoFolder']"
     id="pgv_sg_slightbox.js" inline="False"/>
 </object>
 
