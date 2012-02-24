@@ -18,6 +18,7 @@
       <role name="Manager"/>
     </permission>
     <permission name="agsci.subsite: Add PhotoFolder" acquire="False">
+      <role name="Manager"/>
       <role name="Contributor"/>
     </permission>
 
@@ -37,6 +38,7 @@
       <role name="Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit PhotoFolder" acquire="False">
+      <role name="Manager"/>
       <role name="Editor"/>
     </permission>
     
