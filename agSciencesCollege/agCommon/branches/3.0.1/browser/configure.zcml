@@ -554,7 +554,7 @@
         class=".views.NewsletterModify"
         template="templates/newsletter_view.pt"
         layer=".interfaces.IThemeSpecific"
-        permission="zope2.View"
+        permission="cmf.ModifyPortalContent"
     />
 
     <!-- Z3 Replacement Folder Views -->

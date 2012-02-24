@@ -194,9 +194,6 @@ class FolderView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.anonymous = self.portal_state.anonymous()
                                         
         try:
             show_date = aq_acquire(self.context, 'show_date')
@@ -219,6 +216,14 @@ class FolderView(BrowserView):
         
         self.show_read_more = show_read_more
 
+
+    @property
+    def portal_state(self):
+        return getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+
+    @property
+    def anonymous(self):
+        return self.portal_state.anonymous()
 
     def test(self, a, b, c):
         if a:
@@ -252,9 +257,6 @@ class SearchView(FolderView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.anonymous = self.portal_state.anonymous()
 
     def page_title(self):
         if 'FSDPerson' in self.request.form.get('portal_type', []):
@@ -361,13 +363,10 @@ class NewsletterView(AgCommonUtilities):
 
         enabled_items = self.getItems
         
-        # Check to make sure at least one of the items in folderContents is enabled%%%
-        if self.context.portal_type == 'Topic':
-            contents_uid = set([x.UID for x in self.folderContents()])
-        else:
-            contents_uid = set([x.UID() for x in self.folderContents()])
+        # Check to make sure at least one of the items in folderContents is enabled
+        contents_uid = set([x.UID for x in self.folderContents()])
 
-        if set(contents_uid).intersection(set(enabled_items)):
+        if contents_uid.intersection(set(enabled_items)):
             return item.UID in enabled_items
         else:
             return self.anonymous
@@ -380,6 +379,7 @@ class NewsletterView(AgCommonUtilities):
 
 
     def folderContents(self, folderContents=[], contentFilter={}, order_by_id=None, order_by_title=None):
+
         if folderContents:
             # Already has folder contents
             pass
@@ -388,7 +388,7 @@ class NewsletterView(AgCommonUtilities):
             if order_by_id or order_by_title:
                 folderContents = self.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) 
         else:
-            self.context.getFolderContents(contentFilter, batch=True)
+            folderContents = self.context.getFolderContents(contentFilter, batch=True)
 
         return folderContents   
 
