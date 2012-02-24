@@ -211,7 +211,6 @@ def configureFrontPage(context):
             LOG('agSciPolicy.configureFrontPage', INFO, "front-page has no function getPortalTypeName()")
         else:
             if type != 'HomePage':
-                frontPage.setText('Home Page should be set to "Homepage View"')
                 frontPage.setTitle('Home')
                 frontPage.setDescription('')
                 frontPage.setPresentation(False)
