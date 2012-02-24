@@ -44,5 +44,35 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- Permissions -->
+    <permission
+        id="agsci.subsite.EditSubsite"
+        title="agsci.subsite: Edit Subsite"
+        />
+
+    <permission
+        id="agsci.subsite.EditCountySite"
+        title="agsci.subsite: Edit CountySite"
+        />
+        
+    <permission
+        id="agsci.subsite.EditSection"
+        title="agsci.subsite: Edit Section"
+        />
+        
+    <permission
+        id="agsci.subsite.EditBlog"
+        title="agsci.subsite: Edit Blog"
+        />
+        
+    <permission
+        id="agsci.subsite.EditHomePage"
+        title="agsci.subsite: Edit HomePage"
+        />
+        
+    <permission
+        id="agsci.subsite.EditPhotoFolder"
+        title="agsci.subsite: Edit PhotoFolder"
+        />
 
 </configure>

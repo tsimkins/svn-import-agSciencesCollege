@@ -21,6 +21,8 @@ def initialize(context):
     from content import CountySite
     from content import Section
     from content import Blog
+    from content import HomePage
+    from content import PhotoFolder
 
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),

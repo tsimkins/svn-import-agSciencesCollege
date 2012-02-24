@@ -1,17 +1,44 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="Subsite: Add Subsite" acquire="False">
+
+    <permission name="agsci.subsite: Add Subsite" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="CountySite: Add CountySite" acquire="False">
+    <permission name="agsci.subsite: Add CountySite" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="Section: Add Section" acquire="False">
+    <permission name="agsci.subsite: Add Section" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="Blog: Add Blog" acquire="False">
+    <permission name="agsci.subsite: Add Blog" acquire="False">
       <role name="Manager"/>
     </permission>
+    <permission name="agsci.subsite: Add HomePage" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Add PhotoFolder" acquire="False">
+      <role name="Contributor"/>
+    </permission>
+
+    <permission name="agsci.subsite: Edit Subsite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Edit CountySite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Edit Section" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Edit Blog" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Edit HomePage" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    <permission name="agsci.subsite: Edit PhotoFolder" acquire="False">
+      <role name="Editor"/>
+    </permission>
+    
   </permissions>
 </rolemap>

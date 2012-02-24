@@ -6,8 +6,11 @@ __docformat__ = 'plaintext'
 PROJECTNAME = "agsci.subsite"
 
 ADD_PERMISSIONS = {
-    "Subsite" : "Subsite: Add Subsite",
-    "CountySite" : "CountySite: Add CountySite",
-    "Section" : "Section: Add Section",
-    "Blog" : "Blog: Add Blog",
+    "Subsite" : "agsci.subsite: Add Subsite",
+    "CountySite" : "agsci.subsite: Add CountySite",
+    "Section" : "agsci.subsite: Add Section",
+    "Blog" : "agsci.subsite: Add Blog",
+    "HomePage" : "agsci.subsite: Add HomePage",
+    "PhotoFolder" : "agsci.subsite: Add PhotoFolder",
     }
+    

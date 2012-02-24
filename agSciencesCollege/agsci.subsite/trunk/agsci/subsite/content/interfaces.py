@@ -17,3 +17,12 @@ class ISection(Interface):
 class IBlog(Interface):
     """Blogs are folders designed specifically for news items
     """
+    
+class IHomePage(Interface):
+    """Homepages are the home page of a site/section/subsite
+    """
+    
+    
+class IPhotoFolder(Interface):
+    """Photo Folders store images and present a slideshow display
+    """
