@@ -554,3 +554,36 @@ class ContributorsExtender(object):
         schema['contributors'] = new_field
 
         return schema
+
+# Add an "Allow comments on folder contents" checkbox to folders
+
+class CommentsExtender(object):
+    adapts(IATFolder)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+
+        _ExtensionBooleanField(
+            "allow_discussion_contents",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                condition="python:member.has_role('Manager')",
+                label=u"Allow comments on folder contents.",
+                description=u"If selected, users can add comments to the items within this folder and its subfolders.",
+            ),
+        ),
+
+    ]
+
+    def fiddle(self, schema):
+        schema.moveField('allow_discussion_contents', after='allowDiscussion')
+
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields

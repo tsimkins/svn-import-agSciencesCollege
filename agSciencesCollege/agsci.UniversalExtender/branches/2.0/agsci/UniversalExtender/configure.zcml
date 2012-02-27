@@ -59,6 +59,11 @@
         interface=".interfaces.IDefaultExcludeFromNav"
     /> 
 
+    <five:implements
+        class="agsci.subsite.content.PhotoFolder.PhotoFolder"
+        interface=".interfaces.IDefaultExcludeFromNav"
+    /> 
+
     <!-- Event Map Link -->
 
     <adapter
@@ -197,6 +202,21 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
 
+
+    <!-- Recursive Comments Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.CommentsExtender"
+        factory=".extender.CommentsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <adapter
+        name="agsci.UniversalExtender.extender.CommentsExtender.fiddle"
+        factory=".extender.CommentsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
     <!-- Monkey Patch folder by adding 'getText' method -->
 
     <monkey:patch
@@ -279,5 +299,38 @@
         original="isLeftColumn"
         ignoreOriginal="True"
         />
+
+
+    <!-- Monkey patch comments enabled to change folder comments logic. -->
+    
+    <monkey:patch
+        description="This changes how plone.app.discussion determines if comments should be enabled"
+        class="plone.app.discussion.conversation.Conversation"
+        replacement=".patch.commentsEnabled"
+        original="enabled"
+        ignoreOriginal="True"
+        />
+
+    <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
+
+    <five:implements
+        class="agsci.subsite.content.HomePage.HomePage"
+        interface=".interfaces.INoComments"
+    /> 
+
+    <five:implements
+        class="agsci.subsite.content.Section.Section"
+        interface=".interfaces.INoComments"
+    /> 
+
+    <five:implements
+        class="agsci.subsite.content.Subsite.Subsite"
+        interface=".interfaces.INoComments"
+    /> 
+
+    <five:implements
+        class="agsci.subsite.content.Blog.Blog"
+        interface=".interfaces.INoComments"
+    /> 
         
 </configure>

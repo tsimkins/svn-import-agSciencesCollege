@@ -24,3 +24,6 @@ class IMarkdownDescriptionExtender(Interface):
 
 class ITableOfContentsExtender(Interface):
     """ marker interface """
+    
+class INoComments(Interface):
+    """ marker interface """

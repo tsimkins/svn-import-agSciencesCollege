@@ -1,8 +1,15 @@
 from Acquisition import aq_base, aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import AgCommonUtilities
-from zope.component import getMultiAdapter
+from zope.component import getMultiAdapter, queryUtility
 from plone.app.portlets.portlets import base
+from Products.CMFCore.interfaces import IFolderish
+from Products.CMFPlone.interfaces import IPloneSiteRoot, INonStructuralFolder
+from Acquisition import aq_base, aq_inner, aq_parent
+from plone.registry.interfaces import IRegistry
+from plone.app.discussion.interfaces import IDiscussionSettings
+from interfaces import INoComments
+
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -118,6 +125,8 @@ def getPeople(self):
     return [brain.getObject() for brain in results]
 
 
+# Add 'isLeftColumn' method to navigation portlet to get manager
+
 def navigation_portlet_left_column(self):
     try:
         if self.data.__parent__.__portlet_metadata__.get('manager') == 'plone.leftcolumn':
@@ -126,3 +135,62 @@ def navigation_portlet_left_column(self):
             return False
     except AttributeError, KeyError:
         return False
+        
+
+# Change logic for comments being enabled
+
+def commentsEnabled(self):
+    # Returns True if discussion is enabled on the conversation
+    # Note: self is the conversation object, parent is the Plone object
+    # that contains the conversation
+
+    # Fetch discussion registry
+    registry = queryUtility(IRegistry)
+    settings = registry.forInterface(IDiscussionSettings, check=False)
+
+    # If discussion is not allowed globally, return False
+    if not settings.globally_enabled:
+        return False
+
+    # parent is the object itself
+    parent = aq_inner(self.__parent__)
+
+    # Always return False if object provides the INoComments interface.
+    # This would be for Subsites, Sections, 
+    # Blogs and HomePages
+    if (INoComments.providedBy(parent)):
+        return False
+
+    # obj is the parent with different acquisition wrappings
+    obj = aq_parent(self)
+
+    # Check if discussion is allowed on the content type
+    portal_types = getToolByName(self, 'portal_types')
+    document_fti = getattr(portal_types, obj.portal_type)
+    if document_fti.getProperty('allow_discussion'):
+        # If discussion is allowed on the content type, return True
+        return True
+
+    def traverse_parents(o_obj):
+        # Run through the aq_chain of obj and check if discussion is
+        # enabled in a parent folder.  Stops at the Plone Site level.
+        # Stops at the Section/Subsite/Blog level because they implement INoComments
+        for obj in o_obj.aq_chain:
+            if IPloneSiteRoot.providedBy(obj):
+                return False
+            elif IFolderish.providedBy(obj) and getattr(aq_base(obj), 'allow_discussion_contents', False):
+                return True
+            elif INoComments.providedBy(obj):
+                return False
+        return False
+
+    # If discussion is enabled for the object, return True
+    if getattr(aq_base(obj), 'allow_discussion', False):
+        return True
+
+    # Check if traversal found a folder with allow_discussion_contents 
+    # set to True in the acquisition chain.
+    if not IFolderish.providedBy(obj) and traverse_parents(obj):
+        return True
+
+    return False
