@@ -2074,6 +2074,16 @@ body.template-folder_full_view #content-core .item {
     border: none !important;
 }
 
+/* 
+    Workaround for Facebook bug that causes blank screen when ?fb_xd_fragment is in URL 
+    Ref:  http://bugs.developers.facebook.net/show_bug.cgi?id=9777 Comment 13
+    Seems to work with !important in CSS, too.
+*/
+
+html {
+    display: block !important;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
