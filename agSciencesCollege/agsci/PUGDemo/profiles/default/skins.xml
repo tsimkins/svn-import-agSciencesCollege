@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_skins" default_skin="pugdemo">
+
+    <object name="pugdemo"
+         meta_type="Filesystem Directory View"
+         directory="agsci.PUGDemo:skins/pugdemo" />
+
+    <skin-path name="pugdemo" based-on="Sunburst Theme">
+        <layers>
+            <layer name="pugdemo" 
+                   insert-after="custom" />
+        </layers>
+    </skin-path>
+
+</object>

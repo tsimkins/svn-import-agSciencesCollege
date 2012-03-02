@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="agsci.PUGDemo">
+
+    <!-- 'agsci.PUGDemo' Zope 3 browser layer -->
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="pugdemo"
+        />
+
+    <!-- Add a happy face above the browser title if there is a Z (or z) in the short name
+         Add a frowny face if there is no Z (or z) -->
+    
+    <browser:viewlet
+        name="pugdemo.happyface"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        class=".viewlets.HappyFaceViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/happyface.pt"
+        />
+
+    <!-- Footer -->
+    <browser:viewlet
+        name="plone.footer"    
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class="plone.app.layout.viewlets.common.FooterViewlet"
+        permission="zope.Public"
+        template="templates/footer.pt"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+
+</configure>

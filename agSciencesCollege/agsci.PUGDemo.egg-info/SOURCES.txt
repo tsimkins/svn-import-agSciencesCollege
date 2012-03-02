@@ -1,0 +1,11 @@
+setup.py
+agsci/__init__.py
+agsci.PUGDemo.egg-info/PKG-INFO
+agsci.PUGDemo.egg-info/SOURCES.txt
+agsci.PUGDemo.egg-info/dependency_links.txt
+agsci.PUGDemo.egg-info/entry_points.txt
+agsci.PUGDemo.egg-info/namespace_packages.txt
+agsci.PUGDemo.egg-info/not-zip-safe
+agsci.PUGDemo.egg-info/requires.txt
+agsci.PUGDemo.egg-info/top_level.txt
+agsci/PUGDemo/__init__.py
