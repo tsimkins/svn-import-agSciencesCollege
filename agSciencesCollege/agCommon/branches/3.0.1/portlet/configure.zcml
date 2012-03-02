@@ -4,6 +4,15 @@
     <!-- Portlets -->
   
     <plone:portlet
+        name="agcommon.Image"
+        interface=".image.IImage"
+        assignment=".image.Assignment"
+        renderer=".image.Renderer"
+        addview=".image.AddForm"
+        editview=".image.EditForm"
+        />
+
+    <plone:portlet
         name="agcommon.LinkIcon"
         interface=".linkicon.ILinkIcon"
         assignment=".linkicon.Assignment"

@@ -100,7 +100,7 @@
 }
 
 #content #homepage-text #parent-fieldname-text {
-    font-size: 0.84375em;
+    font-size: 0.875em;
 }
 
 

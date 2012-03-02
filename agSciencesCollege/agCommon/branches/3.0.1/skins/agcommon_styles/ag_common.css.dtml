@@ -464,6 +464,52 @@ body {
     color: #4D4D4D;
 }
 
+/* Image portlet */
+
+#portal-column-one .imagePortlet,
+#portal-column-two .imagePortlet {
+    margin: 3em 0;
+}
+
+#portal-column-one .imagePortlet li,
+#portal-column-two .imagePortlet li {
+    margin: 1em 0 1.625em 0;
+}
+
+#portal-column-one .imagePortlet a,
+#portal-column-two .imagePortlet a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: &dtml-leftLinkTextColor;;
+}
+
+#portal-column-one .imagePortlet a:hover,
+#portal-column-two .imagePortlet a:hover {
+    text-decoration: underline;
+    color: &dtml-leftLinkTextHoverColor;;
+}
+
+#portal-column-one .imagePortlet p,
+#portal-column-two .imagePortlet p {
+    display: block;
+    text-align: center;
+    font-size: 0.9375em;
+}
+
+#portal-column-one .imagePortlet .portlet li a.icon,
+#portal-column-two .imagePortlet .portlet li a.icon {
+    margin-bottom: 0.1875em;
+}
+
+#portal-column-one .imagePortlet .portlet li a.shadow:hover img,
+#portal-column-two .imagePortlet .portlet li a.shadow:hover img {
+    -moz-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
+    -webkit-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
+    box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
+}
+
+
 /* Link Icons */
 
 #portal-column-one .linkIcon,
@@ -490,7 +536,7 @@ body {
 
 #portal-column-one .linkIcon a:hover,
 #portal-column-two .linkIcon a:hover {
-    text-decoration: none;
+    text-decoration: underline;
     color: &dtml-leftLinkTextHoverColor;;
 }
 
