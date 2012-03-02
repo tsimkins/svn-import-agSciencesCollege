@@ -1,0 +1,14 @@
+<div metal:define-macro="portal_footer"
+     class="row">
+    <div class="cell width-full position-0">
+
+        <div id="portal-footer">
+            <p>
+                <acronym title="Copyright">&copy;</acronym>
+                <tal:year tal:content="view/year" />
+                <a href="http://www.psu.edu">Penn State</a>
+            </p>
+        </div>
+
+    </div>
+</div>
