@@ -1,0 +1,14 @@
+Metadata-Version: 1.0
+Name: agsci.w3c
+Version: 0.1
+Summary: A starting point for product development
+Home-page: http://weblion.psu.edu/
+Author: WebLion Documentation Group, Penn State University
+Author-email: support@weblion.psu.edu
+License: GPL
+Description: 
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

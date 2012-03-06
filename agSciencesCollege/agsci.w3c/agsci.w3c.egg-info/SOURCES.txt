@@ -1,0 +1,13 @@
+README.txt
+setup.py
+agsci/__init__.py
+agsci.w3c.egg-info/PKG-INFO
+agsci.w3c.egg-info/SOURCES.txt
+agsci.w3c.egg-info/dependency_links.txt
+agsci.w3c.egg-info/entry_points.txt
+agsci.w3c.egg-info/namespace_packages.txt
+agsci.w3c.egg-info/not-zip-safe
+agsci.w3c.egg-info/requires.txt
+agsci.w3c.egg-info/top_level.txt
+agsci/w3c/__init__.py
+agsci/w3c/colors.py
