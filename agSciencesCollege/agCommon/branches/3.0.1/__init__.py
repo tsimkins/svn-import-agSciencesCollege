@@ -14,6 +14,8 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.i18n.normalizer import FILENAME_REGEX
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from Products.Archetypes.Field import HAS_PIL
+from agsci.w3c.colors import split_rgb
+import colorsys
 
 import re
 
@@ -65,6 +67,60 @@ def ploneify(toPlone, isFile=False):
     ploneString = re.sub("^-", "", ploneString)
     return ploneString
 
+
+# auto-calculate gradient - returns a darker, more saturated version of the color
+def calculateGradient(startColor):
+    def toHex(dec):
+        return str('%X' % int(dec)).zfill(2)
+
+    def vdiff(v):
+        if v > 0.8:
+            return 0.9
+        elif v < 0.2:
+            return 0.5
+        else:
+            return 0.75
+
+    (r,g,b) = [x/255.0 for x in split_rgb(startColor)]
+    (h,s,v) = colorsys.rgb_to_hsv(r,g,b)
+    (r_new, g_new, b_new) = [toHex(255*x) for x in colorsys.hsv_to_rgb(h,min(1, 1.2*s),vdiff(v)*v)]
+
+    return '%s%s%s' % (r_new, g_new, b_new)
+
+
+# auto-calculate gradient color for r/g/b
+def calculateGradientColor(color, c):
+
+    def subtract_percent(s, p=20):
+    
+        if p > 100:
+            p=100
+            
+        if p < 0:
+            p=0
+    
+        dec = s * (100-p)/100
+        return str('%X' % int(dec)).zfill(2)
+
+    d = split_rgb(color)
+
+    v = d[c]
+    
+    v_percent = float(sum(d.values()))/(3*255)
+
+    v_modify = 1
+
+    if v_percent >= .6 or v_percent <= .3:
+        v_modify = .8
+
+    if v == min(d.values()):
+        return subtract_percent(v, 70*v_modify)
+    elif v == max(d.values()):
+        return subtract_percent(v, 20*v_modify)
+    else:
+        return subtract_percent(v, 50*v_modify)
+
+
 # Given start and end colors (optionally width and height) returns a gradient png
 
 def gradientBackground(request):
@@ -89,48 +145,11 @@ def gradientBackground(request):
     if not re.match(colorRegex, startColor):
         startColor = 'FFFFFF'
 
-    def subtract_percent(s, p=20):
-    
-        if p > 100:
-            p=100
-            
-        if p < 0:
-            p=0
-    
-        dec = int(s, 16) * (100-p)/100
-        return str('%X' % int(dec)).zfill(2)
-
-    def split_rgb(s):
-        d = {}
-        d['r'] = s[0:2]
-        d['g'] = s[2:4]
-        d['b'] = s[4:7]
-        return d
-    
     def sum_colors(d):
         return sum(d.values())
     
-    def calc(d, c):
-        v = d[c]
-        
-        v_percent = float(sum([int(x, 16) for x in d.values()]))/(3*255)
-
-        v_modify = 1
-
-        if v_percent >= .6 or v_percent <= .3:
-            v_modify = .8
-
-        if v == min(d.values()):
-            return subtract_percent(v, 70*v_modify)
-        elif v == max(d.values()):
-            return subtract_percent(v, 20*v_modify)
-        else:
-            return subtract_percent(v, 50*v_modify)
-                        
     if not endColor or not re.match(colorRegex, endColor):
-        colors = split_rgb(startColor)
-        
-        endColor = '%s%s%s' % (calc(colors,'r'), calc(colors,'g'), calc(colors,'b'))
+        endColor = calculateGradient(startColor)
 
     if orientation == 'h': 
         png = Popen(['convert', '-size', '%sx%s'%(height, width), 'gradient:#%s-#%s'%(str(startColor), str(endColor)), '-rotate', '270', 'png:-'], stdout=PIPE)

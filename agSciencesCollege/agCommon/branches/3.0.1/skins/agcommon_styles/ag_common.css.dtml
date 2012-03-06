@@ -557,27 +557,33 @@ body {
 #portal-column-two .linkButton .portletItem li {
     display: block;
     padding: 0;
-    border: 1px solid &dtml-leftButtonBackgroundBorder_external;;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    border: 2px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_external, count=2)">;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     margin: 0 0 15px 0;
     list-style-type: none;
     list-style-image: none;
     background-color: &dtml-leftButtonBackground_external;;
     background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&height=27');
+    background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&height=20');
     background-position: left bottom;
+    -moz-box-shadow: 0 2px 2px #D1D6DF;
+    -webkit-box-shadow: 0 2px 2px #D1D6DF;
+    box-shadow: 0 2px 2px #D1D6DF;    
+}
+
+#portal-column-one .linkButton li:hover,
+#portal-column-two .linkButton .portletItem li:hover {
+    -moz-box-shadow: 0 1px 1px #A4A8AF;
+    -webkit-box-shadow: 0 1px 1px #A4A8AF;
+    box-shadow: 0 1px 1px #A4A8AF;   
 }
 
 #portal-column-one .linkButton strong,
 #portal-column-two .linkButton strong {
     padding: 0;
     margin: 0;
-    border: 1px solid &dtml-backgroundColor;;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
     display: block
 }
 
@@ -603,13 +609,16 @@ body {
 #portal-column-one .linkButton li.internal-link,
 #portal-column-two .linkButton li.internal-link {
     background-color: &dtml-leftButtonBackground_internal;;
-    border-color: &dtml-leftButtonBackgroundBorder_internal;;
+    border: 1px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_internal, count=2)">;
     background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=27');
+    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=20');
     background-position: left bottom;
 }
 
-
+#portal-column-one .linkButton li.internal-link:hover,
+#portal-column-two .linkButton .portletItem li.internal-link:hover {
+    border-color:<dtml-var expr="gradientEnd(startColor=leftButtonBackground_external)">;
+}
 
 /* = portal-column-content ================================= */
 
@@ -687,6 +696,7 @@ body {
 
 #portal-top-navigation li.alternate a:hover {
     color: &dtml-topnavigationAlternateTextHoverColor; !important;
+    border-bottom: 1px solid <dtml-var expr="gradientEnd(startColor=topnavigationAlternateTextHoverColor, count=3)">;
 }
 
 #portal-top-navigation li:first-child {
@@ -704,6 +714,7 @@ body {
 
 #portal-top-navigation a:hover {
     color: &dtml-topnavigationTextHoverColor; !important;
+    border-bottom: 1px solid <dtml-var expr="gradientEnd(startColor=topnavigationTextHoverColor, count=3)">;
 }
 
 
@@ -736,7 +747,7 @@ body {
 #portal-column-two .date {
     font-weight: normal;
     font-size: 0.9375em;
-    color: #666666;
+    color: #575757;
 }
 /* ----- portlets ------------------------------------------ */
 
