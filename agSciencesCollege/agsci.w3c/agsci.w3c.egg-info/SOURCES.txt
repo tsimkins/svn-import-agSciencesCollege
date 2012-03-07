@@ -1,4 +1,6 @@
+HISTORY.txt
 README.txt
+__init__.py
 setup.py
 agsci/__init__.py
 agsci.w3c.egg-info/PKG-INFO
@@ -11,3 +13,6 @@ agsci.w3c.egg-info/requires.txt
 agsci.w3c.egg-info/top_level.txt
 agsci/w3c/__init__.py
 agsci/w3c/colors.py
+agsci/w3c/configure.zcml
+agsci/w3c/version.txt
+agsci/w3c/profiles/default/metadata.xml
