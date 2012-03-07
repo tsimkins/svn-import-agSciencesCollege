@@ -6,7 +6,7 @@
     meta_type="Factory-based Type Information with dynamic views" purge="False"/>
  <object name="FSDPerson"
     meta_type="Factory-based Type Information with dynamic views" purge="False"/>
- <object name="News_Item"
+ <object name="News Item"
     meta_type="Factory-based Type Information with dynamic views" purge="False"/>
  <object name="TalkEvent"
     meta_type="Factory-based Type Information with dynamic views" purge="False"/>
