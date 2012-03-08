@@ -708,8 +708,8 @@ def onBlogCreation(blog, event):
             archive_folder.setLayout('news_listing')
             archive_folder.setExcludeFromNav(True)
             archive_folder.setConstrainTypesMode(1) # restrict what this folder can contain
-            archive_folder.setImmediatelyAddableTypes(['Link','News Item',])
-            archive_folder.setLocallyAllowedTypes(['Link','News Item','Photo Folder'])
+            archive_folder.setImmediatelyAddableTypes(['News Item',])
+            archive_folder.setLocallyAllowedTypes(['News Item','Photo Folder'])
             archive_folder.setEffectiveDate("%s-01-01" % year)
             archive_folder.unmarkCreationFlag()
             archive_folder.reindexObject()
@@ -745,7 +745,7 @@ def onBlogCreation(blog, event):
             # Set the criteria for the folder
             type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
             
-            type_crit.setValue(['News Item', 'Link', 'Photo Folder']) # only our specified types
+            type_crit.setValue(['News Item', 'Photo Folder']) # only our specified types
             
             path_crit = smart_obj.addCriterion('path','ATPathCriterion')
             search_folders = [blog[x].UID() for x in archive_years]

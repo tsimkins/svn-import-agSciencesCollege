@@ -20,6 +20,8 @@ agsci/subsite/tests.py
 agsci/subsite/version.txt
 agsci/subsite/content/Blog.py
 agsci/subsite/content/CountySite.py
+agsci/subsite/content/HomePage.py
+agsci/subsite/content/PhotoFolder.py
 agsci/subsite/content/Section.py
 agsci/subsite/content/Subsite.py
 agsci/subsite/content/__init__.py
