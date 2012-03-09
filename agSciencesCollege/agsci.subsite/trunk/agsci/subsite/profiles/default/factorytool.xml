@@ -7,5 +7,6 @@
   <type portal_type="Blog" />
   <type portal_type="HomePage" />
   <type portal_type="PhotoFolder" />
+  <type portal_type="FormConfirmationPage" />
  </factorytypes>
 </object>

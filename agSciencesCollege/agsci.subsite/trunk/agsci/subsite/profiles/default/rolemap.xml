@@ -21,7 +21,9 @@
       <role name="Manager"/>
       <role name="Contributor"/>
     </permission>
-
+    <permission name="agsci.subsite: Add FormConfirmationPage" acquire="False">
+      <role name="Manager"/>
+    </permission>
     <permission name="agsci.subsite: Edit Subsite" acquire="False">
       <role name="Manager"/>
     </permission>

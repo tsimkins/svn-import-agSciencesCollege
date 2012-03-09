@@ -23,6 +23,7 @@ def initialize(context):
     from content import Blog
     from content import HomePage
     from content import PhotoFolder
+    from content import FormConfirmationPage
 
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),
