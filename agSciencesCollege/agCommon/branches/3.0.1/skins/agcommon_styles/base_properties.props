@@ -50,8 +50,8 @@ oddRowBackgroundColor:string=transparent
 maxWidth:string=895px
 minWidth:string=785px
 
-siteLogoTopMargin:string=41px
-siteLogoFontSize:string=22px
+siteLogoTopMargin:string=42px
+siteLogoFontSize:string=23px
 
 insideBreadcrumbBackgroundColor:string=transparent
 insideBreadcrumbTextColor:string=#DF7E0D
@@ -101,8 +101,8 @@ homepageTransparentOverlayColor:string=#000000
 leftNavTitleBackground:string=#1B243F
 leftNavTitleColor:string=#f5f5f5
 leftNavBorderColor:string=#DDDDDD
-leftNavTextColor:string=#666666
-leftNavTextHoverColor:string=#333366
+leftNavTextColor:string=#595C5F
+leftNavTextHoverColor:string=#265FCF
 leftNavBackgroundColor:string=#FFFFFF
 leftSubNavBackground:string=#F5F5F5
 

@@ -132,13 +132,12 @@ body {
 /* = logo-site ============================================= */
 
 #logo-site {
-    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    font-family: Arial,Helvetica,sans-serif;
     font-size: &dtml-siteLogoFontSize;;
     height: 30px;
     left: 188px;
     letter-spacing: 0.02em;
     position: absolute;
-    text-transform: uppercase;
     top: &dtml-siteLogoTopMargin;;
     width: 580px;
 }
