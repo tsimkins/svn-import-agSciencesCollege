@@ -8,6 +8,11 @@
 
 <body>
 
+<metal:content fill-slot="content-text"
+       tal:define="view nocall:context/@@folder_listing_z3">
+    <metal:content use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+</metal:content>
+
     <metal:content-core fill-slot="content-core"
         tal:define="view nocall:context/@@folder_listing_z3">
         <metal:block use-macro="context/@@folder_listing_z3/macros/content-core">
