@@ -23,6 +23,12 @@
 	margin-left: 0;
 }
 
+#portal-column-two .portletFooter,
+#rightcolumn .portletFooter,
+.portletFooter {
+    border: none !important;
+}
+
 #visual-portal-wrapper {
     width: 895px;
 }

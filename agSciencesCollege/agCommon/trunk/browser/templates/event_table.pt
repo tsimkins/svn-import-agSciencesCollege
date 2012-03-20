@@ -86,9 +86,9 @@
             <tal:bymonth repeat="month view/month_agenda">
                 <tr class="section-title">
                     <th colspan="3">
-                        <h3>
+                        <h2>
                         <span tal:replace="month/label" />
-                        </h3>
+                        </h2>
                     </th>
                 </tr>
                 <tr>

@@ -109,6 +109,7 @@ Note: insert-before and -after accept the value "*" which means
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
         <viewlet name="plone.app.i18n.locales.languageselector" />
+        <viewlet name="collective.contentleadimage.header"/>
     </hidden>
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
@@ -130,7 +131,6 @@ Note: insert-before and -after accept the value "*" which means
 
     <hidden manager="plone.belowcontenttitle" skinname="agCommon">
         <viewlet name="collective.contentleadimage.thumbnail" />
-        <viewlet name="collective.contentleadimage.header"/>
     </hidden>
     
     <hidden manager="plone.belowcontent" skinname="agCommon">

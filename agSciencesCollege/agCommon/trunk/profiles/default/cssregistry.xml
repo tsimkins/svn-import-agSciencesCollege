@@ -46,7 +46,12 @@
     enabled="1"     expression="python:portal.id == 'extension.psu.edu'"  media="all"
     rel="stylesheet" rendering="import"/>
 
- <stylesheet id="site.css" insert-after="extension.css"
+ <stylesheet id="medium_screen.css" insert-after="extension.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="handheld,screen and (max-width: 880px)"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="site.css" insert-after="medium_screen.css"
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>

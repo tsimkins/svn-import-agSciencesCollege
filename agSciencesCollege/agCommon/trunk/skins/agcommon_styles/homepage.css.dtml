@@ -35,7 +35,7 @@
 	font-size: 1.4375em;
 	font-weight: 500;
 	color: &dtml-homepageH1TextColor;;
-	font-family: Georgia, Times New Roman, serif;
+	font-family: Georgia, "Times New Roman", serif;
 	letter-spacing: 0.06em;
 }
 
@@ -43,7 +43,7 @@
 	font-size: 0.8125em;
 	font-weight: normal;
 	color: &dtml-homepageH2TextColor;;
-	font-family: Georgia, Times New Roman, serif;
+	font-family: Georgia, "Times New Roman", serif;
 	letter-spacing: 0.07em;
 	padding-top: 0.5em;
 }

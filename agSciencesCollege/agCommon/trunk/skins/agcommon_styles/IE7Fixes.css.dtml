@@ -19,13 +19,8 @@
     margin-top: 0 !important;
 }
 
-body.template-document_homepage_view #centercolumn {
-    padding-top: 3px;
-}
-
-body.template-document_homepage_view #centercolumn dl.portletfeedmixer .portletHeader {
-    padding-top: 5px;
-    padding-bottom: 5px;
+#portal-top-navigation div.visualClear {
+    height: 1px;
 }
 
 #clear-space-before-footer { 
@@ -40,12 +35,10 @@ body.template-document_homepage_view #rightcolumn {
     position: relative;
 }
 
-body.template-document_homepage_view #rightcolumn .portletFooter{
-    border: 0;
-}
-
-body.template-portlet_homepage_view #rightcolumn .portletFooter{
-    border: 0;
+#portal-column-two .portletFooter,
+#rightcolumn .portletFooter,
+.portletFooter {
+    border: none !important;
 }
 
 .listingBar {

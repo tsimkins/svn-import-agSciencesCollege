@@ -8,7 +8,7 @@
                             item_name item/name;
                             item_job_title item/title;">
             <div class="tileItem visualIEFloatFix">
-                <h3 class="tileHeadline">
+                <div class="tileHeadline">
     
                     <a href="#"
                         class="summary url"
@@ -17,7 +17,7 @@
                         tal:omit-tag="not:item_url">
                         Item Title
                     </a>
-                </h3>
+                </div>
                 <div class="facultyStaffDirectory">
                                     <ul tal:condition="item_job_title" class="jobTitle">
                                         <li tal:content="item_job_title" />

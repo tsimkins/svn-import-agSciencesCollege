@@ -37,7 +37,7 @@ div.portletsBelowContentE {
 #portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
 #portlets-below .portletItem, #portlets-below .portletHeader {
 	background-color: transparent;
-	border: 0;
+	border: none;
 }
 
 #portlets-below .portletWrapper {
@@ -111,7 +111,7 @@ div.portletsBelowContentE {
 #portlets-below .navTreeCurrentItem
 {
     background-color: transparent;
-    border: 0 !important;
+    border: none !important;
     font-weight: normal;
 }
 
@@ -142,7 +142,7 @@ div.portletsAboveContentE {
 #portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
 #portlets-above .portletItem, #portlets-above .portletHeader {
 	background-color: transparent;
-	border: 0;
+	border: none;
 }
 
 #portlets-above .portletWrapper {
@@ -226,7 +226,7 @@ div.portletsAboveContentE {
 #portlets-above .navTreeCurrentItem
 {
     background-color: transparent;
-    border: 0 !important;
+    border: none !important;
     font-weight: normal;
 }
 

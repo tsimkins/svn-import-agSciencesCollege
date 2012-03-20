@@ -27,7 +27,7 @@
                             <tal:leadimage metal:use-macro="context/folder_listing_z3/macros/leadimage" />
                         </div>
 
-                        <h3 class="tileHeadline"
+                        <div class="tileHeadline"
                             metal:define-macro="listitem">
 
                             <a href="#"
@@ -36,7 +36,7 @@
                                tal:content="item_title_or_id">
                                 Item Title
                             </a>
-                        </h3>
+                        </div>
 
                         <metal:show-date use-macro="context/folder_listing_z3/macros/show-date" />
 

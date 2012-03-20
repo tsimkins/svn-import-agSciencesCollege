@@ -1,6 +1,6 @@
 <h2 class="portletHeader"
     tal:define="collection_url view/collection_url;">
-        <span tal:content="view/data/header" />
+        <span tal:replace="view/data/header" />
 </h2>
     
 <dl class="portlet portletCollection"
