@@ -122,12 +122,10 @@
 
       <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
 
-      <table id="portal-columns" metal:define-slot="portal-columns">
-        <tbody>
-          <tr>
+      <div id="portal-columns" metal:define-slot="portal-columns">
             <tal:notajax tal:condition="not:ajax_load">
                 <tal:comment replace="nothing"> Start of the left column </tal:comment>
-                <td id="portal-column-one"
+                <div id="portal-column-one"
                     metal:define-slot="column_one_slot"
                     tal:condition="sl">
                   <div id="portal-column-one-visualPadding" class="visualPadding">
@@ -136,12 +134,12 @@
                     </metal:portlets>
                     &nbsp;
                   </div>
-                </td>
+                </div>
                 <tal:comment replace="nothing"> End of the left column </tal:comment>
             </tal:notajax>
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
-            <td id="portal-column-content"
+            <div id="portal-column-content"
                 tal:attributes="class python:(sl and sr and 'sl sr') or (sl and 'sl') or (sr and 'sr') or ''">
 
               <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
@@ -247,12 +245,12 @@
 
               <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
 
-            </td>
+            </div>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 
             <tal:notajax tal:condition="not:ajax_load">
                 <tal:comment replace="nothing"> Start of right column </tal:comment>
-                <td id="portal-column-two"
+                <div id="portal-column-two"
                     metal:define-slot="column_two_slot"
                     tal:condition="sr">
                   <div class="visualPadding">
@@ -261,12 +259,10 @@
                     </metal:portlets>
                     &nbsp;
                   </div>
-                </td>
+                </div>
                 <tal:comment replace="nothing"> End of the right column </tal:comment>
             </tal:notajax>
-          </tr>
-        </tbody>
-      </table>
+      </div>
       <tal:comment replace="nothing"> end column wrapper </tal:comment>
 
       <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
@@ -279,7 +275,7 @@
 
       <div class="visualClear"><!-- --></div>
     </div>
-<div id="kss-spinner" tal:condition="not:ajax_load"><img tal:attributes="src string:${portal_url}/spinner.png" alt="" /></div>
+<div id="kss-spinner" tal:condition="not:ajax_load"><img tal:attributes="src string:${portal_url}/spinner.png" alt="Page loading..." /></div>
 </body>
 </html>
 </metal:page>

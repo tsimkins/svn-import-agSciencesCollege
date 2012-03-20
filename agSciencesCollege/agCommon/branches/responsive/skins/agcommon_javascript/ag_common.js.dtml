@@ -47,7 +47,7 @@ function msieversion()
     var msie = ua.indexOf ( "MSIE " )
     
     if ( msie > 0 )      // If Internet Explorer, return version number
-        return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+        return Math.round (ua.substring (msie+5, ua.indexOf (".", msie )))
     else                 // If another browser, return 0
         return 0
 
@@ -340,7 +340,7 @@ function getEventDate(dateType) {
         if (hour == 12 && ampm == "AM") {
             hour = 0;
         } else if (hour < 12 && ampm == "PM") {
-            hour = parseInt(hour) + 12;
+            hour = Math.round(hour) + 12;
         }
         // convert the date fields to a javascript date object and return it
         // Decrement month by 1, because JavaScript months run from 0-11
@@ -514,6 +514,86 @@ jq(document).ready(
 
     }
 );
+
+/* Top navigation equalizer */
+
+jq(document).ready(
+    function() {
+        equalizeTopNav();
+    }
+);
+
+jq(window).resize(
+    function() {
+        equalizeTopNav();
+    }
+);
+    
+function equalizeTopNav() {
+    if (window.innerWidth <= 500)
+    {
+        return;
+    }
+        
+    topnav = jq('#portal-top-navigation');
+    topnavitems = jq('#portal-top-navigation li a');
+    min_padding = 4;
+    if (topnav && topnavitems)
+    {
+        topnav_width = topnav.width();
+        topnav_width += Number(topnav.css('padding-left').replace('px', ''));                        
+        topnav_width += Number(topnav.css('padding-right').replace('px', ''));                        
+        topnav_width += Number(topnav.css('margin-left').replace('px', ''));                        
+        topnav_width += Number(topnav.css('margin-right').replace('px', '')); 
+        topnav_width += Number(topnav.css('border-left-width').replace('px', '')); 
+        topnav_width += Number(topnav.css('border-right-width').replace('px', '')); 
+
+        total_item_width = 0;
+
+        topnavitems.each(
+            function() {
+                item_width = jq(this).width();
+                item_width += Number(jq(this).css('padding-left').replace('px', ''));                        
+                item_width += Number(jq(this).css('padding-right').replace('px', ''));                        
+                item_width += Number(jq(this).css('margin-left').replace('px', ''));                        
+                item_width += Number(jq(this).css('margin-right').replace('px', ''));
+                item_width += Number(jq(this).css('border-left-width').replace('px', ''));                        
+                item_width += Number(jq(this).css('border-right-width').replace('px', ''));
+                total_item_width += item_width;
+            }
+        );
+
+        additional_item_padding = Number( ((topnav_width - total_item_width)/topnavitems.size())/2  );
+
+        max_padding = 50;
+        
+        if (additional_item_padding > max_padding)
+        {
+            additional_item_padding = max_padding;
+        }
+
+        topnavitems.each(
+            function() {
+                new_left_padding  = Math.max(min_padding, parseInt(Number(jq(this).css('padding-left').replace('px', '')) + additional_item_padding)) - 0.5;
+                new_right_padding = Math.max(min_padding, parseInt(Number(jq(this).css('padding-left').replace('px', '')) + additional_item_padding)) - 0.5;
+                jq(this).css('padding-left', new_left_padding + 'px');
+                jq(this).css('padding-right', new_right_padding + 'px');
+            }
+        );
+
+    }
+}
+
+jq(document).ready(
+    function () {
+        alert(window.innerWidth);
+        if (window.innerWidth <= 480)
+        {
+            //jq("#portal-column-one .portletNavigationTree").hide();
+        }
+    }
+);
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */

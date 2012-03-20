@@ -13,20 +13,20 @@
                 show_subsite_nav python: (include_top and enable_subsite_nav and isLeftColumn and subsite_title and subsite_url and navigation_title != subsite_title) or False 
                 ">
 
-    <h2 class="hiddenStructure"
+    <h1 class="hiddenStructure"
         tal:condition="not: include_top">
     
         <a href="#"
             tal:attributes="href root/absolute_url">Navigation</a>
-    </h2>
+    </h1>
     <tal:show_title condition="include_top">
         <tal:subsite condition="show_subsite_nav">
  
-            <h2 class="portletHeader portletNavigationHeader">
+            <h1 class="portletHeader portletNavigationHeader">
                 <a tal:attributes="href subsite_url;
                                    title subsite_title;"
                                    tal:content="subsite_title" />
-            </h2>
+            </h1>
             <h3 class="portletNavigationSubHeader">
                 <a tal:attributes="href root/absolute_url;
                                    title root/Description;"
@@ -35,11 +35,11 @@
         </tal:subsite>
         <tal:notsubsite condition="not:show_subsite_nav">
             
-            <h2 class="portletHeader portletNavigationHeader">
+            <h1 class="portletHeader portletNavigationHeader">
                 <a tal:attributes="href root/absolute_url;
                                    title root/Description;"
                                    tal:content="navigation_title" />
-            </h2>
+            </h1>
         </tal:notsubsite>
     </tal:show_title>
 </tal:header>

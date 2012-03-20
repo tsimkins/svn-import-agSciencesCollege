@@ -1,0 +1,179 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* This is site-level customizations in CSS */
+
+
+/* Remove background image and bump font size down */
+body {
+    background-image: none;
+    font-size: 0.90625em !important;
+}
+
+/* Make the top nav more button-y than bar-y */
+#portal-top-navigation {
+    background-color: #EEEEEE;
+    background-image: none;
+}
+
+#portal-top-navigation li:first-child a,
+#portal-top-navigation li a, 
+#portal-top-navigation li.alternate a {
+    font-size: 0.9375em;
+    border-color: transparent;
+    border-width: 0;
+    background-image: none;
+    border-radius: 4px;
+    /* Drop Shadow */
+    -moz-box-shadow: 0 0 1px #333333;
+    -webkit-box-shadow: 0 0 1px #333333;
+    box-shadow: 0 0 1px #333333;
+    margin: 2px;
+}
+
+#visual-portal-wrapper {
+    min-width: 460px; 
+}
+
+/* Columns */
+
+#portal-column-one {
+    background-image: none;
+    width: 150px;
+}
+
+#portal-column-two, #portal-column-content {
+    display: block;
+    float: none;
+    border-left: none;
+    border-right: none;
+}
+
+#portal-column-two {
+    width: auto;
+}
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom: 0;
+}
+
+#portal-column-content.sl {
+    margin-left: 0;
+}
+
+#portal-column-content.sr, #portal-column-two {
+    border-right: none;
+}
+
+.portletItemDetails {
+    text-align: left;
+}
+
+#content a {
+    font-size: 1.0625em;
+}
+
+#portlets-below .portletWrapper {
+    margin-top: 0;
+}
+
+div.portletsBelowContentA, 
+div.portletsBelowContentB, 
+div.portletsBelowContentC, 
+div.portletsBelowContentD, 
+div.portletsBelowContentE,
+div.portletsAboveContentA, 
+div.portletsAboveContentB, 
+div.portletsAboveContentC, 
+div.portletsAboveContentD, 
+div.portletsAboveContentE {
+    float: none;
+    clear: both;
+    width: auto;
+    display: block;
+}
+
+
+/* Homepage */
+
+#rightcolumn {
+    float: none !important;
+    width: auto !important;
+    border: none !important;
+    margin: 0 0.1875em !important;
+    background-color: transparent !important;
+}
+
+#rightcolumn .portletHeader {
+    text-align: left !important;
+    padding-left: 0.75em !important;
+}
+
+#rightcolumn .portlet {
+    background-color: transparent !important;
+}
+
+#centercolumn {
+    float: none !important;
+    width: auto !important;
+    border: none !important;
+    margin: 0 0.1875em !important;
+}
+
+#content #homepage-text {
+    margin: 0 !important;
+}
+
+#content #homepage-text.sr {
+    border: none;
+}
+
+.agCommonPortlet .portletFooter a {
+    font-size: 0.75em !important;
+}
+
+/* Lead Image */
+
+.contentLeadImageContainer {
+    display: block;
+    float: none;
+    clear: both;
+    text-align: left;
+}
+
+.contentLeadImageContainer p.discreet {
+    text-align: left;
+    padding-left: 0;
+}
+
+.contentLeadImageContainer img {
+    margin-left: 0;
+}
+
+
+/* Facebook Like */
+
+#fblike {
+    width: auto !important;
+}    
+
+#fblike iframe {
+    width: auto !important;
+    max-width: 450px;
+    min-width: 250px;
+}
+
+
+body.section-front-page #portlets-above .portlet {
+    min-height: 0;
+}
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

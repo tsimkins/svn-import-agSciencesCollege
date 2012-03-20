@@ -24,7 +24,7 @@ body {
     margin: 0 auto;
     padding: 0 0.375em 0.375em 0.375em;
     max-width: &dtml-maxWidth;;
-    min-width: &dtml-minWidth;;
+    min-width: 700px; 
     /* Drop Shadow */
     -moz-box-shadow: 0 0 0.625em #333333;
     -webkit-box-shadow: 0 0 0.625em #333333;
@@ -44,10 +44,12 @@ body {
 /* = portal-header ========================================= */
 
 #portal-header {
-    background: &dtml-backgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left bottom;
-    height: 4.6875em;
+    background: &dtml-backgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left 0.6875em;
     margin: 0.0625em 0 0 0;
     padding: 0;
+    position: relative;
+    z-index: 10;
+    min-height: 4.6875em;
 }
 
 #portal-header a {
@@ -61,6 +63,11 @@ body {
 #portal-searchbox {
     margin: 0.25em;
     padding: 0 0.25em 0 0;
+    position: absolute;
+    right: 0;
+    top: 1px;
+    clear: none;
+    float: none;
 }
 
 .searchSection {
@@ -94,13 +101,6 @@ body {
     vertical-align: middle;
 }
 
-/* = portal-logo =========================================== */
-
-#portal-logo, #portal-logo img {
-    position: absolute;
-    margin: 0;
-}
-
 
 /* = logo-psu ============================================== */
 
@@ -109,16 +109,22 @@ body {
     width: 90px;
     top: 15px;
     left: 5px;
+    position: absolute;
+    display: block;
+    z-index: 10;
 }
 
 
 /* = logo-college ========================================== */
 
 #logo-college {
-    height: 32px;
-    width: 52px;
+    display: block;
+    height: 33px;
+    left: 101px;
+    position: absolute;
     top: 38px;
-    left: 100px;
+    width: 56px;
+    z-index: 10;
 }
 
 
@@ -134,16 +140,13 @@ body {
 #logo-site {
     font-family: Arial,Helvetica,sans-serif;
     font-size: &dtml-siteLogoFontSize;;
-    height: 30px;
-    left: 188px;
+    margin-left: 188px;
     letter-spacing: 0.02em;
-    position: absolute;
-    top: &dtml-siteLogoTopMargin;;
-    width: 580px;
-}
-
-#logo-site a {
+    position: static;
+    margin-top: &dtml-siteLogoTopMargin;;
     color: #1144AA;
+    z-index: 10;
+    display: block;
 }
 
 
@@ -183,9 +186,8 @@ body {
     padding: 0;
     background-color: transparent;
     border-collapse: separate;
-    border-left: 1px #808080 solid;
-    border-right: 1px #808080 solid;
     border-spacing: 0;
+    display: table;
     width: 100%;
 }
 
@@ -193,13 +195,11 @@ body {
 
 #portal-column-one {
     background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
-    border-color: &dtml-leftNavBorderColor;;
-    border-style: solid;
-    border-width: 0 1px 0 0;
     width: 186px;
     padding:0;
     margin: 0;
     vertical-align: top;
+    display: table-cell;
 }
 
 #portal-column-one .visualPadding {
@@ -237,11 +237,12 @@ body {
     color: &dtml-leftButtonBackgroundBorder_external;;
     border-color: &dtml-leftButtonBackgroundBorder_external;;
     border-width: 0 0 1px 0;
-    padding: 0.1875em 0;
+    padding: 0.1875em 0 0.125em 0;
     font-size: 0.9375em;
     font-weight: bold;
-    text-transform: uppercase;
-    line-height: 1.375em;
+    line-height: 1.25em;
+    font-family: Arial, Helvetica, Helv, sans-serif;
+    font-size: 1.1875em;
 }
 
 #portal-column-one .portlet {
@@ -291,9 +292,9 @@ body {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -0.9375em;
+    margin: 0 -0.9375em 0 -0.9375em;
     padding: 0.9375em;
-    border-bottom: 1px solid &dtml-leftNavBorderColor;;
+    font-size: 1em;
     text-transform: none;
 }
 
@@ -306,6 +307,7 @@ body {
     margin: 0;
     font-family: Lucida Grande,Trebuchet MS,Tahoma,Verdana,sans-serif;
     font-weight: bold;
+    font-size: 1.1875em;
 }
 
 #portal-column-one .portletNavigationSubHeader {
@@ -627,6 +629,7 @@ body {
     padding: 0;
     background-color: &dtml-backgroundColor;;
     vertical-align: top;
+    display: table-cell;
 }
 
 #portal-column-content.sl {
@@ -649,6 +652,7 @@ body {
     /* Fix bleed-through of image in Safari and Chrome */
     z-index: 10;
     position: relative;
+    border-width: 0;
 }
 
 #portal-top-navigation.empty {
@@ -659,7 +663,7 @@ body {
     display: block;
     text-align: left;
     margin: 0 auto;
-    padding: 0 0 0 0.375em;
+    padding: 0 0 0 0;
     border: none;
     list-style-type: none;
     font-size: 0.78125em;
@@ -667,6 +671,11 @@ body {
 }
 
 #portal-top-navigation li {
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+#portal-top-navigation li a {
     background-color: &dtml-topnavigationBackgroundColor;;
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
     background-repeat: repeat-x;
@@ -674,32 +683,25 @@ body {
     border-color: &dtml-topnavigationBackgroundColor;;
     border-width: 0 0 0 1px;
     border-style: solid;
-    display: -moz-inline-box;
-    display: inline-block;
+    display: block;
     padding: 0.375em 0.56251em 0.375em 0.56252em;
-    margin: 0 0 0 -0.375em;
+    margin: 0;
     white-space: nowrap;
+    text-align: center;
 }
 
-#portal-top-navigation li.alternate {
+#portal-top-navigation li.alternate a,
+#portal-top-navigation li.alternate a:hover {
     background-image:url('&dtml-portal_url;/topnav-alternate-gradientBackground.png?startColor=<dtml-var expr="topnavigationAlternateBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationAlternateGradientBackground.replace('#','')">&height=20');
     background-color: &dtml-topnavigationAlternateBackgroundColor;;
     background-repeat: repeat-x;
     background-position: bottom left;
-    /* border-color: &dtml-topnavigationAlternateBackgroundColor;; */
+    color: &dtml-topnavigationAlternateTextColor; !important;    
 }
 
-#portal-top-navigation li.alternate a {
-    color: &dtml-topnavigationAlternateTextColor; !important;
-}
-
-#portal-top-navigation li.alternate a:hover {
-    color: &dtml-topnavigationAlternateTextHoverColor; !important;
-    border-bottom: 1px solid <dtml-var expr="gradientEnd(startColor=topnavigationAlternateTextHoverColor, count=3)">;
-}
-
-#portal-top-navigation li:first-child {
+#portal-top-navigation li:first-child a {
     border-width: 0;
+    padding-left: 0.75em;
 }
 
 #portal-top-navigation a {
@@ -711,9 +713,10 @@ body {
     line-height: 1.6875em;
 }
 
-#portal-top-navigation a:hover {
+#portal-top-navigation li a:hover {
+    background-image: none;
+    background-color: <dtml-var expr="gradientEnd(startColor=topnavigationBackgroundColor, count=2)">;
     color: &dtml-topnavigationTextHoverColor; !important;
-    border-bottom: 1px solid <dtml-var expr="gradientEnd(startColor=topnavigationTextHoverColor, count=3)">;
 }
 
 
@@ -725,6 +728,7 @@ body {
     background-color: &dtml-insideRightPortletBackgroundColor;;
     width: 160px;
     vertical-align: top;
+    display: table-cell;
 }
 
 #portal-column-two h2 {
@@ -768,14 +772,15 @@ body {
     background-color: transparent;
     color: &dtml-insideRightPortletHeaderTextColor;;
     font-weight: bold;
-    padding: 2px 0;
+    padding: 0.1875em 0 0.125em 0;
     text-align: left;
-    text-transform: uppercase;
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: &dtml-insideRightPortletHeaderTextColor;;
     margin: 2px 0 0 0;
-    line-height: 1.375em;
+    line-height: 1.25em;
+    font-family: Arial, Helvetica, Helv, serif;
+    font-size: 1.1875em;
 }
 
 #portal-column-two .portletHeader a {
@@ -837,6 +842,35 @@ body {
 
 #portal-column-two .portletItem a:hover {
     background-color: transparent;
+}
+
+
+/* ----------- portal columns border logic -----------------*/
+
+#portal-columns {
+    border: none;
+}
+
+#portal-column-one {
+    border-right: 1px &dtml-leftNavBorderColor; solid;
+    border-left: 1px #808080 solid;
+}
+
+#portal-column-two {
+    border-right: 1px #808080 solid;
+}
+
+#portal-column-content {
+    border-left: 1px #808080 solid;
+    border-right: 1px #808080 solid;
+}
+
+#portal-column-content.sl {
+    border-left: none;
+}
+
+#portal-column-content.sr {
+    border-right: none;
 }
 
 
@@ -957,8 +991,10 @@ html.kupu-html {
     font-weight: normal;
 }
 
+#content .tileTitle,
 #content h2.tileTitle,
-#content h3.tileTitle {
+#content h3.tileTitle,
+#content div.tileTitle {
     font-size: 1em;
     margin: 0;
     font-weight: normal;
@@ -966,8 +1002,10 @@ html.kupu-html {
     font-family: &dtml-headingFontFamily;;
 }
 
+#content .tileTitle a,
 #content h2.tileTitle a,
-#content h3.tileTitle a {
+#content h3.tileTitle a,
+#content div.tileTitle a {
     text-decoration: underline;
 }
 
@@ -1223,7 +1261,7 @@ dt.nodescription {
     margin-bottom: 1em;
 }
 
-div.nodescription {
+div.tileDescription.nodescription {
     display: none;
 }
 
@@ -2128,6 +2166,10 @@ body.template-folder_full_view #content-core .item {
 
 #content .documentContributors .tileItemLeadImage:first-child {
     border: none !important;
+}
+
+.discreet {
+    color: #575757;
 }
 
 /* 

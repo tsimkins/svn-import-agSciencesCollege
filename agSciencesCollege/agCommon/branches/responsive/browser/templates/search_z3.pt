@@ -59,9 +59,6 @@
 
             <metal:portal_type define-macro="portal_type">
     
-                <label for="portal_type:list" class="hiddenStructure"
-                        tal:condition="portal_types">Search Type</label>
-    
                 <tal:portal_type condition="portal_types" 
                                  repeat="t portal_types">
     

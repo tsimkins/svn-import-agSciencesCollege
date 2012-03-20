@@ -4,9 +4,19 @@
 
 /* <dtml-with base_properties> */
 
+#portal-top-navigation {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation ul {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
 #portal-top-navigation li {
-	display: inline;
-	border-width: 0px 0px 0px 3px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 #portal-column-one .linkIcon ul {
@@ -31,6 +41,7 @@
 #portal-columns {
     width: 100% !important;
 }
+
 #portal-column-content.sr {
     margin-right: 0;
 }
@@ -64,6 +75,15 @@ body.template-folder_leadimage_listing .leadimage-listing img {
 
 #relatedItemBox dt {
     display: inline;
+}
+
+#portal-breadcrumbs span {
+    font-size: 0.625em;
+}
+
+/* Since IE 6 doesn't support > selector, expand what it shrunk */
+#portal-breadcrumbs #breadcrumbs-current {
+    font-size: 1em;
 }
 
 /* </dtml-with> */

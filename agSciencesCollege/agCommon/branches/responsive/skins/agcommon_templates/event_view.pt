@@ -207,7 +207,8 @@
                                tal:attributes="href string:$here_url/vcs_view"
                                title="Download this event in vCal format"
                                i18n:attributes="title title_add_to_vcal;">
-                                <img tal:replace="structure context/icon_export_vcal.png" src="" alt="" /></a>
+                                <img tal:replace="structure context/icon_export_vcal.png" src="" 
+                                     alt="Download this event in vCal format" /></a>
                             <a href="#"
                                tal:attributes="href string:$here_url/vcs_view"
                                title="Download this event in vCal format"
@@ -220,7 +221,8 @@
                                tal:attributes="href string:$here_url/ics_view"
                                title="Download this event in iCal format"
                                i18n:attributes="title title_add_to_ical;">
-                                <img tal:replace="structure context/icon_export_ical.png" src="" alt="" /></a>
+                                <img tal:replace="structure context/icon_export_ical.png" src="" 
+                                     alt="Download this event in iCal format" /></a>
                             <a href="#"
                                tal:attributes="href string:$here_url/ics_view"
                                title="Download this event in iCal format"
@@ -253,7 +255,7 @@
                  tal:attributes="class string:eventSummary vcard eventDateLocation ${canceled}">
                 <h2 class="hiddenStructure">Date and Location</h2>
                 <div>
-                    <h3>When</h3> <metal:when metal:use-macro="here/event_view/macros/event_when" />
+                    <h3>When <span class="hiddenStructure">(Date/Time)</span></h3> <metal:when metal:use-macro="here/event_view/macros/event_when" />
                 </div>
                 <div tal:condition="context/location">
                     <h3>Where</h3> <metal:when metal:use-macro="here/event_view/macros/event_where" />

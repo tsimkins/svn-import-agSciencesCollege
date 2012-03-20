@@ -51,7 +51,22 @@
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>
 
- <stylesheet id="print.css" insert-after="site.css"
+ <stylesheet id="medium_screen.css"  insert-after="site.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="handheld,screen and (max-width: 800px)"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="narrow_screen.css"  insert-after="site.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="handheld,screen and (max-width: 730px)"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="handheld.css"  insert-after="narrow_screen.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="handheld,screen and (max-width: 480px)"
+    rel="stylesheet" rendering="import"/>
+
+ <stylesheet id="print.css" insert-after="handheld.css"
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="print"
     rel="stylesheet" rendering="import"/>
@@ -61,12 +76,7 @@
     enabled="1" expression=""  media="print"
     rel="stylesheet" rendering="import"/>
 
- <stylesheet id="handheld.css"  insert-after="site_print.css"
-    title="" cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression=""  media="handheld"
-    rel="stylesheet" rendering="import"/>
-
- <stylesheet id="IE6Fixes.css"  insert-after="handheld.css"
+ <stylesheet id="IE6Fixes.css"  insert-after="site_print.css"
     title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""  media="all"
     conditionalcomment="IE 6"

@@ -7,8 +7,11 @@
 
 /* This is site-level customizations in CSS */
 
-#logo-college, #logo-psu,
-#goSearch, #addthis {
+#portal-top-navigation {
+    background-color: transparent;
+}
+
+#addthis {
     display: none;
     height: 0;
     width: 0;
@@ -17,6 +20,204 @@
 
 body {
     background: #FFFFFF;
+}
+
+#visual-portal-wrapper {
+    padding: 0;
+    min-width: 160px;
+    box-shadow: none;
+    border: none;
+}
+
+#portal-top {
+    border: none;
+}
+
+#portal-header {
+    border: none;
+    margin-right: 6px;
+}
+
+#logo-site {
+    position: static;
+    margin-top: 80px;
+    margin-left: 7px;
+}
+
+#portal-searchbox {
+    float: none;
+    clear: both;
+    position: static;
+    margin-left: 7px;
+    margin-top: 3px;
+    margin-bottom: 33px;
+}
+
+#homepageimage, #portal-breadcrumbs.homepage, #panorama-homepage-image {
+  display: none !important;  
+}
+
+#portal-top-navigation li:first-child a,
+#portal-top-navigation li a, 
+#portal-top-navigation li.alternate a {
+    display: block;
+    width: auto !important;
+    text-align: left;
+    border-radius: 3px;
+    margin: 3px;
+    border-color: transparent;
+    background-position
+}
+
+#portal-top-navigation li:first-child a,
+#portal-top-navigation li a {
+    background-color: &dtml-topnavigationBackgroundColor;;
+    background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
+}
+
+#portal-top-navigation li.alternate a,
+#portal-top-navigation li.alternate a:hover {
+    background-image:url('&dtml-portal_url;/topnav-alternate-gradientBackground.png?startColor=<dtml-var expr="topnavigationAlternateBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationAlternateGradientBackground.replace('#','')">&height=20');
+}
+
+#portal-top-navigation, #portal-top-navigation ul {
+    background-color: transparent;
+    border: none;
+    background-image: none;
+}
+
+#portal-top-navigation li {
+    float: none;
+}
+
+/* Homepage */
+
+#rightcolumn {
+    float: none !important;
+    width: auto !important;
+    border: none !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+}
+
+#rightcolumn .portletHeader {
+    text-align: left !important;
+    padding-left: 0.75em !important;
+}
+
+#rightcolumn .portlet {
+    background-color: transparent !important;
+}
+
+#centercolumn {
+    float: none !important;
+    width: auto !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+#content #homepage-text {
+    margin: 0 !important;
+}
+
+#content #homepage-text.sr {
+    border: none;
+}
+
+#content {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#portal-column-content {
+    padding: 0 1em;
+}
+
+#portal-column-one {
+    background-image: none;
+    margin-top: 0.375em;
+}
+
+#portal-column-one .portletWrapper {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+}
+
+#portal-column-one, #portal-column-two, #portal-column-content {
+    width: auto !important;
+    display: block;
+    float: none;
+    border-left: none;
+    border-right: none;
+}
+
+#portal-column-content.sr, #portal-column-two {
+    border-right: none !important;
+}
+
+#portal-column-one .portletNavigationHeader {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+#portal-column-one .portletNavigationTree {
+    margin-left: 0.25em;
+    margin-right:  0.25em;
+}
+
+#portal-column-content.sl {
+    margin-left: 0;
+}
+
+#portal-breadcrumbs {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.portletItemDetails {
+    text-align: left;
+}
+
+#content a {
+    font-size: 1.0625em;
+}
+
+#portlets-below .portletWrapper {
+    margin-top: 0;
+}
+
+div.portletsBelowContentA, 
+div.portletsBelowContentB, 
+div.portletsBelowContentC, 
+div.portletsBelowContentD, 
+div.portletsBelowContentE,
+div.portletsAboveContentA, 
+div.portletsAboveContentB, 
+div.portletsAboveContentC, 
+div.portletsAboveContentD, 
+div.portletsAboveContentE {
+    float: none;
+    clear: both;
+    width: auto;
+    display: block;
+}
+
+body.section-front-page #portlets-above .portlet {
+    min-height: 0;
+}
+
+#portal-footer span.footerSeparator {
+    display: none;
+}
+
+#portal-footer p.footerLinks a {
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+#fblike {
+    display: none;
 }
 
 /* YOUR CSS RULES STOP HERE */

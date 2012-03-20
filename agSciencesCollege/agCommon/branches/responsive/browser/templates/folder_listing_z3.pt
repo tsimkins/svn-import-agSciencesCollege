@@ -111,7 +111,7 @@
 
                         </div>
                         
-                        <h3 tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle nodescription');"
+                        <div tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle nodescription');"
                             tal:attributes="class dt_class">
    
                             <img tal:replace="structure item_icon/html_tag" />
@@ -121,7 +121,7 @@
                                tal:content="item_title_or_id">
                                 Item Title
                            </a>
-                        </h3>
+                        </div>
                         <tal:taglisting 
                              define="show_tags context/show_tags|nothing;
                                    tag_prefix context/tag_prefix|nothing;
