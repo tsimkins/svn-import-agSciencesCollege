@@ -13,7 +13,7 @@
 		
 	</p>
 
-    <p tal:condition="view/footerlinks">
+    <p class="footerLinks" tal:condition="view/footerlinks">
         <tal:links repeat="saction view/footerlinks">
         <a 
            tal:define="description saction/description|saction/title"
@@ -21,7 +21,7 @@
            tal:attributes="id saction/id;
                            href saction/url;
                            title description;">[Footer Link]</a>
-        <tal:mdash condition="not:repeat/saction/end">&mdash;</tal:mdash>
+        <tal:mdash condition="not:repeat/saction/end"><span class="footerSeparator">&mdash;</span></tal:mdash>
         </tal:links>
     </p>
 

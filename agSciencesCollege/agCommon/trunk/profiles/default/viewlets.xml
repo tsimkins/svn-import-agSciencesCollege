@@ -44,8 +44,8 @@ Note: insert-before and -after accept the value "*" which means
 
     <order manager="plone.portalheader" skinname="agCommon">
         <viewlet name="plone.skip_links" insert-before="*"/>
-        <viewlet name="plone.searchbox" insert-after="plone.skip_links"/>
-        <viewlet name="plone.logo" insert-after="plone.searchbox"/>
+        <viewlet name="plone.logo" insert-after="plone.skip_links"/>
+        <viewlet name="plone.searchbox" insert-after="plone.logo"/>
     </order>
 
     <order manager="plone.abovecontent" skinname="agCommon">
@@ -72,7 +72,6 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="agcommon.rightcolumn" insert-after="collective.contentleadimage.full" />
         <viewlet name="agcommon.homepage_text" insert-after="agcommon.rightcolumn" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.homepage_text" />
-        <viewlet name="agcommon.tableofcontents" insert-after="*" />
     </order>
 
     <order manager="plone.belowcontentbody" skinname="agCommon">
@@ -110,7 +109,6 @@ Note: insert-before and -after accept the value "*" which means
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
         <viewlet name="plone.app.i18n.locales.languageselector" />
-        <viewlet name="collective.contentleadimage.header"/>
     </hidden>
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
@@ -146,7 +144,7 @@ Note: insert-before and -after accept the value "*" which means
     </hidden>
 
     <hidden manager="plone.abovecontentbody" skinname="agCommon">
-        <viewlet name="plone.tableofcontents" />
+        <viewlet name="agcommon.tableofcontents" />
         <viewlet name="contentwellportlets.portletsabovecontent" />
     </hidden>
 

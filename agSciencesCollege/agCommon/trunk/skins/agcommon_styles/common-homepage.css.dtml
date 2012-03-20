@@ -140,16 +140,16 @@
 
 .agCommonPortlet .portletHeader {
 	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	padding: 0.25em !important;
-	text-transform: uppercase;
+	padding: 0.125em 0.25em !important;
 	border-width: 0;
 	margin: 0 !important;
-	line-height: 1.75em;
-	font-size: 0.6875em !important;
+	line-height: 1.625em;
+	font-size: 0.8125em !important;
 	color: &dtml-frontRightPortletHeaderTextColor; !important; 
 	font-weight: bold !important;
     text-align: left;
     border: none !important;
+    font-family: Arial, Helvetica, Helv, sans-serif;
 }
 
 #centercolumn .portletHeader {

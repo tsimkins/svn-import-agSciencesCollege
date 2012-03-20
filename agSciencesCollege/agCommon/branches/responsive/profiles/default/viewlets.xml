@@ -44,8 +44,8 @@ Note: insert-before and -after accept the value "*" which means
 
     <order manager="plone.portalheader" skinname="agCommon">
         <viewlet name="plone.skip_links" insert-before="*"/>
-        <viewlet name="plone.searchbox" insert-after="plone.logo"/>
         <viewlet name="plone.logo" insert-after="plone.skip_links"/>
+        <viewlet name="plone.searchbox" insert-after="plone.logo"/>
     </order>
 
     <order manager="plone.abovecontent" skinname="agCommon">

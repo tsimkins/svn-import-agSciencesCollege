@@ -5,14 +5,18 @@
 /* <dtml-with base_properties> */
 
 #portal-top-navigation {
-	background-color: &dtml-topnavigationBackgroundColor;;
-	padding: 0 0;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation ul {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 #portal-top-navigation li {
-	display: inline;
-	border-width: 0px 0px 0px 3px;
-	margin: 0;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 body.template-document_homepage_view #centercolumn {
@@ -57,6 +61,10 @@ body.template-portlet_homepage_view #rightcolumn .portletFooter{
 }
 
 #portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+} 
+
+.imagePortlet dd ul { 
     margin-left: 0 !important; 
 } 
 

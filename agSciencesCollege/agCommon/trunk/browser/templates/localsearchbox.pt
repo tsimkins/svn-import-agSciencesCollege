@@ -11,7 +11,7 @@
           action="search"
           tal:attributes="action string:${view/site_url}/search">
 
-        <label for="SearchableText" class="hiddenStructure"
+        <label for="localSearchBox" class="hiddenStructure"
                     i18n:translate="text_search">Search Site</label>
 
         <div class="LSBox">
@@ -34,7 +34,7 @@
     
             <input class="searchButton"
                    type="submit"
-                   id = "goSearch"
+                   id = "localSearch"
                    value = "Go"
     		/>
 

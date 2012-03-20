@@ -24,7 +24,7 @@ body {
     margin: 0 auto;
     padding: 0 0.375em 0.375em 0.375em;
     max-width: &dtml-maxWidth;;
-    min-width: 700px; 
+    min-width: &dtml-minWidth;;
     /* Drop Shadow */
     -moz-box-shadow: 0 0 0.625em #333333;
     -webkit-box-shadow: 0 0 0.625em #333333;
@@ -48,7 +48,7 @@ body {
     margin: 0.0625em 0 0 0;
     padding: 0;
     position: relative;
-    z-index: 10;
+    height: 4.6875em;
     min-height: 4.6875em;
 }
 
@@ -111,7 +111,6 @@ body {
     left: 5px;
     position: absolute;
     display: block;
-    z-index: 10;
 }
 
 
@@ -124,7 +123,6 @@ body {
     position: absolute;
     top: 38px;
     width: 56px;
-    z-index: 10;
 }
 
 
@@ -145,7 +143,6 @@ body {
     position: static;
     margin-top: &dtml-siteLogoTopMargin;;
     color: #1144AA;
-    z-index: 10;
     display: block;
 }
 
@@ -292,7 +289,7 @@ body {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -0.9375em 0 -0.9375em;
+    margin: 0 -0.9375em;
     padding: 0.9375em;
     font-size: 1em;
     text-transform: none;
@@ -301,7 +298,6 @@ body {
 #portal-column-one .portletNavigationHeader a {
     background-color: transparent;
     color: &dtml-leftNavTitleColor; !important;
-    font-size: 1.5em;
     line-height: 1.4em;
     padding: 0;
     margin: 0;
@@ -663,7 +659,7 @@ body {
     display: block;
     text-align: left;
     margin: 0 auto;
-    padding: 0 0 0 0;
+    padding: 0;
     border: none;
     list-style-type: none;
     font-size: 0.78125em;
@@ -675,6 +671,7 @@ body {
     margin: 0;
     float: left;
 }
+
 #portal-top-navigation li a {
     background-color: &dtml-topnavigationBackgroundColor;;
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');

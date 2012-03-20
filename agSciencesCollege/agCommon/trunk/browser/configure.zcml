@@ -213,6 +213,16 @@
         permission="zope2.View"
         />
 
+    <!-- Document actions --> 
+    <browser:viewlet
+        name="plone.abovecontenttitle.documentactions"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class="plone.app.layout.viewlets.content.DocumentActionsViewlet"
+        template="templates/document_actions.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <browser:viewlet
         name="plone.footer"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"

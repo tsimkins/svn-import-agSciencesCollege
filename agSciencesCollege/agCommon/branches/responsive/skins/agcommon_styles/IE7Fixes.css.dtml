@@ -66,8 +66,7 @@ body.template-portlet_homepage_view #rightcolumn .portletFooter{
 
 .imagePortlet dd ul { 
     margin-left: 0 !important; 
-} 
-
+}
 
 #relatedItemBox dt {
     display: inline;
