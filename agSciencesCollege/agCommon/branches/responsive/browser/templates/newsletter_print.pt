@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/newsletter_view/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:local_style_slot fill-slot="local_style_slot">
+    <style type="text/css">
+        .contentLeadImageContainer {
+            background-color: White;
+            float: right;
+            margin: 0.375em 0 0.5em;
+            max-width: 267px;
+            width: auto;
+        }
+        
+        .contentLeadImageContainer img {
+            margin-left: 1em;
+            border: medium none;
+            vertical-align: middle;
+        }
+        
+        .contentLeadImageContainer p.discreet {
+            padding-left: 1.125em;
+        }
+
+        .discreet {
+            color: #76797C;
+            font-size: 85%;
+            font-weight: normal;
+        }
+        
+        #portal-column-two {
+            display: none;
+        }
+        
+        #portal-columns {
+            width: 98%;
+            margin: 0 1%;
+            padding: 0;
+        }
+        
+        table td.header div, table td.header h1, table td.header hr {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+
+        }
+        
+        #portal-column-content {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+    </style>
+
+    <style media="print,screen">
+        h1.headline {
+            font-size: 16pt;
+        }
+
+        body, p, li, h1, h2, h3, div, span  {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", Times, serif !important;
+        }
+        
+        p.documentDescription {
+            font-size: 12pt;
+        }
+        
+        .portletItem {
+            margin: 0 0 6pt 12pt;
+        }
+
+    </style>
+</metal:local_style_slot>
+
+<metal:view-online fill-slot="view-online">
+    <!-- No link -->
+</metal:view-online>
+
+<metal:content-additional fill-slot="content-additional">
+    <!-- No additional content -->
+</metal:content-additional>
+
+<metal:featured-articles fill-slot="featured-articles">
+    <!-- No featured articles -->
+</metal:featured-articles>
+
+<metal:entries fill-slot="entries">
+    <metal:block use-macro="context/@@newsletter_view/macros/entries">
+        <metal:entry fill-slot="entry">
+            <div tal:condition="python: view.showItem(item)"
+                 tal:replace="structure python:item.getObject().folder_full_view_item()" />
+        </metal:entry>
+    </metal:block>
+</metal:entries>
+
+<metal:portlets fill-slot="portlets_two_slot">
+
+</metal:portlets>
+
+<metal:portlets fill-slot="portlets_bottom_slot">
+    <tal:block replace="structure provider:plone.rightcolumn" />
+</metal:portlets>
+
+<metal:analytics fill-slot="analytics_viewlet">
+
+
+
+</metal:analytics>
+
+</body>
+</html>

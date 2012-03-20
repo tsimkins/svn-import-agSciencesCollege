@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:additional fill-slot="content-additional"
+    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                effectiveDate here/EffectiveDate;">
+    <p class="effectiveDate">Posted: <span tal:replace="python:toLocalizedTime(effectiveDate,long_format=0)" /></p>
+</metal:additional>
+
+<metal:header fill-slot="header">
+    <dl class="portalMessage info"
+        tal:define="redirect_links context/article_link|nothing"
+        tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
+        <dt i18n:translate="">Info</dt>
+        <dd i18n:translate="message_permissions_blocking_link_redirect">
+            You see this page because you have permission to edit this news item
+            and this news item points to an external URL.<br /><br />
+            Others will be immediately redirected to the News Item's target URL.
+        </dd>
+    </dl>
+</metal:header>
+
+
+
+<metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core"
+          tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                      getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                      templateId template/getId;
+                      effectiveDate here/EffectiveDate;
+                      toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                      text python:context.CookedBody(stx_level=2);
+                      len_text python:len(text.strip());
+                      redirect_links context/article_link|nothing">
+
+        <p tal:define="is_editable context/@@plone_context_state/is_editable"
+           tal:condition="python: not len_text and is_editable and not redirect_links"
+           i18n:translate="no_body_text"
+           class="discreet">
+            This item does not have any body text, click the edit tab to change it.
+        </p>
+
+        <p tal:condition="redirect_links">
+            <span i18n:translate="link_address">The external news article is:</span>
+            <a href="#" tal:attributes="href redirect_links"
+                        tal:content="redirect_links">remote url</a>
+        </p>
+
+        <div metal:define-macro="text-field-view"
+             id="parent-fieldname-text" class="stx"
+             tal:define="kss_class python:getKssClasses('text', 
+                         templateId=templateId, macro='text-field-view');
+                         text text|context/getText|nothing"
+             tal:condition="python: text and not redirect_links"
+             tal:attributes="class python:test(context.Format() in ('text/structured',
+                                                   'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
+            <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+        </div>
+    </metal:block>
+</metal:content-core>
+
+</body>
+</html>
+
