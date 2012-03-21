@@ -112,6 +112,7 @@
     </tal:fbjs>
 
     <div id="visual-portal-wrapper">
+
         <metal:header define-slot="printheader" tal:content="nothing">
             Visual Header
         </metal:header>
@@ -122,8 +123,8 @@
 
       <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
 
-      <table id="portal-columns" metal:define-slot="portal-columns">
-        <tbody>
+      <table id="portal-columns" metal:define-slot="portal-columns" role="presentation">
+
           <tr>
             <tal:notajax tal:condition="not:ajax_load">
                 <tal:comment replace="nothing"> Start of the left column </tal:comment>
@@ -265,7 +266,7 @@
                 <tal:comment replace="nothing"> End of the right column </tal:comment>
             </tal:notajax>
           </tr>
-        </tbody>
+
       </table>
       <tal:comment replace="nothing"> end column wrapper </tal:comment>
 
