@@ -44,10 +44,6 @@ h1 {
     font-weight: normal;
 }
 
-#centercolumn {
-    padding: 0.25em 0.375em;
-}
-
 #centercolumn p.links {
     font-size: 0.75em;
 }
