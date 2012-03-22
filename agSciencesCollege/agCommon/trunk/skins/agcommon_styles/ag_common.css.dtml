@@ -447,21 +447,23 @@ body {
 
 #portal-column-one dl.portletfeedmixer dd.summary span.date,
 #portal-column-two dl.portletfeedmixer dd.summary span.date,
-#rightcolumn dl.portletfeedmixer dd.summary span.date {
+#rightcolumn dl.portletfeedmixer dd.summary span.date,
+#portal-column-one dl.portletfeedmixer dd.summary div.date,
+#portal-column-two dl.portletfeedmixer dd.summary div.date,
+#rightcolumn dl.portletfeedmixer dd.summary div.date {
     text-align: left;
-    border-bottom: 1px solid #CCC;
-    padding-bottom: 0.5em;
-    padding-top: 0.25em;
+    color: #575757;
+    font-size: 0.9375em;
 }
 
 
 #portal-column-one dl.portletfeedmixer span.summary,
 #portal-column-two dl.portletfeedmixer span.summary,
-#rightcolumn dl.portletfeedmixer span.summary {
+#rightcolumn dl.portletfeedmixer span.summary,
+#portal-column-one dl.portletfeedmixer div.summary,
+#portal-column-two dl.portletfeedmixer div.summary,
+#rightcolumn dl.portletfeedmixer div.summary {
     text-align: left;
-    font-size: 0.6875em;
-    margin-top: 0.5em;
-    color: #4D4D4D;
 }
 
 /* Image portlet */
