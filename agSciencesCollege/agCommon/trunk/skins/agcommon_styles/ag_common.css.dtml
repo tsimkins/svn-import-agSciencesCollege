@@ -536,9 +536,15 @@ body {
     color: &dtml-leftLinkTextColor;;
 }
 
-#portal-column-one .linkIcon a:hover,
-#portal-column-two .linkIcon a:hover {
+#portal-column-one .linkIcon a:hover span,
+#portal-column-two .linkIcon a:hover span {
     text-decoration: underline;
+    color: &dtml-leftLinkTextHoverColor;;
+}
+
+#portal-column-one .linkIcon img, 
+#portal-column-two .linkIcon img {
+	padding-right: 0.375em;
     color: &dtml-leftLinkTextHoverColor;;
 }
 
@@ -1943,14 +1949,18 @@ body.template-agenda_view #document-toc h3 {
     margin-bottom: 1.5em;
 }
 
-#content .eventSummary a {
+#content .eventSummary a span {
     text-decoration: none;
     border-bottom: 1px solid #DDDDDD;
 }
 
+#content .eventSummary a {
+    text-decoration: none;
+}
+
 #content .eventSummary a.img {
-    margin-left: 0.5em;
-    margin-right: -0.125em;
+    padding-right: 0.375em;
+    margin-left: 0.375em;
 }
 
 

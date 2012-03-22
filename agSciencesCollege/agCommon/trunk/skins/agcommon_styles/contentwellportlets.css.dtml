@@ -241,6 +241,10 @@ div.portletsAboveContentE {
     padding: 0.25em 5px;
 }
 
+#portlets-below dl.linkIcon img {
+    padding-right: 0.375em;
+}
+
 #portlets-below dl.linkIcon li.icon a,
 #portlets-below dl.linkIcon li.icon a:hover {
     display: inline-block;

@@ -19,12 +19,8 @@
                                         title title;"
                         ><img tal:attributes="
                             src icon;
-                            alt title" /></a>
-                        <a
-                        tal:content="title"
-                        tal:attributes="href licon/url;
-                                        title description;"
-                        >Link</a>
+                            alt python:''" /><span tal:content="title">
+                                         >Link</span></a>
                 </li>
             </tal:linkIcon>        
         </ul>
