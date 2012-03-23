@@ -199,13 +199,6 @@ ul.navTreeLevel1 {
     width: 490px;
 }
 
-body.template-document_homepage_view #centercolumnleft, 
-body.template-document_homepage_view .portletfeedmixer,
-body.template-document_homepage_view #centercolumn .portletfeedmixer .portletItem {
-    margin-right: 0;
-}
-
-
 * html body.template-document_homepage_view #portal-column-content {
     width: 713px;
 }
