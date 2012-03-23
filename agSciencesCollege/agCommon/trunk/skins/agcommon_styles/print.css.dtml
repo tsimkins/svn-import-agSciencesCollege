@@ -10,7 +10,7 @@
 
 body {
 	background-color: #FFFFFF;
-        background-image: none;
+    background-image: none;
 }
 
 #visual-portal-wrapper {
@@ -37,6 +37,7 @@ body {
 #portal-header {
 	background-color: #FFFFFF;
 	background-image: none;
+	min-height: 80px;
 }
 
 #logo-psu, #logo-college {
@@ -45,17 +46,29 @@ body {
 
 #logo-print {
 	display: block;
+	position: absolute;
+	top: 0;
+	left: 7px;
 }
 
 #logo-site {
 	position: relative;
-	font-size: 1.75em;
-	height: auto;
-	top: 0.90em;
-	left: 8.0em;
+	font-size: 1.625em;
 	letter-spacing: 0.02em;
-	text-transform: uppercase;
 	width: auto;
+	top: 30px;
+	left: 140px;
+	margin-top: 0;
+    margin-left: 0;
+}
+
+#logo-site.subsite {
+    left: 212px;
+}
+
+#logo-site.extension {
+    left: 23px;
+    top: 0;
 }
 
 #logo-site a {
@@ -74,7 +87,12 @@ body {
 	background-color: #EEEEEE;
 	color: #000000;
 	border: 1px solid #666666;
-	padding-left: 10px;
+	padding-left: 8px;
+	margin-top: 8px;
+}
+
+#portal-breadcrumbs>span {
+    font-size: 0.875em;
 }
 
 #portal-breadcrumbs a {
@@ -133,11 +151,12 @@ body.template-document_homepage_view #homepageimage {
 #content {
 	padding: 0px !important;
 	line-height: 1.5em;
+	font-size: 1.0625em;
 }
 
 .contentLeadImageContainer .discreet {
 	line-height: 1.25em;
-	font-size: 0.92em;
+	font-size: 0.75em;
 	font-family: Verdana, Arial, sans-serif;
 }
 

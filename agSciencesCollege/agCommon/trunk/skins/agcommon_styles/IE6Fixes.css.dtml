@@ -4,6 +4,10 @@
 
 /* <dtml-with base_properties> */
 
+#portal-header {
+    height: 4.6875em;
+}
+
 #portal-top-navigation {
     padding-top: 0 !important;
     margin-top: 0 !important;

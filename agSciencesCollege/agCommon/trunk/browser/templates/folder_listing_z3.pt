@@ -30,6 +30,7 @@
                                 test nocall:view/test">
 
     <metal:listingmacro define-macro="listing">
+    
     <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
                         contentFilter python:contentFilter and dict(contentFilter) or {};
                         limit_display limit_display|request/limit_display|nothing;

@@ -48,7 +48,6 @@ body {
     margin: 0.0625em 0 0 0;
     padding: 0;
     position: relative;
-    height: 4.6875em;
     min-height: 4.6875em;
 }
 
@@ -1884,8 +1883,16 @@ q {
 
 /* overlaycontent font size is too large */
 
+div.overlay-iframe, div.overlay-ajax {
+    top: 0.25em !important;
+}
+
 .pb-ajax .overlaycontent {
-    font-size: 0.875em !important;
+    font-size: 0.75em !important;
+}
+
+.pb-ajax .overlaycontent table.group td {
+    line-height: 1.5em !important;
 }
 
 /* table header background for plain table */
