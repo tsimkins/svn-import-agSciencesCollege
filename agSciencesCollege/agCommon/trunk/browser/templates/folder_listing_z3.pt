@@ -112,7 +112,7 @@
 
                         </div>
                         
-                        <div tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle nodescription');"
+                        <div tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle no-description');"
                             tal:attributes="class dt_class">
    
                             <img tal:replace="structure item_icon/html_tag" />
@@ -187,7 +187,7 @@
                              tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                     </metal:show-date>
 
-                    <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription nodescription');"
+                    <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription no-description');"
                            tal:attributes="class dt_class">
                         <metal:event-date define-macro="event_date">
                             <tal:event-date condition="python: item_type == 'Event'"

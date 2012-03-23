@@ -72,7 +72,7 @@
                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
                 <metal:block define-slot="entry">
                 <dt metal:define-macro="listitem"
-                    tal:define="dt_class python:test(not item_description, 'nodescription', '');
+                    tal:define="dt_class python:test(not item_description, 'no-description', '');
                                 dt_class python:test(item_type == 'Event', ('%s vevent' % dt_class).strip(), dt_class)"
                     tal:attributes="class dt_class">
 

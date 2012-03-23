@@ -1233,12 +1233,12 @@ abbr.dtstart, abbr.dtend {
     border-bottom: 0;
 }
 
-/* Give a dt.nodescription a bottom margin of 1em, since we're removing the dd if it doesn't have a description. */
-dt.nodescription {
+/* Give a dt.no-description a bottom margin of 1em, since we're removing the dd if it doesn't have a description. */
+dt.no-description {
     margin-bottom: 1em;
 }
 
-div.tileDescription.nodescription {
+div.tileDescription.no-description {
     display: none;
 }
 
@@ -1683,8 +1683,8 @@ body.template-subfolder_view div#two-column-left, body.template-subfolder_view d
     font-family: &dtml-headingFontFamily;;
 }
 
-#two-column-left .tileItem>dl>dt.nodescription, #two-column-right .tileItem>dl>dt.nodescription,
-#two-column-left .tileItem>h2.nodescription, #two-column-right .tileItem>h2.nodescription {
+#two-column-left .tileItem>dl>dt.no-description, #two-column-right .tileItem>dl>dt.no-description,
+#two-column-left .tileItem>h2.no-description, #two-column-right .tileItem>h2.no-description {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-family: &dtml-headingFontFamily;;
