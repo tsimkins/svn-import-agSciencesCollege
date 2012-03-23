@@ -1862,9 +1862,17 @@ q {
 /* Feedmixer in left column */
 
 #portal-column-one .portletfeedmixer .portletItem {
-    padding: 5px;
     border-left-width: 0;
     border-right-width: 0;
+}
+
+#portal-column-one .portletfeedmixer .portletItem img {
+    max-width: 166px;
+    margin-bottom: 0.125em;
+}
+
+#portal-column-one .portletfeedmixer .portletItem .title {
+    font-size: 1.125em;
 }
 
 #portal-column-one .portletfeedmixer .even {
