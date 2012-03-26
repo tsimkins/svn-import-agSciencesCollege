@@ -217,6 +217,16 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
 
+
+    <!-- Blog modifier -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.BlogExtender.fiddle"
+        factory=".extender.BlogExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    /> 
+
+
     <!-- Monkey Patch folder by adding 'getText' method -->
 
     <monkey:patch
@@ -308,6 +318,16 @@
         class="plone.app.discussion.conversation.Conversation"
         replacement=".patch.commentsEnabled"
         original="enabled"
+        ignoreOriginal="True"
+        />
+
+    <!-- Add 'getAvailableTags' to News Item. -->
+    
+    <monkey:patch
+        description="This adds a 'getAvailableTags' to News Items, which pulls the available tags from the parent Blog object"
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        replacement=".patch.getAvailableTags"
+        original="getAvailableTags"
         ignoreOriginal="True"
         />
 

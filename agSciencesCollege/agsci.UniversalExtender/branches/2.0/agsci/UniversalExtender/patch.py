@@ -1,4 +1,4 @@
-from Acquisition import aq_base, aq_inner
+from Acquisition import aq_base, aq_inner, aq_chain
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import AgCommonUtilities
 from zope.component import getMultiAdapter, queryUtility
@@ -10,6 +10,7 @@ from plone.registry.interfaces import IRegistry
 from plone.app.discussion.interfaces import IDiscussionSettings
 from interfaces import INoComments
 
+from agsci.subsite.content.interfaces import IBlog
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -194,3 +195,16 @@ def commentsEnabled(self):
         return True
 
     return False
+
+def getAvailableTags(self):
+    """Products.ATContentTypes.content.newsitem.ATNewsItem"""
+
+    tags = []
+    for i in aq_chain(self):
+        if IBlog.providedBy(i):
+            try:
+                tags = i.available_public_tags
+            except AttributeError:
+                pass
+            break
+    return tags

@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -12,13 +12,22 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.interfaces import IContributors
-
+from Products.CMFCore.interfaces import ISiteRoot
+from agsci.subsite.content.interfaces import IBlog
+from Products.Archetypes.utils import DisplayList
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _TextExtensionField(ExtensionField, TextField): pass
 class _ExtensionLinesField(ExtensionField, LinesField): pass
-    
+
+
+class _PublicTagsField(_ExtensionLinesField):
+    def Vocabulary(self, context):
+        tags = context.getAvailableTags()
+        return DisplayList([(x,x) for x in tags])
+
+
 # Add fax, twitter, facebook, linkedin to FSDPerson.
 #
 # Hide extraneous tabs from mere mortals. Hide image field from
@@ -286,6 +295,17 @@ class NewsItemExtender(object):
                 description=u"Use this field if the article lives at another place on the internet. Do not copy/paste the full article text from another source.",
             ),
             validators = ('isURL'),
+        ),
+
+        _PublicTagsField(
+            "public_tags",
+            required=False,
+            searchable=True,
+            widget = InAndOutWidget(
+                        label=u"Public Tags",
+                        description=u"Tags for the article that are visible to the public.",
+                        condition="python: object.getAvailableTags()",
+            ),
         ),
 
     ]
@@ -581,6 +601,23 @@ class CommentsExtender(object):
     def fiddle(self, schema):
         schema.moveField('allow_discussion_contents', after='allowDiscussion')
 
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+        
+class BlogExtender(object):
+    adapts(IBlog)
+    implements(ISchemaModifier, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    def fiddle(self, schema):
+
+        schema.moveField('available_public_tags', after='folder_text')
+
+        return schema
 
     def __init__(self, context):
         self.context = context
