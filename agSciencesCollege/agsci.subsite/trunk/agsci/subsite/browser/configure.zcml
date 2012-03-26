@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="agsci.subsite">
+   
+    <!-- Render the tags -->
+    <browser:viewlet
+        name="agsci.subsite.tags"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.TagsViewlet"
+        permission="zope2.View"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        />
+
+    <browser:page
+        for="*"
+        name="tags"
+        class=".views.TagsView"
+        template="templates/tags_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+</configure>

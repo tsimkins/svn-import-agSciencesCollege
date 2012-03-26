@@ -9,8 +9,9 @@
 
     <!-- include our sub-packages that contain their own configure.zcml files -->
     <include package=".content" />
-
-
+    <include package=".browser" />
+    <include package=".portlet" />
+    
     <!-- Register an event handler for when a Subsite is created -->
     <subscriber for="agsci.subsite.content.interfaces.ISubsite
         Products.Archetypes.interfaces.IObjectInitializedEvent"
