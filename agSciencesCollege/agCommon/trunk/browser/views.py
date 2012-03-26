@@ -195,31 +195,41 @@ class FolderView(BrowserView):
         self.context = context
         self.request = request
                                         
+    @property
+    def show_date(self):
         try:
             show_date = aq_acquire(self.context, 'show_date')
         except AttributeError:
             show_date = False
         
-        self.show_date = show_date
+        return show_date
 
+    @property
+    def show_image(self):
         try:
             show_image = aq_acquire(self.context, 'show_image')
         except AttributeError:
             show_image = False
         
-        self.show_image = show_image
+        return show_image
 
+    @property
+    def show_read_more(self):
         try:
             show_read_more = aq_acquire(self.context, 'show_read_more')
         except AttributeError:
             show_read_more = False
         
-        self.show_read_more = show_read_more
-
+        return show_read_more
 
     @property
     def portal_state(self):
         return getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+
+    @property
+    def context_state(self):
+        return getMultiAdapter((self.context, self.request),
+                                name=u'plone_context_state')
 
     @property
     def anonymous(self):
