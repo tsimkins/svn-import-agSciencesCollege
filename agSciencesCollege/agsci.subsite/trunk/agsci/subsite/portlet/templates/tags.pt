@@ -9,7 +9,7 @@
         tal:repeat="tag view/tags">
             <a tal:define="tag_id python:tag[0];
                            tag_name python:tag[1];"
-                tal:attributes="href string:${context/absolute_url}/tags/${tag_id}">
+                tal:attributes="href string:${context/parent_object/absolute_url}/tags/${tag_id}">
             <span tal:replace="tag_name" />
             </a>
     </dd>
