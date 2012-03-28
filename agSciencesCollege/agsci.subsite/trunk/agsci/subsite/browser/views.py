@@ -4,6 +4,7 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner, aq_chain
 from Products.agCommon.browser.views import FolderView
 from agsci.subsite.content.interfaces import IBlog
+from plone.memoize.view import memoize
 
 """
     Interface Definitions
@@ -58,6 +59,7 @@ class TagsView(FolderView):
                return self.context[default_page_id]
         return self.context
 
+    @memoize
     def getTags(self):
 
         try:
@@ -73,11 +75,18 @@ class TagsView(FolderView):
                     available_tags[self.normalizer.normalize(t)] = t
                 break
 
+        if not available_tags and self.context.portal_type == 'Topic':
+            for i in self.context.queryCatalog():
+                if i.public_tags:
+                    for t in i.public_tags:
+                        available_tags[self.normalizer.normalize(t)] = t
+
         item_tags = []
 
         for t in selected_tags:
             normal_tag = self.normalizer.normalize(t)
             if available_tags.get(normal_tag):
                 item_tags.append(available_tags.get(normal_tag))
+                
         return item_tags
         

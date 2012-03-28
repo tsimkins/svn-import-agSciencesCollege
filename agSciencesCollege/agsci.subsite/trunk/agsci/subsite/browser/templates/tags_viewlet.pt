@@ -1,5 +1,4 @@
-<div id="tags"
-     class="documentByLine"
+<div class="documentByLine public-tags"
      tal:define="categories context/public_tags|nothing;
                  url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;"
      tal:condition="categories">

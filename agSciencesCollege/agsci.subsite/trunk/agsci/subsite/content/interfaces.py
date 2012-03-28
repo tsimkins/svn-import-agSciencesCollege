@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from zope.interface import Interface, Attribute
 
 class ISubsite(Interface):
@@ -22,7 +20,7 @@ class IHomePage(Interface):
     """Homepages are the home page of a site/section/subsite
     """
     
-    
 class IPhotoFolder(Interface):
     """Photo Folders store images and present a slideshow display
     """
+    

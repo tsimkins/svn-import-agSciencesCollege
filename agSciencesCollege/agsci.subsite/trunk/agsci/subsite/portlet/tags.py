@@ -83,33 +83,51 @@ class Renderer(base.Renderer):
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
 
+        self.tags = self.getTags()
+
+    def getTags(self):
         normalizer = getUtility(IIDNormalizer)
+        context = aq_inner(self.context)
 
         tags = {}
         path = ""
+        available_tags = []
+        normalized_tags = []
+        
         for i in aq_chain(context):
             if IBlog.providedBy(i):
                 path = "/".join(i.getPhysicalPath())
+                available_tags = i.available_public_tags
                 break
 
         if path:
             items = self.catalog.searchResults({'path' : path})
-            for i in items:
-                if i.public_tags:
-                    for t in i.public_tags:
+        elif self.context.portal_type == 'Topic':
+            items = self.context.queryCatalog()
+        else:
+            items = []
+
+        for i in items:
+            if i.public_tags:
+                for t in i.public_tags:
+                    if available_tags:
+                        if t in available_tags:
+                            tags[t] = 1
+                    else:
                         tags[t] = 1
-                
-        self.tags = []
-        
+
+       
         for t in sorted(tags.keys()):
-            self.tags.append([normalizer.normalize(t), t])
+            normalized_tags.append([normalizer.normalize(t), t])    
+
+        return normalized_tags
 
     def render(self):
         return xhtml_compress(self._template())
 
     @property
     def available(self):
-        return not self.data.hide
+        return self.getTags() and not self.data.hide
 
 
 class AddForm(base.AddForm):
