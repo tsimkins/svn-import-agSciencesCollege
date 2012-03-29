@@ -14,12 +14,11 @@
                     tal:define="title licon/title;
                                 description licon/description|licon/title;
                                 icon licon/icon|nothing">
-                    <a tal:condition="icon"
-                        tal:attributes="href licon/url;
-                                        title title;"
-                        ><img tal:attributes="
-                            src icon;
-                            alt python:''" /><span tal:content="title">
+                    <a tal:attributes="href licon/url;
+                                       title title;"
+                        ><img tal:condition="icon" 
+                              tal:attributes="src icon;
+                                              alt python:''" /><span tal:content="title">
                                          >Link</span></a>
                 </li>
             </tal:linkIcon>        
