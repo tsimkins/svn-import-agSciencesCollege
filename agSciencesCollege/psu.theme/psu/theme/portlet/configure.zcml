@@ -9,6 +9,15 @@
         class=".rss.RSSRenderer"
         />
 
+    <plone:portlet
+        name="psu.LinkIcon"
+        interface=".linkicon.ILinkIcon"
+        assignment=".linkicon.Assignment"
+        renderer=".linkicon.Renderer"
+        addview=".linkicon.AddForm"
+        editview=".linkicon.EditForm"
+        />
+
 </configure>
 
 

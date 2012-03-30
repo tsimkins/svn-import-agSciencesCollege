@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <portlets purge="False">
+
+    <portlet
+        addview="psu.LinkIcon"
+        title="Link and Icon Portlet"
+    />
  
 
 </portlets>
