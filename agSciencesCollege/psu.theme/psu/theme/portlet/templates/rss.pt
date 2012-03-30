@@ -37,11 +37,14 @@
                 <span tal:replace="item/title">
                     Title
                 </span>
-                <span class="portletItemDetails"
-                      tal:condition="exists:item/updated">
-                      <span tal:omit-tag="" tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
-                </span>
             </a>
+            <div class="portletItemDetails date"
+                  tal:condition="exists:item/updated">
+                <div tal:replace="python:toLocalizedTime(item['updated'])">19.02.2007</div>
+            </div>
+            <div tal:content="item/summary|nothing" tal:condition="item/summary|nothing" class="portletItemDetails summary">
+                 Description
+            </div>
         </dd>
     </tal:rss>
     <dd class="portletFooter" tal:condition="view/feedAvailable">
