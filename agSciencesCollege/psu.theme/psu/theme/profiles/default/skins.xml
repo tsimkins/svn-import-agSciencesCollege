@@ -9,7 +9,7 @@
          meta_type="Filesystem Directory View"
          directory="psu.theme:skins/psu_theme_content" />
 
-    <skin-path name="psu_theme" based-on="Sunburst Theme">
+    <skin-path name="psu_theme" based-on="Responsive Theme">
         <layer name="psu_theme_content" 
                insert-after="custom" />
     </skin-path>

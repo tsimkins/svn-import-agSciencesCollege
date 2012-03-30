@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object>
   
-  	<order manager="plone.portalheader" skinname="psu_theme" based-on="Sunburst Theme">
+  	<order manager="plone.portalheader" skinname="psu_theme" based-on="Responsive Theme">
   		<viewlet name="plone.searchbox" />
   	</order>
 

@@ -3,12 +3,6 @@
      tal:define="titlez string:${here/portal_url}/processPSUsearch;">
     
      
-<div class="la_text">
-            <a href="http://www.la.psu.edu" alt="College of the Liberal Arts">
-                College of the Liberal Arts
-            </a>
-       
-</div>
 <form method="get" action="" tal:attributes="action titlez" class="searchform">
 <ul id="menu"> 
     <li class="searchContainer"> 
