@@ -1,0 +1,14 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+    <!-- Portlets -->
+  
+    <plone:portletRenderer
+        portlet="plone.app.portlets.portlets.rss.IRSSPortlet"
+        layer="psu.theme.interfaces.IThemeSpecific"
+        class=".rss.RSSRenderer"
+        />
+
+</configure>
+
+

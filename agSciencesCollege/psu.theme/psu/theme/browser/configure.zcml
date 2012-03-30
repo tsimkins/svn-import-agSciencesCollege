@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="psu">
+
+	<browser:resource
+	    	name="jquery.watermarkinput.js"
+	    	file="templates/jquery.watermarkinput.js" 
+	    	permission="zope2.View"
+	    	layer="psu.theme.interfaces.IThemeSpecific"
+    />
+	
+	<browser:resource
+	    	name="watermarksettings.js"
+	    	file="templates/watermarksettings.js" 
+	    	permission="zope2.View"
+	    	layer="psu.theme.interfaces.IThemeSpecific"
+	 />
+
+	<!-- The search box -->
+	    <browser:viewlet
+	        name="plone.searchbox"
+	        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+	        class=".viewlets.MultiSearchViewlet"
+	        template="templates/custom_searchbox.pt"
+	        layer="psu.theme.interfaces.IThemeSpecific"
+	        permission="zope2.View" 
+	        />
+	
+	<browser:page
+		    name="processPSUsearch"
+		    for="Products.CMFCore.PortalObject.PortalObjectBase"
+		    class=".processPSUsearch.processPSUsearch"
+		    permission="zope2.Public"
+		    layer="psu.theme.interfaces.IThemeSpecific"
+     />
+
+</configure>

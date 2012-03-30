@@ -1,0 +1,275 @@
+
+/*
+* This is the file where you put your CSS changes. 
+* You should preferrably use this and override the 
+* relevant properties you want to change here instead 
+* of customizing plone.css to survive upgrades. Writing
+* your own plone.css only makes sense for very heavy 
+* customizations. Useful variables from Plone are 
+* documented at the bottom of this file.
+*/
+
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+
+/* Stylesheet for the 'English Theme' Plone theme */
+
+/*************** Default Text Styles (Site Wide settings) ************/
+
+
+/******************** Searchbox 2.2 Styles Testing *************/
+
+#portal-searchbox {
+float: right;
+text-align: left;
+clear: right;
+width:212px;
+}
+
+#portal-searchbox label, #portal-searchbox input {
+font-size: 85%;
+}
+#portal-searchbox input.searchButton {
+font-size:60%;
+}
+
+#portal-searchbox label {
+font-weight: normal;
+}
+
+.LSBox {
+width: 100%;
+/* ---- display: none; ---- this will hide the search box if enabled--- */
+}
+#searchGadget,
+.LSBox input.searchField {
+width:65%;
+}
+#searchGadget,
+.LSBox input.searchButton {
+font:.8em;
+}
+
+.LSBox .searchSection {
+}
+
+/* changes made for the new search box 
+input#searchString */
+/* search form 
+-------------------------------------- */
+.searchform {
+display: inline-block;
+zoom: 1; /* ie7 hack for display:inline-block */
+*display: inline;
+width:100%;
+padding-top:.5em .5em;
+
+
+/* background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#C2C2CB));
+background: -moz-linear-gradient(top, #FFF, #C2C2CB);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#C2C2CB'); /* ie7 */
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#C2C2CB'); /* ie8 */
+*/
+}
+.searchform input {
+font: normal 12px/100% Arial, Helvetica, sans-serif;
+}
+.searchform .searchfield {
+background: #fff;
+padding: .25em .5% .25em 0;
+border: solid 1px #98989F;
+outline: none;
+width:85%;
+height:2em;
+
+-webkit-border-radius: 1em;
+-moz-border-radius: 1em;
+border-radius: 1em;
+
+-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+}
+.searchform .searchbutton {
+color: #fff;
+border: none;
+font-size: .8em;
+height: 2.2em;
+width: 25px;
+vertical-align: top;
+margin-top: 8px;
+padding-bottom: 2px;
+background: url(&dtml-portal_url;/searchbutton.png) no-repeat scroll left center transparent;
+/** background: #454545;
+background: -webkit-gradient(linear, left top, left bottom, from(#9e9e9e), to(#454545));
+background: -moz-linear-gradient(top, #9e9e9e, #454545);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', endColorstr='#454545'); /* ie7 */
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', endColorstr='#454545'); /* ie8 */
+***/
+}
+
+
+
+/* menu */ 
+#menu{ 
+margin:0px; 
+padding:0px; 
+list-style:none; 
+color:#fff; 
+line-height:37px; 
+display:inline-block; 
+width:100%;
+float:left; 
+z-index:1000;
+} 
+#menu a { 
+color:#fff; 
+text-decoration:none; } 
+#menu > li {
+background:transparent none repeat scroll 0 0; 
+cursor: pointer; 
+float:left; 
+position:relative; 
+padding:0px;
+width:100%;
+} 
+#menu > li a:hover {
+color:#B0D730;} 
+#menu .logo {background:transparent none repeat scroll 0% 0%; padding:0px; 
+background-color:Transparent;} 
+/* sub-menus*/ 
+#menu ul { padding:0px; margin:0px; display:block; display:inline;} 
+#menu li ul { 
+position:absolute; 
+left:-0px; 
+top:0px; 
+margin:31px 0px 0px 0px; 
+line-height:16px; 
+background-color:#FFF; 
+text-align: left; 
+color:#6E6E72; /* for IE */ 
+color: #383838;
+text-shadow: #CECECE 1px 1px 1px;
+display:none; 
+z-index: 1000;
+border-left: 1px solid #98989F;
+border-right: 1px solid #98989F;
+border-bottom: 1px solid #98989F;
+-webkit-border-bottom-right-radius: 10px;
+-webkit-border-bottom-left-radius: 10px;
+-moz-border-radius-bottomright: 10px;
+-moz-border-radius-bottomleft: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+outline: medium;
+
+} 
+
+#menu li ul label span {
+margin-left: 5px;
+cursor: pointer;
+}
+#menu li:hover ul { display:block;} 
+#menu li ul li{ display:block; margin:5px; padding: 5px 0px; border-top: dotted 1px #606060; 
+list-style-type:none; } 
+#menu li ul li:first-child { border-top: none; } 
+#menu li ul li a { display:block; color:#8B8B8B; } 
+#menu li ul li a:hover { color:#fff; } 
+/* main submenu */ 
+#menu #main { left:0px; top:-20px; padding-top:20px; background-color:#7cb7e3; color:#fff; 
+z-index:999;} 
+/* search */ 
+.searchContainer { width:100%; }
+.searchContainer div { background-color:transparent; display:inline; padding:0; width:100%;} 
+.searchContainer input[type="text"] {
+border:1px solid #BCBBBB; 
+color:#BCBBBB; 
+width: 186px; 
+padding:3px 1px;
+margin-right: -4px;
+} 
+.searchContainer img { vertical-align:middle;}
+
+
+
+
+
+/* </dtml-with> */
+
+/* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
+
+/* You can insert colors and other variables from Plone's 
+base_properties by doing:
+
+& dtml-variableName ; (without the spaces, excluded here to not make it render)
+
+Example:
+
+myLink {
+color: & dtml-fontColor ; (again, without the spaces)
+}
+
+This means you can generate your own elements that use Plone's defaults,
+and respect any customizations people have done. See base_properties for
+the default values.
+
+These are the available properties:
+
+logoName - the file name of the portal logo
+
+fontFamily - the font family used for all text that is not headers
+
+fontBaseSize - the base font size that everything is calculated from
+
+fontColor - the main font color
+
+fontSmallSize - used for various elements like buttons and discreet text
+
+discreetColor - the font color of discreet text
+
+backgroundColor - the background color 
+
+linkColor - the color used on normal links
+
+linkActiveColor - color used on active links
+
+linkVisitedColor - color used on visited links
+
+borderWidth - the width of most borders in Plone
+
+borderStyle - the style of the border lines, normally solid
+
+borderStyleAnnotations - style of border lines on comments etc
+
+globalBorderColor - the border color used on the main tabs, the portlets etc
+
+globalBackgroundColor - background color for the selected tabs, portlet headings etc
+
+globalFontColor - the color of the font in the tabs and in portlet headings
+
+headingFontFamily - font family for h1/h2/h3/h4/h5/h6 headlines
+
+contentViewBorderColor - the content view tabs border color
+
+contentViewBackgroundColor - the content view tabs background color
+
+contentViewFontColor - the font color used in the content view tabs
+
+inputFontColor - the font color used for input elements
+
+textTransform - whether to lowercase text in portlets, tabs etc.
+
+evenRowBackgroundColor - the background color of even rows in listings
+
+oddRowBackgroundColor - the background color of even rows in listings
+
+notifyBorderColor - border color of notification elements like the status message, the calendar focus
+
+notifyBackgroundColor - background color of notification elements like the status message, the calendar focus
+
+helpBackgroundColor - background color of information pop-ups (currently not used)
+
+*/
+
+

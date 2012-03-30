@@ -1,0 +1,36 @@
+<div id="portal-searchbox"
+     i18n:domain="plone"
+     tal:define="titlez string:${here/portal_url}/processPSUsearch;">
+    
+     
+<div class="la_text">
+            <a href="http://www.la.psu.edu" alt="College of the Liberal Arts">
+                College of the Liberal Arts
+            </a>
+       
+</div>
+<form method="get" action="" tal:attributes="action titlez" class="searchform">
+<ul id="menu"> 
+    <li class="searchContainer"> 
+        <div> 
+        <input type="text" name="searchString" id="searchString" title="Enter search text" value="" />
+        <input type="submit" value="" alt="Submit Form" class="searchbutton" />
+        </div> 
+        
+        <ul id="search">
+            <li  tal:repeat="option view/getSearchOptions">
+              <label tal:attributes="for option/key;">
+                <input tal:attributes="id option/key;
+                                       value option/key;
+                                       checked option/selected;" 
+                                       type="radio" name="choice" />
+                    <span tal:content="option/description">Search WebLion</span>
+               </label>
+            </li>
+        </ul> 
+    </li> 
+</ul> 
+</form>
+
+
+</div>

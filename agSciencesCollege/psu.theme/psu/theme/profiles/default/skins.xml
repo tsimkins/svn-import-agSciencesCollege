@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_skins" 
+    default_skin="psu_theme"
+    allow_any="False" 
+    cookie_persistence="False" 
+    request_varname="plone_skin">
+
+    <object name="psu_theme_content"
+         meta_type="Filesystem Directory View"
+         directory="psu.theme:skins/psu_theme_content" />
+
+    <skin-path name="psu_theme" based-on="Sunburst Theme">
+        <layer name="psu_theme_content" 
+               insert-after="custom" />
+    </skin-path>
+
+</object>

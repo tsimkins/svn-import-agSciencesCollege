@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:cmf="http://namespaces.zope.org/cmf"
+           i18n_domain="psu.theme">
+
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="psu_theme"
+        />
+
+
+    <include package=".portlet" />
+    <include package=".browser" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="PSU Theme"
+        directory="profiles/default"
+        description="A sample Penn State theme"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <cmf:registerDirectory name="psu_theme_content" />
+
+</configure>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="ad54elements_properties" meta_type="Plone Property Sheet">
+  <property name="title">Products.AD54Elements Settings</property>
+  <property name="searchKeys" type="lines">
+   <element value="thisSite"/>
+   <element value="google"/>
+   <element value="PSUweb"/>
+   <element value="PSUpeople"/>
+   <element value="PSUemail"/>
+   <element value="PSUdept"/>
+  </property>
+  <property name="searchLinks" type="lines">
+   <element value="search?SearchableText=%s"/>
+   <element value="http://google.com/search?q=%s"/>
+   <element
+      value="http://search-results.aset.psu.edu/search?q=%s&amp;btnG=Search+Penn+State&amp;client=PennState&amp;proxystylesheet=PennState&amp;output=xml_no_dtd&amp;site=PennState"/>
+   <element value="http://www.psu.edu/cgi-bin/ldap/ldap_query.cgi?cn=%s"/>
+   <element value="http://www.psu.edu/cgi-bin/ldap/ldap_query.cgi?uid=%s"/>
+   <element
+      value="http://www.psu.edu/cgi-bin/ldap/dept_query.cgi?dept_name=%s"/>
+  </property>
+  <property name="searchDescriptions" type="lines">
+   <element value="Search This Site"/>
+   <element value="Search Google"/>
+   <element value="Search Penn State Web"/>
+   <element value="Search Penn State People"/>
+   <element value="Search Penn State Accounts"/>
+   <element value="Search Penn State Departments"/>
+  </property>
+  <property name="searchDefaultKey" select_variable="searchKeys"
+     type="selection">thisSite</property>
+ </object>
+</object>
+
