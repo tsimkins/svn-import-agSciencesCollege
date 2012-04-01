@@ -2,6 +2,8 @@
            xmlns:plone="http://namespaces.plone.org/plone">
 
     <!-- Portlets -->
+
+    <include package="plone.app.portlets" />
   
     <plone:portletRenderer
         portlet="plone.app.portlets.portlets.rss.IRSSPortlet"
