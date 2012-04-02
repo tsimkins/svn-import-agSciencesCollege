@@ -9,6 +9,7 @@ from Acquisition import aq_base, aq_inner, aq_parent
 from plone.registry.interfaces import IRegistry
 from plone.app.discussion.interfaces import IDiscussionSettings
 from interfaces import INoComments
+from DateTime import DateTime
 
 from agsci.subsite.content.interfaces import IBlog
 
@@ -39,23 +40,95 @@ def customTableContents(self):
         return False
 
 
-def toLocalizedTime(self, time, long_format=None, time_only=None):
+def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None):
     """Convert time to localized time
     """
     context = aq_inner(self.context)
     util = getToolByName(context, 'translation_service')
-    theDate = util.ulocalized_time(time, long_format, time_only, context=context,
-                                domain='plonelocales', request=self.request)
-                                
-    if theDate:
-        if theDate.startswith('0'):
-            theDate = theDate.replace('0', '', 1)
 
-        theDate = theDate.replace('12:00 AM', '').strip()
+    def friendly(d):
+        if d.startswith('0'):
+            d = d.replace('0', '', 1)
+        
+        d = d.replace('12:00 AM', '').strip()
+        
+        return d.replace(' 0', ' ')
 
-        return theDate.replace(' 0', ' ')
+
+    start_full_fmt = friendly(util.ulocalized_time(time, long_format, time_only, context=context,
+                                domain='plonelocales', request=self.request))
+    
+    if end_time:
+
+        end_full_fmt = friendly(util.ulocalized_time(end_time, long_format, time_only, context=context,
+                                       domain='plonelocales', request=self.request))
+        start = DateTime(time)
+        end = DateTime(end_time)
+        
+        start_date_fmt = start.strftime('%Y-%m-%d')
+        end_date_fmt = end.strftime('%Y-%m-%d')       
+
+        start_time_fmt = start.strftime('%H:%M')
+        end_time_fmt = end.strftime('%H:%M') 
+         
+        # If the same date
+        if start_date_fmt == end_date_fmt:
+            
+            # If we want the long format, return [date] [time] - [time]
+            if long_format:
+                if start_time_fmt == end_time_fmt and (start_time_fmt == '00:00' or end_time_fmt == '00:00'):
+                    return start_full_fmt
+                elif start_time_fmt == '00:00':
+                    return end_full_fmt
+                elif end_time_fmt == '00:00':
+                    return start_full_fmt
+                else:
+                    return '%s, %s - %s' % (self.toLocalizedTime(time), self.toLocalizedTime(time, time_only=1), self.toLocalizedTime(end_time, time_only=1))
+            # if time_only
+            elif time_only:
+                if start_full_fmt and end_full_fmt:
+                    if start_full_fmt == end_full_fmt:
+                        return start_full_fmt
+                    else:
+                        return '%s - %s' % (start_full_fmt, end_full_fmt)
+                elif start_full_fmt:
+                    return start_full_fmt
+                elif end_full_fmt:
+                    return end_full_fmt 
+                else:
+                    return ''                  
+            # Return the start date in short format
+            else:
+                return start_full_fmt
+        else:
+            default_repr = '%s to %s' % (friendly(start_full_fmt), friendly(end_full_fmt))
+            if long_format:
+                return default_repr
+            elif time_only:
+                if start_full_fmt and end_full_fmt:
+                    if start_full_fmt == end_full_fmt:
+                        return start_full_fmt
+                    else:
+                        return '%s - %s' % (start_full_fmt, end_full_fmt)
+                elif start_full_fmt:
+                    return start_full_fmt
+                elif end_full_fmt:
+                    return end_full_fmt 
+                else:
+                    return ''
+            elif start.year() == end.year():
+                if start.month() == end.month():
+                    return '%s %d-%d, %d' % (start.strftime('%B'), start.day(), end.day(), start.year())
+                else:
+                    return '%s %d - %s %d, %d' % (start.strftime('%B'), start.day(), end.strftime('%B'), end.day(), start.year())
+            else:
+                return default_repr
+
     else:
-        return None
+        if start_full_fmt:
+            return friendly(start_full_fmt)
+        else:
+            return ''
     
 def collection_url(self):
     collection = self.collection()
