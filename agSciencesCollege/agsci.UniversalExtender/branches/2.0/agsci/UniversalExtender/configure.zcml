@@ -240,7 +240,7 @@
     <!-- Monkey Patch toLocalizedTime by removing leading 0's -->
 
     <monkey:patch
-        description="This removes leading zeros (e.g. 06:00) from dates and times"
+        description="This removes leading zeros (e.g. 06:00) from dates and times and handles date ranges."
         class="Products.CMFPlone.browser.ploneview.Plone"
         replacement=".patch.toLocalizedTime"
         original="toLocalizedTime"
