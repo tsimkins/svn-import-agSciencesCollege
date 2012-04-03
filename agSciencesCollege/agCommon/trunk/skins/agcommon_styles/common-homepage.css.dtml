@@ -210,7 +210,7 @@
 	color: #76797C;
 	font-size: 0.88em;
 	font-weight: normal;
-	text-align: right;
+	text-align: left;
 }
 
 .agCommonPortlet .portletItem a.more {
