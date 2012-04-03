@@ -32,6 +32,7 @@ class Assignment(base.Assignment):
     items_shown = 5
     show_header = False
     show_date = False
+    show_event_info = False
     show_summary = False
     show_image = False
     show_footer = False
@@ -44,7 +45,9 @@ class Assignment(base.Assignment):
     image_size = 'small'
     
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
-                 show_header=show_header, show_date=show_date, show_summary=show_summary, 
+                 show_header=show_header, show_date=show_date, 
+                 show_event_info=show_event_info,
+                 show_summary=show_summary, 
                  show_image=show_image, show_footer=show_footer,
                  cache_timeout=cache_timeout,
                  alternate_footer_link=alternate_footer_link,
@@ -57,6 +60,7 @@ class Assignment(base.Assignment):
         self.items_shown=items_shown
         self.show_header=show_header
         self.show_date=show_date
+        self.show_event_info=show_event_info
         self.show_summary=show_summary
         self.show_image=show_image
         self.show_footer=show_footer
@@ -92,6 +96,10 @@ class Renderer(base.Renderer):
     @property
     def show_date(self):
         return self.data.show_date
+
+    @property
+    def show_event_info(self):
+        return self.data.show_event_info
 
     @property
     def show_summary(self):

@@ -51,10 +51,18 @@ class IFeedMixer(IPortletDataProvider):
 
     show_date = schema.Bool(
             title=_(u"heading_show_date",
-                default=u"Show RSS Feed Item Date"),
+                default=u"Show Item Date"),
             description=_(u"description_show_date",
-                default=u""),
+                default=u"Publishing date for news items, start/end date(s) for events."),
             default=True,
+            required=True)
+
+    show_event_info = schema.Bool(
+            title=_(u"heading_show_event_info",
+                default=u"Show additional information for events"),
+            description=_(u"description_show_event_info",
+                default=u"Displays When and Where titles and event location."),
+            default=False,
             required=True)
 
     show_summary = schema.Bool(

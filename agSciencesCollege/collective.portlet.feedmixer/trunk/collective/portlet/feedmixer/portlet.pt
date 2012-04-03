@@ -12,6 +12,10 @@
                         isFirst repeat/entry/start;
                         show_summary view/show_summary|nothing;
                         show_date view/show_date|nothing;
+                        show_event_info view/show_event_info|nothing;
+                        eventstart entry/agsci_eventstart|nothing;
+                        eventend entry/agsci_eventend|nothing;
+                        eventlocation entry/agsci_eventlocation|nothing;
                         className string:portletItem;
                         className python:isFirst and className + ' first' or className;
                         className python:show_summary and className + ' summary' or className;
@@ -35,10 +39,23 @@
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
                                
                 <div class="portletItemDetails date"
-	                tal:condition="show_date"
-                    tal:content="python:toLocalizedTime(entry['updated'])">
-                    Nov 1
+	                tal:condition="show_date">
+	                
+	                <tal:event tal:condition="eventstart">
+	                   <strong tal:condition="show_event_info">When:</strong> 
+	                   <span tal:replace="python:toLocalizedTime(eventstart, end_time=eventend)" />
+                    </tal:event>
+
+	                <tal:notevent condition="not:eventstart" 
+                                   content="python:toLocalizedTime(entry['updated'])" />
+
                 </div>
+
+                <tal:eventinfo 
+                     condition="show_event_info">
+
+                    <div tal:condition="eventlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+                </tal:eventinfo>
 
                 <div class="portletItemDetails summary"
                     tal:condition="show_summary"
