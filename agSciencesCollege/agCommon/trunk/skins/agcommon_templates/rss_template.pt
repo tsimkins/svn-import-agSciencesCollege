@@ -6,7 +6,8 @@
   xmlns="http://purl.org/rss/1.0/"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:agsci="http://agsci.psu.edu/namespaces/rss">
 
 <metal:block
     define-macro="master"
@@ -95,6 +96,10 @@
     </tal:block>
     <tal:isEvent tal:condition="python:obj_item_type == 'Event' or obj_item_type == 'TalkEvent'">
     	<dc:date tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
+    	<agsci:eventlocation tal:condition="obj_item/location"
+    	                     tal:content="obj_item/location">The Location</agsci:eventlocation>
+    	<agsci:eventstart tal:content="python: obj_item['start']().HTML4()"></agsci:eventstart>
+    	<agsci:eventend tal:content="python: obj_item['end']().HTML4()"></agsci:eventend>
     </tal:isEvent>
     <tal:notEvent tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'">
         <tal:effectivedate condition="obj_item/effective_date|nothing">

@@ -228,6 +228,10 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 	display: none;
 }
 
+.public-tags {
+    display: none;
+}
+
 /* If custom-pullquote class, show pull quote but hide h2 bottom border */
 
 body.custom-pullquote .pullquote {

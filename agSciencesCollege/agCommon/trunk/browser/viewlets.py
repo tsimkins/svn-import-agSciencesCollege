@@ -1,4 +1,4 @@
-from zope.component import getMultiAdapter
+from zope.component import getMultiAdapter, provideAdapter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase, TableOfContentsViewlet
 from AccessControl import getSecurityManager
@@ -6,7 +6,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
 from Acquisition import aq_acquire, aq_inner, aq_base
-from zope.component import getMultiAdapter
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
@@ -18,6 +17,10 @@ from zope.interface import implements
 from zope.viewlet.interfaces import IViewlet
 from hashlib import md5
 import re
+from zope.contentprovider.interfaces import IContentProvider
+from zope.interface import Interface
+
+from zope.publisher.interfaces.browser import IBrowserView,IDefaultBrowserLayer
 
 from Products.Five.browser import BrowserView
 
@@ -89,7 +92,7 @@ class AgCommonViewlet(ViewletBase):
     def showHomepageText(self):
         if self.context.getText() and self.isLayout(views=['document_homepage_view']):
             return True
-        elif ( self.context.getText() or self.context.Description ) and self.isLayout(views=['document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view']):
+        elif ( self.context.getText() or self.context.Description() ) and self.isLayout(views=['document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view']):
             return True
         else:
             return False
@@ -447,9 +450,9 @@ class LeadImageHeader(LeadImageViewlet, AgCommonViewlet):
         self.showHeader = layout == 'document_subsite_view' and portal_type == 'HomePage'
 
 class AnalyticsViewlet(BrowserView):
-    implements(IViewlet)
+    implements(IViewlet, IContentProvider)
 
-    def __init__(self, context, request, view, manager):
+    def __init__(self, context, request, view, manager=None):
         super(AnalyticsViewlet, self).__init__(context, request)
         self.__parent__ = view
         self.context = context
@@ -542,6 +545,8 @@ class TableOfContentsViewlet(AgCommonViewlet):
 
 class ContributorsViewlet(AgCommonViewlet):
 
+    implements(IContentProvider)
+
     index = ViewPageTemplateFile('templates/contributors.pt')
     
     def update(self):
@@ -552,8 +557,6 @@ class ContributorsViewlet(AgCommonViewlet):
         peopleList = [x.strip() for x in self.context.Contributors()]
         portal_catalog = getToolByName(self.context, 'portal_catalog')
         search_results = portal_catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
-
-
         
         for id in peopleList:
             found = False
@@ -590,3 +593,10 @@ class CustomCommentsViewlet(CommentsViewlet):
             self.xid = md5(self.context.UID()).hexdigest()
         except AttributeError:
             self.xid = md5(self.context.absolute_url()).hexdigest()
+
+
+# provideAdapter for viewlets to be registered in standalone mode
+
+provideAdapter(ContributorsViewlet, adapts=(Interface,IDefaultBrowserLayer,IBrowserView), provides=IContentProvider, name='agcommon.contributors')
+
+provideAdapter(AnalyticsViewlet, adapts=(Interface,IDefaultBrowserLayer,IBrowserView), provides=IContentProvider, name='plone.analytics')

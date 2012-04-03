@@ -23,7 +23,10 @@
 
                 <div tal:replace="structure provider:plone.abovecontentbody" />
 
-                <table class="listing" id="sortable" tal:attributes="summary string:Directory listing containing name, phone number and email.">
+                <table class="listing" id="sortable" 
+                       tal:define="summary string:Directory listing containing name, phone number and email."
+                       tal:attributes="summary summary">
+                    <caption tal:content="summary" />
                     <tbody>
                         <metal:block define-macro="list_people">
                             <tal:block tal:define="people context/getSortedPeople;"

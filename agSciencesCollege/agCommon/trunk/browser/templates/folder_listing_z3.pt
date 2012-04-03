@@ -184,7 +184,7 @@
                     <metal:show-date define-macro="show-date">
                         <div class="documentByLine effectiveDate" 
                              tal:condition="show_date" 
-                             tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
+                             tal:content="python:toLocalizedTime(item_effective,long_format=1)" />
                     </metal:show-date>
 
                     <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription no-description');"
@@ -200,39 +200,7 @@
                                 <div tal:attributes="class string:eventDateLocation ${canceled}">
                                     <strong tal:condition="python: item_type == 'Event'">When:</strong>
                                     <metal:shortdate define-macro="short_event_date">
-                                    <span tal:condition="python: item_type == 'Event' and item_sametime"
-                                            i18n:translate="label_event_byline_onlyfrom">
-                                        <abbr class="dtstart"
-                                                tal:attributes="title python:item_start"
-                                                tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                                i18n:name="start">from date</abbr>
-                                    </span>
-                                    <span tal:condition="python: item_type == 'Event' and item_samedate and not item_sametime"
-                                            i18n:translate="label_event_byline_samedate">
-                                        <abbr class="dtstart"
-                                                tal:attributes="title python:item_start"
-                                                tal:content="python:toLocalizedTime(item_start)"
-                                                i18n:name="start">from date</abbr>
-                                        <abbr class="dtstart"
-                                                tal:attributes="title python:item_start"
-                                                tal:content="python:toLocalizedTime(item_start,time_only=1)"
-                                                i18n:name="starttime">from time</abbr> to
-                                        <abbr class="dtend"
-                                                tal:attributes="title python:item_end"
-                                                tal:content="python:toLocalizedTime(item_end,time_only=1)"
-                                                i18n:name="end">to time</abbr>
-                                    </span>
-                                    <span tal:condition="python: item_type == 'Event' and not item_samedate and not item_sametime"
-                                            i18n:translate="label_event_byline">
-                                                <abbr class="dtstart"
-                                                tal:attributes="title python:item_start"
-                                                tal:content="python:toLocalizedTime(item_start,long_format=1)"
-                                                i18n:name="start">from date</abbr> to
-                                        <abbr class="dtend"
-                                                tal:attributes="title python:item_end"
-                                                tal:content="python:toLocalizedTime(item_end,long_format=1)"
-                                                i18n:name="end">to date</abbr>
-                                    </span>
+                                        <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end)" />
                                     </metal:shortdate>
                                 </div>
                                 <div tal:define="show_event_location show_event_location|nothing"
@@ -244,20 +212,12 @@
             
                                     <tal:location metal:define-macro="event_location"
                                         define="map_link item/map_link|nothing">
-                                    
-                                        <tal:map condition="map_link">
-                                            <a tal:attributes="href map_link">
-                                                <span tal:content="string:${item/location}"
-                                                        tal:condition="item/location"
-                                                        class="location">Oslo</span>
-                                            </a>
-                                        </tal:map>
-            
-                                        <tal:nomap condition="not: map_link">
-                                                <span tal:content="string:${item/location}"
-                                                        tal:condition="item/location"
-                                                        class="location">Oslo</span>
-                                        </tal:nomap>
+
+                                        <a tal:attributes="href map_link" tal:omit-tag="not: map_link">
+                                            <span tal:content="string:${item/location}"
+                                                    tal:condition="item/location"
+                                                    class="location">Oslo</span>
+                                        </a>
                                     
                                     </tal:location>
                                 </div>

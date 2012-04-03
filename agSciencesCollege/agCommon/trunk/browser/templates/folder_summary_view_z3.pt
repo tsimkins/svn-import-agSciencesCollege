@@ -31,8 +31,8 @@
                             metal:define-macro="listitem">
 
                             <a href="#"
-                               class="summary url"
-                               tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);"
+                               tal:attributes="class string: summary url ${item_wf_state_class};
+                                               href python:test(item_type in use_view_action, item_url+'/view', item_url);"
                                tal:content="item_title_or_id">
                                 Item Title
                             </a>

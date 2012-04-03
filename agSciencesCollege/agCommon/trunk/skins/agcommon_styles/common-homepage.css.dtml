@@ -205,11 +205,12 @@
 	text-align: left;
 }
 
-.agCommonPortlet .portletItem .date  {
+.agCommonPortlet .portletItem .date,
+.agCommonPortlet .portletItem .location {
 	color: #76797C;
 	font-size: 0.88em;
 	font-weight: normal;
-	text-align: left;
+	text-align: right;
 }
 
 .agCommonPortlet .portletItem a.more {
@@ -392,7 +393,7 @@
 	color: #666666;
 	font-weight: normal;
 	font-size: 0.9375em;
-	text-align: right;
+	text-align: left;
 }
 
 

@@ -5,7 +5,8 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/plain_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="plone"
+      tal:define="notEditor not:view/canEdit">
 
 <body>
 <metal:style fill-slot="style_slot">
@@ -189,12 +190,15 @@ table td.footer p {
     margin: 12pt 0 18pt 0;
 }
 
-ul.this-issue {
-    padding-left: 18pt;
+.this-issue {
+    padding-left: 14pt;
+    margin-left: 14pt;
+    margin-bottom: 22pt;
 }
 
 .this-issue li {
-    margin-bottom: 6pt;
+    font-size: 8.5pt;
+    margin-bottom: 4pt;
 }
 
 table td#portal-column-content {
@@ -244,8 +248,60 @@ ul.inline li {
     color: #76797c;
 }
 
+u {
+    text-decoration: none !important;
+}
+
+div.about {
+    margin: 10pt 0;
+}
+
+div.about p, div.about li {
+    font-size: 9pt !important;
+}
+
+div.about h2 {
+    font-size: 12pt !important;
+}
+
+div.about h3 {
+    font-size: 10pt !important;
+}
+
+div.about hr {
+    margin: 6pt 0;
+}
+
 .managePortletsLink {
     display: none;
+}
+
+#newsletter-config {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#newsletter-config th {
+    background-color: #E6D59F;
+}
+
+#newsletter-config tr.even {
+    background-color: #FFFAE6;
+}
+
+#newsletter-config td, #newsletter-config th {
+    border: 1px solid #4F3900;
+    font-size: 0.75em;
+    margin: 0;
+    padding: 0.25em 0.375em;
+    text-align: center;
+    vertical-align: top;
+    margin: 0;
+}
+
+#newsletter-config tr td:first-child,
+#newsletter-config tr th:first-child {
+    text-align: left;
 }
 
 </style>
@@ -257,6 +313,12 @@ ul.inline li {
 </metal:local_style_slot>
 
 </metal:style>
+
+<metal:javascriptslot fill-slot="javascript_head_slot">
+
+    <metal:javascriptslot define-slot="javascript_head_slot" />
+
+</metal:javascriptslot>
 
 <metal:title fill-slot="page-title">
     
@@ -310,7 +372,7 @@ ul.inline li {
                 tal:attributes="href more_url">View 
                     <span tal:replace="context/newsletter_title|context/Title" /> online</a>
             <tal:print condition="context/show_print_newsletter|nothing">
-                <br />
+                <span class="discreet"> | </span>
                 <a class="view-online" 
                     tal:define="more_url python:'%s/newsletter_print' % context.absolute_url().replace('/' + templateId, '');"
                     tal:attributes="href more_url">Print 
@@ -328,21 +390,49 @@ ul.inline li {
     
 </metal:description>
 
-<metal:summary fill-slot="content-additional" define-slot="content-additional">
+<metal:summary fill-slot="content-listing" define-slot="content-listing"
+    tal:define="notEditor not:view/canEdit;">
 
-    <h2>In This Issue</h2>
-    <form id="enable-items-form" tal:omit-tag="context/@@plone_portal_state/anonymous" method="POST" action="@@newsletter_modify">
-    <div class="discreet" tal:condition="not: isAnon">
-        <label for="is_enabled">Checked items will show up in the newsletter.</label>
+    <h2 tal:condition="python: notEditor">In This Issue</h2>
+
+    <form id="enable-items-form" tal:omit-tag="notEditor" method="POST" action="@@newsletter_modify">
+
+    <tal:config condition="not: notEditor">
+        <h2>Newsletter Configuration</h2>
+    
+        <h3>Show "In This Issue"?</h3>
+        <div class="discreet"><strong>Automatic</strong> will show the "In This Issue" section if there are 5+ non-Spotlight items.</div>
+        <ul class="inline nobullet">
+         <li><input type="radio" 
+                    id="summary_auto" 
+                    name="show_summary" 
+                    value="auto" 
+                    tal:attributes="checked python:view.getConfig('show_summary') == 'auto' and 'checked' or ''" />
+             <label for="summary_auto">Automatic</label></li>    
+         <li><input type="radio" 
+                    id="summary_yes" 
+                    name="show_summary" 
+                    value="yes" 
+                    tal:attributes="checked python:view.getConfig('show_summary') == 'yes' and 'checked' or ''" /> 
+             <label for="summary_yes">Yes</label></li>
+         <li><input type="radio" 
+                    id="summary_no" 
+                    name="show_summary" 
+                    value="no"
+                    tal:attributes="checked python:view.getConfig('show_summary') == 'no' and 'checked' or ''" />
+              <label for="summary_no">No</label></li>
+        </ul>
+
+
+        <h3>Article/Spotlight Configuration</h3>
+
+        <div class="discreet"><strong>Enabled</strong> items will show up in the newsletter.  <strong>Spotlight </strong> items are implicitly enabled, and will show up at the top of the newsletter. If no items are enabled, the newsletter assumes you are not using this functionality, and will display all items.</div>
         <ul class="nobullet inline">
             <li>
                 <input type="button" id="enable-all" value="Enable All" />
             </li>
             <li>
                 <input type="button" id="disable-all" value="Disable All" />
-            </li>
-            <li>
-                <input type="submit" value="Submit">
             </li>
         </ul>
        
@@ -355,8 +445,20 @@ ul.inline li {
                     item = input_items[i];
                     if (item['type'] == 'checkbox')
                     {
-                        item.checked=isChecked;
-                        item.style.opacity='0.5';
+                        if (item['name'] == 'enabled_items')
+                        {
+                            item.checked=isChecked;
+                            item.style.opacity='0.5';
+                        }
+                        
+                        if (item['name'] == 'spotlight_items')
+                        {
+                            if (!isChecked)
+                            {
+                                item.checked=isChecked;
+                                item.style.opacity='0.5';
+                            }
+                        }
                     }
                 }
 
@@ -366,8 +468,10 @@ ul.inline li {
             document.getElementById("enable-all").onclick = function() {toggleInput(true)};
             document.getElementById("disable-all").onclick = function() {toggleInput(false)};
         </script>
-    </div>
-    <ul class="this-issue"
+    </tal:config>
+    
+    <tal:listing
+        tal:condition="python: view.showSummary or not notEditor"
         tal:define="contentFilter contentFilter|request/contentFilter|nothing;
                     contentFilter python:contentFilter and dict(contentFilter) or {};
                     limit_display limit_display|request/limit_display|nothing;
@@ -382,29 +486,58 @@ ul.inline li {
                     use_view_action site_properties/typesUseViewActionInListings|python:();
                     Batch python:modules['Products.CMFPlone'].Batch;
                     b_start python:request.get('b_start', 0);
-                    batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, limit_display or 100, int(b_start), orphan=1);
-                    isAnon context/@@plone_portal_state/anonymous;
+                    batch python:notEditor and view.getEnabledItems() or view.getAllItems();
                     normalizeString nocall: context/plone_utils/normalizeString;
                     toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                    show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
+                    show_about python:not notEditor or site_properties.allowAnonymousViewAbout;
                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
                     pas_member context/@@pas_member;">
-        <tal:entry tal:repeat="item batch">
-            <li tal:attributes="class python:not isAnon and 'nobullet' or ''"
-                tal:condition="python:view.showItem(item)">
-                <input tal:condition="not:isAnon" 
-                       tal:attributes="value item/UID;
-                                       checked python:view.isEnabled(item) and 'checked' or ''"
-                       name="enabled_items"
-                       type="checkbox" />
-                <span tal:content="item/pretty_title_or_id" />
-            </li>
-        </tal:entry>
-        <li class="nobullet" tal:condition="not:isAnon">
-            <input type="submit" value="Submit">
-        </li>
 
-    </ul>
+        <table id="newsletter-config" tal:omit-tag="notEditor">
+            <tr tal:condition="not:notEditor">
+                <th>Article Title</th>
+                <th>Enabled</th>
+                <th>Spotlight</th>
+
+            </tr>
+        <ol class="this-issue" tal:omit-tag="not:notEditor">                    
+            <tal:entry tal:repeat="item batch">
+                <tr tal:omit-tag="notEditor" tal:define="even repeat/item/even"
+                    tal:attributes="class python: even and 'even' or 'odd'">
+                <li tal:attributes="class python:not notEditor and 'nobullet' or ''"
+                    tal:condition="python:view.showItem(item) or (view.showItem(item, 'spotlight') and not notEditor)"
+                    tal:omit-tag="not:notEditor">
+
+                    <td tal:omit-tag="notEditor">
+                        <a tal:attributes="href item/getURL|item/absolute_url" tal:omit-tag="notEditor">
+                            <span tal:content="item/pretty_title_or_id" />
+                        </a>
+                    </td>
+                    <td tal:condition="not:notEditor">
+                        <input tal:attributes="value item/UID;
+                               checked python:view.isEnabled(item) and 'checked' or ''"
+                               name="enabled_items"
+                               type="checkbox" />
+                    </td>
+
+                    <td tal:condition="not:notEditor">
+                        <input tal:attributes="value item/UID;
+                               checked python:view.isSpotlight(item) and 'checked' or ''"
+                               name="spotlight_items"
+                               type="checkbox" />
+                    </td>
+                </li>
+                </tr>
+            </tal:entry>
+   
+        </ol>
+        </table>
+
+        <ul tal:condition="not:notEditor" class="nobullet inline">
+            <li><input type="submit" value="Submit"></li>
+        </ul>
+
+    </tal:listing>
     </form>
 </metal:summary>
 
@@ -414,148 +547,162 @@ ul.inline li {
         define="has_text exists:context/aq_explicit/getText;
                 text python:has_text and here.getText() or ''"
         tal:condition="text">
-    <h2>About This Newsletter</h2>
-    <div tal:replace="structure text">The body</div>
+    <div class="about">
+        <hr />
+        <div tal:replace="structure text">The body</div>
+    </div>
     </tal:about>
 </metal:footer>
 
+<metal:spotlight tal:define="batch view/getSpotlightItems" fill-slot="content-spotlight">
+    <metal:slot define-slot="content-spotlight">
+        <metal:listing use-macro="here/newsletter_view/macros/listing">
+            <metal:featured-articles fill-slot="featured-articles">
+                <h2>Spotlight</h2>
+            </metal:featured-articles>
+        </metal:listing>
+    </metal:slot>
+</metal:spotlight>
+
 <metal:content-core fill-slot="content-core">
-<metal:block define-macro="content-core"
-                    tal:define="kssClassesView context/@@kss_field_decorator_view;
-                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                standalone_view python:True;
-                                templateId template/getId">
+    <metal:block define-macro="content-core"
+                        tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                    standalone_view python:True;
+                                    templateId template/getId">
+    
+        <metal:featured tal:define="batch view/getEnabledItems">
+            <metal:listingmacro define-macro="listing">
+                <tal:foldercontents define="notEditor not:view/canEdit;
+                                    contentFilter contentFilter|request/contentFilter|nothing;
+                                    contentFilter python:contentFilter and dict(contentFilter) or {};
+                                    limit_display limit_display|request/limit_display|nothing;
+                                    limit_display python:limit_display and int(limit_display) or None;
+                                    more_url more_url|request/more_url|string:folder_contents;
+                                    is_a_topic python:context.portal_type=='Topic';
+                                    folderContents folderContents|nothing; 
+                                    order_by_id here/order_by_id|nothing;
+                                    order_by_title here/order_by_title|nothing;
+                                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
+                                    site_properties context/portal_properties/site_properties;
+                                    use_view_action site_properties/typesUseViewActionInListings|python:();
+                                    Batch python:modules['Products.CMFPlone'].Batch;
+                                    b_start python:request.get('b_start', 0);
+                                    isAnon context/@@plone_portal_state/anonymous;
+                                    normalizeString nocall: context/plone_utils/normalizeString;
+                                    toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                                    show_about python:not notEditor or site_properties.allowAnonymousViewAbout;
+                                    show_date context/show_date|nothing;
+                                    navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                                    pas_member context/@@pas_member;"
+                                    condition="notEditor">
+                    <tal:listing condition="batch">
+                
+                        <metal:featured-articles define-slot="featured-articles">
+                            <!-- empty -->
+                        </metal:featured-articles>
+                        <tal:list metal:define-slot="entries">
+                            <tal:entry tal:repeat="item batch" metal:define-macro="entries">
+                            <tal:block tal:define="item_object item/getObject;
+                                                   item_has_leadimage item/hasContentLeadImage;
+                                                   item_url item/getURL|item/absolute_url;
+                                                   item_id item/getId|item/id;
+                                                   item_title_or_id item/pretty_title_or_id;
+                                                   item_description item/Description;
+                                                   item_type item/portal_type;
+                                                   item_type_title item/Type;
+                                                   item_modified item/ModificationDate;
+                                                   item_effective item/EffectiveDate;
+                                                   item_created item/CreationDate;
+                                                   item_icon python:plone_view.getIcon(item);
+                                                   item_type_class python:'contenttype-' + normalizeString(item_type);
+                                                   item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                                   item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                                   item_creator item/Creator;
+                                                   item_tags item/Subject|nothing;
+                                                   item_start item/start|item/StartDate|nothing;
+                                                   item_end item/end|item/EndDate|nothing;
+                                                   item_sametime python: item_start == item_end;
+                                                   item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
+                                <metal:block define-slot="entry">
+                                <tal:item metal:define-macro="listitem"
+                                    tal:define="dt_class python:not item_description and 'no-description' or '';
+                                                dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
+                                    tal:attributes="class dt_class">
+                
+                                    <h3>
+                
+                                    <tal:newsitem
+                                         tal:condition="exists:item_object/image_thumb"
+                                         tal:define="image_caption item_object/imageCaption|nothing">
+                                            <img align="right"
+                                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
+                                    </tal:newsitem>
+                
+                                    <tal:otheritem
+                                         tal:condition="exists:item_has_leadimage">
+                                            <img align="right"
+                                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
+                                    </tal:otheritem>
+                                    
+                                    <span tal:condition="python: not view.isSpotlight(item) and view.showSummary" tal:content="string:${repeat/item/number}." />
 
-    <metal:listingmacro define-macro="listing">
-    <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
-                        contentFilter python:contentFilter and dict(contentFilter) or {};
-                        limit_display limit_display|request/limit_display|nothing;
-                        limit_display python:limit_display and int(limit_display) or None;
-                        more_url more_url|request/more_url|string:folder_contents;
-                        is_a_topic python:context.portal_type=='Topic';
-                        folderContents folderContents|nothing; 
-                        order_by_id here/order_by_id|nothing;
-                        order_by_title here/order_by_title|nothing;
-                        folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
-                        site_properties context/portal_properties/site_properties;
-                        use_view_action site_properties/typesUseViewActionInListings|python:();
-                        Batch python:modules['Products.CMFPlone'].Batch;
-                        b_start python:request.get('b_start', 0);
-                        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, limit_display or 100, int(b_start), orphan=1);
-                        isAnon context/@@plone_portal_state/anonymous;
-                        normalizeString nocall: context/plone_utils/normalizeString;
-                        toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                        show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
-                        show_date context/show_date|nothing;
-                        navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                        pas_member context/@@pas_member;"
-                        condition="isAnon">
-    <tal:listing condition="batch">
-        <metal:featured-articles define-slot="featured-articles">
-            <h2>Featured Articles</h2>
-        </metal:featured-articles>
-        <tal:list metal:define-slot="entries">
-            <tal:entry tal:repeat="item batch" metal:define-macro="entries">
-            <tal:block tal:define="item_object item/getObject;
-                                   item_has_leadimage item/hasContentLeadImage;
-                                   item_url item/getURL|item/absolute_url;
-                                   item_id item/getId|item/id;
-                                   item_title_or_id item/pretty_title_or_id;
-                                   item_description item/Description;
-                                   item_type item/portal_type;
-                                   item_type_title item/Type;
-                                   item_modified item/ModificationDate;
-                                   item_effective item/EffectiveDate;
-                                   item_created item/CreationDate;
-                                   item_icon python:plone_view.getIcon(item);
-                                   item_type_class python:'contenttype-' + normalizeString(item_type);
-                                   item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
-                                   item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                                   item_creator item/Creator;
-                                   item_tags item/Subject|nothing;
-                                   item_start item/start|item/StartDate|nothing;
-                                   item_end item/end|item/EndDate|nothing;
-                                   item_sametime python: item_start == item_end;
-                                   item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
-                <metal:block define-slot="entry">
-                <tal:item metal:define-macro="listitem"
-                    tal:define="dt_class python:not item_description and 'no-description' or '';
-                                dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
-                    tal:attributes="class dt_class"
-                    tal:condition="python:view.showItem(item)">
-
-                    <h3>
-
-                    <tal:newsitem
-                         tal:condition="exists:item_object/image_thumb"
-                         tal:define="image_caption item_object/imageCaption|nothing">
-                            <img align="right"
-                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
-                    </tal:newsitem>
-
-                    <tal:otheritem
-                         tal:condition="exists:item_has_leadimage">
-                            <img align="right"
-                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
-                    </tal:otheritem>
-                    
-                        <a href="#"
-                           tal:attributes="href item_url;
-                                           class string:$item_type_class $item_wf_state_class url"
-                           tal:content="item_title_or_id">
-                            Item Title
-                        </a>
-                        
-                    </h3>
-
-                    <div class="documentByLine">
-                        <span class="effectiveDate" tal:condition="show_date" tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
-                        <tal:byline condition="show_about">
-                            &mdash;
-
-                            <tal:name tal:condition="item_creator"
-                                tal:define="author python:pas_member.info(item_creator);
-                                            creator_short_form author/username;
-                                            creator_long_form string:?author=${author/username};
-                                            creator_is_openid python:'/' in creator_short_form;
-                                            creator_id python:(creator_short_form, creator_long_form)[creator_is_openid];">
-                              <span i18n:translate="label_by_author">
-                                by
-                              <a href="#"
-                                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
-                                 tal:content="author/name_or_id"
-                                 tal:omit-tag="not:author"
-                                 i18n:name="author">
-                                Bob Dobalina
-                              </a>
-                              </span>
-
-                            </tal:name>
-
-                        </tal:byline>
-                    </div>
-
-
-                <p tal:condition="item_description|nothing">
-
-                    <span tal:replace="item_description" />
-                    
-                </p>
-
-                <br class="separator" />
-                    
-                </tal:item>
-            </metal:block>
-            </tal:block>
-            </tal:entry>
-        </tal:list>
-
-    </tal:listing>
-
-    </tal:foldercontents>
-    </metal:listingmacro>
-
-</metal:block>
+                                        <a href="#"
+                                           tal:attributes="href item_url;
+                                                           class string:$item_type_class $item_wf_state_class url"
+                                           tal:content="item_title_or_id">
+                                            Item Title
+                                        </a>
+                                        
+                                    </h3>
+                
+                                    <div class="documentByLine">
+                                        <span class="effectiveDate" tal:condition="show_date" tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
+                                        <tal:byline condition="show_about">
+                                            &mdash;
+                
+                                            <tal:name tal:condition="item_creator"
+                                                tal:define="author python:pas_member.info(item_creator);
+                                                            creator_short_form author/username;
+                                                            creator_long_form string:?author=${author/username};
+                                                            creator_is_openid python:'/' in creator_short_form;
+                                                            creator_id python:(creator_short_form, creator_long_form)[creator_is_openid];">
+                                              <span i18n:translate="label_by_author">
+                                                by
+                                              <a href="#"
+                                                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                                                 tal:content="author/name_or_id"
+                                                 tal:omit-tag="not:author"
+                                                 i18n:name="author">
+                                                Bob Dobalina
+                                              </a>
+                                              </span>
+                
+                                            </tal:name>
+                
+                                        </tal:byline>
+                                    </div>
+                
+                
+                                <p tal:condition="item_description|nothing">
+                
+                                    <span tal:replace="item_description" />
+                                    
+                                </p>
+                
+                                <br class="separator" tal:condition="not:repeat/item/end" />
+                                    
+                                </tal:item>
+                            </metal:block>
+                            </tal:block>
+                            </tal:entry>
+                        </tal:list>
+                    </tal:listing>
+        
+                </tal:foldercontents>
+            </metal:listingmacro>
+        </metal:featured>
+    </metal:block>
 </metal:content-core>
 
 <metal:portlets define-slot="portlets_two_slot" fill-slot="portlets_two_slot">

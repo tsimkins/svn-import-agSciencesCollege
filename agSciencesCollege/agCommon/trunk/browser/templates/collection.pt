@@ -17,6 +17,7 @@
                     item_icon python:getIcon(obj);
                     item_type obj/portal_type;
 					item_start obj/start|obj/StartDate|nothing;
+					item_end obj/end|obj/EndDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
 					item_title_or_id python: item_event_location_title or item_title_or_id;"
@@ -41,7 +42,7 @@
 			<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
             <div class="portletItemDetails date"
                   tal:condition="view/data/show_dates"
-                  tal:content="python:toLocalizedTime(item_start)">
+                  tal:content="python:toLocalizedTime(item_start, end_time=item_end)">
                 Date
             </div>
 			</tal:block>

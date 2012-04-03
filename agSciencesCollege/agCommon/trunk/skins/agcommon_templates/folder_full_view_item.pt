@@ -1,3 +1,4 @@
+<metal:master define-macro="master">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -38,6 +39,8 @@
              </a>
         </h1>
 
+        <metal:abovecontent define-slot="abovecontent" />
+
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription"
@@ -56,9 +59,12 @@
 
         </tal:block>
 
+        <div tal:replace="structure provider:agcommon.contributors" />
+
         <div class="visualClear"><!-- --></div>
 
     </div>
 
 </body>
 </html>
+</metal:master>

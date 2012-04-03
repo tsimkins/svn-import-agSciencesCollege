@@ -451,7 +451,7 @@ body {
 #portal-column-two dl.portletfeedmixer dd.summary div.date,
 #rightcolumn dl.portletfeedmixer dd.summary div.date {
     text-align: left;
-    color: #575757;
+    color: #4D4D4D;
     font-size: 0.9375em;
 }
 
@@ -755,7 +755,7 @@ body {
 #portal-column-two .date {
     font-weight: normal;
     font-size: 0.9375em;
-    color: #575757;
+    color: #4D4D4D;
 }
 /* ----- portlets ------------------------------------------ */
 
@@ -1195,8 +1195,13 @@ dd.portletItem p {
     padding-left: 1.125em;
 }
 
+.portletItemDetails {
+    text-align: left;
+}
+
 .portletFooter {
     border-style: none;
+    padding: 0.25em;
 }
 
 .image-left, .image-right {
@@ -1259,7 +1264,6 @@ div.tileDescription.no-description {
     border-color: #CC9933;
     color: #9D7627;
     padding: 1em;
-    font-size: 0.75em;
     line-height: 1.5em;
 }
 
@@ -1286,6 +1290,18 @@ div.comment img.avatar {
 
 .tileHeadline a, .tileTitle a {
     color: #265FCF !important;
+}
+
+#content .tileHeadline a.state-private, 
+#content .tileTitle a.state-private,
+#content a.state-private {
+    color: #FF0000 !important;
+}
+
+#content .tileHeadline a.state-pending, 
+#content .tileTitle a.state-pending,
+#content a.state-pending {
+    color: #FFA500 !important;
 }
 
 .tileHeadline a:hover, .tileTitle a:hover {
@@ -1581,6 +1597,17 @@ body.template-pgv_sg_carousel_view #content {
 #mobile-version a {
     color: &dtml-footerLinkColor;;
     font-size: 0.625em;
+}
+
+table.listing {
+    caption-side: bottom;
+}
+
+table.listing caption {
+    text-align: left;
+    margin-top: 0.375em;
+    font-size: 0.875em;
+    color: #575757;
 }
 
 table.listing th {

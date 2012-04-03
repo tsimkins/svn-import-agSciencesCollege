@@ -87,7 +87,7 @@
                 <tbody>
                 <tal:warning condition="not: isAnon">
                     <tr>
-                        <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#FFB900">
+                        <td tal:attributes="colspan python: sr and '2' or None" align="left" valign="top" bgcolor="#FFF500">
                             <strong>Warning:</strong> This is the logged-in view of the newsletter.  Log out (go to the http:// URL) before emailing.  Do not attempt to email this newsletter, or users will be asked to log in before viewing articles.
                         </td>
                     </tr>
@@ -127,8 +127,10 @@
                     <td id="portal-column-content" valign="top" tal:attributes="width python:sr and '390' or '570'" cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">
-            
-                            <metal:additional define-slot="content-additional" />
+
+                            <metal:additional define-slot="content-spotlight" />            
+
+                            <metal:additional define-slot="content-listing" />
 
                             <metal:bodytext define-slot="main">
                     
@@ -171,11 +173,11 @@
                                 tal:define="now modules/DateTime/DateTime" 
                                 tal:content="now/year">[date last modified]</span>
                     		
-                    	      <a href="http://agsci.psu.edu">College of Agricultural Sciences</a>
+                    	      <a href="http://agsci.psu.edu">Penn State College of Agricultural Sciences</a>
                     		
                     	</p>
 
-                        <p>
+                        <p class="legal">
                             
                             <a title="" id="copyright" href="http://www.psu.edu/copyright.html">Copyright</a>
                             &mdash;

@@ -1,4 +1,4 @@
-<div class="documentContributors  discreet"
+<div class="documentContributors"
     tal:define="contributors view/people"
     tal:condition="contributors">
     <h2>Contact Information</h2>
@@ -19,9 +19,9 @@
                     </a>
                 </div>
                 <div class="facultyStaffDirectory">
-                                    <ul tal:condition="item_job_title" class="jobTitle">
-                                        <li tal:content="item_job_title" />
-                                    </ul>
+                    <ul tal:condition="item_job_title" class="jobTitle discreet">
+                        <li tal:content="item_job_title" />
+                    </ul>
                 </div>
             </div>
         </tal:person>

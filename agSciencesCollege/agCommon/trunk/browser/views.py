@@ -11,8 +11,14 @@ from BeautifulSoup import BeautifulSoup
 from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 import re
-from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
+from urlparse import urljoin
 
+from AccessControl import ClassSecurityInfo
+from Products.CMFCore import permissions
+
+from zope.security import checkPermission
+
+from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 # For registry
@@ -134,7 +140,7 @@ class AgCommonUtilities(BrowserView):
             ordered = []
             uuids = {}
 
-            def getUID(item):
+            def getConfig(item):
                 if isinstance(item, AbstractCatalogBrain):
                     return item.UID
                 else:
@@ -151,14 +157,14 @@ class AgCommonUtilities(BrowserView):
   
                 # Pull out matching items
                 for item in topicContents:
-                    if not uuids.get(getUID(item)) and r.search(getTitle(item)):
+                    if not uuids.get(getConfig(item)) and r.search(getTitle(item)):
                         ordered.append(item)
-                        uuids[getUID(item)] = 1
+                        uuids[getConfig(item)] = 1
   
             for item in topicContents:
-                if not uuids.get(getUID(item)):
+                if not uuids.get(getConfig(item)):
                     ordered.append(item)
-                    uuids[getUID(item)] = 1
+                    uuids[getConfig(item)] = 1
 
             return ordered
         else:
@@ -321,6 +327,10 @@ class NewsletterView(AgCommonUtilities):
         self.currentDate = DateTime()
 
     @property
+    def canEdit(self):
+        return checkPermission('cmf.ModifyPortalContent', self.context)
+
+    @property
     def anonymous(self):
         self.portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
         return self.portal_state.anonymous()
@@ -371,22 +381,35 @@ class NewsletterView(AgCommonUtilities):
 
     def isEnabled(self, item):
 
-        enabled_items = self.getItems
-        
-        # Check to make sure at least one of the items in folderContents is enabled
-        contents_uid = set([x.UID for x in self.folderContents()])
+        enabled_items = self.getEnabledUID()
 
-        if contents_uid.intersection(set(enabled_items)):
+        if enabled_items:
             return item.UID in enabled_items
         else:
             return self.anonymous
+
+    def isSpotlight(self, item):
+
+        return item.UID in self.getSpotlightUID()
         
-    def showItem(self, item):
-        if self.isEnabled(item):
-            return True
+    def showItem(self, item, item_type='enabled'):
+        if item_type=='spotlight':
+            return self.isSpotlight(item)
+        elif self.isEnabled(item):
+            return not self.isSpotlight(item)
         else:
             return not self.anonymous
 
+    @property
+    def showSummary(self):
+        show_summary = self.getConfig('show_summary')
+        
+        if show_summary == 'yes':
+            return True
+        elif show_summary == 'no':
+            return False
+        else:
+            return len(self.getEnabledItems()) >= 5
 
     def folderContents(self, folderContents=[], contentFilter={}, order_by_id=None, order_by_title=None):
 
@@ -406,27 +429,97 @@ class NewsletterView(AgCommonUtilities):
     def registry(self):
         return getUtility(IRegistry)
 
-    @property
-    def getItems(self):
+    def getConfig(self,  key=''):
         try:
-            return self.registry.records[self.getRegistryKey()].value
-        except KeyError:
+            value = self.registry.records[self.getRegistryKey()].value.get(key)
+
+            if key in ['spotlight', 'enabled']:
+                if not isinstance(value, list):
+                    value = [value]
+                    
+                contents_uid = set([x.UID for x in self.folderContents()])
+    
+                return list(contents_uid.intersection(set(value)))
+            else:
+                return value
+            
+        except (KeyError, AttributeError):
             return []
-        
-    def setItems(self, enabled_items=[]):
-        self.registry.records[self.getRegistryKey()] = Record(field.List(title=u"Item UIDs"), enabled_items)
+
+    def getEnabledUID(self):
+        return self.getConfig(key='enabled')
+
+    def getSpotlightUID(self):
+        return self.getConfig(key='spotlight')
+
+    def getAllItems(self):
+        return self.folderContents()
+
+    def getEnabledItems(self):
+        non_spotlight_uids = list(set(self.getEnabledUID()) - set(self.getSpotlightUID()))
+        return self.folderContents(contentFilter={'UID' : non_spotlight_uids})    
+
+    def getSpotlightItems(self):
+        return self.folderContents(contentFilter={'UID' : self.getSpotlightUID()})
+
+    def setConfig(self, enabled=[], spotlight=[], show_summary=[]):
+        # Make all spotlight articles enabled
+        enabled = list(set(enabled).union(set(spotlight)))
+    
+        self.registry.records[self.getRegistryKey()] = Record(field.Dict(title=u"Item UIDs"), {'enabled' : enabled, 'spotlight' : spotlight, 'show_summary' : show_summary})
         
     def getRegistryKey(self):
         return 'agsci.newsletter.uid_%s' % self.context.UID()
+        
+    def getHTML(self, item):
+    
+        text = item.getObject().newsletter_full_view_item()
+        soup = BeautifulSoup(text)
+
+        # Remove "#tags" div
+        for t in soup.findAll("div", attrs={'class' : re.compile('public-tags')}):
+            t.extract()
+        
+        # Fix URLs
+        
+        for a in soup.findAll('a'):
+            href = a['href']
+            contents = a.renderContents().strip()
+
+            if not href.startswith('http') and not href.startswith('mailto'):
+                a['href'] = urljoin(item.getURL(), href)
+
+            if not contents.startswith('http') and not href.startswith('mailto') and a.get('id') != "parent-fieldname-leadImage":
+                a.append("( <strong>%s</strong> )" % a['href'])
+
+            elif '@' not in contents and href.startswith('mailto'):
+                a.append("( <strong>%s</strong> )" % a['href'].replace('mailto:', ''))
+   
+            else:
+                a['class'] = 'standalone'
+
+        html = soup.prettify()
+        html = html.replace('The external news article is:', 'Full article:') # If there's a news item article link        
+
+        return html
 
 class NewsletterModify(NewsletterView):
+
+    security = ClassSecurityInfo()
+    security.declareProtected(permissions.ModifyPortalContent, '__call__')
+
     def __call__(self):
         enabled_items = self.request.form.get('enabled_items', [])
-
+        spotlight_items = self.request.form.get('spotlight_items', [])
+        show_summary = self.request.form.get('show_summary', 'auto')
+        
         if not isinstance(enabled_items, list):
             enabled_items = [enabled_items]
 
-        self.setItems(enabled_items)
+        if not isinstance(spotlight_items, list):
+            spotlight_items = [spotlight_items]
+
+        self.setConfig(enabled=enabled_items, spotlight=spotlight_items, show_summary=show_summary)
 
         self.request.response.redirect(self.context.absolute_url())
         
@@ -440,6 +533,7 @@ class NewsletterEmail(NewsletterView):
     def __call__(self):
     
         html = self.render()
+        html = html.replace('&nbsp;', ' ')
     
         soup = BeautifulSoup(html)
         
@@ -463,7 +557,10 @@ class NewsletterEmail(NewsletterView):
         for tag in tags:
             html = html.replace("<%s" % tag, "<div")
             html = html.replace("</%s" % tag, "</div")
-            
+
+        html = re.sub('\s+', ' ', html)
+        html = html.replace(' </a>', '</a> ')
+
         return html
 
 class NewsletterPrint(NewsletterView):
@@ -595,7 +692,7 @@ class HomepageView(FolderView):
 
     @property
     def hasDescription(self):
-        if self.context.Description:
+        if self.context.Description():
             return True
         else:
             return False
