@@ -202,11 +202,16 @@ table td.footer p {
 }
 
 table td#portal-column-content {
-    padding: 5px 15px 5px 0;
+    padding: 8pt 15px 5px 0;
 }
 
 table.one-column td#portal-column-content {
-    padding: 5px 0 0 0;
+    padding: 8pt 0 0 0;
+}
+
+.eventDateLocationBlock {
+    margin-bottom: 6pt;
+    font-size: 10pt;
 }
 
 hr {
@@ -393,7 +398,7 @@ div.about hr {
 <metal:summary fill-slot="content-listing" define-slot="content-listing"
     tal:define="notEditor not:view/canEdit;">
 
-    <h2 tal:condition="python: notEditor">In This Issue</h2>
+    <h2 tal:condition="python: notEditor and (view.showSummary or len(view.getSpotlightItems()))">In This Issue</h2>
 
     <form id="enable-items-form" tal:omit-tag="notEditor" method="POST" action="@@newsletter_modify">
 
@@ -682,14 +687,17 @@ div.about hr {
                 
                                         </tal:byline>
                                     </div>
-                
+    
+                                <div tal:condition="python: item_type in ['Event', 'TalkEventType']" class="eventDateLocationBlock">
+                                    <metal:event use-macro="context/folder_listing_z3/macros/event_date" />
+                                </div>
                 
                                 <p tal:condition="item_description|nothing">
                 
                                     <span tal:replace="item_description" />
                                     
                                 </p>
-                
+
                                 <br class="separator" tal:condition="not:repeat/item/end" />
                                     
                                 </tal:item>
