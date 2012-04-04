@@ -80,6 +80,10 @@ class IAgCommonUtilities(Interface):
     def getUTM(self):
         pass
 
+    def customBodyClass(self):
+        pass
+
+
 """
     Class Definitions
 """
@@ -190,6 +194,31 @@ class AgCommonUtilities(BrowserView):
             data["utm_content"] = content
 
         return urlencode(data)
+
+    def customBodyClass(self):
+        context = self.context
+        body_classes = []
+
+        if hasattr(context, 'two_column') and context.two_column:
+            body_classes.append('custom-two-column')
+
+        if hasattr(context, 'folder_text'):
+            body_text = context.folder_text            
+        elif hasattr(context, 'getText'):
+            body_text = context.getText()
+        else:
+            body_text = ''
+            
+        if body_text and '<h2' in body_text.lower() and '<h3' not in body_text.lower():
+            body_classes.append('custom-h2-as-h3')
+
+        try:
+            custom_class = aq_acquire(self.context, 'custom_class')
+            body_classes.extend(['custom-%s' % str(x) for x in custom_class.split()])
+        except AttributeError:
+            pass
+
+        return ' '.join(body_classes)
 
 #--
 
@@ -411,13 +440,17 @@ class NewsletterView(AgCommonUtilities):
         else:
             return len(self.getEnabledItems()) >= 5
 
-    def folderContents(self, folderContents=[], contentFilter={}, order_by_id=None, order_by_title=None):
+    def folderContents(self, folderContents=[], contentFilter={}):
 
         if folderContents:
             # Already has folder contents
             pass
         elif self.context.portal_type == 'Topic':
+            order_by_title = getattr(self.context, 'order_by_title', None)
+            order_by_id = getattr(self.context, 'order_by_id', None)
+
             folderContents = self.context.queryCatalog(batch=True, **contentFilter)
+
             if order_by_id or order_by_title:
                 folderContents = self.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) 
         else:

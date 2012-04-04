@@ -484,9 +484,7 @@ div.about hr {
                     more_url more_url|request/more_url|string:folder_contents;
                     is_a_topic python:context.portal_type=='Topic';
                     folderContents folderContents|nothing; 
-                    order_by_id here/order_by_id|nothing;
-                    order_by_title here/order_by_title|nothing;
-                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
+                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter);
                     site_properties context/portal_properties/site_properties;
                     use_view_action site_properties/typesUseViewActionInListings|python:();
                     Batch python:modules['Products.CMFPlone'].Batch;
@@ -586,9 +584,7 @@ div.about hr {
                                     more_url more_url|request/more_url|string:folder_contents;
                                     is_a_topic python:context.portal_type=='Topic';
                                     folderContents folderContents|nothing; 
-                                    order_by_id here/order_by_id|nothing;
-                                    order_by_title here/order_by_title|nothing;
-                                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter, order_by_id=order_by_id, order_by_title=order_by_title);
+                                    folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter);
                                     site_properties context/portal_properties/site_properties;
                                     use_view_action site_properties/typesUseViewActionInListings|python:();
                                     Batch python:modules['Products.CMFPlone'].Batch;
