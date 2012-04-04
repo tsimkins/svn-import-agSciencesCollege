@@ -47,6 +47,10 @@ def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None)
     util = getToolByName(context, 'translation_service')
 
     def friendly(d):
+    
+        if not d:
+            return ''
+
         if d.startswith('0'):
             d = d.replace('0', '', 1)
         
@@ -54,6 +58,8 @@ def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None)
         
         return d.replace(' 0', ' ')
 
+    if not time:
+        return ''
 
     start_full_fmt = friendly(util.ulocalized_time(time, long_format, time_only, context=context,
                                 domain='plonelocales', request=self.request))
