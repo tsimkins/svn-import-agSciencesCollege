@@ -101,8 +101,8 @@ h3 {
 
 br.separator {
     clear: both;
-    font-size: 10pt;
-    height: 10pt;
+    font-size: 1pt;
+    height: 1pt;
 }
 
 .effectiveDate {
@@ -125,11 +125,11 @@ div.documentDescription {
 }
 
 p {
-    margin: 0 0 16pt 0;
+    margin: 0 0 10pt 0;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 16pt;
+    margin-bottom: 10pt;
 }
 
 #portal-column-two p {
@@ -199,6 +199,7 @@ table td.footer p {
 .this-issue li {
     font-size: 8.5pt;
     margin-bottom: 4pt;
+    text-indent: 0;
 }
 
 table td#portal-column-content {
@@ -534,6 +535,7 @@ div.about hr {
             </tal:entry>
    
         </ol>
+        <br class="separator" />
         </table>
 
         <ul tal:condition="not:notEditor" class="nobullet inline">
@@ -630,7 +632,7 @@ div.about hr {
                                     tal:define="dt_class python:not item_description and 'no-description' or '';
                                                 dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
                                     tal:attributes="class dt_class">
-                
+
                                     <h3>
                 
                                     <tal:newsitem
@@ -694,7 +696,7 @@ div.about hr {
                                     
                                 </p>
 
-                                <br class="separator" tal:condition="not:repeat/item/end" />
+                                <br class="separator" />
                                     
                                 </tal:item>
                             </metal:block>
