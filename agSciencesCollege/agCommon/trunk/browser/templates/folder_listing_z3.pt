@@ -200,7 +200,7 @@
                                 <div tal:attributes="class string:eventDateLocation ${canceled}">
                                     <strong tal:condition="python: item_type == 'Event'">When:</strong>
                                     <metal:shortdate define-macro="short_event_date">
-                                        <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end)" />
+                                        <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end, long_format=1)" />
                                     </metal:shortdate>
                                 </div>
                                 <div tal:define="show_event_location show_event_location|nothing"
