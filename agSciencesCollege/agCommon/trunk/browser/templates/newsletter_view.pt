@@ -366,9 +366,9 @@ div.about hr {
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
     <div class="subheader">
         <tal:date condition="not: show_date">
-            <span class="effectiveDate"> 
+            <p class="effectiveDate"> 
                   <span tal:replace="python:toLocalizedTime(view.currentDate).replace(' 0', ' ')" />
-            | </span>
+            </p>
         </tal:date>
 
         <metal:view-online define-slot="view-online">
