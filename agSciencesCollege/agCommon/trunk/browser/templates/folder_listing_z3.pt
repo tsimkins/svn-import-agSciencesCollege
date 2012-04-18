@@ -184,7 +184,7 @@
                     <metal:show-date define-macro="show-date">
                         <div class="documentByLine effectiveDate" 
                              tal:condition="show_date" 
-                             tal:content="python:toLocalizedTime(item_effective,long_format=1)" />
+                             tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                     </metal:show-date>
 
                     <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription no-description');"
