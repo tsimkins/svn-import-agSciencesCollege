@@ -519,7 +519,11 @@ class NewsletterView(AgCommonUtilities):
         # Fix URLs
         
         for a in soup.findAll('a'):
-            href = a['href']
+            try:
+                href = a['href']
+            except KeyError:
+                continue
+
             contents = a.renderContents().strip()
 
             if not href.startswith('http') and not href.startswith('mailto'):
