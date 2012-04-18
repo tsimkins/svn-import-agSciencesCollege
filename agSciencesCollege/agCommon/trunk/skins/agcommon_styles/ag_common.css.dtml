@@ -2258,6 +2258,7 @@ html {
 #content-core div.historyComment {
 	background-color: &dtml-globalBackgroundColor;;
 	padding: 0.25em 1em;
+    margin: 0.5em 1em;
 }
 
 #content-history div.historyComment p,

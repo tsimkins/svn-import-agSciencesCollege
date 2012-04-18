@@ -1,7 +1,7 @@
 from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_acquire, aq_inner
+from Acquisition import aq_acquire, aq_inner, aq_base
 from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
 from DateTime import DateTime
 from urllib import urlencode
@@ -196,19 +196,22 @@ class AgCommonUtilities(BrowserView):
         return urlencode(data)
 
     def customBodyClass(self):
-        context = self.context
+        context = aq_base(self.context)
         body_classes = []
 
         if hasattr(context, 'two_column') and context.two_column:
             body_classes.append('custom-two-column')
 
-        if hasattr(context, 'folder_text'):
-            body_text = context.folder_text            
-        elif hasattr(context, 'getText'):
-            body_text = context.getText()
-        else:
+        try:
+            if hasattr(context, 'folder_text'):
+                body_text = str(context.folder_text)
+            elif hasattr(context, 'getText'):
+                body_text = str(context.getText())
+            else:
+                body_text = ''
+        except:
             body_text = ''
-            
+
         if body_text and '<h2' in body_text.lower() and '<h3' not in body_text.lower():
             body_classes.append('custom-h2-as-h3')
 

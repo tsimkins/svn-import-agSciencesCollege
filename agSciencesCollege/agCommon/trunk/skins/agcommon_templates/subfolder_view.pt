@@ -5,6 +5,12 @@
 
 <body>
 
+<metal:content-text fill-slot="content-text"
+    tal:define="view nocall:context/@@folder_listing_z3;
+                test nocall:view/test;">
+    <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+</metal:content-text>
+
 <metal:content-core fill-slot="content-core">
 <metal:main_macro define-macro="content-core"
     tal:define="view nocall:context/@@folder_listing_z3;
@@ -17,7 +23,7 @@
                             agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
                             standalone_view python:False;">
 
-        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+
 
         <tal:subfolder metal:define-macro="subfolders_macro"
                       define="folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']})">
