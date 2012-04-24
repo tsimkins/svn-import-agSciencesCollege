@@ -16,6 +16,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping
 from plone.app.viewletmanager.manager import ManageViewlets
 from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFEditions.setuphandlers import DEFAULT_POLICIES
 from agsci.subsite.events import onSubsiteCreation
 from zLOG import LOG, INFO
 import os.path
@@ -595,7 +596,8 @@ def configureEditor(context):
     for lib in kupu.getLibraries(sm):
         if lib['id'] == 'images':
             has_images_library = True
-            break
+        if lib['id'] == 'current':
+            lib['icon'].text = 'string:${portal_url}/folder_icon.png'
         
     if not has_images_library:
         kupu.addLibrary('images', 'string:Images', 'string:${portal_url}/images', 
@@ -712,6 +714,23 @@ def setRestrictions(context):
         site.events.setImmediatelyAddableTypes(['Event'])
         site.events.setLocallyAllowedTypes(['Topic', 'Event'])          
 
+def setVersionedTypes(context):
+    site = context.getSite()
+    TYPES_TO_VERSION = ('Folder', 'HomePage')
+    portal_repository = getToolByName(site, 'portal_repository')
+    versionable_types = list(portal_repository.getVersionableContentTypes())
+    for type_id in TYPES_TO_VERSION:
+        if type_id not in versionable_types:
+            # use append() to make sure we don't overwrite any
+            # content-types which may already be under version control
+            versionable_types.append(type_id)
+            # Add default versioning policies to the versioned type
+            for policy_id in DEFAULT_POLICIES:
+                portal_repository.addPolicyForContentType(type_id, policy_id)
+
+    portal_repository.setVersionableContentTypes(versionable_types)
+
+
 def setupHandlersWrapper(context):
 
     if context.readDataFile('agSciPolicy.marker') is None:
@@ -752,6 +771,8 @@ def setupHandlersWrapper(context):
     createRecentChanges(context)
 
     setRestrictions(context)
+
+    setVersionedTypes(context)
     
     #customizeViewlets(context)
         
