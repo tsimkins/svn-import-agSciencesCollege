@@ -287,3 +287,28 @@ def getAvailableTags(self):
                 pass
             break
     return tags
+    
+def icon(self, portal_type):
+    type = self.ttool.getTypeInfo(portal_type)
+
+    default_icon = 'document_icon.png'
+
+    if type is None:
+        return None
+
+    icon = type.getIcon()
+
+    if not icon:
+        icon = {
+            'Document' : 'document_icon.png',
+            'Event' : 'event_icon.png',
+            'File' : 'file_icon.png',
+            'Folder' : 'folder_icon.png',
+            'Image' : 'image_icon.png',
+            'Link' : 'link_icon.png',
+            'News Item' : 'newsitem_icon.png',
+            'Plone Site' : 'logoIcon.png',
+            'TempFolder' : 'folder_icon.png',
+            'Topic' : 'topic_icon.png',}.get(type.id, default_icon)
+
+    return "%s/%s" % (self.base, icon)

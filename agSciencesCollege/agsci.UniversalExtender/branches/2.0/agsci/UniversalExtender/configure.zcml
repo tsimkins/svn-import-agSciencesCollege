@@ -331,6 +331,15 @@
         ignoreOriginal="True"
         />
 
+    <!-- Fixing broken Kupu icon behavior (because of the !@#$ing sprites, getIcon no longer works). -->
+    
+    <monkey:patch
+        description="Fixes Kupu icons"
+        class="Products.kupu.plone.plonedrawers.InfoAdaptor"
+        replacement=".patch.icon"
+        original="icon"
+        />
+
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
     <five:implements
