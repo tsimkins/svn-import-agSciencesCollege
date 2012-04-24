@@ -139,6 +139,33 @@
             font-size: 10pt;
         }
 
+        #parent-fieldname-text table {
+            border-collapse: collapse;
+            margin: 0.375em 0 0.5em 0;
+            caption-side: bottom;
+            font-size: 0.9375em;
+        }
+ 
+        #parent-fieldname-text table th, #parent-fieldname-text table td {
+            border: 1px solid #666666;
+            padding: 0.25em 0.375em;
+        }
+
+        #parent-fieldname-text table th {
+            background-color: #B8B8B8;
+            text-align: left;
+        }
+
+        #parent-fieldname-text table tr.even td {
+            background-color: #EBEBEB;
+        }
+
+        #parent-fieldname-text table.listing caption {
+            color: #333333;
+            font-size: 0.8125em;
+            margin-top: 0.375em;
+            text-align: left;
+        }
     </style>
 </metal:local_style_slot>
 
