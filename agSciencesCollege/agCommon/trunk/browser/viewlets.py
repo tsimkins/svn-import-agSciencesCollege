@@ -565,9 +565,10 @@ class ContributorsViewlet(AgCommonViewlet):
                 if r.id == id:
 
                     obj = r.getObject()
+                    job_titles = obj.getJobTitles()
 
                     self.people.append({'name' : obj.pretty_title_or_id(), 
-                                        'title' : obj.getJobTitles()[0], 
+                                        'title' : job_titles and job_titles[0] or '', 
                                         'url' : obj.absolute_url()})
                     found = True
 
