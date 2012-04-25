@@ -448,7 +448,7 @@ class NewsletterView(AgCommonUtilities):
         if folderContents:
             # Already has folder contents
             pass
-        elif self.context.portal_type == 'Topic':
+        elif self.context.portal_type in ['Topic', 'Newsletter']:
             order_by_title = getattr(self.context, 'order_by_title', None)
             order_by_id = getattr(self.context, 'order_by_id', None)
 

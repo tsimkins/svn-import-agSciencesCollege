@@ -405,7 +405,16 @@ div.about hr {
 
     <tal:config condition="not: notEditor">
         <h2>Newsletter Configuration</h2>
-    
+        
+        <tal:manager condition="python:checkPermission('Manage portal', context)">
+            <h3>Edit Newsletter attributes in Plone</h3>
+        <div class="discreet">These options are only available to Administrators.</div>
+            <ul class="inline nobullet">
+                <li><a tal:attributes="href string:${context/absolute_url}/edit">Title, Description, Body Text</a></li>
+                <li><a tal:attributes="href string:${context/absolute_url}/criterion_edit_form">Criteria</a></li>
+                <li><a tal:attributes="href string:${context/absolute_url}/content_status_history">Workflow state</a></li>
+            </ul>
+        </tal:manager>    
         <h3>Show "In This Issue"?</h3>
         <div class="discreet"><strong>Automatic</strong> will show the "In This Issue" section if there are 5+ non-Spotlight items.</div>
         <ul class="inline nobullet">
