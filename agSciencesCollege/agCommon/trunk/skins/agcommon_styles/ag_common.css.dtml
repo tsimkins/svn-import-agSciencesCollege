@@ -233,11 +233,10 @@ body {
 
 #portal-column-one .portletHeader {
     background-color: transparent;
-    color: &dtml-leftButtonBackgroundBorder_external;;
-    border-color: &dtml-leftButtonBackgroundBorder_external;;
+    color: &dtml-insideRightPortletHeaderTextColor;;
+    border-color: &dtml-insideRightPortletHeaderTextColor;;
     border-width: 0 0 1px 0;
     padding: 0.1875em 0 0.125em 0;
-    font-size: 0.9375em;
     font-weight: bold;
     line-height: 1.25em;
     font-family: Arial, Helvetica, Helv, sans-serif;
@@ -1581,10 +1580,10 @@ body.template-pgv_sg_carousel_view #content {
     background-image: none;
 }
 
-#fblike {
+#fblike, #commenting span {
     border: none;
     overflow: visible;
-    width: 450px;
+    width: 450px !important;
     margin: 1.5em 0 2em 0;
 }
 
