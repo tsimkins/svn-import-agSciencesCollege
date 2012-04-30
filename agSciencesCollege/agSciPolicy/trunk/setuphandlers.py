@@ -1,14 +1,3 @@
-# Create new members with properties supplied from a CSV file.
-# The script expects a File object with id `users.csv` in the same folder
-# it resides.
-#
-# The format of the CSV needs to be:
-#
-# password;userid;lastname;firstname;email
-#
-# created 2006-11-03 by Tom Lazar <tom@tomster.org>, http://tomster.org/
-# under a BSD-style licence (i.e. use as you wish but don't sue me)
-
 from zope.app.component.hooks import setSite
 from zope.component import getSiteManager, getUtility, getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
@@ -23,6 +12,17 @@ import string
 import random
 
 random.seed()
+
+# Create new members with properties supplied from a CSV file.
+# The script expects a File object with id `users.csv` in the same folder
+# it resides.
+#
+# The format of the CSV needs to be:
+#
+# password;userid;lastname;firstname;email
+#
+# created 2006-11-03 by Tom Lazar <tom@tomster.org>, http://tomster.org/
+# under a BSD-style licence (i.e. use as you wish but don't sue me)
 
 def createUsers(context):
 
@@ -492,7 +492,7 @@ def updateBaseProperties(context):
     LOG('agSciPolicy.updateBaseProperties', INFO, "Resetting %s" % ", ".join(resetProperties))
     
     # Let's give it a go!
-    LOG('agSciPolicy.updateBaseProperties', INFO, "Updating Base properties for %s" % site['id'])
+    LOG('agSciPolicy.updateBaseProperties', INFO, "Updating Base properties for %s" % site.id)
     portal_skins = getattr(site, 'portal_skins')
 
     custom = getattr(portal_skins, 'custom')
@@ -500,13 +500,13 @@ def updateBaseProperties(context):
     try:
         agcommon_styles = getattr(portal_skins, 'agcommon_styles')
     except:
-        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : agCommon skin not installed" % site['id'])
+        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : agCommon skin not installed" % site.id)
         return False
         
     try:
         custom_base_properties = getattr(custom, 'base_properties')
     except:
-        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : No customized base_properties" % site['id'])
+        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : No customized base_properties" % site.id)
         return False
         
     base_properties = getattr(agcommon_styles, 'base_properties')
@@ -521,7 +521,7 @@ def updateBaseProperties(context):
                 try:
                     custom_base_properties.manage_addProperty(myPropertyKey, myPropertyValue, myPropertyType)
                 except:
-                    LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : Error adding property %s:%s=%s" % (site['id'], myPropertyKey, myPropertyType, myPropertyValue))
+                    LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : Error adding property %s:%s=%s" % (site.id, myPropertyKey, myPropertyType, myPropertyValue))
                     return False
                     
                 LOG('agSciPolicy.updateBaseProperties', INFO, "Added %s:%s=%s" % (myPropertyKey, myPropertyType, myPropertyValue))
@@ -536,14 +536,14 @@ def updateBaseProperties(context):
                 LOG('agSciPolicy.updateBaseProperties', INFO, "Updated %s:%s=%s" % (myPropertyKey, myPropertyType, myPropertyValue))
                             
     except:
-        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : Problem updating properties" % site['id'])
+        LOG('agSciPolicy.updateBaseProperties', INFO, "ERROR: %s : Problem updating properties" % site.id)
                             
 
 def customizeViewlets(context):
     
     site = context.getSite()
     
-    if site['id'] == 'agsci.psu.edu':
+    if site.id == 'agsci.psu.edu':
         ManageViewlets.show('plone.portalfooter', 'contentwellportlets.portletsbelowcontent')
 
 def createRecentChanges(context):
