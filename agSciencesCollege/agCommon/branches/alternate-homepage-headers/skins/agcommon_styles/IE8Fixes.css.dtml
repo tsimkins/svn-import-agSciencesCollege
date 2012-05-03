@@ -1,0 +1,12 @@
+/*
+** Stylesheet with Internet Explorer 8.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+    margin-top: 0 !important;
+} 
+
+/* </dtml-with> */

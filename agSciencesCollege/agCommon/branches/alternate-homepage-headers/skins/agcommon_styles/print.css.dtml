@@ -1,0 +1,385 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+
+/* Body width 100%, background white */
+
+body {
+	background-color: #FFFFFF;
+    background-image: none;
+}
+
+#visual-portal-wrapper {
+	max-width: auto;
+	min-width: auto;
+	width: 100%;
+    background: #FFFFFF;
+    background-image: none;
+    /* Remove Drop Shadow */
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* Remove vertical borders */
+
+#portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
+	border-left:0px;
+	border-right:0px;
+}
+
+/* Portal Header and Logo */
+
+#portal-header {
+	background-color: #FFFFFF;
+	background-image: none;
+	min-height: 80px;
+}
+
+#logo-psu, #logo-college {
+	display:none;
+}
+
+#logo-print {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 7px;
+}
+
+#logo-site {
+	position: relative;
+	font-size: 1.625em;
+	letter-spacing: 0.02em;
+	width: auto;
+	top: 30px;
+	left: 140px;
+	margin-top: 0;
+    margin-left: 0;
+}
+
+#logo-site.subsite {
+    left: 212px;
+}
+
+#logo-site.extension {
+    left: 23px;
+    top: 0;
+}
+
+#logo-site a {
+	color: #333333;
+}
+
+/* Remove Search Box */
+
+#portal-searchbox {
+	display: none;
+}
+
+/* Breadcrumbs */
+
+#portal-breadcrumbs {
+	background-color: #EEEEEE;
+	color: #000000;
+	border: 1px solid #666666;
+	padding-left: 8px;
+	margin-top: 8px;
+}
+
+#portal-breadcrumbs>span {
+    font-size: 0.875em;
+}
+
+#portal-breadcrumbs a {
+	color: #000000;
+	text-decoration: none;
+}
+
+#portal-breadcrumbs .breadcrumbSeparator {
+	color:#666666;
+}
+
+/* Top Navigation */
+
+#portal-top-navigation {
+	display: none;
+}
+
+/* Home Page Image */
+
+body.template-document_homepage_view #homepageimage {
+	display: none;
+}
+
+
+/* Left Column */
+
+#portal-column-one {
+	display: none;
+}
+
+/* Headers */
+
+#content h1 {
+    line-height: 1.10em;
+}
+
+#content h2 {
+    line-height: 1.10em;
+}
+
+/* Content */
+
+#portal-column-content {
+    border-left: none;
+    border: none;
+}
+
+#portal-column-content.sr, #portal-column-content.sl {
+	margin-left:0px;
+}
+
+#portal-column-content.sr {
+    border: none;
+}
+
+#content {
+	padding: 0px !important;
+	line-height: 1.5em;
+	font-size: 1.0625em;
+}
+
+.contentLeadImageContainer .discreet {
+	line-height: 1.25em;
+	font-size: 0.75em;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+/* Center Column */
+body.template-document_homepage_view #centercolumn {
+	display: block;
+	margin: 3px -9px 0px 0px ;
+	padding: 5px 0px 5px 0px;
+	border-width: 0px;
+}
+
+
+/* Right Column */
+
+body.template-document_homepage_view #rightcolumn, #portal-column-two {
+	display: none;
+}
+
+/* Footer */
+
+#portal-footer {
+	background-color:#FFFFFF;
+	color:#333333;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 10pt;
+    margin: 5px 0 0 0;
+    padding: 0;
+    border-width: 0;
+    border-left: 0px;
+    border-right: 0px;
+	clear: both;
+}
+
+#portal-footer p {
+	display: none;
+}
+
+#portal-footer p:first-child {
+	display: block;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-top-color: #CCCCCC; 
+}
+
+/* Other doodads */
+
+.documentActions {
+	display: none;
+}
+
+.hiddenStructure {
+	display: none;
+}
+
+#kss-spinner {
+	display: none;
+}
+
+/* Unfloat Images */
+
+.image-right, .image-left {
+	float: none;
+	clear: none;
+	display: block;
+	margin: 0.5em 0em;
+}
+
+.pullquote {
+	display: none;
+}
+
+.public-tags {
+    display: none;
+}
+
+/* If custom-pullquote class, show pull quote but hide h2 bottom border */
+
+body.custom-pullquote .pullquote {
+	display: block;
+	color: #000000;
+	width: 230px;
+	float: right;
+	clear: both;
+	border-style: solid;
+	border-color: #333333;
+	border-width: 1px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	background: #EEEEEE;
+	padding: 5px 10px;
+	margin: 0 0 10px 10px;
+	position: relative;
+}
+
+body.custom-pullquote #region-content h2 {
+    border-style: none;
+}
+
+/* Info Bar */
+#portal-personaltools-wrapper {
+    display: none;
+}
+
+#plone-document-byline, .managePortletsFallback {
+    display: none;
+}
+
+/* Actions and edit menu bar */
+
+.contentActions, .contentViews, .reviewHistory {
+    display: none;
+}
+
+/* Hide addthis */
+
+#addthis {
+    display: none;
+}
+
+/* Remove listingbar */
+
+.listingBar {
+    display: none;
+}
+
+/* Content Well Portlets */
+#portlets-above, #portlets-below {
+    display: none;
+}
+
+/* Table of Contents */
+#document-toc {
+    display: none !important;
+}
+
+
+/* Remove comment Form */
+
+div.discussion form {
+    display: none;
+}
+
+
+/* Remove image border */
+
+img {
+    border-width: 0;
+}
+
+#fblike {
+    display: none;
+}
+
+.relatedItems {
+    display: none;
+}
+
+#disclaimer {
+    line-height: 1.25em;
+}
+
+/* Hide youtube videos */
+
+iframe.youtube-player, object, embed {
+    display: none;
+}
+
+/* Make tables printer friendly */
+
+table.listing {
+    border-collapse:collapse;
+}
+
+table.listing tr {
+    background-color: transparent;
+}
+
+table.listing td, table.listing th {
+    background-color: transparent;
+    border: 1px solid #666666;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 3px 6px;
+}
+
+table.listing td {
+    vertical-align: top;
+}
+
+/* Lists */
+
+#content ul, #content ol {
+    margin-left: 0.5em;
+}
+
+
+/* Factsheet View */
+
+body.template-factsheet_view.two_column_print #content {
+    -moz-column-count: 2;
+    -moz-column-gap: 1.6em;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 1.6em;
+    column-count: 2;
+    column-gap: 1.6em;
+    font-size: 0.95em;
+    line-height: 1.25em;
+}
+
+body.template-factsheet_view #portal-breadcrumbs, body.template-factsheet_view #portal-header,
+body.template-factsheet_view #portal-footer {
+    display: none;
+}
+
+#printheader {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+
+

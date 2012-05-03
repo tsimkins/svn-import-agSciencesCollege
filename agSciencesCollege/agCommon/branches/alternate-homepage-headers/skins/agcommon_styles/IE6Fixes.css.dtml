@@ -1,0 +1,99 @@
+/*
+** Stylesheet with Internet Explorer 6.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portal-header {
+    height: 4.6875em;
+}
+
+#portal-top-navigation {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation ul {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation li {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
+#portal-column-two .portletFooter,
+#rightcolumn .portletFooter,
+.portletFooter {
+    border: none !important;
+}
+
+#visual-portal-wrapper {
+    width: 895px;
+}
+
+#portal-column-one .portletNavigationTree li.navTreeTitle {
+	margin-top: 0px !important;
+	padding: 10px 0;
+	background-color: transparent !important;
+}
+
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+    color: #000033 !important;
+    font-weight: bold !important;
+}
+
+#portal-columns {
+    width: 100% !important;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#addthis {
+    display: none;
+}
+
+body.template-folder_leadimage_listing .leadimage-listing img {
+    display: none; 
+}
+
+#portal-columns {
+    border-collapse: collapse;
+}
+
+#portal-column-one .linkButton li {
+	background-image: none ;
+}
+
+#portlets-below dl.linkIcon dd ul {
+    margin-left: 0 !important;
+}
+
+/* Riddle me this, Batman... Why does this work? */
+#portlets-below dl.linkIcon dd ul li {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: &dtml-sitemapBackgroundColor; !important;
+}
+
+#relatedItemBox dt {
+    display: inline;
+}
+
+#portal-breadcrumbs span {
+    font-size: 0.625em;
+}
+
+/* Since IE 6 doesn't support > selector, expand what it shrunk */
+#portal-breadcrumbs #breadcrumbs-current {
+    font-size: 1em;
+}
+
+/* </dtml-with> */

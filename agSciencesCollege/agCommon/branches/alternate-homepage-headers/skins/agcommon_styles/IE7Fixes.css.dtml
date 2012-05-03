@@ -1,0 +1,68 @@
+/*
+** Stylesheet with Internet Explorer 7.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portal-top-navigation {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation ul {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation li {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation div.visualClear {
+    height: 1px;
+}
+
+#clear-space-before-footer { 
+	height: 0;
+}
+
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
+body.template-document_homepage_view #rightcolumn {
+    position: relative;
+}
+
+#portal-column-two .portletFooter,
+#rightcolumn .portletFooter,
+.portletFooter {
+    border: none !important;
+}
+
+.listingBar {
+    padding: 0 1em;
+}
+
+#portal-columns {
+    border-collapse: collapse;
+}
+
+#content {
+    min-height: 0;
+}
+
+#portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+} 
+
+.imagePortlet dd ul { 
+    margin-left: 0 !important; 
+} 
+
+#relatedItemBox dt {
+    display: inline;
+}
+
+/* </dtml-with> */
