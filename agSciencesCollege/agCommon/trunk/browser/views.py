@@ -506,7 +506,14 @@ class NewsletterView(AgCommonUtilities):
         
     def getRegistryKey(self):
         return 'agsci.newsletter.uid_%s' % self.context.UID()
-        
+
+    def getViewOnline(self):
+        parent = self.context.getParentNode()
+        if parent.portal_type == 'Blog':
+            return parent.absolute_url()
+        else:
+            return self.context.absolute_url()
+
     def getHTML(self, item):
     
         text = item.getObject().newsletter_full_view_item()
@@ -582,13 +589,14 @@ class NewsletterEmail(NewsletterView):
             img['vspace'] = 8
 
 
-        utm  = self.getUTM(source='newsletter', medium='email', campaign=self.newsletter_title);
-
-        for a in soup.findAll('a'):
-            if '?' in a['href']:
-                a['href'] = '%s&%s' % (a['href'], utm) 
-            else:
-                a['href'] = '%s?%s' % (a['href'], utm)            
+        if self.anonymous:
+            utm  = self.getUTM(source='newsletter', medium='email', campaign=self.newsletter_title);
+    
+            for a in soup.findAll('a'):
+                if '?' in a['href']:
+                    a['href'] = '%s&%s' % (a['href'], utm) 
+                else:
+                    a['href'] = '%s?%s' % (a['href'], utm)            
 
         html = premailer.transform(soup.prettify())
 

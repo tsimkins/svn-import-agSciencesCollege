@@ -373,7 +373,7 @@ div.about hr {
 
         <metal:view-online define-slot="view-online">
             <a class="view-online" 
-                tal:define="more_url python:context.absolute_url().replace('/' + templateId, '');
+                tal:define="more_url view/getViewOnline|nothing;
                             more_url context/more_url|more_url"
                 tal:attributes="href more_url">View 
                     <span tal:replace="context/newsletter_title|context/Title" /> online</a>
@@ -413,6 +413,7 @@ div.about hr {
                 <li><a tal:attributes="href string:${context/absolute_url}/edit">Title, Description, Body Text</a></li>
                 <li><a tal:attributes="href string:${context/absolute_url}/criterion_edit_form">Criteria</a></li>
                 <li><a tal:attributes="href string:${context/absolute_url}/content_status_history">Workflow state</a></li>
+                <li><a tal:attributes="href string:${context/absolute_url}/@@manage-portlets">Manage Portlets</a></li>
             </ul>
         </tal:manager>    
         <h3>Show "In This Issue"?</h3>

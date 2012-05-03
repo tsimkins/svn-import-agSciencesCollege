@@ -28,7 +28,7 @@ Note: insert-before and -after accept the value "*" which means
     
     <order manager="plone.htmlhead" skinname="agCommon">
         <viewlet name="agcommon.htmlhead.title" insert-after="*"/>
-        <viewlet name="agcommon.htmlhead.fbmetdata" insert-after="agcommon.htmlhead.title"/>
+        <viewlet name="agcommon.htmlhead.fbmetadata" insert-after="agcommon.htmlhead.title"/>
     </order>
 
     <order manager="plone.htmlhead.links" skinname="agCommon">
@@ -51,6 +51,7 @@ Note: insert-before and -after accept the value "*" which means
     <order manager="plone.abovecontent" skinname="agCommon">
         <viewlet name="plone.path_bar" insert-before="*"/>
         <viewlet name="agcommon.homepageimage" insert-after="plone.path_bar" />
+        <viewlet name="collective.contentleadimage.header" insert-after="agcommon.homepageimage" />
     </order>
     
     <order manager="plone.abovecontenttitle" skinname="agCommon">
@@ -109,7 +110,6 @@ Note: insert-before and -after accept the value "*" which means
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
         <viewlet name="plone.app.i18n.locales.languageselector" />
-        <viewlet name="collective.contentleadimage.header"/>
     </hidden>
 
     <hidden manager="plone.abovecontent" skinname="agCommon">
