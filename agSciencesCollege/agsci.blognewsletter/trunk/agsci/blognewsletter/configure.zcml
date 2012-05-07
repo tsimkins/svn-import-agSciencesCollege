@@ -1,0 +1,45 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="agsci.blognewsletter">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="AgSci Blog/Newsletter"
+        directory="profiles/default"
+        description="A starting point for a product"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <!-- include our sub-packages that contain their own configure.zcml files -->
+    <include package=".content" />
+    <include package=".browser" />
+    <include package=".portlet" />
+    
+    <!-- Register an event handler for when a Blog is created -->
+    <subscriber for="agsci.blognewsletter.content.interfaces.IBlog
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.blognewsletter.events.onBlogCreation" 
+        />
+
+    <!-- Register an event handler for when a Newsletter is created -->
+    <subscriber for="agsci.blognewsletter.content.interfaces.INewsletter
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.blognewsletter.events.onNewsletterCreation" 
+        />
+
+    <permission
+        id="agsci.blognewsletter.EditBlog"
+        title="agsci.blognewsletter: Edit Blog"
+        />
+        
+    <permission
+        id="agsci.blognewsletter.EditNewsletter"
+        title="agsci.blognewsletter: Edit Newsletter"
+        />
+        
+</configure>

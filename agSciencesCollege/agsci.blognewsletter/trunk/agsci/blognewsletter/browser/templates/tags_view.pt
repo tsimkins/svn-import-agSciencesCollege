@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+    <metal:content fill-slot="content-text">
+        <metal:block use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+    </metal:content>
+
+    <metal:content-core fill-slot="content-core" 
+      tal:define="tags view/getTags;
+                  contentFilter python:[('Tags' , tags)]">
+        <div class="discreet">
+        <p><strong>Filtered by tags:</strong></p>
+        <ul>
+            <li tal:repeat="t tags"
+                tal:content="t" />
+        </ul>
+        <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
+        </div>
+        <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
+    </metal:content-core>      
+
+</html>
+
+

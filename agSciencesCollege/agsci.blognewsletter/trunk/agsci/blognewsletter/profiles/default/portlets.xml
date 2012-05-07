@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<portlets purge="False">
+
+    <portlet
+        addview="agsci.blognewsletter.tags"
+        title="Tags Portlet"
+    />
+      
+</portlets>

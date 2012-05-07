@@ -1,0 +1,67 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="agsci.blognewsletter">
+   
+    <!-- Render the tags -->
+    <browser:viewlet
+        name="agsci.blognewsletter.tags"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.TagsViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <browser:page
+        for="*"
+        name="tags"
+        class=".views.TagsView"
+        template="templates/tags_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <!-- Newsletter View -->
+    <browser:page
+        for="*"
+        name="newsletter_view"
+        class=".views.NewsletterView"
+        template="templates/newsletter_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <!-- Newsletter Email View -->
+    <browser:page
+        for="*"
+        name="newsletter_email"
+        class=".views.NewsletterEmail"
+        template="templates/newsletter_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <!-- Newsletter Print View -->
+    <browser:page
+        for="*"
+        name="newsletter_print"
+        class=".views.NewsletterPrint"
+        template="templates/newsletter_print.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <!-- Modify Newsletter View -->
+    <browser:page
+        for="*"
+        name="newsletter_modify"
+        class=".views.NewsletterModify"
+        template="templates/newsletter_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="cmf.ModifyPortalContent"
+    />
+
+
+</configure>
