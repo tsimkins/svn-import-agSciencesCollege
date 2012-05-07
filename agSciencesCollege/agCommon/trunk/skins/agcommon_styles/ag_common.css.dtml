@@ -594,7 +594,9 @@ body {
 }
 
 #portal-column-one .linkButton a,
-#portal-column-two .linkButton .portletItem a {
+#portal-column-two .linkButton .portletItem a,
+#portal-column-one .linkButton a:hover,
+#portal-column-two .linkButton .portletItem a:hover {
     text-decoration: none;
     display: block;
     color: &dtml-leftButtonTextColor_external;;
