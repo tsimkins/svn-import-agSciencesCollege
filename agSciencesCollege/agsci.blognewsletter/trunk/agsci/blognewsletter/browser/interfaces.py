@@ -1,6 +1,7 @@
-from plonetheme.classic.browser.interfaces import IThemeSpecific as IClassicTheme
+from plonetheme.sunburst.browser.interfaces import IThemeSpecific as IThemeSunburst
+from zope.interface import Interface
 
-class IThemeSpecific(IClassicTheme):
+class IThemeSpecific(IThemeSunburst):
     """Marker interface"""
 
 class ITagsView(Interface):
@@ -12,6 +13,9 @@ class ITagsView(Interface):
         """ test method"""
         
 class INewsletterView(Interface):
+
+    def getUTM(self):
+        pass
 
     def test():
         """ test method"""

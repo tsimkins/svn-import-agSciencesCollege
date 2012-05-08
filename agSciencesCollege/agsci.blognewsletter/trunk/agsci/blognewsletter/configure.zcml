@@ -15,11 +15,13 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
+    <include package="archetypes.schemaextender" />
+
     <!-- include our sub-packages that contain their own configure.zcml files -->
     <include package=".content" />
     <include package=".browser" />
     <include package=".portlet" />
-    
+
     <!-- Register an event handler for when a Blog is created -->
     <subscriber for="agsci.blognewsletter.content.interfaces.IBlog
         Products.Archetypes.interfaces.IObjectInitializedEvent"
@@ -41,5 +43,13 @@
         id="agsci.blognewsletter.EditNewsletter"
         title="agsci.blognewsletter: Edit Newsletter"
         />
-        
+
+    <!-- News Item Extender -->
+
+    <adapter
+        name="agsci.blognewsletter.extender.NewsItemExtender"
+        factory=".extender.NewsItemExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
 </configure>

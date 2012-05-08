@@ -4,7 +4,7 @@
       i18n:domain="plone">
 
     <metal:content fill-slot="content-text">
-        <metal:block use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+        <metal:block use-macro="context/folder_listing/macros/text-field-view" />
     </metal:content>
 
     <metal:content-core fill-slot="content-core" 
@@ -18,7 +18,7 @@
         </ul>
         <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
         </div>
-        <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
+        <metal:body use-macro="context/folder_summary_view/macros/listing" />
     </metal:content-core>      
 
 </html>

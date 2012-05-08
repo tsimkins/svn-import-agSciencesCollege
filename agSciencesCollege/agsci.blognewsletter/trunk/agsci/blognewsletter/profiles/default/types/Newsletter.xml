@@ -10,7 +10,7 @@
  <property name="product">agsci.blognewsletter</property>
  <property name="factory">addNewsletter</property>
  <property name="immediate_view">newsletter_email</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>

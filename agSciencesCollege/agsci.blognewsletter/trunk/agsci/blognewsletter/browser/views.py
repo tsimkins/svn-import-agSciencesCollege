@@ -4,15 +4,28 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner, aq_chain
 from agsci.blognewsletter.content.interfaces import IBlog
 from plone.memoize.view import memoize
+from AccessControl import ClassSecurityInfo
+from Products.CMFCore import permissions
+from zope.security import checkPermission
+from DateTime import DateTime
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.registry.interfaces import IRegistry
+import premailer
+from BeautifulSoup import BeautifulSoup
+from zope.component import getUtility, getMultiAdapter
+from agsci.blognewsletter.browser.interfaces import *
+from zope.component import getUtility
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+import re
+from plone.registry import field
+from plone.registry.record import Record
+from plone.registry.registry import Registry
+from urllib import urlencode
+from urlparse import urljoin
 
 """
     Interface Definitions
 """
-
-from interfaces import *
-
-from zope.component import getUtility
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 class TagsView(BrowserView):
 
@@ -87,6 +100,8 @@ class TagsView(BrowserView):
 class NewsletterView(BrowserView):
 
     implements(INewsletterView)
+
+    index = ViewPageTemplateFile('templates/newsletter_view.pt')
     
     def __init__(self, context, request):
         self.context = context
@@ -184,13 +199,7 @@ class NewsletterView(BrowserView):
             # Already has folder contents
             pass
         elif self.context.portal_type in ['Topic', 'Newsletter']:
-            order_by_title = getattr(self.context, 'order_by_title', None)
-            order_by_id = getattr(self.context, 'order_by_id', None)
-
             folderContents = self.context.queryCatalog(batch=True, **contentFilter)
-
-            if order_by_id or order_by_title:
-                folderContents = self.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) 
         else:
             folderContents = self.context.getFolderContents(contentFilter, batch=True)
 
@@ -311,7 +320,24 @@ class NewsletterEmail(NewsletterView):
 
     def render(self):
         return self.index()
-        
+
+    def getUTM(self, source=None, medium=None, campaign=None, content=None):
+        data = {}
+
+        if source:
+            data["utm_source"] = source
+
+        if medium:
+            data["utm_medium"] = medium
+
+        if campaign:
+            data["utm_campaign"] = campaign
+
+        if content:
+            data["utm_content"] = content
+
+        return urlencode(data)
+
     def __call__(self):
     
         html = self.render()

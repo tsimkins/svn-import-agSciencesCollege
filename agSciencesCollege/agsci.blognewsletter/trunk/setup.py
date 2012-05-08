@@ -26,6 +26,9 @@ setup(name='agsci.blognewsletter',
     zip_safe=False,
     install_requires=[
       'setuptools',
+      'premailer',
+      'plone.app.registry',
+      'BeautifulSoup',
       # -*- Extra requirements: -*-
       ],
     entry_points="""

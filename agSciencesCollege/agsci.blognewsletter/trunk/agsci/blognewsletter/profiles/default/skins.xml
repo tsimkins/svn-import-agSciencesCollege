@@ -7,7 +7,7 @@
       of your product (on the filesystem) as Filesystem Directory Views within
       the portal_skins tool, so that they become usable as skin layers.
       -->
- <object name="agsci_subsite"
+ <object name="blognewsletter"
     meta_type="Filesystem Directory View"
     directory="agsci.blognewsletter:skins/blognewsletter"/>
 
