@@ -10,7 +10,7 @@
 
 <metal:local_style_slot fill-slot="local_style_slot">
     <style type="text/css">
-        .contentLeadImageContainer {
+        .newsImageContainer {
             background-color: White;
             float: right;
             margin: 0.375em 0 0.5em;
@@ -18,13 +18,13 @@
             width: auto;
         }
         
-        .contentLeadImageContainer img {
+        .newsImageContainer img {
             margin-left: 1em;
             border: medium none;
             vertical-align: middle;
         }
         
-        .contentLeadImageContainer p.discreet {
+        .newsImageContainer p.discreet {
             padding-left: 1.125em;
         }
 
@@ -88,6 +88,10 @@
             clear: both;
             margin-top: 24pt;
             margin-bottom: 18pt;
+        }
+
+        .item:first-child {
+            margin-top: 8pt;
         }
 
         #portal-column-content a {
@@ -166,6 +170,11 @@
             margin-top: 0.375em;
             text-align: left;
         }
+
+        .visualClear {
+            clear: both;
+        }
+        
     </style>
 </metal:local_style_slot>
 
@@ -180,11 +189,11 @@
                 
                 $('#portal-column-content .item').each(
                     function() {
-                        leadImage = $(this).find('.contentLeadImageContainer');
+                        newsImage = $(this).find('.newsImageContainer');
                         description = $(this).find('.documentDescription')
                         if (description)
                         {
-                            description.before(leadImage);
+                            description.before(newsImage);
                         }
                     }
                 );

@@ -5,4 +5,10 @@
    <element value="Newsletter"/>
   </property>
  </object>
+ <object name="imaging_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="title">Image handling properties</property>
+  <property name="allowed_sizes" type="lines" purge="False">
+   <element value="micro 100:150"/>
+  </property>
+ </object>
 </object>

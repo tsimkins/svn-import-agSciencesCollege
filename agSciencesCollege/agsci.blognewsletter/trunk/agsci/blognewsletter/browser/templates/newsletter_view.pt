@@ -206,11 +206,6 @@ table.one-column td#portal-column-content {
     padding: 8pt 0 0 0;
 }
 
-.eventDateLocationBlock {
-    margin-bottom: 6pt;
-    font-size: 10pt;
-}
-
 hr {
     margin: 0;
     padding: 0;
@@ -288,7 +283,7 @@ div.about hr {
 }
 
 #newsletter-config tr.even {
-    background-color: #FFFAE6;
+    background-color: #F6F6F6;
 }
 
 #newsletter-config td, #newsletter-config th {
@@ -304,6 +299,14 @@ div.about hr {
 #newsletter-config tr td:first-child,
 #newsletter-config tr th:first-child {
     text-align: left;
+}
+
+.state-private {
+    color: #ff0000;
+}
+
+.state-pending {
+    color: #FFA500;
 }
 
 </style>
@@ -334,9 +337,8 @@ div.about hr {
 
 	<div class="graphic-header">
         <a tal:attributes="href portal_url">
-        <img tal:attributes="src string:${portal_url}/logo.png;
-                             alt portal/title" 
-                             border="0" /></a>
+        <img src="logo.jpg" alt=""
+                tal:replace="structure view/logo_tag" /></a>
     </div>
     
     <h1 class="documentFirstHeading" 
@@ -500,14 +502,21 @@ div.about hr {
             </tr>
         <ol class="this-issue" tal:omit-tag="not:notEditor">                    
             <tal:entry tal:repeat="item batch">
-                <tr tal:omit-tag="notEditor" tal:define="even repeat/item/even"
+                <tr tal:omit-tag="notEditor" 
+                    tal:define="even repeat/item/even;
+                                item_type item/portal_type;
+                                item_type_class python:'contenttype-' + normalizeString(item_type);
+                                item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                item_wf_state_class python:'state-' + normalizeString(item_wf_state);"
                     tal:attributes="class python: even and 'even' or 'odd'">
                 <li tal:attributes="class python:not notEditor and 'nobullet' or ''"
                     tal:condition="python:view.showItem(item) or (view.showItem(item, 'spotlight') and not notEditor)"
                     tal:omit-tag="not:notEditor">
 
                     <td tal:omit-tag="notEditor">
-                        <a tal:attributes="href item/getURL|item/absolute_url" tal:omit-tag="notEditor">
+                        <a tal:attributes="href item/getURL|item/absolute_url;
+                                           class string:$item_type_class $item_wf_state_class url" 
+                           tal:omit-tag="notEditor">
                             <span tal:content="item/pretty_title_or_id" />
                         </a>
                     </td>
@@ -547,7 +556,7 @@ div.about hr {
                 text python:has_text and here.getText() or ''"
         tal:condition="text">
     <div class="about">
-        <hr />
+        <hr size="1" />
         <div tal:replace="structure text">The body</div>
     </div>
     </tal:about>
@@ -601,7 +610,6 @@ div.about hr {
                         <tal:list metal:define-slot="entries">
                             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
                             <tal:block tal:define="item_object item/getObject;
-                                                   item_has_leadimage item/hasContentLeadImage;
                                                    item_url item/getURL|item/absolute_url;
                                                    item_id item/getId|item/id;
                                                    item_title_or_id item/pretty_title_or_id;
@@ -636,12 +644,6 @@ div.about hr {
                                                  tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
                                     </tal:newsitem>
                 
-                                    <tal:otheritem
-                                         tal:condition="exists:item_has_leadimage">
-                                            <img align="right"
-                                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
-                                    </tal:otheritem>
-                                    
                                     <span tal:condition="python: not view.isSpotlight(item) and view.showSummary" tal:content="string:${repeat/item/number}." />
 
                                         <a href="#"

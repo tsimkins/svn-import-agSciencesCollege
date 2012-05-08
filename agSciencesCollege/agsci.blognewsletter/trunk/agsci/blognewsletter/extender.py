@@ -2,7 +2,7 @@ from Products.Archetypes.public import StringField, StringWidget, BooleanField, 
 from Products.ATContentTypes.interfaces.news import IATNewsItem
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer
+from interfaces import IBlogNewsletterLayer
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -22,7 +22,7 @@ class _PublicTagsField(ExtensionField, LinesField):
 class NewsItemExtender(object):
     adapts(IATNewsItem)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
-    layer = IUniversalExtenderLayer
+    layer = IBlogNewsletterLayer
 
 
     fields = [
@@ -32,9 +32,9 @@ class NewsItemExtender(object):
             required=False,
             searchable=True,
             widget = InAndOutWidget(
-                        label=u"Public Tags",
-                        description=u"Tags for the article that are visible to the public.",
-                        condition="python: object.getAvailableTags()",
+                label=u"Public Tags",
+                description=u"Tags for the article that are visible to the public.",
+                condition="python: object.getAvailableTags()",
             ),
         ),
 

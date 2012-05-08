@@ -1,0 +1,4 @@
+<layers>
+    <layer name="agsci.blognewsletter"
+           interface="agsci.blognewsletter.interfaces.IBlogNewsletterLayer" />
+</layers>

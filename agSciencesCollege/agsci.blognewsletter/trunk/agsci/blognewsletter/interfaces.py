@@ -1,4 +1,4 @@
 from plone.theme.interfaces import IDefaultPloneLayer
 
-class IUniversalExtenderLayer(IDefaultPloneLayer):
-    """A Layer Specific to UniversalExtender"""
+class IBlogNewsletterLayer(IDefaultPloneLayer):
+    """A Layer Specific to agsci.blognewsletter"""

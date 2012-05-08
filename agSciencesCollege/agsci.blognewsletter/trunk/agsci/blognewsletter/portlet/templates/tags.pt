@@ -1,9 +1,9 @@
 <tal:block condition="view/available"
            i18n:domain="tags">
 
-<h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
-    
+   
 <dl class="portlet tagPortlet">
+    <dt class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
 
     <dd class="portletItem"
         tal:repeat="tag view/tags">

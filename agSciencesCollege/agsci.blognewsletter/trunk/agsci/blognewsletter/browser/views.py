@@ -113,8 +113,11 @@ class NewsletterView(BrowserView):
         return checkPermission('cmf.ModifyPortalContent', self.context)
 
     @property
+    def portal_state(self):
+        return getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+
+    @property
     def anonymous(self):
-        self.portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
         return self.portal_state.anonymous()
 
     def getBodyText(self):
@@ -280,7 +283,7 @@ class NewsletterView(BrowserView):
             if not href.startswith('http') and not href.startswith('mailto'):
                 a['href'] = urljoin(item.getURL(), href)
 
-            if not contents.startswith('http') and not href.startswith('mailto') and a.get('id') != "parent-fieldname-leadImage":
+            if not contents.startswith('http') and not href.startswith('mailto') and a.get('id') != "parent-fieldname-image":
                 a.append("( <strong>%s</strong> )" % a['href'])
 
             elif '@' not in contents and href.startswith('mailto'):
@@ -293,6 +296,16 @@ class NewsletterView(BrowserView):
         html = html.replace('The external news article is:', 'Full article:') # If there's a news item article link        
 
         return html
+        
+    def logo_tag(self):
+        # borrowed from plone.app.layout.viewlets.common.LogoViewlet
+        bprops = self.portal.restrictedTraverse('base_properties', None)
+        if bprops is not None:
+            logoName = bprops.logoName
+        else:
+            logoName = 'logo.png'
+
+        return self.portal.restrictedTraverse(logoName).tag()
 
 class NewsletterModify(NewsletterView):
 

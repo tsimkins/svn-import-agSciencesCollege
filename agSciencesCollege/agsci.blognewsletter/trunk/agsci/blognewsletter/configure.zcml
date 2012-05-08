@@ -3,6 +3,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
     i18n_domain="agsci.blognewsletter">
 
     <genericsetup:registerProfile
@@ -16,6 +17,7 @@
     <five:registerPackage package="." initialize=".initialize" />
 
     <include package="archetypes.schemaextender" />
+    <include package="collective.monkeypatcher" />
 
     <!-- include our sub-packages that contain their own configure.zcml files -->
     <include package=".content" />
@@ -51,5 +53,15 @@
         factory=".extender.NewsItemExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     />
+
+    <!-- Add 'getAvailableTags' to News Item. -->
+
+    <monkey:patch     
+        description="This adds a 'getAvailableTags' to News Items, which pulls the available tags from the parent Blog object"
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        replacement=".patch.getAvailableTags" 
+        original="getAvailableTags"
+        ignoreOriginal="True"
+        />
 
 </configure>

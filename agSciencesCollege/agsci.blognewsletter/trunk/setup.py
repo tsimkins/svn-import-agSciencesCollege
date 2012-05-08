@@ -29,6 +29,8 @@ setup(name='agsci.blognewsletter',
       'premailer',
       'plone.app.registry',
       'BeautifulSoup',
+      'archetypes.schemaextender',
+      'collective.monkeypatcher',
       # -*- Extra requirements: -*-
       ],
     entry_points="""

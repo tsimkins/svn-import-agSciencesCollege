@@ -34,6 +34,18 @@ Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
             condition="python:member.has_role('Manager')",
         ),
     ),
+    
+    BooleanField(
+        "show_date",
+        required=False,
+        default=False,
+        schemata="settings",
+        widget=BooleanWidget(
+            label=u"Show dates per-article",
+            description=u"",
+            condition="python:member.has_role('Manager')",
+        ),
+    ),
 
 ))
 

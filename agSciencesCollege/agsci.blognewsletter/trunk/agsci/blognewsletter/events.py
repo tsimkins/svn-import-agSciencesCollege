@@ -4,6 +4,8 @@ from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.app.container.interfaces import INameChooser
 
+from agsci.blognewsletter.portlet import tags
+
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, ILocalPortletAssignmentManager
 
 from plone.portlet.collection import collection
@@ -11,6 +13,10 @@ from plone.portlet.collection import collection
 from datetime import datetime
 
 from zLOG import LOG, INFO
+
+from zope.component.interfaces import ComponentLookupError
+
+from plone.portlets.constants import CONTEXT_CATEGORY
 
 # wrapper functions for working with portlets. All the adaptors kept confusing me.
 def getPortletAssignmentMapping(context, name):
@@ -85,21 +91,19 @@ def onBlogCreation(blog, event):
 
     writeDebug('Creating latest news collection')
 
-    # create 'recent' and 'latest' collections
+    # Creating latest news collection
     
-    for (id, title) in [['latest', 'Latest News'], ['recent', 'Recent News']]:
-    
+    for (id, title) in [['latest', 'Latest News']]:
+
         if id not in blog.objectIds():
             blog.invokeFactory(type_name='Topic', id=id, title=title)
-            
+
             smart_obj = blog[id]
             smart_obj.setLayout('folder_summary_view')
-            smart_obj.show_date = True
-            smart_obj.show_images = True
             smart_obj.setExcludeFromNav(True)
             smart_obj.unmarkCreationFlag()
             smart_obj.reindexObject()
-                    
+
             # Set the criteria for the folder
             type_crit = smart_obj.addCriterion('Type','ATPortalTypeCriterion')
             
@@ -109,11 +113,12 @@ def onBlogCreation(blog, event):
             search_folders = [blog[x].UID() for x in archive_years]
             path_crit.setValue(search_folders) # Only list news in the news year folders
             path_crit.setRecurse(True)
-    
+
             sort_crit = smart_obj.addCriterion('effective','ATSortCriterion')
             sort_crit.setReversed(True)
     
     # Set default page to the latest news collection
+    writeDebug('Setting default page of blog')
     blog.setDefaultPage('latest')
 
     writeDebug('Creating years collection')
@@ -148,6 +153,43 @@ def onBlogCreation(blog, event):
         sort_crit.setReversed(True)
 
 
+    # Block parent portlets on right column of blog
+    writeDebug('Blocking plone.rightcolumn parent portlets for Blog')    
+    try:
+        subsite_RightColumnManager = getLocalPortletAssignmentManager(blog, 'plone.rightcolumn')
+        subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+    except ComponentLookupError:
+        writeDebug('ERROR blocking plone.rightcolumn parent portlets for Blog')  
+
+    # Block parent portlets on right column of blog default collection
+    writeDebug('Blocking plone.rightcolumn parent portlets for Latest News')    
+    try:
+        subsite_RightColumnManager = getLocalPortletAssignmentManager(blog.latest, 'plone.rightcolumn')
+        subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+    except ComponentLookupError:
+        writeDebug('ERROR blocking plone.rightcolumn parent portlets for Latest News')  
+
+    # Add Latest News Portlet to right column
+    writeDebug('Adding Latest News Portlet to right column')
+    blog_RightColumn = getPortletAssignmentMapping(blog, 'plone.rightcolumn')
+    latestCollectionPortlet = collection.Assignment(header=u"Latest News",
+                                    target_collection = '/'.join(urltool.getRelativeContentPath(blog.latest)),
+                                    limit=5,
+                                    random=False,
+                                    show_more=False,
+                                    show_dates=True)
+
+    saveAssignment(blog_RightColumn, latestCollectionPortlet)
+
+    # Add Tags Portlet to right column
+    writeDebug('Adding Tags Portlet to right column')
+    latest_RightColumn = getPortletAssignmentMapping(blog['latest'], 'plone.rightcolumn')
+    tagsPortlet = tags.Assignment(header=u"Tags",
+                                    show_header=True)
+
+    saveAssignment(latest_RightColumn, tagsPortlet)
+
+
     # Add News Archive Portlet to right column
     writeDebug('Adding News Archive Portlet to right column')
     latest_RightColumn = getPortletAssignmentMapping(blog['latest'], 'plone.rightcolumn')
@@ -160,7 +202,8 @@ def onBlogCreation(blog, event):
 
     saveAssignment(latest_RightColumn, archiveCollectionPortlet)
 
-    writeDebug('Finished creating blog')     
+    writeDebug('Finished creating blog')    
+    
     return True
 
 # What we want to happen when we create a subsite
@@ -181,5 +224,13 @@ def onNewsletterCreation(newsletter, event):
 
     newsletter.itemCount = 99999
     newsletter.unmarkCreationFlag()
-    
+
+    # Block parent portlets on right column of blog
+    writeDebug('Blocking plone.rightcolumn parent portlets')    
+    try:
+        subsite_RightColumnManager = getLocalPortletAssignmentManager(newsletter, 'plone.rightcolumn')
+        subsite_RightColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
+    except ComponentLookupError:
+        writeDebug('ERROR blocking plone.rightcolumn parent portlets')  
+
     return True
