@@ -7,3 +7,5 @@ ADD_PERMISSIONS = {
 
 # Dependencies of Products to be installed by quick-installer
 DEPENDENCIES = ["plone.app.registry"]
+
+PRODUCT_DEPENDENCIES = []

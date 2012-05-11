@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="agsci.subsite: Add Blog" acquire="False">
+    <permission name="agsci.blognewsletter: Add Blog" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="agsci.subsite: Add Newsletter" acquire="False">
+    <permission name="agsci.blognewsletter: Add Newsletter" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="agsci.subsite: Edit Blog" acquire="False">
+    <permission name="agsci.blognewsletter: Edit Blog" acquire="False">
       <role name="Manager"/>
     </permission>
-    <permission name="agsci.subsite: Edit Newsletter" acquire="False">
+    <permission name="agsci.blognewsletter: Edit Newsletter" acquire="False">
       <role name="Manager"/>
     </permission>
   </permissions>

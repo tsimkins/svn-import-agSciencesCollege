@@ -37,8 +37,18 @@
         />
 
     <permission
+        id="agsci.blognewsletter.AddBlog"
+        title="agsci.blognewsletter: Add Blog"
+        />
+
+    <permission
         id="agsci.blognewsletter.EditBlog"
         title="agsci.blognewsletter: Edit Blog"
+        />
+
+    <permission
+        id="agsci.blognewsletter.AddNewsletter"
+        title="agsci.blognewsletter: Add Newsletter"
         />
         
     <permission
