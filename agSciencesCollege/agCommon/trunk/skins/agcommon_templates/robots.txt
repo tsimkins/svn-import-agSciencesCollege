@@ -20,6 +20,7 @@ Crawl-delay: 5
 User-Agent: Googlebot
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
+Disallow: /*folder_contents$
 Disallow: /*?searchterm=*
 Disallow: /*image$
 Disallow: /*image_*
@@ -34,6 +35,7 @@ Disallow: /*newsletter_print
 User-Agent: Slurp
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
+Disallow: /*folder_contents$
 Disallow: /*?searchterm=*
 Disallow: /*image$
 Disallow: /*image_*
@@ -46,6 +48,7 @@ Disallow: /*newsletter_print
 User-Agent: PennStateSpider
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
+Disallow: /*folder_contents$
 Disallow: /*?searchterm=*
 Disallow: /m/
 Disallow: /nonmobile
