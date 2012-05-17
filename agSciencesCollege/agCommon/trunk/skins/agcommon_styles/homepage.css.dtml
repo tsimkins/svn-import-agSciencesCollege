@@ -81,6 +81,7 @@
 #content #homepage-text.sr {
     border-right: 11em solid &dtml-frontRightPortletBackgroundColor;;;
     margin-right: 0.1875em;
+    padding-right: 0.9375em;
 }
 
 /* YOUR CSS RULES STOP HERE */
