@@ -60,13 +60,13 @@
                             </div>
 
                             <metal:block define-slot="person_caption">
-                                <h3 class="personName tileHeadline">
+                                <h2 class="personName tileHeadline">
                                 
                                     <a tal:attributes="href person/absolute_url"
                                         tal:content="person/Title">
                                     </a>
                                 
-                                </h3>
+                                </h2>
                                 <div class="facultyStaffDirectory">
                                     <metal:fsd_summary use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
                                     <metal:additional_info define-slot="person_additional_info" />

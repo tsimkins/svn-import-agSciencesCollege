@@ -47,8 +47,8 @@
                 </dl>
 
                 <div tal:condition="python: isExpired and context.getTerminationDetails()">
-                  <h3 i18n:translate="FacultyStaffDirectory_label_termination_details_heading"
-                      tal:condition="isEditor">Termination details:</h3>
+                  <h2 i18n:translate="FacultyStaffDirectory_label_termination_details_heading"
+                      tal:condition="isEditor">Termination details</h2>
                   <span tal:content="structure context/getTerminationDetails" />
                 </div>
         
@@ -100,7 +100,7 @@
                 </div>
 
                 <tal:areas define="areas context/extension_areas|nothing" condition="areas">
-                <h3>Areas of Expertise</h3>
+                <h2>Areas of Expertise</h2>
                 <ul>
                     <li tal:repeat="area areas"
                         tal:content="area" />
@@ -109,7 +109,7 @@
 
                 <div tal:condition="context/getWebsites"
                      class="websites">
-                    <h3 i18n:translate="FacultyStaffDirectory_label_websites_heading">Websites:</h3>
+                    <h2 i18n:translate="FacultyStaffDirectory_label_websites_heading">Websites</h2>
                     <ul>
                         <li tal:repeat="website context/getWebsites">
                             <a class='url' href=""
@@ -131,7 +131,7 @@
                                      linkedin_url here/linkedin_url|nothing;"
                              condition="python: twitter_url or facebook_url or linkedin_url">
 
-            <h3>Connect with <span tal:replace="person_name" /> on:</h3>
+            <h2>Connect with <span tal:replace="person_name" /></h2>
             <dl>
 
                 <dd tal:condition="twitter_url">
@@ -153,7 +153,7 @@
             </tal:socialmedia>
 
             <div tal:condition="context/getEducation" class="education">
-                <h3 i18n:translate="FacultyStaffDirectory_label_education_heading">Education:</h3>
+                <h2 i18n:translate="FacultyStaffDirectory_label_education_heading">Education</h2>
                 <ol>
                     <li tal:repeat="degree context/getEducation">
                         <span tal:content="degree" />
@@ -166,7 +166,7 @@
             <div class="specialties"
                  tal:define="specialtyTuples context/getSpecialties"
                  tal:condition="specialtyTuples">
-                <h3 i18n:translate="FacultyStaffDirectory_label_researchInterests">Research Interests:</h3>
+                <h2 i18n:translate="FacultyStaffDirectory_label_researchInterests">Research Interests</h2>
                 <dl>
                     <tal:block tal:repeat="eachSpecialtyTuple specialtyTuples">
                         <tal:block tal:define="specialtyBrain python:eachSpecialtyTuple[0];
@@ -198,7 +198,7 @@
         <div class="courselisting"
              tal:define="courses context/getCourses"
              tal:condition="courses">
-          <h3 i18n:translate="FacultyStaffDirectory_label_courses">Courses:</h3>
+          <h2 i18n:translate="FacultyStaffDirectory_label_courses">Courses</h2>
           <dl tal:repeat="course courses">
             <dt>
               <a tal:attributes="href course/getRemoteUrl"
