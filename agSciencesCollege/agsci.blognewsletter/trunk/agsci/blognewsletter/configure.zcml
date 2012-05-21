@@ -24,7 +24,7 @@
         name="default"
         title="AgSci Blog/Newsletter"
         directory="profiles/default"
-        description="A starting point for a product"
+        description="Plone blog/newsletter package based on the PSU AgSci products."
         provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 

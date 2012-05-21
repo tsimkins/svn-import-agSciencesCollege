@@ -260,8 +260,6 @@
 
 <metal:analytics fill-slot="analytics_viewlet">
 
-    <tal:block replace="structure provider:plone.analytics" tal:condition="view/anonymous" />
-
 </metal:analytics>
 
 </body>

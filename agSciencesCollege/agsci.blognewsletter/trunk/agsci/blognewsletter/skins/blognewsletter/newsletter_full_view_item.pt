@@ -69,8 +69,6 @@
 
         </tal:block>
 
-        <div tal:replace="structure provider:agcommon.contributors" />
-
         <div class="visualClear"><!-- --></div>
 
     </div>

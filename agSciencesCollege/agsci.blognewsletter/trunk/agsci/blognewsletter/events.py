@@ -183,11 +183,10 @@ def onBlogCreation(blog, event):
 
     # Add Tags Portlet to right column
     writeDebug('Adding Tags Portlet to right column')
-    latest_RightColumn = getPortletAssignmentMapping(blog['latest'], 'plone.rightcolumn')
     tagsPortlet = tags.Assignment(header=u"Tags",
                                     show_header=True)
 
-    saveAssignment(latest_RightColumn, tagsPortlet)
+    saveAssignment(blog_RightColumn, tagsPortlet)
 
 
     # Add News Archive Portlet to right column
@@ -201,6 +200,14 @@ def onBlogCreation(blog, event):
                                     show_dates=False)
 
     saveAssignment(latest_RightColumn, archiveCollectionPortlet)
+
+    # Add Tags Portlet to right column
+    writeDebug('Adding Tags Portlet to right column')
+    latest_RightColumn = getPortletAssignmentMapping(blog['latest'], 'plone.rightcolumn')
+    tagsPortlet = tags.Assignment(header=u"Tags",
+                                    show_header=True)
+
+    saveAssignment(latest_RightColumn, tagsPortlet)
 
     writeDebug('Finished creating blog')    
     
