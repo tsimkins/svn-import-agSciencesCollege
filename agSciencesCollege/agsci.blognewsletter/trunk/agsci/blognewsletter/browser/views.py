@@ -51,7 +51,6 @@ class TagsView(BrowserView):
         return '%s (Tag%s: %s)' % (self.context_state.object_title(), plural, ', '.join(tags))
     
     def publishTraverse(self, request, name):
-        import pdb; pdb.set_trace()
         if name:
             self.tags = [name]
         self.original_context = self.context
