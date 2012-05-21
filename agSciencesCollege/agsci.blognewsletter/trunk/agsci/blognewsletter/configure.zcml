@@ -6,6 +6,20 @@
     xmlns:monkey="http://namespaces.plone.org/monkey"
     i18n_domain="agsci.blognewsletter">
 
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <include package="Products.CMFCore" />
+
+    <include package="archetypes.schemaextender" />
+    <include package="collective.monkeypatcher" />
+    <includeDependencies package="." /> 
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
+    <!-- include our sub-packages that contain their own configure.zcml files -->
+    <include package=".content" />
+    <include package=".browser" />
+    <include package=".portlet" />
+
     <genericsetup:registerProfile
         name="default"
         title="AgSci Blog/Newsletter"
@@ -13,16 +27,6 @@
         description="A starting point for a product"
         provides="Products.GenericSetup.interfaces.EXTENSION"
     />
-
-    <five:registerPackage package="." initialize=".initialize" />
-
-    <include package="archetypes.schemaextender" />
-    <include package="collective.monkeypatcher" />
-
-    <!-- include our sub-packages that contain their own configure.zcml files -->
-    <include package=".content" />
-    <include package=".browser" />
-    <include package=".portlet" />
 
     <!-- Register an event handler for when a Blog is created -->
     <subscriber for="agsci.blognewsletter.content.interfaces.IBlog

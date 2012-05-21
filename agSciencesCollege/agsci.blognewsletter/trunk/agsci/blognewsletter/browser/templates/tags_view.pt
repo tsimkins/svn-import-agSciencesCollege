@@ -12,7 +12,7 @@
             <li tal:repeat="t tags"
                 tal:content="t" />
         </ul>
-        <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
+        <p><a tal:attributes="href view/original_context/absolute_url|view/context/absolute_url" tal:content="string:Unfilter..." /></p>
         </div>
         <metal:body use-macro="context/folder_listing/macros/listing" />
     </metal:content-core>      

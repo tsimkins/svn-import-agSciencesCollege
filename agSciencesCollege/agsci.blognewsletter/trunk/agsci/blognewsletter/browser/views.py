@@ -7,6 +7,7 @@ from plone.memoize.view import memoize
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore import permissions
 from zope.security import checkPermission
+from zope.security.interfaces import NoInteraction
 from DateTime import DateTime
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.registry.interfaces import IRegistry
@@ -50,6 +51,7 @@ class TagsView(BrowserView):
         return '%s (Tag%s: %s)' % (self.context_state.object_title(), plural, ', '.join(tags))
     
     def publishTraverse(self, request, name):
+        import pdb; pdb.set_trace()
         if name:
             self.tags = [name]
         self.original_context = self.context
@@ -110,7 +112,10 @@ class NewsletterView(BrowserView):
 
     @property
     def canEdit(self):
-        return checkPermission('cmf.ModifyPortalContent', self.context)
+        try:
+            return checkPermission('cmf.ModifyPortalContent', self.context)
+        except NoInteraction:
+            return False
 
     @property
     def portal_state(self):
