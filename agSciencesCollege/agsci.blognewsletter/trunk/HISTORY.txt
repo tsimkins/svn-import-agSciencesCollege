@@ -4,3 +4,10 @@ Changelog
 0.1 (Unreleased)
 ----------------
 Initial version
+
+
+0.4 (PSE2012)
+-------------
+
+ * Added tests
+ * Fixed JavaScript in IE

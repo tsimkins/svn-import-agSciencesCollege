@@ -442,15 +442,16 @@ div.about hr {
             function toggleInput(isChecked)
             {
                 input_items = document.getElementById("enable-items-form").getElementsByTagName("input");
-                for (var i in input_items)
+
+                for (var i=0; i<input_items.length; i++)
                 {   
-                    item = input_items[i];
+                    var item = input_items[i];
+
                     if (item['type'] == 'checkbox')
                     {
                         if (item['name'] == 'enabled_items')
                         {
                             item.checked=isChecked;
-                            item.style.opacity='0.5';
                         }
                         
                         if (item['name'] == 'spotlight_items')
@@ -458,13 +459,11 @@ div.about hr {
                             if (!isChecked)
                             {
                                 item.checked=isChecked;
-                                item.style.opacity='0.5';
                             }
                         }
                     }
                 }
 
-                document.getElementById("enable-items-form").submit();
             }
             
             document.getElementById("enable-all").onclick = function() {toggleInput(true)};
