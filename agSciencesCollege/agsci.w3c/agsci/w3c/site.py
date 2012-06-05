@@ -74,4 +74,15 @@ def checkSiteColorContrast(site):
         print "Text: %s, Background: %s\n\n" % (t_textActiveColor, t_backgroundActiveColor)
         compliant = False
 
+    # Check left nav header
+    l_backgroundColor = base_properties.getProperty('leftNavTitleBackground').replace('#', '')
+    l_textColor = base_properties.getProperty('leftNavTitleColor').replace('#', '')
+
+    leftnav_compliant = checkColorAccessibility(l_textColor, l_backgroundColor)
+
+    if not leftnav_compliant:
+        print '%s : leftnav_compliant : %s' % (site.id, str(leftnav_compliant))
+        print "Text: %s, Background: %s\n\n" % (l_textColor, l_backgroundColor)
+        compliant = False
+
     return compliant
