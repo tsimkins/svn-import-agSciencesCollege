@@ -39,14 +39,20 @@ class Report():
 
     def detail(self, categories=[]):
         lines = []
+
+        if not isinstance(categories, list):
+            categories = [categories]
+
         for k in sorted(self.categories()):
             if categories and k not in categories:
                 continue
             lines.append(k)
-            lines.append("-"*len(k))
-            for o in self.get(k):
+            lines.append("="*len(k))
+            for o in sorted(self.get(k), key=lambda x:x.absolute_url()):
                 lines.append(o.absolute_url())
+                lines.append("-"*len(o.absolute_url()))
                 lines.append(self.getDiff(o))
+                lines.append("")
             lines.append("")
             lines.append("")
         return "\n".join(lines)

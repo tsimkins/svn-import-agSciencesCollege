@@ -176,23 +176,34 @@ def fixLinkText(context, dry_run=True):
         o = r.getObject()
         text = getText(o)
         soup = BeautifulSoup(text)
+        old_soup = soup.prettify()
         found_link = False
         found_empty_link = False
         found_no_links = False
 
         if soup('a'):
             for a in soup.findAll('a'):
+                link_text = ""
+                url_link = False
+                empty_link = False
                 for i in a.contents:
                     if isinstance(i, NavigableString):
                         link_text = i
                     else:
-                        link_text = link_text
+                        link_text = str(i)
 
                     if link_text and 'http://' in link_text or 'https://' in link_text:
                         found_link = True
+                        url_link = True
                     elif not link_text:
                         found_link = True
                         found_empty_link = True
+                        empty_link = True
+
+                if url_link:
+                    a.contents.append(NavigableString(' -- REPLACE WITH CORRECT LINK TEXT'))
+                if empty_link:
+                    a.contents.append(NavigableString('-- EMPTY LINK --'))
         else:
             found_no_links = True
 
@@ -200,6 +211,8 @@ def fixLinkText(context, dry_run=True):
             report.add('noLinks', o)
         elif found_link:
             report.add('brokenLinks', o)
+            new_soup = soup.prettify()
+            report.addDiff(o, old_soup, new_soup)
         else:
             report.add('okLinks', o)
 

@@ -1,5 +1,11 @@
 from zope.app.component.hooks import setSite
-from Products.agCommon import calculateGradient
+
+try:
+    from Products.agCommon import calculateGradient
+except ImportError:
+    def calculateGradient(c):
+        return c
+
 from agsci.w3c.colors import checkColorAccessibility
 
 def checkSiteColorContrast(site):
