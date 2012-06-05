@@ -65,7 +65,14 @@ def fixHeadingTags(context, dry_run=True):
 
                 for t in ['em', 'i']:
                     if h(t):
-                        found_italic = True
+                        # This is a special case, since we may legitimately have
+                        # italicized words (latin names, etc.) inside headers.
+                        # Only if it's going to be a dry run do we modify the 
+                        # HTML so we can report on it.
+                        if dry_run:
+                            found_italic = True
+                            h.replaceWith(getNewTag(t, h))
+                        
 
         if found_bold:
             report.add('headingsBold', o)
@@ -76,14 +83,13 @@ def fixHeadingTags(context, dry_run=True):
         if found_br:
             report.add('headingsBr', o)
             
-        new_soup = soup.prettify()
-        
-        if not dry_run and (found_bold or found_br):
-            setText(o, new_soup)
-            
-        #open("/tmp/fixh/bad/%s" % o.UID(), "w").write(old_soup)
-        #open("/tmp/fixh/good/%s" % o.UID(), "w").write(new_soup)
-                    
+        if found_bold or found_br or found_italic:
+            new_soup = soup.prettify()
+            report.addDiff(o, old_soup, new_soup)
+
+            if not dry_run:
+                setText(o, new_soup)
+
     return report
 
 def fixPotentialHeadings(context, dry_run=True):
@@ -119,9 +125,12 @@ def fixPotentialHeadings(context, dry_run=True):
         else:
             report.add('noHeadings', o)
 
-        if found_auto and not dry_run:
+        if found_auto:
             new_soup = soup.prettify()
-            setText(o, new_soup)
+            report.addDiff(o, old_soup, new_soup)
+        
+            if not dry_run:
+                setText(o, new_soup)
 
     return report
 
@@ -136,8 +145,10 @@ def fixH2H3(context, dry_run=True):
     for r in getItemsWithText(context):
         o = r.getObject()
         text = getText(o)
+
         try:
             soup = BeautifulSoup(text)
+            old_soup = soup.prettify()
         except TypeError:
             import pdb; pdb.set_trace()
         if soup('h2'):
@@ -147,12 +158,13 @@ def fixH2H3(context, dry_run=True):
         else:
             report.add('noHeadings', o)
 
-    if not dry_run:
         for o in report.get('wrongHeadings'):
             text = getText(o)
             soup = BeautifulSoup(text).prettify()
             new_soup = h3.sub(r"<\g<1>h2\g<2>>", soup)
-            setText(o, new_soup)
+            report.addDiff(o, old_soup, new_soup)
+            if not dry_run:
+                setText(o, new_soup)
 
     return report
 
