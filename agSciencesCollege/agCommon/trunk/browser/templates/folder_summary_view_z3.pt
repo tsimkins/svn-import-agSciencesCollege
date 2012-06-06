@@ -120,7 +120,8 @@
                             </p>
                         </div>
 
-                        <div class="visualClear"><!-- --></div>
+                        <div tal:condition="python: show_image or item_type == 'FSDPerson'"
+                             class="visualClear"><!-- --></div>
 
                     </div>
                         </metal:entry>
