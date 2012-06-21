@@ -519,7 +519,9 @@ body {
 
 #portal-column-one .linkIcon li,
 #portal-column-two .linkIcon li {
-    margin: 1em 0;
+    line-height: 1.1875em;
+    margin: 1.25em 0;
+    padding-left: 2.375em;
 }
 
 #portal-column-two dl.linkIcon .portletItem li {
@@ -540,10 +542,17 @@ body {
     color: &dtml-leftLinkTextHoverColor;;
 }
 
+#portal-column-one .linkIcon a span,
+#portal-column-two .linkIcon a span {
+    vertical-align: middle;
+}
+
 #portal-column-one .linkIcon img, 
 #portal-column-two .linkIcon img {
 	padding-right: 0.375em;
     color: &dtml-leftLinkTextHoverColor;;
+    margin: -0.1875em 0 0 -2.375em;
+    float: left;
 }
 
 
@@ -994,7 +1003,7 @@ html.kupu-html {
 }
 
 #content .tileDescription p {
-    margin: 0.25em 0 0.5em 0;
+    margin: 0.25em 0 0.25em 0;
     line-height: 1.375em;
 }
 
@@ -1100,7 +1109,7 @@ body.template-person_view #content h3 {
 #content .tileItem {
     border-top: 0;
     margin: 0.375em 0 0 0;
-    padding: 0.25em 0;
+    padding: 0.4375em 0;
 }
 
 #content .tileItemLeadImage, #content .tileSummaryLeadImage {

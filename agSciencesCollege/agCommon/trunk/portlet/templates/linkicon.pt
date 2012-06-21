@@ -19,7 +19,9 @@
                         ><img tal:condition="icon" 
                               tal:attributes="src icon;
                                               alt python:''" /><span tal:content="title">
-                                         >Link</span></a>
+                                         >Link</span>
+                        <div class="visualClear"><!-- --></div>
+                    </a>
                 </li>
             </tal:linkIcon>        
         </ul>

@@ -286,6 +286,13 @@
     text-align: right;
 }
 
+#rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
+    float: left; 
+    margin: 0.625em 0 0.625em 0;
+    width: 128px;
+    text-align: right;
+}
+
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
     float: left; 
     margin: 0.625em 0.625em 0.625em 0;
@@ -414,6 +421,12 @@
 	text-decoration: none;
 	border: none;
 	font-weight: normal;
+}
+
+/* make email address wrap in rightcolumn  person portlet */
+
+#rightcolumn .people .portletItem a.email {
+    display: inline;
 }
 
 #rightcolumn .portletfeedmixer a.title {
