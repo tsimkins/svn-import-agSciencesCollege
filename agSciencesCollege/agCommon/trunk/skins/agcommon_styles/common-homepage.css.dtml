@@ -392,16 +392,16 @@
 }
 
 
-#rightcolumn dl.people .portletItem{
-    color: #333333;
+#rightcolumn dl.people .portletItem {
+    color: #3F3F3F;
 }
 
-#rightcolumn dl.people .portletItem h2 a{
+#rightcolumn dl.people .portletItem h2 a {
     font-weight: bold !important;
 }
 
 #rightcolumn .portletItem .date {
-	color: #666666;
+	color: #4D4D4D;
 	font-weight: normal;
 	font-size: 0.9375em;
 	text-align: left;
@@ -411,6 +411,7 @@
 #rightcolumn .portletItem a:hover {
 	color: &dtml-frontRightPortletLinkHoverColor;;
 	background-color: transparent;
+	text-decoration: underline;
 }
 
 #rightcolumn .portletItem a, 
