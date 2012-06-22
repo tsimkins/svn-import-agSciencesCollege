@@ -40,7 +40,6 @@
 
 #portal-column-two dl.linkIcon .portletItem li {
     background-color: transparent;
-    padding: 0.0625em 0;
 }
 
 #portal-breadcrumbs.homepage {
