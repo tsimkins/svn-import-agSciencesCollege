@@ -1112,3 +1112,22 @@ def createProgram(subsite, programs, program_id, program_name, program_descripti
                 program_crit.setValue(program_name) # Only list items in the current program
                 
                 sort_crit = smart_obj.addCriterion('getSortableName','ATSortCriterion')
+
+# What we want to happen when we create a subsite
+def onNewsletterCreation(newsletter, event):
+
+    # Rename to id 'newsletter' if not already taken
+    parent = newsletter.getParentNode()
+    if newsletter.id != 'newsletter' and 'newsletter' not in parent.objectIds():
+        parent.manage_renameObject(newsletter.id, 'newsletter')
+               
+    theCriteria = newsletter.addCriterion('effective', 'ATFriendlyDateCriteria')
+    theCriteria.setOperation('less') # Less than
+    theCriteria.setValue(31) # One Month
+    theCriteria.setDateRange('-') # in the past
+
+    sort_crit = newsletter.addCriterion('effective','ATSortCriterion')
+    sort_crit.setReversed(True)
+
+    newsletter.itemCount = 99999
+    newsletter.unmarkCreationFlag()

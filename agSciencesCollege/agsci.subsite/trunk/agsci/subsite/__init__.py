@@ -22,6 +22,7 @@ def initialize(context):
     from content import Section
     from content import Blog
     from content import HomePage
+    from content import Newsletter
     from content import PhotoFolder
     from content import FormConfirmationPage
 

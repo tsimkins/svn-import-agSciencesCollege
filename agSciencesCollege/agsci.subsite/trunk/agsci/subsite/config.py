@@ -11,6 +11,7 @@ ADD_PERMISSIONS = {
     "Section" : "agsci.subsite: Add Section",
     "Blog" : "agsci.subsite: Add Blog",
     "HomePage" : "agsci.subsite: Add HomePage",
+    "Newsletter" : "agsci.subsite: Add Newsletter",
     "PhotoFolder" : "agsci.subsite: Add PhotoFolder",
     "FormConfirmationPage" : "agsci.subsite: Add FormConfirmationPage",    
     }

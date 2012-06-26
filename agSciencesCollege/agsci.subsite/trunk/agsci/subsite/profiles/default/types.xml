@@ -16,6 +16,9 @@
 
  <object name="HomePage"
          meta_type="Factory-based Type Information with dynamic views"/>
+
+ <object name="Newsletter"
+         meta_type="Factory-based Type Information with dynamic views"/>
          
  <object name="PhotoFolder"
          meta_type="Factory-based Type Information with dynamic views"/>

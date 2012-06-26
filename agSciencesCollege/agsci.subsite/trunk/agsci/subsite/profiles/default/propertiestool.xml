@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool" purge="False">
+ <object name="navtree_properties" meta_type="Plone Property Sheet" purge="False">
+  <property name="metaTypesNotToList" type="lines" purge="False">
+   <element value="Newsletter"/>
+   <element value="HomePage"/>
+  </property>
+ </object>
+</object>

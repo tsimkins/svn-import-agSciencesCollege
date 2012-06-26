@@ -36,6 +36,12 @@
         handler="agsci.subsite.events.onBlogCreation" 
         />
 
+    <!-- Register an event handler for when a Newsletter is created -->
+    <subscriber for="agsci.subsite.content.interfaces.INewsletter
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="agsci.subsite.events.onNewsletterCreation" 
+        />
+
     <!-- register the Generic Setup extension profile -->
     <genericsetup:registerProfile
         name="default"
@@ -69,6 +75,11 @@
     <permission
         id="agsci.subsite.EditHomePage"
         title="agsci.subsite: Edit HomePage"
+        />
+
+    <permission
+        id="agsci.subsite.EditNewsletter"
+        title="agsci.subsite: Edit Newsletter"
         />
         
     <permission
