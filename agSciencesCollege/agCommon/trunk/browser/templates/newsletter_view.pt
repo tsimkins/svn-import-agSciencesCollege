@@ -457,11 +457,10 @@ div.about hr {
             {
                 input_items = document.getElementById("enable-items-form").getElementsByTagName("input");
 
-                for (var i=0; i<input_items.length; i++)
-                {   
-                    // D'oh! "item" is apparently a reserved word in IE 
-                    // http://www.springenwerk.com/2009/01/is-reserved-word-in-internet-explorer-6.html
+                var i = input_items.length;
 
+                while (i--)
+                {   
                     var item = input_items[i];
 
                     if (item['type'] == 'checkbox')
