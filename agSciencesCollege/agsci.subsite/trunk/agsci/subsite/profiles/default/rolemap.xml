@@ -26,22 +26,28 @@
     </permission>
     <permission name="agsci.subsite: Edit Subsite" acquire="False">
       <role name="Manager"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit CountySite" acquire="False">
       <role name="Manager"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit Section" acquire="False">
       <role name="Manager"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit Blog" acquire="False">
       <role name="Manager"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit HomePage" acquire="False">
       <role name="Manager"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     <permission name="agsci.subsite: Edit PhotoFolder" acquire="False">
       <role name="Manager"/>
       <role name="Editor"/>
+      <role name="Restricted Content Manager"/>
     </permission>
     
   </permissions>
