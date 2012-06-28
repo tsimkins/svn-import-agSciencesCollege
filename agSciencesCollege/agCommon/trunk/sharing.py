@@ -18,3 +18,8 @@ class CollectionManagerRole(object):
     implements(interfaceToImplement)
     title = _(u"title_manage_collections", default=u"Can manage collections")
     required_permission = 'Manage portal content'
+
+class RestrictedContentManagerRole(object):
+    implements(interfaceToImplement)
+    title = _(u"title_manage_restricted_content", default=u"Can manage restricted content")
+    required_permission = 'Manage portal content'

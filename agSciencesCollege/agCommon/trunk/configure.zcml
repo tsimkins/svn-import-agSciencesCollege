@@ -8,5 +8,6 @@
 
  <utility name="Portlet Manager" factory=".sharing.PortletManagerRole"/>
  <utility name="Collection Manager" factory=".sharing.CollectionManagerRole"/>
+ <utility name="Restricted Content Manager" factory=".sharing.RestrictedContentManagerRole"/>
  
 </configure>
