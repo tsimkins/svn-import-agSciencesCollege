@@ -3,6 +3,7 @@
   <roles>
     <role name="Collection Manager"/>
     <role name="Portlet Manager"/>
+    <role name="Restricted Content Manager"/>
   </roles>
   <permissions>
     <permission name="ATContentTypes Topic: Add ATBooleanCriterion"
