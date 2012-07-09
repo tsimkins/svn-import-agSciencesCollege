@@ -140,10 +140,10 @@
 
 .agCommonPortlet .portletHeader {
 	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	padding: 0.0625em 0.25em 0.125em 0.25em !important;
+	padding: 0.25em 0.25em 0.375em 0.25em !important;
 	border-width: 0;
 	margin: 0 !important;
-	line-height: 1.75em;
+	line-height: 1.3125em;
 	font-size: 0.8125em !important;
 	color: &dtml-frontRightPortletHeaderTextColor; !important; 
 	font-weight: bold !important;
