@@ -10,24 +10,87 @@ import premailer
 from BeautifulSoup import BeautifulSoup
 from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
-from Products.agCommon.browser.views import FolderView
+from Products.agCommon.browser.views import FolderView, IFolderView
 import re
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 
-class IExtensionProgramCountyView(Interface):
+class ByCountyView(FolderView):
     """
-    Program County view interface
+    By County browser view
     """
+    implements(IFolderView)
+    
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        
+        self.counties = []
+        
+        counties = {}
 
-    def test():
-        """ test method"""
+        results = []
+        folder_path = ""
+        
+        self.here_url = self.context.absolute_url()
+        
+        if self.context.portal_type == 'Topic':
+            try:
+                results = self.context.queryCatalog()
+            except AttributeError:
+                # We don't like a relative path here for some reason.
+                # Until we figure it out, fall through and just do the default query.
+                # That should work in most cases.
+                parent_physical_path = list(self.context.getPhysicalPath())
+                parent_physical_path.pop()
+                folder_path = '/'.join(parent_physical_path)
+                pass
+            
+            # If we're a collection (Topic), we may be a default page  Figure out
+            # if we're the default page, and if so, set the here_url to our parent.
+            parent = self.context.getParentNode()
+            if self.context.id == parent.getDefaultPage():
+                self.here_url = parent.absolute_url()
+            
+        if not results:
+            catalog = getToolByName(self.context, 'portal_catalog')
+            
+            if not folder_path:
+                folder_path = '/'.join(self.context.getPhysicalPath())
+             
+            results = catalog.searchResults({'portal_type' : ['Event', 'TalkEvent', 'Person', 'News Item', 'Folder', 'Subsite', 'Section'],
+                                            'path' : {'query': folder_path, 'depth' : 4} })
+        for r in results:
+        
+            for county in r.extension_counties:
+                
+                if not counties.get(county):
+                    counties[county] = {'id' : county.lower(), 
+                                     'label' : county, 'items' : []}
+    
+                                    
+                counties[county]['items'].append(r)
+
+        for c in sorted(counties.keys()):
+            self.counties.append(counties[c])
+
+    def getBodyText(self):
+        return self.context.getBodyText()
+
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    @property
+    def portal(self):
+        return getToolByName(self.context, 'portal_url').getPortalObject()
+
 
 class ExtensionProgramCountyView(FolderView):
     """
     Program County browser view
     """
-    implements(IExtensionProgramCountyView)
+    implements(IFolderView)
     
     def __init__(self, context, request):
         self.context = context

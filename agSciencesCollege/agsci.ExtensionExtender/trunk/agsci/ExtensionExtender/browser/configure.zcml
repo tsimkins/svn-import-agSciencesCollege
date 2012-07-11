@@ -17,6 +17,8 @@
         name="agCommon"
         />
 
+    <include package="plone.app.contentmenu"/>
+
     <!-- Views -->        
     <browser:page
         for="*"
@@ -25,6 +27,42 @@
         template="templates/extension_program_county.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="by_county_listing"
+        class=".views.ByCountyView"
+        template="templates/by_county_listing.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="By County View (Standard)"
+        action="@@by_county_listing"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="A view of items separated by county."
+    />
+
+    <browser:page
+        for="*"
+        name="by_county_summary_view"
+        class=".views.ByCountyView"
+        template="templates/by_county_summary_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="By County View (Summary)"
+        action="@@by_county_summary_view"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="A view of items separated by county."
     />
 
 </configure>
