@@ -254,12 +254,25 @@ body {
 }
 
 #portal-column-one .portletStaticText .portletItem h2,
+#portal-column-two .portletStaticText .portletItem h2,
 #portal-column-one .portletContact .portletItem h2,
 #portal-column-two .portletContact .portletItem h2 {
     border: none;
     font-size: 1.125em;
     font-weight: bold;
-    margin-bottom: 0;
+    margin-bottom: 0.25em;
+    margin-top: 0.375em;
+}
+
+#portal-column-one .portletStaticText .portletItem h3,
+#portal-column-two .portletStaticText .portletItem h3,
+#portal-column-one .portletContact .portletItem h3,
+#portal-column-two .portletContact .portletItem h3 {
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+    margin-top: 0.375em;
 }
 
 #portal-column-one .portletStaticText .portletItem p,

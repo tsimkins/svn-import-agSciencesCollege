@@ -608,6 +608,4 @@
     />
     
 
-    <include file="fsd.zcml" />
-
 </configure>

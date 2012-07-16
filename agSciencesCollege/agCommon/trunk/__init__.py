@@ -449,6 +449,7 @@ def pageToFolder(page):
     page_owner = page.getOwner()
     page_subject = page.Subject()
     page_effective_date = page.EffectiveDate()
+    page_leadImage = page.getField
 
     if wftool.getInfoFor(page, 'review_state') != 'private':
         wftool.doActionFor(page, 'retract')
@@ -457,7 +458,7 @@ def pageToFolder(page):
     
     page_parent.manage_renameObject(page_id, '%s-page' % page_id)
 
-    page_parent.invokeFactory(id=page_id, type_name="Folder", title=page_title, description = page_description, text=page_text, subject=page_subject)
+    page_parent.invokeFactory(id=page_id, type_name="Folder", title=page_title, description = page_description, folder_text=page_text, subject=page_subject)
     
     folder = getattr(page_parent, page_id)
         
