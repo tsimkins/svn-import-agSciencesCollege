@@ -23,4 +23,24 @@
         permission="zope2.View"
     />
 
+
+    <!-- Blog News View -->
+    <browser:page
+        for="*"
+        name="blog_news_view"
+        class=".views.BlogNewsView"
+        template="templates/blog_news_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATFolder"
+        menu="plone_displayviews"
+        title="Blog Year News View"
+        action="@@blog_news_view"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="A view of news listed by year/month"
+    />
+
 </configure>
