@@ -13,7 +13,20 @@
     description="Programs"
     enabled="True"
     friendlyName="Programs" remove="True" />
-    
+
+  <index
+    name="Topics"
+    description="Topics"
+    enabled="True"
+    friendlyName="Topics" remove="True" />
+
+  <index
+    name="Subtopics"
+    description="Subtopics"
+    enabled="True"
+    friendlyName="Subtopics" remove="True" />
+
+
  </topic_indexes>
 
  <topic_metadata>
@@ -28,7 +41,19 @@
     description="Programs"
     enabled="True"
     friendlyName="Programs" remove="True" />
-    
+
+  <metadata
+    name="Topics"
+    description="Topics"
+    enabled="True"
+    friendlyName="Topics" remove="True" />
+
+  <metadata
+    name="Subtopics"
+    description="Subtopics"
+    enabled="True"
+    friendlyName="Subtopics" remove="True" />
+
  </topic_metadata> 
  
 </atcttool>

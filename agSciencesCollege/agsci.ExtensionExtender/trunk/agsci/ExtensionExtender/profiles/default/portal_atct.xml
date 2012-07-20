@@ -28,7 +28,16 @@
    <criteria>ATSelectionCriterion</criteria>
    <criteria>ATListCriterion</criteria>
   </index>
-  
+
+  <index
+    name="Subtopics"
+    description="Subtopics"
+    enabled="True"
+    friendlyName="Subtopics">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
+
  </topic_indexes>
 
  <topic_metadata>
@@ -49,6 +58,12 @@
     description="Topics"
     enabled="True"
     friendlyName="Topics" />
+
+  <metadata
+    name="Subtopics"
+    description="Subtopics"
+    enabled="True"
+    friendlyName="Subtopics" />
 
  </topic_metadata> 
  

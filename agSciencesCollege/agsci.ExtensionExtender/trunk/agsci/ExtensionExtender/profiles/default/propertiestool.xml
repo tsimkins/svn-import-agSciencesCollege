@@ -107,5 +107,8 @@
   <property name="extension_topics" type="lines">
     <element value="Gardening" />
   </property>
+  <property name="extension_subtopics" type="lines">
+    <element value="Gardening" />
+  </property>
  </object>
 </object>

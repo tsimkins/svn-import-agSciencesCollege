@@ -9,10 +9,14 @@
  <index name="Topics" meta_type="KeywordIndex">
   <indexed_attr value="extension_topics"/>
  </index>
-
+ <index name="Subtopics" meta_type="KeywordIndex">
+  <indexed_attr value="extension_subtopics"/>
+ </index>
 
  <column value="extension_counties"/>
  <column value="extension_programs"/>
  <column value="extension_topics"/>
+ <column value="extension_subtopics"/>
+ 
 </object>
 

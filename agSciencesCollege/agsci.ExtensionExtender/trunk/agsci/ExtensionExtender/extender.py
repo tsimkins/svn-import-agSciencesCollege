@@ -71,6 +71,17 @@ class _TopicsField(_ExtensionLinesField):
         else:
             return DisplayList([('N/A', 'N/A')])
 
+class _SubtopicsField(_ExtensionLinesField):
+    def Vocabulary(self, content_instance):
+
+        ptool = getToolByName(content_instance, 'portal_properties')
+        props = ptool.get("extension_properties")
+
+        if props and props.extension_subtopics:
+            return DisplayList([(x.strip(), x.strip()) for x in sorted(props.extension_subtopics)])
+        else:
+            return DisplayList([('N/A', 'N/A')])
+
 class _CountiesField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
 
@@ -132,7 +143,17 @@ class FSDExtensionExtender(object):
                 description=u"Topics that this person is associated with",
             ),
         ),
-        
+
+        _SubtopicsField(
+            "extension_subtopics",
+                schemata="Professional Information",
+                required=False,
+                searchable=True,
+                widget = InAndOutWidget(
+                label=u"Subtopics",
+                description=u"Subtopics that this person is associated with",
+            ),
+        ),
         _ExtensionLinesField(
             "extension_areas",
                 schemata="Professional Information",
@@ -190,7 +211,16 @@ class ExtensionExtender(object):
                 description=u"Topics that this item is associated with",
             ),
         ),
-
+        _SubtopicsField(
+            "extension_subtopics",
+                schemata="categorization",
+                required=False,
+                searchable=True,
+                widget = InAndOutWidget(
+                label=u"Subtopics",
+                description=u"Subtopics that this item is associated with",
+            ),
+        ),
     ]
 
     def __init__(self, context):
