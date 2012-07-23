@@ -1458,12 +1458,14 @@ body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_c
     display: none;
 }
 
-body.template-subfolder_view #content .tileItem h2.tileHeadline {
+body.template-subfolder_view #content .tileItem h2.tileHeadline,
+body.template-blog_news_view #content .tileItem h2.tileHeadline {
     font-size: 1.375em;
     margin-bottom: 0.375em;
 }
 
-body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a {
+body.template-subfolder_view #content-core>.tileItem>h2.tileHeadline>a,
+body.template-blog_news_view #content-core>.tileItem>h2.tileHeadline>a {
     text-decoration: underline;
 }
 
