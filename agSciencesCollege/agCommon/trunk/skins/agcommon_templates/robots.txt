@@ -8,6 +8,9 @@
 
 User-agent: *
 Disallow: /search
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
 Disallow: /m/
 Disallow: /nonmobile
 Crawl-delay: 5
@@ -28,6 +31,9 @@ Disallow: /*image_view_fullscreen$
 Disallow: /m/
 Disallow: /nonmobile
 Disallow: /*newsletter_print
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
 
 # Apparently Yahoo supports wildcards, too?
 # http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
@@ -43,6 +49,9 @@ Disallow: /*image_view_fullscreen$
 Disallow: /m/
 Disallow: /nonmobile
 Disallow: /*newsletter_print
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
 
 # Penn State's Google Search Appliance
 User-Agent: PennStateSpider
@@ -53,3 +62,6 @@ Disallow: /*?searchterm=*
 Disallow: /m/
 Disallow: /nonmobile
 Disallow: /*newsletter_print
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
