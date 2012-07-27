@@ -33,6 +33,8 @@
 
   <head>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <meta name="generator" content="Plone - http://plone.org" />
@@ -83,7 +85,7 @@
     <tal:fbjs condition="isAnon">
         <div id="fb-root"></div>
     
-        <tal:block tal:replace="structure string:&lt;script&gt;" />
+        <tal:block tal:replace="structure string:&lt;script type='text/javascript'&gt;" />
           window.fbAsyncInit = function() {
             FB.init({
               appId      : '374493189244485', // App ID
@@ -119,12 +121,11 @@
 
       <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
 
-      <table id="portal-columns" metal:define-slot="portal-columns" role="presentation">
+      <div id="portal-columns" metal:define-slot="portal-columns" role="presentation">
 
-          <tr>
             <tal:notajax tal:condition="not:ajax_load">
                 <tal:comment replace="nothing"> Start of the left column </tal:comment>
-                <td id="portal-column-one"
+                <div id="portal-column-one"
                     metal:define-slot="column_one_slot"
                     tal:condition="sl">
                   <div id="portal-column-one-visualPadding" class="visualPadding">
@@ -133,12 +134,12 @@
                     </metal:portlets>
                     &nbsp;
                   </div>
-                </td>
+                </div>
                 <tal:comment replace="nothing"> End of the left column </tal:comment>
             </tal:notajax>
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
-            <td id="portal-column-content"
+            <div id="portal-column-content"
                 tal:attributes="class python:(sl and sr and 'sl sr') or (sl and 'sl') or (sr and 'sr') or ''">
 
               <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
@@ -244,12 +245,12 @@
 
               <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
 
-            </td>
+            </div>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 
             <tal:notajax tal:condition="not:ajax_load">
                 <tal:comment replace="nothing"> Start of right column </tal:comment>
-                <td id="portal-column-two"
+                <div id="portal-column-two"
                     metal:define-slot="column_two_slot"
                     tal:condition="sr">
                   <div class="visualPadding">
@@ -258,12 +259,12 @@
                     </metal:portlets>
                     &nbsp;
                   </div>
-                </td>
+                </div>
                 <tal:comment replace="nothing"> End of the right column </tal:comment>
             </tal:notajax>
-          </tr>
 
-      </table>
+
+      </div>
       <tal:comment replace="nothing"> end column wrapper </tal:comment>
 
       <div class="visualClear" id="clear-space-before-footer"><!-- --></div>

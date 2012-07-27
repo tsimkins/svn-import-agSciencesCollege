@@ -47,7 +47,7 @@ globalBackgroundColor:string=#FFF2CF
 evenRowBackgroundColor:string=#FFF7DF 
 oddRowBackgroundColor:string=transparent
 
-maxWidth:string=895px
+maxWidth:string=896px
 minWidth:string=785px
 
 siteLogoTopMargin:string=42px

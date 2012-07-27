@@ -1,10 +1,9 @@
 <tal:block condition="view/available"
            i18n:domain="linkicon">
 
-<div class="imagePortlet">
     <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
     
-    <dl class="portlet">
+    <dl class="portlet imagePortlet">
     
         <dd class="portletItem" tal:condition="view/images">
                
@@ -34,5 +33,5 @@
         </dd>
     
     </dl>
-</div>
+
 </tal:block>

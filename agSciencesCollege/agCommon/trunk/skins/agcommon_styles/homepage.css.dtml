@@ -12,7 +12,8 @@
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: -1.875em 0.1875em 0.1875em 0.1875em;
+	margin: 0.1875em 0.424929178470255%; /* 3/706 */
+	width: 99.15014164305949%;  /* 700/706 */
 	text-align: left;
 	padding: 0;
 }
@@ -74,14 +75,6 @@
 
 #portal-column-two {
     display: none;
-}
-
-/* ================== Homepage Text ================= */
-
-#content #homepage-text.sr {
-    border-right: 11em solid &dtml-frontRightPortletBackgroundColor;;;
-    margin-right: 0.1875em;
-    padding-right: 0.9375em;
 }
 
 /* YOUR CSS RULES STOP HERE */

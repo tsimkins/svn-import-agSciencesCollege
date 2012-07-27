@@ -1,0 +1,147 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+#content #rightcolumn, #content #centercolumn, #content #homepage-text, #content #centercolumn.sr {
+    display: block;
+	margin: 0 0 0.1875em 0;
+	width: 100%;
+	clear: both;
+	float: none;
+	background-color: transparent;
+}
+
+#content #rightcolumn,
+#content #rightcolumn .portlet {
+	background-color: transparent;
+}
+
+#portal-column-one {
+    border: none;
+    background-image: none;
+}
+
+#portal-column-one .portletNavigationHeader {
+    margin: 0.25em -0.125em 0.25em -0.125em;
+}
+
+#portal-column-one .portletNavigationHeader .icon,
+#navigation-mobile .portletNavigationHeader .icon {
+    width: 1.75em;
+    float: right;
+}
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom: 0;
+}
+
+#portal-column-two, #portal-column-content {
+    float: left;
+    margin: 0;
+    width: 93.220338983050847%;  /* (590-40)/590 */
+    padding-left: 3.389830508474576%;  /* 20/590 */
+    padding-right: 3.389830508474576%;  /* 20/590 */
+    display: block;
+}
+
+body.portaltype-homepage #portal-column-two, body.portaltype-homepage #portal-column-content {
+    width: 96.610169491525424%;  /* (590-20)/590 */
+    padding-left: 1.694915254237288%;  /* 10/590 */
+    padding-right: 1.694915254237288%;  /* 10/590 */
+}
+
+
+#content {
+    margin: 0;
+    padding: 0;
+}
+
+#homepageimage embed {
+    display: none;
+}
+
+#homepageimage, #homepageimage.nobreadcrumbs {
+    margin-top: 0.3125em !important;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+#homepageimage {
+    margin: 0 0 1em 0 !important;
+}
+
+div.portletsBelowContentA,
+div.portletsBelowContentB,
+div.portletsBelowContentC,
+div.portletsBelowContentD,
+div.portletsBelowContentE {
+	width: 48.4375%; /* ((768 - 24)/2)/768 */
+	float: left;
+	padding: 0.5em 0.0.78125%;  /* 6/768 */
+}
+
+#portal-breadcrumbs {
+    margin: 0;
+}
+
+
+#portal-top, #portal-columns, #portal-footer, #portlets-below {
+    border: none;
+    width: 100%;
+}
+
+#portal-top-navigation {
+    margin: 0;
+    padding: 0 0 0.125em 0;
+    background-color: transparent;
+    background-image: none;
+}
+
+#portal-top-navigation li {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    width: 33.3333333333333333333333%; 
+    float: left;
+    display: block;
+}
+
+#portal-top-navigation li a,
+#portal-top-navigation li:first-child a {
+    margin: 0.25em !important;
+    padding: 0.25em 0.5em !important;
+    border: 1px solid &dtml-topnavigationGradientBackground;;
+    -moz-box-shadow: 0 0 0.125em #666666;
+    -webkit-box-shadow: 0 0 0.125em #666666;
+    box-shadow: 0 0 0.125em #666666;
+    border-radius: 2px;
+    background-color: &dtml-topnavigationBackgroundColor;;
+    background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    color:  &dtml-topnavigationTextColor; !important;
+    text-align: left;
+}
+
+#homepageimage .text, #homepageimage div.overlay {
+    display: none !important;
+}
+
+#two-column-left, #two-column-right {
+    border: none;
+    padding: 0;
+    margin: 0;
+    float: none;
+    width: 100%;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+
+

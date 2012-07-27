@@ -22,7 +22,7 @@ body {
 #visual-portal-wrapper {
     background-color: &dtml-backgroundColor;;
     margin: 0 auto;
-    padding: 0 0.375em 0.375em 0.375em;
+    padding: 0 6px 0.375em 6px;
     max-width: &dtml-maxWidth;;
     min-width: &dtml-minWidth;;
     /* Drop Shadow */
@@ -38,6 +38,10 @@ body {
     margin: 0;
     border-left: 1px solid #808080;
     border-right: 1px solid #808080;
+    width: 99.776785714285714%; /* 894/896 */
+    border-collapse: separate;
+    border-spacing: 0;
+    display: table;
 }
 
 
@@ -182,23 +186,27 @@ body {
     padding: 0;
     background-color: transparent;
     border-collapse: separate;
-    border-left: 1px #808080 solid;
-    border-right: 1px #808080 solid;
     border-spacing: 0;
-    width: 100%;
+    display: table;
+    width: 99.776785714285714%; /* 894/896 */
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #808080;
 }
 
 /* = portal-column-one ===================================== */
 
 #portal-column-one {
-    background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat left bottom;
+    background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat center bottom;
     border-color: &dtml-leftNavBorderColor;;
     border-style: solid;
     border-width: 0 1px 0 0;
-    width: 186px;
-    padding:0;
+    width: 21.027787948637817%;   /* 187/892 */
+    padding: 0.336322869955157%;  /* 3/892 */
     margin: 0;
     vertical-align: top;
+    display: table-cell;
+
 }
 
 #portal-column-one .visualPadding {
@@ -225,13 +233,27 @@ body {
     color: #265FCF;
 }
 
-#portal-column-one .portletWrapper {
-    margin: 0 0.875em 1.25em 0.875em;
+#portal-column-one .portletWrapper,
+#portlets-mobile .portletWrapper,
+#navigation-mobile .portletWrapper {
+    margin: 0 3.20855614973262% 1.25em 3.20855614973262%;  /* 6/187 */
+    width: 93.58288770053476%;
     padding: 0;
     font-size: 0.71875em;
 }
 
-#portal-column-one .portletHeader {
+
+#portlets-mobile .portletWrapper {
+    margin: 0 1.60427807486631% 1.25em 1.60427807486631%;  /* 6/187 */
+}
+
+#navigation-mobile .portletWrapper {
+    margin: 0 -1.7941593898646% 1.25em -1.7941593898646%;
+}
+
+#portal-column-one .portletHeader,
+#portlets-mobile .portletHeader,
+#navigation-mobile .portletHeader {
     background-color: transparent;
     color: &dtml-insideRightPortletHeaderTextColor;;
     border-color: &dtml-insideRightPortletHeaderTextColor;;
@@ -243,12 +265,14 @@ body {
     font-size: 1.1875em;
 }
 
-#portal-column-one .portlet {
+#portal-column-one .portlet,
+#portlets-mobile .portlet {
     border: none;
     background-color: transparent;
 }
 
-#portal-column-one .portletStaticText .portletItem {
+#portal-column-one .portletStaticText .portletItem,
+#portlets-mobile .portletStaticText .portletItem {
     margin-left: 0.3125em;
     margin-right: 0.3125em;
 }
@@ -256,7 +280,9 @@ body {
 #portal-column-one .portletStaticText .portletItem h2,
 #portal-column-two .portletStaticText .portletItem h2,
 #portal-column-one .portletContact .portletItem h2,
-#portal-column-two .portletContact .portletItem h2 {
+#portal-column-two .portletContact .portletItem h2,
+#portlets-mobile .portletStaticText .portletItem h2,
+#portlets-mobile .portletContact .portletItem h2 {
     border: none;
     font-size: 1.125em;
     font-weight: bold;
@@ -267,7 +293,9 @@ body {
 #portal-column-one .portletStaticText .portletItem h3,
 #portal-column-two .portletStaticText .portletItem h3,
 #portal-column-one .portletContact .portletItem h3,
-#portal-column-two .portletContact .portletItem h3 {
+#portal-column-two .portletContact .portletItem h3,
+#portlets-mobile .portletStaticText .portletItem h3,
+#portlets-mobile .portletContact .portletItem h3 {
     border: none;
     font-size: 1em;
     font-weight: bold;
@@ -276,14 +304,18 @@ body {
 }
 
 #portal-column-one .portletStaticText .portletItem p,
+#portal-column-two .portletStaticText .portletItem p,
 #portal-column-one .portletContact .portletItem p,
-#portal-column-two .portletContact .portletItem p {
+#portal-column-two .portletContact .portletItem p,
+#portlets-mobile .portletStaticText .portletItem p,
+#portlets-mobile .portletContact .portletItem p {
     margin: 0;
-/*    white-space: nowrap; */
+
 }
 
 #portal-column-one .portletContact .portletItem p strong,
-#portal-column-two .portletContact .portletItem p strong {
+#portal-column-two .portletContact .portletItem p strong,
+#portlets-mobile .portletContact .portletItem p strong {
     font-weight: normal;
 }
 
@@ -291,26 +323,31 @@ body {
     padding: 0;
 }
 
-#portal-column-one .portletStaticText img {
+#portal-column-one .portletStaticText img,
+#portlets-mobile .portletStaticText img {
     width: 166px;
     display: block;
     margin-top: 0.9375em;
 }
 
+
+
 /* Portal-column-one Navigation */
 
-#portal-column-one .portletNavigationHeader {
+#portal-column-one .portletNavigationHeader,
+#navigation-mobile .portletNavigationHeader {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: 0 -0.9375em;
+    margin: -0.260869565217391em -5.293132811784655% 0 -5.293132811784655%;
     padding: 0.9375em;
     font-size: 1em;
     border-bottom: 1px solid &dtml-leftNavBorderColor;;
     text-transform: none;
 }
 
-#portal-column-one .portletNavigationHeader a {
+#portal-column-one .portletNavigationHeader a,
+#navigation-mobile .portletNavigationHeader span {
     background-color: transparent;
     color: &dtml-leftNavTitleColor; !important;
     line-height: 1.4em;
@@ -339,93 +376,112 @@ body {
     color: &dtml-leftNavTitleBackground;;
 }
 
-#portal-column-one .portletItem {
+#navigation-mobile .portletItem,
+#portal-column-one .portletItem,
+#portlets-mobile .portletItem {
     padding: 0;
     border: none;
 }
 
 #portal-column-one .standaloneNavigationTree {
-    margin-top: 1em;
+    margin-top: 0.75em;
 }
 
+#navigation-mobile .portletNavigationTree .portletItem ul,
 #portal-column-one .portletNavigationTree .portletItem ul {
     margin: 0;
 }
 
+#navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeItem,
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
     padding: 0 0.5em 0 1em;
     margin-left: 0.25em;
     background-color: transparent;
 }
 
+#navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
+#navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode,
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode {
     background: transparent url(&dtml-portal_url;/blue_bullet.png) no-repeat 0.375em 0.75em;
 }
 
 
+#navigation-mobile .portletNavigationTree .portletItem li li,
+#navigation-mobile .navTreeItem a,
 #portal-column-one .portletNavigationTree .portletItem li li,
 #portal-column-one .navTreeItem a {
     border: none;
 }
 
+#navigation-mobile .portletNavigationTree .portletItem li,
 #portal-column-one .portletNavigationTree .portletItem li {
     border-bottom: 1px dashed #CCCCCC;
     margin: 0;
     padding: 0;
 }
 
+#navigation-mobile .portletNavigationTree .portletItem li a,
 #portal-column-one .portletNavigationTree .portletItem li a {
     padding: 0.45em 0 0.5em;
     margin: 1px 0 0 0;
 }
 
-#portal-column-one .portletNavigationTree .portletItem li a {
-    padding: 0.45em 0 0.5em;
-}
-
 /* Fix the line-height */
+.icons-on #navigation-mobile .portletNavigationTree span,
 .icons-on #portal-column-one .portletNavigationTree span {
     line-height: 1.5em !important;
 }
 
+#navigation-mobile .navTreeItem a,
 #portal-column-one .navTreeItem a {
     border-width: 0;
     background-color: transparent;
     color: &dtml-leftNavTextColor;;
 }
 
+#navigation-mobile .portletNavigationTree a.state-published,
 #portal-column-one .portletNavigationTree a.state-published {
     color: &dtml-leftNavTextColor; !important; 
 }
 
+#navigation-mobile .portletNavigationTree a.state-published:hover,
 #portal-column-one .portletNavigationTree a.state-published:hover,
+#navigation-mobile .navTreeItem a:hover,
 #portal-column-one .navTreeItem a:hover {
     color: &dtml-leftNavTextHoverColor; !important;
 }
 
+#navigation-mobile ul.navTreeLevel1 .navTreeItem a,
 #portal-column-one ul.navTreeLevel1 .navTreeItem a {
     padding-top: 0.25em;
     padding-bottom: 0.45em;
 }
 
+#navigation-mobile ul.navTreeLevel1 .navTreeItem a,
+#navigation-mobile ul.navTreeLevel1 .navTreeItem a:hover,
 #portal-column-one ul.navTreeLevel1 .navTreeItem a,
 #portal-column-one ul.navTreeLevel1 .navTreeItem a:hover {
     background-color: transparent;
     color: &dtml-leftNavTextColor;;
 }
 
+#navigation-mobile ul.navTreeLevel1 .navTreeItem a:hover,
 #portal-column-one ul.navTreeLevel1 .navTreeItem a:hover {
     color: &dtml-leftNavTextHoverColor;;
 }
 
-
+#navigation-mobile .portletNavigationTree .portletItem ul.navTreeLevel1,
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
     background-color: &dtml-leftSubNavBackground;;
     border: &dtml-leftNavBorderColor; solid 1px;
     margin: 0 0.25em 0.75em 0.25em;
 }
 
+#navigation-mobile .navTreeItem .navTreeCurrentItem,
+#navigation-mobile .navTreeItem .navTreeCurrentNode,
+#navigation-mobile .navTreeItem .navTreeItemInPath,
+#navigation-mobile ul.navTreeLevel1 .navTreeItem .navTreeCurrentItem,
 #portal-column-one .navTreeItem .navTreeCurrentItem,
 #portal-column-one .navTreeItem .navTreeCurrentNode,
 #portal-column-one .navTreeItem .navTreeItemInPath,
@@ -433,24 +489,30 @@ body {
     border-width: 0 !important;
 }
 
+#navigation-mobile .navTreeCurrentItem>a,
+#navigation-mobile .navTreeCurrentNode>a,
+#navigation-mobile .navTreeItemInPath>a,
 #portal-column-one .navTreeCurrentItem>a,
 #portal-column-one .navTreeCurrentNode>a,
 #portal-column-one .navTreeItemInPath>a {
     font-weight: bold;  
 }
 
+#navigation-mobile ul.navTreeLevel1 .navTreeCurrentItem,
 #portal-column-one ul.navTreeLevel1 .navTreeCurrentItem {
     background-color: transparent;
 }
 
-#portal-column-one .portletFooter {
+#portal-column-one .portletFooter,
+#portlets-mobile .portletFooter {
     display: none;
 }
 
 /* RSS Image in right and left column */
 
 #portal-column-one dl.portletfeedmixer a.rssImage,
-#portal-column-two dl.portletfeedmixer a.rssImage {
+#portal-column-two dl.portletfeedmixer a.rssImage,
+#portlets-mobile dl.portletfeedmixer a.rssImage {
     display: block;
     text-align: left;
     margin-top: 0.5em;
@@ -461,7 +523,9 @@ body {
 #rightcolumn dl.portletfeedmixer dd.summary span.date,
 #portal-column-one dl.portletfeedmixer dd.summary div.date,
 #portal-column-two dl.portletfeedmixer dd.summary div.date,
-#rightcolumn dl.portletfeedmixer dd.summary div.date {
+#rightcolumn dl.portletfeedmixer dd.summary div.date,
+#portlets-mobile dl.portletfeedmixer dd.summary span.date,
+#portlets-mobile dl.portletfeedmixer dd.summary div.date {
     text-align: left;
     color: #4D4D4D;
     font-size: 0.9375em;
@@ -473,24 +537,29 @@ body {
 #rightcolumn dl.portletfeedmixer span.summary,
 #portal-column-one dl.portletfeedmixer div.summary,
 #portal-column-two dl.portletfeedmixer div.summary,
-#rightcolumn dl.portletfeedmixer div.summary {
+#rightcolumn dl.portletfeedmixer div.summary,
+#portlets-mobile dl.portletfeedmixer span.summary,
+#portlets-mobile dl.portletfeedmixer div.summary {
     text-align: left;
 }
 
 /* Image portlet */
 
 #portal-column-one .imagePortlet,
-#portal-column-two .imagePortlet {
-    margin: 3em 0;
+#portal-column-two .imagePortlet,
+#portlets-mobile .imagePortlet {
+    padding: 1.5em 0;
 }
 
 #portal-column-one .imagePortlet li,
-#portal-column-two .imagePortlet li {
+#portal-column-two .imagePortlet li,
+#portlets-mobile .imagePortlet li {
     margin: 1em 0 1.625em 0;
 }
 
 #portal-column-one .imagePortlet a,
-#portal-column-two .imagePortlet a {
+#portal-column-two .imagePortlet a,
+#portlets-mobile .imagePortlet a {
     display: block;
     text-align: center;
     text-decoration: none;
@@ -498,25 +567,29 @@ body {
 }
 
 #portal-column-one .imagePortlet a:hover,
-#portal-column-two .imagePortlet a:hover {
+#portal-column-two .imagePortlet a:hover,
+#portlets-mobile .imagePortlet a:hover {
     text-decoration: underline;
     color: &dtml-leftLinkTextHoverColor;;
 }
 
 #portal-column-one .imagePortlet p,
-#portal-column-two .imagePortlet p {
+#portal-column-two .imagePortlet p,
+#portlets-mobile .imagePortlet p {
     display: block;
     text-align: center;
     font-size: 0.9375em;
 }
 
 #portal-column-one .imagePortlet .portlet li a.icon,
-#portal-column-two .imagePortlet .portlet li a.icon {
+#portal-column-two .imagePortlet .portlet li a.icon,
+#portlets-mobile .imagePortlet .portlet li a.icon {
     margin-bottom: 0.1875em;
 }
 
 #portal-column-one .imagePortlet .portlet li a.shadow:hover img,
-#portal-column-two .imagePortlet .portlet li a.shadow:hover img {
+#portal-column-two .imagePortlet .portlet li a.shadow:hover img,
+#portlets-mobile .imagePortlet .portlet li a.shadow:hover img {
     -moz-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     -webkit-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
@@ -525,11 +598,13 @@ body {
 
 /* Link Icons */
 
+#portlets-mobile .linkIcon,
 #portal-column-one .linkIcon,
 #portal-column-two .linkIcon {
-    margin: 1em -0.125em 1em -0.125em;
+    margin: 1em 0;
 }
 
+#portlets-mobile .linkIcon .portletItem li,
 #portal-column-one .linkIcon .portletItem li,
 #portal-column-two .linkIcon .portletItem li {
     line-height: 1.1875em;
@@ -539,23 +614,27 @@ body {
     background-image: none;
 }
 
+#portlets-mobile .linkIcon a,
 #portal-column-one .linkIcon a,
 #portal-column-two .linkIcon a {
     text-decoration: none;
     color: &dtml-leftLinkTextColor;;
 }
 
+#portlets-mobile .linkIcon a:hover span,
 #portal-column-one .linkIcon a:hover span,
 #portal-column-two .linkIcon a:hover span {
     text-decoration: underline;
     color: &dtml-leftLinkTextHoverColor;;
 }
 
+#portlets-mobile .linkIcon a span,
 #portal-column-one .linkIcon a span,
 #portal-column-two .linkIcon a span {
     vertical-align: middle;
 }
 
+#portlets-mobile .linkIcon img, 
 #portal-column-one .linkIcon img, 
 #portal-column-two .linkIcon img {
 	padding-right: 0.375em;
@@ -567,16 +646,19 @@ body {
 
 /* Link Buttons */
 
+#portlets-mobile .linkButton,
 #portal-column-one .linkButton,
 #portal-column-two .linkButton {
     margin: 30px 0;
 }
 
+#portlets-mobile .linkButton ul,
 #portal-column-one .linkButton ul,
 #portal-column-two .linkButton ul {
     margin: 10px 0;
 }
 
+#portlets-mobile .linkButton li,
 #portal-column-one .linkButton li,
 #portal-column-two .linkButton .portletItem li {
     display: block;
@@ -597,6 +679,7 @@ body {
     box-shadow: 0 2px 2px #D1D6DF;    
 }
 
+#portlets-mobile .linkButton li:hover,
 #portal-column-one .linkButton li:hover,
 #portal-column-two .linkButton .portletItem li:hover {
     -moz-box-shadow: 0 1px 1px #A4A8AF;
@@ -604,6 +687,7 @@ body {
     box-shadow: 0 1px 1px #A4A8AF;   
 }
 
+#portlets-mobile .linkButton strong,
 #portal-column-one .linkButton strong,
 #portal-column-two .linkButton strong {
     padding: 0;
@@ -611,6 +695,8 @@ body {
     display: block
 }
 
+#portlets-mobile .linkButton a,
+#portlets-mobile .linkButton a:hover,
 #portal-column-one .linkButton a,
 #portal-column-two .linkButton .portletItem a,
 #portal-column-one .linkButton a:hover,
@@ -626,12 +712,14 @@ body {
     background-color: transparent;
 }
 
+#portlets-mobile .linkButton li.internal-link a,
 #portal-column-one .linkButton li.internal-link a,
 #portal-column-two .linkButton li.internal-link a {
     color: &dtml-leftButtonTextColor_internal;;
     background-color: transparent;
 }
 
+#portlets-mobile .linkButton li.internal-link,
 #portal-column-one .linkButton li.internal-link,
 #portal-column-two .linkButton li.internal-link {
     background-color: &dtml-leftButtonBackground_internal;;
@@ -641,6 +729,7 @@ body {
     background-position: left bottom;
 }
 
+#portlets-mobile .linkButton li.internal-link:hover,
 #portal-column-one .linkButton li.internal-link:hover,
 #portal-column-two .linkButton .portletItem li.internal-link:hover {
     border-color:<dtml-var expr="gradientEnd(startColor=leftButtonBackground_external)">;
@@ -654,10 +743,8 @@ body {
     padding: 0;
     background-color: &dtml-backgroundColor;;
     vertical-align: top;
-}
-
-#portal-column-content.sl {
-    margin-left: 186px;
+    display: table-cell;
+    border: none;
 }
 
 #portal-column-content.sr {
@@ -748,11 +835,12 @@ body {
 /* = portal-column-two ===================================== */
 
 #portal-column-two {
-    padding: 12px;
+    padding: 0.75em 1.006711409395973%; /* 9/894 */
     margin: 0;
     background-color: &dtml-insideRightPortletBackgroundColor;;
-    width: 160px;
+    width: 19.31160614541387%;  /* 172.64575/894 */
     vertical-align: top;
+    display: table-cell;
 }
 
 #portal-column-two h2 {
@@ -1174,13 +1262,17 @@ body.template-person_view #content h3 {
 
 #portal-footer {
     margin: 0;
-    border-width: 0 1px 0 1px;
+    border-width: 0 1px;
     border-style: solid;
     border-color: #808080;
+    border-collapse: separate;
+    border-spacing: 0;
+    display: table;
     background-color: &dtml-footerBackgroundColor;;
     color: &dtml-footerTextColor;;
     font-size: 0.71875em;
     padding: 0.5em 0;
+    width: 99.776785714285714%; /* 894/896 */
 }
 
 #portal-footer a, #portal-footer a:visited {
@@ -1825,6 +1917,17 @@ dl.portalMessageOneColumn dd {
     display: block;
 }
 
+.icons-on #portlets-mobile .contenttype-document,
+.icons-on #portlets-mobile .contenttype-event,
+.icons-on #portlets-mobile .contenttype-folder,
+.icons-on #portlets-mobile .contenttype-link,
+.icons-on #portlets-mobile .contenttype-news-item,
+.icons-on #portlets-mobile .contenttype-plone-site,
+.icons-on #portlets-mobile .contenttype-topic {
+    line-height: 1.5em !important;
+    display: block;
+}
+
 .icons-on #content .contenttype-document,
 .icons-on #content .contenttype-event,
 .icons-on #content .contenttype-folder,
@@ -1912,6 +2015,7 @@ q {
 
 /* Collection portlet in left column */
 
+#portlets-mobile .portletCollection dd,
 #portal-column-one .portletCollection dd {
     font-size: 1.03125em;
     padding: 0.375em 0;
@@ -1921,24 +2025,29 @@ q {
 
 /* Feedmixer in left column */
 
+#portlets-mobile .portletfeedmixer .portletItem,
 #portal-column-one .portletfeedmixer .portletItem {
     border-left-width: 0;
     border-right-width: 0;
 }
 
+#portlets-mobile .portletfeedmixer .portletItem img,
 #portal-column-one .portletfeedmixer .portletItem img {
     max-width: 166px;
     margin-bottom: 0.125em;
 }
 
+#portlets-mobile .portletfeedmixer .portletItem .title,
 #portal-column-one .portletfeedmixer .portletItem .title {
     font-size: 1.125em;
 }
 
+#portlets-mobile .portletfeedmixer .even,
 #portal-column-one .portletfeedmixer .even {
     background-color: transparent;
 }
 
+#portlets-mobile .portletfeedmixer .date,
 #portal-column-one .portletfeedmixer .date {
     font-weight: normal;
     color: #333333;
@@ -1948,7 +2057,7 @@ q {
 #content u,
 #content-text u,
 #content-core u {
-    text-decoration: none;
+    text-decoration: none !important; /* ever! */
 }
 
 /* overlaycontent font size is too large */
@@ -2058,7 +2167,8 @@ body.template-agenda_view #document-toc h3 {
 
 #content .hiddenStructure, 
 #portal-top-navigation .hiddenStructure, 
-#portal-column-one .hiddenStructure {
+#portal-column-one .hiddenStructure,
+#portlets-mobile .hiddenStructure {
     margin: -1px 0 0 -1px !important;
     padding: 0 !important;
     position: absolute;
@@ -2106,7 +2216,8 @@ table.events td.canceled span {
     font-size: 0.6875em;
 }
 
-#portal-column-one .managePortletsLink {
+#portal-column-one .managePortletsLink,
+#portlets-mobile .managePortletsLink {
     font-size: 0.5625em;
     font-size: 0.625rem;
 }
@@ -2159,7 +2270,8 @@ a.state-deleted {
 }
 
 /* Portlets */
-#portal-column-one div.managedPortlet {
+#portal-column-one div.managedPortlet,
+#portlets-mobile div.managedPortlet {
     padding: 0.5em;
 }
 
@@ -2323,6 +2435,11 @@ html {
 body.template-by_county_summary_view #content .tileItemLeadImage,
 body.template-by_county_summary_view #content .tileSummaryLeadImage {
     border-top: none !important;
+}
+
+
+.twtr-doc {
+    width: auto !important;
 }
 
 /* YOUR CSS RULES STOP HERE */

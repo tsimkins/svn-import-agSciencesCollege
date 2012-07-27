@@ -94,6 +94,42 @@
     enabled="1" expression=""  media="print"
     conditionalcomment="IE"
     rel="stylesheet" rendering="import"/>    
+
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="on" expression="" id="resolution-890.css" insert-after="*"
+    media="handheld, screen and (max-width: 890px)" rel="stylesheet"
+    rendering="import"/>
+    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="on" expression="" id="resolution-768.css" insert-after="resolution-890.css"
+    media="handheld, screen and (max-width: 768px)" rel="stylesheet"
+    rendering="import"/>
+    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="on" expression="" id="resolution-520.css" insert-after="resolution-768.css"
+    media="handheld, screen and (max-width: 520px)" rel="stylesheet"
+    rendering="import"/>
+    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="on" expression="" id="resolution-480.css" insert-after="resolution-520.css"
+    media="handheld, screen and (max-width: 480px)" rel="stylesheet"
+    rendering="import"/>
+    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="True" expression="" id="resolution-320.css" insert-after="resolution-480.css"
+    media="handheld, screen and (max-width: 320px)" rel="stylesheet"
+    rendering="import"/>
+    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="True" expression="" id="resolution-200.css" insert-after="resolution-320.css"
+    media="handheld, screen and (max-width: 200px)" rel="stylesheet"
+    rendering="import"/>
     
  <stylesheet id="columns.css" enabled="0"/>
 

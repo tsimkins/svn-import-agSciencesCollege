@@ -1,0 +1,36 @@
+div.portletsBelowContentA,
+div.portletsBelowContentB,
+div.portletsBelowContentC,
+div.portletsBelowContentD,
+div.portletsBelowContentE {
+	width: 97.5%; /* (480 - 12)/480 */
+	float: left;
+	padding: 0.5em 1.25%;  /* 6/480 */
+}
+
+
+#header-mobile #logo-site {
+    position: relative;
+    width: 95.384615384615385%;  /* (520-24)/520 */
+    margin-left: 2.307692307692308%;  /* 12/520 */
+    margin-right: 2.307692307692308%;  /* 12/520 */
+    margin-top: 0.25em;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+#header-mobile #portal-searchbox {
+    position: relative;
+    width: 95.384615384615385%;  /* (520-24)/520 */
+    margin: 1em 2.307692307692308%;  /* 12/520 */
+    text-decoration: none;
+    top: 0;
+    left: 0;
+}
+
+.LSBox {
+    display: block;
+    padding-right: 1px;
+    text-align: left;
+    float: none;
+}

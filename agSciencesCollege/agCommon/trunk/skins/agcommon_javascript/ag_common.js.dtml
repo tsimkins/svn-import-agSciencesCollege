@@ -15,37 +15,30 @@ function resizeColumns()
 
 function doresizeColumns()
 {
-    // For front page, equalize center column height 
-    var bodyClass = document.body.className;
-    var contentWrapper = document.getElementById("portal-column-content");
-    var centerColumn = document.getElementById("centercolumn");
-    var personalTools = document.getElementById("portal-personaltools");
+    rightcolumn = jq("body.template-document_homepage_view #rightcolumn");
+    portalColumnContent = jq("body.template-document_homepage_view #portal-column-content");
 
-    if(!personalTools && bodyClass.match(/template-document_homepage_view/) && contentWrapper && centerColumn && (msieversion() >= 8 || msieversion() == 0))
+    if (window.innerWidth <= 768)
     {
-        centerColumn.style.height = "auto";
-        iHeight = centerColumn.offsetHeight;
-
-        // failsafe so we don't infinitely loop in case something isn't as we thought.
-        failsafe = 0;
-
-        // 3 is the margin between the right inside column and the bottom.  Otherwise we go into an infinite loop!
-
-        while (failsafe<500 && (centerColumn.offsetTop + centerColumn.offsetHeight) < (contentWrapper.offsetTop + contentWrapper.offsetHeight - 3))
-        {
-            iHeight++;
-            failsafe++;
-            centerColumn.style.height = iHeight + "px";
-        }
-        
+        rightcolumn.css('height', 'auto');
+        portalColumnContent.css('height', 'auto');
+        return false;
     }
+
+    if (rightcolumn.size())
+    {
+        var heightDiff = (portalColumnContent.position().top + portalColumnContent.outerHeight()) - (rightcolumn.position().top + rightcolumn.outerHeight()) ;
+        var newHeight = rightcolumn.height() + heightDiff -3;
+        rightcolumn.height(newHeight);
+    }
+
 }
 
 function msieversion()
 {
     var ua = window.navigator.userAgent
     var msie = ua.indexOf ( "MSIE " )
-    
+
     if ( msie > 0 )      // If Internet Explorer, return version number
         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
     else                 // If another browser, return 0
@@ -73,14 +66,14 @@ function getElement(theId, vPadding, IEvPadding)
     {
         theElement.vPadding = vPadding;
     }
-    
+
     return theElement;
 }
 
 function setSearch()
 {
     var theSearchButton = document.getElementById("goSearch");
-    var theSearchDropdown = document.getElementById("searchSource");    
+    var theSearchDropdown = document.getElementById("searchSource");
     var thePloneSearchForm = document.getElementById("plonesearchform");
 
     if (theSearchButton && theSearchDropdown && thePloneSearchForm)
@@ -90,16 +83,16 @@ function setSearch()
         theSearchButton.onclick = function () {
             return searchOnSubmit();
         }
-        
+
         thePloneSearchForm.onsubmit = function () {
             return searchOnSubmit();
         }
-    }        
+    }
 }
 
 function searchOnSubmit()
 {
-    var theSearchDropdown = document.getElementById("searchSource");            
+    var theSearchDropdown = document.getElementById("searchSource");
     var theSearchForm = document.getElementById("GoogleSearch");
     var theSearchBox = document.getElementById("SearchableText");
     var theCustomSearchBox = document.getElementById("GoogleCustomSearch");
@@ -132,26 +125,11 @@ function searchOnSubmit()
             return true;
         }
     }
-    
+
 }
 
 registerPloneFunction(setSearch);
 registerPloneFunction(resizeColumns);
-
-/* Show mobile version link for mobile browsers */
-
-jq(document).ready( function () {
-    var mobileRegex = /(iphone|ipod|android|blackberry|symbian|midp|windows ce|treo|webos|mobile safari)/;
-    var userAgent = navigator.userAgent.toLowerCase();
-
-    if (mobileRegex.test(userAgent))
-    {
-        jq("#visual-portal-wrapper").prepend(jq('<div id="mobile-version"><a href="m">Mobile Version</a></div>'));
-    }
-
-    
-} );
-
 
 /* Hide Short Name from Add screen */
 
@@ -181,28 +159,28 @@ jq(document).ready( function () {
 jq(document).ready(
 	function () {
         jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription #parent-fieldname-description, body.custom-semicolon-delimited #content #parent-fieldname-description .documentDescription').each(
-        
+
             function()
             {
                 var lines = this.innerHTML.split(";");
-    
+
                 var new_html =  "<ul>";
-    
+
                 for (var i=0; i<lines.length; i++)
                 {
                     var line_text = lines[i];
-                    
+
                     if (line_text.match(":"))
                     {
                         list = line_text.split(":");
                         line_text = "<strong>" + list[0] + ":</strong>" + list[1];
                     }
-                    
+
                     new_html = new_html + "<li>" + line_text + "</li>";
                 }
-    
+
                 new_html = new_html + "</ul>";
-                
+
                 this.innerHTML = new_html
             }
         );
@@ -217,14 +195,14 @@ jq(document).ready(
 	function () {
 
         isTwoColumn = jq('body.custom-two-column').length;
-        
+
         if (isTwoColumn)
         {
             // Grab items from Summary View
 
             summary_items = jq('body.custom-two-column #content>div>.tileItem');
             insert_after = jq('body.custom-two-column #content>div>.tileItem:last');
-    
+
             if (summary_items.length == 0)
             {
                 summary_items = jq('body.custom-two-column #content>div>.tileItem');
@@ -233,31 +211,31 @@ jq(document).ready(
 
 
             // Grab items from Standard View
-                
+
             listing_items = jq('body.custom-two-column #content .tileTitle');
 
             // Process Summary Items
-    
+
             if (summary_items.length >= 1)
             {
-                
+
                 first_column_items = Math.ceil(summary_items.length/2)
-    
+
                 two_column_left = jq('<div id="two-column-left"></div>');
                 two_column_right = jq('<div id="two-column-right"></div>');
-    
-                insert_after.after('<div class="visualClear">&nbsp;</div>');   
-                insert_after.after(two_column_right);        
+
+                insert_after.after('<div class="visualClear">&nbsp;</div>');
+                insert_after.after(two_column_right);
                 insert_after.after(two_column_left);
-                
+
                 item_count = 0;
-    
+
                 summary_items.each(
 
                     function()
                     {
                         item_count++;
-    
+
                         if (item_count <= first_column_items)
                         {
                             two_column_left.append(this);
@@ -266,27 +244,27 @@ jq(document).ready(
                         {
                             two_column_right.append(this);
                         }
-    
+
                     }
                 );
-                
+
             }
-    
+
             else if (listing_items.length >= 1)
             {
                 first_column_items = Math.ceil(listing_items.length/2)
-    
+
                 two_column_left = jq('<dl id="two-column-left"></dl>');
                 two_column_right = jq('<dl id="two-column-right"></dl>');
 
                 theList = jq('body.custom-two-column #content dl:not(#history)');
-    
+
                 theList.before(two_column_left);
-                theList.before(two_column_right);  
-                theList.before('<div class="visualClear">&nbsp;</div>');   
-                
+                theList.before(two_column_right);
+                theList.before('<div class="visualClear">&nbsp;</div>');
+
                 item_count = 0;
-    
+
                 jq('body.custom-two-column #content .tileTitle').each(
                     function()
                     {
@@ -294,7 +272,7 @@ jq(document).ready(
                         {
                             item_count++;
                         }
-    
+
                         if (item_count <= first_column_items)
                         {
                             two_column_left.append(this);
@@ -303,10 +281,10 @@ jq(document).ready(
                         {
                             two_column_right.append(this);
                         }
-    
+
                     }
                 );
-                
+
             }
     	}
 	}
@@ -434,17 +412,17 @@ jq(document).ready(
             return false;
         }
 
-        // get the start date from the form 
+        // get the start date from the form
         var eventStartDate = getEventDate("startDate");
 
         // does the start date match the end date (aka are we adding an event?)
         if (eventStartDate.getTime() == getEventDate("endDate").getTime()) {
 
             // Our convention is that if both dates are set to Midnight, (12:00am)
-            // and both dates are the same, then we leave the hours part off of 
+            // and both dates are the same, then we leave the hours part off of
             // any display.  Making an exception for this case so we don't accidentally
             // set midnight to 1am events.
-            
+
             if (eventStartDate.getHours() == 0 && eventStartDate.getMinutes() == 0)
             {
                 return false;
@@ -473,7 +451,7 @@ jq(document).ready(
 );
 
 /*
-    Using ugly browser version checking to add two-column factsheet printing to 
+    Using ugly browser version checking to add two-column factsheet printing to
     AddThis bar.  This only works in Firefox.
 */
 
@@ -491,7 +469,7 @@ jq(document).ready(
                 two_column.show();
                 two_column.click(function () {
 
-                
+
                 alert("This is an experimental feature for printing factsheets in two columns that is only available in Firefox 4 and above. If it doesn't print well, just click on the printer icon to print in a single column.\n\nRecommended settings:\n\n  * Check 'Ignore Scaling and Shrink To Fit Page Width' in 'Print' Dialog.\n  * Go to about:config and set print.print_margin_* to 0.25.");
                 jq('body').addClass('two_column_print');
                 window.print();
@@ -515,51 +493,245 @@ jq(document).ready(
     }
 );
 
+function toggleNav(header, nav)
+{
+    // make nav expandable/contractable
+    if (window.innerWidth > 520)
+    {
+        // remove icon
+        jq(header + " img").remove();
+
+        // Toggle Nav
+        jq(nav).show()
+    }
+    else
+    {
+        // Fiddle nav
+
+        jq(header).each(
+            function() {
+                if (!jq(this).children('img').size())
+                {
+                    // Add + icon
+                    var nav_icon = jq('<img src="&dtml-portal_url;/menu-expand.png" class="icon" alt="Expand Menu" />').appendTo(jq(this));
+
+                    // Toggle Nav
+                    jq(nav).hide()
+
+                    // Set on click handler
+                    nav_icon.click(
+                        function() {
+                            jq(nav).toggle();
+
+                            if (jq(this).attr('src').indexOf("menu-expand") >= 0)
+                            {
+                                jq(this).attr('alt', 'Hide Menu');
+                                var newSrc = jq(this).attr('src').replace('menu-expand', 'menu-contract');
+                                jq(this).attr('src', newSrc);
+                            }
+                            else
+                            {
+                                jq(this).attr('alt', 'Expand Menu');
+                                var newSrc = jq(this).attr('src').replace('menu-contract', 'menu-expand');
+                                jq(this).attr('src', newSrc);
+                            }
+
+                        }
+                    );
+                }
+            }
+        );
+    }
+
+}
+
+
+
+/* Make main navigation into dropdown */
+
+function mobileNav() {
+
+    var homepage_body = jq("body.portaltype-homepage");
+
+    // Move top nav bar below content, except for homepages.
+    if (window.innerWidth > 520)
+    {
+        if (jq("#navigation-mobile").size())
+        {
+            jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-top');
+            
+            jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
+            jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
+            jq("#navigation-mobile").remove();
+        }
+    }
+    else
+    {
+        // Don't move top nav below content if homepage!
+        
+        var mobile_nave = jq();
+        
+        if (homepage_body.size())
+        {
+            mobile_nav = jq("#portal-top #navigation-mobile");
+        }
+        else
+        {
+            mobile_nav = jq("#portal-column-content #viewlet-below-content #navigation-mobile");
+        }
+
+        if (! mobile_nav.size() )
+        {
+            if (homepage_body.size())
+            {
+                mobile_nav = jq('<div id="navigation-mobile"></div>').appendTo("#portal-top");
+            }
+            else
+            {
+                mobile_nav = jq('<div id="navigation-mobile"></div>').appendTo("#portal-column-content #viewlet-below-content");
+            }
+
+
+            mobile_portletWrapper = jq('<div class="portletWrapper"></div>').appendTo(mobile_nav);
+            mobile_portletWrapper.append(jq('<h2 class="portletHeader portletNavigationHeader"><span>Site Navigation</span></h2>'));
+            jq("#portal-top-navigation").detach().appendTo(mobile_portletWrapper);
+            
+            // If we are at the main navigation (no header) move that *inside* the mobile nav.
+            
+            var section_nav = jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree");
+            
+            if (section_nav.size())
+            {
+                var portletWrapper = section_nav.parent();
+                if (portletWrapper.children("h2.hiddenStructure").size())
+                {
+                    section_nav.each(
+                        function () {
+                            jq(this).detach().appendTo(jq("#navigation-mobile .portletWrapper"));
+                        }
+                    );
+                }
+            }
+        }
+    }
+
+    // Make left navigation +/-
+    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree");
+
+    // Make mobile top navigation +/-
+    toggleNav("#navigation-mobile .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletNavigationTree");
+
+    // Move first column portlets
+    if (window.innerWidth > 520)
+    {
+
+        if (jq("#portlets-mobile").size())
+        {
+            jq("#portlets-mobile .portletWrapper").each(
+                function () {
+                    jq(this).appendTo(jq("#portal-column-one #portal-column-one-visualPadding"));
+                }
+            );
+
+            jq("#portlets-mobile").remove();
+        }
+    }
+    else
+    {
+        var mobile_portlets = jq("#portal-column-content #viewlet-below-content #portlets-mobile");
+
+        if (! mobile_portlets.size() )
+        {
+            mobile_portlets = jq('<div id="portlets-mobile"></div>').appendTo("#portal-column-content #viewlet-below-content");
+            jq("#portal-column-one .portletWrapper").each(
+                function () {
+
+                    if (jq(this).children(".portlet").size() && ! jq(this).children(".portletNavigationTree").size())
+                    {
+                        jq(this).appendTo(jq(mobile_portlets));
+                    }
+                }
+            );
+        }
+    }
+
+}
+
+function adjustHeader() {
+    if (window.innerWidth > 480)
+    {
+        if (jq("#header-mobile").size())
+        {
+            jq("#header-mobile #portal-searchbox").insertBefore(jq("#portal-header #logo-psu"));
+            jq("#header-mobile #logo-site").appendTo(jq("#portal-header"));
+            jq("#header-mobile").remove();
+        }
+    }
+    else
+    {
+        var mobile_header = jq("#header-mobile");
+
+        if (! mobile_header.size() )
+        {
+            mobile_header = jq('<div id="header-mobile"></div>').insertAfter("#portal-header");
+            jq("#portal-header #logo-site").appendTo(mobile_header);
+            jq("#portal-header #portal-searchbox").appendTo(mobile_header);
+        }
+    }
+    
+}
+
 
 /* Top navigation equalizer */
 
 jq(document).ready(
     function() {
         equalizeTopNav();
+        resizeColumns();
+        mobileNav();
+        adjustHeader();
     }
 );
 
 jq(window).resize(
     function() {
         equalizeTopNav();
+        resizeColumns();
+        mobileNav();
+        adjustHeader();
     }
 );
-    
+
 function equalizeTopNav() {
 
-    if (window.innerWidth <= 500)
+    if (window.innerWidth <= 768)
     {
         return false;
     }
-        
+
     topnav = jq('#portal-top-navigation');
     topnavitems = jq('#portal-top-navigation li a');
     min_padding = 4;
     if (topnav && topnavitems)
     {
         topnav_width = topnav.width();
-        topnav_width += Number(topnav.css('padding-left').replace('px', ''));                        
-        topnav_width += Number(topnav.css('padding-right').replace('px', ''));                        
-        topnav_width += Number(topnav.css('margin-left').replace('px', ''));                        
-        topnav_width += Number(topnav.css('margin-right').replace('px', '')); 
-        topnav_width += Number(topnav.css('border-left-width').replace('px', '')); 
-        topnav_width += Number(topnav.css('border-right-width').replace('px', '')); 
+        topnav_width += Number(topnav.css('padding-left').replace('px', ''));
+        topnav_width += Number(topnav.css('padding-right').replace('px', ''));
+        topnav_width += Number(topnav.css('margin-left').replace('px', ''));
+        topnav_width += Number(topnav.css('margin-right').replace('px', ''));
+        topnav_width += Number(topnav.css('border-left-width').replace('px', ''));
+        topnav_width += Number(topnav.css('border-right-width').replace('px', ''));
 
         total_item_width = 0;
 
         topnavitems.each(
             function() {
                 item_width = jq(this).width();
-                item_width += Number(jq(this).css('padding-left').replace('px', ''));                        
-                item_width += Number(jq(this).css('padding-right').replace('px', ''));                        
-                item_width += Number(jq(this).css('margin-left').replace('px', ''));                        
+                item_width += Number(jq(this).css('padding-left').replace('px', ''));
+                item_width += Number(jq(this).css('padding-right').replace('px', ''));
+                item_width += Number(jq(this).css('margin-left').replace('px', ''));
                 item_width += Number(jq(this).css('margin-right').replace('px', ''));
-                item_width += Number(jq(this).css('border-left-width').replace('px', ''));                        
+                item_width += Number(jq(this).css('border-left-width').replace('px', ''));
                 item_width += Number(jq(this).css('border-right-width').replace('px', ''));
                 total_item_width += item_width;
             }
@@ -568,7 +740,7 @@ function equalizeTopNav() {
         additional_item_padding = Number( ((topnav_width - total_item_width)/topnavitems.size())/2  );
 
         max_padding = 50;
-        
+
         if (additional_item_padding > max_padding)
         {
             additional_item_padding = max_padding;
@@ -593,34 +765,34 @@ function equalizeTopNav() {
  * --------------
  * @param Function comparator:
  *   Exactly the same behaviour as [1,2,3].sort(comparator)
- *   
+ *
  * @param Function getSortable
  *   A function that should return the element that is
  *   to be sorted. The comparator will run on the
  *   current collection, but you may want the actual
  *   resulting sort to occur on a parent or another
  *   associated element.
- *   
+ *
  *   E.g. $('td').sortElements(comparator, function(){
- *      return this.parentNode; 
+ *      return this.parentNode;
  *   })
- *   
+ *
  *   The <td>'s parent (<tr>) will be sorted instead
  *   of the <td> itself.
  */
 jq.fn.sortElements = (function(){
- 
+
     var sort = [].sort;
- 
+
     return function(comparator, getSortable) {
- 
+
         getSortable = getSortable || function(){return this;};
- 
+
         var placements = this.map(function(){
- 
+
             var sortElement = getSortable.call(this),
                 parentNode = sortElement.parentNode,
- 
+
                 // Since the element itself will change position, we have
                 // to have some way of storing its original position in
                 // the DOM. The easiest way is to have a 'flag' node:
@@ -628,30 +800,30 @@ jq.fn.sortElements = (function(){
                     document.createTextNode(''),
                     sortElement.nextSibling
                 );
- 
+
             return function() {
- 
+
                 if (parentNode === this) {
                     throw new Error(
                         "You can't sort elements if any one is a descendant of another."
                     );
                 }
- 
+
                 // Insert before flag:
                 parentNode.insertBefore(this, nextSibling);
                 // Remove flag:
                 parentNode.removeChild(nextSibling);
- 
+
             };
- 
+
         });
- 
+
         return sort.call(this, comparator).each(function(i){
             placements[i].call(getSortable.call(this));
         });
- 
+
     };
- 
+
 })();
 
 

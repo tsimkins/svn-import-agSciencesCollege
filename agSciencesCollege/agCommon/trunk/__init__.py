@@ -216,38 +216,86 @@ def getHomepageImage(context):
     
     return """
 
+    var homepageBackgroundHeight = 0;
+
+    function setHomepageImage() {
+        homepageImage = jq("body.template-document_homepage_view #homepageimage");
+        breadcrumbs = jq("body.template-document_homepage_view #portal-breadcrumbs");
+        if (homepageImage.length)
+        {
+            var backgrounds = "%s".split(";");
+            var backgroundAlignments = "%s".split(";");
+            var backgroundHeights = "%s".split(";");
+            var randomnumber = Math.floor(Math.random()*backgrounds.length);
+
+            homepageBackgroundHeight = backgroundHeights[randomnumber];
+
+            homepageImage.css('background-image', "url(" + backgrounds[randomnumber] + ")");
+            homepageImage.css('background-position', backgroundAlignments[randomnumber] + " top");
+            homepageImage.css("height", backgroundHeights[randomnumber] + 'px');
+
+            jq("body.template-document_homepage_view #homepageimage div.overlay").each(
+                function () {
+                    jq(this).css("height", backgroundHeights[randomnumber] + 'px');
+                }
+            );
+
+            if (backgrounds.length && breadcrumbs.length)
+            {
+                breadcrumbs.addClass("homepage");
+            }
+
+            %s
+            
+            scaleHomepageImage();
+            
+        }
+    }
+
+    function scaleHomepageImage() {
+        var homepageImage = jq("body.template-document_homepage_view #homepageimage");
+
+        if (homepageImage)
+        {
+            var ratio = homepageImage.width()/700; // Homepage image height
+            var newHeight = ratio*homepageBackgroundHeight;
+            homepageImage.css("height", newHeight + 'px');
+
+            jq("body.template-document_homepage_view #homepageimage div.overlay").each(
+                function () {
+                    jq(this).css("height", newHeight + 'px');
+                }
+            );
+
+            jq("body.template-document_homepage_view #homepageimage div.text").each(
+                function () {
+                    jq(this).css("font-size", ratio + 'em');
+                }
+            );
+
+            jq("body.template-document_homepage_view #homepageimage embed").each(
+                function () {
+                    jq(this).attr("height", newHeight);
+                }
+            );
+
+        }
+        
+    }
+        
+
     jq(document).ready(
         function () {
-            homepageImage = jq("body.template-document_homepage_view #homepageimage");
-            breadcrumbs = jq("body.template-document_homepage_view #portal-breadcrumbs");
-            if (homepageImage.length)
-            {
-                var backgrounds = "%s".split(";");
-                var backgroundAlignments = "%s".split(";");
-                var backgroundHeights = "%s".split(";");
-                var randomnumber = Math.floor(Math.random()*backgrounds.length);
-    
-                homepageImage.css('background-image', "url(" + backgrounds[randomnumber] + ")");
-                homepageImage.css('background-position', backgroundAlignments[randomnumber] + " top");
-                homepageImage.css("height", backgroundHeights[randomnumber] + 'px');
-    
-                jq("body.template-document_homepage_view #homepageimage div.overlay").each(
-                    function () {
-                        jq(this).css("height", backgroundHeights[randomnumber] + 'px');
-                    }
-                );
-
-                if (backgrounds.length && breadcrumbs.length)
-                {
-                    breadcrumbs.addClass("homepage");
-                }
-
-                %s
-                
-            }
+            setHomepageImage();
         }
     );
     
+    jq(window).resize(
+        function () {
+            scaleHomepageImage();
+        }
+    );
+
     """ % (";".join(backgrounds), ";".join(backgroundAlignments), ";".join(backgroundHeights), getFlashOverlayCode(context))
 
 def getPortletHomepageImage(context, homepage_type="portlet"):

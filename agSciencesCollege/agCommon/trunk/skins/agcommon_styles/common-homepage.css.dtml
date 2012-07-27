@@ -85,8 +85,9 @@
 
 #content #homepage-text {
     display: block;
-    margin: 0 0.9375em;
-    padding: 0.375em 0;
+	margin: 0 0.424929178470255%; /* 3/706 */
+	padding: 0.375em 1.274787535410765%; /* 9/706 */
+	width: 95.75070821529745%;  /* (700-24)/706 */
 }
 
 #content #homepage-text .documentFirstHeading {
@@ -115,7 +116,7 @@
 .agCommonPortlet .portletWrapper {
 	border: none;
 	padding: 0;
-	margin: 0 0.1875em 1em 0;
+	margin: 0 0 1em 0;
 }
 
 #rightcolumn .portletWrapper {
@@ -126,14 +127,14 @@
 
 /* ================= Columns ===================== */
 #centercolumn {
-    margin: 0 0.1875em 0 0.1875em;
     padding-bottom: 0.25em;
+	margin: 0 0.4251803118839%; /* 3/705.583 */
+	width: 99.208739439584004%;  /* 700/705.583 */
 }
 
 #centercolumn.sr {
-    border-right-width: 11em;
-    border-right-color: &dtml-frontRightPortletBackgroundColor;;
-    border-right-style: solid;
+    float: left;
+    width: 74.25593445420312%
 }
 
 /* ================= Portlet headers ===================== */
@@ -346,12 +347,12 @@
 
 #rightcolumn {
     display: block;
-	margin: 0 0.1875em 0 0;
+	margin: 0 0.424929178470255% 0.1875em 0;
 	padding: 0;
 	font-weight: normal;
 	background-color: &dtml-frontRightPortletBackgroundColor;;
 	color: &dtml-frontRightPortletTextColor;;
-	width: 11em;
+	width: 24.468524610145086%;
 	float: right;
 }
 

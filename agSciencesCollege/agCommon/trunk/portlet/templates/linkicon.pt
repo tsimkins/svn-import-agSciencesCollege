@@ -20,7 +20,7 @@
                               tal:attributes="src icon;
                                               alt python:''" /><span tal:content="title">
                                          >Link</span>
-                        <div class="visualClear"><!-- --></div>
+                        <span class="visualClear"><!-- --></span>
                     </a>
                 </li>
             </tal:linkIcon>        

@@ -14,10 +14,15 @@
 #portlets-below {
 	background-color: &dtml-sitemapBackgroundColor;;
 	font-size: 0.625em;
-	margin-right: 0;
-	margin-left: 0;
-	margin-top: 0;
-	padding-bottom: 6px;
+	margin: 0;
+    border-width: 0 1px;
+    border-style: solid;
+    border-color:  &dtml-sitemapBackgroundColor;;
+    width: 99.776785714285714%; /* 894/896 */
+	padding: 0.375em 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    display: table;
 }
 
 #portlets-below div.portletsBelowContentF {
@@ -30,8 +35,9 @@ div.portletsBelowContentB,
 div.portletsBelowContentC,
 div.portletsBelowContentD,
 div.portletsBelowContentE {
-	width: 20%;
+	width: 18.642533936651584%; /* ((884 - 60)/5)/884 */
 	float: left;
+	padding: 0.5em 0.678733031674208%;  /* 6/884 */
 }
 
 #portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
@@ -41,7 +47,7 @@ div.portletsBelowContentE {
 }
 
 #portlets-below .portletWrapper {
-    padding: 0.5em 0 0.5em 0.75em;
+    padding: 0;
     margin: 0.5em;
 }
 
@@ -51,7 +57,7 @@ div.portletsBelowContentE {
 	font-weight: bold;
 	padding: 0.5em 0em 0.0625em 0;
 	margin-top: 0;
-	margin-left: 5px;
+	margin-left: 3.061225114535738%;
 	font-family: Arial, Helvetica, Helv, sans-serif;
 	border-bottom: 1px solid <dtml-var expr="gradientEnd(startColor=sitemapHeaderColor, count=5)">;
 	line-height: 1.25em;
@@ -93,7 +99,7 @@ div.portletsBelowContentE {
 #portlets-below a, #portlets-below .state-published
 {
 	color: &dtml-sitemapLinkColor; !important;
-	padding: 0.25em 5px;
+	padding: 0.25em 3.061225114535738%;
 	display: block;
 }
 
@@ -196,7 +202,7 @@ div.portletsAboveContentE {
 
 #portlets-above .portletFooter {
 	text-align: left;
-	padding: 0.25em 0 0.25em 5px;
+	padding: 0.25em 0 0.25em 0;
 }
 
 #portlets-above .portletFooter a {
@@ -238,7 +244,7 @@ div.portletsAboveContentE {
 }
 
 #portlets-below dl.linkIcon a {
-    padding: 0.25em 5px;
+    padding: 0.25em 3.061225114535738%;
 }
 
 #portlets-below dl.linkIcon img {
@@ -255,7 +261,7 @@ div.portletsAboveContentE {
 
 #portlets-below dl.linkIcon li.icon a:first-child {
     display: inline-block;
-    margin-left: 5px;
+	margin-left: 3.061225114535738%;
 }
 
 /* YOUR CSS RULES STOP HERE */
