@@ -10,13 +10,9 @@ div.portletsBelowContentE {
 
 
 #header-mobile #logo-site {
-    position: relative;
-    width: 95.384615384615385%;  /* (520-24)/520 */
-    margin-left: 2.307692307692308%;  /* 12/520 */
-    margin-right: 2.307692307692308%;  /* 12/520 */
-    margin-top: 0.25em;
-    font-size: 1.5em;
     text-decoration: none;
+    font-size: 1.125em;
+    margin-left: 100px;
 }
 
 #header-mobile #portal-searchbox {

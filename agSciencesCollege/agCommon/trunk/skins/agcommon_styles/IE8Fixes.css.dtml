@@ -9,4 +9,19 @@
     margin-top: 0 !important;
 } 
 
+
+#portal-column-two .visualPadding {
+    width: 90%;
+}
+
+#portal-column-one .visualPadding {
+    width: 100%;
+}
+
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
+    margin-right: 0.5em;
+}
+
 /* </dtml-with> */
+
+

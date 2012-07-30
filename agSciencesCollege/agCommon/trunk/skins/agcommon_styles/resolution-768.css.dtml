@@ -140,6 +140,11 @@ div.portletsBelowContentE {
     width: 100%;
 }
 
+#logo-site {
+    margin-left: 110px;
+    font-size: 1.4375em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

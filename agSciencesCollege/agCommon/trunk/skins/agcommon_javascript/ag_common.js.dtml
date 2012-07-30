@@ -658,7 +658,7 @@ function mobileNav() {
 }
 
 function adjustHeader() {
-    if (window.innerWidth > 480)
+    if (window.innerWidth > 320)
     {
         if (jq("#header-mobile").size())
         {
@@ -688,6 +688,12 @@ jq(document).ready(
     function() {
         equalizeTopNav();
         resizeColumns();
+        
+        if (msieversion() <= 8 && msieversion() > 0)
+        {
+            return false;
+        }
+        
         mobileNav();
         adjustHeader();
     }
@@ -697,6 +703,12 @@ jq(window).resize(
     function() {
         equalizeTopNav();
         resizeColumns();
+
+        if (msieversion() <= 8 && msieversion() > 0)
+        {
+            return false;
+        }
+
         mobileNav();
         adjustHeader();
     }
