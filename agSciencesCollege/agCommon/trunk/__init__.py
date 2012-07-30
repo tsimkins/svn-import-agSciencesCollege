@@ -16,6 +16,7 @@ from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from Products.Archetypes.Field import HAS_PIL
 from agsci.w3c.colors import split_rgb
 import colorsys
+import os
 
 import re
 
@@ -452,7 +453,7 @@ def makePhotoFolder(context):
     print "OK"
 
 def folderToPage(folder):
-    # Title, Description, Body Text, Author, Tags, Effective Date
+    # Title, Description, Body Text, Author, Tags, Effective Date, Lead Image, Lead Image Caption
     portal = getSiteManager(folder)
     wftool = getToolByName(portal, "portal_workflow")
     
@@ -460,28 +461,70 @@ def folderToPage(folder):
     folder_title = folder.Title()
     folder_description = folder.Description()
     folder_text = folder.folder_text()
-    folder_owner = folder.getOwner()
+    folder_creator = folder.getRawCreators()
+    folder_contributors = folder.getRawContributors()
     folder_subject = folder.Subject()
-    folder_effective_date = folder.EffectiveDate()
+    folder_effective_date = folder.effective()
+    folder_excludeFromNav = folder.getExcludeFromNav()
+    
+
+    leadImage = folder.getField('leadImage', None).get(folder);
+    leadImage_caption = folder.getField('leadImage_caption', None).get(folder);
 
     if wftool.getInfoFor(folder, 'review_state') != 'private':
         wftool.doActionFor(folder, 'retract')
 
     folder_parent = folder.getParentNode()
     
-    folder_parent.manage_renameObject(folder_id, '%s-folder' % folder_id)
+
+
+    # Backup as [parent UUID]___[folder id].zexp
+    folder_parent.manage_exportObject(id=folder_id, download=False)
+    
+    try:
+        UID = folder_parent.UID()
+    except AttributeError:
+        UID="0"*len(folder.UID())
+    
+    zope_dir = "/usr/local/plone/zeocluster/var"
+    
+    exported_ok = False
+    
+    for c in range(1,4):
+        export_dir = "%s/client%d" % (zope_dir, c)
+        old_filename = '%s.zexp' % folder_id
+        new_filename = '%s___%s.zexp' % (UID, folder_id)
+        if old_filename in os.listdir(export_dir):
+            os.rename('%s/%s' % (export_dir, old_filename), '%s/%s' % (export_dir, new_filename))
+            exported_ok = True
+
+    if exported_ok:
+        folder_parent.manage_delObjects(ids=[folder_id])
+    else:
+        folder_parent.manage_renameObject(folder_id, '%s-converted-folder' % folder_id)    
     
     folder_parent.invokeFactory(id=folder_id, type_name="Document", title=folder_title, description = folder_description, text=folder_text, subject=folder_subject)
     
     page = getattr(folder_parent, folder_id)
-        
-    page.changeOwnership(folder_owner)
+    page.setCreators(folder_creator)
+    page.setContributors(folder_contributors)
     
     page.setEffectiveDate(folder_effective_date)
+    
+    if leadImage:
+        page_leadImage_field = page.getField('leadImage', None);
+        page_leadImage_field.set(page, leadImage)
+
+    if leadImage_caption:
+        page_leadImage_caption_field = page.getField('leadImage_caption', None);
+        page_leadImage_caption_field.set(page, leadImage_caption)
+
+    if folder_excludeFromNav:
+        page.setExcludeFromNav(True)
 
     if wftool.getInfoFor(page, 'review_state') != 'published':
         wftool.doActionFor(page, 'publish')
-        
+
     page.reindexObject()
     
 def pageToFolder(page):
@@ -497,7 +540,6 @@ def pageToFolder(page):
     page_owner = page.getOwner()
     page_subject = page.Subject()
     page_effective_date = page.EffectiveDate()
-    page_leadImage = page.getField
 
     if wftool.getInfoFor(page, 'review_state') != 'private':
         wftool.doActionFor(page, 'retract')
