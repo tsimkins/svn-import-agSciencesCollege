@@ -65,3 +65,13 @@ Disallow: /*newsletter_print
 Disallow: /sandbox
 Disallow: /intranet
 Disallow: /private
+
+# Yandex bot
+User-agent: Yandex
+Disallow: /search
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
+Disallow: /m/
+Disallow: /nonmobile
+Crawl-delay: 10
