@@ -6,21 +6,17 @@ function isValidSubtopic(v) {
 
     jq('#extension_topics').find("option").each(
         
-        function(index) {
+        function() {
             var item_text = jq(this).val();
-
 
             if (getL2Topic(v.val()) == item_text)
             {
                 isok = true;
             }
-
         }
-        
     )
 
     return isok;
-
 }
 
 function getL1Topic(t) {
@@ -43,49 +39,49 @@ function getL2SubTopic(t) {
     return t.substr(t.lastIndexOf(delimiter) + delimiter.length, t.length);
 }
 
-
 function hideInvalidSubtopics(v) {
-    
-    var isSelectedSubtopics = (v.attr('id') == 'extension_subtopics');
-    
-    v.find("option").each(
-        function(index) {
+
+    var s = jq('#' + v.attr('id').replace('_options', '') + '_swap');
+
+    s.find("option").each(
+        function() {
             if (isValidSubtopic(jq(this)))
             {
-                jq(this).show();
-                jq(this).attr('available', 'true');
-
-                if (isSelectedSubtopics)
-                {
-                    jq(this).attr('selected', '');
-                }
+                jq(this).appendTo( jq('#' + v.attr('id').replace('_swap', '') + '_options')  );
+            }
+        }
+    );
+ 
+    v.find("option").each(
+        function() {
+            if (isValidSubtopic(jq(this)))
+            {
+                jq(this).data('available', true);
             }
             else
             {
-                jq(this).hide();
-                jq(this).attr('available', 'false');
-                
-                if (isSelectedSubtopics)
-                {
-                    jq(this).attr('selected', 'selected');
-                }
+                jq(this).appendTo("#extension_subtopics_swap");
 
+                jq(this).data('available', false);
             }
 
         }
     ) 
-
-    if (isSelectedSubtopics)
-    {
-        inout_moveKeywords('extension_subtopics','extension_subtopics_options','extension_subtopics')
-        v.children("option").each(
-            function () {
-                jq(this).attr('selected', 'selected');
-            }
-        );
-    }
 }
 
+
+function zinout_addNewKeyword(toList, newText, newValue) {
+  theToList=document.getElementById(toList);
+  for (var x=0; x < theToList.length; x++) {
+    // replaced text with value
+    if (theToList[x].value == newValue) {
+      return false;
+    }
+  }
+  theLength = theToList.length;
+  theToList[theLength] = new Option(newText);
+  theToList[theLength].value = newValue;
+}
 
 
 function fiddleExtensionTopics() {
@@ -95,7 +91,7 @@ function fiddleExtensionTopics() {
     var extension_topics_options = jq('#extension_topics_options');
     var extension_subtopics_options = jq('#extension_subtopics_options');
     
-    if (extension_topics && extension_subtopics && extension_topics_options && extension_subtopics_options)
+    if (extension_topics.size() && extension_subtopics.size() && extension_topics_options.size() && extension_subtopics_options.size())
     {
         hideInvalidSubtopics(extension_subtopics)
         hideInvalidSubtopics(extension_subtopics_options)
@@ -104,6 +100,19 @@ function fiddleExtensionTopics() {
         createOptGroup(extension_topics);
         createOptGroup(extension_subtopics_options);
         createOptGroup(extension_subtopics);
+
+        if ( (getSize(extension_subtopics_options) + getSize(extension_subtopics)) > 0)
+        {
+            //show
+            jq("#archetypes-fieldname-extension_subtopics").show()
+        }
+        else
+        {
+            //hide
+            jq("#archetypes-fieldname-extension_subtopics").hide()
+        }
+
+        jq("#extension_subtopics_swap").val([]);
     }
 
 }
@@ -158,10 +167,9 @@ function createOptGroup(box) {
             }
             else 
             {
-                if( ! isSubTopic(jq(this)) || jq(this).children("option[available='true']").size())
+                if( ! isSubTopic(jq(this)) || hasAvailableChildren( jq(this).children("option") ) )
                 {
-                    jq(this).show();
-                    jq(this).attr('available', 'true');       
+                    jq(this).data('available', true);       
                     jq(this).children("option").sortElements(
                         function(a, b){
                             return $(a).val() > $(b).val() ? 1 : -1;
@@ -170,8 +178,8 @@ function createOptGroup(box) {
                 }
                 else
                 {
-                    jq(this).hide();
-                    jq(this).attr('available', 'false');       
+                    jq(this).children().appendTo("#extension_subtopics_swap");
+                    jq(this).remove()
                 }
             }
         }
@@ -186,8 +194,12 @@ function createOptGroup(box) {
 
 }
 
+function getSize(o) {
+    return countAvailableChildren(o.children("optgroup")) + countAvailableChildren(o.find("option"));
+}
+
 function setSize(o) {
-    var count = o.children("optgroup[available='true']").size() + o.find("option[available='true']").size();
+    var count = getSize(o);
     count = count > 6 ? count : 6;
     o.attr('size', count);
     o.css('padding', '5px 8px 5px 8px');
@@ -195,6 +207,10 @@ function setSize(o) {
 
 jq(document).ready(
     function() {
+        
+        var swap = jq('<select id="extension_subtopics_swap" size="10"></select>');
+        jq('#archetypes-fieldname-extension_subtopics').append(swap);
+        swap.hide();
         
         fiddleExtensionTopics();
 
@@ -237,7 +253,44 @@ jq(document).ready(
             }
         );
 
-
+        inout_addNewKeyword = zinout_addNewKeyword
     }
 );
 
+function hasAvailableChildren(o) {
+    
+    var isok = false;
+
+    o.each(
+        function () {
+            
+            if (jq(this).data('available'))
+            {
+                isok = true;
+            }
+        }
+
+    );
+
+    return isok;
+ 
+}
+
+function countAvailableChildren(o) {
+    
+    var count = 0;
+
+    o.each(
+        function () {
+            
+            if (jq(this).data('available'))
+            {
+                count++;
+            }
+        }
+
+    );
+
+    return count;
+ 
+}
