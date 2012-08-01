@@ -87,7 +87,7 @@
         <div id="document-toc" class="portlet toc agendaLinks" tal:condition="agenda_anchors">
             <h2 class="portletHeader" tal:content="python: show_days and 'Days' or 'Months'" />
             <ul>
-                <li tal:repeat="month view/month_agenda|nothing">
+                <li tal:repeat="month view/data|nothing">
                     <a tal:attributes="href string:${here_url}#${month/id}" tal:content="month/label" />
                 </li>
             </ul>
@@ -95,7 +95,7 @@
 
         <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
-        <tal:bymonth repeat="month view/month_agenda|nothing">
+        <tal:bymonth repeat="month view/data|nothing">
             <tal:items define="folderContents python:month.get('items')">
             <a tal:condition="agenda_anchors" tal:attributes="name month/id" />
             <h2 tal:content="month/label" />

@@ -629,6 +629,8 @@ class AgendaView(FolderView):
         
         self.month_agenda = []
         self.day_agenda = []
+    
+    def data(self):
         
         site_properties = getToolByName(self.context, 'portal_properties').get("site_properties")
         day_format = site_properties.localTimeFormat
@@ -669,7 +671,7 @@ class AgendaView(FolderView):
             parent = self.context.getParentNode()
             if self.context.id == parent.getDefaultPage():
                 self.here_url = parent.absolute_url()
-            
+
         if not events:
             catalog = getToolByName(self.context, 'portal_catalog')
             
@@ -698,14 +700,22 @@ class AgendaView(FolderView):
                 months[month]['items'].append(e)
                 days[day]['items'].append(e)                
 
-        for m in sorted(months.keys()):
-            self.month_agenda.append(months[m])
 
-        for d in sorted(days.keys()):
-            self.day_agenda.append(days[d])
+
             
         if self.show_days:
-            self.month_agenda = self.day_agenda
+
+            for d in sorted(days.keys()):
+                self.day_agenda.append(days[d])
+
+            return self.day_agenda
+        else:
+
+            for m in sorted(months.keys()):
+                self.month_agenda.append(months[m])
+
+            return self.month_agenda
+
             
 
     def getBodyText(self):

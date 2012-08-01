@@ -77,13 +77,14 @@
             toLocalizedTime nocall: context/@@plone/toLocalizedTime;
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+            normalizeString nocall: context/plone_utils/normalizeString;
             templateId template/getId;">
 
         <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
         <table class="listing events">
             
-            <tal:bymonth repeat="month view/month_agenda">
+            <tal:bymonth repeat="month view/data">
                 <tr class="section-title">
                     <th colspan="3">
                         <h2>
@@ -107,12 +108,15 @@
                                     item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
                                     item_url item/getURL|item/absolute_url;
                                     isCanceled item/eventCanceled|nothing;
+                                    item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                     "
                         tal:attributes="class python:oddrow and 'even' or 'odd'">
                         <td>
                             <a href="#"
                                tal:attributes="href item_url;
-                                               title item/Description"
+                                               title item/Description;
+                                               class item_wf_state_class"
                                tal:content="item/pretty_title_or_id">
                                 Item Title
                             </a>
