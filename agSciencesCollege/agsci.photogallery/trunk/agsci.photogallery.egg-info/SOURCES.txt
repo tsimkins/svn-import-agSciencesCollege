@@ -1,0 +1,16 @@
+README.txt
+setup.py
+agsci/__init__.py
+agsci.photogallery.egg-info/PKG-INFO
+agsci.photogallery.egg-info/SOURCES.txt
+agsci.photogallery.egg-info/dependency_links.txt
+agsci.photogallery.egg-info/entry_points.txt
+agsci.photogallery.egg-info/namespace_packages.txt
+agsci.photogallery.egg-info/not-zip-safe
+agsci.photogallery.egg-info/requires.txt
+agsci.photogallery.egg-info/top_level.txt
+agsci/photogallery/__init__.py
+agsci/photogallery/interfaces.py
+agsci/photogallery/browser/__init__.py
+agsci/photogallery/browser/interfaces.py
+agsci/photogallery/browser/views.py

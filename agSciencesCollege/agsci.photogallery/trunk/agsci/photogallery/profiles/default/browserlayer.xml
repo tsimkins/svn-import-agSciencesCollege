@@ -1,0 +1,4 @@
+<layers>
+    <layer name="agsci.photogallery"
+           interface="agsci.photogallery.interfaces.IPhotoGalleryLayer" />
+</layers>

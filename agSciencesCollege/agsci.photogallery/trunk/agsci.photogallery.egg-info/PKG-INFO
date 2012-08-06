@@ -1,0 +1,24 @@
+Metadata-Version: 1.0
+Name: agsci.photogallery
+Version: 0.1
+Summary: A Plone package of the Tympanus photo gallery
+Home-page: http://agsci.psu.edu/
+Author: Tim Simkins
+Author-email: trs22@psu.edu
+License: GPL
+Description: Description
+        
+            Packaging:
+        
+                http://tympanus.net/codrops/2011/09/20/responsive-image-gallery/
+        
+        Changelog
+        =========
+        
+        0.1 (Unreleased)
+        ----------------
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

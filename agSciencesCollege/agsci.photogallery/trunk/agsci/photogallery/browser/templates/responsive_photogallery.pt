@@ -1,0 +1,69 @@
+<metal:page define-macro="master">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <metal:style fill-slot="style_slot">
+    </metal:style>
+    
+    <metal:javascriptslot fill-slot="javascript_head_slot">
+		<tal:script replace="structure string:&lt;script id='img-wrapper-tmpl' type='text/x-jquery-tmpl'&gt;" />
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		<tal:script replace="structure string:&lt;/script&gt;" />
+    </metal:javascriptslot>
+    
+    
+    <metal:content-core fill-slot="content-core">
+        <div id="rg-gallery" class="rg-gallery">
+            <div class="rg-thumbs">
+                <!-- Elastislide Carousel Thumbnail Viewer -->
+                <div class="es-carousel-wrapper">
+                    <div class="es-nav">
+                        <span class="es-nav-prev">Previous</span>
+                        <span class="es-nav-next">Next</span>
+                    </div>
+                    <div class="es-carousel">
+                        <ul id="myul">
+                            <li tal:repeat="i view/getImages" tal:attributes="id string:li-${i/UID};">
+                                <a tal:attributes="href string:${i/getURL}/image_large">
+                                    <img tal:attributes="src string:${i/getURL}/image_gallery;
+                                                         data-large string:${i/getURL}/image_gallery; 
+                                                         alt i/Title; 
+                                                         id i/UID;
+                                                         data-description i/Title;" 
+                                             />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Elastislide Carousel Thumbnail Viewer -->
+            </div><!-- rg-thumbs -->
+        </div><!-- rg-gallery -->
+    
+    </metal:content-core>
+
+</body>
+</html>
+</metal:page>
+

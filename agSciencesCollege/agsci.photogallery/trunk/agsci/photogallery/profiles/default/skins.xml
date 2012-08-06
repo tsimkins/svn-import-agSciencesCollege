@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+        request_varname="plone_skin">
+
+ <!-- This list registers the folders that are stored in the skins directory
+      of your product (on the filesystem) as Filesystem Directory Views within
+      the portal_skins tool, so that they become usable as skin layers.
+      -->
+ <object name="photogallery_css"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/photogallery_css" />
+
+ <object name="photogallery_images"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/photogallery_images" />
+    
+ <object name="photogallery_js"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/photogallery_js" />
+
+  <skin-path name="*">
+    <layer name="photogallery_css"
+       insert-after="custom"/>
+    <layer name="photogallery_images"
+       insert-after="custom"/>
+    <layer name="photogallery_js"
+       insert-after="custom"/>
+  </skin-path>
+
+</object>

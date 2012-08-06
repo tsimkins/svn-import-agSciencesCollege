@@ -1,0 +1,23 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:cmf="http://namespaces.zope.org/cmf"
+           i18n_domain="agsci.photogallery">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Responsive Photo Gallery"
+        directory="profiles/default"
+        description="Responsive photo gallery from tympanus.net"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <cmf:registerDirectory name="photogallery_css"/>
+    <cmf:registerDirectory name="photogallery_images"/>
+    <cmf:registerDirectory name="photogallery_js"/>
+
+    <include package="Products.CMFCore" />
+
+    <!-- include our sub-packages that contain their own configure.zcml files -->
+    <include package=".browser" />
+
+</configure>
