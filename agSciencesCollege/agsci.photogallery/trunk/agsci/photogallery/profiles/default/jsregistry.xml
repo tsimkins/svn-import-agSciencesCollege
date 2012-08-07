@@ -17,24 +17,33 @@
       -->
 <!-- EXAMPLE (UNCOMMENT TO MAKE AVAILABLE):
  <javascript id="++resource++agcommon.javascripts/example.js"
-    cacheable="True" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"/>
 -->
  <javascript id="jquery.easing.1.3.js"
-    cacheable="True" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"/>
 
  <javascript id="jquery.elastislide.js"
-    cacheable="True" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"/>
 
  <javascript id="jquery.tmpl.js"
-    cacheable="True" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"/>
 
  <javascript id="gallery.js"
-    cacheable="True" compression="safe" cookable="False"
+    cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"/>
-    
+
+ <javascript id="jquery.fancybox.js"
+    cacheable="True" compression="none" cookable="True"
+    enabled="True" expression="" inline="False"/>
+
+ <javascript id="fancybox-load.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" inline="False"/>
+ 
+
 </object>
 

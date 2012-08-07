@@ -13,4 +13,9 @@
     enabled="1" expression=""  media="all"
     rel="stylesheet" rendering="import"/>
 
+ <stylesheet id="jquery.fancybox.css" insert-after="responsive_photogallery.css"
+    title="" cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""  media="all"
+    rel="stylesheet" rendering="import"/>
+
 </object>

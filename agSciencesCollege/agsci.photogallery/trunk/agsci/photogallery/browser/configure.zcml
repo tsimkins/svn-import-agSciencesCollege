@@ -6,13 +6,31 @@
     i18n_domain="agsci.photogallery">
 
 
-    <!-- Newsletter Print View -->
+    <!-- Photo Gallery View -->
     <browser:page
         for="*"
         name="responsive_photogallery"
         class=".views.PhotoGalleryView"
         template="templates/responsive_photogallery.pt"
         permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="agsci.subsite.content.interfaces.IPhotoFolder"
+        menu="plone_displayviews"
+        title="Photo Gallery View"
+        action="@@responsive_photogallery"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="Responsive photo gallery view"
+    />
+
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATFolder"
+        menu="plone_displayviews"
+        title="Photo Gallery View"
+        action="@@responsive_photogallery"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="Responsive photo gallery view"
     />
     
 

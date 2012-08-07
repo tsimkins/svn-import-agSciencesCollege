@@ -19,6 +19,18 @@
     meta_type="Filesystem Directory View"
     directory="agsci.photogallery:skins/photogallery_js" />
 
+ <object name="fancybox_css"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/fancybox_css" />
+
+ <object name="fancybox_images"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/fancybox_images" />
+    
+ <object name="fancybox_js"
+    meta_type="Filesystem Directory View"
+    directory="agsci.photogallery:skins/fancybox_js" />
+
   <skin-path name="*">
     <layer name="photogallery_css"
        insert-after="custom"/>
@@ -26,6 +38,14 @@
        insert-after="custom"/>
     <layer name="photogallery_js"
        insert-after="custom"/>
+
+    <layer name="fancybox_css"
+       insert-after="custom"/>
+    <layer name="fancybox_images"
+       insert-after="custom"/>
+    <layer name="fancybox_js"
+       insert-after="custom"/>
+
   </skin-path>
 
 </object>

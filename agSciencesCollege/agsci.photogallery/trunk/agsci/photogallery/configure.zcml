@@ -15,6 +15,10 @@
     <cmf:registerDirectory name="photogallery_images"/>
     <cmf:registerDirectory name="photogallery_js"/>
 
+    <cmf:registerDirectory name="fancybox_css"/>
+    <cmf:registerDirectory name="fancybox_images"/>
+    <cmf:registerDirectory name="fancybox_js"/>
+
     <include package="Products.CMFCore" />
 
     <!-- include our sub-packages that contain their own configure.zcml files -->
