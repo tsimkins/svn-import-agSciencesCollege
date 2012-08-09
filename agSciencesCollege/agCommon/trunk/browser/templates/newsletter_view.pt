@@ -399,7 +399,7 @@ div.about hr {
 <metal:summary fill-slot="content-listing" define-slot="content-listing"
     tal:define="notEditor not:view/canEdit;">
 
-    <h2 tal:condition="python: notEditor and (view.showSummary or len(view.getSpotlightItems()))">In This Issue</h2>
+    <h2 tal:condition="python: notEditor and (view.showSummary or ( len(view.getEnabledItems()) and len(view.getSpotlightItems())))">In This Issue</h2>
 
     <form id="enable-items-form" tal:omit-tag="notEditor" method="POST" action="@@newsletter_modify">
 

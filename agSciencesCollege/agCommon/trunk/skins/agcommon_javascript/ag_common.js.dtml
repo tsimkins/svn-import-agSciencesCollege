@@ -493,7 +493,7 @@ jq(document).ready(
     }
 );
 
-function toggleNav(header, nav)
+function toggleButtons(header, nav, show_nav, other_buttons)
 {
     // make nav expandable/contractable
     if (window.innerWidth > 520)
@@ -510,18 +510,110 @@ function toggleNav(header, nav)
 
         jq(header).each(
             function() {
+
+                if (!jq(this).data('child'))
+                {
+
+                    // Toggle Nav
+                    
+                    jq(nav).hide();
+
+
+                    // Set item to show
+                    jq(this).data('child', jq(nav))
+
+                    // Set on click handler
+                    jq(this).click(
+                        function() {
+                            
+                            for (var i=0; i<other_buttons.length; i++)
+                            {
+                                var o = other_buttons[i];
+
+                                if (jq(o).hasClass('active'))
+                                {
+                                    jq(o).trigger('click');
+                                }
+
+                                if (!jq(this).hasClass('active'))
+                                {
+                                    jq(o).addClass('inactive');
+                                }
+                                else
+                                {
+                                    jq(o).removeClass('inactive');
+                                }
+
+                            }
+                            
+                            jq(this).toggleClass('active');
+
+                            // Special case for navigation
+
+                            if(jq(this).parent().attr('id') == 'site-navigation')
+                            {
+                                if (jq(this).hasClass('active'))
+                                {
+                                    // set text to hide
+                                    jq(this).children('span').text('Hide Navigation');
+                                }
+                                else
+                                {
+                                    // set text to show
+                                    jq(this).children('span').text('Show Navigation');
+                                }
+                            }
+                                    
+                            jq(this).data('child').toggle();
+                        }
+                    );
+                    
+                    if (show_nav)
+                    {
+                        jq(this).trigger('click');
+                    }
+                }
+            }
+        );
+    }
+
+}
+
+
+function toggleNav(header, nav, show_nav)
+{
+    // make nav expandable/contractable
+    if (window.innerWidth > 520)
+    {
+        // remove icon
+        jq(header + " img").remove();
+
+        // Toggle Nav
+        jq(nav).show()
+    }
+    else
+    {
+        // Fiddle nav
+
+        jq(header).each(
+            function() {
+
                 if (!jq(this).children('img').size())
                 {
                     // Add + icon
-                    var nav_icon = jq('<img src="&dtml-portal_url;/menu-expand.png" class="icon" alt="Expand Menu" />').appendTo(jq(this));
+                    nav_icon = jq('<img src="&dtml-portal_url;/menu-expand.png" class="icon" alt="Expand Menu" />').prependTo(jq(this));
 
                     // Toggle Nav
                     jq(nav).hide()
 
+                    // Set item to show
+                    nav_icon.data('child', jq(nav))
+
                     // Set on click handler
                     nav_icon.click(
                         function() {
-                            jq(nav).toggle();
+                            jq(this).data('child').toggle();
+                            jq(this).parent().toggleClass('active');
 
                             if (jq(this).attr('src').indexOf("menu-expand") >= 0)
                             {
@@ -538,6 +630,11 @@ function toggleNav(header, nav)
 
                         }
                     );
+                    
+                    if (show_nav)
+                    {
+                        nav_icon.trigger('click');
+                    }
                 }
             }
         );
@@ -546,12 +643,9 @@ function toggleNav(header, nav)
 }
 
 
-
 /* Make main navigation into dropdown */
 
 function mobileNav() {
-
-    var homepage_body = jq("body.portaltype-homepage");
 
     // Move top nav bar below content, except for homepages.
     if (window.innerWidth > 520)
@@ -562,40 +656,22 @@ function mobileNav() {
             
             jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
             jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
-            jq("#navigation-mobile").remove();
         }
     }
     else
     {
-        // Don't move top nav below content if homepage!
-        
-        var mobile_nave = jq();
-        
-        if (homepage_body.size())
-        {
-            mobile_nav = jq("#portal-top #navigation-mobile");
-        }
-        else
-        {
-            mobile_nav = jq("#portal-column-content #viewlet-below-content #navigation-mobile");
-        }
+        var mobile_nav = jq("#portal-top #navigation-mobile");
 
         if (! mobile_nav.size() )
         {
-            if (homepage_body.size())
-            {
-                mobile_nav = jq('<div id="navigation-mobile"></div>').appendTo("#portal-top");
-            }
-            else
-            {
-                mobile_nav = jq('<div id="navigation-mobile"></div>').appendTo("#portal-column-content #viewlet-below-content");
-            }
-
-
+            mobile_nav = jq('<div id="navigation-mobile"></div>').insertAfter("#portal-header");
             mobile_portletWrapper = jq('<div class="portletWrapper"></div>').appendTo(mobile_nav);
-            mobile_portletWrapper.append(jq('<h2 class="portletHeader portletNavigationHeader"><span>Site Navigation</span></h2>'));
-            jq("#portal-top-navigation").detach().appendTo(mobile_portletWrapper);
             
+            if (jq("#portal-top-navigation li").size())
+            {
+                mobile_portletWrapper.append(jq('<div id="site-navigation"><h2 class="portletHeader portletNavigationHeader"><span>Show Site Navigation</span></h2></div>'));
+                jq("#portal-top-navigation").detach().appendTo(mobile_portletWrapper);
+            }            
             // If we are at the main navigation (no header) move that *inside* the mobile nav.
             
             var section_nav = jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree");
@@ -615,11 +691,15 @@ function mobileNav() {
         }
     }
 
+
     // Make left navigation +/-
-    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree");
+    var is_homepage = jq("body.portaltype-homepage").size() ? true : false;
+    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
+
 
     // Make mobile top navigation +/-
-    toggleNav("#navigation-mobile .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletNavigationTree");
+    var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
+    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
 
     // Move first column portlets
     if (window.innerWidth > 520)
@@ -632,6 +712,12 @@ function mobileNav() {
                     jq(this).appendTo(jq("#portal-column-one #portal-column-one-visualPadding"));
                 }
             );
+            
+            jq("#portlets-mobile #addthis").each(
+                function () {
+                    jq(this).prependTo(jq("#content"));
+                }
+            );
 
             jq("#portlets-mobile").remove();
         }
@@ -642,7 +728,14 @@ function mobileNav() {
 
         if (! mobile_portlets.size() )
         {
-            mobile_portlets = jq('<div id="portlets-mobile"></div>').appendTo("#portal-column-content #viewlet-below-content");
+            mobile_portlets = jq('<div id="portlets-mobile"></div>').appendTo("#viewlet-below-content");
+
+            jq("#content #addthis").each(
+                function () {
+                    jq(this).appendTo(jq(mobile_portlets));
+                }
+            );
+
             jq("#portal-column-one .portletWrapper").each(
                 function () {
 
@@ -652,33 +745,107 @@ function mobileNav() {
                     }
                 }
             );
+            
         }
     }
 
 }
 
-function adjustHeader() {
-    if (window.innerWidth > 320)
+function adjustSearch() {
+    if (window.innerWidth > 520)
     {
-        if (jq("#header-mobile").size())
+        if (jq("#search-mobile").size())
         {
-            jq("#header-mobile #portal-searchbox").insertBefore(jq("#portal-header #logo-psu"));
-            jq("#header-mobile #logo-site").appendTo(jq("#portal-header"));
-            jq("#header-mobile").remove();
+            jq("#search-mobile #portal-searchbox").detach().insertBefore("#portal-header #logo-psu");
+            jq("#portal-header #portal-searchbox").show()
+            jq("#search-mobile").remove();
+            jq("#mobile-search-button").remove();
+            
+            // Can't remove mobile nav until this step is done.
+            jq("#navigation-mobile").remove();
         }
     }
     else
     {
-        var mobile_header = jq("#header-mobile");
+        var search_mobile = jq("#search-mobile");
 
-        if (! mobile_header.size() )
+        if (! search_mobile.size() )
         {
-            mobile_header = jq('<div id="header-mobile"></div>').insertAfter("#portal-header");
-            jq("#portal-header #logo-site").appendTo(mobile_header);
-            jq("#portal-header #portal-searchbox").appendTo(mobile_header);
+            search_mobile = jq('<div id="search-mobile"></div>').appendTo("#navigation-mobile .portletWrapper");
+            jq("#portal-header #portal-searchbox").appendTo(search_mobile);
+            var mobile_search_button = jq('<div id="mobile-search-button"><h2 class="portletHeader portletNavigationHeader"><span>Search<span></h2></div>');
+            if (jq("#portal-top-navigation li").size())
+            {
+                mobile_search_button.insertBefore("#portal-top-navigation");     
+            }           
+            else
+            {
+                mobile_search_button.insertBefore(search_mobile);
+            }
+            
+            jq('<div class="visualClear" id="clear-after-mobile-search"><!-- --></div>').insertAfter("#mobile-search-button");
+
+            // Make search +/-
+            toggleButtons("#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader", "#search-mobile", false, ["#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader"]);
+            
+            // If we're showing the top navigation, make the search button inactive (tab-styled rather than button)
+            var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
+
+            if (show_mobile_nav)
+            {
+                jq("#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader").addClass('inactive');
+            }
+
         }
     }
     
+}
+
+
+function enableMobile() {
+
+    if (window.innerWidth > 768)
+    {
+        jq("body").removeClass("mobile");
+    }
+    else
+    {
+        if ( ! jq("body").hasClass("mobile"))
+        {
+            jq("body").addClass("mobile");
+        }
+    }
+}
+
+function adjustGalleries() {
+
+    if (window.innerWidth > 768)
+    {
+        jq("body.template-pgv_sg_carousel_view .pgv_sg_carouseltimed_view #myGallery, body.template-pgv_sg_carousel_view .pgv_sg_carousel_view #myGallery").each(
+            function () {
+                jq(this).height(475 + 'px');
+            }
+        );
+    }
+    else
+    {
+        jq("body.template-pgv_sg_carousel_view.mobile .pgv_sg_carousel_view #myGallery").each(
+            function () {
+                var containerWidth = jq("#content-core .pgv_sg_carousel_view").width();
+                var newHeight = 90 + 525*(containerWidth/768);
+                jq(this).height(newHeight + 'px');
+            }
+        );
+        
+        jq("body.template-pgv_sg_carousel_view.mobile #lbImage").each(
+            function () {
+                var containerWidth = window.innerWidth - 22;
+                var newHeight = (533/769) * containerWidth
+                jq(this).css('height', newHeight + 'px');
+                console.log(containerWidth + "|" + newHeight);
+            }
+        );
+    }
 }
 
 
@@ -686,6 +853,7 @@ function adjustHeader() {
 
 jq(document).ready(
     function() {
+        enableMobile();
         equalizeTopNav();
         resizeColumns();
         
@@ -695,12 +863,14 @@ jq(document).ready(
         }
         
         mobileNav();
-        adjustHeader();
+        adjustSearch();
+        adjustGalleries();
     }
 );
 
 jq(window).resize(
     function() {
+        enableMobile();
         equalizeTopNav();
         resizeColumns();
 
@@ -710,7 +880,8 @@ jq(window).resize(
         }
 
         mobileNav();
-        adjustHeader();
+        adjustSearch();
+        adjustGalleries();
     }
 );
 

@@ -234,8 +234,7 @@ body {
 }
 
 #portal-column-one .portletWrapper,
-#portlets-mobile .portletWrapper,
-#navigation-mobile .portletWrapper {
+#portlets-mobile .portletWrapper {
     margin: 0 3.20855614973262% 1.25em 3.20855614973262%;  /* 6/187 */
     width: 93.58288770053476%;
     padding: 0;
@@ -745,10 +744,20 @@ body {
     vertical-align: top;
     display: table-cell;
     border: none;
+    width: 100%;
+}
+
+#portal-column-content.sl {
+    width: 78.299776286353468%; /* (894 - (187+3+3+1)) / 894 */
 }
 
 #portal-column-content.sr {
     margin-right: 0;
+    width: 78.674972035794183%; /* (894 - (172.64575+9+9)) / 894 */
+}
+
+#portal-column-content.sl.sr {
+    width: 56.974748322147651%; /* (894 - (172.64575+9+9+187+3+3+1)) / 894 */
 }
 
 /* = portal-top-navigation ================================= */
@@ -1003,8 +1012,9 @@ dl.people .adr {
     background-color: transparent;
     padding: 0 0 1.5em 0 !important;
     font-size: 0.84375em;
-    margin: 0 1.5em 0 1.5em;
+    margin: 0 2.873359347286272%; /* 704.75 */
     letter-spacing: -0.005em;
+    width:   94.253281305427457%; /* 664.25/704.75 */
 }
 
 #portal-column-content.sr #content {
@@ -1546,7 +1556,8 @@ body.template-newsitem_view .effectiveDate {
     margin-top: 0;
 }
 
-body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view .contentLeadImageContainer {
+body.template-atct_album_view .contentLeadImageContainer, body.template-pgv_sg_carousel_view .contentLeadImageContainer,
+body.template-responsive_photogallery .contentLeadImageContainer, body.portaltype-photofolder .contentLeadImageContainer {
     display: none;
 }
 
@@ -1679,16 +1690,24 @@ body.template-pgv_sg_carousel_view #content {
 #portal-localsearchbox {
     background-color: #F9F9F9;
     border: 1px solid #E0E0E0;
-    padding: 0.6875em;
+    padding: 0.6875em 2.210516310294596%;
     margin-top: 0em;
     margin-bottom: 1.25em;
-    float: left;
+    float: none;
     clear: both;
+    width: 95.13686411735189%;
+}
+
+#portal-localsearchbox .LSBox {
+    padding-right: 0;
+    width: 100%;
+    float: none;
+    text-align: left;
 }
 
 #localSearchBox {
-    width: 314px;
-    padding: 1px 2px;
+    width: 87.865168539325843%;
+    padding: 1px 0.898876404494382%;
     border-style: solid;
     border-color: #999999;
     background-image: none;
@@ -1697,10 +1716,11 @@ body.template-pgv_sg_carousel_view #content {
 #portal-localsearchbox .searchButton {
     background-color: #FFD35F;
     border: 1px solid #EF6500;
-    padding: 1px 2px;
+    padding: 3px 0.898876404494382%;
     margin-top: 0;
     color: #3F1B00;
     background-image: none;
+    width: 7.865168539325843%;
 }
 
 #fblike, #commenting span {

@@ -1,8 +1,52 @@
-
 .agCommonPortlet .portletfeedmixer .portletItem .rssImage {
-    display: none;
+    max-width: 35% !important;
+}
+
+
+.agCommonPortlet .portletfeedmixer .portletItem .rssImage img {
+    max-width: 100% !important;
 }
 
 #portal-top-navigation li {
     width: 100%; 
+}
+
+#portal-top #navigation-mobile {
+    margin-top: 0.5em;
+}
+
+#navigation-mobile #mobile-search-button .portletNavigationHeader {
+    background-image: none;
+}
+
+#localSearchBox {
+    width: 83.5%;
+}
+
+#portal-header {
+    background-size: 1050px;
+    min-height: 55px;
+}
+
+#logo-psu {
+    top: 10px;
+    width: 70px; 
+    height: 50px;
+    left: 3px;
+}
+
+#logo-site {
+    font-size: 1em;
+    margin-left: 75px;
+    margin-top: 33px;
+}
+
+.contentLeadImageContainer img {
+    max-height: 250px;
+}
+
+/* Photo Gallery */
+
+#content .rg-image {
+    height: 150px;
 }

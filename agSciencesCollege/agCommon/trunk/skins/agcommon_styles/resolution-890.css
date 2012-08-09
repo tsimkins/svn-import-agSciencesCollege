@@ -19,7 +19,7 @@ img, embed, object {
 }
 
 .contentLeadImageContainer img {
-    width: 94.943820224719101%;
+    max-width: 94.943820224719101%;
     height: auto;
     margin-left: 5.056179775280899%;
 }

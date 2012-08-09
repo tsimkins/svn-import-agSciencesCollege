@@ -215,6 +215,17 @@ class AgCommonUtilities(BrowserView):
         if body_text and '<h2' in body_text.lower() and '<h3' not in body_text.lower():
             body_classes.append('custom-h2-as-h3')
 
+        # If 'show_mobile_nav' property is set or
+        # we're the homepage at the root of the site, 
+        # set class navigation-mobile
+        
+        try:
+            if getattr(self.context, 'show_mobile_nav', False) or (self.context.portal_type == 'HomePage' and self.context.getParentNode().portal_type == 'Plone Site'):
+                body_classes.append("navigation-mobile")
+                
+        except:
+            pass
+
         try:
             custom_class = aq_acquire(self.context, 'custom_class')
             body_classes.extend(['custom-%s' % str(x) for x in custom_class.split()])
@@ -472,10 +483,12 @@ class NewsletterView(AgCommonUtilities):
             if key in ['spotlight', 'enabled']:
                 if not isinstance(value, list):
                     value = [value]
-                    
-                contents_uid = set([x.UID for x in self.folderContents()])
+
+                return value
+                
+                #contents_uid = set([x.UID for x in self.folderContents()])
     
-                return list(contents_uid.intersection(set(value)))
+                #return list(contents_uid.intersection(set(value)))
             else:
                 return value
             
@@ -493,10 +506,10 @@ class NewsletterView(AgCommonUtilities):
 
     def getEnabledItems(self):
         non_spotlight_uids = list(set(self.getEnabledUID()) - set(self.getSpotlightUID()))
-        return self.folderContents(contentFilter={'UID' : non_spotlight_uids})    
+        return self.portal_catalog.searchResults({'UID' : non_spotlight_uids})    
 
     def getSpotlightItems(self):
-        return self.folderContents(contentFilter={'UID' : self.getSpotlightUID()})
+        return self.portal_catalog.searchResults({'UID' : self.getSpotlightUID()})    
 
     def setConfig(self, enabled=[], spotlight=[], show_summary=[]):
         # Make all spotlight articles enabled

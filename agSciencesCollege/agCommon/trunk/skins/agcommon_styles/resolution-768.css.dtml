@@ -5,6 +5,11 @@
 
 /* YOUR CSS RULES START HERE */
 
+body {
+    background-image: none;
+    background-color: #FFFFFF;
+}
+
 #content #rightcolumn, #content #centercolumn, #content #homepage-text, #content #centercolumn.sr {
     display: block;
 	margin: 0 0 0.1875em 0;
@@ -26,28 +31,39 @@
 
 #portal-column-one .portletNavigationHeader {
     margin: 0.25em -0.125em 0.25em -0.125em;
+    padding: 0.625em;
+}
+
+#portal-column-one .portletNavigationHeader a {
+    font-size: 1.1875em;
 }
 
 #portal-column-one .portletNavigationHeader .icon,
 #navigation-mobile .portletNavigationHeader .icon {
     width: 1.75em;
     float: right;
+    margin-left: 0.25em;
 }
 
 #portal-column-one-visualPadding.visualPadding {
     margin-bottom: 0;
 }
 
-#portal-column-two, #portal-column-content {
+#portal-column-two, 
+#portal-column-content,
+#portal-column-content.sl,
+#portal-column-content.sl.sr {
     float: left;
     margin: 0;
     width: 93.220338983050847%;  /* (590-40)/590 */
     padding-left: 3.389830508474576%;  /* 20/590 */
     padding-right: 3.389830508474576%;  /* 20/590 */
     display: block;
+    background-color: transparent;
 }
 
-body.portaltype-homepage #portal-column-two, body.portaltype-homepage #portal-column-content {
+body.portaltype-homepage #portal-column-two, 
+body.portaltype-homepage #portal-column-content {
     width: 96.610169491525424%;  /* (590-20)/590 */
     padding-left: 1.694915254237288%;  /* 10/590 */
     padding-right: 1.694915254237288%;  /* 10/590 */
@@ -57,6 +73,7 @@ body.portaltype-homepage #portal-column-two, body.portaltype-homepage #portal-co
 #content {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 #homepageimage embed {
@@ -82,7 +99,7 @@ div.portletsBelowContentD,
 div.portletsBelowContentE {
 	width: 48.4375%; /* ((768 - 24)/2)/768 */
 	float: left;
-	padding: 0.5em 0.0.78125%;  /* 6/768 */
+	padding: 0.5em 0.78125%;  /* 6/768 */
 }
 
 #portal-breadcrumbs {
@@ -143,6 +160,18 @@ div.portletsBelowContentE {
 #logo-site {
     margin-left: 110px;
     font-size: 1.4375em;
+}
+
+#portal-header {
+    background-image: url("&dtml-portal_url;/PSUheader.gif");
+}
+
+#logo-college {
+    display: none;
+}
+
+.rg-image {
+    height: 240px;
 }
 
 /* YOUR CSS RULES STOP HERE */
