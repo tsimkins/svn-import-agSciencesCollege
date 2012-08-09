@@ -23,6 +23,14 @@ jQuery(function() {
 		len 	= $images.length,
 		_this 	= this,
 		blank 	= 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+		transparent = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII=';
+
+        $images.each(
+            function () {
+                jQuery(this).css('background-image', 'url(' + this.src + ')');
+                jQuery(this).attr('src', transparent);
+            }
+        );
 
 	function triggerCallback() {
 		callback.call( _this, $images );
@@ -94,7 +102,7 @@ jQuery(function() {
 				// we are using the elastislide plugin:
 				// http://tympanus.net/codrops/2011/09/12/elastislide-responsive-carousel/
 				$esCarousel.show().elastislide({
-					imageW 	: 75,
+					imageW 	: 66,
 					onClick	: function( $item ) {
 						if( anim ) return false;
 						anim	= true;
@@ -119,7 +127,6 @@ jQuery(function() {
 				//$rgGallery.append( jQuery('<div class="rg-view"/>').append( $viewfull ).append( $viewthumbs ) );
 				
 				$viewfull.bind('click.rgGallery', function( event ) {
-
 						if( mode === 'carousel' )
 							$esCarousel.elastislide( 'destroy' );
 						$esCarousel.hide();
@@ -130,7 +137,6 @@ jQuery(function() {
 				});
 				
 				$viewthumbs.bind('click.rgGallery', function( event ) {
-
 					_initCarousel();
 					$viewthumbs.addClass('rg-view-selected');
 					$viewfull.removeClass('rg-view-selected');
@@ -230,9 +236,12 @@ jQuery(function() {
 					$rgGallery.find('div.rg-image').empty().append('<a class="fancybox" href="' + xlargesrc + '"><img src="' + largesrc + '" /></a>');
 					
 					if( title )
-						$rgGallery.find('div.rg-caption').show().children('h2').empty().text( title );
+					{
+                        var desc_class = desc ? 'description' : '';
+						$rgGallery.find('div.rg-caption').show().children('h2').empty().text( title ).removeClass().addClass(desc_class);
 						$rgGallery.find('div.rg-caption').show().children('p').empty().text( desc );
-					
+					}
+
 					$loader.hide();
 					
 					if( mode === 'carousel' ) {

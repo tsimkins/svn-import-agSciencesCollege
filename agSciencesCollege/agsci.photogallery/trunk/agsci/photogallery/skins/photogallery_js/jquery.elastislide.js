@@ -149,7 +149,7 @@
 			
 			// the ul's parent's (div.es-carousel) width is the "visible" width
 			this.visibleWidth	= this.$esCarousel.width();
-			
+
 			// test to see if we need to initially resize the items
 			if( this.visibleWidth < this.options.minItems * ( this.options.imageW + 2 * this.options.border ) + ( this.options.minItems - 1 ) * this.options.margin ) {
 				this._setDim( ( this.visibleWidth - ( this.options.minItems - 1 ) * this.options.margin ) / this.options.minItems );
@@ -161,7 +161,7 @@
 				this._setDim();
 				this._setCurrentValues();
 			}
-			
+
 			// set the <ul> width
 			this.$slider.css({
 				width	: this.sliderW
@@ -169,7 +169,7 @@
 			
 		},
 		_setDim				: function( elW ) {
-			
+
 			// <li> style
 			this.$items.css({
 				marginRight	: this.options.margin,
@@ -193,7 +193,7 @@
 			
 			// how many items fit with the current width
 			this.fitCount		= Math.floor( this.visibleWidth / this.itemW );
-			
+
 		},
 		_addControls		: function() {
 			
@@ -292,14 +292,14 @@
 			
 		},
 		_slide				: function( dir, val, anim, callback ) {
-			
+
 			// if animating return
 			//if( this.$slider.is(':animated') )
 				//return false;
 			
 			// current margin left
 			var ml		= parseFloat( this.$slider.css('margin-left') );
-			
+
 			// val is just passed when we want an exact value for the margin left (used in the _slideToCurrent function)
 			if( val === undefined ) {
 			
@@ -371,8 +371,33 @@
 			
 			jQuery.fn.applyStyle = ( anim === undefined ) ? jQuery.fn.animate : jQuery.fn.css;
 			
-			var sliderCSS	= { marginLeft : val };
+			var totalWidth = 10 + ((this.options.imageW + this.options.margin + this.options.border) * this.itemsCount);
+			var invisibleWidth = totalWidth - this.visibleWidth; 
 			
+			var fmr = 0;
+
+			console.log('this.visibleWidth ' + this.visibleWidth);
+			console.log('this.options.minItems ' + this.options.minItems);
+			console.log('this.options.imageW ' + this.options.imageW);
+			console.log('this.options.border ' + this.options.border);
+			console.log('this.options.margin ' + this.options.margin);
+
+			console.log('this.sliderW ' + this.sliderW);
+			console.log('this.itemW ' + this.itemW);
+			console.log('this.itemsCount ' + this.itemsCount);
+
+			console.log('this.fitCount ' + this.fitCount);			
+
+			console.log('totalWidth ' + totalWidth);	
+			console.log('invisibleWidth ' + invisibleWidth);	
+			
+			if (invisibleWidth > 0)
+			{
+                fmr = -1*invisibleWidth;
+			}
+
+			var sliderCSS	= { marginLeft : val, marginRight : fmr };
+
 			var instance	= this;
 			
 			this.$slider.stop().applyStyle( sliderCSS, jQuery.extend( true, [], { duration : this.options.speed, easing : this.options.easing, complete : function() {

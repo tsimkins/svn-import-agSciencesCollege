@@ -26,7 +26,6 @@
 }
 .es-carousel ul{
 	display:none;
-	height:100%;
 }
 .es-carousel ul li{
 	height:100%;
@@ -53,8 +52,10 @@
 .es-carousel ul li a img{
 	display:block;
 	border:none;
-	max-height:100%;
-	max-width:100%;
+	height: 64px;
+	width: 64px;
+	border: 1px solid #666666;
+	background-position: center 45%;
 }
 .es-nav span{
 	position:absolute;
