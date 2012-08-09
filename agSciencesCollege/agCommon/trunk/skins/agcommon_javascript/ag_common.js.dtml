@@ -503,10 +503,14 @@ function toggleButtons(header, nav, show_nav, other_buttons)
 
         // Toggle Nav
         jq(nav).show()
+        
+        jq(header).removeClass('active');
     }
     else
     {
         // Fiddle nav
+        
+        jq(nav).hide();
 
         jq(header).each(
             function() {
@@ -514,13 +518,11 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                 if (!jq(this).data('child'))
                 {
 
-                    // Toggle Nav
-                    
-                    jq(nav).hide();
-
-
-                    // Set item to show
+                    // Set child item
                     jq(this).data('child', jq(nav))
+
+                    // Toggle Nav
+                    jq(this).data('child').hide();
 
                     // Set on click handler
                     jq(this).click(
@@ -570,6 +572,7 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                     
                     if (show_nav)
                     {
+                        console.log("Showing " + nav);
                         jq(this).trigger('click');
                     }
                 }
@@ -689,17 +692,23 @@ function mobileNav() {
                 }
             }
         }
+
     }
 
+    
+        // Make left navigation +/-
+        var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite").size() ? true : false;
+        
+        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
+    
+    
+        // Make mobile top navigation +/-
+        var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
+        toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
+    
+        // Make table of contents +/-
+        toggleButtons("#content #document-toc .portletHeader", "#content #document-toc .portletItem", false, []);
 
-    // Make left navigation +/-
-    var is_homepage = jq("body.portaltype-homepage").size() ? true : false;
-    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
-
-
-    // Make mobile top navigation +/-
-    var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
-    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
 
     // Move first column portlets
     if (window.innerWidth > 520)

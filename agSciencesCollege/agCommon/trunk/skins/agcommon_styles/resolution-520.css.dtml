@@ -44,7 +44,7 @@
 }
 
 #portal-column-content, #portal-column-content.sl, #portal-column-content.sr, #portal-column-content.sl.sr {
-    margin-top: 0.75em;
+    margin-top: 0;
     padding-left: 3.38983%;
     padding-right: 3.38983%;
     width: 93.2203%;
@@ -78,6 +78,10 @@
     border-left: 1px solid #666666;
     border-right: 1px solid #666666;
     border-bottom: none;
+}
+
+#portal-column-one .portletNavigationSubHeader a {
+    font-size: 0.875em;
 }
 
 #portal-column-one .portletNavigationHeader.active {
@@ -339,15 +343,54 @@ body.mobile #portal-header>#portal-searchbox {
     background-repeat: no-repeat;
 }
 
-#navigation-mobile #site-navigation .portletNavigationHeader {
+#navigation-mobile #site-navigation .portletNavigationHeader, #document-toc .portletHeader {
     background-image: url("&dtml-portal_url;/menu-expand.png");
     background-position: 98% center;
     background-repeat: no-repeat;
     background-size: auto 66%;
 }
 
-#navigation-mobile #site-navigation .portletNavigationHeader.active {
+#navigation-mobile #site-navigation .portletNavigationHeader.active,  #document-toc .portletHeader.active {
     background-image: url("&dtml-portal_url;/menu-contract.png");
+}
+
+/* Bump down headings and description */
+
+#content h1, #content h1.documentFirstHeading {
+    font-size: 1.75em;
+}
+
+#content h2, html.kupu-html h2 {
+    font-size: 1.4375em;
+}
+
+#content h3, html.kupu-html h3, 
+body.custom-h2-as-h3 #content-text #parent-fieldname-text h2, 
+body.custom-h2-as-h3 #content-core #parent-fieldname-text h2,
+body.custom-h2-as-h3 #homepage-text #parent-fieldname-text h2,
+body.template-person_view #content h2,
+body.template-by_county_listing.custom-two-column #content h2 {
+    font-size: 1.09375em;
+}
+
+#content .documentDescription {
+    font-size: 1.125em;
+}
+
+/* Document table of contents */
+#portal-column-content.sr, #document-toc {
+    margin: 0.25em 0 1em 0;
+    width: 96%;
+    padding: 0.75em 2%; 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#portal-column-content.sr .portletHeader , #document-toc .portletHeader {
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
 }
 
 /* Photo Gallery */

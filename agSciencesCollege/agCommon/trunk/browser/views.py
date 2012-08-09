@@ -220,11 +220,30 @@ class AgCommonUtilities(BrowserView):
         # set class navigation-mobile
         
         try:
+            # Explicitly enabled or is a homepage at the root of the site
             if getattr(self.context, 'show_mobile_nav', False) or (self.context.portal_type == 'HomePage' and self.context.getParentNode().portal_type == 'Plone Site'):
                 body_classes.append("navigation-mobile")
-                
         except:
             pass
+
+        # If we have a property of 'enable_subsite_nav' set on
+        # ourself, or if we're the default page and have it set on our parent
+        # object, add a class of 'navigation-subsite'
+        inner_context = aq_inner(self.context)
+        parent = aq_inner(self.context.getParentNode())
+        try:
+            parent_default = parent.getDefaultPage()
+        except AttributeError:
+            parent_default = ''
+
+        try:
+            # Explicitly enabled or is a homepage at the root of the site
+            if getattr(inner_context, 'enable_subsite_nav', False) or self.context.getId() == parent_default and getattr(parent, 'enable_subsite_nav', False):
+                body_classes.append("navigation-subsite")
+        except:
+            pass
+            
+            
 
         try:
             custom_class = aq_acquire(self.context, 'custom_class')

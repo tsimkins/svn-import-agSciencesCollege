@@ -163,7 +163,7 @@ div.portletsBelowContentE {
 }
 
 #portal-header {
-    background-image: url("&dtml-portal_url;/PSUheader.gif");
+    background-image: url("&dtml-portal_url;/PSUheader.png");
 }
 
 #logo-college {
