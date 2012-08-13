@@ -5,12 +5,12 @@
 
  <stylesheet id="elastislide.css"
     title="" cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression=""  media="all"
+    enabled="1" expression="python: here.meta_type in ['ATFolder','ATTopic','PhotoFolder']"  media="all"
     rel="stylesheet" rendering="import"/>
 
  <stylesheet id="responsive_photogallery.css" insert-after="elastislide.css"
     title="" cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression=""  media="all"
+    enabled="1" expression="python: here.meta_type in ['ATFolder','ATTopic','PhotoFolder']"  media="all"
     rel="stylesheet" rendering="import"/>
 
  <stylesheet id="jquery.fancybox.css" insert-after="responsive_photogallery.css"

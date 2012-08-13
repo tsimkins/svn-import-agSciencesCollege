@@ -11,6 +11,6 @@ jq(document).ready(function() {
         }
     );
 
-    jq(".fancybox").fancybox({'type' : 'image'});
+    jq(".fancybox").fancybox({'type' : 'image', 'hideOnContentClick' : true , 'closeClick' : true});
 });
 

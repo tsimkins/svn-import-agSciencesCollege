@@ -47,7 +47,7 @@
                         <ul>
                             <li tal:repeat="i view/getImages">
                                 <a tal:attributes="href string:${i/getURL}/image_galleryzoom">
-                                    <img tal:attributes="src string:${i/getURL}/image_gallerythumbnail6;
+                                    <img tal:attributes="src string:${i/getURL}/image_gallerythumb;
                                                          data-large string:${i/getURL}/image_gallery; 
                                                          data-xlarge string:${i/getURL}/image_galleryzoom; 
                                                          alt i/Title; 

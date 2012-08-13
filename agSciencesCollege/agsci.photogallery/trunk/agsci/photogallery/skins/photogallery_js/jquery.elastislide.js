@@ -372,24 +372,25 @@
 			jQuery.fn.applyStyle = ( anim === undefined ) ? jQuery.fn.animate : jQuery.fn.css;
 			
 			var totalWidth = 10 + ((this.options.imageW + this.options.margin + this.options.border) * this.itemsCount);
-			var invisibleWidth = totalWidth - this.visibleWidth; 
+			var invisibleWidth = totalWidth - this.visibleWidth + ((this.options.margin + this.options.border) * this.itemsCount); 
 			
 			var fmr = 0;
 
-			console.log('this.visibleWidth ' + this.visibleWidth);
-			console.log('this.options.minItems ' + this.options.minItems);
-			console.log('this.options.imageW ' + this.options.imageW);
-			console.log('this.options.border ' + this.options.border);
-			console.log('this.options.margin ' + this.options.margin);
+			logMessage('this.visibleWidth ' + this.visibleWidth);
+			logMessage('this.options.minItems ' + this.options.minItems);
+			logMessage('this.options.imageW ' + this.options.imageW);
+			logMessage('this.options.border ' + this.options.border);
+			logMessage('this.options.margin ' + this.options.margin);
 
-			console.log('this.sliderW ' + this.sliderW);
-			console.log('this.itemW ' + this.itemW);
-			console.log('this.itemsCount ' + this.itemsCount);
+			logMessage('this.sliderW ' + this.sliderW);
+			logMessage('this.itemW ' + this.itemW);
+			logMessage('this.itemsCount ' + this.itemsCount);
 
-			console.log('this.fitCount ' + this.fitCount);			
+			logMessage('this.fitCount ' + this.fitCount);			
 
-			console.log('totalWidth ' + totalWidth);	
-			console.log('invisibleWidth ' + invisibleWidth);	
+			logMessage('totalWidth ' + totalWidth);	
+			logMessage('invisibleWidth ' + invisibleWidth);	
+			logMessage("-------------------------------------");	
 			
 			if (invisibleWidth > 0)
 			{
@@ -457,6 +458,12 @@
 	var logError 				= function( message ) {
 		if ( this.console ) {
 			console.error( message );
+		}
+	};
+
+	var logMessage			= function( message ) {
+		if ( this.console ) {
+			console.log( message );
 		}
 	};
 	

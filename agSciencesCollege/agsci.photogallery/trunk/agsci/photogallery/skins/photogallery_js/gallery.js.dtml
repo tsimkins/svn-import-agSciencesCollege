@@ -25,12 +25,17 @@ jQuery(function() {
 		blank 	= 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 		transparent = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII=';
 
-        $images.each(
-            function () {
-                jQuery(this).css('background-image', 'url(' + this.src + ')');
-                jQuery(this).attr('src', transparent);
-            }
-        );
+        var isOldIE = (document.all && !window.opera && !window.XDomainRequest) ? 1 : 0;
+
+        if (! (isOldIE && document.getElementsByTagName)) {
+    
+            $images.each(
+                function () {
+                    jQuery(this).css('background-image', 'url(' + this.src + ')');
+                    jQuery(this).attr('src', transparent);
+                }
+            );
+        }
 
 	function triggerCallback() {
 		callback.call( _this, $images );
