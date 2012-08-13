@@ -16,10 +16,10 @@
   <element value="Image"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">pgv_sg_carousel_view</property>
+ <property name="default_view">responsive_photogallery</property>
  <property name="view_methods">
   <element value="atct_album_view"/>
-  <element value="pgv_sg_carousel_view"/>
+  <element value="responsive_photogallery"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>

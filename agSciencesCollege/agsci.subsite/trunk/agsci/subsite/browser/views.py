@@ -79,7 +79,7 @@ class BlogNewsView(FolderView):
                 link_month_url = self.context[month_id].absolute_url()
             else:
                 link_month_url = None
-            #import pdb; pdb.set_trace()
+
             if not months.get(month):
                 months[month] = {'id' : effective_date.strftime(month_format).lower().replace(' ', '-'), 
                                     'label' : effective_date.strftime(month_format), 'items' : [],
