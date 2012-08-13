@@ -244,6 +244,10 @@ def getHomepageImage(context):
             if (backgrounds.length && breadcrumbs.length)
             {
                 breadcrumbs.addClass("homepage");
+                var outerHeight = breadcrumbs.outerHeight();
+                var outerHeightMargins = breadcrumbs.outerHeight(true);
+                var adjustment = (outerHeight+outerHeightMargins)/2; // Why does this work?
+                homepageImage.css('margin-top', (-1*adjustment) + 'px');
             }
 
             %s

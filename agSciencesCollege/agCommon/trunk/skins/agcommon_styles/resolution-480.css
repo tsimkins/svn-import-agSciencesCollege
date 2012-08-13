@@ -2,7 +2,12 @@ div.portletsBelowContentA,
 div.portletsBelowContentB,
 div.portletsBelowContentC,
 div.portletsBelowContentD,
-div.portletsBelowContentE {
+div.portletsBelowContentE,
+div.portletsAboveContentA,
+div.portletsAboveContentB,
+div.portletsAboveContentC,
+div.portletsAboveContentD,
+div.portletsAboveContentE {
 	width: 97.5%; /* (480 - 12)/480 */
 	float: left;
 	padding: 0.5em 1.25%;  /* 6/480 */
@@ -24,6 +29,7 @@ div.portletsBelowContentE {
 #portal-searchbox #searchSource {
     font-size: 0.75em;
     padding: 0.1875em 0.628930817610063%; /* 4/477 */
+    width: 45%;
 }
 
 #portal-searchbox input.searchButton {
@@ -91,39 +97,6 @@ div.portletsBelowContentE {
     margin-top: 33px;
 }
 
-
-/* Photo galleries */
-/*
-#content .rg-gallery {
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    top: 0;
-    left: 0;
-    padding: 0;
-    margin: 0;
-    border: 0;
+#logo-site img {
+    width: 200px;
 }
-
-#content .rg-image-wrapper {
-    position: relative;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
-    padding: 5.25% 6.25% 6.25% 6.25%;  /- Where did the extra 1% go? -/
-    width: 87.5%;
-    height: 87.5%;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-.rg-image {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-#content .rg-thumbs, #content .rg-view {
-    display: none;
-}*/

@@ -37,7 +37,8 @@ body.template-atct_edit #image-header {
 #centercolumn,
 #centercolumn.sr {
     border: none;
-    margin: 0 0.5em;
+    margin: 0 1.503759398496241%;
+    width: 96.992481203007519%;
 }
 
 #centercolumn .portletWrapper {

@@ -12,10 +12,11 @@
 	border: 0 none;
 	display: block;
 	height: 265px;
-	margin: 0.1875em 0.424929178470255%; /* 3/706 */
-	width: 99.15014164305949%;  /* 700/706 */
+	margin: 0.1875em 0.427303084542972%; /* 3/706 */
+	width: 99.121712391758943%;  /* 700/706 */
 	text-align: left;
 	padding: 0;
+	background-repeat: no-repeat;
 }
 
 #homepageimage.nobreadcrumbs {

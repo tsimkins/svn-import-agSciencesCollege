@@ -15,8 +15,8 @@ function resizeColumns()
 
 function doresizeColumns()
 {
-    rightcolumn = jq("body.template-document_homepage_view #rightcolumn");
-    portalColumnContent = jq("body.template-document_homepage_view #portal-column-content");
+    var rightcolumn = jq("body.template-document_homepage_view #rightcolumn");
+    var portalColumnContent = jq("body.template-document_homepage_view #portal-column-content");
 
     if (window.innerWidth <= 768)
     {
@@ -27,8 +27,8 @@ function doresizeColumns()
 
     if (rightcolumn.size())
     {
-        var heightDiff = (portalColumnContent.position().top + portalColumnContent.outerHeight()) - (rightcolumn.position().top + rightcolumn.outerHeight()) ;
-        var newHeight = rightcolumn.height() + heightDiff -3;
+        var heightDiff = (portalColumnContent.position().top + portalColumnContent.outerHeight()) - (rightcolumn.position().top + rightcolumn.outerHeight());
+        var newHeight = rightcolumn.height() + heightDiff - 3;
         rightcolumn.height(newHeight);
     }
 
@@ -36,13 +36,13 @@ function doresizeColumns()
 
 function msieversion()
 {
-    var ua = window.navigator.userAgent
-    var msie = ua.indexOf ( "MSIE " )
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf ( "MSIE " );
 
     if ( msie > 0 )      // If Internet Explorer, return version number
-        return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+        return parseInt (ua.substring (msie + 5, ua.indexOf (".", msie )));
     else                 // If another browser, return 0
-        return 0
+        return 0;
 
 }
 
@@ -495,6 +495,7 @@ jq(document).ready(
 
 function toggleButtons(header, nav, show_nav, other_buttons)
 {
+    "use strict";
     // make nav expandable/contractable
     if (window.innerWidth > 520)
     {
@@ -502,24 +503,34 @@ function toggleButtons(header, nav, show_nav, other_buttons)
         jq(header + " img").remove();
 
         // Toggle Nav
-        jq(nav).show()
-        
+        jq(nav).show();
+
         jq(header).removeClass('active');
+
+        jq(header).each(
+            function() {
+                jq(this).removeData('child');
+            }
+        );
     }
     else
     {
-        // Fiddle nav
-        
-        jq(nav).hide();
-
         jq(header).each(
             function() {
 
                 if (!jq(this).data('child'))
                 {
 
+                    // Fiddle nav
+                    if (!show_nav)
+                    {
+                        jq(nav).hide();
+                    }
+
+
                     // Set child item
-                    jq(this).data('child', jq(nav))
+                    jq(this).data('child', jq(nav));
+                    jq(this).data('other_buttons', other_buttons);
 
                     // Toggle Nav
                     jq(this).data('child').hide();
@@ -527,7 +538,15 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                     // Set on click handler
                     jq(this).click(
                         function() {
-                            
+
+                            var other_buttons = jq(this).data('other_buttons');
+                            var activate_button = true;
+
+                            if (jq(this).hasClass('active'))
+                            {
+                                activate_button = false;
+                            }
+
                             for (var i=0; i<other_buttons.length; i++)
                             {
                                 var o = other_buttons[i];
@@ -537,7 +556,7 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                                     jq(o).trigger('click');
                                 }
 
-                                if (!jq(this).hasClass('active'))
+                                if (activate_button)
                                 {
                                     jq(o).addClass('inactive');
                                 }
@@ -545,38 +564,62 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                                 {
                                     jq(o).removeClass('inactive');
                                 }
-
                             }
-                            
-                            jq(this).toggleClass('active');
 
-                            // Special case for navigation
-
-                            if(jq(this).parent().attr('id') == 'site-navigation')
+                            if (activate_button)
                             {
-                                if (jq(this).hasClass('active'))
+                                jq(this).addClass('active');
+                                jq(this).removeClass('inactive'); 
+
+                                // Special case for navigation
+                                if(jq(this).parent().attr('id') == 'site-navigation')
                                 {
                                     // set text to hide
                                     jq(this).children('span').text('Hide Navigation');
                                 }
-                                else
+
+                                jq(this).data('child').show();
+
+                                // This addresses a bug that happens on the iPhone
+                                // where the first show/hide works, but the second 
+                                // toggle won't show the nav.  Tell it to .show(),
+                                // and then check.  If it isn't visible, tell it to
+                                // .show() again.
+
+                                if (!jq(this).data('child').is(':visible'))
+                                {
+                                    jq(this).data('child').show();
+                                }
+
+                            }
+                            else
+                            {
+                                jq(this).removeClass('inactive');
+                                jq(this).removeClass('active'); 
+
+                                // Special case for navigation
+                                if(jq(this).parent().attr('id') == 'site-navigation')
                                 {
                                     // set text to show
                                     jq(this).children('span').text('Show Navigation');
                                 }
+
+                                jq(this).data('child').hide();
+
                             }
-                                    
-                            jq(this).data('child').toggle();
+
                         }
-                    );
-                    
+                    ); // endclick
+
                     if (show_nav)
                     {
-                        console.log("Showing " + nav);
-                        jq(this).trigger('click');
+                       jq(this).trigger('click');
                     }
+
                 }
+
             }
+
         );
     }
 
@@ -633,7 +676,7 @@ function toggleNav(header, nav, show_nav)
 
                         }
                     );
-                    
+
                     if (show_nav)
                     {
                         nav_icon.trigger('click');
@@ -656,7 +699,7 @@ function mobileNav() {
         if (jq("#navigation-mobile").size())
         {
             jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-top');
-            
+
             jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
             jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
         }
@@ -669,16 +712,16 @@ function mobileNav() {
         {
             mobile_nav = jq('<div id="navigation-mobile"></div>').insertAfter("#portal-header");
             mobile_portletWrapper = jq('<div class="portletWrapper"></div>').appendTo(mobile_nav);
-            
+
             if (jq("#portal-top-navigation li").size())
             {
                 mobile_portletWrapper.append(jq('<div id="site-navigation"><h2 class="portletHeader portletNavigationHeader"><span>Show Site Navigation</span></h2></div>'));
                 jq("#portal-top-navigation").detach().appendTo(mobile_portletWrapper);
             }            
             // If we are at the main navigation (no header) move that *inside* the mobile nav.
-            
+
             var section_nav = jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree");
-            
+
             if (section_nav.size())
             {
                 var portletWrapper = section_nav.parent();
@@ -695,19 +738,19 @@ function mobileNav() {
 
     }
 
-    
-        // Make left navigation +/-
-        var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite").size() ? true : false;
-        
-        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
-    
-    
-        // Make mobile top navigation +/-
-        var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
-        toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
-    
-        // Make table of contents +/-
-        toggleButtons("#content #document-toc .portletHeader", "#content #document-toc .portletItem", false, []);
+
+    // Make left navigation +/-
+    var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite").size() ? true : false;
+
+    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
+
+
+    // Make mobile top navigation +/-
+    var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
+    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
+
+    // Make table of contents +/-
+    toggleButtons("#content #document-toc .portletHeader", "#content #document-toc .portletItem", false, []);
 
 
     // Move first column portlets
@@ -721,7 +764,7 @@ function mobileNav() {
                     jq(this).appendTo(jq("#portal-column-one #portal-column-one-visualPadding"));
                 }
             );
-            
+
             jq("#portlets-mobile #addthis").each(
                 function () {
                     jq(this).prependTo(jq("#content"));
@@ -748,13 +791,13 @@ function mobileNav() {
             jq("#portal-column-one .portletWrapper").each(
                 function () {
 
-                    if (jq(this).children(".portlet").size() && ! jq(this).children(".portletNavigationTree").size())
+                    if (jq(this).children(".portlet, .portletStaticText").size() && ! jq(this).children(".portletNavigationTree").size())
                     {
                         jq(this).appendTo(jq(mobile_portlets));
                     }
                 }
             );
-            
+
         }
     }
 
@@ -769,7 +812,7 @@ function adjustSearch() {
             jq("#portal-header #portal-searchbox").show()
             jq("#search-mobile").remove();
             jq("#mobile-search-button").remove();
-            
+
             // Can't remove mobile nav until this step is done.
             jq("#navigation-mobile").remove();
         }
@@ -791,23 +834,23 @@ function adjustSearch() {
             {
                 mobile_search_button.insertBefore(search_mobile);
             }
-            
+
             jq('<div class="visualClear" id="clear-after-mobile-search"><!-- --></div>').insertAfter("#mobile-search-button");
 
             // Make search +/-
             toggleButtons("#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader", "#search-mobile", false, ["#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader"]);
-            
+
             // If we're showing the top navigation, make the search button inactive (tab-styled rather than button)
             var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
 
-            if (show_mobile_nav)
+            if (show_mobile_nav && jq('#site-navigation').size())
             {
                 jq("#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader").addClass('inactive');
             }
 
         }
     }
-    
+
 }
 
 
@@ -826,38 +869,6 @@ function enableMobile() {
     }
 }
 
-function adjustGalleries() {
-
-    if (window.innerWidth > 768)
-    {
-        jq("body.template-pgv_sg_carousel_view .pgv_sg_carouseltimed_view #myGallery, body.template-pgv_sg_carousel_view .pgv_sg_carousel_view #myGallery").each(
-            function () {
-                jq(this).height(475 + 'px');
-            }
-        );
-    }
-    else
-    {
-        jq("body.template-pgv_sg_carousel_view.mobile .pgv_sg_carousel_view #myGallery").each(
-            function () {
-                var containerWidth = jq("#content-core .pgv_sg_carousel_view").width();
-                var newHeight = 90 + 525*(containerWidth/768);
-                jq(this).height(newHeight + 'px');
-            }
-        );
-        
-        jq("body.template-pgv_sg_carousel_view.mobile #lbImage").each(
-            function () {
-                var containerWidth = window.innerWidth - 22;
-                var newHeight = (533/769) * containerWidth
-                jq(this).css('height', newHeight + 'px');
-                console.log(containerWidth + "|" + newHeight);
-            }
-        );
-    }
-}
-
-
 /* Top navigation equalizer */
 
 jq(document).ready(
@@ -865,15 +876,14 @@ jq(document).ready(
         enableMobile();
         equalizeTopNav();
         resizeColumns();
-        
+
         if (msieversion() <= 8 && msieversion() > 0)
         {
             return false;
         }
-        
+
         mobileNav();
         adjustSearch();
-        adjustGalleries();
     }
 );
 
@@ -890,7 +900,6 @@ jq(window).resize(
 
         mobileNav();
         adjustSearch();
-        adjustGalleries();
     }
 );
 

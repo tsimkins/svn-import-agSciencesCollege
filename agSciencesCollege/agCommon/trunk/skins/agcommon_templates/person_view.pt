@@ -58,12 +58,6 @@
 
             <div class="caption">
 
-                <div class="headshot"
-                     tal:condition="context/image_normal|nothing">
-                    <img src="" alt=""
-                         tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal',  css_class='photo')" />
-                </div>
-
                 <div tal:replace="structure provider:plone.abovecontenttitle" />
 
                 <h1 class="fn n documentFirstHeading">
@@ -77,6 +71,12 @@
                     <li tal:repeat="jobTitle context/getJobTitles"
                         tal:content="jobTitle" />
                 </ul>
+
+                <div class="headshot"
+                     tal:condition="context/image_normal|nothing">
+                    <img src="" alt=""
+                         tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal',  css_class='photo')" />
+                </div>
 
                 <div class="adr">
                     <span class="street-address" tal:content="structure python:context.getOfficeAddress().replace('\n', '<br />')" /><br />

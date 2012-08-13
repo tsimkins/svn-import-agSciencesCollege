@@ -34,5 +34,10 @@
 
  <javascript id="semicolon-delimited.js"
     remove="True"/>
+    
+ <javascript id="fluid-images.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" inline="False"
+    conditionalcomment="lte IE 7" />
 </object>
 

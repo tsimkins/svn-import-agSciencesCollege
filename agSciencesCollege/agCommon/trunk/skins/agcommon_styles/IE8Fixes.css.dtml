@@ -22,6 +22,11 @@
     margin-right: 0.5em;
 }
 
+.fancybox-close {
+    right: 0;
+    top: 0;
+}
+
 /* </dtml-with> */
 
 

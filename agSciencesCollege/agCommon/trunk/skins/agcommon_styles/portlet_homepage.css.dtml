@@ -5,9 +5,22 @@
 
 /* YOUR CSS RULES START HERE */
 
+#portal-localsearchbox {
+    margin: 0;
+    width: 95.57896%;
+}
+
+#content #homepage-text {
+    padding: 0.375em 0;
+    margin: 0;
+    width: 100%;
+}
 
 #content {
-    padding: 0 1.25em 0 !important
+    padding: 0 2.237136465324385% !important;
+    margin-left: 0;
+    margin-right: 0;
+    width: 95.52572706935123%;
 }
 
 #portal-column-content .documentEditable {
@@ -18,15 +31,20 @@
     margin: 0 1em !important;
 }
 
-#content #homepage-text {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
 #portlets-above {
     display: block;
     font-size: 0.84375em;
 }
+
+#portlets-above .portletWrapper {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+#portlets-above .portletWrapper:first-child {
+    margin-top: 0.25em;
+}
+
 
 #portlets-above .portletWrapper .portletHeader {
     font-size:1.15em;
@@ -37,6 +55,8 @@
     background-repeat:no-repeat;
     margin-left: 0.3125em !important;
     letter-spacing: -0.05em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #portlets-above dl.portlet:first-child .portletHeader {

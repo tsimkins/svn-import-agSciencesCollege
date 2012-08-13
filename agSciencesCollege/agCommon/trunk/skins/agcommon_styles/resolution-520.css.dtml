@@ -15,7 +15,7 @@
     padding-right: 0.4375em !important;
 }
 
-#homepageimage {
+#homepageimage, #panorama-homepage-image, #image-header {
     display: none !important;
 }
 
@@ -118,6 +118,7 @@
 #navigation-mobile .portletNavigationHeader.active,
 #navigation-mobile .portletNavigationHeader.inactive {
     border: 1px solid #666666;
+    border-bottom-width: 0;
     font-size: 0.6875em;
     -webkit-border-top-left-radius: 3px;
     -webkit-border-top-right-radius: 3px;
@@ -160,6 +161,7 @@
 #navigation-mobile #mobile-search-button {
     width: 22%;
     margin-left: 1%;
+    float: right;
 }
 
 #navigation-mobile .portletNavigationHeader span, #navigation-mobile #mobile-search-button div {
@@ -198,6 +200,7 @@
 
 #portal-footer .footerLinks a {
     display: block;
+    padding: 0.375em 0;
 }
 
 #portal-footer .footerLinks .footerSeparator {
@@ -217,7 +220,6 @@
     border: 1px solid #666666;
     clear: both;
     position: relative;
-    top: -1px;
     background: #FAFAFA;
     -webkit-border-bottom-left-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
@@ -238,10 +240,6 @@
     width: 96.6102%;
     clear: both;
     margin-top: 0.75em;
-}
-
-body.portaltype-homepage #portal-column-one {
-    margin-top: 0;
 }
 
 .documentActions {
@@ -324,6 +322,14 @@ body.mobile #portal-header>#portal-searchbox {
     margin-left: 0.75%;
 }
 
+#portal-column-content #content {
+    margin-top: 1.25em;
+}
+
+#portal-column-content.sl #content {
+    margin-top: 0.5em;
+}
+
 #content #addthis {
     display: none;
 }
@@ -378,7 +384,7 @@ body.template-by_county_listing.custom-two-column #content h2 {
 }
 
 /* Document table of contents */
-#portal-column-content.sr, #document-toc {
+#portal-column-content.sr #document-toc, #document-toc {
     margin: 0.25em 0 1em 0;
     width: 96%;
     padding: 0.75em 2%; 
@@ -393,47 +399,16 @@ body.template-by_county_listing.custom-two-column #content h2 {
     background-size: auto 100%;
 }
 
-/* Photo Gallery */
-
-body.template-responsive_photogallery #content h1, 
-body.template-responsive_photogallery #content h1.documentFirstHeading {
-    color: #FFFFFF;
-    background-color: #000000;
-    font-size: 1em;
-    height: 3em;
-    line-height: 1.5em;
-    padding: 0.25em 1%;
-    margin: 0;
-    top: 0;
-    left: 0;
-    width: 98%;
-    position: absolute;
+/* Creamery nutrition facts table */
+table.nutrition {
+    float: none;
+    clear: both;
+    margin: 1em auto;
+    width: 75%;
 }
 
-#content .rg-image-wrapper {
-    position: absolute;
-    top: 3em;
-    left: 0;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0.25em 4.166666666666667%;
-    width: 91.666666666666667%;
-    height: 183.333333333333334%;
-    margin: 0;
-}
-
-#content .rg-thumbs, #content .rg-caption-wrapper {
-    display: none;
-}
-
-#content .rg-image {
-    height: auto;
-}
-
-#content .rg-image-nav a {
-    background-position: -20% 45%;
-    width: 4.16667%;
-    backgrond: url("http://127.0.0.1:13001/agsci_main/agsci.psu.edu/nav.png") no-repeat scroll -20% 45% #000000;
+#fblike, #commenting span {
+    margin: 1.5em 0 0.5em 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

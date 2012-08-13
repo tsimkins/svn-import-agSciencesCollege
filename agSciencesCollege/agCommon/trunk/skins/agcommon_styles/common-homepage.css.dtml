@@ -86,8 +86,8 @@
 #content #homepage-text {
     display: block;
 	margin: 0 0.424929178470255%; /* 3/706 */
-	padding: 0.375em 1.274787535410765%; /* 9/706 */
-	width: 95.75070821529745%;  /* (700-24)/706 */
+	padding: 0.375em 2.274787535410765%; /* 9/706 */
+	width: 91.75070821529745%;  /* (700-24)/706 */
 }
 
 #content #homepage-text .documentFirstHeading {

@@ -238,7 +238,7 @@ class AgCommonUtilities(BrowserView):
 
         try:
             # Explicitly enabled or is a homepage at the root of the site
-            if getattr(inner_context, 'enable_subsite_nav', False) or self.context.getId() == parent_default and getattr(parent, 'enable_subsite_nav', False):
+            if context.getProperty('enable_subsite_nav', False) or self.context.getId() == parent_default and parent.getProperty('enable_subsite_nav', False):
                 body_classes.append("navigation-subsite")
         except:
             pass

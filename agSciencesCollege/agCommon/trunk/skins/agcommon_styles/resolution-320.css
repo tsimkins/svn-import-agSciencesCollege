@@ -45,8 +45,29 @@
     max-height: 250px;
 }
 
-/* Photo Gallery */
-
 #content .rg-image {
-    height: 150px;
+    height: 155px;
+}
+
+#content .rg-thumbs {
+    display: none;
+}
+
+#content .rg-caption {
+    font-size: 0.875em;
+    margin-top: 12px;
+}
+
+#content .rg-caption p {
+    margin: 0.1875em 0 !important;
+}
+
+#content .facultyStaffDirectory.personView .headshot {
+    float: none;
+    text-align: center;
+    margin: 0 0 1em 0 !important;
+}
+
+#logo-site img {
+    width: 175px;
 }

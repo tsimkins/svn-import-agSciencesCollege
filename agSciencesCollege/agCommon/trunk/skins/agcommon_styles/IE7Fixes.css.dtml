@@ -65,4 +65,62 @@ body.template-document_homepage_view #rightcolumn {
     display: inline;
 }
 
+.fancybox-close {
+    right: 0;
+    top: 0;
+}
+
+/* Make all the dynamic stuff fixed width */
+#visual-portal-wrapper {
+    width: 895px;
+}
+
+#portal-columns {
+    background-color: transparent;
+    border-collapse: separate;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
+    width: 99.776536312849162%;
+}
+
+#portal-column-one {
+    margin: 0;
+    padding: 0;
+    width: 187px;
+    float: left;
+    background-image: none;
+    border-right: none;
+}
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom: 1em;
+}
+
+#portal-column-two {
+    padding: 12px;
+    vertical-align: top;
+    width: 150px;
+    float: left;
+}
+
+#portal-column-content {
+    width: auto;
+    float: left;
+}
+
+#portal-column-content.sl {
+    margin-left: 0;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#portal-column-one, #portal-column-content, #portal-column-two, #portal-columns {
+    display: block;
+}
+
 /* </dtml-with> */

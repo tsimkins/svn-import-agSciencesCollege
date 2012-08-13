@@ -27,6 +27,10 @@
 	margin-left: 0;
 }
 
+#portal-column-one .imagePortlet ul {
+	margin-left: 0;
+}
+
 #portal-column-two .portletFooter,
 #rightcolumn .portletFooter,
 .portletFooter {
@@ -96,4 +100,74 @@ body.template-folder_leadimage_listing .leadimage-listing img {
     font-size: 1em;
 }
 
+/* Make all the dynamic stuff fixed width */
+#visual-portal-wrapper {
+    width: 895px;
+}
+
+#portal-columns {
+    background-color: transparent;
+    border-collapse: separate;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
+    width: 99.776536312849162%;
+}
+
+#portal-column-one {
+    margin: 0;
+    padding: 0;
+    width: 187px;
+    float: left;
+    background-image: none;
+    border-right: none;
+}
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom: 1em;
+}
+
+#portal-column-two {
+    padding: 12px;
+    vertical-align: top;
+    width: 150px;
+    float: left;
+}
+
+#portal-column-content {
+    width: auto;
+    float: left;
+}
+
+#portal-column-content.sl {
+    margin-left: 0;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#portal-column-one, #portal-column-content, #portal-column-two, #portal-columns {
+    display: block;
+}
+
+#content #rightcolumn, #content #centercolumn, #content #homepage-text, #content #centercolumn.sr {
+    background-color: transparent;
+    clear: both;
+    display: block;
+    float: none;
+    margin: 0 0 0.1875em;
+    width: 100%;
+}
+
+#content #rightcolumn .portlet {
+    background-color: transparent;
+}
+
+.fancybox-close {
+    right: 0;
+    top: 0;
+}
 /* </dtml-with> */

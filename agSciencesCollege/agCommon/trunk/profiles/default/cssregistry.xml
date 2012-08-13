@@ -144,7 +144,8 @@
  <stylesheet title="" applyPrefix="False" authenticated="False"
     cacheable="True" compression="safe" conditionalcomment="" cookable="False"
     enabled="on" expression="" id="resolution-520-landscape.css" insert-after="resolution-520-portrait.css"
-    media="handheld, screen and (max-width: 520px) and (orientation: portrait)" rel="stylesheet"
+    media="handheld, screen and (max-width: 520px) and (orientation: landscape)" rel="stylesheet"
     rendering="import"/>
+
 
 </object>

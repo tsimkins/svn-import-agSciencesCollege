@@ -1,0 +1,102 @@
+
+/* Photo Gallery */
+
+html {
+    height: 100%;
+}
+
+body.template-responsive_photogallery {
+    height: 100%;
+    background-color: #333333;
+}
+
+body.template-responsive_photogallery #portal-top,
+body.template-responsive_photogallery #clear-space-before-wrapper-table,
+body.template-responsive_photogallery #portal-column-one,
+body.template-responsive_photogallery #portal-column-two,
+body.template-responsive_photogallery #viewlet-above-content,
+body.template-responsive_photogallery #portal-top,
+body.template-responsive_photogallery #viewlet-below-content,
+body.template-responsive_photogallery #portal-top,
+body.template-responsive_photogallery #clear-space-before-footer,
+body.template-responsive_photogallery #portal-footer,
+body.template-responsive_photogallery #portlets-below, 
+body.template-responsive_photogallery #content .documentDescription,
+body.template-responsive_photogallery #fblike {
+    display: none;
+}
+
+body.template-responsive_photogallery #content h1, 
+body.template-responsive_photogallery #content h1.documentFirstHeading {
+    color: #FFFFFF;
+    background-color: #333333;
+    font-size: 0.9375em;
+    height: 12.5%;
+    line-height: 1.5em;
+    padding: 1% 1%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 98%;
+    position: absolute;
+}
+
+#content .rg-image-wrapper {
+    position: absolute;
+    top: 14.5%;
+    left: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 2% 4.166666666666667%;
+    width: 91.666666666666667%;
+    height: 79.5%;
+    margin: 0;
+}
+
+#content .rg-thumbs {
+    display: none;
+}
+
+#content .rg-caption-wrapper {
+    background-color: #333333;
+    height: 12.5%;
+    padding: 1% 1%;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    position: absolute;
+}
+#content .rg-caption {
+    margin-top: 0;
+}
+
+#content .rg-caption h2,
+#content .rg-caption h2.description {
+    font-size: 0.875em !important;
+    font-weight: normal !important;
+    border-bottom: none !important;
+    margin-top: 0;
+    background-color: transparent !important;
+}
+
+#content .rg-caption p {
+    display: none;
+}
+
+#content .rg-image {
+    height: 83%;
+    width: 90%
+    margin: 0 5%;
+}
+
+#content .rg-image-nav a {
+    background-color: transparent;
+    opacity: 0.66;
+    background-position: -20% 45%;
+    width: 6%;
+}
+
+#content .rg-image-nav a.rg-image-nav-next {
+    background-position: 115% 45%;
+}

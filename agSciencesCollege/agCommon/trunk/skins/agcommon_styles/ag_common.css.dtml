@@ -201,7 +201,7 @@ body {
     border-color: &dtml-leftNavBorderColor;;
     border-style: solid;
     border-width: 0 1px 0 0;
-    width: 21.027787948637817%;   /* 187/892 */
+    width: 20.964125560538117%;   /* 187/892 */
     padding: 0.336322869955157%;  /* 3/892 */
     margin: 0;
     vertical-align: top;
@@ -757,7 +757,9 @@ body {
 }
 
 #portal-column-content.sl.sr {
-    width: 56.974748322147651%; /* (894 - (172.64575+9+9+187+3+3+1)) / 894 */
+    xwidth: 56.974748322147651%; /* (894 - (172.64575+9+9+187+3+3+1)) / 894 */
+    
+    width: 59.21188479%;
 }
 
 /* = portal-top-navigation ================================= */
@@ -1410,7 +1412,7 @@ div.tileDescription.no-description {
 }
 
 .template-fg_base_view_p3 textarea {
-    width: 450px;
+    width: 100%;
 }
 
 /* Removing avatar from quintasgroup comments */
@@ -1726,8 +1728,20 @@ body.template-pgv_sg_carousel_view #content {
 #fblike, #commenting span {
     border: none;
     overflow: visible;
-    width: 450px !important;
+    width: 100% !important;
     margin: 1.5em 0 2em 0;
+}
+
+#fblike>span, #fblike>span>iframe {
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#fb-root iframe {
+    width: 0 !important;
 }
 
 /* mobile version */

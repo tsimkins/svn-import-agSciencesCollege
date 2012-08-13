@@ -10,7 +10,8 @@
         tal:attributes="href view/likeurl"
         send="false" 
         show_faces="true" 
-        action="recommend">
+        action="recommend"
+        width="100%">
     </fb:like>
 
 </tal:fblike>

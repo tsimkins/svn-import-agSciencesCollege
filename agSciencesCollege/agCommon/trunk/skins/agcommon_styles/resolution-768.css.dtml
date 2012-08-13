@@ -52,6 +52,7 @@ body {
 #portal-column-two, 
 #portal-column-content,
 #portal-column-content.sl,
+#portal-column-content.sr,
 #portal-column-content.sl.sr {
     float: left;
     margin: 0;
@@ -59,6 +60,10 @@ body {
     padding-left: 3.389830508474576%;  /* 20/590 */
     padding-right: 3.389830508474576%;  /* 20/590 */
     display: block;
+    background-color: transparent;
+}
+
+#portal-column-two .portletFooter {
     background-color: transparent;
 }
 
@@ -71,32 +76,54 @@ body.portaltype-homepage #portal-column-content {
 
 
 #content {
-    margin: 0;
+    margin: 0.5em 0 0 0;
     padding: 0;
     width: 100%;
+}
+
+#panorama-homepage-image {
+    display: none !important;
+}
+
+body.template-panorama_homepage_view #portal-breadcrumbs {
+    display: none;
+}
+
+#portal-column-content #portal-breadcrumbs.homepage {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 1.624365482233503%;    
+    padding-right: 1.624365482233503%;
 }
 
 #homepageimage embed {
     display: none;
 }
 
-#homepageimage, #homepageimage.nobreadcrumbs {
+#portal-column-content #homepageimage {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%
+}
+
+#homepageimage.nobreadcrumbs {
     margin-top: 0.3125em !important;
     background-size: 100%;
     background-repeat: no-repeat;
-    width: 100%;
+    width: 100% !important;
     height: 100%;
-}
-
-#homepageimage {
-    margin: 0 0 1em 0 !important;
 }
 
 div.portletsBelowContentA,
 div.portletsBelowContentB,
 div.portletsBelowContentC,
 div.portletsBelowContentD,
-div.portletsBelowContentE {
+div.portletsBelowContentE,
+div.portletsAboveContentA,
+div.portletsAboveContentB,
+div.portletsAboveContentC,
+div.portletsAboveContentD,
+div.portletsAboveContentE {
 	width: 48.4375%; /* ((768 - 24)/2)/768 */
 	float: left;
 	padding: 0.5em 0.78125%;  /* 6/768 */
@@ -149,7 +176,8 @@ div.portletsBelowContentE {
     display: none !important;
 }
 
-#two-column-left, #two-column-right {
+#two-column-left, #two-column-right,
+#portal-column-content.sr #two-column-left, #portal-column-content.sr #two-column-right {
     border: none;
     padding: 0;
     margin: 0;
@@ -172,6 +200,30 @@ div.portletsBelowContentE {
 
 .rg-image {
     height: 240px;
+}
+
+/* Extension homepage overrides */
+
+body.section-front-page #portlets-above .portlet {
+    min-height: 0 !important;
+}
+
+body.section-front-page #portlets-above .portletWrapper {
+    padding-top: 50px;
+    margin-top: 2em;
+}
+
+/* Futurestudents overrides */
+
+body.template-document_homepage_view #portal-column-one {
+    background-image: none;
+    padding: 0;
+}
+
+/* General nomobile override */
+
+.nomobile {
+    display: none;
 }
 
 /* YOUR CSS RULES STOP HERE */
