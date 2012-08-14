@@ -605,7 +605,8 @@ body {
 
 #portlets-mobile .linkIcon .portletItem li,
 #portal-column-one .linkIcon .portletItem li,
-#portal-column-two .linkIcon .portletItem li {
+#portal-column-two .linkIcon .portletItem li,
+#rightcolumn .linkIcon .portletItem li {
     line-height: 1.1875em;
     margin: 1.25em 0;
     padding-left: 2.375em;
@@ -613,29 +614,37 @@ body {
     background-image: none;
 }
 
+#rightcolumn .linkIcon .portletItem li {
+    padding-left: 2.375em !important;
+}
+
 #portlets-mobile .linkIcon a,
 #portal-column-one .linkIcon a,
-#portal-column-two .linkIcon a {
+#portal-column-two .linkIcon a,
+#rightcolumn .linkIcon a {
     text-decoration: none;
     color: &dtml-leftLinkTextColor;;
 }
 
 #portlets-mobile .linkIcon a:hover span,
 #portal-column-one .linkIcon a:hover span,
-#portal-column-two .linkIcon a:hover span {
+#portal-column-two .linkIcon a:hover span,
+#rightcolumn .linkIcon a:hover span {
     text-decoration: underline;
     color: &dtml-leftLinkTextHoverColor;;
 }
 
 #portlets-mobile .linkIcon a span,
 #portal-column-one .linkIcon a span,
-#portal-column-two .linkIcon a span {
+#portal-column-two .linkIcon a span,
+#rightcolumn .linkIcon a span {
     vertical-align: middle;
 }
 
 #portlets-mobile .linkIcon img, 
 #portal-column-one .linkIcon img, 
-#portal-column-two .linkIcon img {
+#portal-column-two .linkIcon img,
+#rightcolumn .linkIcon img {
 	padding-right: 0.375em;
     color: &dtml-leftLinkTextHoverColor;;
     margin: -0.1875em 0 0 -2.375em;
@@ -647,19 +656,22 @@ body {
 
 #portlets-mobile .linkButton,
 #portal-column-one .linkButton,
-#portal-column-two .linkButton {
+#portal-column-two .linkButton,
+#rightcolumn .linkButton {
     margin: 30px 0;
 }
 
 #portlets-mobile .linkButton ul,
 #portal-column-one .linkButton ul,
-#portal-column-two .linkButton ul {
+#portal-column-two .linkButton ul,
+#rightcolumn .linkButton ul {
     margin: 10px 0;
 }
 
 #portlets-mobile .linkButton li,
 #portal-column-one .linkButton li,
-#portal-column-two .linkButton .portletItem li {
+#portal-column-two .linkButton .portletItem li,
+#rightcolumn .linkButton li {
     display: block;
     padding: 0;
     border: 2px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_external, count=2)">;
@@ -680,7 +692,8 @@ body {
 
 #portlets-mobile .linkButton li:hover,
 #portal-column-one .linkButton li:hover,
-#portal-column-two .linkButton .portletItem li:hover {
+#portal-column-two .linkButton .portletItem li:hover,
+#rightcolumn .linkButton li:hover {
     -moz-box-shadow: 0 1px 1px #A4A8AF;
     -webkit-box-shadow: 0 1px 1px #A4A8AF;
     box-shadow: 0 1px 1px #A4A8AF;   
@@ -688,7 +701,8 @@ body {
 
 #portlets-mobile .linkButton strong,
 #portal-column-one .linkButton strong,
-#portal-column-two .linkButton strong {
+#portal-column-two .linkButton strong,
+#rightcolumn .linkButton strong {
     padding: 0;
     margin: 0;
     display: block
@@ -699,7 +713,9 @@ body {
 #portal-column-one .linkButton a,
 #portal-column-two .linkButton .portletItem a,
 #portal-column-one .linkButton a:hover,
-#portal-column-two .linkButton .portletItem a:hover {
+#portal-column-two .linkButton .portletItem a:hover,
+#rightcolumn .linkButton a,
+#rightcolumn .linkButton a:hover {
     text-decoration: none;
     display: block;
     color: &dtml-leftButtonTextColor_external;;
@@ -713,14 +729,16 @@ body {
 
 #portlets-mobile .linkButton li.internal-link a,
 #portal-column-one .linkButton li.internal-link a,
-#portal-column-two .linkButton li.internal-link a {
+#portal-column-two .linkButton li.internal-link a,
+#rightcolumn .linkButton li.internal-link a {
     color: &dtml-leftButtonTextColor_internal;;
     background-color: transparent;
 }
 
 #portlets-mobile .linkButton li.internal-link,
 #portal-column-one .linkButton li.internal-link,
-#portal-column-two .linkButton li.internal-link {
+#portal-column-two .linkButton li.internal-link,
+#rightcolumn .linkButton li.internal-link {
     background-color: &dtml-leftButtonBackground_internal;;
     border: 1px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_internal, count=2)">;
     background-repeat: repeat-x;
@@ -730,7 +748,8 @@ body {
 
 #portlets-mobile .linkButton li.internal-link:hover,
 #portal-column-one .linkButton li.internal-link:hover,
-#portal-column-two .linkButton .portletItem li.internal-link:hover {
+#portal-column-two .linkButton .portletItem li.internal-link:hover,
+#rightcolumn .linkButton li.internal-link:hover {
     border-color:<dtml-var expr="gradientEnd(startColor=leftButtonBackground_external)">;
 }
 

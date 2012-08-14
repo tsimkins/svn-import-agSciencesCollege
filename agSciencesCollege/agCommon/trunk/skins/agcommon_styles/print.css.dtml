@@ -78,7 +78,7 @@ body {
 /* Remove Search Box */
 
 #portal-searchbox {
-	display: none;
+	display: none !important;
 }
 
 /* Breadcrumbs */
@@ -107,20 +107,20 @@ body {
 /* Top Navigation */
 
 #portal-top-navigation {
-	display: none;
+	display: none !important;
 }
 
 /* Home Page Image */
 
 body.template-document_homepage_view #homepageimage {
-	display: none;
+	display: none !important;
 }
 
 
 /* Left Column */
 
 #portal-column-one {
-	display: none;
+	display: none !important;
 }
 
 /* Headers */
@@ -172,7 +172,7 @@ body.template-document_homepage_view #centercolumn {
 /* Right Column */
 
 body.template-document_homepage_view #rightcolumn, #portal-column-two {
-	display: none;
+	display: none !important;
 }
 
 /* Footer */
@@ -191,7 +191,7 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 }
 
 #portal-footer p {
-	display: none;
+	display: none !important;
 }
 
 #portal-footer p:first-child {
@@ -204,15 +204,15 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 /* Other doodads */
 
 .documentActions {
-	display: none;
+	display: none !important;
 }
 
 .hiddenStructure {
-	display: none;
+	display: none !important;
 }
 
 #kss-spinner {
-	display: none;
+	display: none !important;
 }
 
 /* Unfloat Images */
@@ -225,17 +225,17 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 }
 
 .pullquote {
-	display: none;
+	display: none !important;
 }
 
 .public-tags {
-    display: none;
+	display: none !important;
 }
 
 /* If custom-pullquote class, show pull quote but hide h2 bottom border */
 
 body.custom-pullquote .pullquote {
-	display: block;
+	display: block !important;
 	color: #000000;
 	width: 230px;
 	float: right;
@@ -258,34 +258,34 @@ body.custom-pullquote #region-content h2 {
 
 /* Info Bar */
 #portal-personaltools-wrapper {
-    display: none;
+	display: none !important;
 }
 
 #plone-document-byline, .managePortletsFallback {
-    display: none;
+	display: none !important;
 }
 
 /* Actions and edit menu bar */
 
 .contentActions, .contentViews, .reviewHistory {
-    display: none;
+	display: none !important;
 }
 
 /* Hide addthis */
 
 #addthis {
-    display: none;
+	display: none !important;
 }
 
 /* Remove listingbar */
 
 .listingBar {
-    display: none;
+	display: none !important;
 }
 
 /* Content Well Portlets */
 #portlets-above, #portlets-below {
-    display: none;
+	display: none !important;
 }
 
 /* Table of Contents */
@@ -297,7 +297,7 @@ body.custom-pullquote #region-content h2 {
 /* Remove comment Form */
 
 div.discussion form {
-    display: none;
+	display: none !important;
 }
 
 
@@ -308,11 +308,11 @@ img {
 }
 
 #fblike {
-    display: none;
+	display: none !important;
 }
 
 .relatedItems {
-    display: none;
+	display: none !important;
 }
 
 #disclaimer {
@@ -322,7 +322,7 @@ img {
 /* Hide youtube videos */
 
 iframe.youtube-player, object, embed {
-    display: none;
+	display: none !important;
 }
 
 /* Make tables printer friendly */
@@ -369,7 +369,7 @@ body.template-factsheet_view.two_column_print #content {
 
 body.template-factsheet_view #portal-breadcrumbs, body.template-factsheet_view #portal-header,
 body.template-factsheet_view #portal-footer {
-    display: none;
+	display: none !important;
 }
 
 #printheader {
