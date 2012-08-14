@@ -87,7 +87,25 @@
     display: block;
 	margin: 0 0.424929178470255%; /* 3/706 */
 	padding: 0.375em 2.274787535410765%; /* 9/706 */
-	width: 91.75070821529745%;  /* (700-24)/706 */
+
+}
+
+#content #homepage-text.sr {
+	width: 69.546742209631728%;  /* (700-24)/706 */
+	float: left;
+}
+
+/* Has center column */
+
+#content #homepage-text.sc {
+    width: 94.600562%;
+}
+
+#content #homepage-text.sr.sc {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 1.418439716312057%;
+    width: 97.163120567375887%;
 }
 
 #content #homepage-text .documentFirstHeading {
@@ -290,36 +308,34 @@
 #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
     float: left; 
     margin: 0.625em 0 0.625em 0;
-    width: 128px;
+    max-width: 100%;
     text-align: right;
 }
 
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
     float: left; 
-    margin: 0.625em 0.625em 0.625em 0;
+    margin: 0.625em 1.590457256461233% 0.625em 0; /* 8/503 */
     text-align: right;
 }
 
 .agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage {
-    width: 225px;
+    width: 44.731610337972167% !important; /* 225/503 */
+    max-width: 44.731610337972167% !important; /* 225/503 */
 }
 
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
-    margin-left: 138px;
+    margin-left: 27.435387673956262%; /* 138/503 */
 }
 
 .agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
 .agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
-.agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
-    margin-left: 235px;
-}
-
+.agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary,
 .agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
 .agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
 .agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
-    margin-right: 235px;
+    margin-left: 46.719681908548708%; /* 235/503 */
 }
 
 .agCommonPortlet .portletfeedmixerimageleft .portletItem {
@@ -328,15 +344,15 @@
 }
 
 .agCommonPortlet .portletfeedmixer .portletItem .rssImage img {
-    max-width: 128px;
+    max-width: 100%;
 }
 
 .agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage img {
-    max-width: 225px;
+    max-width: 100%;
 }
 
 .agCommonPortlet .portletfeedmixer .portletItem .hasImage {
-	width: 370px;
+	width: 73.558648111332008%;
 }
 
 

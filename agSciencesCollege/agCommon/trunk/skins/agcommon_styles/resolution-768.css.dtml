@@ -10,13 +10,19 @@ body {
     background-color: #FFFFFF;
 }
 
-#content #rightcolumn, #content #centercolumn, #content #homepage-text, #content #centercolumn.sr {
+#content #rightcolumn, 
+#content #centercolumn, 
+#content #homepage-text, 
+#content #centercolumn.sr,
+#portal-column-content #content #homepage-text.sr {
     display: block;
 	margin: 0 0 0.1875em 0;
 	width: 100%;
 	clear: both;
 	float: none;
 	background-color: transparent;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #content #rightcolumn,
@@ -174,6 +180,10 @@ div.portletsAboveContentE {
 
 #homepageimage .text, #homepageimage div.overlay {
     display: none !important;
+}
+
+#content #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
+    margin-right: 0.625em;
 }
 
 #two-column-left, #two-column-right,
