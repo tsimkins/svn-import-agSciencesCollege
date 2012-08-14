@@ -217,7 +217,8 @@ body.section-front-page #portlets-above .portletWrapper {
 
 body.template-document_homepage_view #portal-column-one {
     background-image: none;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* General nomobile override */
