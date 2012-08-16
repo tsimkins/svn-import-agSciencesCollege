@@ -75,3 +75,8 @@ Disallow: /private
 Disallow: /m/
 Disallow: /nonmobile
 Crawl-delay: 10
+
+
+# Dicoveryengine.com
+User-agent: discobot
+Disallow: / 
