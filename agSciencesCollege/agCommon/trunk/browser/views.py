@@ -678,7 +678,13 @@ class AgendaView(FolderView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        
+
+        parent = self.context.getParentNode()
+        if self.context.id == parent.getDefaultPage():
+            self.here_url = parent.absolute_url()
+        else:
+            self.here_url = self.context.absolute_url()        
+
         self.month_agenda = []
         self.day_agenda = []
     
@@ -703,8 +709,6 @@ class AgendaView(FolderView):
             
         events = []
         folder_path = ""
-        
-        self.here_url = self.context.absolute_url()
         
         if self.context.portal_type == 'Topic':
             try:
