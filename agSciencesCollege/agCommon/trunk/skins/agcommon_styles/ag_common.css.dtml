@@ -1528,7 +1528,7 @@ blockquote {
 
 #portal-column-content .documentEditable #content {
     margin: 0;
-    padding: 10px 10px 20px 10px !important;
+    padding: 10px 2.749508275862074% 20px 2.749508275862074% !important;
 }
 
 #portal-column-content .documentEditable .contentViews li a {
@@ -1562,7 +1562,7 @@ body.template-folder_summary_view_z3 .effectiveDate {
     margin-top: 0.25em;
 }
 
-body.template-news_listing dd {
+body.template-news_listing #content dd {
     margin-bottom: 2em;
     margin-left: 0;
 }
