@@ -646,18 +646,11 @@ div.about hr {
 
                                     <h3>
                 
-                                    <tal:newsitem
-                                         tal:condition="exists:item_object/image_thumb"
-                                         tal:define="image_caption item_object/imageCaption|nothing">
-                                            <img align="right"
-                                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='micro', css_class='leadimage', alt=image_caption)" />
-                                    </tal:newsitem>
-                
-                                    <tal:otheritem
+                                    <tal:image
                                          tal:condition="exists:item_has_leadimage">
                                             <img align="right"
                                                  tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
-                                    </tal:otheritem>
+                                    </tal:image>
                                     
                                     <span tal:condition="python: not view.isSpotlight(item) and view.showSummary" tal:content="string:${repeat/item/number}." />
 

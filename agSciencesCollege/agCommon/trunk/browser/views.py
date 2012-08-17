@@ -404,10 +404,18 @@ class NewsletterView(AgCommonUtilities):
         context = aq_inner(obj)
         field = context.getField(IMAGE_FIELD_NAME)
         titlef = context.getField(IMAGE_CAPTION_FIELD_NAME)
+
+        if not field:
+            field = context.getField('image')
+
+        if not titlef:
+            titlef = context.getField('imageCaption')        
+        
         if titlef is not None:
             title = titlef.get(context)
         else:
             title = ''
+
         if field is not None:
             if field.get_size(context) != 0:
                 return field.tag(context, scale=scale, css_class=css_class, title=title, alt=title)
@@ -554,6 +562,18 @@ class NewsletterView(AgCommonUtilities):
         # Remove "#tags" div
         for t in soup.findAll("div", attrs={'class' : re.compile('public-tags')}):
             t.extract()
+
+        # Fix Images
+        
+        for i in soup.findAll('img'):
+            try:
+                src = i['src']
+            except KeyError:
+                continue
+
+            if not src.startswith('http') :
+                i['src'] = urljoin(item.getURL(), src)
+
         
         # Fix URLs
         
@@ -569,10 +589,10 @@ class NewsletterView(AgCommonUtilities):
                 a['href'] = urljoin(item.getURL(), href)
 
             if not contents.startswith('http') and not href.startswith('mailto') and a.get('id') != "parent-fieldname-leadImage":
-                a.append("( <strong>%s</strong> )" % a['href'])
+                a.append(BeautifulSoup("( <strong>%s</strong> )" % a['href']))
 
             elif '@' not in contents and href.startswith('mailto'):
-                a.append("( <strong>%s</strong> )" % a['href'].replace('mailto:', ''))
+                a.append(BeautifulSoup("( <strong>%s</strong> )" % a['href'].replace('mailto:', '')))
    
             else:
                 a['class'] = 'standalone'
