@@ -123,4 +123,9 @@ body.template-document_homepage_view #rightcolumn {
     display: block;
 }
 
+body.icons-on #content form {
+    width: 665px !important;
+}
+
+
 /* </dtml-with> */

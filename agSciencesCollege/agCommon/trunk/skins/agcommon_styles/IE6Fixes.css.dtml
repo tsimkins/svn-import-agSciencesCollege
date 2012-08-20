@@ -170,4 +170,9 @@ body.template-folder_leadimage_listing .leadimage-listing img {
     right: 0;
     top: 0;
 }
+
+body.icons-on #content form {
+    width: 665px;
+}
+
 /* </dtml-with> */

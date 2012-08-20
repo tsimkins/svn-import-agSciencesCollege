@@ -27,6 +27,11 @@
     top: 0;
 }
 
+body.icons-on #content form {
+    width: 665px !important;
+}
+
+
 /* </dtml-with> */
 
 
