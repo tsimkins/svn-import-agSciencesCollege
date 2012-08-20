@@ -301,7 +301,6 @@
 .agCommonPortlet .portletfeedmixer .portletItem .rssImage {
     float: right; 
     margin: 0.625em 0 0.625em 0.625em;
-    width: 128px;
     text-align: right;
 }
 
@@ -316,6 +315,11 @@
     float: left; 
     margin: 0.625em 1.590457256461233% 0.625em 0; /* 8/503 */
     text-align: right;
+    width: 18.7089%;
+}
+
+.sr.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
+    width: 25.177025963808025%;
 }
 
 .agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage {
@@ -326,6 +330,12 @@
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
+    margin-left: 20.2993%;
+}
+
+.sr.agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
+.sr.agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
+.sr.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
     margin-left: 27.435387673956262%; /* 138/503 */
 }
 

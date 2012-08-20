@@ -186,6 +186,21 @@ div.portletsAboveContentE {
     margin-right: 0.625em;
 }
 
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
+    width: 25.177025963808025%;
+}
+
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
+    margin-left: 27.435387673956262%; /* 138/503 */
+}
+
+#centercolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage,
+#centercolumn.agCommonPortlet .portletfeedmixerimageright .portletItem .rssImage {
+    width: 25.177025963808025% !important;
+}
+
 #two-column-left, #two-column-right,
 #portal-column-content.sr #two-column-left, #portal-column-content.sr #two-column-right {
     border: none;
