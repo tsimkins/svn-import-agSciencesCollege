@@ -11,6 +11,16 @@ jq(document).ready(function() {
         }
     );
 
-    jq(".fancybox").fancybox({'type' : 'image', 'hideOnContentClick' : true , 'closeClick' : true});
+    if (window.innerWidth > 520)
+    {
+        jq(".fancybox").fancybox({'type' : 'image', 'hideOnContentClick' : true , 'closeClick' : true});
+    }
+    else
+    {
+        jq(".fancybox").fancybox({'type' : 'image', 'hideOnContentClick' : true , 'closeClick' : true, 'padding' : 0, 'margin' : 2});
+    }
+
 });
 
+
+    
