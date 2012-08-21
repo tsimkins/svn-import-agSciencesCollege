@@ -274,7 +274,10 @@
 			
 			// set values again
 			instance._setCurrentValues();
-			
+
+            // Slide to current item
+            instance._slideToCurrent( false );			
+
 			// need to resize items
 			if( instance.visibleWidth < instance.options.minItems * ( instance.options.imageW + 2 * instance.options.border ) + ( instance.options.minItems - 1 ) * instance.options.margin ) {
 				instance._setDim( ( instance.visibleWidth - ( instance.options.minItems - 1 ) * instance.options.margin ) / instance.options.minItems );
