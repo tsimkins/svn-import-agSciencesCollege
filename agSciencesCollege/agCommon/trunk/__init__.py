@@ -13,6 +13,7 @@ from Acquisition import aq_inner
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.i18n.normalizer import FILENAME_REGEX
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
+from Products.Archetypes.Field import ImageField
 from Products.Archetypes.Field import HAS_PIL
 from agsci.w3c.colors import split_rgb
 import colorsys
@@ -763,7 +764,8 @@ def rescaleOriginal(context, max_size=(1200,900), dry_run=True):
     portal_type = context.portal_type
 
     if portal_type == 'Image':
-        pass # for now
+        imageObj = context
+        imageField = ImageField()
 
     else:
 
@@ -774,36 +776,44 @@ def rescaleOriginal(context, max_size=(1200,900), dry_run=True):
 
         imageObj = imageField.get(context)
         
-        if not imageObj:
-            status = False
-            width = height = 0
-            new_dimensions = (0,0)
-        elif imageObj.content_type not in ('image/jpeg', 'image/png', 'image/gif'):
-            status = False
-            width = height = 0
-            new_dimensions = (0,0)
-            LOG('Products.agCommon.rescaleOriginal', INFO, "Invalid image type %s for %s" % (imageObj.content_type, context.absolute_url()) )
-        else:
+    if not imageObj:
+        status = False
+        width = height = 0
+        new_dimensions = (0,0)
+    elif imageObj.content_type not in ('image/jpeg', 'image/png', 'image/gif'):
+        status = False
+        width = height = 0
+        new_dimensions = (0,0)
+        LOG('Products.agCommon.rescaleOriginal', INFO, "Invalid image type %s for %s" % (imageObj.content_type, context.absolute_url()) )
+    else:
 
-            width = imageObj.width
-            height = imageObj.height
+        width = imageObj.width
+        height = imageObj.height
+        
+        new_dimensions = calculateDimensions(imageObj, max_size=max_size)
+        
+        if (width, height) > new_dimensions:
+            if not dry_run:
+                if isinstance(imageObj.data, str):
+                    imageData = imageObj.data
+                else:
+                    imageData = imageObj.data.data
+
+                (resizedImage, format) = imageField.scale(imageData, *new_dimensions)
+
+                if portal_type == 'Image':
+                    context.setImage(resizedImage.read())
             
-            new_dimensions = calculateDimensions(imageObj, max_size=max_size)
-            
-            if (width, height) > new_dimensions:
-                if not dry_run:
-                    if isinstance(imageObj.data, str):
-                        imageData = imageObj.data
-                    else:
-                        imageData = imageObj.data.data
-                    (resizedImage, format) = imageField.scale(imageData, *new_dimensions)
+                else:
                     imageField.set(context, resizedImage.read())
-                status = True
-            else:
-                status = False
 
-        return (status, portal_type, context.absolute_url(), (width, height), new_dimensions)
-            
+            status = True
+
+        else:
+            status = False
+
+    return (status, portal_type, context.absolute_url(), (width, height), new_dimensions)
+     
 def findOversizedImages(context,  dry_run=True):
     
     rv = []
@@ -811,12 +821,16 @@ def findOversizedImages(context,  dry_run=True):
     portal_catalog = getToolByName(context, 'portal_catalog')
     
     results = [x for x in portal_catalog.searchResults({'hasContentLeadImage' : True})]
-    results.extend([x for x in portal_catalog.searchResults({'portal_type' : 'News Item'})])
+    results.extend([x for x in portal_catalog.searchResults({'portal_type' : ['News Item', 'Image']})])
     
     for r in results:
         obj = r.getObject()
         try:
-            rr = rescaleOriginal(obj, dry_run=dry_run)
+            if obj.portal_type == 'Image':
+                rr = rescaleOriginal(obj, max_size=(1200,1200), dry_run=dry_run)
+            else:
+                rr = rescaleOriginal(obj, dry_run=dry_run)
+                
             if rr[0]:
                 rv.append(rr)
         except AttributeError:

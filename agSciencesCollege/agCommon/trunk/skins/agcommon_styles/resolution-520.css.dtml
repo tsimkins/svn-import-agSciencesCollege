@@ -228,7 +228,6 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
-}
 
 #navigation-mobile #portal-top-navigation {
     padding-top: 0.125em;
