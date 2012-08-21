@@ -6,7 +6,7 @@
     tal:define="portal_url context/portal_url|nothing;
                 subsite_title context/subsite_title|nothing;
                 subsite_url context/subsite_url|nothing;
-                subsite_url python:subsite_url and string(subsite_url) or None;
+                subsite_url python:subsite_url and str(subsite_url) or None;
                 navigation_title python: view.title().lower() != 'navigation' and view.title() or root.Title();
                 enable_subsite_nav root/aq_base/enable_subsite_nav|nothing;
                 isLeftColumn view/isLeftColumn|nothing;

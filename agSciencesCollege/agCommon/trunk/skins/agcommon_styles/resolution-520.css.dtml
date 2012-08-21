@@ -411,6 +411,10 @@ table.nutrition {
     margin: 1.5em 0 0.5em 0;
 }
 
+.fancybox-close {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

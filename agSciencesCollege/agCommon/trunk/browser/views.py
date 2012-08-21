@@ -503,6 +503,17 @@ class NewsletterView(AgCommonUtilities):
     def registry(self):
         return getUtility(IRegistry)
 
+    def getSortCriterion(self):
+        if self.context.portal_type in ['Topic', 'Newsletter'] and self.context.hasSortCriterion():
+            sc = self.context.getSortCriterion()
+            if sc.getReversed():
+                sort_dir = 'descending'
+            else:
+                sort_dir = 'ascending'
+            return (sc.field, sort_dir)
+        else:
+            return ('effective', 'descending')
+        
     def getConfig(self,  key=''):
         try:
             value = self.registry.records[self.getRegistryKey()].value.get(key)
@@ -533,10 +544,12 @@ class NewsletterView(AgCommonUtilities):
 
     def getEnabledItems(self):
         non_spotlight_uids = list(set(self.getEnabledUID()) - set(self.getSpotlightUID()))
-        return self.portal_catalog.searchResults({'UID' : non_spotlight_uids})    
+        (sort_on, sort_order) = self.getSortCriterion()
+        return self.portal_catalog.searchResults({'UID' : non_spotlight_uids, 'sort_on' : sort_on, 'sort_order' : sort_order})    
 
     def getSpotlightItems(self):
-        return self.portal_catalog.searchResults({'UID' : self.getSpotlightUID()})    
+        (sort_on, sort_order) = self.getSortCriterion()
+        return self.portal_catalog.searchResults({'UID' : self.getSpotlightUID(), 'sort_on' : sort_on, 'sort_order' : sort_order})    
 
     def setConfig(self, enabled=[], spotlight=[], show_summary=[]):
         # Make all spotlight articles enabled

@@ -2491,9 +2491,26 @@ body.template-by_county_summary_view #content .tileSummaryLeadImage {
     border-top: none !important;
 }
 
-
 .twtr-doc {
     width: auto !important;
+}
+
+#iewarning {
+    border: 1px solid #F57900;
+    background-color: #FFFAB8;
+    padding: 8px;
+    margin: 16px;
+}
+
+#iewarning img {
+    margin: 8px;
+    float: left;
+}
+
+#iewarning h2, #iewarning p {
+    text-decoration: none;
+    border: none;
+    margin-left: 88px;
 }
 
 /* YOUR CSS RULES STOP HERE */
