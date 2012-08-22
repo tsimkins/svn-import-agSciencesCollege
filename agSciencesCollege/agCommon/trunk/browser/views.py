@@ -229,8 +229,8 @@ class AgCommonUtilities(BrowserView):
         # If we have a property of 'enable_subsite_nav' set on
         # ourself, or if we're the default page and have it set on our parent
         # object, add a class of 'navigation-subsite'
-        inner_context = aq_inner(self.context)
-        parent = aq_inner(self.context.getParentNode())
+        parent = self.context.getParentNode()
+
         try:
             parent_default = parent.getDefaultPage()
         except AttributeError:
