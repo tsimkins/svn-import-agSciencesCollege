@@ -545,7 +545,16 @@ class NewsletterView(AgCommonUtilities):
     def getEnabledItems(self):
         non_spotlight_uids = list(set(self.getEnabledUID()) - set(self.getSpotlightUID()))
         (sort_on, sort_order) = self.getSortCriterion()
-        return self.portal_catalog.searchResults({'UID' : non_spotlight_uids, 'sort_on' : sort_on, 'sort_order' : sort_order})    
+        results = self.portal_catalog.searchResults({'UID' : non_spotlight_uids, 'sort_on' : sort_on, 'sort_order' : sort_order})    
+
+        order_by_title = getattr(self.context, 'order_by_title', None)
+        order_by_id = getattr(self.context, 'order_by_id', None)
+
+        if order_by_id or order_by_title:
+            results = self.reorderTopicContents(results, order_by_id=order_by_id, order_by_title=order_by_title) 
+
+        return results
+
 
     def getSpotlightItems(self):
         (sort_on, sort_order) = self.getSortCriterion()
