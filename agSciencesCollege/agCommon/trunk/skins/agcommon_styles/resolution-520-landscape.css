@@ -6,7 +6,7 @@ html {
 }
 
 body.template-responsive_photogallery,
-body.template-responsive_photogallery, #visual-portal-wrapper,
+body.template-responsive_photogallery #visual-portal-wrapper,
 body.template-responsive_photogallery #content,
 body.template-responsive_photogallery #content-core,
 body.template-responsive_photogallery #portal-columns,
