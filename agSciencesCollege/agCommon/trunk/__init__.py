@@ -16,6 +16,8 @@ from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from Products.Archetypes.Field import ImageField
 from Products.Archetypes.Field import HAS_PIL
 from agsci.w3c.colors import split_rgb
+from DateTime import DateTime
+from plone.app.linkintegrity.exceptions import LinkIntegrityNotificationException
 import colorsys
 import os
 
@@ -457,10 +459,31 @@ def makePhotoFolder(context):
     print context.archetype_name
     print "OK"
 
+def findEmptyFolders(context, daysback=183):
+
+    # Finds published empty folders that have were published more than [daysback] days ago.
+    # default for daysback is 6 months.  Ignores year folders.
+
+    data = []
+    
+    portal_catalog = getToolByName(context, "portal_catalog")
+
+    results = portal_catalog.searchResults({'portal_type' : 'Folder', 'review_state' : 'published', 'effective' : {'query': [DateTime() - daysback,], 'range' : 'max'} })
+
+    for r in results:
+        if r.id in [str(x) for x in range(1950,2100)]:
+            continue
+        o = r.getObject()
+        if not o.listFolderContents():
+            data.append(o)
+
+    return data
+
+
+
 def folderToPage(folder):
     # Title, Description, Body Text, Author, Tags, Effective Date, Lead Image, Lead Image Caption
-    portal = getSiteManager(folder)
-    wftool = getToolByName(portal, "portal_workflow")
+    wftool = getToolByName(folder, "portal_workflow")
     
     folder_id = folder.id
     folder_title = folder.Title()
@@ -472,7 +495,6 @@ def folderToPage(folder):
     folder_effective_date = folder.effective()
     folder_excludeFromNav = folder.getExcludeFromNav()
     
-
     leadImage = folder.getField('leadImage', None).get(folder);
     leadImage_caption = folder.getField('leadImage_caption', None).get(folder);
 
@@ -504,7 +526,11 @@ def folderToPage(folder):
             exported_ok = True
 
     if exported_ok:
-        folder_parent.manage_delObjects(ids=[folder_id])
+        try:
+            folder_parent.manage_delObjects(ids=[folder_id])
+        except LinkIntegrityNotificationException:
+            pass
+
     else:
         folder_parent.manage_renameObject(folder_id, '%s-converted-folder' % folder_id)    
     
@@ -532,6 +558,7 @@ def folderToPage(folder):
 
     page.reindexObject()
     
+   
 def pageToFolder(page):
     # Title, Description, Body Text, Author, Tags, Effective Date
 
