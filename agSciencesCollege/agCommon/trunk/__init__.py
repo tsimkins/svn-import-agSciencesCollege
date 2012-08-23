@@ -471,7 +471,7 @@ def findEmptyFolders(context, daysback=183):
     results = portal_catalog.searchResults({'portal_type' : 'Folder', 'review_state' : 'published', 'effective' : {'query': [DateTime() - daysback,], 'range' : 'max'} })
 
     for r in results:
-        if r.id in [str(x) for x in range(1950,2100)]:
+        if r.id in [str(x) for x in range(1950,2100)] or r.id in ['news', 'events', 'images']:
             continue
         o = r.getObject()
         if not o.listFolderContents():
