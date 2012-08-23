@@ -547,13 +547,13 @@ body {
 #portal-column-one .imagePortlet,
 #portal-column-two .imagePortlet,
 #portlets-mobile .imagePortlet {
-    padding: 1.5em 0;
+    padding: 0.5em 0 1em 0;
 }
 
 #portal-column-one .imagePortlet li,
 #portal-column-two .imagePortlet li,
 #portlets-mobile .imagePortlet li {
-    margin: 1em 0 1.625em 0;
+    margin: 0.5em 0 1em 0;
 }
 
 #portal-column-one .imagePortlet a,
@@ -714,10 +714,10 @@ body {
 #portal-column-two .linkButton .portletItem a,
 #portal-column-one .linkButton a:hover,
 #portal-column-two .linkButton .portletItem a:hover,
-#rightcolumn .linkButton a,
-#rightcolumn .linkButton a:hover {
+#rightcolumn .linkButton .portletItem a,
+#rightcolumn .linkButton .portletItem a:hover {
     text-decoration: none;
-    display: block;
+    display: block !important;
     color: &dtml-leftButtonTextColor_external;;
     font-weight: normal;
     font-size: 1.0625em;
