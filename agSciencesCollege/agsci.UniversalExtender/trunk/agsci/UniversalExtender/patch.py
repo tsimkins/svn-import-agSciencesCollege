@@ -10,6 +10,8 @@ from plone.registry.interfaces import IRegistry
 from plone.app.discussion.interfaces import IDiscussionSettings
 from interfaces import INoComments
 from DateTime import DateTime
+from plone.app.blob.interfaces import IBlobField
+from Products.Archetypes.interfaces import IFileField, IImageField, ITextField
 
 from agsci.subsite.content.interfaces import IBlog
 
@@ -312,3 +314,39 @@ def icon(self, portal_type):
             'Topic' : 'topic_icon.png',}.get(type.id, default_icon)
 
     return "%s/%s" % (self.base, icon)
+
+
+# Overrides fieldFilter for plone.app.caching.purge.ObjectFieldPurgePaths.getRelativePaths.fieldFilter
+
+def getRelativePaths(self):
+    prefix = self.context.absolute_url_path()
+    schema = self.context.Schema()
+
+    def fieldFilter(field):
+        return (
+            (IFileField.providedBy(field) or IImageField.providedBy(field) or IBlobField.providedBy(field))
+            and not ITextField.providedBy(field)
+        )
+
+    seenDownloads = False
+
+    for field in schema.filterFields(fieldFilter): 
+
+        if not seenDownloads:
+            yield prefix + '/download'
+            yield prefix + '/at_download'
+            seenDownloads = True
+
+        yield prefix + '/at_download/' + field.getName()
+
+        fieldURL = "%s/%s" % (prefix, field.getName(),)
+        yield fieldURL
+
+        if IImageField.providedBy(field):
+            for size in field.getAvailableSizes(self.context).keys():
+                yield "%s_%s" % (fieldURL, size,)
+
+
+
+
+

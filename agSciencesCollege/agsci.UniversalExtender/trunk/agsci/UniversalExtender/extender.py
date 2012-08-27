@@ -54,6 +54,16 @@ class FSDPersonExtender(object):
             ),
         ),
         _ExtensionStringField(
+            "cellPhone",
+            required=False,
+            schemata="Contact Information",
+            widget=StringWidget(
+                label=u"Mobile",
+                description=u"Example: 555-555-5555",
+                visible={'edit':'invisible','view':'invisible'}
+            ),
+        ),
+        _ExtensionStringField(
             "twitter_url",
             required=False,
             schemata="Social Media",
