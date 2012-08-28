@@ -1,10 +1,14 @@
 
+<tal:antiframe condition="not: context/frameok|nothing">
+
 <script type="text/javascript">
     // Anti-framing script
     if (top.location != self.location) {
         top.location = self.location.href
     }
 </script>
+
+</tal:antiframe>
 
 <tal:fbmetadata condition="view/showFBMetadata">
     <!-- Open Graph Protocol info for Facebook -->    
