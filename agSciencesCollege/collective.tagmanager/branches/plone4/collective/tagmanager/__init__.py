@@ -16,12 +16,12 @@ def outputConfig(config):
     
     for key in config_keys:
     
-        final_config.append('categoryList = addTagCategory("%s")' % key)
+        final_config.append('categoryList = addTagCategory("%s");' % key)
     
         items = config[key]
         items.sort()
         
         for item in items:
-            final_config.append('manageTags(categoryList, "%s", "%s")' % tuple(item));
+            final_config.append('manageTags(categoryList, "%s", "%s");' % tuple(item));
     
     return ("\n"+" "*8).join(final_config)
