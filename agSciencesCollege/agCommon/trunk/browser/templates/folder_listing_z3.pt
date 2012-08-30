@@ -9,19 +9,16 @@
 <body>
 
 <metal:content fill-slot="content-text">
+    
     <div metal:define-macro="text-field-view"
-         id="parent-fieldname-text" class="stx"
-         tal:define="templateId template/getId;kssClassesView context/@@kss_field_decorator_view;
-                     getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;kss_class python:getKssClasses('text',
-                     templateId=templateId, macro='text-field-view');
-                     has_text exists:context/aq_explicit/getText;
-                     text python:has_text and here.getText() or '';
-                     test nocall:view/test"
-         tal:condition="text"
-         tal:attributes="class python:test(context.Format() in ('text/structured',
-                                               'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
-        <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+        tal:define="has_text exists:context/aq_explicit/getText;
+                    text python:has_text and here.getText() or '';
+                    test nocall:view/test"
+        tal:condition="text"
+        tal:content="structure text">
+        [ Body Text ]
     </div>
+    
 </metal:content>
 
 <metal:content-core fill-slot="content-core">
@@ -205,11 +202,10 @@
                                 </div>
                                 <div tal:define="show_event_location show_event_location|nothing"
                                      tal:condition="python: item_type == 'Event' and item.location and not show_event_location"
-                                     tal:attributes="class string:eventDateLocation ${canceled}"
-                                     i18n:translate="label_event_byline_location">
-                                    
+                                     tal:attributes="class string:eventDateLocation ${canceled}">
+
                                     <strong>Where:</strong>
-            
+
                                     <tal:location metal:define-macro="event_location"
                                         define="map_link item/map_link|nothing">
 

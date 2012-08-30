@@ -53,15 +53,14 @@
         </p>
 
         <div metal:define-macro="text-field-view"
-             id="parent-fieldname-text" class="stx"
-             tal:define="kss_class python:getKssClasses('text', 
-                         templateId=templateId, macro='text-field-view');
-                         text text|context/getText|nothing"
-             tal:condition="python: text and not redirect_links"
-             tal:attributes="class python:test(context.Format() in ('text/structured',
-                                                   'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
-            <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+             class="documentText" 
+             tal:define ="text text|context/getText|nothing"
+             tal:condition="python: text and not redirect_links">
+            <metal:field use-macro="python:here.widget('text', mode='view')">
+                Body text
+            </metal:field>
         </div>
+
     </metal:block>
 </metal:content-core>
 

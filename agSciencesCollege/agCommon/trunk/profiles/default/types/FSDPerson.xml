@@ -7,6 +7,12 @@
         <element value="person_redirect_view"/>
     </property>
 
+    <property name="allowed_content_types" purge="False">
+        <element value="Document" />
+        <element value="File" />
+        <element value="FSDCourse" />
+    </property>
+
     <alias from="(Default)" to="(dynamic view)"/>
 
 </object>

@@ -118,7 +118,7 @@
     font-size: 1.0625em;
 }
 
-#content #homepage-text #parent-fieldname-text {
+#content #homepage-text .documentText {
     font-size: 0.875em;
 }
 

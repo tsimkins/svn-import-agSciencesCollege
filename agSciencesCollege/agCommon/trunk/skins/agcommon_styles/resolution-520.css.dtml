@@ -370,9 +370,9 @@ body.mobile #portal-header>#portal-searchbox {
 }
 
 #content h3, html.kupu-html h3, 
-body.custom-h2-as-h3 #content-text #parent-fieldname-text h2, 
-body.custom-h2-as-h3 #content-core #parent-fieldname-text h2,
-body.custom-h2-as-h3 #homepage-text #parent-fieldname-text h2,
+body.custom-h2-as-h3 #content-text .documentText h2, 
+body.custom-h2-as-h3 #content-core .documentText h2,
+body.custom-h2-as-h3 #homepage-text .documentText h2,
 body.template-person_view #content h2,
 body.template-by_county_listing.custom-two-column #content h2 {
     font-size: 1.09375em;

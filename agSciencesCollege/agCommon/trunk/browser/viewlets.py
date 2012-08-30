@@ -431,7 +431,7 @@ class PathBarViewlet(AgCommonViewlet):
         self.breadcrumbs = breadcrumbs_view.breadcrumbs()
         
         # Get the site id
-        self.site = getSite()['id']
+        self.site = getSite().getId()
 
 class LeadImageHeader(LeadImageViewlet, AgCommonViewlet):
 

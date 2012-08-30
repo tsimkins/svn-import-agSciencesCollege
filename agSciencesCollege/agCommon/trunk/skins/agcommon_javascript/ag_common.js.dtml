@@ -158,7 +158,7 @@ jq(document).ready( function () {
 
 jq(document).ready(
 	function () {
-        jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription #parent-fieldname-description, body.custom-semicolon-delimited #content #parent-fieldname-description .documentDescription').each(
+        jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription, body.custom-semicolon-delimited #content .documentDescription').each(
 
             function()
             {

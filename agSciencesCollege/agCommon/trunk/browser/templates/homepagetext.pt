@@ -16,12 +16,10 @@
         </metal:field>
     </p>
     
-    <tal:bodytext                 
-            condition="context/getText|nothing">
-
+    <div class="documentText" tal:condition="context/getText|nothing">
         <metal:field use-macro="python:here.widget('text', mode='view')">
             Body text
         </metal:field>
-    </tal:bodytext>
+    </div>
 
 </div>
