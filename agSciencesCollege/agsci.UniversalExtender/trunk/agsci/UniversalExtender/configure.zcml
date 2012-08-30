@@ -310,9 +310,8 @@
         ignoreOriginal="True"
         />
 
-
     <!-- Monkey patch comments enabled to change folder comments logic. -->
-    
+
     <monkey:patch
         description="This changes how plone.app.discussion determines if comments should be enabled"
         class="plone.app.discussion.conversation.Conversation"
