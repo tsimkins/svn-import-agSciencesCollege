@@ -14,6 +14,14 @@ from Products.CMFCore.interfaces import ISiteRoot
 class _ExtensionLinesField(ExtensionField, LinesField):
 
     def getDefault(self, instance, **kwargs):
+    
+        # Shortcut this field when creating non News Item/Events.  Specifically,
+        # This prevents the lookup when creating folders.
+
+        if instance.portal_type not in ['News Item', 'Event']:
+            return ()
+
+        # Find a parent that has the values
         for o in getAcquisitionChain(instance):
             try:
                 v = self.get(o)
