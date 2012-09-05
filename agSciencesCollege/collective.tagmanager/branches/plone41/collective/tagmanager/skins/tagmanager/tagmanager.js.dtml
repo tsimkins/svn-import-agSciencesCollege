@@ -1,0 +1,288 @@
+/* tagmanager.js */
+
+
+
+    var categoryWidgetFieldName = 'subject';
+
+
+    function findColumn(index, size, columns) {
+        for (var i=1; i<=columns; i++) {
+            if (index/size <= i/columns) {
+                return i - 1;
+            }
+        }
+    }
+
+
+
+    function addToggleButton(container) {
+        toggleBtn = jq('<input type="button" name="tagToggle" value="Toggle" class="standalone" />');
+        toggleBtn.attr('status', 'new');
+        toggleBtn.appendTo(container);
+
+        toggleBtn.click( function () {
+            var status = jq(this).attr('status');
+            if (jq(this).attr('status') == 'new') {
+                jq('#tag-button-container').hide();
+                jq('#' + categoryWidgetFieldName + '_keywords').parent().show();
+                jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().show();
+                jq('#' + categoryWidgetFieldName + '_existing_keywords').show();
+                jq(this).attr('status', 'old');
+            } else if (jq(this).attr('status') == 'old') {
+                jq('#' + categoryWidgetFieldName + '_keywords').parent().hide();
+                jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().hide();
+                jq('#' + categoryWidgetFieldName + '_existing_keywords').hide();
+                setSelectedCategories();
+                jq('#tag-button-container').show();
+                jq(this).attr('status', 'new');
+            }
+        });
+    }
+
+
+
+    function addTagCategory(label) {
+        // create a container div for this category which can be floated left
+        var containerId = 'category-' + label.toLowerCase().replace(/ /g, '-');
+        jq('#tag-button-container').append('<div id="' + containerId + '" class="category-container"></div');
+        var categoryContainer = jq('#' + containerId);
+        if (label != '' && label.substr(0, 7) != 'noshow-') {
+            categoryContainer.append('<h3>' + label + '</h3>');
+        }
+        categoryContainer.append('<ul class="tagmanager"></ul>');
+        var tagList = jq('#' + containerId + ' ul.tagmanager');
+        return tagList;
+    }
+
+
+
+    function setSelectedCategories() {
+        // determines which category buttons have keywords selected
+        //  and adds the 'hastags' class to them.
+        jq("ul.tagmanager li").each(
+            function(index) {
+                tagprefix = jq(this).attr('tagprefix');
+
+                if (getSelectedTags(tagprefix).size() > 0) {
+                    jq(this).addClass('hastags');
+                } else {
+                    jq(this).removeClass('hastags');
+                }
+            }
+        );
+    }
+
+
+
+    function getSelectedTags(prefix) {
+        // gets all the selected keywords in the subject_existing_keywords listbox
+        return jq("#" + categoryWidgetFieldName + "_existing_keywords option:selected[value^='" + prefix + "']");
+    }
+
+
+
+    function getPrefixTags(prefix) {
+        // get all the keywords with a certain prefix
+        
+        // The 'other' prefix is difficult, since the only way to know if a tag is 'other'
+        // the first time is if it's visible after all other tags have been hidden.
+        
+        if (prefix == 'other') {
+            // get the keywords that have not been assigned to a button yet
+            not_buttons =  jq("#" + categoryWidgetFieldName + "_existing_keywords option[status!='button']");
+            
+            if (not_buttons.size() > 0) {
+                // return the keywords not yet assigned
+                return not_buttons;
+            } else {
+                // return the keywords assigned to 'other'
+                return jq("#" + categoryWidgetFieldName + "_existing_keywords option[tagprefix^='" + prefix + "']");
+            }
+        } else {
+            // return the keywords assigned to the provided prefix
+            return jq("#" + categoryWidgetFieldName + "_existing_keywords option[value^='" + prefix + "']");
+        }
+    }
+
+
+
+    function hideTagMultiSelect() {
+        // find any of the options that have not already been hidden and
+        //  assign them to the other category
+        // then hide the subject_existing_keywords listbox
+        
+        all = jq('#' + categoryWidgetFieldName + '_existing_keywords option').size();
+        button = jq('#' + categoryWidgetFieldName + '_existing_keywords option[status="button"]').size();
+        
+        // if all the options have not been assigned to a button/category,
+        //  assign them to a new category (other)
+        if (button < all) {
+            categoryList = addTagCategory("Other");
+            manageTags(categoryList, 'other', 'Other Tags');
+        }
+        
+        // hide the listbox
+        jq('#' + categoryWidgetFieldName + '_existing_keywords').hide();
+    }
+
+
+
+    function manageTags(list, prefix, label) {
+        // this is where the magic happens!
+        
+        // get all the keywords with the specified prefix
+        prefixTags = getPrefixTags(prefix);
+        if (prefixTags.size() == 0) {
+            return false;
+        }
+        
+        // add two attributes to each keyword to indicate it's prefix and that
+        //  it's being assigned to a button/category
+        prefixTags.each(
+            function() {
+                jq(this).attr('tagprefix', prefix);
+                jq(this).attr('status', 'button');
+            }
+        );
+        
+        // create the entry for the button/category in the unordered list
+        mainTagLink = jq('<li title="' + label + ' (' + prefix + '*)">' + label + '</li>');
+        mainTagLink.attr('tagprefix', prefix)
+        mainTagLink.attr('category', label)
+        mainTagLink.appendTo(list);
+        
+        // assign the button/category an onClick event handler
+        mainTagLink.click(
+            function() {
+                tagprefix = jq(this).attr('tagprefix');
+                category = jq(this).attr('category');                
+                
+                // define how many columns to create
+                columnCount = 3;
+                
+                // define an array to hold the values for each column
+                columnArray = new Array()
+                
+                // create the popup box
+                modalTags = jq('<div id="modal-tags"><h1>' + category + '</h1></div>');
+                
+                // create a container div for each column
+                for (var i=0; i<columnCount; i++) {
+                    columnArray.push(jq('<ul class="tag-container"></ul>'));
+                    columnArray[i].appendTo(modalTags);
+                }
+                
+                // get all the tags with the specified prefix
+                existingTags = getPrefixTags(tagprefix);
+                
+                // assign each keyword into a column
+                for (var i=0; i<existingTags.size(); i++) {
+                    tag = existingTags.eq(i);
+                    tagColumn = findColumn(i, existingTags.size(), columnCount);
+                    tagContainer = columnArray[tagColumn];
+                    
+                    if (tagprefix == 'other') {
+                        // display the whole keyword
+                        tagLabelValue = tag.val();
+                    } else {
+                        // display the keyword without the prefix
+                        tagLabelValue = tag.val().substring(tagprefix.length+1,tag.val().length)
+                    }
+                    
+                    // create the necessary HTML for the checkbox and label
+                    tagLabel = jq('<span class="label">' + tagLabelValue + '</span>');
+                    checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" />')
+                    
+                    // check the box if the keyword is selected
+                    if (tag.attr("selected")) {
+                        checkbox.attr("checked", "checked");
+                    }
+                    
+                    // add the checkbox and label to the container
+                    tagItem = jq('<li></li>');
+                    checkbox.appendTo(tagItem);
+                    tagLabel.appendTo(tagItem);
+                    tagItem.appendTo(tagContainer)
+                }
+                
+                // define the buttons on the modal form
+                buttons = jq('<div id="modal-buttons"></div>');
+                submit = jq('<input type="button" value="Save" class="simplemodal-close context" />');
+                submit.click(
+                    function () {
+                        // get all the checkboxes
+                        newTags = jq('#modal-tags input[type="checkbox"]');
+                        
+                        // get all the keywords from the listbox
+                        existingTags = jq('#' + categoryWidgetFieldName + '_existing_keywords option');
+                        
+                        // go thru the checkboxes and transfer the values to the listbox options
+                        for (var i=0; i<=newTags.size(); i++) {
+                            newTag = newTags.eq(i);
+                            for (var j=0; j<existingTags.size(); j++) {
+                                oldTag = existingTags.eq(j);
+                                if (oldTag.val() == newTag.val()) {
+                                    oldTag.attr("selected", newTag.attr("checked"));
+                                }
+                            }
+                        }
+
+                        // change the category buttons to indicate if they have selected keywords
+                        setSelectedCategories();
+                    }
+                );  // end of submit.click function
+                
+                // add the save button to the buttons container
+                submit.appendTo(buttons);
+                
+                // add the cancel button to the buttons container
+                jq('<input type="button" value="Cancel" class="simplemodal-close standalone" /> ').appendTo(buttons);
+                
+                // add the buttons container to the modal form
+                buttons.appendTo(modalTags);
+                
+                // pop open the modal form
+                modalTags.modal({minHeight:'300px', minWidth:'70%'}); 
+                return false;
+            }
+        );  // end of mainTagLink.click function
+    }
+
+
+
+jq(document).ready(
+    function () {
+        // make sure that the categoryWidgetFieldName is right
+        if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
+            categoryWidgetFieldName = 'eventType';
+            if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
+                categoryWidgetFieldName = '';
+            }
+        }
+        
+        if (categoryWidgetFieldName != '') {
+            // hide the existing and new category divs
+            jq('#' + categoryWidgetFieldName + '_keywords').parent().hide();
+            jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().hide();
+            
+            // create a container to hold the new buttons
+            jq('#archetypes-fieldname-' + categoryWidgetFieldName).append('<div id="tag-button-container"></div>');
+            
+            // add the categories and the buttons in each category
+            <dtml-var tagmanager_config>
+            
+            // change the category buttons to indicate if they have selected keywords
+            setSelectedCategories();
+            
+            // assign remaining keywords to the "other" category and hide the
+            //  subject_existing_keywords listbox
+            hideTagMultiSelect();
+            
+            // clear the floats
+            jq('#archetypes-fieldname-' + categoryWidgetFieldName).append('<div class="visualClear"></div>');
+            
+            // add a new/old toggle
+            addToggleButton(jq('#archetypes-fieldname-' + categoryWidgetFieldName));
+        }
+    }
+)
