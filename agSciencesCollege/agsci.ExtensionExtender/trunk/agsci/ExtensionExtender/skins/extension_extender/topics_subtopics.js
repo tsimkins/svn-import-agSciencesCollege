@@ -20,22 +20,22 @@ function isValidSubtopic(v) {
 }
 
 function getL1Topic(t) {
-    var delimiter = ': ';
+    var delimiter = ':';
     return t.substr(0, t.indexOf(delimiter));
 }
 
 function getL1SubTopic(t) {
-    var delimiter = ': ';
+    var delimiter = ':';
     return t.substr(t.indexOf(delimiter) + delimiter.length, t.length);
 }
 
 function getL2Topic(t) {
-    var delimiter = ': ';
+    var delimiter = ':';
     return t.substr(0, t.lastIndexOf(delimiter));
 }
 
 function getL2SubTopic(t) {
-    var delimiter = ': ';
+    var delimiter = ':';
     return t.substr(t.lastIndexOf(delimiter) + delimiter.length, t.length);
 }
 
