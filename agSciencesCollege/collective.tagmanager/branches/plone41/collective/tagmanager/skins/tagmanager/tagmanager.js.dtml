@@ -4,6 +4,23 @@
 
     var categoryWidgetFieldName = 'subject';
 
+    function isAdmin()
+    {
+        // Kind of hard to determine this from a JS perspective, but I'm basing
+        // it off the presence of the 'Site-Setup' in the toolbar.
+
+        site_setup = jq('#portal-personaltools dd li#personaltools-plone_setup')
+    
+        if (site_setup.size())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
     function findColumn(index, size, columns) {
         for (var i=1; i<=columns; i++) {
@@ -16,7 +33,7 @@
 
 
     function addToggleButton(container) {
-        toggleBtn = jq('<input type="button" name="tagToggle" value="Toggle" class="standalone" />');
+        toggleBtn = jq('<input type="button" name="tagToggle" value="Toggle Tag Selector" class="standalone" />');
         toggleBtn.attr('status', 'new');
         toggleBtn.appendTo(container);
 
@@ -24,14 +41,17 @@
             var status = jq(this).attr('status');
             if (jq(this).attr('status') == 'new') {
                 jq('#tag-button-container').hide();
-                jq('#' + categoryWidgetFieldName + '_keywords').parent().show();
-                jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().show();
-                jq('#' + categoryWidgetFieldName + '_existing_keywords').show();
+
+                if (isAdmin())
+                {
+                    jq('#newTagsSection').show();
+                }
+
+                jq('#existingTagsSection').show();
                 jq(this).attr('status', 'old');
             } else if (jq(this).attr('status') == 'old') {
-                jq('#' + categoryWidgetFieldName + '_keywords').parent().hide();
-                jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().hide();
-                jq('#' + categoryWidgetFieldName + '_existing_keywords').hide();
+                jq('#newTagsSection').hide();
+                jq('#existingTagsSection').hide();
                 setSelectedCategories();
                 jq('#tag-button-container').show();
                 jq(this).attr('status', 'new');
@@ -42,6 +62,14 @@
 
 
     function addTagCategory(label) {
+
+        // Do not create Administrative section if user is not admin
+
+        if (label == 'Administrative' && !isAdmin())
+        {
+            return false;
+        }
+        
         // create a container div for this category which can be floated left
         var containerId = 'category-' + label.toLowerCase().replace(/ /g, '-');
         jq('#tag-button-container').append('<div id="' + containerId + '" class="category-container"></div');
@@ -75,8 +103,8 @@
 
 
     function getSelectedTags(prefix) {
-        // gets all the selected keywords in the subject_existing_keywords listbox
-        return jq("#" + categoryWidgetFieldName + "_existing_keywords option:selected[value^='" + prefix + "']");
+        // gets all the selected keywords in the #existingTags listbox
+        return jq("#existingTags input:checked[value^='" + prefix + "']");
     }
 
 
@@ -89,18 +117,18 @@
         
         if (prefix == 'other') {
             // get the keywords that have not been assigned to a button yet
-            not_buttons =  jq("#" + categoryWidgetFieldName + "_existing_keywords option[status!='button']");
-            
+            not_buttons =  jq("#existingTags input[status!='button']");
+                
             if (not_buttons.size() > 0) {
                 // return the keywords not yet assigned
                 return not_buttons;
             } else {
                 // return the keywords assigned to 'other'
-                return jq("#" + categoryWidgetFieldName + "_existing_keywords option[tagprefix^='" + prefix + "']");
+                return jq("#existingTags input[tagprefix^='" + prefix + "']");
             }
         } else {
             // return the keywords assigned to the provided prefix
-            return jq("#" + categoryWidgetFieldName + "_existing_keywords option[value^='" + prefix + "']");
+            return jq("#existingTags input[value^='" + prefix + "']");
         }
     }
 
@@ -109,10 +137,11 @@
     function hideTagMultiSelect() {
         // find any of the options that have not already been hidden and
         //  assign them to the other category
-        // then hide the subject_existing_keywords listbox
+        // then hide the #existingTags listbox
         
-        all = jq('#' + categoryWidgetFieldName + '_existing_keywords option').size();
-        button = jq('#' + categoryWidgetFieldName + '_existing_keywords option[status="button"]').size();
+        all = jq('#existingTags input').size();
+
+        button = jq('#existingTags input[status="button"]').size();
         
         // if all the options have not been assigned to a button/category,
         //  assign them to a new category (other)
@@ -122,7 +151,12 @@
         }
         
         // hide the listbox
-        jq('#' + categoryWidgetFieldName + '_existing_keywords').hide();
+        jq('#existingTagsSection').hide();
+        
+        if (!isAdmin())
+        {
+            jq('#newTagsSection').hide();
+        }
     }
 
 
@@ -132,6 +166,7 @@
         
         // get all the keywords with the specified prefix
         prefixTags = getPrefixTags(prefix);
+
         if (prefixTags.size() == 0) {
             return false;
         }
@@ -174,7 +209,7 @@
                 
                 // get all the tags with the specified prefix
                 existingTags = getPrefixTags(tagprefix);
-                
+
                 // assign each keyword into a column
                 for (var i=0; i<existingTags.size(); i++) {
                     tag = existingTags.eq(i);
@@ -194,7 +229,7 @@
                     checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" />')
                     
                     // check the box if the keyword is selected
-                    if (tag.attr("selected")) {
+                    if (tag.attr("checked")) {
                         checkbox.attr("checked", "checked");
                     }
                     
@@ -214,7 +249,7 @@
                         newTags = jq('#modal-tags input[type="checkbox"]');
                         
                         // get all the keywords from the listbox
-                        existingTags = jq('#' + categoryWidgetFieldName + '_existing_keywords option');
+                        existingTags = jq('#existingTags input');
                         
                         // go thru the checkboxes and transfer the values to the listbox options
                         for (var i=0; i<=newTags.size(); i++) {
@@ -222,7 +257,11 @@
                             for (var j=0; j<existingTags.size(); j++) {
                                 oldTag = existingTags.eq(j);
                                 if (oldTag.val() == newTag.val()) {
-                                    oldTag.attr("selected", newTag.attr("checked"));
+                                    if (oldTag.attr("checked") !=  newTag.attr("checked")) {
+                                        oldTag.attr("checked", newTag.attr("checked"));
+                                        oldTag.trigger('click');
+                                        oldTag.attr("checked", newTag.attr("checked"));
+                                    }
                                 }
                             }
                         }
@@ -242,28 +281,27 @@
                 buttons.appendTo(modalTags);
                 
                 // pop open the modal form
-                modalTags.modal({minHeight:'300px', minWidth:'70%'}); 
+                modalTags.modal({minHeight:'85%', minWidth:'90%'}); 
                 return false;
             }
         );  // end of mainTagLink.click function
     }
 
-
-
-jq(document).ready(
+jq(window).load(
     function () {
+        
         // make sure that the categoryWidgetFieldName is right
-        if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
+        if (jq('#archetypes-fieldname-' + categoryWidgetFieldName).length <= 0) {
             categoryWidgetFieldName = 'eventType';
-            if (jq('#' + categoryWidgetFieldName + '_existing_keywords').length <= 0) {
+            if (jq('#archetypes-fieldname-' + categoryWidgetFieldName).length <= 0) {
                 categoryWidgetFieldName = '';
             }
         }
-        
+
         if (categoryWidgetFieldName != '') {
             // hide the existing and new category divs
-            jq('#' + categoryWidgetFieldName + '_keywords').parent().hide();
-            jq('#' + categoryWidgetFieldName + '_existing_keywords').parent().hide();
+            jq('#newTagsSection').hide();
+            jq('#existingTagsSection').hide();
             
             // create a container to hold the new buttons
             jq('#archetypes-fieldname-' + categoryWidgetFieldName).append('<div id="tag-button-container"></div>');
@@ -275,7 +313,7 @@ jq(document).ready(
             setSelectedCategories();
             
             // assign remaining keywords to the "other" category and hide the
-            //  subject_existing_keywords listbox
+            //  #existingTags listbox
             hideTagMultiSelect();
             
             // clear the floats

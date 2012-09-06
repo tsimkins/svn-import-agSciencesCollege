@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2'
 
 setup(name='collective.tagmanager',
       version=version,
@@ -29,12 +29,5 @@ setup(name='collective.tagmanager',
       ],
       entry_points="""
       # -*- Entry points: -*-
-
-      [distutils.setup_keywords]
-      paster_plugins = setuptools.dist:assert_string_list
-
-      [egg_info.writers]
-      paster_plugins.txt = setuptools.command.egg_info:write_arg
-      """,
-      paster_plugins = ["ZopeSkel"],
+      """
       )
