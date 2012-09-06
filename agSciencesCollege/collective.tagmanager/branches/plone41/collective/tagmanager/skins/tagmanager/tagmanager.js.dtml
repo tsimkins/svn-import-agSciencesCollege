@@ -104,7 +104,7 @@
 
     function getSelectedTags(prefix) {
         // gets all the selected keywords in the #existingTags listbox
-        return jq("#existingTags input:checked[value^='" + prefix + "']");
+        return jq("#existingTags input:checked[tagprefix='" + prefix + "']");
     }
 
 
