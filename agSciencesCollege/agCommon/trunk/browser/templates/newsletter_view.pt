@@ -639,10 +639,7 @@ div.about hr {
                                                    item_sametime python: item_start == item_end;
                                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
                                 <metal:block define-slot="entry">
-                                <tal:item metal:define-macro="listitem"
-                                    tal:define="dt_class python:not item_description and 'no-description' or '';
-                                                dt_class python:item_type == 'Event' and ('%s vevent' % dt_class).strip() or dt_class"
-                                    tal:attributes="class dt_class">
+                                <tal:item metal:define-macro="listitem">
 
                                     <h3>
                 
