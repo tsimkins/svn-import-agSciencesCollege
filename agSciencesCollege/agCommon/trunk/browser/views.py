@@ -672,7 +672,7 @@ class NewsletterEmail(NewsletterView):
                 else:
                     a['href'] = '%s?%s' % (a['href'], utm)            
 
-        html = premailer.transform(soup.prettify())
+        html = premailer.transform(unicode(soup.prettify(), 'utf-8'))
 
         tags = ['dl', 'dt', 'dd']
         
