@@ -67,12 +67,14 @@ class Renderer(base.Renderer):
         base.Renderer.__init__(self, *args)
 
         context = aq_inner(self.context)
-        # If we're a Collection object, reset the context to blog parent
-        if context.portal_type == 'Topic' and context.getParentNode().portal_type == 'Blog':
-            self.parent_object = context.getParentNode()
-        else:
-            self.parent_object = context
-                    
+        
+        self.parent_object = self.context
+        
+        for i in aq_chain(context):
+            if IBlog.providedBy(i):
+                self.parent_object = i
+                break
+                
         portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
         self.anonymous = portal_state.anonymous()
         self.portal_url = portal_state.portal_url()
