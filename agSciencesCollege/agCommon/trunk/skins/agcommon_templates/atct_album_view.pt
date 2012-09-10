@@ -23,10 +23,8 @@
     <div metal:define-macro="text-field-view"
         class="documentText" 
         tal:define ="text text|context/getText|nothing"
-        tal:condition="text">
-        <metal:field use-macro="python:here.widget('text', mode='view')">
-            Body text
-        </metal:field>
+        tal:condition="text"
+        tal:content="structure text">
     </div>
 
     <tal:albumsimages tal:condition="python:albums or images" metal:define-macro="listing" 
