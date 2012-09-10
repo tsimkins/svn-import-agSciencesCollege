@@ -339,15 +339,6 @@
         original="icon"
         />
 
-    <!-- Fix issue with cache purging for files caused by migration to blob type -->
-    
-    <monkey:patch
-        description="Fix issue with cache purging for files caused by migration to blob type"
-        class="plone.app.caching.purge.ObjectFieldPurgePaths"
-        replacement=".patch.getRelativePaths"
-        original="getRelativePaths"
-        />
-
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
     <five:implements

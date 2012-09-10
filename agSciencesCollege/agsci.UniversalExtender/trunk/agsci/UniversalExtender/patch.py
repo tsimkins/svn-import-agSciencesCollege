@@ -316,37 +316,3 @@ def icon(self, portal_type):
     return "%s/%s" % (self.base, icon)
 
 
-# Overrides fieldFilter for plone.app.caching.purge.ObjectFieldPurgePaths.getRelativePaths.fieldFilter
-
-def getRelativePaths(self):
-    prefix = self.context.absolute_url_path()
-    schema = self.context.Schema()
-
-    def fieldFilter(field):
-        return (
-            (IFileField.providedBy(field) or IImageField.providedBy(field) or IBlobField.providedBy(field))
-            and not ITextField.providedBy(field)
-        )
-
-    seenDownloads = False
-
-    for field in schema.filterFields(fieldFilter): 
-
-        if not seenDownloads:
-            yield prefix + '/download'
-            yield prefix + '/at_download'
-            seenDownloads = True
-
-        yield prefix + '/at_download/' + field.getName()
-
-        fieldURL = "%s/%s" % (prefix, field.getName(),)
-        yield fieldURL
-
-        if IImageField.providedBy(field):
-            for size in field.getAvailableSizes(self.context).keys():
-                yield "%s_%s" % (fieldURL, size,)
-
-
-
-
-
