@@ -1566,6 +1566,10 @@ body.template-news_listing #content dd {
     margin-left: 0;
 }
 
+#content .tileSubItem dd {
+    margin-bottom: 1.5em;
+}
+
 body.template-news_listing #portal-column-two dd {
     margin-bottom: 0;
 }
