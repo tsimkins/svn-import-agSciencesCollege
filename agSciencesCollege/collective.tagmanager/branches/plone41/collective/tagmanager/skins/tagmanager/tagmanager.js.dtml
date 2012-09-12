@@ -31,9 +31,8 @@
     }
 
 
-
     function addToggleButton(container) {
-        toggleBtn = jq('<input type="button" name="tagToggle" value="Toggle Tag Selector" class="standalone" />');
+        toggleBtn = jq('<input type="button" id="tagToggle" name="tagToggle" value="Toggle Tag Selector" class="standalone" />');
         toggleBtn.attr('status', 'new');
         toggleBtn.appendTo(container);
 
@@ -86,7 +85,7 @@
 
     function setSelectedCategories() {
         // determines which category buttons have keywords selected
-        //  and adds the 'hastags' class to them.
+        //  and adds the 'hastags' class to them.  Checks the checkboxes in the overlay
         jq("ul.tagmanager li").each(
             function(index) {
                 tagprefix = jq(this).attr('tagprefix');
@@ -98,6 +97,25 @@
                 }
             }
         );
+
+        // Inverse of setTags()
+        
+        jq('.tagmanager input[name="tagmanager"]').each(
+            function () {
+                tag_name = jq(this).attr('value');
+                is_checked = jq(this).attr('checked');
+                plone_checkbox = jq("#archetypes-fieldname-subject #existingTags input[value='" + tag_name + "']");
+                plone_checkbox_checked = plone_checkbox.attr('checked')
+                
+                if (is_checked != plone_checkbox_checked)
+                {
+                    jq(this).attr('checked', plone_checkbox_checked);
+                }
+            }
+        );
+
+        
+        
     }
 
 
@@ -139,9 +157,9 @@
         //  assign them to the other category
         // then hide the #existingTags listbox
         
-        all = jq('#existingTags input').size();
+        var all = jq('#existingTags input').size();
 
-        button = jq('#existingTags input[status="button"]').size();
+        var button = jq('#existingTags input[status="button"]').size();
         
         // if all the options have not been assigned to a button/category,
         //  assign them to a new category (other)
@@ -160,132 +178,133 @@
     }
 
 
-
-    function manageTags(list, prefix, label) {
+    function manageTags(list, prefix, label)
+    {
         // this is where the magic happens!
         
-        // get all the keywords with the specified prefix
         prefixTags = getPrefixTags(prefix);
-
-        if (prefixTags.size() == 0) {
+        
+        // get all the keywords with the specified prefix
+        if (prefixTags.size() == 0)
+        {
             return false;
         }
-        
+
         // add two attributes to each keyword to indicate it's prefix and that
-        //  it's being assigned to a button/category
+        // it's being assigned to a button/category
         prefixTags.each(
             function() {
                 jq(this).attr('tagprefix', prefix);
                 jq(this).attr('status', 'button');
             }
         );
-        
+
         // create the entry for the button/category in the unordered list
-        mainTagLink = jq('<li title="' + label + ' (' + prefix + '*)">' + label + '</li>');
-        mainTagLink.attr('tagprefix', prefix)
-        mainTagLink.attr('category', label)
+        mainTagLink = jq('<li tagprefix="' + prefix + '"><input class="tagbutton" title="' + label + ' (' + prefix + 
+                 '-*)" type="button" rel="#overlay-' + prefix + '" value="' + label + '" /> </li>');
+
         mainTagLink.appendTo(list);
+
+        // Set up tag checkboxes
+
+        overlayItem = jq('<div class="overlay" id="overlay-' + prefix + '">' + 
+                                '<div class="pb-ajax">' +
+                                    '<div class="overlaycontent" ></div>' +
+                                    '<div class="visualClear">&nbsp;</div>' + 
+                                '</div>' +
+                            '</div>');
+                            
+        tagCheckboxes = overlayItem.find('.overlaycontent');
         
-        // assign the button/category an onClick event handler
-        mainTagLink.click(
-            function() {
-                tagprefix = jq(this).attr('tagprefix');
-                category = jq(this).attr('category');                
-                
-                // define how many columns to create
-                columnCount = 3;
-                
-                // define an array to hold the values for each column
-                columnArray = new Array()
-                
-                // create the popup box
-                modalTags = jq('<div id="modal-tags"><h1>' + category + '</h1></div>');
-                
-                // create a container div for each column
-                for (var i=0; i<columnCount; i++) {
-                    columnArray.push(jq('<ul class="tag-container"></ul>'));
-                    columnArray[i].appendTo(modalTags);
-                }
-                
-                // get all the tags with the specified prefix
-                existingTags = getPrefixTags(tagprefix);
+        tagprefix = prefix;
+        category = label;                
+        
+        // define how many columns to create
+        columnCount = 4;
+        
+        // define an array to hold the values for each column
+        columnArray = new Array()
 
-                // assign each keyword into a column
-                for (var i=0; i<existingTags.size(); i++) {
-                    tag = existingTags.eq(i);
-                    tagColumn = findColumn(i, existingTags.size(), columnCount);
-                    tagContainer = columnArray[tagColumn];
-                    
-                    if (tagprefix == 'other') {
-                        // display the whole keyword
-                        tagLabelValue = tag.val();
-                    } else {
-                        // display the keyword without the prefix
-                        tagLabelValue = tag.val().substring(tagprefix.length+1,tag.val().length)
-                    }
-                    
-                    // create the necessary HTML for the checkbox and label
-                    tagLabel = jq('<span class="label">' + tagLabelValue + '</span>');
-                    checkbox = jq('<input name="extension_tag" type="checkbox" value="' + tag.val() + '" />')
-                    
-                    // check the box if the keyword is selected
-                    if (tag.attr("checked")) {
-                        checkbox.attr("checked", "checked");
-                    }
-                    
-                    // add the checkbox and label to the container
-                    tagItem = jq('<li></li>');
-                    checkbox.appendTo(tagItem);
-                    tagLabel.appendTo(tagItem);
-                    tagItem.appendTo(tagContainer)
-                }
-                
-                // define the buttons on the modal form
-                buttons = jq('<div id="modal-buttons"></div>');
-                submit = jq('<input type="button" value="Save" class="simplemodal-close context" />');
-                submit.click(
-                    function () {
-                        // get all the checkboxes
-                        newTags = jq('#modal-tags input[type="checkbox"]');
-                        
-                        // get all the keywords from the listbox
-                        existingTags = jq('#existingTags input');
-                        
-                        // go thru the checkboxes and transfer the values to the listbox options
-                        for (var i=0; i<=newTags.size(); i++) {
-                            newTag = newTags.eq(i);
-                            for (var j=0; j<existingTags.size(); j++) {
-                                oldTag = existingTags.eq(j);
-                                if (oldTag.val() == newTag.val()) {
-                                    if (oldTag.attr("checked") !=  newTag.attr("checked")) {
-                                        oldTag.attr("checked", newTag.attr("checked"));
-                                        oldTag.trigger('click');
-                                        oldTag.attr("checked", newTag.attr("checked"));
-                                    }
-                                }
-                            }
-                        }
+        tagCheckboxes.append('<h1>' + category + '</h1>');
+        
+        // create a container div for each column
+        for (var i=0; i<columnCount; i++)
+        {
+            columnArray.push(jq('<div class="tag_container"></div>'));
+            columnArray[i].appendTo(tagCheckboxes);
+        }
 
-                        // change the category buttons to indicate if they have selected keywords
-                        setSelectedCategories();
-                    }
-                );  // end of submit.click function
-                
-                // add the save button to the buttons container
-                submit.appendTo(buttons);
-                
-                // add the cancel button to the buttons container
-                jq('<input type="button" value="Cancel" class="simplemodal-close standalone" /> ').appendTo(buttons);
-                
-                // add the buttons container to the modal form
-                buttons.appendTo(modalTags);
-                
-                // pop open the modal form
-                modalTags.modal({minHeight:'85%', minWidth:'90%'}); 
-                return false;
+        // get all the tags with the specified prefix
+        existingTags = getPrefixTags(tagprefix);                
+
+        // assign each keyword into a column
+        for (var i=0; i<existingTags.size(); i++)
+        {
+            tag = existingTags.eq(i);
+
+            tagColumn = findColumn(i, existingTags.size(), columnCount);
+            tagContainer = columnArray[tagColumn];
+            tagItem = jq('<div></div>');
+            
+            if (tagprefix == 'other')
+            {
+                // display the whole keyword
+                tagLabelValue = tag.val();
             }
-        );  // end of mainTagLink.click function
+            else
+            {
+                // Remove the prefix
+                tagLabelValue = tag.val().substring(tagprefix.length+1,tag.val().length)
+                
+                if (!tagLabelValue)
+                {
+                    tagLabelValue = tag.val();
+                }
+            }
+            
+            tagLabel = jq('<span>' + tagLabelValue + '</span><br />');
+            checkbox = jq('<input name="tagmanager" type="checkbox" value="' + tag.val() + '" />')
+
+            if (tag.attr("checked"))
+            {
+                checkbox.attr("checked", "checked");
+            }
+
+            checkbox.appendTo(tagContainer);
+            tagLabel.appendTo(tagContainer);
+
+        }
+
+        buttons = jq('<div class="tag_buttons"><input class="close" type="button" value="Submit" /></div>');
+        buttons.appendTo(tagCheckboxes);
+                
+        overlayItem.appendTo(mainTagLink);
+
     }
+
+
+
+function setTags()
+{
+    jq('.tagmanager input[name="tagmanager"]').each(
+        function () {
+            tag_name = jq(this).attr('value');
+            is_checked = jq(this).attr('checked');
+            plone_checkbox = jq("#archetypes-fieldname-subject #existingTags input[value='" + tag_name + "']");
+            plone_checkbox_checked = plone_checkbox.attr('checked')
+            
+            if (is_checked != plone_checkbox_checked)
+            {
+                plone_checkbox.attr('checked', is_checked);
+                plone_checkbox.click();
+                plone_checkbox.attr('checked', is_checked);
+            }
+        }
+    );
+
+    setSelectedCategories();
+}
+
 
 jq(window).load(
     function () {
@@ -299,6 +318,7 @@ jq(window).load(
         }
 
         if (categoryWidgetFieldName != '') {
+            
             // hide the existing and new category divs
             jq('#newTagsSection').hide();
             jq('#existingTagsSection').hide();
@@ -311,16 +331,30 @@ jq(window).load(
             
             // change the category buttons to indicate if they have selected keywords
             setSelectedCategories();
-            
+
             // assign remaining keywords to the "other" category and hide the
             //  #existingTags listbox
             hideTagMultiSelect();
-            
-            // clear the floats
-            jq('#archetypes-fieldname-' + categoryWidgetFieldName).append('<div class="visualClear"></div>');
-            
+
             // add a new/old toggle
             addToggleButton(jq('#archetypes-fieldname-' + categoryWidgetFieldName));
+
+            // Set overlay
+
+            jq("ul.tagmanager li input").overlay({
+                oneInstance: true,
+                mask: '#333333',
+                closeOnClick: false,
+                close: '.tag_buttons input.close',
+                onClose: function () {
+                    setTags()
+                },
+    
+            });
+            
+            // clear the floats
+            //jq('#archetypes-fieldname-' + categoryWidgetFieldName).append('<div class="visualClear"></div>');
+            
         }
     }
 )
