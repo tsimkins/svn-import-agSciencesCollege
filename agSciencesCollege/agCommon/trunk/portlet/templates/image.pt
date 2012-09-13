@@ -1,5 +1,5 @@
 <tal:block condition="view/available"
-           i18n:domain="linkicon">
+           i18n:domain="image">
 
     <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
     
@@ -20,12 +20,11 @@
                                            class python:shadow and 'icon shadow' or 'icon'"
                             ><img 
                                   tal:attributes="src icon;
-                                                  alt title" /></a>
+                                                  alt title" />
                         <tal:caption tal:condition="view/data/show_caption">
-                            <a tal:content="structure description"
-                               tal:attributes="href limage/url;"
-                            >Link</a>
+                            <span tal:content="structure description">Link</span>
                         </tal:caption>
+                        </a>
                     </li>
                 </tal:image>        
             </ul>

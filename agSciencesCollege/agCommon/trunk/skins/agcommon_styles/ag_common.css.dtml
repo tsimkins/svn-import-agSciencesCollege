@@ -509,9 +509,9 @@ body {
 
 /* RSS Image in right and left column */
 
-#portal-column-one dl.portletfeedmixer a.rssImage,
-#portal-column-two dl.portletfeedmixer a.rssImage,
-#portlets-mobile dl.portletfeedmixer a.rssImage {
+#portal-column-one dl.portletfeedmixer .rssImage,
+#portal-column-two dl.portletfeedmixer .rssImage,
+#portlets-mobile dl.portletfeedmixer .rssImage {
     display: block;
     text-align: left;
     margin-top: 0.5em;
@@ -556,6 +556,17 @@ body {
     margin: 0.5em 0 1em 0;
 }
 
+#portal-column-one .imagePortlet img,
+#portal-column-two .imagePortlet img,
+#portlets-mobile .imagePortlet img,
+#portal-column-one .imagePortlet span,
+#portal-column-two .imagePortlet span,
+#portlets-mobile .imagePortlet span {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+} 
+
 #portal-column-one .imagePortlet a,
 #portal-column-two .imagePortlet a,
 #portlets-mobile .imagePortlet a {
@@ -563,6 +574,7 @@ body {
     text-align: center;
     text-decoration: none;
     color: &dtml-leftLinkTextColor;;
+    display: block;
 }
 
 #portal-column-one .imagePortlet a:hover,
@@ -1802,7 +1814,7 @@ table.listing tr.separator td,  table.listing tr.separator {
     border-top: 1px solid &dtml-globalBorderColor;;
 }
 
-table.listing tr.section-title th {
+table.listing tr.section-title td {
     font-weight: bold;
     text-align: left;
     background-color: transparent;
@@ -2616,6 +2628,14 @@ body.template-by_county_summary_view #content .tileSummaryLeadImage {
     font-size: 0.5em;
 }
 
+
+dl.person-connect img {
+    margin: 0 0.5em;
+}
+
+#content dl.person-connect dd {
+    margin-left: 2.5em;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

@@ -132,22 +132,19 @@
                              condition="python: twitter_url or facebook_url or linkedin_url">
 
             <h2>Connect with <span tal:replace="person_name" /></h2>
-            <dl>
+            <dl class="person-connect">
 
                 <dd tal:condition="twitter_url">
-                    <a tal:attributes="href twitter_url"><img tal:attributes="src string:${portal_url}/icons/twitter.png" alt="Twitter" /></a>
-                    <a tal:attributes="href twitter_url"
-                       tal:content="string:Twitter" />
+                    <a tal:attributes="href twitter_url"><img tal:attributes="src string:${portal_url}/icons/twitter.png" 
+                    alt="" /><span tal:content="string:Twitter" /></a>
                 </dd>
                 <dd tal:condition="facebook_url">
-                    <a tal:attributes="href facebook_url"><img tal:attributes="src string:${portal_url}/icons/facebook.png" alt="Facebook" /></a>
-                    <a tal:attributes="href facebook_url"
-                       tal:content="string:Facebook" />
+                    <a tal:attributes="href facebook_url"><img tal:attributes="src string:${portal_url}/icons/facebook.png" alt="" />
+                    <span tal:content="string:Facebook" /></a>
                 </dd>
                 <dd tal:condition="linkedin_url">
-                    <a tal:attributes="href linkedin_url"><img tal:attributes="src string:${portal_url}/icons/linkedin.png" alt="LinkedIn" /></a>
-                    <a tal:attributes="href linkedin_url"
-                       tal:content="string:LinkedIn" />
+                    <a tal:attributes="href linkedin_url"><img tal:attributes="src string:${portal_url}/icons/linkedin.png" 
+                    alt="" /><span tal:content="string:LinkedIn" /></a>
                 </dd>
             </dl>
             </tal:socialmedia>

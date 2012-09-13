@@ -82,20 +82,20 @@
 
         <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
 
-        <table class="listing events">
+        <table class="listing events" summary="Event Listing">
             
             <tal:bymonth repeat="month view/data">
                 <tr class="section-title">
-                    <th colspan="3">
+                    <td colspan="3">
                         <h2>
                         <span tal:replace="month/label" />
                         </h2>
-                    </th>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Location</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Location</th>
                 </tr>                
                 <tal:items define="folderContents python:month.get('items')"
                     tal:repeat="item folderContents">

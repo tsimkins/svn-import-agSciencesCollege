@@ -93,16 +93,15 @@
                                     <tal:leadimage
                                          tal:define="item_object item/getObject|nothing;
                                                      newsitem_image exists:item_object/image_thumb;">
-                                       <a href="#"
-                                           tal:condition="python: newsitem_image or item_has_leadimage"
-                                           tal:attributes="href python:item_type in use_view_action and item_url+'/view' or item_url">
+                                       <tal:img
+                                           tal:condition="python: newsitem_image or item_has_leadimage">
                                            <img src="" alt=""
                                                    tal:condition="newsitem_image"
                                                    tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
                                            <img src="" alt=""
                                                    tal:condition="item_has_leadimage"
                                                    tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
-                                       </a>
+                                       </tal:img>
                                     </tal:leadimage>
 
                             </metal:leadimage>

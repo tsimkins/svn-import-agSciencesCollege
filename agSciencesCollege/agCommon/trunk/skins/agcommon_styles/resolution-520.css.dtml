@@ -50,6 +50,16 @@
     width: 93.2203%;
 }
 
+#portal-column-one .imagePortlet img, 
+#portal-column-two .imagePortlet img, 
+#portlets-mobile .imagePortlet img, 
+#portal-column-one .imagePortlet span, 
+#portal-column-two .imagePortlet span, 
+#portlets-mobile .imagePortlet span {
+    margin: 0;
+    text-align: left;
+}
+
 #portal-column-one .portletWrapper {
     margin: 0 0 1.25em 0;
     width: 100%;
