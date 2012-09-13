@@ -409,7 +409,6 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show \"Read More...\"",
                 description=u"This will show the \"Read More...\" for each item in the folder listing when using the Summary View.",
-                condition="python:member.has_role('Manager')",
             ),
         ),
 
