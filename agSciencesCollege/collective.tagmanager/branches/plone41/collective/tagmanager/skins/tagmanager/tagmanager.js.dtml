@@ -309,6 +309,12 @@ function setTags()
 jq(window).load(
     function () {
         
+        if (jq.browser.msie)
+        {
+            // People shouldn't be editing in IE.
+            return false;
+        }
+        
         // make sure that the categoryWidgetFieldName is right
         if (jq('#archetypes-fieldname-' + categoryWidgetFieldName).length <= 0) {
             categoryWidgetFieldName = 'eventType';
