@@ -26,12 +26,11 @@
             tal:attributes="class className">
 
     
-            <a tal:attributes="href entry/link;"
-                class="rssImage" tal:condition="hasImage">
+            <div class="rssImage" tal:condition="hasImage">
 
                 <img tal:attributes="src imageURL; alt imageCaption; title imageCaption" />
             
-            </a>
+            </div>
 
             <a href=""
                class ="title"
