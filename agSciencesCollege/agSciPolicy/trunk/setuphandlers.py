@@ -464,7 +464,7 @@ def installAdditionalProducts(context):
     toInstall = [
             'kupu', 'plone.app.caching', 'FacultyStaffDirectory', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
-            'plonegalleryview', 'agsci.subsite', 'agsci.UniversalExtender',
+            'agsci.photogallery', 'agsci.subsite', 'agsci.UniversalExtender',
             'CacheableRedirects'
     ]
 

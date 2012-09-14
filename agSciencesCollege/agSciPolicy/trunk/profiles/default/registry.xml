@@ -1,10 +1,6 @@
 <registry>
   <record field="cacheStopRequestVariables" interface="plone.app.caching.interfaces.IPloneCacheSettings" name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables">
     <field type="plone.registry.field.Tuple">
-      <default>
-        <element>statusmessages</element>
-        <element>SearchableText</element>
-      </default>
       <description>Variables in the request that prevent caching if present</description>
       <title>Request variables that prevent caching</title>
       <value_type type="plone.registry.field.ASCIILine">
@@ -34,7 +30,6 @@
   </record>
   <record field="enableCompression" interface="plone.app.caching.interfaces.IPloneCacheSettings" name="plone.app.caching.interfaces.IPloneCacheSettings.enableCompression">
     <field type="plone.registry.field.Bool">
-      <default>False</default>
       <description>Determine whether GZip compression should be enabled for standard responses</description>
       <title>Enable GZip compression</title>
     </field>
@@ -42,10 +37,6 @@
   </record>
   <record field="purgedContentTypes" interface="plone.app.caching.interfaces.IPloneCacheSettings" name="plone.app.caching.interfaces.IPloneCacheSettings.purgedContentTypes">
     <field type="plone.registry.field.Tuple">
-      <default>
-        <element>File</element>
-        <element>Image</element>
-      </default>
       <description>List content types which should be purged when modified</description>
       <title>Content types to purge</title>
       <value_type type="plone.registry.field.ASCIILine">
@@ -506,7 +497,6 @@
   </record>
   <record field="enabled" interface="plone.cachepurging.interfaces.ICachePurgingSettings" name="plone.cachepurging.interfaces.ICachePurgingSettings.enabled">
     <field type="plone.registry.field.Bool">
-      <default>True</default>
       <description>If disabled, no purging will take place</description>
       <title>Enable purging</title>
     </field>
@@ -514,7 +504,6 @@
   </record>
   <record field="virtualHosting" interface="plone.cachepurging.interfaces.ICachePurgingSettings" name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting">
     <field type="plone.registry.field.Bool">
-      <default>False</default>
       <description>This option is only relevant if you are using virtual hosting with Zope's VirtualHostMonster. This relies on special tokens (VirtualHostBase and VirtualHostRoot) in the URL to instruct Zope about the types of URLs that the user sees. If virtual host URLs are in use and this option is set, PURGE requests will be sent to the caching proxy with the virtual hosting tokens in place. This makes sense if there is a web server in front of your caching proxy performing the rewrites necessary to translate a user-facing URL into a virtual hosting URL, so that the requests the caching proxy sees have the rewrite information in them. Conversely, if the rewrite is done in or behind the caching proxy, you want to disable this option, so that the PURGE requests use URLs that match those seen by the caching proxy as they come from the client.</description>
       <title>Send PURGE requests with virtual hosting paths</title>
     </field>
@@ -522,7 +511,6 @@
   </record>
   <record field="enabled" interface="plone.caching.interfaces.ICacheSettings" name="plone.caching.interfaces.ICacheSettings.enabled">
     <field type="plone.registry.field.Bool">
-      <default>False</default>
       <description>If not set, no caching operations will be attempted</description>
       <title>Globally enabled</title>
     </field>
