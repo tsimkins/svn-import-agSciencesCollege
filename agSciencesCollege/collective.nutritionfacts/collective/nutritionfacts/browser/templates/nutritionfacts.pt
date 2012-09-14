@@ -5,6 +5,11 @@
 -->
 <table class="nutrition" summary="This table summarizes nutritional information">
     <caption>Nutrition Facts</caption>
+    <tr>
+        <th colspan="2" class="heading" scope="col">
+            Nutrition Facts
+        </th>
+    </tr>
 	<tr id="servings">
 		<td colspan="2">Serving Size <span tal:replace="view/numbers/serving_size" /> <span tal:replace="here/serving_size_units" /> (<span tal:replace="view/numbers/serving_weight" />g)<br />Servings Per Container <span tal:replace="view/numbers/servings_per_container" /></td>
 	</tr>

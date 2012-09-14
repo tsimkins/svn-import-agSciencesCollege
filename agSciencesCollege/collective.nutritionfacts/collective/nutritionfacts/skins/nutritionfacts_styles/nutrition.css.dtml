@@ -10,14 +10,19 @@
  * Define the table to be of the class "nutrition"
  */
 
+table.nutrition caption {
+    display: none;
+}
+
 dl.nutritionfacts dt {
 	font-weight: bold;
 }
 
-table.nutrition caption {
+table.nutrition td.heading {
     font-size: 1.25em;
     font-weight: bold;
-    margin-bottom: 0.5em;
+    text-align: center;
+    padding: 0.25em 0;
 }
 
 table.nutrition {
