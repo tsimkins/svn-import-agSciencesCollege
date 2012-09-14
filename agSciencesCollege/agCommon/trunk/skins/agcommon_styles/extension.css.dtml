@@ -50,7 +50,7 @@ body.section-front-page #portlets-below {
 /* Testing */
 
 body.section-front-page #portlets-above .portletHeader {
-    font-size: 12px;
+    font-size: 0.9375em;
     margin: 0 !important;
     padding: 0 !important;
 }
