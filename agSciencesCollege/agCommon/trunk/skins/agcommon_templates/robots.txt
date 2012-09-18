@@ -21,6 +21,8 @@ Crawl-delay: 5
 # http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx;=sibling
 
 User-Agent: Googlebot
+Disallow: /*ics_view$
+Disallow: /*vcs_view$
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
 Disallow: /*folder_contents$
@@ -39,6 +41,8 @@ Disallow: /private
 # http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
 
 User-Agent: Slurp
+Disallow: /*ics_view$
+Disallow: /*vcs_view$
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
 Disallow: /*folder_contents$
@@ -55,6 +59,8 @@ Disallow: /private
 
 # Penn State's Google Search Appliance
 User-Agent: PennStateSpider
+Disallow: /*ics_view$
+Disallow: /*vcs_view$
 Disallow: /*sendto_form$
 Disallow: /*folder_factories$
 Disallow: /*folder_contents$
