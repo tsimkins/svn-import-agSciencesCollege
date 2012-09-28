@@ -1,0 +1,39 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:cmf="http://namespaces.zope.org/cmf"
+           i18n_domain="agsci.seo">
+
+    <include package="archetypes.schemaextender" />
+    <include package=".browser" />
+
+    <cmf:registerDirectory name="agsci_seo" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="agsci.seo"
+        directory="profiles/default"
+        description="Search engine interaction product"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <adapter factory=".extender.RobotsExtender" 
+             provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+             name="agsci.seo.extender.RobotsExtender" /> 
+
+    <adapter factory=".extender.CanonicalURLExtender" 
+             provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+             name="agsci.seo.extenderCanonicalURLExtender" /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.event.ATEvent"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
+
+
+</configure>

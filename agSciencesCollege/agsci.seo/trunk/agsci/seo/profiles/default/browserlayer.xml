@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<layers>
+    <layer name="agsci.seo.extender"
+           interface="agsci.seo.interfaces.ISEOLayer" />
+    <layer name="agsci.seo"
+           interface="agsci.seo.browser.interfaces.IThemeSpecific" />
+</layers>

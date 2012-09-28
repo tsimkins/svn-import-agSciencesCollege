@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+        request_varname="plone_skin">
+
+
+    <object name="agsci_seo"
+         meta_type="Filesystem Directory View"
+         directory="agsci.seo:skins/agsci_seo" />
+
+    <skin-path name="*" based-on="Plone Default">
+        <layer name="agsci_seo" 
+                insert-after="*" />
+    </skin-path>
+
+</object>

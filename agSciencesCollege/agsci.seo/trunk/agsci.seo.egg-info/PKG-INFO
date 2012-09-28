@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: agsci.seo
+Version: 0.1
+Summary: Package to handle search engine functions (canonical URL, robots.txt)
+Home-page: http://agsci.psu.edu/directory/trs22
+Author: Tim Simkins, Penn State University
+Author-email: trs22@psu.edu
+License: GPL
+Description: Description
+        
+            Allows dynamic configuration of robots.txt and per-item canonical URL
+        
+        Changelog
+        =========
+        
+        0.1 (Unreleased)
+        ----------------
+        * Initial revision
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

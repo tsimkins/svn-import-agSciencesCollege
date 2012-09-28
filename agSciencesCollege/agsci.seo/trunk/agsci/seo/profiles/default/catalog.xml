@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+
+  <index name="exclude_from_robots" meta_type="FieldIndex">
+    <indexed_attr value="exclude_from_robots"/>
+  </index>
+
+  <column value="exclude_from_robots"/>
+
+</object>
+

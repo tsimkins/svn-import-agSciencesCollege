@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object>
+
+    <!-- Display Viewlets -->
+    
+    <order manager="plone.htmlhead.links" skinname="*">
+        <viewlet name="agsci.seo.canonical_url" insert-after="*"/>
+    </order>
+    <order manager="plone.htmlhead.links" skinname="*">
+        <viewlet name="agsci.seo.robots_meta" insert-after="agsci.seo.canonical_url"/>
+    </order>
+
+</object>
+

@@ -1,0 +1,1 @@
+<link rel="canonical" tal:attributes="href view/canonical_url" tal:condition="view/canonical_url|nothing"  />

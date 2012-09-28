@@ -1,0 +1,3 @@
+<tal:robots condition="view/norobots">
+    <meta name="robots" content="noindex, nofollow" />
+</tal:robots>

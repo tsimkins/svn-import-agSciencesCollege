@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="agsci.seo">
+
+    <!-- Viewlets -->
+
+    <!-- Render the canonical URL link -->
+    <browser:viewlet
+        name="agsci.seo.canonical_url"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+        class=".viewlets.CanonicalURLViewlet"
+        permission="zope2.View"
+        template="templates/canonical_url.pt"
+        layer=".interfaces.IThemeSpecific"
+        for="agsci.seo.interfaces.ICanonicalURLExtender"
+        />
+
+    <!-- Render the robots meta tag -->
+    <browser:viewlet
+        name="agsci.seo.robots_meta"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+        class=".viewlets.RobotsMetaViewlet"
+        permission="zope2.View"
+        template="templates/robots_meta.pt"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+</configure>
