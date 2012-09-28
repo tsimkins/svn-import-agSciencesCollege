@@ -42,7 +42,7 @@ class RobotsExtender(object):
 
 
 class CanonicalURLExtender(object):
-    adapts(IATContentType)
+    adapts(ICanonicalURLExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = ISEOLayer
