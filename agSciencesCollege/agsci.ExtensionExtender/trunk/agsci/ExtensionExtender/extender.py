@@ -7,66 +7,43 @@ from zope.component import adapts
 from zope.interface import implements
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_acquire
+from Acquisition import aq_acquire, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
 
 
 class _ExtensionLinesField(ExtensionField, LinesField):
 
     def getDefault(self, instance, **kwargs):
-    
         # Shortcut this field when creating non News Item/Events.  Specifically,
         # This prevents the lookup when creating folders.
 
         if instance.portal_type not in ['News Item', 'Event']:
             return ()
 
-        # Find a parent that has the values
-        for o in getAcquisitionChain(instance):
-            try:
-                v = self.get(o)
-                
-                if v:
-                    return v
-            except:
-                continue
+        for i in aq_chain(instance):
+            if ISiteRoot.providedBy(i):
+                break
+            else:
+                try:
+                    v = self.get(i)
+                    
+                    if v:
+                        return v
+                except:
+                    break
 
         return ()
 
+    def get(self, instance, **kwargs):     
+        __traceback_info__ = (self.getName(), instance, kwargs)
+        try:
+            kwargs['field'] = self
+            return self.getStorage(instance).get(self.getName(), instance, **kwargs)
+        except AttributeError:  
+            return ()
 
-# From http://plone.org/documentation/manual/plone-community-developer-documentation/serving/traversing
 
-def getAcquisitionChain(object):
-    """
-    @return: List of objects from context, its parents to the portal root
 
-    Example::
-
-        chain = getAcquisitionChain(self.context)
-        print "I will look up objects:" + str(list(chain))
-
-    @param object: Any content object
-    @return: Iterable of all parents from the direct parent to the site root
-    """
-
-    # It is important to use inner to bootstrap the traverse,
-    # or otherwise we might get surprising parents
-    # E.g. the context of the view has the view as the parent
-    # unless inner is used
-    inner = object.aq_inner
-
-    iter = inner
-
-    while iter is not None:
-        yield iter
-
-        if ISiteRoot.providedBy(iter):
-           break
-
-        if not hasattr(iter, "aq_parent"):
-            raise RuntimeError("Parent traversing interrupted by object: " + str(parent))
-
-        iter = iter.aq_parent
 
 class _TopicsField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
