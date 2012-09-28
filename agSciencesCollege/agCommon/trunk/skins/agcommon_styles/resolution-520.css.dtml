@@ -424,6 +424,15 @@ table.nutrition {
     display: none;
 }
 
+#content .pullquote {
+    display: block;
+    float: none;
+    clear: both;
+    width: 100%;
+    margin: 1em 0;
+    padding: 0.75em 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

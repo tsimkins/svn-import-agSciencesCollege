@@ -1,7 +1,8 @@
+<dtml-with base_properties>
+<dtml-call "REQUEST.set('portal_url', portal_url())">
+
 # Define access-restrictions for robots/spiders
 # http://www.robotstxt.org/wc/norobots.html
-
-
 
 # By default we allow robots to access all areas of our site 
 # already accessible to anonymous users
@@ -13,7 +14,9 @@ Disallow: /intranet
 Disallow: /private
 Disallow: /m/
 Disallow: /nonmobile
+&dtml-getDisallowedPaths;
 Crawl-delay: 5
+
 
 # Add Googlebot-specific syntax extension to exclude forms 
 # that are repeated for each piece of content in the site 
@@ -86,3 +89,5 @@ Crawl-delay: 10
 # Dicoveryengine.com
 User-agent: discobot
 Disallow: / 
+
+</dtml-with>
