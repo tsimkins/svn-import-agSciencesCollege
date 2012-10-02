@@ -1,6 +1,3 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:g="http://base.google.com/ns/1.0">
-
-
 <tal:addthis
 	tal:define="hide_addthis view/hide_addthis;
 	            isHomePage view/isHomePage;
@@ -70,4 +67,3 @@
 	</div>
 	</tal:addthis>
 
-</html>

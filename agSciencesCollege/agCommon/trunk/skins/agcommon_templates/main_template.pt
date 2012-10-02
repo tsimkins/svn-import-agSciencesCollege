@@ -11,6 +11,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:fb="http://ogp.me/ns/fb#"
       xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:g="http://base.google.com/ns/1.0"
       xml:lang="en"
       lang="en"
       tal:define="portal_state context/@@plone_portal_state;
