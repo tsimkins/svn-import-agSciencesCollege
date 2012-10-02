@@ -1,0 +1,20 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.app.portlets" /> 
+
+    <plone:portlet
+        name="agsci.ExtensionExtender.similar"
+        interface=".similar.ISimilar"
+        assignment=".similar.Assignment"
+        renderer=".similar.Renderer"
+        addview=".similar.AddForm"
+        editview=".similar.EditForm"
+        />
+
+    <utility
+      component=".similar.TypesVocabularyFactory"
+      name="agsci.ExtensionExtender.portlet.similar.types"
+      />
+
+</configure>
