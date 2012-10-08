@@ -24,12 +24,16 @@ agsci/ExtensionExtender/browser/templates/._extension_program_county.pt
 agsci/ExtensionExtender/browser/templates/by_county_listing.pt
 agsci/ExtensionExtender/browser/templates/by_county_summary_view.pt
 agsci/ExtensionExtender/browser/templates/extension_program_county.pt
+agsci/ExtensionExtender/portlet/__init__.py
+agsci/ExtensionExtender/portlet/configure.zcml
+agsci/ExtensionExtender/portlet/similar.py
+agsci/ExtensionExtender/portlet/templates/similar.pt
 agsci/ExtensionExtender/profiles/default/actions.xml
 agsci/ExtensionExtender/profiles/default/browserlayer.xml
-agsci/ExtensionExtender/profiles/default/catalog.xml
 agsci/ExtensionExtender/profiles/default/jsregistry.xml
 agsci/ExtensionExtender/profiles/default/metadata.xml
 agsci/ExtensionExtender/profiles/default/portal_atct.xml
+agsci/ExtensionExtender/profiles/default/portlets.xml
 agsci/ExtensionExtender/profiles/default/propertiestool.xml
 agsci/ExtensionExtender/profiles/default/skins.xml
 agsci/ExtensionExtender/profiles/uninstall/browserlayer.xml

@@ -31,6 +31,14 @@
 
     <browser:page
         for="*"
+        name="pdf_factsheet"
+        class=".views.FactsheetPDFView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
         name="by_county_listing"
         class=".views.ByCountyView"
         template="templates/by_county_listing.pt"
