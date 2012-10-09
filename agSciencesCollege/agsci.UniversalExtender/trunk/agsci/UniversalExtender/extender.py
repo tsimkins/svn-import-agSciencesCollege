@@ -402,6 +402,18 @@ class FolderTopicExtender(object):
         ),
 
         _ExtensionBooleanField(
+            "show_description",
+            required=False,
+            default=True,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show description for contents",
+                description=u"This will show the description for the items in the folder listing",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+
+        _ExtensionBooleanField(
             "show_read_more",
             required=False,
             default=True,
