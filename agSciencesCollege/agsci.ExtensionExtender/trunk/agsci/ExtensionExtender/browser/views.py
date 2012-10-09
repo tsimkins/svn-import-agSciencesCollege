@@ -10,16 +10,21 @@ from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 from Products.agCommon.browser.views import FolderView, IFolderView
+from urlparse import urljoin
 import re
 
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, BaseDocTemplate, Frame, PageTemplate, FrameBreak
 from reportlab.platypus.flowables import HRFlowable, KeepTogether
+from reportlab.platypus.tables import Table, TableStyle
+from reportlab.platypus.tableofcontents import TableOfContents
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib.utils import ImageReader
+from reportlab.lib.colors import Color
 from cStringIO import StringIO
 from io import BytesIO
+from uuid import uuid4
 
 from zope.app.component.hooks import getSite
 
@@ -157,6 +162,21 @@ class ExtensionProgramCountyView(FolderView):
         return getToolByName(self.context, 'portal_url').getPortalObject()
 
 
+class FactsheetDocTemplate(BaseDocTemplate):
+    def __init__(self, filename, **kw):
+        BaseDocTemplate.__init__(self,filename, **kw)
+
+    def afterFlowable(self, flowable): 
+        "Registers TOC entries." 
+        if flowable.__class__.__name__ == 'Paragraph':            text = flowable.getPlainText()
+            style = flowable.style.name 
+            unique_key = uuid4().hex
+            self.canv.showOutline()
+            self.canv.bookmarkPage(unique_key)
+            if style == 'Heading1':
+                self.canv.addOutlineEntry(text, unique_key, level=0, closed=None)
+            elif style == 'Heading2':                self.canv.addOutlineEntry(text, unique_key, level=1, closed=None)
+            elif style == 'Heading3':                self.canv.addOutlineEntry(text, unique_key, level=2, closed=None)
 
 class FactsheetPDFView(FolderView):
     """
@@ -184,15 +204,23 @@ class FactsheetPDFView(FolderView):
         
         # Returns a reportlab image object based on a Plone image object
         
-        def getImage(img_obj):
+        def getImage(img_obj, scale=True, reader=False):
+
             img_width = img_obj.width
             img_height = img_obj.height
-            if img_width > max_image_width:
+
+            if scale and (img_width > max_image_width):
                 img_height = (max_image_width/img_width)*img_height
                 img_width = max_image_width
-            img_data = BytesIO(img_obj.data)
-            return Image(img_data, width=img_width, height=img_height)
-    
+            try:
+                img_data = BytesIO(img_obj.data)
+            except AttributeError:
+                img_data = BytesIO(img_obj._data)
+
+            if reader:
+                return ImageReader(img_data)    
+            else:
+                return Image(img_data, width=img_width, height=img_height)    
         
         # Returns the plain (non-HTML) text for an item.  Used at the lowest level
         # of the DOM tree because it doesn't preserve any HTML formatting
@@ -236,7 +264,64 @@ class FactsheetPDFView(FolderView):
                 elif isinstance(i, NavigableString):
                     p_contents.append(str(i).strip())
             return "".join(p_contents)
-        
+
+
+        # Returns structure containing table data when passed a BeautifulSoup
+        # <table> element.
+        def getTableData(item):
+
+            th_bg = Color(0.8,0.8,0.8)
+            th_text = Color(0,0,0)
+            grid = Color(0.6,0.6,0.6)
+
+            table_data = []
+            table_style = [] 
+
+            r_index = 0
+
+            for tr in item.findAll('tr'):
+                c_index = 0
+
+                table_row = []
+                
+                for i in tr.findAll('th'):
+                    table_row.append(getInlineContents(i))
+                    table_style.extend([ 
+                        ('FONTNAME', (c_index,r_index), (c_index,r_index), 'Times-Bold'),
+                        ('FONTSIZE', (c_index,r_index), (c_index,r_index), 9),
+                        ('BACKGROUND', (c_index,r_index), (c_index,r_index), th_bg),
+                        ('GRID', (c_index,r_index), (c_index,r_index), 0.5, grid),
+                        ('TEXTCOLOR', (c_index,r_index), (c_index,r_index), th_text),
+                        ('LEFTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                        ('RIGHTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                      ]
+                    )
+                    c_index = c_index + 1
+
+                for i in tr.findAll('td'):
+                    table_row.append(getInlineContents(i))
+                    table_style.extend([ 
+                        ('GRID', (c_index,r_index), (c_index,r_index), 0.5, grid),
+                        ('FONTNAME', (c_index,r_index), (c_index,r_index), 'Times-Roman'),
+                        ('FONTSIZE', (c_index,r_index), (c_index,r_index), 9),
+                        ('LEFTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                        ('RIGHTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                      ]
+                    )
+                    if i.get('align', '').lower() == 'right':
+                        table_style.extend([ 
+                            ('ALIGN', (c_index,r_index), (c_index,r_index), 'RIGHT'),
+                          ]
+                        )
+                    c_index = c_index + 1
+   
+                table_data.append(table_row)
+                r_index = r_index + 1
+
+            caption = item.find('caption')
+
+            return (table_data, TableStyle(table_style), caption)
+
         
         # Provides the PDF entities for the corresponding HTML tags.
             
@@ -250,24 +335,56 @@ class FactsheetPDFView(FolderView):
                     h = Paragraph(getItemText(item), styles[item_style])
                     h.keepWithNext = True
                     pdf.append(h)
+                   
                 elif item_type in ['div']:
                     for i in item.contents:
                         pdf.extend(getContent(i))
+
+                elif item_type in ['table']:
+                    (table_data, table_style, caption) = getTableData(item)
+                    table = Table(table_data)
+                    table.setStyle(table_style)
+                    table.hAlign = 'LEFT'
+                    if caption:
+                        caption_el = Paragraph(getInlineContents(caption), discreet)
+                        pdf.append(KeepTogether([table, caption_el]))
+                    else:
+                        pdf.append(table)
                 elif item_type in ['ul']:
                     for i in item.findAll('li'):
                         pdf.append(Paragraph('<bullet>&bull;</bullet>%s' % getInlineContents(i), bullet_list))
                 elif item_type in ['p']:
+
+                    has_image = False
+
                     # Pull images out of items and add before
                     for img in item.findAll('img'):
+                        has_image = True
                         img.extract()
-                        src = urljoin("/".join(self.context.getPhysicalPath()).replace('/'.join(self.site.getPhysicalPath()), ''), img['src'])
-                        img_obj = self.site.restrictedTraverse(str(src.replace('/', '', 1)))
+                        #src = urljoin("/".join(self.context.getPhysicalPath()).replace('/'.join(self.site.getPhysicalPath()), ''), img['src'])
+                        src = img['src'].replace(self.site.absolute_url(), '')
+                        img_obj = self.site.unrestrictedTraverse(str(src.replace('/', '', 1)))
                         pdf_image = getImage(img_obj)
                         pdf.append(pdf_image)
-                    if 'discreet' in className:
-                        pdf.append(Paragraph(getInlineContents(item), discreet))
+
+                    # If we had an image, and the next paragraph has the 
+                    # 'discreet' class (is a caption) then keep them together
+                    if has_image:
+                        s = item.findNextSiblings()
+                        if s and 'discreet' in s[0].get('class', ''):
+                            pdf[-1].keepWithNext = True
+                    
+                    # Get paragraph contents
+                    p_contents = getInlineContents(item)
+                    
+                    # Don't add anything if no contents.
+                    if not p_contents:
+                        pass
+                    elif 'discreet' in className:
+                        pdf.append(Paragraph(p_contents, discreet))
                     else:
-                        pdf.append(Paragraph(getInlineContents(item), styles["Normal"]))
+                        pdf.append(Paragraph(p_contents, styles["Normal"]))
+
                 elif item_type == 'blockquote':
                     pdf.append(Paragraph(getItemText(item), blockquote))
                 else:
@@ -303,11 +420,15 @@ class FactsheetPDFView(FolderView):
         styles['Normal'].fontName = 'Times-Roman'
                 
         styles['Heading1'].fontSize = 24
+        styles['Heading1'].leading = 30
+        styles['Heading1'].spaceAfter = 4
         
         styles['Heading2'].allowWidows = 0
         styles['Heading2'].fontSize = 13
         styles['Heading2'].textColor = header_rgb
-        
+        styles['Heading2'].leading = 15
+        styles['Heading2'].spaceAfter = 4
+                
         styles['Heading3'].allowWidows = 0
         styles['Heading3'].fontSize = 11
         styles['Heading3'].fontName = 'Helvetica'
@@ -330,6 +451,7 @@ class FactsheetPDFView(FolderView):
         discreet.fontSize = 9
         discreet.textColor = 'gray'
         discreet.spaceAfter = 8
+        discreet.spaceBefore = 1
         
         statement = ParagraphStyle('Statement')
         statement.fontSize = 9
@@ -339,26 +461,30 @@ class FactsheetPDFView(FolderView):
         description = ParagraphStyle('Description')
         description.fontSize = 16
         description.spaceAfter = 8
+        description.leading = 20
         
         # Create document
         pdf_file = BytesIO()
         margin = 45
-        doc = BaseDocTemplate(pdf_file,pagesize=letter,
-                                rightMargin=margin,leftMargin=margin, showBoundary=0,
-                                topMargin=margin,bottomMargin=margin)
+        
+        doc = FactsheetDocTemplate(pdf_file,pagesize=letter, title=title,
+                                   rightMargin=margin,leftMargin=margin, showBoundary=0,
+                                   topMargin=margin,bottomMargin=margin)
         
         # Standard padding for document elements
         element_padding = 6
+
+        # Document image setttings
+        max_image_width = doc.width/2-18
         
         #-------------- calculated coordinates/w/h
         
         # Extension image header
-        header_image_width = 185.0
+        header_image_width = 175.0
         header_image_x = doc.leftMargin + (doc.width-(header_image_width))/2
         header_image_padding = 3*element_padding
         
         header_image = self.site.portal_skins.agcommon_images['penn-state-extension-word-mark-white.png']
-        header_image_data = BytesIO(header_image._data)
         header_image_height = (header_image_width/header_image.width)*header_image.height
 
         # Colored background box
@@ -368,14 +494,10 @@ class FactsheetPDFView(FolderView):
         header_image_y = header_bg_y + (header_image_padding/2)
         
         # Factsheet title
-        title_height = 90 # 1.25"
-        
-        # Document image setttings
-        max_image_width = doc.width/2-18
+        title_height = 108 # 1.5"
         
         # Penn State/Extension Footer Image
         footer_image = self.site.portal_skins.agcommon_images['extension-factsheet-footer.png']
-        footer_image_data = BytesIO(footer_image._data)
         footer_image_height = (doc.width/footer_image.width)*footer_image.height
         
         # Header and footer on first page
@@ -385,12 +507,16 @@ class FactsheetPDFView(FolderView):
             canvas.setFillColorRGB(*header_rgb)
             canvas.rect(doc.leftMargin, header_bg_y, doc.width, header_bg_height,fill=1)
             canvas.setStrokeColorRGB(0,0,0)
+
             # Background bounding box
             canvas.line(doc.leftMargin, doc.height+header_image_height-title_height-element_padding, doc.width+doc.leftMargin, doc.height+header_image_height-title_height-element_padding)
+
             # Extension logo
-            canvas.drawImage(ImageReader(header_image_data), header_image_x, header_image_y, width=header_image_width, height=header_image_height, preserveAspectRatio=True,mask='auto')
+            canvas.drawImage(getImage(header_image, scale=False, reader=True), header_image_x, header_image_y, width=header_image_width, height=header_image_height, preserveAspectRatio=True,mask='auto')
+
             # Footer
-            canvas.drawImage(ImageReader(footer_image_data), doc.leftMargin, doc.bottomMargin, width=doc.width, height=footer_image_height, preserveAspectRatio=True, mask='auto')
+            canvas.drawImage(getImage(footer_image, scale=False, reader=True), doc.leftMargin, doc.bottomMargin, width=doc.width, height=footer_image_height, preserveAspectRatio=True, mask='auto')
+
             canvas.restoreState()
         
         # Footer for pages 2 and after
@@ -434,7 +560,7 @@ class FactsheetPDFView(FolderView):
 
         # This list holds the PDF elements
         pdf = []
-        
+
         # Page heading and description in top frame, then framebreak into two
         # columns
         pdf.append(Paragraph(title, styles["Heading1"]))
@@ -474,7 +600,7 @@ class FactsheetPDFView(FolderView):
         
         # All done with contents, appending line and statement
         pdf.append(HRFlowable(width='100%', spaceBefore=4, spaceAfter=4))
-        
+
         statement_text = ("""Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.                Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.                 This publication is available in alternative media on request.                The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and harassment against any person because of age, ancestry, color, disability or handicap, genetic information, national origin, race, religious creed, sex, sexual orientation, gender identity, or veteran status and retaliation due to the reporting of discrimination or harassment. Discrimination, harassment, or retaliation against faculty, staff, or students will not be tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-5901; Tel 814-865-4700/V, 814-863-0471/TTY.                &copy The Pennsylvania State University %d
         """ % DateTime().year()).split("\n")
         
@@ -482,8 +608,10 @@ class FactsheetPDFView(FolderView):
             if s.strip():
                 pdf.append(Paragraph(s, statement))
         
-        # Create PDF
-        doc.build(pdf)
+        # Create PDF - multibuild instead of build for table of contents 
+        # functionality
+        doc.multiBuild(pdf)
+        #doc.build(pdf)
 
         # Pull PDF binary bits into variable, close file handle and return
         pdf_value = pdf_file.getvalue()
