@@ -98,15 +98,19 @@
 
                         </div>
 
-                        <div class="tileBody" tal:condition="python: item_type != 'FSDPerson'">
-                            <p tal:omit-tag="" tal:condition="not:item_description">
-                                &nbsp;
-                            </p>
-                            <p tal:content="item_description"
-                                  tal:condition="item_description">
-                                description
-                            </p>
-                        </div>
+                        <tal:show_description condition="subfolder/show_description|show_description|nothing">
+
+                            <div class="tileBody" tal:condition="python: item_type != 'FSDPerson'">
+                                <p tal:omit-tag="" tal:condition="not:item_description">
+                                    &nbsp;
+                                </p>
+                                <p tal:content="item_description"
+                                      tal:condition="item_description">
+                                    description
+                                </p>
+                            </div>
+                        
+                        </tal:show_description>
 
                         <div class="tileFooter"
                             tal:define="read_more context/show_read_more|nothing"

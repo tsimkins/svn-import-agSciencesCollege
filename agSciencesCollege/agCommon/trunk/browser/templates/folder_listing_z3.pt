@@ -51,6 +51,7 @@
                         navigation_root_url context/@@plone_portal_state/navigation_root_url;
                         pas_member context/@@pas_member;
                         show_event_location context/show_event_location|nothing;
+                        show_description context/show_description|nothing;
                         show_image view/show_image|nothing;
                         show_date view/show_date|nothing">
     <tal:listing condition="batch">
@@ -217,18 +218,23 @@
                                     </tal:location>
                                 </div>
                            </tal:event-date>
-                        </metal:event-date>   
-                       <tal:dd tal:condition="item_description|nothing">
-                           <p tal:condition="item/render_description_as_markdown|nothing"
-                              tal:define="markdown python: agcommon_utilities.toMarkdown(item_description)"
-                              tal:content="structure markdown">
-                                  description
-                           </p>
-                           <p tal:condition="not: item/render_description_as_markdown|nothing"
-                              tal:content="item_description">
-                                  description
-                           </p>
-                       </tal:dd>
+                        </metal:event-date>
+
+                        <tal:show_description condition="subfolder/show_description|show_description|nothing">
+
+                           <tal:dd tal:condition="item_description|nothing">
+                               <p tal:condition="item/render_description_as_markdown|nothing"
+                                  tal:define="markdown python: agcommon_utilities.toMarkdown(item_description)"
+                                  tal:content="structure markdown">
+                                      description
+                               </p>
+                               <p tal:condition="not: item/render_description_as_markdown|nothing"
+                                  tal:content="item_description">
+                                      description
+                               </p>
+                           </tal:dd>
+                        </tal:show_description>
+
                    </div>
                     <div class="visualClear" 
                          tal:condition="show_image"><!-- --></div>
