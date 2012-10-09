@@ -25,6 +25,7 @@
                           href view/link_metadata_image;
                           type view/link_mime_type" />
 
+    <meta property="fb:admins" tal:attributes="content view/fbadmins"/>
     <meta property="fb:page_id" tal:attributes="content view/fbpageid" />
     <meta property="fb:app_id" tal:attributes="content view/fbappid" />
 
