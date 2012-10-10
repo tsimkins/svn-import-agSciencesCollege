@@ -1,4 +1,6 @@
-<div id="rightcolumn" class="agCommonPortlet" tal:condition="python: view.isLayout(views=['document_homepage_view'])">
+<div id="rightcolumn" class="agCommonPortlet" 
+     tal:define="plone_view context/@@plone;"
+     tal:condition="python: view.isLayout(views=['document_homepage_view']) and plone_view.have_portlets('agcommon.rightcolumn', view)">
 
 	<tal:block replace="structure provider:agcommon.rightcolumn" />
 
