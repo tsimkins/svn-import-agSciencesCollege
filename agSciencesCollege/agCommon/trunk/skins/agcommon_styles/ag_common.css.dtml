@@ -2244,6 +2244,15 @@ body.template-agenda_view #document-toc h3 {
     margin-left: -10000px;
 }
 
+.tileItem .tileEvent {
+    margin: 0.375em 0 0.75em 0;
+}
+
+.tileItem .tileEvent .eventDateLocation {
+    font-size: 0.9375em;
+    margin-bottom: 0.25em;
+}
+
 #content .eventDateLocation {
     line-height: 1.3125em;
 }

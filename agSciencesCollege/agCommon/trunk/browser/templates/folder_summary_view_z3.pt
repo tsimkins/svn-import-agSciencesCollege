@@ -40,10 +40,14 @@
 
                         <metal:show-date use-macro="context/folder_listing_z3/macros/show-date" />
 
-                        <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
                         <tal:event condition="python: item_type == 'Event'">
-                             <div metal:use-macro="here/@@folder_listing_z3/macros/event_date" />
+                            <div class="tileEvent">
+                                 <div metal:use-macro="here/@@folder_listing_z3/macros/event_date" />
+                            </div>
                         </tal:event>
+
+                        <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
+
                         <tal:newsitem condition="python: item_type == 'News Item'">
                             <tal:name tal:condition="item_creator"
                                 tal:define="author python:pas_member.info(item_creator)">
