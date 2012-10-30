@@ -93,8 +93,6 @@
             </ul>
         </div>
 
-        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
-
         <tal:bymonth repeat="month view/data|nothing">
             <tal:items define="folderContents python:month.get('items')">
             <a tal:condition="agenda_anchors" tal:attributes="name month/id" />
@@ -105,5 +103,10 @@
 
       </metal:main_macro>
     </metal:fill>
+
+    <metal:fill fill-slot="content-text">
+        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+    </metal:fill>
+
   </body>
 </html>

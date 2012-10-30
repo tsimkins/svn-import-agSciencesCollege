@@ -80,63 +80,61 @@
             normalizeString nocall: context/plone_utils/normalizeString;
             templateId template/getId;">
 
-        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+        <tal:bymonth repeat="month view/data">
 
-        <table class="listing events" summary="Event Listing">
-            
-            <tal:bymonth repeat="month view/data">
-                <tr class="section-title">
-                    <td colspan="3">
-                        <h2>
-                        <span tal:replace="month/label" />
-                        </h2>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="col">Event</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Location</th>
-                </tr>                
-                <tal:items define="folderContents python:month.get('items')"
-                    tal:repeat="item folderContents">
-                    <tr 
-                        tal:define="oddrow repeat/item/odd;
-                                    item_type item/portal_type;
-                                    item_start item/start|item/StartDate|nothing;
-                                    item_end item/end|item/EndDate|nothing;
-                                    item_sametime python: item_start == item_end;
-                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
-                                    item_url item/getURL|item/absolute_url;
-                                    isCanceled item/eventCanceled|nothing;
-                                    item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
-                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                                    "
-                        tal:attributes="class python:oddrow and 'even' or 'odd'">
-                        <td>
-                            <a href="#"
-                               tal:attributes="href item_url;
-                                               title item/Description;
-                                               class item_wf_state_class"
-                               tal:content="item/pretty_title_or_id">
-                                Item Title
-                            </a>
-                            <div class="listingWarning" tal:define="item_object item/getObject" tal:condition="isCanceled">Event Canceled</div>
-                        </td>
-                        <td tal:attributes="class python:isCanceled and 'canceled' or ''">
-                            <div metal:use-macro="context/@@folder_listing_z3/macros/short_event_date" />
-                        </td>
-                        <td tal:attributes="class python:isCanceled and 'canceled' or ''">
-                            <div metal:use-macro="context/@@folder_listing_z3/macros/event_location" />
-                        </td>
+            <h2 class="section-title" tal:content="month/label" />
+
+            <table class="listing events" summary="Event Listing">
+                <thead>
+                    <tr>
+                        <th scope="col">Event</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Location</th>
                     </tr>
-                </tal:items>
-                <tr class="separator" tal:condition="not:repeat/month/end"><td colspan="3">&nbsp;</td></tr>
-            </tal:bymonth>
-        
-        </table>
-
+                </thead>
+                <tbody>
+                    <tal:items define="folderContents python:month.get('items')"
+                        tal:repeat="item folderContents">
+                        <tr tal:define="oddrow repeat/item/odd;
+                                        item_type item/portal_type;
+                                        item_start item/start|item/StartDate|nothing;
+                                        item_end item/end|item/EndDate|nothing;
+                                        item_sametime python: item_start == item_end;
+                                        item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False;
+                                        item_url item/getURL|item/absolute_url;
+                                        isCanceled item/eventCanceled|nothing;
+                                        item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
+                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                        "
+                            tal:attributes="class python:oddrow and 'even' or 'odd'">
+                            <td>
+                                <a href="#"
+                                   tal:attributes="href item_url;
+                                                   title item/Description;
+                                                   class item_wf_state_class"
+                                   tal:content="item/pretty_title_or_id">
+                                    Item Title
+                                </a>
+                                <div class="listingWarning" tal:define="item_object item/getObject" tal:condition="isCanceled">Event Canceled</div>
+                            </td>
+                            <td tal:attributes="class python:isCanceled and 'canceled' or ''">
+                                <div metal:use-macro="context/@@folder_listing_z3/macros/short_event_date" />
+                            </td>
+                            <td tal:attributes="class python:isCanceled and 'canceled' or ''">
+                                <div metal:use-macro="context/@@folder_listing_z3/macros/event_location" />
+                            </td>
+                        </tr>
+                    </tal:items>
+                </tbody>
+            </table>
+        </tal:bymonth>
 
       </metal:main_macro>
     </metal:fill>
+
+    <metal:fill fill-slot="content-text">
+        <div metal:use-macro="context/@@folder_listing_z3/macros/text-field-view" />
+    </metal:fill>
+
   </body>
 </html>

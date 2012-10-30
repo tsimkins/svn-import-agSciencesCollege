@@ -13,7 +13,7 @@ img, embed, object {
     background-repeat: no-repeat;
 }
 
-.contentLeadImageContainer {
+.contentLeadImageContainer, .captionedImage.right {
     max-width: 43.914473684210526%;  /* 267/608 */
     text-align: left;
 }

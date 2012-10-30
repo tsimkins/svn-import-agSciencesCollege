@@ -31,6 +31,14 @@ body.icons-on #content form {
     width: 665px !important;
 }
 
+table.events tr td {
+    width: 27%;
+}
+
+table.events tr td:first-child {
+    width: 45%;
+}
+
 
 /* </dtml-with> */
 
