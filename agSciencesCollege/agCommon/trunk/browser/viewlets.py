@@ -20,6 +20,14 @@ import re
 from zope.contentprovider.interfaces import IContentProvider
 from zope.interface import Interface
 
+try:
+    from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
+except ImportError:
+    class IExtensionPublicationExtender(Interface):
+        """
+            Placeholder interface
+        """
+
 from zope.publisher.interfaces.browser import IBrowserView,IDefaultBrowserLayer
 
 from Products.Five.browser import BrowserView
@@ -232,7 +240,19 @@ class AddThisViewlet(AgCommonViewlet):
         # If in folder_full_view_item, hide it on the individual items.
         if self.isFolderFullView:
             self.hide_addthis = True
-
+        
+        # Integrate Extension PDF download
+        self.downloadPDF = False
+        if IExtensionPublicationExtender.providedBy(self.context):
+            if hasattr(self.context, 'extension_publication_file') and self.context.extension_publication_file:
+                self.downloadPDF = True
+                self.pdf_url = '%s/extension_publication_file' % self.context.absolute_url()
+            elif hasattr(self.context, 'extension_publication_url') and self.context.extension_publication_url:
+                self.downloadPDF = True
+                self.pdf_url = self.context.extension_publication_url
+            elif hasattr(self.context, 'extension_publication_download') and self.context.extension_publication_download:
+                self.downloadPDF = True
+                self.pdf_url = '%s/pdf_factsheet' % self.context.absolute_url()
 
 class FBLikeViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/fblike.pt')
