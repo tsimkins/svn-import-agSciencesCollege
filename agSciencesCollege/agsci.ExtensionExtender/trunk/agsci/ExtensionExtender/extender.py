@@ -1,15 +1,19 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IExtensionExtenderLayer, IExtensionExtender
+from interfaces import IExtensionExtenderLayer, IExtensionExtender, IExtensionPublicationExtender
 from zope.component import adapts
 from zope.interface import implements
 from Products.Archetypes.utils import DisplayList
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
+from plone.app.blob.field import BlobField
 
+class _ExtensionStringField(ExtensionField, StringField): pass
+class _ExtensionBooleanField(ExtensionField, BooleanField): pass
+class _ExtensionBlobField(ExtensionField, BlobField): pass
 
 class _ExtensionLinesField(ExtensionField, LinesField):
 
@@ -215,3 +219,99 @@ class ExtensionExtender(object):
         return self.fields
 
 
+
+
+#--
+class ExtensionPublicationExtender(object):
+    adapts(IExtensionPublicationExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+    
+    fields = [
+        _ExtensionStringField(
+            "extension_publication_code",
+                schemata="Publication",
+                required=False,
+                searchable=True,
+                widget=StringWidget(
+                    label=u"Publication Code",
+                    description=u"",
+                ),
+        ),
+
+        _ExtensionStringField(
+            "extension_publication_series",
+                schemata="Publication",
+                required=False,
+                searchable=True,
+                widget=StringWidget(
+                    label=u"Publication Series",
+                    description=u"Optional",
+                ),
+        ),
+
+        _ExtensionStringField(
+            "extension_publication_url",
+                schemata="Publication",
+                required=False,
+                searchable=False,
+                widget=StringWidget(
+                    label=u"External Publication URL",
+                    description=u"",
+                ),
+                validators = ('isURL'),
+        ),
+
+        _ExtensionBlobField(
+            "extension_publication_file",
+            schemata="Publication",
+            required=False,
+            widget=FileWidget(
+                label=u"Publication file",
+                description=u"",
+            ),
+        ),
+
+        _ExtensionBooleanField(
+            "extension_publication_download",
+            schemata="Publication",
+            required=False,
+            default=False,
+            widget=BooleanWidget(
+                label=u"Automatically generate PDF",
+                description=u"Verify the formatting of this PDF after checking this box. You may have to tweak the content to obtain a nicely formatted PDF.",
+            ),
+        ),
+
+        _ExtensionBooleanField(
+            "extension_publication_description_body",
+            schemata="Publication",
+            required=False,
+            default=False,
+            widget=BooleanWidget(
+                label=u"Show description in body rather than header.",
+                description=u"",
+            ),
+        ),
+
+        _ExtensionBooleanField(
+            "extension_publication_long_statement",
+            schemata="Publication",
+            required=False,
+            default=False,
+            widget=BooleanWidget(
+                label=u"Show long statement on generated PDF.",
+                description=u"",
+            ),
+        ),
+        
+
+
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields

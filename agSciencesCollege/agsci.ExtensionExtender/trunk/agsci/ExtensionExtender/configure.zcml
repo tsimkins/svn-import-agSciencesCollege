@@ -37,6 +37,12 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
+    <adapter
+        name="agsci.ExtensionExtender.extender.ExtensionPublicationExtender"
+        factory=".extender.ExtensionPublicationExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
     <five:implements
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.IExtensionExtender"

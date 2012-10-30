@@ -12,3 +12,9 @@ class IExtensionExtenderLayer(IDefaultPloneLayer):
 
 class IExtensionExtender(Interface):
     """ marker interface """
+    
+class IExtensionPublicationExtender(Interface):
+    """
+        Marker interface to denote something as a "publication", which will add
+        the necessary fields to it.
+    """
