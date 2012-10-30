@@ -211,14 +211,20 @@
 
                             <div tal:replace="structure provider:plone.abovecontentbody" />
 
-                            <div id="content-text" class="documentText">
+                            <div id="content-text" class="documentText" tal:condition="not:context/listing_after_text|nothing">
                                 <metal:text define-slot="content-text" tal:content="nothing">
-                                    Content Listing
+                                    Page body text
                                 </metal:text>
                             </div>
 
                             <div id="content-core" class="documentText">
                                 <metal:text define-slot="content-core" tal:content="nothing">
+                                    Content Listing
+                                </metal:text>
+                            </div>
+
+                            <div id="content-text" class="documentText" tal:condition="context/listing_after_text|nothing">
+                                <metal:text define-slot="content-text" tal:content="nothing">
                                     Page body text
                                 </metal:text>
                             </div>
