@@ -425,6 +425,18 @@ class FolderTopicExtender(object):
         ),
 
         _ExtensionBooleanField(
+            "listing_after_text",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show text after folder contents",
+                description=u"This will show the Body Text field after the folder contents instead of before.",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+
+        _ExtensionBooleanField(
             "two_column",
             required=False,
             default=False,
