@@ -78,7 +78,7 @@
                          tal:replace="structure python:context.getWrappedField('image').tag(context, scale='normal',  css_class='photo')" />
                 </div>
 
-                <div class="adr">
+                <div class="adr" tal:condition="python: context.getOfficeAddress() or context.getOfficeCity()">
                     <span class="street-address" tal:content="structure python:context.getOfficeAddress().replace('\n', '<br />')" /><br />
                     <span class="locality" tal:content="context/getOfficeCity" /><tal:block tal:condition="context/getOfficeState">, </tal:block>
                     <span class="region" tal:content="context/getOfficeState" />

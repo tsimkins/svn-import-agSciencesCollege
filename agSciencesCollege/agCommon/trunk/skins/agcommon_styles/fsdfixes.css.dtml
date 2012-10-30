@@ -34,6 +34,7 @@
     padding-right: 0;
     text-align: right;
     float: right;
+    clear: right;
 }
 
 .facultyStaffDirectory.personView .headshot img {
@@ -118,6 +119,10 @@ body.template-fsd_atoz_view #portal-localsearchbox {
 
 #content .tileSummary .facultyStaffDirectory p {
     margin-bottom: 0.5em;
+}
+
+#content #hcard.personView h2 {
+    clear: none;
 }
 
 #content .personView .websites ul {
