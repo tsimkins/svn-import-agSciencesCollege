@@ -1107,7 +1107,14 @@ html.kupu-html {
     clear: both;
 }
 
-#content div > h2:first-child, html.kupu-html div > h2:first-child {
+body.custom-h2-as-h3 #content-text.documentText h2:first-child,
+body.custom-h2-as-h3 #content-core.documentText h2:first-child,
+body.custom-h2-as-h3 .documentText h2:first-child,
+body.template-person_view #content h2:first-child,
+#content-text div > h2:first-child,
+#content-text div > h2:first-child,
+#content div > h2:first-child, 
+html.kupu-html div > h2:first-child {
     clear: none;
 }
 
@@ -1202,6 +1209,7 @@ html.kupu-html {
 #content .tileItemLeadImage .tileHeadline {
     margin-left: 136px;
     margin-left: 8.5rem;
+    clear: none;
 }
 
 #content .tileItemLeadImage .contentLeadImageContainer {
@@ -1211,13 +1219,33 @@ html.kupu-html {
     text-align: center;
 }
 
+/* Agenda View tweaks */
+
+body.template-agenda_view #content .tileItemLeadImage .tileTitle,
+body.template-agenda_view #content .tileItemLeadImage .documentByLine,
+body.template-agenda_view #content .tileItemLeadImage .tileDescription,
+body.template-agenda_view #content .tileItemLeadImage .facultyStaffDirectory,
+body.template-agenda_view #content .tileItemLeadImage .tileHeadline {
+    margin-left: 0;
+}
+
+body.template-agenda_view #content .tileItemLeadImage .contentLeadImageContainer {
+    float: right;
+    margin: 0 0 0 0.5em;
+    width: 128px;
+    text-align: center;
+}
+
+body.template-agenda_view #content .tileItemLeadImage{
+    border-top: none !important;
+}
+
 #content .tileItemLeadImage .contentLeadImageContainer img,
 #content .tileItemLeadImage .contentLeadImageContainer img.tileImage {
     margin: 0 !important;
     padding: 0;
     float: none;
 }
-
 
 #content h3, html.kupu-html h3, 
 body.custom-h2-as-h3 #content-text.documentText h2,
