@@ -12,6 +12,8 @@
    <element value="File"/>
    <element value="Food"/>
    <element value="Topic"/>
+   <element value="Section"/>
+   <element value="Subsite"/>
   </property>
   <property name="image_width" type="int">250</property>
   <property name="image_height" type="int">313</property>
