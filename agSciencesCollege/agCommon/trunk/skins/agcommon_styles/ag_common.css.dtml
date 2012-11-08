@@ -2710,6 +2710,11 @@ dl.person-connect img {
 #content dl.person-connect dd {
     margin-left: 2.5em;
 }
+
+.noClear {
+    clear: none !important;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
