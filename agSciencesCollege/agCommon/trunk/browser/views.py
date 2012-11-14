@@ -1,6 +1,7 @@
 from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import normalizeString, safe_unicode
 from Acquisition import aq_acquire, aq_inner, aq_base
 from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
 from DateTime import DateTime
@@ -12,6 +13,7 @@ from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 import re
 from urlparse import urljoin
+from plone.memoize.instance import memoize
 
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore import permissions
@@ -20,6 +22,7 @@ from zope.security import checkPermission
 
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
 
 # For registry
 
@@ -839,3 +842,58 @@ class HomepageView(FolderView):
             return True
         else:
             return False
+
+class ModifiedSharingView(SharingView):
+
+    template = ViewPageTemplateFile('templates/sharing.pt')
+
+    @memoize
+    def role_settings(self):
+        """Get current settings for users and groups for which settings have been made.
+
+        Returns a list of dicts with keys:
+
+         - id
+         - title
+         - type (one of 'group' or 'user')
+         - roles
+
+        'roles' is a dict of settings, with keys of role ids as returned by
+        roles(), and values True if the role is explicitly set, False
+        if the role is explicitly disabled and None if the role is inherited.
+        """
+
+        existing_settings = self.existing_role_settings()
+        user_results = self.user_search_results()
+        group_results = self.group_search_results()
+        
+        for g in existing_settings:
+            if g['id'] != AUTH_GROUP and g['type'] == 'group':
+                g['group_url'] = "%s/@@usergroup-groupmembership?groupname=%s" % (self.context.absolute_url(), g['id'])
+
+        current_settings = existing_settings + user_results + group_results
+
+        # We may be called when the user does a search instead of an update.
+        # In that case we must not loose the changes the user made and
+        # merge those into the role settings.
+        requested = self.request.form.get('entries', None)
+        if requested is not None:
+            knownroles = [r['id'] for r in self.roles()]
+            settings = {}
+            for entry in requested:
+                roles = [r for r in knownroles
+                                if entry.get('role_%s' % r, False)]
+                settings[(entry['id'], entry['type'])] = roles
+
+            for entry in current_settings:
+                desired_roles = settings.get((entry['id'], entry['type']), None)
+
+                if desired_roles is None:
+                    continue
+                for role in entry["roles"]:
+                    if entry["roles"][role] in [True, False]:
+                        entry["roles"][role] = role in desired_roles
+
+        current_settings.sort(key=lambda x: safe_unicode(x["type"])+safe_unicode(x["title"]))
+
+        return current_settings

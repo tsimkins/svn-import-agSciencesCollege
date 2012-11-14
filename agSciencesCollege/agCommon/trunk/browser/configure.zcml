@@ -606,6 +606,17 @@
         permission="zope2.View"
         allowed_interface=".views.IAgCommonUtilities"
     />
-    
+
+    <!-- Tweaks to sharing tab -->    
+
+    <browser:page
+        name="sharing"
+        for="*"
+        class=".views.ModifiedSharingView"
+        permission="plone.DelegateRoles"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/sharing.pt"
+        />
+
 
 </configure>
