@@ -1,4 +1,5 @@
 from zope.interface import implements, Interface
+from zope.app.component.hooks import getSite
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString, safe_unicode
@@ -869,7 +870,7 @@ class ModifiedSharingView(SharingView):
         
         for g in existing_settings:
             if g['id'] != AUTH_GROUP and g['type'] == 'group':
-                g['group_url'] = "%s/@@usergroup-groupmembership?groupname=%s" % (self.context.absolute_url(), g['id'])
+                g['group_url'] = "%s/@@usergroup-groupmembership?groupname=%s" % (getSite().absolute_url(), g['id'])
 
         current_settings = existing_settings + user_results + group_results
 
