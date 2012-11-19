@@ -39,6 +39,11 @@ table.events tr td:first-child {
     width: 45%;
 }
 
+#content.hasToc h2,
+#content.hasToc h3 {
+    clear: none;
+}
+
 
 /* </dtml-with> */
 

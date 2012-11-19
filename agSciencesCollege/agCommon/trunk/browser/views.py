@@ -243,11 +243,16 @@ class AgCommonUtilities(BrowserView):
         try:
             # Explicitly enabled or is a homepage at the root of the site
             if context.getProperty('enable_subsite_nav', False) or self.context.getId() == parent_default and parent.getProperty('enable_subsite_nav', False):
-                body_classes.append("navigation-subsite")
+                body_classes.append("navigation-subsite-root")
         except:
             pass
-            
-            
+
+        try:
+            enable_subsite_nav = aq_acquire(self.context, 'enable_subsite_nav')
+            if enable_subsite_nav:
+                body_classes.append("navigation-subsite")
+        except AttributeError:
+            pass
 
         try:
             custom_class = aq_acquire(self.context, 'custom_class')

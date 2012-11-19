@@ -3,7 +3,8 @@
 
 <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
 
-<dl class="portlet portletContact">
+<dl class="portlet portletContact"
+    tal:define="agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');">
 
     <dd class="portletItem">
         
@@ -46,11 +47,9 @@
             
             <tal:office_hours condition="view/data/office_hours">
                 <h2>Office Hours</h2>
-                <p>
-                    <tal:item repeat="x python:view.data.office_hours.split('\n')">
-                        <span tal:replace="x" /><br />
-                    </tal:item>
-                </p>
+
+                <tal:item tal:replace="structure python:agcommon_utilities.toMarkdown(view.data.office_hours)" />
+
             </tal:office_hours>
 
         </tal:contactportlet>

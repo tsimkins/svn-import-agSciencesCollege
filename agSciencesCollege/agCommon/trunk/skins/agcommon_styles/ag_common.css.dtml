@@ -304,18 +304,15 @@ body {
 
 #portal-column-one .portletStaticText .portletItem p,
 #portal-column-two .portletStaticText .portletItem p,
-#portal-column-one .portletContact .portletItem p,
-#portal-column-two .portletContact .portletItem p,
-#portlets-mobile .portletStaticText .portletItem p,
-#portlets-mobile .portletContact .portletItem p {
+#portlets-mobile .portletStaticText .portletItem p {
     margin: 0;
 
 }
 
-#portal-column-one .portletContact .portletItem p strong,
-#portal-column-two .portletContact .portletItem p strong,
-#portlets-mobile .portletContact .portletItem p strong {
-    font-weight: normal;
+#portal-column-one .portletContact .portletItem p
+#portal-column-two .portletContact .portletItem p
+#portlets-mobile .portletContact .portletItem p {
+    margin: 0 0 0.5em 0;
 }
 
 #portal-column-two .portletContact .portletItem {
@@ -328,7 +325,6 @@ body {
     display: block;
     margin-top: 0.9375em;
 }
-
 
 
 /* Portal-column-one Navigation */
@@ -1107,10 +1103,17 @@ html.kupu-html {
     clear: both;
 }
 
+#content h2:first-of-type, 
+html.kupu-html h2:first-of-type,
+#content.hasToc h2 {
+    clear: none;
+}
+
+
 body.custom-h2-as-h3 #content-text.documentText h2:first-child,
 body.custom-h2-as-h3 #content-core.documentText h2:first-child,
 body.custom-h2-as-h3 .documentText h2:first-child,
-body.template-person_view #content h2:first-child,
+body.template-person_view #content h2:familyirst-child,
 #content-text div > h2:first-child,
 #content-text div > h2:first-child,
 #content div > h2:first-child, 
@@ -1262,6 +1265,10 @@ body.template-by_county_listing.custom-two-column #content h2 {
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     font-size: 1.25em;
     clear: both;
+}
+
+#content.hasToc h3 {
+    clear: none;
 }
 
 body.template-person_view #content h3 {
@@ -2370,9 +2377,7 @@ table.events td.canceled span {
     font-size: 0.625rem;
 }
 
-html.kupu-html {
-    font-size: 0.84375em;
-}
+
 
 .portletAssignments {
     font-size: 0.6875em;

@@ -740,10 +740,18 @@ function mobileNav() {
 
 
     // Make left navigation +/-
-    var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite").size() ? true : false;
-
-    toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
-
+    var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite-root").size() ? true : false;
+    var is_subsite = jq("body.navigation-subsite").size() ? true : false;
+    
+    if (! is_subsite)
+    {
+        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
+    }
+    else
+    {
+        //alert("Do something different for the subsite nav.");
+        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree", is_homepage);
+    }
 
     // Make mobile top navigation +/-
     var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;

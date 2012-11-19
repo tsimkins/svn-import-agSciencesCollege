@@ -83,10 +83,26 @@
 }
 
 #portal-column-one .portletNavigationSubHeader {
-    padding: 1.0625em 0.375em;
+    padding: 0.5em 0.375em;
     background-color: #f5f5f5;
     border-left: 1px solid #666666;
     border-right: 1px solid #666666;
+    border-bottom: none;
+    line-height: 1.5em;
+}
+
+body.navigation-subsite #portal-column-one .portletNavigationSubHeader {
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #666666;
+}
+
+body.navigation-subsite #portal-column-one .portletNavigationSubHeader.active {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     border-bottom: none;
 }
 

@@ -127,5 +127,9 @@ body.icons-on #content form {
     width: 665px !important;
 }
 
+#content.hasToc h2,
+#content.hasToc h3 {
+    clear: none;
+}
 
 /* </dtml-with> */

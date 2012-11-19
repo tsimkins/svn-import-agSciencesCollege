@@ -51,6 +51,14 @@ body {
     margin-left: 0.25em;
 }
 
+#portal-column-one .portletNavigationSubHeader .icon,
+#navigation-mobile .portletNavigationSubHeader .icon {
+    width: 1.375em;
+    float: right;
+    margin-left: 0.25em;
+}
+
+
 #portal-column-one-visualPadding.visualPadding {
     margin-bottom: 0;
 }

@@ -3,6 +3,8 @@
     var content = getContentArea();
     if (!content || !dest.length) return;
     
+    $('#content').addClass('hasToc');
+    
     dest.empty();
 
     var location = window.location.href;

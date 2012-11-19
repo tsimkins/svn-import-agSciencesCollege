@@ -24,6 +24,8 @@ Crawl-delay: 5
 # http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx;=sibling
 
 User-Agent: Googlebot
+Disallow: /search
+Disallow: /search_rss
 Disallow: /*ics_view$
 Disallow: /*vcs_view$
 Disallow: /*sendto_form$
@@ -44,6 +46,8 @@ Disallow: /private
 # http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
 
 User-Agent: Slurp
+Disallow: /search
+Disallow: /search_rss
 Disallow: /*ics_view$
 Disallow: /*vcs_view$
 Disallow: /*sendto_form$
