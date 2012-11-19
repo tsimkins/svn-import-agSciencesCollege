@@ -377,6 +377,7 @@ class SearchView(FolderView):
         now = DateTime()
 
         filtered_results = []
+        files = []
 
         use_types_blacklist = self.request.form.get("use_types_blacklist", True) 
         use_navigation_root = self.request.form.get("use_navigation_root", True)
@@ -385,7 +386,11 @@ class SearchView(FolderView):
         for r in results:
             if self.anonymous and r.portal_type == 'Event' and r.end < now:
                 continue
-            filtered_results.append(r)
+            if r.portal_type in ['File']:
+                files.append(r)
+            else:            
+                filtered_results.append(r)
+        filtered_results.extend(files)
         return filtered_results
 
 class NewsletterView(AgCommonUtilities):
