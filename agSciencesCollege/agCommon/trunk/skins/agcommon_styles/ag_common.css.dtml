@@ -1102,9 +1102,19 @@ html.kupu-html {
     border-bottom: 1px solid #CCCCCC;
     clear: both;
 }
-
-#content h2:first-of-type, 
-html.kupu-html h2:first-of-type,
+body.custom-h2-as-h3 #content h2:first-of-type,
+body.custom-h2-as-h3 #content-text.documentText h2:first-of-type,
+body.custom-h2-as-h3 #content-core.documentText h2:first-of-type,
+body.custom-h2-as-h3 #homepage-text .documentText h2:first-of-type,
+body.custom-h2-as-h3 .documentText h2:first-of-type,
+body.custom-h2-as-h3 #content h2:first-child,
+body.custom-h2-as-h3 #content-text.documentText h2:first-child,
+body.custom-h2-as-h3 #content-core.documentText h2:first-child,
+body.custom-h2-as-h3 #homepage-text .documentText h2:first-child,
+body.custom-h2-as-h3 .documentText h2:first-child,
+body.custom-h2-as-h3 #content.hasToc h2,
+#content h2:first-child,
+html.kupu-html h2:first-child,
 #content.hasToc h2 {
     clear: none;
 }
@@ -1267,6 +1277,7 @@ body.template-by_county_listing.custom-two-column #content h2 {
     clear: both;
 }
 
+body.custom-h2-as-h3 #content.hasToc h3,
 #content.hasToc h3 {
     clear: none;
 }
