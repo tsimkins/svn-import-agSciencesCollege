@@ -1100,37 +1100,7 @@ html.kupu-html {
     border: none;
     font-weight: normal;
     border-bottom: 1px solid #CCCCCC;
-    clear: both;
 }
-body.custom-h2-as-h3 #content h2:first-of-type,
-body.custom-h2-as-h3 #content-text.documentText h2:first-of-type,
-body.custom-h2-as-h3 #content-core.documentText h2:first-of-type,
-body.custom-h2-as-h3 #homepage-text .documentText h2:first-of-type,
-body.custom-h2-as-h3 .documentText h2:first-of-type,
-body.custom-h2-as-h3 #content h2:first-child,
-body.custom-h2-as-h3 #content-text.documentText h2:first-child,
-body.custom-h2-as-h3 #content-core.documentText h2:first-child,
-body.custom-h2-as-h3 #homepage-text .documentText h2:first-child,
-body.custom-h2-as-h3 .documentText h2:first-child,
-body.custom-h2-as-h3 #content.hasToc h2,
-#content h2:first-child,
-html.kupu-html h2:first-child,
-#content.hasToc h2 {
-    clear: none;
-}
-
-
-body.custom-h2-as-h3 #content-text.documentText h2:first-child,
-body.custom-h2-as-h3 #content-core.documentText h2:first-child,
-body.custom-h2-as-h3 .documentText h2:first-child,
-body.template-person_view #content h2:familyirst-child,
-#content-text div > h2:first-child,
-#content-text div > h2:first-child,
-#content div > h2:first-child, 
-html.kupu-html div > h2:first-child {
-    clear: none;
-}
-
 
 #content h2.tileHeadline,
 #content h3.tileHeadline {
@@ -1274,12 +1244,6 @@ body.template-by_county_listing.custom-two-column #content h2 {
     font-weight: bold;
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
     font-size: 1.25em;
-    clear: both;
-}
-
-body.custom-h2-as-h3 #content.hasToc h3,
-#content.hasToc h3 {
-    clear: none;
 }
 
 body.template-person_view #content h3 {
