@@ -89,6 +89,24 @@ Disallow: /m/
 Disallow: /nonmobile
 Crawl-delay: 10
 
+User-Agent: bingbot
+Disallow: /search
+Disallow: /search_rss
+Disallow: /*ics_view$
+Disallow: /*vcs_view$
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*folder_contents$
+Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
+Disallow: /m/
+Disallow: /nonmobile
+Disallow: /*newsletter_print
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
 
 # Dicoveryengine.com
 User-agent: discobot
