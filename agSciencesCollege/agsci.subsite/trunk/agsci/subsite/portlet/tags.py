@@ -13,6 +13,7 @@ from Acquisition import aq_acquire, aq_inner, aq_chain
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.interfaces import IFolderish
 
 from agsci.subsite.content.interfaces import IBlog
 
@@ -68,8 +69,18 @@ class Renderer(base.Renderer):
 
         context = aq_inner(self.context)
         
-        self.parent_object = self.context
+        # parent_object is the portlet's parent
+        # Default to self.context
+        self.parent_object = context
         
+        # If context is the default page, set parent_object to parentNode
+        parentNode = context.getParentNode()
+        
+        if parentNode.getDefaultPage() == self.context.getId():
+            self.parent_object = parentNode
+        
+        # Finally, all this goes out the window if we're inside a blog.  Blog
+        # is the parent object.
         for i in aq_chain(context):
             if IBlog.providedBy(i):
                 self.parent_object = i
@@ -102,12 +113,20 @@ class Renderer(base.Renderer):
                 available_tags = i.available_public_tags
                 break
 
-        if path:
-            items = self.catalog.searchResults({'path' : path})
-        elif self.context.portal_type == 'Topic':
+        if self.context.portal_type == 'Topic':
             items = self.context.queryCatalog()
-        else:
-            items = []
+        else:                
+            if not path:
+                if not IFolderish.providedBy(i):
+                    path = '/'.join(self.context.getPhysicalPath()[0:-1])
+                else:
+                    path = '/'.join(self.context.getPhysicalPath())
+                    
+            if not available_tags:
+                available_tags = self.catalog.uniqueValuesFor('Tags')
+
+            items = self.catalog.searchResults({'Tags' : available_tags, 'path' : path})                
+            
 
         for i in items:
             if i.public_tags:
@@ -129,7 +148,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return self.getTags() and not self.data.hide
+        return self.tags and not self.data.hide
 
 
 class AddForm(base.AddForm):

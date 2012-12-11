@@ -105,6 +105,15 @@ class TagsView(FolderView):
 
     implements(ITagsView)
 
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.tags = []
+
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
     @property
     def normalizer(self):
         return getUtility(IIDNormalizer)
@@ -125,7 +134,13 @@ class TagsView(FolderView):
     
     def publishTraverse(self, request, name):
         if name:
-            self.tags = [name]
+            if '|' in name:
+                self.tags = sorted(name.split('|'))
+            else:
+                self.tags = [name]
+        else:
+            self.tags = []
+
         self.original_context = self.context
         self.context = self.getTagRoot()
 
@@ -142,15 +157,12 @@ class TagsView(FolderView):
     @memoize
     def getTags(self):
 
-        try:
-            selected_tags = self.tags
-        except AttributeError:
-            selected_tags = []
-
         available_tags = {}
-
+        inside_blog = False
+        
         for i in aq_chain(self.context):
             if IBlog.providedBy(i):
+                inside_blog = True
                 for t in sorted(i.available_public_tags):
                     available_tags[self.normalizer.normalize(t)] = t
                 break
@@ -160,13 +172,34 @@ class TagsView(FolderView):
                 if i.public_tags:
                     for t in i.public_tags:
                         available_tags[self.normalizer.normalize(t)] = t
+        elif not inside_blog:
+            for t in self.portal_catalog.uniqueValuesFor('Tags'):
+                available_tags[self.normalizer.normalize(t)] = t
 
         item_tags = []
 
-        for t in selected_tags:
+        for t in self.tags:
             normal_tag = self.normalizer.normalize(t)
             if available_tags.get(normal_tag):
                 item_tags.append(available_tags.get(normal_tag))
-                
+
         return item_tags
+
+    def getFolderContents(self):
+        inside_blog = False
         
+        for i in aq_chain(self.context):
+            if IBlog.providedBy(i):
+                inside_blog = True
+
+        if inside_blog:
+            return []
+        else:
+            search_tags = []
+            for t in self.portal_catalog.uniqueValuesFor('Tags'):
+                if self.normalizer.normalize(t) in self.tags:
+                    search_tags.append(t)
+            if not search_tags:
+                return []
+            else:
+                return self.portal_catalog.searchResults({'Tags' : search_tags, 'path' : '/'.join(self.context.getPhysicalPath())})

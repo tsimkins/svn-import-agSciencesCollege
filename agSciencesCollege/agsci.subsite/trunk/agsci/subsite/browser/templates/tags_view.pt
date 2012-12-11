@@ -9,16 +9,29 @@
 
     <metal:content-core fill-slot="content-core" 
       tal:define="tags view/getTags;
-                  contentFilter python:[('Tags' , tags)]">
-        <div class="discreet">
-        <p><strong>Filtered by tags:</strong></p>
-        <ul>
-            <li tal:repeat="t tags"
-                tal:content="t" />
-        </ul>
-        <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
-        </div>
-        <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
+                  is_a_topic python:context.portal_type=='Topic';
+                  contentFilter python:dict([('Tags' , tags)]);
+                  folderContents view/getFolderContents|nothing;
+                  folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=100);">
+        <tal:hastags tal:condition="tags">
+            <div class="discreet">
+            <p><strong>Filtered by tags:</strong></p>
+            <ul>
+                <li tal:repeat="t tags"
+                    tal:content="t" />
+            </ul>
+            <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
+            </div>
+            <tal:results tal:condition="folderContents">
+            <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
+            </tal:results>
+            <tal:noresults condition="not:folderContents">
+            <p>There are no results for this search.</p>
+            </tal:noresults>
+        </tal:hastags>
+        <tal:notags tal:condition="not:tags">
+            <p>There are no results for this search.</p>
+        </tal:notags>
     </metal:content-core>      
 
 </html>
