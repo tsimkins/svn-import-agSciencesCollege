@@ -694,7 +694,7 @@ def onBlogCreation(blog, event):
     # Create News folder
     blog.setConstrainTypesMode(1) # restrict what this folder can contain
     blog.setImmediatelyAddableTypes([])
-    blog.setLocallyAllowedTypes(['Topic','Folder'])
+    blog.setLocallyAllowedTypes(['Topic', 'Newsletter', 'Folder'])
     blog.reindexObject()
     
     # Create year folders for the past year, and the next 10 years
@@ -713,7 +713,10 @@ def onBlogCreation(blog, event):
             archive_folder.setEffectiveDate("%s-01-01" % year)
             archive_folder.unmarkCreationFlag()
             archive_folder.reindexObject()
-            
+
+    blog.setLocallyAllowedTypes(['Topic', 'Newsletter'])
+    blog.reindexObject()
+    
     # Create sample news item and set publishing date to 01-01-YYYY
     writeDebug('Creating sample news item')
     current_year_folder = blog[str(current_year)]
