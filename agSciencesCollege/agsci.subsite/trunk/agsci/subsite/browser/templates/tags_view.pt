@@ -8,9 +8,9 @@
     </metal:content>
 
     <metal:content-core fill-slot="content-core" 
-      tal:define="tags view/getTags;
+      tal:define="tags view/tags;
                   is_a_topic python:context.portal_type=='Topic';
-                  contentFilter python:dict([('Tags' , tags)]);
+                  contentFilter python:dict([(view.catalog_index , tags)]);
                   folderContents view/getFolderContents|nothing;
                   folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=100);">
         <tal:hastags tal:condition="tags">

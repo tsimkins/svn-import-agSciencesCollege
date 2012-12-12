@@ -17,7 +17,7 @@
     <browser:page
         for="*"
         name="tags"
-        class=".views.TagsView"
+        class=".views.tags.TagsView"
         template="templates/tags_view.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -28,7 +28,7 @@
     <browser:page
         for="*"
         name="blog_news_view"
-        class=".views.BlogNewsView"
+        class=".views.blog.BlogNewsView"
         template="templates/blog_news_view.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"

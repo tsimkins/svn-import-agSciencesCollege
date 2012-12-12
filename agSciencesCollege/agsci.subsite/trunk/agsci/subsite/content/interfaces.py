@@ -28,3 +28,7 @@ class IPhotoFolder(Interface):
     """Photo Folders store images and present a slideshow display
     """
     
+class ITagRoot(Interface):
+    """Object implementing the ITagRoot interface have their own tagging
+       subsystem.
+    """

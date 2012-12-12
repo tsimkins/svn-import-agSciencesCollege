@@ -9,13 +9,14 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.cache import render_cachekey
 
-from Acquisition import aq_acquire, aq_inner, aq_chain
+from Acquisition import aq_chain
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 
-from agsci.subsite.content.interfaces import IBlog
+from agsci.subsite.content.interfaces import ITagRoot
 
 from zope.component import getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -66,77 +67,91 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
-
-        context = aq_inner(self.context)
         
+        # Defines the data and view fields for this portlet.  Used so we can 
+        # subclass the portlet.
+        self.tag_listing = 'available_public_tags'
+        self.obj_tags = 'public_tags'
+        self.target_view = 'tags'
+        self.catalog_index = 'Tags'
+
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+        
+    @property
+    def parent_object(self):
+       
         # parent_object is the portlet's parent
         # Default to self.context
-        self.parent_object = context
+        parent_object = self.context
         
         # If context is the default page, set parent_object to parentNode
-        parentNode = context.getParentNode()
+        parentNode = self.context.getParentNode()
         
-        if parentNode.getDefaultPage() == self.context.getId():
-            self.parent_object = parentNode
-        
-        # Finally, all this goes out the window if we're inside a blog.  Blog
-        # is the parent object.
-        for i in aq_chain(context):
-            if IBlog.providedBy(i):
-                self.parent_object = i
+        if hasattr(parentNode, 'getDefaultPage') and parentNode.getDefaultPage() == self.context.getId():
+            parent_object = parentNode
+
+        # Finally, all this goes out the window if we're inside a object that
+        # implements ITagRoot (for example, a blog)
+
+        for i in aq_chain(self.context):
+            if ITagRoot.providedBy(i):
+                parent_object = i
                 break
-                
-        portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
-        self.anonymous = portal_state.anonymous()
-        self.portal_url = portal_state.portal_url()
-        self.typesToShow = portal_state.friendly_types()
 
-        plone_tools = getMultiAdapter((context, self.request), name=u'plone_tools')
-        self.catalog = plone_tools.catalog()
-        
-        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        return parent_object
 
-        self.tags = self.getTags()
+    @property
+    def available_tags(self):
 
-    def getTags(self):
-        normalizer = getUtility(IIDNormalizer)
-        context = aq_inner(self.context)
-
-        tags = {}
-        path = ""
         available_tags = []
-        normalized_tags = []
+
+        tag_root = self.tag_root
         
-        for i in aq_chain(context):
-            if IBlog.providedBy(i):
-                path = "/".join(i.getPhysicalPath())
-                available_tags = i.available_public_tags
-                break
+        if hasattr(tag_root, self.tag_listing):
+            available_tags = getattr(tag_root, self.tag_listing)        
+
+        if not available_tags:
+            available_tags = self.portal_catalog.uniqueValuesFor(self.catalog_index)
+
+        return available_tags
+
+    @property
+    def tag_root(self):
+
+        for i in aq_chain(self.context):
+            if IPloneSiteRoot.providedBy(i):
+                return i
+            if ITagRoot.providedBy(i):
+                return i
+
+        # Probably not needed, but just so we return something.
+        return context
+
+    @property
+    def tags(self):
+        normalizer = getUtility(IIDNormalizer)
+        tag_root = self.tag_root
+        
+        available_tags = self.available_tags
+        tags = {}
+        normalized_tags = []
 
         if self.context.portal_type == 'Topic':
             items = self.context.queryCatalog()
         else:                
-            if not path:
-                if not IFolderish.providedBy(i):
-                    path = '/'.join(self.context.getPhysicalPath()[0:-1])
-                else:
-                    path = '/'.join(self.context.getPhysicalPath())
-                    
-            if not available_tags:
-                available_tags = self.catalog.uniqueValuesFor('Tags')
-
-            items = self.catalog.searchResults({'Tags' : available_tags, 'path' : path})                
-            
+            path = '/'.join(tag_root.getPhysicalPath())
+            items = self.portal_catalog.searchResults({self.catalog_index : available_tags, 'path' : path})                
 
         for i in items:
-            if i.public_tags:
-                for t in i.public_tags:
+            if hasattr(i, self.obj_tags):
+                for t in getattr(i, self.obj_tags):
                     if available_tags:
                         if t in available_tags:
                             tags[t] = 1
                     else:
                         tags[t] = 1
-
        
         for t in sorted(tags.keys()):
             normalized_tags.append([normalizer.normalize(t), t])    
@@ -154,7 +169,7 @@ class Renderer(base.Renderer):
 class AddForm(base.AddForm):
     form_fields = form.Fields(ITag)
     label = _(u"Add Tag Portlet")
-    description = _(u"This portlet displays tag information for everything in the blog.")
+    description = _(u"This portlet displays tag information.")
 
     def create(self, data):
         return Assignment(**data)
@@ -162,4 +177,4 @@ class AddForm(base.AddForm):
 class EditForm(base.EditForm):
     form_fields = form.Fields(ITag)
     label = _(u"Edit Tag Portlet")
-    description = _(u"This portlet displays tag information for everything in the blog.")
+    description = _(u"This portlet displays tag information.")
