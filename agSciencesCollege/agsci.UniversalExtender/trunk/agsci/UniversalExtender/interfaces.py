@@ -27,3 +27,6 @@ class ITableOfContentsExtender(Interface):
     
 class INoComments(Interface):
     """ marker interface """
+    
+class ITagExtender(Interface):
+    """ marker interface """

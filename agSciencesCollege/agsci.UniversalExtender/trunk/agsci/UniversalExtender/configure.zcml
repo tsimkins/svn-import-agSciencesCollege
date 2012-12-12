@@ -92,6 +92,24 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     />
 
+    <!-- Tags extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.TagExtender"
+        factory=".extender.TagExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.ITagExtender"
+    />
+    
+    <five:implements
+        class="Products.ATContentTypes.content.document.ATDocument"
+        interface=".interfaces.ITagExtender"
+    /> 
+
     <!-- Folder Extender -->
 
     <adapter
@@ -218,14 +236,24 @@
     />
 
 
-    <!-- Blog modifier -->
+    <!-- TagRoot extender/modifier -->
 
     <adapter
-        name="agsci.UniversalExtender.extender.BlogExtender.fiddle"
-        factory=".extender.BlogExtender"
+        name="agsci.UniversalExtender.extender.TagRootExtender"
+        factory=".extender.TagRootExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <adapter
+        name="agsci.UniversalExtender.extender.TagRootExtender.fiddle"
+        factory=".extender.TagRootExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     /> 
 
+    <five:implements
+        class="agsci.subsite.content.Blog.Blog"
+        interface="agsci.subsite.content.interfaces.ITagRoot"
+    /> 
 
     <!-- Monkey Patch folder by adding 'getText' method -->
 
@@ -321,10 +349,20 @@
         />
 
     <!-- Add 'getAvailableTags' to News Item. -->
-    
+
     <monkey:patch
-        description="This adds a 'getAvailableTags' to News Items, which pulls the available tags from the parent Blog object"
+        description="This adds a 'getAvailableTags' to News Items, which pulls the available tags from the parent TagRoot object"
         class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        replacement=".patch.getAvailableTags"
+        original="getAvailableTags"
+        ignoreOriginal="True"
+        />
+
+    <!-- Add 'getAvailableTags' to Document. -->
+
+    <monkey:patch
+        description="This adds a 'getAvailableTags' to Documents, which pulls the available tags from the parent TagRoot object"
+        class="Products.ATContentTypes.content.document.ATDocument"
         replacement=".patch.getAvailableTags"
         original="getAvailableTags"
         ignoreOriginal="True"

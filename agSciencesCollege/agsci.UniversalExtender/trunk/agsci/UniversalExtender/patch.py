@@ -1,4 +1,4 @@
-from Acquisition import aq_base, aq_inner, aq_chain
+from Acquisition import aq_base, aq_inner, aq_chain, aq_acquire
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import AgCommonUtilities
 from zope.component import getMultiAdapter, queryUtility
@@ -13,7 +13,7 @@ from DateTime import DateTime
 from plone.app.blob.interfaces import IBlobField
 from Products.Archetypes.interfaces import IFileField, IImageField, ITextField
 
-from agsci.subsite.content.interfaces import IBlog
+from agsci.subsite.content.interfaces import ITagRoot
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -203,7 +203,22 @@ def uber_limit_results():
 def getPeople(self):
     """Return a list of people contained within this FacultyStaffDirectory."""
     portal_catalog = getToolByName(self, 'portal_catalog')
-    results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active')
+    try:
+        classifications = aq_acquire(self, 'fsd_classifications', None)
+    except AttributeError:
+        classifications = []
+
+    if classifications:
+
+        uids = []
+
+        for r in portal_catalog.searchResults({'portal_type' : 'FSDClassification', 'Title': classifications}):
+            if r.Title in classifications:
+                uids.append(r.UID)
+        results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active', getRawClassifications=uids)
+    else:
+        results = portal_catalog(path='/'.join(self.getPhysicalPath()), portal_type='FSDPerson', depth=1, review_state='active')
+
     return [brain.getObject() for brain in results]
 
 
@@ -278,15 +293,14 @@ def commentsEnabled(self):
     return False
 
 def getAvailableTags(self):
-    """Products.ATContentTypes.content.newsitem.ATNewsItem"""
-
+    """Returns the 'available_public_tags' from the nearest object in the acquisition chain"""
     tags = []
     for i in aq_chain(self):
-        if IBlog.providedBy(i):
-            try:
-                tags = i.available_public_tags
-            except AttributeError:
-                pass
+        if IPloneSiteRoot.providedBy(i):
+            break
+        if ITagRoot.providedBy(i):
+            if hasattr(i, 'available_public_tags'):
+                tags = getattr(i, 'available_public_tags')
             break
     return tags
     
