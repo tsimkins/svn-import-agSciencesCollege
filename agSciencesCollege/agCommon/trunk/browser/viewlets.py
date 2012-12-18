@@ -385,7 +385,17 @@ class FBMetadataViewlet(CustomTitleViewlet):
             self.link_metadata_image = self.fb_image
             self.link_mime_type = leadImage_field.getContentType(self.context)
         elif image_field and image_field.get_size(self.context) > 0:
-            self.fb_image = "%s/image_mini" % self.context.absolute_url()
+
+            sizes = {}
+
+            if hasattr(image_field, 'sizes') and image_field.sizes:
+                sizes = image_field.sizes
+
+            if 'normal' in sizes.keys():
+                self.fb_image = "%s/image_normal" % self.context.absolute_url()
+            else:
+                self.fb_image = "%s/image_mini" % self.context.absolute_url()
+
             self.link_metadata_image = self.fb_image
             self.link_mime_type = image_field.getContentType(self.context)
         else:
