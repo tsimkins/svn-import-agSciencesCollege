@@ -131,7 +131,18 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
    
         # create a folder for spotlight items inside the news folder
         if 'spotlight' not in news.objectIds():
+            
+            types = news.getLocallyAllowedTypes()
+            
+            if 'Folder' not in types:
+                new_types = list(types)
+                new_types.append("Folder")
+                news.setLocallyAllowedTypes(new_types)
+                
             news.invokeFactory(type_name='Folder', id='spotlight', title='Spotlight')
+            
+            if types != news.getLocallyAllowedTypes():
+                news.setLocallyAllowedTypes(types)
             
             spotlight_obj = news['spotlight']
             spotlight_obj.setConstrainTypesMode(1) # restrict what this folder can contain
