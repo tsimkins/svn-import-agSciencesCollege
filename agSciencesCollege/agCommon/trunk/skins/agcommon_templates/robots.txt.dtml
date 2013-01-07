@@ -81,13 +81,7 @@ Disallow: /private
 
 # Yandex bot
 User-agent: Yandex
-Disallow: /search
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
-Disallow: /m/
-Disallow: /nonmobile
-Crawl-delay: 10
+Disallow: /
 
 User-Agent: bingbot
 Disallow: /search
@@ -111,5 +105,17 @@ Disallow: /private
 # Dicoveryengine.com
 User-agent: discobot
 Disallow: / 
+
+# Blekkobot
+User-agent: Blekkobot
+Disallow: /
+
+# SEOkicks
+User-agent: SEOkicks
+Disallow: /
+
+# Exabot
+User-agent: Exabot
+Disallow: /
 
 </dtml-with>
