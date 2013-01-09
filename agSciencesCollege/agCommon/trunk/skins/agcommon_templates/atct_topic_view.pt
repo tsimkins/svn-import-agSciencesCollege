@@ -4,7 +4,7 @@
       i18n:domain="plone">
 
 <body>
-    
+ 
 <metal:content-core fill-slot="content-core">
     <metal:body define-macro="body_macro"
                 tal:define="kssClassesView context/@@kss_field_decorator_view;
@@ -32,14 +32,7 @@
                 Download PDF
             </a>
         </tal:listing>
-
-        <div metal:define-macro="text-field-view"
-            class="documentText" 
-            tal:define ="text text|context/getText|nothing"
-            tal:condition="text"
-            tal:content="structure text">
-        </div>
-
+        
         <tal:listing condition="topicContents">
             <tal:default condition="not:here/getCustomView|nothing"
                          define="folderContents topicContents;
@@ -146,6 +139,15 @@
         </tal:subtopics>
     </metal:body>
 </metal:content-core>
+
+<metal:content fill-slot="content-text">
+    <div metal:define-macro="text-field-view"
+        class="documentText" 
+        tal:define ="text text|context/getText|nothing"
+        tal:condition="text"
+        tal:content="structure text">
+    </div>
+</metal:content>
 
 </body>
 </html>
