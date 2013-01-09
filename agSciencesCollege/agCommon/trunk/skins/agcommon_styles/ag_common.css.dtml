@@ -1102,6 +1102,11 @@ html.kupu-html {
     border-bottom: 1px solid #CCCCCC;
 }
 
+#content h2 strong, html.kupu-html h2 strong,
+#content h2 b, html.kupu-html h2 b, {
+    font-weight: normal;
+}
+
 #content h2.tileHeadline,
 #content h3.tileHeadline {
     font-size: 1.375em;
@@ -2693,6 +2698,10 @@ dl.person-connect img {
 
 .noClear {
     clear: none !important;
+}
+
+[align="justify"] {
+    text-align: left;
 }
 
 /* YOUR CSS RULES STOP HERE */
