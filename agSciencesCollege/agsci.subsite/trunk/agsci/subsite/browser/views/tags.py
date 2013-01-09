@@ -120,7 +120,7 @@ class TagsView(FolderView):
         if ITagRoot.providedBy(tag_root):
             default_page = tag_root.getDefaultPage()
             if default_page in tag_root.objectIds() and tag_root[default_page].portal_type == 'Topic':
-                return tag_root[default_page].queryCatalog(contentFilter={self.catalog_index : tags})
+                return tag_root[default_page].queryCatalog(**{self.catalog_index : tags})
 
             return []
         elif tags:
