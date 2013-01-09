@@ -5,5 +5,10 @@
         addview="agsci.ExtensionExtender.similar"
         title="Similar Items Portlet"
     />
+
+    <portlet
+        addview="agsci.ExtensionExtender.drilldown"
+        title="Drilldown Portlet"
+    />
       
 </portlets>

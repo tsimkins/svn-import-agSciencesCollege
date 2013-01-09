@@ -20,10 +20,48 @@
     <include package="plone.app.contentmenu"/>
 
     <!-- Views -->        
+
+    <browser:page
+        for="*"
+        name="counties"
+        class=".views.drilldown.CountyView"
+        template="templates/drilldown.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="courses"
+        class=".views.drilldown.ProgramView"
+        template="templates/drilldown.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+    
+    <browser:page
+        for="*"
+        name="topics"
+        class=".views.drilldown.TopicView"
+        template="templates/drilldown.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+    
+    <browser:page
+        for="*"
+        name="subtopics"
+        class=".views.drilldown.SubtopicView"
+        template="templates/drilldown.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+
     <browser:page
         for="*"
         name="extension_program_county"
-        class=".views.ExtensionProgramCountyView"
+        class=".views.county.ExtensionProgramCountyView"
         template="templates/extension_program_county.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -32,7 +70,7 @@
     <browser:page
         for="*"
         name="pdf_factsheet"
-        class=".views.FactsheetPDFView"
+        class=".views.pdf.FactsheetPDFView"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
     />
@@ -40,7 +78,7 @@
     <browser:page
         for="*"
         name="by_county_listing"
-        class=".views.ByCountyView"
+        class=".views.county.ByCountyView"
         template="templates/by_county_listing.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -58,7 +96,7 @@
     <browser:page
         for="*"
         name="by_county_summary_view"
-        class=".views.ByCountyView"
+        class=".views.county.ByCountyView"
         template="templates/by_county_summary_view.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"

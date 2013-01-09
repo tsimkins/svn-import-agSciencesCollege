@@ -21,7 +21,7 @@ from zope.component import getUtility
 from DateTime import DateTime
 
 class TypesVocabulary(object):
-    """Vocabulary factory for cache timeouts.
+    """Vocabulary factory for item types.
     """
     implements(IVocabularyFactory)
 
