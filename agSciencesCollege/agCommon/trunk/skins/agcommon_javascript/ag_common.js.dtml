@@ -1052,6 +1052,71 @@ jq(document).ready(
     }
 );
 
+
+/* Add Google Analytics campaign codes to links within a selector */
+
+function getUTM(source, medium, campaign, content)
+{
+    var data = []
+
+    if (source)
+    {
+        data.push("utm_source=" + encodeURIComponent(source))
+    }
+    
+    if (medium) 
+    {
+        data.push("utm_medium=" + encodeURIComponent(medium))
+    }
+    
+    if (campaign) 
+    {
+        data.push("utm_campaign=" + encodeURIComponent(campaign))
+    }
+    
+    if (content) 
+    {
+        data.push("utm_content=" + encodeURIComponent(content))
+    }
+    
+    return data.join("&")
+}
+
+function applyUTM(selector, utm)
+{
+    jq(selector).each(
+        function () {
+            var href = jq(this).attr('href');
+
+            if (href)
+            {
+                if (href.indexOf('?') >= 0)
+                {
+                    href = href + "&" + utm;
+                }
+                else
+                {
+                    href = href + "?" + utm;
+                }
+
+                jq(this).attr('href', href);
+            }
+        }
+    );
+}
+
+/* Appply the tags to the footer */
+
+jq(document).ready(
+    function () {
+        if (! jq('#portal-personaltools').size())
+        {
+            utm = getUTM(document.location.hostname, "footer navigation", undefined, undefined);
+            applyUTM('#portlets-below a', utm);
+        }
+    }
+);
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */
