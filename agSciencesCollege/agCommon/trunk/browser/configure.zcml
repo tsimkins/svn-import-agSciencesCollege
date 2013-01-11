@@ -29,7 +29,7 @@
 
 
     <!-- Viewlets -->
-
+    
     <!-- Render the browser title -->
     <browser:viewlet
         name="agcommon.htmlhead.title"
@@ -273,8 +273,8 @@
     <browser:viewlet
         name="contentwellportlets.portletsbelowcontent"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class="Products.ContentWellPortlets.browser.viewlets.PortletsBelowViewlet"
-        layer="Products.ContentWellPortlets.browser.interfaces.IContentWellPortlets"
+        class=".viewlets.PortletsBelowViewlet"
+        layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
         />
 

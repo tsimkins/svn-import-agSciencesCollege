@@ -1,4 +1,4 @@
-from zope.component import getMultiAdapter, provideAdapter
+from zope.component import getMultiAdapter, provideAdapter, ComponentLookupError, getUtility
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase, TableOfContentsViewlet
 from AccessControl import getSecurityManager
@@ -19,6 +19,8 @@ from hashlib import md5
 import re
 from zope.contentprovider.interfaces import IContentProvider
 from zope.interface import Interface
+from plone.portlets.interfaces import IPortletManager
+
 
 try:
     from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
@@ -624,6 +626,42 @@ class CustomCommentsViewlet(CommentsViewlet):
             self.xid = md5(self.context.UID()).hexdigest()
         except AttributeError:
             self.xid = md5(self.context.absolute_url()).hexdigest()
+
+
+class PortletsBelowViewlet(ViewletBase):
+    render = ViewPageTemplateFile('templates/portletsbelowcontent.pt')
+        
+    def update(self):
+        """
+        Define everything we want to call in the template
+        """
+        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        self.manageUrl =  '%s/@@manage-portletsbelowcontent' % context_state.view_url()
+        
+        ## This is the way it's done in plone.app.portlets.manager, so we'll do the same
+        mt = getToolByName(self.context, 'portal_membership')
+        self.canManagePortlets = mt.checkPermission('Portlets: Manage portlets', self.context)
+
+    def have_portlets(self, view=None):
+        """Determine whether a column should be shown.
+        """
+        portlets = False
+        context = aq_inner(self.context)
+        layout = getMultiAdapter((context, self.request), name=u'plone_layout')
+
+        for manager_name in self.portletManagers():
+            if layout.have_portlets(manager_name, view=view):
+                portlets = True
+        
+        return portlets
+
+    def portletManagers(self):
+        managers = []
+        for n in range(1,7):
+            name = 'ContentWellPortlets.BelowPortletManager%d' % n
+            managers.append(name)
+        return managers
+
 
 
 # provideAdapter for viewlets to be registered in standalone mode
