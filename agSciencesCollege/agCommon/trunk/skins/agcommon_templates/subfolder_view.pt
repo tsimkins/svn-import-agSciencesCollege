@@ -81,12 +81,17 @@
 
                         <tal:define define="here nocall:subfolder;
                                     here_url subfolder/absolute_url;">
-                            <tal:topiccontents define="portal_type subfolder/portal_type|nothing;
-                                                       folder_layout subfolder/layout|nothing;
-                                                       topicCount python:portal_type == 'Topic' and len(here.queryCatalog()) or 0;
-                                                       limit python:portal_type == 'Topic' and here.getItemCount() > 0 and here.getItemCount() or 1000;
-                                                       subfolderContents python:here.getFolderContents() or (portal_type == 'Topic' and here.queryCatalog(sort_limit=limit)[:limit]) or [];
-                                                       batch subfolderContents;">
+                            <tal:topiccontents 
+                                 define="portal_type subfolder/portal_type|nothing;
+                                         folder_layout subfolder/layout|nothing;
+                                         is_a_topic python:subfolder.portal_type=='Topic';
+                                         topicCount python:is_a_topic and len(here.queryCatalog()) or 0;
+                                         limit python:is_a_topic and here.getItemCount() > 0 and here.getItemCount() or 1000;
+                                         order_by_id subfolder/order_by_id|nothing;
+                                         order_by_title subfolder/order_by_title|nothing;
+                                         subfolderContents python:subfolder.getFolderContents() or (is_a_topic and subfolder.queryCatalog(sort_limit=limit)[:limit]) or [];
+                                         subfolderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(subfolderContents, order_by_id=order_by_id, order_by_title=order_by_title) or subfolderContents;
+                                         batch subfolderContents;">
 
                                 <tal:listing condition="subfolderContents">
 
@@ -95,7 +100,7 @@
                                         <metal:listing metal:use-macro="context/@@folder_summary_view_z3/macros/listing">
                                             <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
                                         </metal:listing>
-                                
+
                                     </tal:folder_summary_view>
                                 
                                     <tal:atct_album_view condition="python:folder_layout == 'atct_album_view'"
