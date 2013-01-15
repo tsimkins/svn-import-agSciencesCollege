@@ -451,6 +451,15 @@ table.nutrition {
     padding: 0.75em 0;
 }
 
+#portlets-mobile .linkButton img,
+#portal-column-one .linkButton img,
+#portal-column-two .linkButton img,
+#rightcolumn .linkButton img {
+    width: auto;
+    display: block;
+    max-width: 100%;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

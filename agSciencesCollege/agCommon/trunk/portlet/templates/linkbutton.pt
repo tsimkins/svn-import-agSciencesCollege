@@ -15,13 +15,15 @@
                 <tal:linkButton  
                     tal:define="title lbutton/title;
                                 id lbutton/id;
-                                description lbutton/description|lbutton/title">
+                                description lbutton/description|lbutton/title;
+                                icon python: lbutton.get('icon') or '';">
                            <strong>
-                           <a
-                           tal:content="title"
-                           tal:attributes="href lbutton/url;
-                                           title description;"
-                           >Link</a>
+                           <a tal:attributes="href lbutton/url;
+                                              title description;"
+                           ><span tal:condition="not:icon"
+                                  tal:content="title">Link</span><img tal:condition="icon" 
+                                                                      tal:attributes="src icon;
+                                                                                      alt title;" /></a>
                            </strong>
                   </tal:linkButton>
                    

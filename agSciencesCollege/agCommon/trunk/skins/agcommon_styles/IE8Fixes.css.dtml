@@ -14,8 +14,12 @@
     width: 90%;
 }
 
+#portal-column-one {
+    width: 21.655984488448845%;
+}
+
 #portal-column-one .visualPadding {
-    width: 100%;
+    width: 97.384336013455965%;
 }
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
@@ -43,7 +47,6 @@ table.events tr td:first-child {
 #content.hasToc h3 {
     clear: none;
 }
-
 
 /* </dtml-with> */
 

@@ -561,6 +561,7 @@ body {
     display: block;
     margin: 0 auto;
     text-align: center;
+    max-width: 100%;
 } 
 
 #portal-column-one .imagePortlet a,
@@ -729,10 +730,11 @@ body {
     color: &dtml-leftButtonTextColor_external;;
     font-weight: normal;
     font-size: 1.0625em;
-    padding: 8px;
+    padding: 8px 4.758137902731766%;
     margin-left: 0px;
     border: none;
     background-color: transparent;
+    width: 90.483724194536468%;
 }
 
 #portlets-mobile .linkButton li.internal-link a,
@@ -760,6 +762,15 @@ body {
 #rightcolumn .linkButton li.internal-link:hover {
     border-color:<dtml-var expr="gradientEnd(startColor=leftButtonBackground_external)">;
 }
+
+#portlets-mobile .linkButton img,
+#portal-column-one .linkButton img,
+#portal-column-two .linkButton img,
+#rightcolumn .linkButton img {
+    width: 100%;
+    display: block;
+}
+
 
 /* = portal-column-content ================================= */
 
@@ -1103,7 +1114,7 @@ html.kupu-html {
 }
 
 #content h2 strong, html.kupu-html h2 strong,
-#content h2 b, html.kupu-html h2 b, {
+#content h2 b, html.kupu-html h2 b {
     font-weight: normal;
 }
 
