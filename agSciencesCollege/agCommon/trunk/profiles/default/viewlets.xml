@@ -155,7 +155,6 @@ Note: insert-before and -after accept the value "*" which means
     </hidden>
 	
     <hidden manager="plone.portalfooter" skinname="agCommon">
-        <viewlet name="contentwellportlets.portletsbelowcontent" />
         <viewlet name="contentwellportlets.footerportlets" />
     </hidden>
 
