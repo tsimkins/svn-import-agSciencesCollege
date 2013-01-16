@@ -56,14 +56,19 @@ def importEvents(context, emailUsers=['trs22'],
                  cventURL = "http://guest.cvent.com/EVENTS/Calendar/Calendar.aspx?cal=9d9ed7b8-dd56-46d5-b5b3-8fb79e05acaf",
                  summaryURL = "http://guest.cvent.com/EVENTS/info/summary.aspx?e=%s",
                  conferenceURL="https://agsci.psu.edu/conferences/event-calendar",
-                 parseSoup=agsciEvents):
+                 parseSoup=agsciEvents,
+                 owner=None):
 
     myStatus = []
     newEvents = []
 
     # More Zopey goodness
     
-    admin = context.acl_users.getUserById('trs22')
+    if owner:
+        admin = context.acl_users.getUserById(owner)
+    else:
+        admin = context.acl_users.getUserById('trs22')
+
     admin = admin.__of__(context.acl_users)
     newSecurityManager(None, admin) 
     
