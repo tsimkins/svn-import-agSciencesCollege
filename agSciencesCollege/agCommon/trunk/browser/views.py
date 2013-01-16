@@ -255,6 +255,13 @@ class AgCommonUtilities(BrowserView):
             pass
 
         try:
+            penn_state_header = aq_acquire(self.context, 'main_site')
+            if penn_state_header:
+                body_classes.append("penn-state-header")
+        except AttributeError:
+            pass
+
+        try:
             custom_class = aq_acquire(self.context, 'custom_class')
             body_classes.extend(['custom-%s' % str(x) for x in custom_class.split()])
         except AttributeError:

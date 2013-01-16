@@ -55,6 +55,10 @@ body {
     min-height: 4.6875em;
 }
 
+body.penn-state-header #portal-header {
+    background-image: url(&dtml-portal_url;/penn-state-header.gif);
+}
+
 #portal-header a {
     border-width: 0;
     text-decoration: none;

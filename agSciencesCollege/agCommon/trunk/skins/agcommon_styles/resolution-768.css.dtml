@@ -223,6 +223,7 @@ div.portletsAboveContentE {
     font-size: 1.4375em;
 }
 
+body.penn-state-header #portal-header,
 #portal-header {
     background-image: url("&dtml-portal_url;/PSUheader.png");
 }
