@@ -146,7 +146,12 @@ class Renderer(base.Renderer):
 
         for i in items:
             if hasattr(i, self.obj_tags):
-                for t in getattr(i, self.obj_tags):
+                obj_tags = getattr(i, self.obj_tags)
+
+                if not obj_tags:
+                    obj_tags = []
+                    
+                for t in obj_tags:
                     if available_tags:
                         if t in available_tags:
                             tags[t] = 1

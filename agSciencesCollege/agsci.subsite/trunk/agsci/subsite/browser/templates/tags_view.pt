@@ -9,6 +9,8 @@
 
     <metal:content-core fill-slot="content-core" 
       tal:define="tags view/tags;
+                  test nocall:view/test;
+                  standalone_view python:True;
                   is_a_topic python:context.portal_type=='Topic';
                   contentFilter python:dict([(view.catalog_index , tags)]);
                   folderContents view/getFolderContents|nothing;
@@ -22,12 +24,41 @@
             </ul>
             <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
             </div>
-            <tal:results tal:condition="folderContents">
-            <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
-            </tal:results>
-            <tal:noresults condition="not:folderContents">
-            <p>There are no results for this search.</p>
-            </tal:noresults>
+
+            <metal:listing define-macro="listing">
+            
+                <tal:results
+                    tal:condition="folderContents"
+                    tal:define="listingLayout view/listingLayout">
+                    
+                    <tal:listing condition="python: listingLayout == 'agenda_view'">
+                        <metal:body use-macro="context/@@agenda_view/macros/content-core" />
+                    </tal:listing>
+    
+                    <tal:listing condition="python: listingLayout == 'atct_album_view'">
+                        <metal:body use-macro="context/atct_album_view/macros/listing" />
+                    </tal:listing>
+    
+                    <tal:listing condition="python: listingLayout == 'event_table'">
+                        <metal:body use-macro="context/@@event_table/macros/content-core" />
+                    </tal:listing>
+    
+                    <tal:listing condition="python: listingLayout == 'folder_listing'">
+                        <metal:body use-macro="context/@@folder_listing_z3/macros/listing" />
+                    </tal:listing>
+    
+                    <tal:listing condition="python: listingLayout == 'folder_summary_view'">
+                        <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
+                    </tal:listing>
+    
+                </tal:results>
+
+                <tal:noresults condition="not:folderContents">
+                    <p>There are no results for this search.</p>
+                </tal:noresults>
+
+            </metal:listing>
+
         </tal:hastags>
         <tal:notags tal:condition="not:tags">
             <p>There are no results for this search.</p>

@@ -1,13 +1,13 @@
 from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Products.agCommon.browser.views import FolderView
+from Products.agCommon.browser.views import FolderView, AgendaView
 from agsci.subsite.content.interfaces import ITagRoot
 from plone.memoize.view import memoize
 from zope.component import getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFPlone.interfaces import IPloneSiteRoot
-from Acquisition import aq_chain
+from Acquisition import aq_chain, aq_acquire
 
 class ITagsView(Interface):
     """
@@ -17,7 +17,7 @@ class ITagsView(Interface):
     def test():
         """ test method"""
 
-class TagsView(FolderView):
+class TagsView(AgendaView):
 
     implements(ITagsView)
 
@@ -34,7 +34,7 @@ class TagsView(FolderView):
         self.obj_tags = 'public_tags'
         self.target_view = 'tags'
         self.catalog_index = 'Tags'
-        
+
     @property
     def portal_catalog(self):
         return getToolByName(self.context, 'portal_catalog')
@@ -67,6 +67,33 @@ class TagsView(FolderView):
         self.context = self.tag_root
 
         return self
+
+    def getSettingsObject(self):
+        obj = None
+
+        try:
+            default_page = self.original_context.getDefaultPage()
+            if default_page in self.original_context.objectIds() and self.original_context[default_page].portal_type == 'Topic':
+                obj = self.original_context[default_page]
+        except:
+            pass
+            
+        if not obj:
+            obj = self.original_context
+        
+        return obj
+
+    @property
+    def listingLayout(self):
+        try:
+            layout = self.getSettingsObject().getLayout()
+        except:
+            layout = None
+
+        if layout in ['agenda_view', 'atct_album_view', 'event_table', 'folder_listing', 'folder_summary_view', ]:
+            return layout
+        else:
+            return 'folder_listing'
 
     @property
     def tag_root(self):
@@ -127,3 +154,30 @@ class TagsView(FolderView):
             return self.portal_catalog.searchResults({self.catalog_index : tags, 'path' : '/'.join(tag_root.getPhysicalPath())})
         else:
             return []
+
+    @property
+    def show_date(self):
+        try:
+            show_date = aq_acquire(self.getSettingsObject(), 'show_date')
+        except AttributeError:
+            show_date = False
+        
+        return show_date
+
+    @property
+    def show_image(self):
+        try:
+            show_image = aq_acquire(self.getSettingsObject(), 'show_image')
+        except AttributeError:
+            show_image = False
+        
+        return show_image
+
+    @property
+    def show_read_more(self):
+        try:
+            show_read_more = aq_acquire(self.getSettingsObject(), 'show_read_more')
+        except AttributeError:
+            show_read_more = False
+        
+        return show_read_more
