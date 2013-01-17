@@ -9,6 +9,8 @@
 
     <metal:content-core fill-slot="content-core" 
       tal:define="tags view/tags;
+                  test nocall:view/test;
+                  standalone_view python:True;
                   is_a_topic python:context.portal_type=='Topic';
                   contentFilter python:dict([(view.catalog_index , tags)]);
                   folderContents view/getFolderContents|nothing;
@@ -22,12 +24,9 @@
             </ul>
             <p><a tal:attributes="href view/original_context/absolute_url" tal:content="string:Unfilter..." /></p>
             </div>
-            <tal:results tal:condition="folderContents">
-            <metal:body use-macro="context/@@folder_summary_view_z3/macros/listing" />
-            </tal:results>
-            <tal:noresults condition="not:folderContents">
-            <p>There are no results for this search.</p>
-            </tal:noresults>
+
+            <metal:listing use-macro="context/@@tags/macros/listing" />
+
         </tal:hastags>
         <tal:notags tal:condition="not:tags">
             <p>There are no results for this search.</p>

@@ -6,7 +6,7 @@ class CountyView(TagsView):
         self.context = context
         self.request = request
         self.url_tags = []
-        
+
         # Overrite configuration
         self.singular_title = 'County'
         self.plural_title = 'Counties'
@@ -17,14 +17,14 @@ class CountyView(TagsView):
 
     @property
     def parent_object(self):
-       
+
         # parent_object is the portlet's parent
         # Default to self.context
         parent_object = self.context
-        
+
         # If context is the default page, set parent_object to parentNode
         parentNode = self.context.getParentNode()
-        
+
         if hasattr(parentNode, 'getDefaultPage') and parentNode.getDefaultPage() == self.context.getId():
             parent_object = parentNode
 
@@ -58,7 +58,7 @@ class ProgramView(CountyView):
         self.context = context
         self.request = request
         self.url_tags = []
-        
+
         # Overrite configuration
         self.singular_title = 'Course'
         self.plural_title = 'Courses'
@@ -67,13 +67,14 @@ class ProgramView(CountyView):
         self.target_view = 'courses'
         self.catalog_index = 'Programs'
 
+
 class TopicView(CountyView):
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
         self.url_tags = []
-        
+
         # Overrite configuration
         self.singular_title = 'Topic'
         self.plural_title = 'Topics'
@@ -81,14 +82,15 @@ class TopicView(CountyView):
         self.obj_tags = 'extension_topics'
         self.target_view = 'topics'
         self.catalog_index = 'Topics'
-        
+
+
 class SubtopicView(CountyView):
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
         self.url_tags = []
-        
+
         # Overrite configuration
         self.singular_title = 'Subtopic'
         self.plural_title = 'Subtopics'
@@ -96,4 +98,3 @@ class SubtopicView(CountyView):
         self.obj_tags = 'extension_subtopics'
         self.target_view = 'subtopics'
         self.catalog_index = 'Subtopics'
-        
