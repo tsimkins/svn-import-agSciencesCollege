@@ -728,27 +728,7 @@ class AgendaView(FolderView):
         else:
             self.here_url = self.context.absolute_url()        
 
-        self.month_agenda = []
-        self.day_agenda = []
-    
-    def data(self):
-        
-        site_properties = getToolByName(self.context, 'portal_properties').get("site_properties")
-        day_format = site_properties.localTimeFormat
-        month_format = '%B %Y'
-
-        days = {}
-        months = {}
-
-        # Set the 'agenda_view_day' property in the ZMI to show the agenda by
-        # days rather than by month.  It's not worth having a separate view,
-        # since it will be a very small minority of use cases.
-
-        try:
-            if aq_acquire(self.context, 'agenda_view_day'):
-                self.show_days = True
-        except AttributeError:
-            self.show_days = False
+    def getFolderContents(self):
             
         events = []
         folder_path = ""
@@ -772,7 +752,7 @@ class AgendaView(FolderView):
                 self.here_url = parent.absolute_url()
 
         if not events:
-            catalog = getToolByName(self.context, 'portal_catalog')
+            catalog = self.portal_catalog
             
             if not folder_path:
                 folder_path = '/'.join(self.context.getPhysicalPath())
@@ -781,6 +761,30 @@ class AgendaView(FolderView):
                                             'path' : {'query': folder_path, 'depth' : 4},
                                             'start' : {'query' : DateTime(), 'range' : 'min'},
                                             'sort_on' : 'start' })
+        return events
+
+    def data(self):
+
+        site_properties = getToolByName(self.context, 'portal_properties').get("site_properties")
+        day_format = site_properties.localTimeFormat
+        month_format = '%B %Y'
+
+        # Set the 'agenda_view_day' property in the ZMI to show the agenda by
+        # days rather than by month.  It's not worth having a separate view,
+        # since it will be a very small minority of use cases.
+
+        try:
+            if aq_acquire(self.context, 'agenda_view_day'):
+                self.show_days = True
+        except AttributeError:
+            self.show_days = False
+
+        days = {}
+        months = {}
+        agenda = []
+
+        events = self.getFolderContents()
+
         for e in events:
         
             if e.portal_type == 'Event' or e.portal_type == 'TalkEvent':
@@ -799,21 +803,18 @@ class AgendaView(FolderView):
                 months[month]['items'].append(e)
                 days[day]['items'].append(e)                
 
-
-
             
         if self.show_days:
 
             for d in sorted(days.keys()):
-                self.day_agenda.append(days[d])
+                agenda.append(days[d])
 
-            return self.day_agenda
         else:
 
             for m in sorted(months.keys()):
-                self.month_agenda.append(months[m])
+                agenda.append(months[m])
 
-            return self.month_agenda
+        return agenda
 
             
 
