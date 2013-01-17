@@ -38,7 +38,7 @@
     padding-left: 1.694915254237288%;  /* 10/590 */
     padding-right: 1.694915254237288%;  /* 10/590 */
     display: block;
-    background-image: none;
+    background-image: none !important;
     border: none;
     margin-top: 0.5em;
 }
