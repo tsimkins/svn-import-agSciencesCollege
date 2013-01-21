@@ -44,7 +44,10 @@ class CountyView(TagsView):
         tags = self.tags
 
         default_page = tag_root.getDefaultPage()
-        if default_page in tag_root.objectIds() and tag_root[default_page].portal_type == 'Topic':
+
+        if tag_root.portal_type == 'Topic':
+            return tag_root.queryCatalog(**{self.catalog_index : tags})
+        elif default_page in tag_root.objectIds() and tag_root[default_page].portal_type == 'Topic':
             return tag_root[default_page].queryCatalog(**{self.catalog_index : tags})
         elif tags:
             return self.portal_catalog.searchResults({self.catalog_index : tags, 'path' : '/'.join(tag_root.getPhysicalPath())})
