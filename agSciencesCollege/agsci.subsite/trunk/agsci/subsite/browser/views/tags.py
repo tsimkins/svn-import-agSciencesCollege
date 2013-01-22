@@ -54,6 +54,7 @@ class TagsView(AgendaView):
         return '%s (%s: %s)' % (self.context_state.object_title(), title, ', '.join(tags))
     
     def publishTraverse(self, request, name):
+
         if name:
             if '|' in name:
                 self.url_tags = sorted(name.split('|'))
@@ -62,6 +63,7 @@ class TagsView(AgendaView):
         else:
             self.url_tags = []
 
+        self.original_url = request.getURL()
         self.original_context = self.context
         
         self.context = self.tag_root
