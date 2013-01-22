@@ -34,10 +34,20 @@ class CountyView(TagsView):
     def tag_root(self):
         return self.parent_object
 
+    @property
+    def here_url(self):
+        if hasattr(self, 'original_url') and self.original_url:
+            return self.original_url
+        else:
+            return self.tag_root
+
 
     @property
     def available_tags(self):
-        return self.portal_catalog.uniqueValuesFor(self.catalog_index)
+        try:
+            return self.portal_catalog.uniqueValuesFor(self.catalog_index)
+        except KeyError:
+            return []
 
     def getFolderContents(self):
         tag_root = self.tag_root
