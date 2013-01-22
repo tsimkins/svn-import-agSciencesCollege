@@ -2249,6 +2249,11 @@ body.template-agenda_view #content .agendaLinks ul li {
     list-style-image: none;
 }
 
+body.template-agenda_view #document-toc, 
+body.template-agenda_view #portal-column-content.sr #document-toc { 
+    width: 24%; 
+} 
+
 body.template-agenda_view #document-toc h3 {
     margin: 0;
     padding: 0;

@@ -411,7 +411,9 @@ body.template-by_county_listing.custom-two-column #content h2 {
 }
 
 /* Document table of contents */
-#portal-column-content.sr #document-toc, #document-toc {
+#portal-column-content.sr #document-toc, #document-toc,
+body.template-agenda_view #document-toc, 
+body.template-agenda_view #portal-column-content.sr #document-toc {
     margin: 0.25em 0 1em 0;
     width: 96%;
     padding: 0.75em 2%; 
