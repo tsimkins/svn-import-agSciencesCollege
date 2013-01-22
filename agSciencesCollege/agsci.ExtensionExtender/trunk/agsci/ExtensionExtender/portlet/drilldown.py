@@ -59,14 +59,13 @@ class IDrilldown(IPortletDataProvider):
     show_header = schema.Bool(
         title=_(u"Show portlet header"),
         description=_(u""),
-        required=True,
-        default=False)
+        required=False,
+        default=True)
 
-    hide = schema.Bool(
-        title=_(u"Hide portlet"),
-        description=_(u"Tick this box if you want to temporarily hide "
-                      "the portlet without losing your text."),
-        required=True,
+    dropdown = schema.Bool(
+        title=_(u"Show dropdown"),
+        description=_(u"Show dropdown rather than listing all items."),
+        required=False,
         default=False)
 
 class Assignment(TagsAssignment):
@@ -75,14 +74,14 @@ class Assignment(TagsAssignment):
 
     header = ""
     show_header = False
-    hide = False
+    dropdown = False
     drilldown_type = None
 
-    def __init__(self, header=u"", show_header=False, drilldown_type=None, hide=False):
+    def __init__(self, header=u"", show_header=False, drilldown_type=None, dropdown=False):
         self.header = header
         self.show_header = show_header
         self.data.drilldown_type = drilldown_type
-        self.hide = hide
+        self.dropdown = dropdown
                 
     @property
     def title(self):
@@ -100,18 +99,15 @@ class Renderer(TagsRenderer):
 
     @property 
     def obj_tags(self):
-        #import pdb; pdb.set_trace()
         return {
             'extension_counties' : 'extension_counties',
             'extension_programs' : 'extension_programs',
             'extension_topics' : 'extension_topics',
             'extension_subtopics' : 'extension_subtopics',
         }.get(self.data.drilldown_type, 'unknown')
-        return 'extension_counties'
 
     @property 
     def target_view(self):
-        #import pdb; pdb.set_trace()
         return {
             'extension_counties' : 'counties',
             'extension_programs' : 'courses',
@@ -121,7 +117,6 @@ class Renderer(TagsRenderer):
 
     @property 
     def catalog_index(self):
-        #import pdb; pdb.set_trace()
         return {
             'extension_counties' : 'Counties',
             'extension_programs' : 'Programs',
@@ -145,8 +140,24 @@ class Renderer(TagsRenderer):
         return parent_object
 
     @property
+    def drilldown_label(self):
+        vocab = TypesVocabulary()
+        try:
+            label = vocab(self.context).getTermByToken(self.data.drilldown_type)
+            return label.title
+        except LookupError:
+            return ''
+
+
+    @property
     def available_tags(self):
-        return self.portal_catalog.uniqueValuesFor(self.catalog_index)
+        tags = list(self.portal_catalog.uniqueValuesFor(self.catalog_index))
+
+        for v in ['', 'N/A']:
+            if v in tags:
+                tags.remove(v)
+
+        return tags
 
     @property
     def tag_root(self):
@@ -173,7 +184,7 @@ class Renderer(TagsRenderer):
                     if available_tags:
                         if t in available_tags:
                             tags[t] = 1
-                    else:
+                    elif t:
                         tags[t] = 1
        
         for t in sorted(tags.keys()):
@@ -186,7 +197,7 @@ class Renderer(TagsRenderer):
 
     @property
     def available(self):
-        return self.tags and not self.data.hide
+        return self.tags
 
 
 class AddForm(base.AddForm):

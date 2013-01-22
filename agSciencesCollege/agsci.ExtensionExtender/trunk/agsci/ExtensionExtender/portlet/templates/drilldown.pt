@@ -1,9 +1,12 @@
 <tal:block condition="view/available"
-           i18n:domain="tags">
+           i18n:domain="tags"
+           define="is_dropdown view/data/dropdown|nothing">
 
 <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
     
-<dl class="portlet tagPortlet">
+<dl tal:attributes="class python: is_dropdown and 'portlet tagPortlet portletDropdown' or 'portlet tagPortlet';
+                    data-select-label view/data/header|nothing;
+                    data-select-type view/drilldown_label|nothing">
 
     <dd class="portletItem"
         tal:repeat="tag view/tags">
