@@ -78,22 +78,24 @@
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
             templateId template/getId;
-            here_url view/here_url|view/tag_root/absolute_url|nothing;
+            here_url view/here_url|nothing;
             agenda_anchors context/agenda_anchors|nothing;
             show_days view/show_days|nothing;
             limit_display python:99999;
+            view_data view/data|nothing;
+            data_count python:view_data and len(view_data) or 0;
             test nocall:view/test">
 
-        <div id="document-toc" class="portlet toc agendaLinks" tal:condition="agenda_anchors">
+        <div id="document-toc" class="portlet toc agendaLinks" tal:condition="python: data_count > 1 and agenda_anchors">
             <h2 class="portletHeader" tal:content="python: show_days and 'Days' or 'Months'" />
             <ul>
-                <li tal:repeat="month view/data|nothing">
+                <li tal:repeat="month view_data">
                     <a tal:attributes="href string:${here_url}#${month/id}" tal:content="month/label" />
                 </li>
             </ul>
         </div>
 
-        <tal:bymonth repeat="month view/data|nothing">
+        <tal:bymonth repeat="month view_data">
             <tal:items define="folderContents python:month.get('items')">
             <a tal:condition="agenda_anchors" tal:attributes="name month/id" />
             <h2 tal:content="month/label" />
