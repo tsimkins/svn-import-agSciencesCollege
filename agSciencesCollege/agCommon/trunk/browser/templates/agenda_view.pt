@@ -88,7 +88,7 @@
 
         <div id="document-toc" class="portlet toc agendaLinks" tal:condition="python: data_count > 1 and agenda_anchors">
             <h2 class="portletHeader" tal:content="python: show_days and 'Days' or 'Months'" />
-            <ul>
+            <ul class="portletItem">
                 <li tal:repeat="month view_data">
                     <a tal:attributes="href string:${here_url}#${month/id}" tal:content="month/label" />
                 </li>

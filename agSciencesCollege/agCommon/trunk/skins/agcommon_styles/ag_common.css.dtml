@@ -2239,6 +2239,7 @@ table.plain th, table.plain td {
 
 body.template-agenda_view #content .agendaLinks ul {
     margin-left: 0.75em;
+    padding: 0;
 }
 
 body.template-agenda_view #content .agendaLinks ul li {
@@ -2246,11 +2247,6 @@ body.template-agenda_view #content .agendaLinks ul li {
     margin: 0.5em 0;
     list-style-type: none;
     list-style-image: none;
-}
-
-body.template-agenda_view #document-toc,
-body.template-agenda_view #portal-column-content.sr #document-toc {
-    width: 24%;
 }
 
 body.template-agenda_view #document-toc h3 {
@@ -2717,6 +2713,11 @@ dl.person-connect img {
 
 [align="justify"] {
     text-align: left;
+}
+
+.portletDropdown select {
+    margin-top: 0.5em;
+    width: 100%;
 }
 
 /* YOUR CSS RULES STOP HERE */

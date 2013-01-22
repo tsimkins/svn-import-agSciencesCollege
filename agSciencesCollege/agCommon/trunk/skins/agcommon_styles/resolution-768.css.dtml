@@ -261,6 +261,11 @@ body.template-document_homepage_view #portal-column-one {
     display: none;
 }
 
+.portletDropdown select {
+    max-width: 100%;
+    width: auto;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
