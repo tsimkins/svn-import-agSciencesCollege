@@ -215,7 +215,9 @@
         <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
                               member context/@@plone_portal_state/member;
                               extension_counties context/extension_counties|nothing;
-                              extension_programs context/extension_programs|nothing;"
+                              extension_programs context/extension_programs|nothing;
+                              extension_topics context/extension_topics|nothing;
+                              extension_subtopics context/extension_subtopics|nothing;"
                               condition="python: (not isAnon) and (extension_counties or extension_programs)">
             <div>
                 <h2>Person Metadata</h2>
@@ -232,6 +234,22 @@
                     <h3>Programs</h3>
                     <ul>
                         <li tal:repeat="x extension_programs"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+
+                <tal:areas condition="extension_topics">
+                    <h3>Topics</h3>
+                    <ul>
+                        <li tal:repeat="x extension_topics"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+                
+                <tal:areas condition="extension_subtopics">
+                    <h3>Subtopics</h3>
+                    <ul>
+                        <li tal:repeat="x extension_subtopics"
                             tal:content="x" />
                     </ul>
                 </tal:areas>
