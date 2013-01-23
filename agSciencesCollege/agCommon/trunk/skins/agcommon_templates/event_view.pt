@@ -50,7 +50,7 @@
                  tal:attributes="class string:eventSummary vcard eventDateLocation ${canceled}">
                 <h2 class="hiddenStructure">Date and Location</h2>
                 <div>
-                    <h3>When<span class="hiddenStructure"> (Date/Time)</span></h3> 
+                    <h3>When<span class="hiddenStructure"> (Date/Time)</span></h3>
 
                     <metal:when define-macro="event_when">
 
@@ -60,7 +60,7 @@
 
                 </div>
                 <div tal:condition="context/location">
-                    <h3>Where</h3> 
+                    <h3>Where</h3>
                     <metal:where define-macro="event_where">
 
                         <a tal:omit-tag="not: map_link"
@@ -72,33 +72,33 @@
                         </a>
 
                     </metal:where>
-                            
+
                 </div>
                 <div>
-                    <h3>Add to calendar</h3> 
+                    <h3>Add to calendar</h3>
                     <metal:add_to_calendar define-macro="event_add_calendar">
                     <a class="img"
                         href="#"
                         tal:attributes="href string:$here_url/vcs_view"
                         title="Download this event in vCal format"
                         i18n:attributes="title title_add_to_vcal;">
-                        <img tal:replace="structure context/icon_export_vcal.png" src="" 
+                        <img tal:replace="structure context/icon_export_vcal.png" src=""
                                 alt="" /><span i18n:translate="label_add_to_vcal">vCal</span></a>
                     <a class="img"
                         href="#"
                         tal:attributes="href string:$here_url/ics_view"
                         title="Download this event in iCal format"
                         i18n:attributes="title title_add_to_ical;">
-                        <img tal:replace="structure context/icon_export_ical.png" 
-                                src="" 
+                        <img tal:replace="structure context/icon_export_ical.png"
+                                src=""
                                 alt="" /><span i18n:translate="label_add_to_ical">iCal</span></a>
                     </metal:add_to_calendar>
-                            
+
                 </div>
             </div>
             <metal:moreinfo define-macro="moreinfo" tal:condition="context/event_url|nothing">
             <div class="eventWebsite">
-                <strong> 
+                <strong>
                 <a class="url"
                     href="event_url"
                     i18n:translate="event_more_information"
@@ -108,7 +108,7 @@
                 </strong>
             </div>
             </metal:moreinfo>
-                
+
 
         </tal:wherewhen>
 
@@ -121,8 +121,8 @@
                 <h2 tal:condition="python:contact_phone or contact_name or contact_email">Contact Information</h2>
 
                 <div tal:condition="python:contact_name or contact_email">
-                    <h3>Contact</h3> 
-                    
+                    <h3>Contact</h3>
+
                     <metal:contact_name define-macro="event_contact_name">
                     <a tal:condition="contact_email"
                        tal:replace="structure python: context.spamProtect(mailaddress=contact_email, mailname=contact_name, cssclass='email fn')"
@@ -131,7 +131,7 @@
                             tal:condition="not: contact_email"
                             tal:content="contact_name" />
                     </metal:contact_name>
-                            
+
                 </div>
                 <div tal:condition="contact_phone">
                     <h3>Phone</h3> <metal:when metal:use-macro="python:context.widget('contactPhone', mode='view')" />
@@ -140,32 +140,50 @@
         </tal:contact>
 
         <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
-                                member context/@@plone_portal_state/member;
-                                extension_counties context/extension_counties|nothing;
-                                extension_programs context/extension_programs|nothing;"                            
-                                condition="python: (not isAnon) and (extension_counties or extension_programs)">
+                              member context/@@plone_portal_state/member;
+                              extension_counties context/extension_counties|nothing;
+                              extension_programs context/extension_programs|nothing;
+                              extension_topics context/extension_topics|nothing;
+                              extension_subtopics context/extension_subtopics|nothing;"
+                              condition="python: (not isAnon) and (extension_counties or extension_programs or extension_topics or extension_subtopics)">
 
                 <h2>Event Metadata</h2>
                 <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the counties and programs associated with this event.</p>
                 <tal:areas condition="extension_counties">
                     <h3>Counties</h3>
                     <ul>
-                        <li tal:repeat="x extension_counties" 
+                        <li tal:repeat="x extension_counties"
                             tal:content="x" />
                     </ul>
                 </tal:areas>
-    
+
                 <tal:areas condition="extension_programs">
                     <h3>Programs</h3>
                     <ul>
-                        <li tal:repeat="x extension_programs" 
+                        <li tal:repeat="x extension_programs"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+
+                <tal:areas condition="extension_topics">
+                    <h3>Topics</h3>
+                    <ul>
+                        <li tal:repeat="x extension_topics"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+                
+                <tal:areas condition="extension_subtopics">
+                    <h3>Subtopics</h3>
+                    <ul>
+                        <li tal:repeat="x extension_subtopics"
                             tal:content="x" />
                     </ul>
                 </tal:areas>
 
         </tal:metadata>
 
-        
+
         <span class="visualClear"><!-- --></span>
 
     </metal:content-core>
