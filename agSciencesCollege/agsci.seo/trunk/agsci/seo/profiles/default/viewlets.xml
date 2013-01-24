@@ -6,8 +6,13 @@
     <order manager="plone.htmlhead.links" skinname="*">
         <viewlet name="agsci.seo.canonical_url" insert-after="*"/>
     </order>
+
     <order manager="plone.htmlhead.links" skinname="*">
         <viewlet name="agsci.seo.robots_meta" insert-after="agsci.seo.canonical_url"/>
+    </order>
+
+    <order manager="plone.belowcontenttitle" skinname="*">
+        <viewlet name="agsci.seo.canonical_redirect" insert-after="*"/>
     </order>
 
 </object>

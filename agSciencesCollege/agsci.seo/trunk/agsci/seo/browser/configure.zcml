@@ -27,4 +27,26 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+    <!-- Render the Canonical Redirect -->
+    <browser:viewlet
+        name="agsci.seo.canonical_redirect"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        for="agsci.seo.interfaces.ICanonicalURLExtender"
+        class=".viewlets.CanonicalURLViewlet"
+        permission="zope2.View"
+        template="templates/canonical_redirect.pt"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Canonical Redirector View -->
+
+    <browser:page
+        for="*"
+        name="canonical_redirect"
+        class=".views.CanonicalRedirectView"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+
 </configure>

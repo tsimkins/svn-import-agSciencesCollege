@@ -35,5 +35,26 @@
         interface=".interfaces.ICanonicalURLExtender"
     />
 
+    <!-- Faculty Staff Directory Types -->
+
+    <five:implements
+        class="Products.FacultyStaffDirectory.Department.Department"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
+
+    <five:implements
+        class="Products.FacultyStaffDirectory.Classification.Classification"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
+
+    <five:implements
+        class="Products.FacultyStaffDirectory.SpecialtiesFolder.SpecialtiesFolder"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
+
+    <five:implements
+        class="Products.FacultyStaffDirectory.Specialty.Specialty"
+        interface=".interfaces.ICanonicalURLExtender"
+    />
 
 </configure>

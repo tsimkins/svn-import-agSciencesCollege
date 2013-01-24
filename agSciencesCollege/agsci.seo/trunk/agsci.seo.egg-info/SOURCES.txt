@@ -1,3 +1,4 @@
+HISTORY.txt
 README.txt
 setup.py
 agsci/__init__.py
@@ -10,5 +11,20 @@ agsci.seo.egg-info/not-zip-safe
 agsci.seo.egg-info/requires.txt
 agsci.seo.egg-info/top_level.txt
 agsci/seo/__init__.py
+agsci/seo/configure.zcml
 agsci/seo/extender.py
 agsci/seo/interfaces.py
+agsci/seo/version.txt
+agsci/seo/browser/__init__.py
+agsci/seo/browser/configure.zcml
+agsci/seo/browser/interfaces.py
+agsci/seo/browser/viewlets.py
+agsci/seo/browser/templates/canonical_url.pt
+agsci/seo/browser/templates/robots_meta.pt
+agsci/seo/profiles/default/browserlayer.xml
+agsci/seo/profiles/default/catalog.xml
+agsci/seo/profiles/default/metadata.xml
+agsci/seo/profiles/default/skins.xml
+agsci/seo/profiles/default/viewlets.xml
+agsci/seo/skins/agsci_seo/getDisallowedPaths.py
+agsci/seo/skins/agsci_seo/robots.txt.dtml
