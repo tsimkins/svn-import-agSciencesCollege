@@ -5,7 +5,7 @@
           i18n:domain="FacultyStaffDirectory">
         <head />
         <body>
-    <metal:fill fill-slot="main"
+    <metal:fill fill-slot="content-core"
                 tal:define="fsdtool python:modules['Products.CMFCore.utils'].getToolByName(here, 'facultystaffdirectory_tool');
                             directory fsdtool/getDirectoryRoot;
                             allClassifications python:[c.getObject() for c in directory.getClassifications()];
@@ -13,16 +13,6 @@
                             classifications python:classificationsInRequest and [directory[c] for c in isinstance(classificationsInRequest, basestring) and [classificationsInRequest] or classificationsInRequest] or allClassifications;
                            ">
         <div class="facultyStaffDirectory">
-
-            <h1 tal:content="context/Title" class="documentFirstHeading">
-              <tal:comment replace="nothing">Title or id</tal:comment>
-            </h1>
-
-            <p class="documentDescription"
-               tal:content="here/Description"
-               tal:condition="python:context.Description() and not classificationsInRequest">
-                Description
-            </p>
 
             <div tal:content="structure here/getText"
                  tal:condition="not:classificationsInRequest" />

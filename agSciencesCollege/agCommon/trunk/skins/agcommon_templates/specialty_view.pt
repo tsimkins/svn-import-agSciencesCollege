@@ -5,18 +5,8 @@
           i18n:domain="FacultyStaffDirectory">
         <head />
         <body>
-    <metal:fill fill-slot="main">
+    <metal:fill fill-slot="content-core">
         <div class="facultyStaffDirectory">
-
-            <h1 tal:content="context/Title" class="documentFirstHeading">
-              <tal:comment replace="nothing">Title or id</tal:comment>
-            </h1>
-
-            <p class="documentDescription"
-               tal:content="here/Description"
-               tal:condition="here/Description">
-                Description
-            </p>
 
             <div tal:content="structure here/getText" />
 

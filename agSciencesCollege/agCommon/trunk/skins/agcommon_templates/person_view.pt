@@ -22,9 +22,11 @@
                                   primary_profile context/primary_profile|nothing;
                                   isAnon context/@@plone_portal_state/anonymous;">
 
-                <div class="portalMessage"
-                     tal:condition="python: not isAnon and primary_profile and layout=='person_redirect_view'">This profile is redirected to
-                     <a tal:attributes="href primary_profile" tal:content="primary_profile" /></div>
+                <dl class="portalMessage"
+                     tal:condition="python: not isAnon and primary_profile and layout=='person_redirect_view'">
+                     <dt>Info</dt>
+                     <dd>This profile is redirected to <a tal:attributes="href primary_profile" tal:content="primary_profile" /></dd>
+                </dl>
 
             </tal:redirect>
 
