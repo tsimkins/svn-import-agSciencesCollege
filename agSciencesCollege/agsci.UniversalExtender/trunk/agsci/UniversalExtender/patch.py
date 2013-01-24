@@ -1,6 +1,5 @@
 from Acquisition import aq_base, aq_inner, aq_chain, aq_acquire
 from Products.CMFCore.utils import getToolByName
-from Products.agCommon.browser.views import AgCommonUtilities
 from zope.component import getMultiAdapter, queryUtility
 from plone.app.portlets.portlets import base
 from Products.CMFCore.interfaces import IFolderish
