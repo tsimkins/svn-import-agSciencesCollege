@@ -26,6 +26,7 @@ def setRoles(context, group):
 def onSubsiteCreation(subsite, event):
 
     # Create editors group and set roles.
+    writeDebug("Creating editors group and assigning permissions.")
     editors_group = addEditorsGroup(subsite)
     setRoles(subsite, editors_group)
 
@@ -34,6 +35,9 @@ def onSubsiteCreation(subsite, event):
 
     # Create 'news' folder
     if 'news' not in subsite.objectIds():
+    
+        writeDebug("Creating News folder")
+    
         subsite.invokeFactory(type_name='Folder', id='news', title='News')
         obj = subsite['news']
         obj.setConstrainTypesMode(1) # restrict what this folder can contain
@@ -47,8 +51,11 @@ def onSubsiteCreation(subsite, event):
 
         obj['sample'].unmarkCreationFlag()
 
-        # create a smartfolder for upcoming events inside the events folder, and set it as the default page
+        # create a collection for upcoming events inside the events folder, and set it as the default page
         if 'latest' not in obj.objectIds():
+
+            writeDebug('Creating latest collection')              
+        
             obj.invokeFactory(type_name='Topic', id='latest', title='Latest News')
             obj.setDefaultPage('latest')
             
@@ -69,6 +76,9 @@ def onSubsiteCreation(subsite, event):
 
     # Create Events folder
     if 'events' not in subsite.objectIds():
+
+        writeDebug("Creating Events folder")
+
         subsite.invokeFactory(type_name='Folder', id='events', title='Events')
         obj = subsite['events']
         obj.setConstrainTypesMode(1) # restrict what this folder can contain
@@ -80,14 +90,14 @@ def onSubsiteCreation(subsite, event):
         obj.invokeFactory(type_name='Event', id='sample', title='Sample Event', 
                           description='This is a sample Event',  start_date='2020-01-01', 
                           end_date='2020-01-01', start_time='13:00', stop_time='14:30', 
-                          event_url='http://agsci.psu.edu', location='Anywhere')
+                          event_url='http://www.psu.edu', location='Anywhere')
 
         obj['sample'].unmarkCreationFlag()
 
-        writeDebug('Creating upcoming collection')      
-        
-        # create a smartfolder for upcoming events inside the events folder, and set it as the default page
+        # create a collection for upcoming events inside the events folder, and set it as the default page
         if 'upcoming' not in obj.objectIds():
+            writeDebug('Creating upcoming collection')      
+
             obj.invokeFactory(type_name='Topic', id='upcoming', title='Upcoming Events')
             obj.setDefaultPage('upcoming')
             
@@ -110,18 +120,20 @@ def onSubsiteCreation(subsite, event):
         
             sort_crit = smart_obj.addCriterion('start','ATSortCriterion')
 
-    writeDebug('Creating photos folder') 
-
     # Create homepage
     if 'front-page' not in subsite.objectIds():
-        subsite_title=str(subsite.title)
-        subsite_description=str(subsite.description)
+        writeDebug('Creating homepage') 
+
+        subsite_title=str(subsite.Title())
+        subsite_description=str(subsite.Description())
+
         subsite.invokeFactory(type_name='Document',id='front-page',title=subsite_title, description=subsite_description, text='<p>Enter some text for your homepage.</p>')
         subsite.setDefaultPage('front-page')
         front_page=subsite['front-page']
         front_page.unmarkCreationFlag()
         
         # Set portlets for homepage
+        writeDebug('Assigning homepage portlets') 
         homepage_rightColumn = getPortletAssignmentMapping(front_page, 'plone.rightcolumn')
 
         if 'news' in subsite.objectIds() and 'latest' in subsite.news.objectIds():
@@ -145,7 +157,10 @@ def onSubsiteCreation(subsite, event):
 
             saveAssignment(homepage_rightColumn, eventsCollectionPortlet)
 
+    writeDebug('Assigning subsite left/right column portlets.') 
+    
     # Block the parent portlets
+
     subsite_LeftColumn = getPortletAssignmentMapping(subsite, 'plone.leftcolumn')
     subsite_LeftColumnManager = getLocalPortletAssignmentManager(subsite, 'plone.leftcolumn')
     subsite_LeftColumnManager.setBlacklistStatus(CONTEXT_CATEGORY, True)
