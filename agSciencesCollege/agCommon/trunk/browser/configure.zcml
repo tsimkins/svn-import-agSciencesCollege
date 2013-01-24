@@ -531,7 +531,7 @@
     <browser:page
         for="*"
         name="newsletter_view"
-        class=".views.NewsletterView"
+        class=".views.newsletter.NewsletterView"
         template="templates/newsletter_view.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -541,7 +541,7 @@
     <browser:page
         for="*"
         name="newsletter_email"
-        class=".views.NewsletterEmail"
+        class=".views.newsletter.NewsletterEmail"
         template="templates/newsletter_view.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -551,7 +551,7 @@
     <browser:page
         for="*"
         name="newsletter_print"
-        class=".views.NewsletterPrint"
+        class=".views.newsletter.NewsletterPrint"
         template="templates/newsletter_print.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -561,7 +561,7 @@
     <browser:page
         for="*"
         name="newsletter_modify"
-        class=".views.NewsletterModify"
+        class=".views.newsletter.NewsletterModify"
         template="templates/newsletter_view.pt"
         layer=".interfaces.IThemeSpecific"
         permission="cmf.ModifyPortalContent"
@@ -601,10 +601,10 @@
     <browser:page
         for="*"
         name="agcommon_utilities"
-        class=".views.AgCommonUtilities"
+        class=".utilities.AgCommonUtilities"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
-        allowed_interface=".views.IAgCommonUtilities"
+        allowed_interface=".utilities.IAgCommonUtilities"
     />
 
     <!-- Tweaks to sharing tab -->    
