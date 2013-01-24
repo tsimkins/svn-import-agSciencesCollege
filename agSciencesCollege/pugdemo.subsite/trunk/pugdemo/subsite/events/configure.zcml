@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="pugdemo.subsite">
+
+    <!-- Register an event handler for when a Subsite is created -->
+    <subscriber for="pugdemo.subsite.content.interfaces.ISubsite
+        Products.Archetypes.interfaces.IObjectInitializedEvent"
+        handler="pugdemo.subsite.events.subsite.onSubsiteCreation" 
+        />
+
+</configure>
+

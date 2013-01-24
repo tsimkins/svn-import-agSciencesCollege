@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+
+    <permission name="pugdemo.subsite: Add Subsite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+
+    <permission name="pugdemo.subsite: Edit Subsite" acquire="False">
+      <role name="Manager"/>
+    </permission>
+    
+  </permissions>
+</rolemap>

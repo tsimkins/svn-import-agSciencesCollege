@@ -1,0 +1,29 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="pugdemo.subsite">
+
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <!-- include our sub-packages that contain their own configure.zcml files -->
+    <include package=".content" />
+    <include package=".browser" />
+    <include package=".events" />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="PUGDemo Subsite"
+        directory="profiles/default"
+        description="Demos a subsite type with auto-created items"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+
+    <!-- Permissions -->
+    <permission
+        id="pugdemo.subsite.EditSubsite"
+        title="pugdemo.subsite: Edit Subsite"
+        />
+
+</configure>
