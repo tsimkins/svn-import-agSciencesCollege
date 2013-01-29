@@ -312,7 +312,7 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                                                 currentFolderOnly = False,
                                                 includeTop = True,
                                                 topLevel = 0,
-                                                bottomLevel = 3)
+                                                bottomLevel = 2)
 
         subsite_LeftColumn['navigation'] = left_navigation 
 
@@ -870,7 +870,7 @@ def onSectionCreation(section, event):
                                             currentFolderOnly = False,
                                             includeTop = True,
                                             topLevel = 0,
-                                            bottomLevel = 3)
+                                            bottomLevel = 2)
 
     section_LeftColumn['navigation'] = left_navigation 
     
