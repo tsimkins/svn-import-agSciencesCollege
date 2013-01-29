@@ -11,7 +11,16 @@
 
   <body>
 
-  <metal:main fill-slot="main">
+  <metal:title fill-slot="content-title">                              
+      <h1 class="fn n documentFirstHeading">
+        <span class="given-name" tal:content="context/getFirstName"><tal:comment replace="nothing">[First Name]</tal:comment></span>
+        <span class="additional-name" tal:content="context/getMiddleName | nothing"><tal:comment replace="nothing">[Middle Name]</tal:comment></span>
+        <span class="family-name" tal:content="context/getLastName"><tal:comment replace="nothing">[Last Name]</tal:comment></span>
+        <span class="honorific-suffix" tal:content="context/getSuffix"><tal:comment replace="nothing">[ suffix i.e. Dr]</tal:comment></span>
+      </h1>
+  </metal:title>
+
+  <metal:main fill-slot="content-core">
 
         <div id="hcard" class="vcard facultyStaffDirectory personView"
              tal:define="isExpired python:context.contentExpired();
@@ -59,15 +68,6 @@
             <tal:info condition="showExpired">
 
             <div class="caption">
-
-                <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-                <h1 class="fn n documentFirstHeading">
-                    <span class="given-name" tal:content="context/getFirstName" />
-                    <span class="additional-name" tal:content="context/getMiddleName|nothing" />
-                    <span class="family-name" tal:content="context/getLastName" /><span tal:condition="context/getSuffix">,</span>
-                    <span class="honorific-suffix" tal:content="context/getSuffix" />
-                </h1>
 
                 <ul tal:condition="context/getJobTitles" class="title jobTitle">
                     <li tal:repeat="jobTitle context/getJobTitles"
@@ -160,7 +160,10 @@
                 </ol>
             </div>
 
-            <div tal:condition="here/getBiography" class="biography" tal:content="structure context/getBiography" />
+            <tal:bio define="bio context/getBiography|nothing"
+                     condition="bio">
+                <div class="biography" tal:content="structure bio" />
+            </tal:bio>
 
             <div class="specialties"
                  tal:define="specialtyTuples context/getSpecialties"
@@ -172,7 +175,7 @@
                                                personSpecialtyData python:eachSpecialtyTuple[1].getContentObject();">
                             <dt>
                                 <a tal:attributes="href specialtyBrain/getURL">
-                                  <span tal:content="specialtyBrain/Title" />:
+                                  <span tal:content="specialtyBrain/Title" />
                                 </a>
                             </dt>
                             <dd tal:define="researchTopic personSpecialtyData/getResearchTopic">
@@ -258,8 +261,6 @@
 
             </div>
         </tal:metadata>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
 
   </metal:main>
 
