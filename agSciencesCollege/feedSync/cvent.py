@@ -94,8 +94,9 @@ def importEvents(context, emailUsers=['trs22'],
     
     for (eventLink, eventId, eventTitle, eventDate, eventURL) in parseSoup(soup, summaryURL):
 
+        eventTitle = eventTitle.decode("utf-8")
+
         if not cventIDs.count(eventId):
-            eventTitle = eventTitle.decode("utf-8")
             newEvents.append("<li><a href=\"%s/%s\">%s</a></li>" % (conferenceURL, eventId, eventTitle))
     
             context.invokeFactory(type_name="Event",
