@@ -1,6 +1,7 @@
 from Products.Archetypes.public import ImageField
 from Products.Archetypes.public import StringField
 from Products.Archetypes.public import StringWidget
+from Products.Archetypes.public import BooleanField, BooleanWidget
 from archetypes.schemaextender.field import ExtensionField
 from zope.component import adapts
 from zope.component import getUtility
@@ -30,6 +31,8 @@ try:
     HAS_BLOB = True
 except ImportError:
     HAS_BLOB = False
+
+class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 
 class LeadimageCaptionField(ExtensionField, StringField):
     """ A trivial string field """
@@ -67,6 +70,18 @@ captionField = LeadimageCaptionField(IMAGE_CAPTION_FIELD_NAME,
                 ),
     )
 
+show_leadimage = _ExtensionBooleanField(
+            "show_leadimage_context",
+            required=False,
+            default=True,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Show Lead Image on this item",
+                description=u"This will show the lead image on the object display.",
+            ),
+        )
+
+
 class LeadImageExtender(object):
     adapts(ILeadImageable)
     implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
@@ -98,6 +113,8 @@ class LeadImageExtender(object):
         ),
 
         captionField,
+
+        show_leadimage
 
         ]
 
@@ -162,6 +179,8 @@ if HAS_BLOB:
             ),
 
             captionField,
+            
+            show_leadimage
 
             ]
 
