@@ -16,6 +16,7 @@ from Products.agCommon.browser.interfaces import IContributors
 from Products.CMFCore.interfaces import ISiteRoot
 from agsci.subsite.content.interfaces import ITagRoot
 from Products.Archetypes.utils import DisplayList
+from collective.contentleadimage.extender import show_leadimage
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
@@ -307,6 +308,8 @@ class NewsItemExtender(object):
             ),
             validators = ('isURL'),
         ),
+        
+        show_leadimage
 
     ]
 
@@ -374,7 +377,7 @@ class FolderTopicExtender(object):
             default=False,
             schemata="settings",
             widget=BooleanWidget(
-                label=u"Show lead image",
+                label=u"Show Lead Image in folder listing",
                 description=u"This will show the lead image for each item in the folder listing.",
             ),
         ),
