@@ -2716,7 +2716,7 @@ dl.person-connect img {
     clear: none !important;
 }
 
-[align="justify"] {
+[align="justify"], .documentText [align="center"] {
     text-align: left;
 }
 
