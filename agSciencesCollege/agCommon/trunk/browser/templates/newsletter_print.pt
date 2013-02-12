@@ -255,5 +255,21 @@
 
 </metal:analytics>
 
+<metal:extension-footer fill-slot="extension-footer">
+
+<p class="discreet"><a href="http://extension.psu.edu"><strong>extension.psu.edu</strong></p>
+
+<p class="discreet">An Outreach program of the College of Agricultural Sciences</p>
+
+<p class="discreet">Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</p>
+
+<p class="discreet">Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.</p>
+
+<p class="discreet">This publication is available in alternative media on request. </p>
+
+<p class="discreet">Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce.</p>
+
+</metal:extension-footer>
+
 </body>
 </html>

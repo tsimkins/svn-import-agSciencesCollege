@@ -334,26 +334,31 @@ div.about hr {
 </metal:title>
 
 <metal:title fill-slot="content-title"
-    tal:define="site_title context/site_title|context/org_title|nothing;">
+    tal:define="site_title context/site_title|context/org_title|nothing;
+                hide_header_graphic context/hide_header_graphic|nothing">
     
-	<div tal:condition="is_extension"
-        class="graphic-header-extension">
-        <a href="http://extension.psu.edu">
-        <img tal:attributes="src string:${portal_url}/extension-newsletter-header.png" 
-                             alt="Penn State Extension" width="600" 
-                             border="0"
-                             height="20" /></a>
-    </div>
+    <tal:header-graphic condition="not: hide_header_graphic">
 
+    	<div tal:condition="is_extension"
+            class="graphic-header-extension">
+            <a href="http://extension.psu.edu">
+            <img tal:attributes="src string:${portal_url}/extension-newsletter-header.png" 
+                                 alt="Penn State Extension" width="600" 
+                                 border="0"
+                                 height="20" /></a>
+        </div>
+    
+    
+    	<div tal:condition="not: is_extension"
+            class="graphic-header-agsci">
+            <a href="http://agsci.psu.edu">
+            <img tal:attributes="src string:${portal_url}/college-mark-long.png" 
+                                 alt="Penn State College of Agricultural Sciences" width="600" 
+                                 border="0"
+                                 height="55" /></a>
+        </div>
 
-	<div tal:condition="not: is_extension"
-        class="graphic-header-agsci">
-        <a href="http://agsci.psu.edu">
-        <img tal:attributes="src string:${portal_url}/college-mark-long.png" 
-                             alt="Penn State College of Agricultural Sciences" width="600" 
-                             border="0"
-                             height="55" /></a>
-    </div>
+    </tal:header-graphic>
     
     <h1 class="documentFirstHeading" 
         tal:content="view/newsletter_title" />
@@ -568,6 +573,11 @@ div.about hr {
         <div tal:replace="structure text">The body</div>
     </div>
     </tal:about>
+
+    <tal:extension condition="is_extension">
+        <metal:extension-footer define-slot="extension-footer">
+        </metal:extension-footer>
+    </tal:extension>
 </metal:footer>
 
 <metal:spotlight tal:define="batch view/getSpotlightItems" fill-slot="content-spotlight">
