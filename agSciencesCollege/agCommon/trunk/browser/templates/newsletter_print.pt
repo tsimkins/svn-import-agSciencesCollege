@@ -29,7 +29,7 @@
         }
 
         .discreet {
-            color: #76797C;
+            color: #4F4F4F;
             font-size: 85%;
             font-weight: normal;
         }
@@ -64,10 +64,28 @@
         .portletFooter {
             display: none;
         }
+        
+        .event_add_calendar, .hiddenStructure {
+            display: none;
+        }
+        
+        .event_where h3, .event_when h3, .event_phone h3, .event_contact h3 {
+            font-weight: bold;
+            display: inline;
+        }
+        
+        .event_where h3:after, .event_when h3:after, .event_phone h3:after, .event_contact h3:after {
+            content: ": ";
+        }
+
+        .eventDateLocation {
+            margin: 0.25em 0 0.5em 0;
+        }
 
     </style>
 
     <style media="print,screen">
+
         h1.headline {
             font-size: 16pt;
         }
@@ -86,8 +104,10 @@
         
         .item {
             clear: both;
-            margin-top: 24pt;
-            margin-bottom: 18pt;
+            margin-top: 10pt;
+            margin-bottom: 10pt;
+            padding-bottom: 10pt;
+            border-bottom: 1px solid #9F9F9F;
         }
 
         #portal-column-content a {

@@ -76,12 +76,19 @@ h2 {
     font-size: 9.5pt;
 }
 
-#portal-column-two .portletItem .date {
+#portal-column-two .portletItem .date,
+#portal-column-two .portletItem .location {
     display: block;
     font-size: 8.5pt;
     padding-left: 0;
     color: #333333;
     margin-bottom: 6pt;
+}
+
+#portal-column-two .portletfeedmixer .portletItem .date,
+#portal-column-two .portletfeedmixer .portletItem .location {
+    margin-bottom: 0;
+    margin-top: 1pt;
 }
 
 .portletFooter {

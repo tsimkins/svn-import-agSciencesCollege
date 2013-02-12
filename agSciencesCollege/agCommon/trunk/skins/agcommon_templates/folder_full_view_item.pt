@@ -21,7 +21,7 @@
                      site_properties context/portal_properties/site_properties;
                      item_type context/portal_type;
                      item_layout here/getLayout;
-                     override python: {'Link': 'link_view', 'News Item' : 'newsitem_view'};
+                     override python: {'Link': 'link_view', 'News Item' : 'newsitem_view', 'Event' : 'event_view'};
                      item_macro python:path('here/%s/macros/content-core | nothing' % override.get(item_type, item_layout));
                      use_view_action site_properties/typesUseViewActionInListings|python:();
                      item_url context/absolute_url;
