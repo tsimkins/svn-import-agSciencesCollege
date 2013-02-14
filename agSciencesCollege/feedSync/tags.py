@@ -2,9 +2,8 @@ import urllib2
 import re
     
 data = {
-    'extension': ['Cooperative_Extension', 'Penn_State_Cooperative_Extension', 'Extension', 'Penn_State_Extension'],
-    'aec' : ['Earth_and_Environment', 'Chesapeake_Bay', 'energy', 'water', 'water_quality', 'environmental_engineering',
-             'environment', 'environmental_stewardship', 'forestry']
+    'extension': ['cooperative-extension', 'penn-state-cooperative-extension', 'extension', 'penn-state-extension'],
+    'aec' : ['earth-and-environment', 'chesapeake-bay', 'energy', 'water', 'water-quality', 'environmental-engineering', 'environment', 'environmental-stewardship', 'forestry']
 }
 
 
@@ -20,12 +19,12 @@ def setTags(context, tag):
 
     print "Urls to search: %s" % ",".join(urls)
     
-    linkRegex = re.compile("<link>http://live.psu.edu/story/(\d+).*?</link>", re.I|re.M)
+    linkRegex = re.compile("<link>http://news.psu.edu/story/(\d+)/.*?</link>", re.I|re.M)
     
     found_articles = False
     
     for u in urls:
-        rss = urllib2.urlopen('http://live.psu.edu/tagrss/%s' % u).read()
+        rss = urllib2.urlopen('http://news.psu.edu/rss/tag/%s' % u).read()
         for m in re.finditer(linkRegex, rss):
             link = m.group(1)
             if link in context.objectIds():

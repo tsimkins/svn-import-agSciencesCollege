@@ -5,10 +5,15 @@ from zope.app.component.hooks import getSite
 from AccessControl.SecurityManagement import newSecurityManager
 import urllib2
 from urllib2 import HTTPError
+from urlparse import urljoin
 from BeautifulSoup import BeautifulSoup 
-from collective.contentleadimage.config import IMAGE_FIELD_NAME
+import time
+from calendar import timegm
+import re
 
-url = 'http://live.psu.edu/tagrss/Agricultural_Sciences'
+url = 'http://news.psu.edu/rss/college/agricultural-sciences'
+IMAGE_FIELD_NAME = 'image'
+IMAGE_CAPTION_FIELD_NAME = 'imageCaption'
 
 def sync(myContext):
     # Be an admin
@@ -25,26 +30,20 @@ def sync(myContext):
     theReturn = []
 
     for item in feed['entries']:
-    
         title = item.get('title', None)
-        summary = item.get('summary_detail', {}).get('value')
+        description = item.get('summary_detail', {}).get('value')
         link = item.get('links', [])[0].get('href', None).split('#')[0]
-        dateArray = list(item.get('updated_parsed')[0:7])
-        dateArray[3] = int(item.get('updated').split(' ')[4].split(':')[0])
-    
-        date = datetime(*dateArray)
-        dateStamp = str(date)
+        time_struct = item.get('published_parsed')
+        local_time = time.localtime(timegm(time_struct))
+        time.strftime('%Y-%m-%d %H:%M', local_time)
+        dateStamp = time.strftime('%Y-%m-%d %H:%M', local_time)
         id = str(link.split("/")[4]).split('#')[0]
-    
 
         if not hasattr(myContext, id):
-            myContext.invokeFactory(id=id,type_name="Link",title=title, remote_url=link, description=summary)
+            myContext.invokeFactory(id=id,type_name="News Item",title=title, article_link=link, description=description)
             theReturn.append("Created %s" % id)
             
             theArticle = getattr(myContext, id)
-            
-            if wftool.getInfoFor(theArticle, 'review_state') != 'Published':
-                wftool.doActionFor(theArticle, 'publish')
             
             
             # http://plone.org/documentation/how-to/set-creation-date
@@ -54,12 +53,18 @@ def sync(myContext):
                         
             theArticle.setExcludeFromNav(True)
 
-            # Grab article image and set it as contentleadimage            
-            theImage = getImage(link)
+            # Grab article image and set it as contentleadimage
+            html = getHTML(link)
+            setImage(theArticle, html=html)
 
-            if theImage:
-                theArticle.getField(IMAGE_FIELD_NAME).set(theArticle, theImage)
-            
+            # Set the body text
+            body_text = getBodyText(html)
+            theArticle.setText(body_text)
+
+            # Publish
+            if wftool.getInfoFor(theArticle, 'review_state') != 'Published':
+                wftool.doActionFor(theArticle, 'publish')
+
             theArticle.indexObject()
             
         else:
@@ -67,30 +72,86 @@ def sync(myContext):
 
     return theReturn
 
-def getImage(url):
-
+def getBodyText(html):
+    mySoup = BeautifulSoup(html)
     try:
-        mySoup = BeautifulSoup(urllib2.urlopen(url))
+        body = mySoup.find("div", {'class' : re.compile('field-name-body')})
+        item = body.find("div", {'class' : re.compile('field-item($|\s+)')})
+    except:
+        return ""
+
+    return item.renderContents()
+
+def htmlToPlainText(html):
+    site = getSite()
+    portal_transforms = getToolByName(site, 'portal_transforms')
+    return portal_transforms.convert('html_to_text', html).getData().replace("\n", '').strip()
+
+def getHTML(url):
+    try:
+        return urllib2.urlopen(url).read()
     except HTTPError:
-        print "404 for %s" % url
+        print "404 for %s" % url 
         return None
-        
-    myImg = mySoup.findAll(id="article_image")
+
+
+def getImageAndCaption(html=None, url=None):
+
+    if not (html or url):
+        return (None, None)
+    elif not html:
+        html = getHTML(url)
+
+    mySoup = BeautifulSoup(html)
+
+    img_url = ""
+    img_caption = ""
+    imgSrc = ""
     
-    if myImg:
+    for div in mySoup.findAll("div", {'class' : 'image'}):
+        for img in div.findAll("img"):
+            img_url = img.get('src')
+            if img_url:
+                parent = div.parent
+                for caption in parent.findAll("div", {'class' : 'caption'}):
+                    img_caption = htmlToPlainText(caption.prettify())
+                    if img_caption:
+                        break
+                if not img_caption:
+                    for span in div.findAll("span", {'property' : 'dc:title'}):
+                        img_caption = span.get('content')
+                        if img_caption:
+                            break
+        if img_url:
+            break
+
+    if not img_url:
+        img_caption = ""
+        for ul in mySoup.findAll("ul", {'class' : 'slides'}):
+            for li in ul.findAll('li'):
+                try:
+                    img_url = li.find("div", {'class' : re.compile('field-name-field-image')}).find("img").get('src')
+                    img_caption = htmlToPlainText(li.find("div", {'class' : re.compile('field-name-field-flickr-description')}).prettify())
+                except:
+                    pass
+                if img_url:
+                    break
+    if img_url:
+        imgSrc = urljoin(url, img_url)
+
+    if imgSrc:
+        imgData = downloadImage(imgSrc)        
+        return (imgData, img_caption)
+    else:
+        return (None, None)
+
+def hasImage(context):
+    image_field = context.getField(IMAGE_FIELD_NAME).get(context)
     
-        if myImg[0]['src'].startswith('http'):
-            imgSrc = myImg[0]['src']
-        else:
-            imgSrc = "http://live.psu.edu%s"%  myImg[0]['src']
-        
-        try:
-            imgFile = urllib2.urlopen(imgSrc)
-        except HTTPError:
-            return None
-        else:
-            imgData = imgFile.read()            
-            return imgData
+    if image_field and image_field.size:
+        return True
+    else:
+        return False
 
 def downloadImage(url):
     try:
@@ -101,18 +162,35 @@ def downloadImage(url):
         imgData = imgFile.read()            
         return imgData
 
-def setImage(theArticle, image_url=None):
+def setImage(theArticle, image_url=None, html=None):
+    # Given an article, and either an image URL or a set of HTML, sets the image
+    # and caption for the article.
+
+    theImage = theImageCaption = ""
+
     if image_url:
-        url = image_url
-        # Grab article image and set it as contentleadimage            
-        theImage = downloadImage(url)
+        theImage = downloadImage(image_url)
+        theImageCaption = ""
     else:
-        url = theArticle.getRemoteUrl()
-        # Grab article image and set it as contentleadimage            
-        theImage = getImage(url)
+        if not html:
+            if hasattr(theArticle, 'getRemoteUrl'):
+                url = theArticle.getRemoteUrl()
+            elif hasattr(theArticle, 'article_link'):
+                url = theArticle.article_link
+            else:
+                url = None
+
+            if url:
+                html = getHTML(url)            
+            else:
+                return None
+
+        # Grab article image and caption
+        (theImage, theImageCaption) = getImageAndCaption(html=html)
 
     if theImage:
         theArticle.getField(IMAGE_FIELD_NAME).set(theArticle, theImage)
+        theArticle.getField(IMAGE_CAPTION_FIELD_NAME).set(theArticle, theImageCaption)
         theArticle.reindexObject()
         print "setImage for %s" % theArticle.id
     else:
@@ -121,6 +199,6 @@ def setImage(theArticle, image_url=None):
 
         
 def retroSetImages(context):
-    for theArticle in context.listFolderContents(contentFilter={"portal_type" : "Link"}):
+    for theArticle in context.listFolderContents(contentFilter={"portal_type" : "News Item"}):
     
         setImage(theArticle)
