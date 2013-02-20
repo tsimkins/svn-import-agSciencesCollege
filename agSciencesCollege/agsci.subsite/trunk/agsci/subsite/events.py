@@ -88,9 +88,9 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
         subsite.setExcludeFromNav(True)
         subsite.reindexObject()
     
-        # Remove top menu
-        writeDebug('Removing top menu')
-        subsite.manage_addProperty('top-menu', 'none', 'string')
+        # Add a enable_subsite_nav property, set to False
+        writeDebug('Adding False enable_subsite_nav')
+        subsite.manage_addProperty('enable_subsite_nav', 'False', 'boolean')
 
         # Set subsite title
         writeDebug('Setting subsite title')
@@ -103,6 +103,8 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
         subsite.invokeFactory(type_name='Folder', id='background-images', title='Background Images')
         background_images = subsite['background-images']
         background_images.setExcludeFromNav(True)
+        background_images.__ac_local_roles_block__ = True
+        background_images.reindexObjectSecurity()
         background_images.reindexObject()
         background_images.unmarkCreationFlag()
 
@@ -832,10 +834,8 @@ def onSectionCreation(section, event):
 
     writeDebug('Beginning post create script.')
 
-    # Remove from left nav
+    # Set Folder Listing
     section.setLayout('folder_listing')
-    section.setExcludeFromNav(True)
-    section.reindexObject()
     
     # Get URL tool
     urltool = getToolByName(section, 'portal_url')
