@@ -844,6 +844,10 @@ def onSectionCreation(section, event):
     # Register some portlets for this section's context.
     # Copied mostly from plone.portlets' README doctests.
 
+    # Add a enable_subsite_nav property, set to False
+    writeDebug('Adding False enable_subsite_nav')
+    section.manage_addProperty('enable_subsite_nav', 'False', 'boolean')
+
     section_LeftColumn = getPortletAssignmentMapping(section, 'plone.leftcolumn')
     section_RightColumn = getPortletAssignmentMapping(section, 'plone.rightcolumn')
     
