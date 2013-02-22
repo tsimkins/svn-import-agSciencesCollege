@@ -251,9 +251,10 @@ class NewsletterView(AgCommonUtilities):
 
             # In lieu of doing default page logic, trim known default pages
 
-            for (default_page, replace_with) in [('/news/latest', '/news'), ('/events/upcoming', 'events'), ('/front-page', '')]:
+            for (default_page, replace_with) in [('/news/latest', '/news'), ('/events/upcoming', '/events'), ('/front-page', '')]:
                 if href.endswith(default_page):
                     href = "%s%s" % (href[0:-1*len(default_page)], replace_with)
+                    a['href'] = href
 
             contents = a.renderContents().strip()
 

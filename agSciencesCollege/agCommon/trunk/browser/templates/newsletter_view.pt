@@ -317,6 +317,19 @@ div.about hr {
     text-align: left;
 }
 
+.extension-footer {
+    font-size: 10pt;
+    padding-top: 6pt;
+}
+
+div.extension-footer hr {
+    margin: 3pt 0 8pt 0;
+}
+
+.extension-footer p {
+    margin: 0 0 3pt;
+}
+
 </style>
 
 <metal:local_style_slot define-slot="local_style_slot">
@@ -582,8 +595,20 @@ div.about hr {
     </tal:about>
 
     <tal:extension condition="is_extension">
-        <metal:extension-footer define-slot="extension-footer">
-        </metal:extension-footer>
+    <div class="extension-footer">
+        <hr />
+        <p class="discreet"><a href="http://extension.psu.edu"><strong>extension.psu.edu</strong></p>
+        
+        <p class="discreet">An Outreach program of the College of Agricultural Sciences</p>
+        
+        <p class="discreet">Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</p>
+        
+        <p class="discreet">Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.</p>
+        
+        <p class="discreet">This publication is available in alternative media on request. </p>
+        
+        <p class="discreet">Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce.</p>
+    </div>
     </tal:extension>
 </metal:footer>
 

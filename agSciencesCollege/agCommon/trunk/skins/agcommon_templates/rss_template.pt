@@ -100,6 +100,14 @@
     	                     tal:content="obj_item/location">The Location</agsci:eventlocation>
     	<agsci:eventstart tal:content="python: obj_item['start']().HTML4()"></agsci:eventstart>
     	<agsci:eventend tal:content="python: obj_item['end']().HTML4()"></agsci:eventend>
+    	<tal:contactinfo 
+    	   define="contact_email obj_item/contact_email|nothing;
+                   contact_name python:obj_item.contact_name() or None;
+                   contact_phone obj_item/contact_phone|nothing;">
+        	<agsci:eventcontactname tal:condition="contact_name" tal:content="contact_name"></agsci:eventcontactname>
+        	<agsci:eventcontactemail tal:condition="contact_email" tal:content="contact_email"></agsci:eventcontactemail>
+        	<agsci:eventcontactphone tal:condition="contact_phone" tal:content="contact_phone"></agsci:eventcontactphone>
+    	</tal:contactinfo>
     </tal:isEvent>
     <tal:notEvent tal:condition="python:obj_item_type != 'Event' and obj_item_type != 'TalkEvent'">
         <tal:effectivedate condition="obj_item/effective_date|nothing">
