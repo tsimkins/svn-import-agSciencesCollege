@@ -139,6 +139,17 @@ class Renderer(base.Renderer):
             return '_feedmixer'
 
     @property
+    def is_printed_newsletter(self):
+        return 'newsletter_print' in self.request.getURL()
+
+    def contact_info(self, entry):
+        info = []
+        for k in ['agsci_eventcontactname', 'agsci_eventcontactemail', 'agsci_eventcontactphone']:
+            if entry.get(k):
+                info.append(entry.get(k))
+        return ", ".join(info)
+
+    @property
     def auto_more_url(self):
         context_path = self.data.assignment_context_path
         if context_path is not None:

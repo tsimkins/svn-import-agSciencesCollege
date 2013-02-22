@@ -2,6 +2,7 @@
 <h2 class="portletHeader" tal:condition="view/show_header|nothing" tal:content="structure view/title" />
 
 <dl tal:attributes="class string:portlet portletfeedmixer portletfeedmixerimage${view/image_position} portletfeedmixerimage${view/image_size};"
+    tal:define="is_printed_newsletter view/is_printed_newsletter|nothing;"
     i18n:domain="collective.portlet.feedmixer">
 
     <tal:entry
@@ -16,10 +17,13 @@
                         eventstart entry/agsci_eventstart|nothing;
                         eventend entry/agsci_eventend|nothing;
                         eventlocation entry/agsci_eventlocation|nothing;
+                        contact_info python:view.contact_info(entry);
+                        event_info python:(is_printed_newsletter and (eventlocation or contact_info)) or False;
                         className string:portletItem;
                         className python:isFirst and className + ' first' or className;
                         className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
+                        className python:event_info and className + '  printed-event' or className;
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
                         imageURL python:hasImage and entry.enclosures[0].href + view.image_suffix or None;
                         imageCaption python:hasImage and (hasattr(entry.enclosures[0], 'title') and entry.enclosures[0].title) or entry.title"
@@ -41,7 +45,7 @@
 	                tal:condition="show_date">
 	                
 	                <tal:event tal:condition="eventstart">
-	                   <strong tal:condition="show_event_info">When:</strong> 
+	                   <strong tal:condition="python: is_printed_newsletter or show_event_info">When:</strong> 
 	                   <span tal:replace="python:toLocalizedTime(eventstart, end_time=eventend)" />
                     </tal:event>
 
@@ -56,13 +60,19 @@
                     <div tal:condition="eventlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
                 </tal:eventinfo>
 
+                <tal:newsletter condition="is_printed_newsletter">
+                    <div tal:condition="eventlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+                    <div tal:condition="contact_info" class="portletItemDetails">
+                        <strong>Contact:</strong>
+                        <span tal:replace="contact_info" />
+                    </div>
+                </tal:newsletter>
+
                 <div class="portletItemDetails summary"
                     tal:condition="show_summary"
                     tal:content="entry/summary_detail/value">
                     [Feed Summary]
                 </div>
-                
-
                 
         </dd>
     </tal:entry>
