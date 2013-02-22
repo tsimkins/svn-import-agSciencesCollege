@@ -5,7 +5,7 @@ from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
-from Acquisition import aq_acquire, aq_inner, aq_base
+from Acquisition import aq_acquire, aq_inner, aq_base, aq_chain
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
@@ -20,7 +20,8 @@ import re
 from zope.contentprovider.interfaces import IContentProvider
 from zope.interface import Interface
 from plone.portlets.interfaces import IPortletManager
-
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from agsci.subsite.content.interfaces import ISection, ISubsite
 
 try:
     from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
@@ -340,6 +341,51 @@ class FBMetadataViewlet(CustomTitleViewlet):
     
     index = ViewPageTemplateFile('templates/fbmetadata.pt')
 
+    def getImageInfo(self, context=None):
+        image_url = image_mime_type = ''
+        
+        if not context:
+            context = self.context
+        
+        try:
+            leadImage_field = context.getField('leadImage', None)
+            image_field = context.getField('image', None)
+        except AttributeError:
+            leadImage_field = None
+            image_field = None
+            
+        if leadImage_field and leadImage_field.get_size(context) > 0:
+            image_url = "%s/leadImage_mini" % context.absolute_url()
+            image_mime_type = leadImage_field.getContentType(context)
+        elif image_field and image_field.get_size(context) > 0:
+
+            sizes = {}
+
+            if hasattr(image_field, 'sizes') and image_field.sizes:
+                sizes = image_field.sizes
+
+            if 'normal' in sizes.keys():
+                image_url = "%s/image_normal" % context.absolute_url()
+            else:
+                image_url = "%s/image_mini" % context.absolute_url()
+
+            image_mime_type = image_field.getContentType(context)
+
+        return (image_url, image_mime_type)
+        
+
+    def isDefaultPage(self):
+        # Determine if we're the default page
+        
+        parent = self.context.getParentNode()
+        
+        try:
+            parent_default_page_id = parent.getDefaultPage()
+        except AttributeError:
+            parent_default_page_id = ''
+
+        return (self.context.id == parent_default_page_id)
+        
     def update(self):
     
         super(FBMetadataViewlet, self).update()
@@ -358,53 +404,39 @@ class FBMetadataViewlet(CustomTitleViewlet):
             self.fb_title = page_title
             self.fb_site_name = "%s (%s)" % (portal_title, org_title)
                 
-        #self.fb_title = escape(self.fb_title)
-        #self.fb_site_name = escape(self.fb_site_name)
-        
-        # Leadimage or news image
-
         self.showFBMetadata = True
-        
+
         self.fb_url = self.context.absolute_url()
         
         try:
             # Remove this page's id from the URL if it's a default page.
-            if self.context.id == self.context.default_page and  self.context.absolute_url().endswith("/%s" % self.context.id) :
+            if self.isDefaultPage() and self.context.absolute_url().endswith("/%s" % self.context.id) :
                 self.fb_url = self.fb_url[0:-1*(len(self.context.id)+1)]
         except:
             pass
+        
+        # Assign image URL and mime type
+        image_url = image_mime_type = ''
+        
+        # Look up through the acquisition chain until we hit a Plone site, 
+        # Section, or Subsite
 
-        try:
-            leadImage_field = self.context.getField('leadImage', None)
-            image_field = self.context.getField('image', None)
-        except AttributeError:
-            leadImage_field = None
-            image_field = None
-            self.showFBMetadata = False
+        for i in aq_chain(self.context):
+            if IPloneSiteRoot.providedBy(i):
+                break
             
-        if leadImage_field and leadImage_field.get_size(self.context) > 0:
-            self.fb_image = "%s/leadImage_mini" % self.context.absolute_url()
-            self.link_metadata_image = self.fb_image
-            self.link_mime_type = leadImage_field.getContentType(self.context)
-        elif image_field and image_field.get_size(self.context) > 0:
+            (image_url, image_mime_type) = self.getImageInfo(i)
+            
+            if image_url or ISection.providedBy(i) or ISubsite.providedBy(i):
+                break
 
-            sizes = {}
+        # Fallback
+        if not image_url:
+            image_url = "%s/leftnavbg.jpg" % self.context.portal_url()
 
-            if hasattr(image_field, 'sizes') and image_field.sizes:
-                sizes = image_field.sizes
-
-            if 'normal' in sizes.keys():
-                self.fb_image = "%s/image_normal" % self.context.absolute_url()
-            else:
-                self.fb_image = "%s/image_mini" % self.context.absolute_url()
-
-            self.link_metadata_image = self.fb_image
-            self.link_mime_type = image_field.getContentType(self.context)
-        else:
-            self.fb_image = "%s/leftnavbg.jpg" % self.context.portal_url()
-            self.link_metadata_image = None
-            self.link_mime_type = None
-
+        (self.fb_image, self.link_mime_type) = (image_url, image_mime_type)
+        self.link_metadata_image = self.fb_image
+        
         # FB config
         self.fbadmins = ['100001031380608','9324502','9370853','1485890864']
 
