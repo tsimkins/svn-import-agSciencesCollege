@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -10,6 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.blob.field import BlobField
+from Products.ATContentTypes.interfaces.event import IATEvent
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
@@ -93,6 +94,19 @@ class _ProgramsField(_ExtensionLinesField):
         else:
             return DisplayList([('N/A', 'N/A')])
 
+class _CoursesField(_ExtensionLinesField):
+    def Vocabulary(self, content_instance):
+
+        extension_courses_tool = getToolByName(content_instance, 'extension_course_tool')
+
+        if extension_courses_tool:
+            courses = [('', 'Select a course...'),]
+            courses.extend([(x.strip(), x.strip()) for x in extension_courses_tool.getCourses()])
+            return DisplayList(courses)
+        else:
+            return DisplayList([('N/A', 'N/A')])
+            
+
 class FSDExtensionExtender(object):
     adapts(IPerson)
     implements(ISchemaExtender, IBrowserLayerAwareExtender, ISchemaModifier)
@@ -143,6 +157,7 @@ class FSDExtensionExtender(object):
                 description=u"Subtopics that this person is associated with",
             ),
         ),
+        
         _ExtensionLinesField(
             "extension_areas",
                 schemata="Professional Information",
@@ -310,6 +325,33 @@ class ExtensionPublicationExtender(object):
 
     ]
 
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+
+class ExtensionEventExtender(object):
+    adapts(IATEvent)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+    
+    fields = [
+        _CoursesField(
+            "extension_courses",
+                schemata="categorization",
+                required=False,
+                searchable=True,
+                widget = SelectionWidget(
+                label=u"Course",
+                description=u"Course that this event is associated with",
+                format='select'
+            ),
+        ),
+    ]
+    
     def __init__(self, context):
         self.context = context
 
