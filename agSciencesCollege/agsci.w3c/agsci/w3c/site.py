@@ -1,4 +1,4 @@
-from zope.app.component.hooks import setSite
+from zope.app.component.hooks import setSite, getSite
 
 try:
     from Products.agCommon import calculateGradient
@@ -7,6 +7,26 @@ except ImportError:
         return c
 
 from agsci.w3c.colors import checkColorAccessibility
+
+translation = {
+    'magazine' : 'http://agsci.psu.edu/magazine',
+    'thinkagain.psu.edu' : 'http://agsci.psu.edu/futurestudents',
+    'it' : 'http://agsci.psu.edu/it',
+    'apd' : 'http://agsci.psu.edu/apd',
+    'elearning' : 'http://agsci.psu.edu/elearning',
+    'creamery' : 'http://creamery.psu.edu',
+    'clubs' : 'http://agsci.psu.edu/clubs',
+    'ppath.psu.edu' : 'http://plantpath.psu.edu',
+    'vbs.psu.edu' : 'http://vbs.psu.edu',
+    'abe.psu.edu' : 'http://abe.psu.edu',
+    'agsci.psu.edu' : 'http://agsci.psu.edu',
+    'ento.psu.edu' : 'http://ento.psu.edu',
+    'foodscience.psu.edu' : 'http://foodscience.psu.edu',
+    'aese.psu.edu' : 'http://aese.psu.edu',
+    'plantscience.psu.edu' : 'http://plantscience.psu.edu',
+    'ecosystems.psu.edu' : 'http://ecosystems.psu.edu',
+    'animalscience.psu.edu' : 'http://animalscience.psu.edu',
+}
 
 def checkSiteColorContrast(site):
 
@@ -92,3 +112,15 @@ def checkSiteColorContrast(site):
         compliant = False
 
     return compliant
+
+def translateURL(context, https=False):
+    site = getSite()
+    site_url = translation.get(site.getId())
+    if site_url:
+        context_url = context.absolute_url().replace(site.absolute_url(), site_url)
+        if https:
+            return context_url.replace('http://', 'https://')
+        else:
+            return context_url.replace('https://', 'http://')
+    else:
+        return context.absolute_url()
