@@ -91,6 +91,18 @@ h2 {
     margin-top: 1pt;
 }
 
+#portal-column-two .imagePortlet .portletItem ul {
+    padding: 0;
+    margin: 0;
+}
+
+#portal-column-two .imagePortlet .portletItem li {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+}
+
 .portletFooter {
     margin-top: 6pt;
 }
