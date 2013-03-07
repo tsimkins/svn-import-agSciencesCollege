@@ -32,8 +32,12 @@ def getText(object):
         text = ''
     elif object.portal_type in ['FSDPerson']:
         text = object.getBiography()
-    else:
+    elif hasattr(object, 'getRawText'):
+        text = object.getRawText()
+    elif hasattr(object, 'getText'):
         text = object.getText()
+    else:
+        text = ""
     return text
 
 

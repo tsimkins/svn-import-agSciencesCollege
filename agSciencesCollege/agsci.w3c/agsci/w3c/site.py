@@ -26,6 +26,8 @@ translation = {
     'plantscience.psu.edu' : 'http://plantscience.psu.edu',
     'ecosystems.psu.edu' : 'http://ecosystems.psu.edu',
     'animalscience.psu.edu' : 'http://animalscience.psu.edu',
+    'extension.psu.edu' : 'http://extension.psu.edu',
+    'ipm' : 'http://extension.psu.edu/ipm',
 }
 
 def checkSiteColorContrast(site):
@@ -116,11 +118,21 @@ def checkSiteColorContrast(site):
 def translateURL(context, https=False):
     site = getSite()
     site_url = translation.get(site.getId())
+    translated_url = ''
     if site_url:
         context_url = context.absolute_url().replace(site.absolute_url(), site_url)
         if https:
-            return context_url.replace('http://', 'https://')
+            translated_url = context_url.replace('http://', 'https://')
         else:
-            return context_url.replace('https://', 'http://')
+            translated_url = context_url.replace('https://', 'http://')
     else:
-        return context.absolute_url()
+        translated_url = context.absolute_url()
+
+    if translated_url.endswith('/'):
+        translated_url = translated_url[:-1]
+
+    if context.isPrincipiaFolderish:
+        return "%s/" % translated_url
+    else:
+        return translated_url
+        

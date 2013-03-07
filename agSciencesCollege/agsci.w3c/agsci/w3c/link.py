@@ -92,18 +92,22 @@ def findBrokenLinks(context, redirects={}, shortened=[], url_pattern=None, debug
     # Calculate sanitized URL method
     def filterURL(base_url, url):
 
+        site = getSite()
+
         if url.startswith('mailto:'):
             return None
             
         if not (url.startswith('http:') or url.startswith('https:')):
             # Calculate relative URL, replace ../ because Plone folders don't
             # end with /
+
+            if url.startswith(site.absolute_url()):
+                url = url.replace(site.absolute_url(), '')
             
             url = urljoin(base_url, url)
 
             if '../' in url:
                 url = url.replace('../', '')
-
 
         # Skip URLs not matching URL pattern
         if url_pattern and url_pattern not in url.lower():
@@ -149,13 +153,13 @@ def findBrokenLinks(context, redirects={}, shortened=[], url_pattern=None, debug
             url = filterURL(base_url, a.get('href', ''))
 
             if url:
-                urls.append([r.portal_type, base_url, url])
+                urls.append(["%s [LINK]" % r.portal_type, base_url, url])
 
         for img in soup.findAll('img'):
             url = filterURL(base_url, img.get('src', ''))
 
             if url:
-                urls.append([r.portal_type, base_url, url])
+                urls.append(["%s [IMAGE]" % r.portal_type, base_url, url])
 
         
     for (portal_type, base_url, url) in urls:

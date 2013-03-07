@@ -36,7 +36,8 @@ def findBrokenPortlets(context, types=['Document', 'HomePage', 'Folder', 'Blog',
                     path = p.target_collection
                     found = True
                     title = p.title
-                    feeds = "|".join(p.feeds.split())
+                    if p.feeds:
+                        feeds = "|".join(p.feeds.split())
                     portlet_type = "Feedmixer"
                 elif 'plone.app.portlets.portlets.navigation.Assignment' in klass:
                     path = p.root
