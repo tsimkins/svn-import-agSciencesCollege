@@ -1,0 +1,178 @@
+/*
+** Stylesheet with Internet Explorer 6.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portal-header {
+    height: 4.6875em;
+}
+
+#portal-top-navigation {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation ul {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-top-navigation li {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+#portal-column-one .linkIcon ul {
+	margin-left: 0;
+}
+
+#portal-column-one .imagePortlet ul {
+	margin-left: 0;
+}
+
+#portal-column-two .portletFooter,
+#rightcolumn .portletFooter,
+.portletFooter {
+    border: none !important;
+}
+
+#visual-portal-wrapper {
+    width: 895px;
+}
+
+#portal-column-one .portletNavigationTree li.navTreeTitle {
+	margin-top: 0px !important;
+	padding: 10px 0;
+	background-color: transparent !important;
+}
+
+#portal-column-one .portletNavigationTree .portletItem li.navTreeTitle a {
+    color: #000033 !important;
+    font-weight: bold !important;
+}
+
+#portal-columns {
+    width: 100% !important;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#addthis {
+    display: none;
+}
+
+body.template-folder_leadimage_listing .leadimage-listing img {
+    display: none; 
+}
+
+#portal-columns {
+    border-collapse: collapse;
+}
+
+#portal-column-one .linkButton li {
+	background-image: none ;
+}
+
+#portlets-below dl.linkIcon dd ul {
+    margin-left: 0 !important;
+}
+
+/* Riddle me this, Batman... Why does this work? */
+#portlets-below dl.linkIcon dd ul li {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: &dtml-sitemapBackgroundColor; !important;
+}
+
+#relatedItemBox dt {
+    display: inline;
+}
+
+#portal-breadcrumbs span {
+    font-size: 0.625em;
+}
+
+/* Since IE 6 doesn't support > selector, expand what it shrunk */
+#portal-breadcrumbs #breadcrumbs-current {
+    font-size: 1em;
+}
+
+/* Make all the dynamic stuff fixed width */
+#visual-portal-wrapper {
+    width: 895px;
+}
+
+#portal-columns {
+    background-color: transparent;
+    border-collapse: separate;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
+    width: 99.776536312849162%;
+}
+
+#portal-column-one {
+    margin: 0;
+    padding: 0;
+    width: 187px;
+    float: left;
+    background-image: none;
+    border-right: none;
+}
+
+#portal-column-one-visualPadding.visualPadding {
+    margin-bottom: 1em;
+}
+
+#portal-column-two {
+    padding: 12px;
+    vertical-align: top;
+    width: 150px;
+    float: left;
+}
+
+#portal-column-content {
+    width: auto;
+    float: left;
+}
+
+#portal-column-content.sl {
+    margin-left: 0;
+}
+
+#portal-column-content.sr {
+    margin-right: 0;
+}
+
+#portal-column-one, #portal-column-content, #portal-column-two, #portal-columns {
+    display: block;
+}
+
+#content #rightcolumn, #content #centercolumn, #content #homepage-text, #content #centercolumn.sr {
+    background-color: transparent;
+    clear: both;
+    display: block;
+    float: none;
+    margin: 0 0 0.1875em;
+    width: 100%;
+}
+
+#content #rightcolumn .portlet {
+    background-color: transparent;
+}
+
+.fancybox-close {
+    right: 0;
+    top: 0;
+}
+
+body.icons-on #content form {
+    width: 665px;
+}
+
+/* </dtml-with> */

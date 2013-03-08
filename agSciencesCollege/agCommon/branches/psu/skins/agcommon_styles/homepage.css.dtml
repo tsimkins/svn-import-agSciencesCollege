@@ -1,0 +1,84 @@
+/*
+  <dtml-with base_properties> (do not remove this)
+  <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either)
+*/
+
+/* YOUR CSS RULES START HERE */
+
+/* ================ Homepage Image ================ */
+
+#homepageimage {
+	background-color: #999999;
+	border: 0 none;
+	display: block;
+	height: 265px;
+	margin: 0.1875em 0.427303084542972%; /* 3/706 */
+	width: 99.121712391758943%;  /* 700/706 */
+	text-align: left;
+	padding: 0;
+	background-repeat: no-repeat;
+}
+
+#homepageimage.nobreadcrumbs {
+	margin-top: 0.1875em;
+}
+
+/* -------------- Homepage Image overlay ------------------ */
+
+#homepageimage h1, #homepageimage h2 {
+	display: block;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	border-width: 0;
+}
+
+#homepageimage h1 {
+	font-size: 1.4375em;
+	font-weight: 500;
+	color: &dtml-homepageH1TextColor;;
+	font-family: Georgia, "Times New Roman", serif;
+	letter-spacing: 0.06em;
+}
+
+#homepageimage h2 {
+	font-size: 0.8125em;
+	font-weight: normal;
+	color: &dtml-homepageH2TextColor;;
+	font-family: Georgia, "Times New Roman", serif;
+	letter-spacing: 0.07em;
+	padding-top: 0.5em;
+}
+
+#homepageimage .text {
+	position: absolute;
+	margin: 0;
+	padding: 0.625em 0.625em 0 0.75em;
+	width: 11.4375em;
+	z-index: 10;
+	margin-top: 0.5em;
+}
+
+#homepageimage div.overlay {
+    display: block;
+	width: 12.5em;
+	height: 265px;
+	margin: 0 0 0 0;
+	padding: 0;
+	background-color: &dtml-homepageTransparentOverlayColor;;
+	opacity: 0.75;
+	filter: alpha(opacity = 75);
+	z-index: 5;
+	position: absolute;
+}
+
+/* =================== Portlets =================== */
+
+#portal-column-two {
+    display: none;
+}
+
+/* YOUR CSS RULES STOP HERE */
+
+/* </dtml-with> */
+

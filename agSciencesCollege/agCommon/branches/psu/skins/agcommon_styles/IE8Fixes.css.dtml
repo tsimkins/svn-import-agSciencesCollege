@@ -1,0 +1,53 @@
+/*
+** Stylesheet with Internet Explorer 8.0 workarounds.
+*/
+
+/* <dtml-with base_properties> */
+
+#portlets-below dl.linkIcon dd ul { 
+    margin-left: 0 !important; 
+    margin-top: 0 !important;
+} 
+
+
+#portal-column-two .visualPadding {
+    width: 90%;
+}
+
+#portal-column-one {
+    width: 21.655984488448845%;
+}
+
+#portal-column-one .visualPadding {
+    width: 97.384336013455965%;
+}
+
+#portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
+    margin-right: 0.5em;
+}
+
+.fancybox-close {
+    right: 0;
+    top: 0;
+}
+
+body.icons-on #content form {
+    width: 665px !important;
+}
+
+table.events tr td {
+    width: 27%;
+}
+
+table.events tr td:first-child {
+    width: 45%;
+}
+
+#content.hasToc h2,
+#content.hasToc h3 {
+    clear: none;
+}
+
+/* </dtml-with> */
+
+
