@@ -4,6 +4,7 @@
      tal:define="localsearch_title string:Search this section;
                  localsearch_title context/localsearch_title|localsearch_title;
                  portal_types context/localsearch_type|nothing;
+                 subjects context/localsearch_subject|nothing;
                  folder_path view/folder_path;
                  localsearch_entire_site context/localsearch_entire_site|nothing">
     <form id="plonelocalsearchform" 
@@ -28,6 +29,7 @@
                    autocomplete="off"/>
 
             <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
+            <metal:portal_type use-macro="context/@@search_z3/macros/subject" />
             <tal:localsearch condition="not: localsearch_entire_site">
                 <metal:localsearch use-macro="context/@@search_z3/macros/localsearch" />
             </tal:localsearch>

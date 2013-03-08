@@ -137,6 +137,8 @@ class SearchView(FolderView):
             return 'Search Events'
         elif 'News Item' in self.request.form.get('portal_type', []):
             return 'Search News'
+        elif 'courses' in self.request.form.get('Subject', []):
+            return 'Search Courses'
         else:
             return 'Search'
 

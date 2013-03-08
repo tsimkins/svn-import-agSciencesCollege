@@ -36,12 +36,20 @@
                  portal_url context/portal_url;
                  is_advanced_search request/form/advanced_search|nothing;
                  advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form;
-                 searchterm request/SearchableText|nothing;">
+                 searchterm request/SearchableText|nothing;
+                 isAnon context/@@plone_portal_state/anonymous;">
     <div id="content-core">
+        <h1 class="documentFirstHeading">
+            <span i18n:translate="heading_search_results">
+                <span tal:replace="view/page_title" /> 
+            </span>
+        </h1>
+
         <form name="searchform"
               action="search"
               class="searchPage"
               tal:define="portal_types python: request.form.get('portal_type');
+                          subjects python: request.form.get('Subject');
                           folder_path request/form/path|nothing"
               tal:condition="not:is_advanced_search">
             <input class="searchPage"
@@ -67,6 +75,16 @@
                 </tal:portal_type>
             </metal:portal_type>
 
+            <metal:subject define-macro="subject">
+    
+                <tal:subject condition="subjects" 
+                                 repeat="s subjects">
+    
+                    <input type="hidden" tal:attributes="value s" name="Subject:list" />
+    
+                </tal:subject>
+            </metal:subject>
+
             <metal:localsearch define-macro="localsearch" tal:condition="folder_path">
                 <input id="localsearchbox_currentfolder_only" 
                        class="noborder"
@@ -83,7 +101,8 @@
 
             
             <p class="discreet"
-               i18n:translate="search_results_advanced">
+               i18n:translate="search_results_advanced"
+               tal:condition="not:isAnon">
             Did you not find what you were looking for? Try the
             <span i18n:name="advanced_search">
             <a href=""
@@ -133,19 +152,16 @@
 
 
         </script>
-        <h1 class="documentFirstHeading">
-            <span i18n:translate="heading_search_results">
-                Search results
-            </span>
-            <span class="discreet">
-            &mdash;
+
+        <p>
+            <strong>Results:</strong>
             <span i18n:translate="batch_x_items_matching_your_criteria"
             ><span i18n:name="number"
             tal:omit-tag=""
             tal:content="python:len(results)">234</span> items matching your search terms</span>
-          </span>
-        </h1>
+        </p>
 
+        <tal:rss tal:condition="not:isAnon">
         <p class="discreet"
            tal:condition="context/portal_syndication/isSiteSyndicationAllowed">
             <a href=""
@@ -155,6 +171,7 @@
                tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}">
                  Subscribe to an always-updated feed of these search terms</a>
         </p>
+        </tal:rss>
 
         <div tal:condition="not: results">
             <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
@@ -162,7 +179,6 @@
 
         <div tal:condition="results"
               tal:define="normalizeString nocall: context/plone_utils/normalizeString;
-                          isAnon context/@@plone_portal_state/anonymous;
                           toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                           batch python:Batch(results, b_size, int(b_start), orphan=1);
                           now modules/DateTime/DateTime">

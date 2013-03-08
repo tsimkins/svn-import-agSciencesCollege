@@ -107,13 +107,23 @@
 
             </tal:listing>
 
-            <p class="discreet"
-               tal:define="isAnon context/@@plone_portal_state/anonymous"
-               tal:condition="python: not topicContents and here.listCriteria() and not isAnon"
-               i18n:domain="atcontenttypes"
-               i18n:translate="description_no_items_in_topic">
-                There are currently no results for this search.
-            </p>
+            <tal:noresults
+                define="isCourse python:'courses' in context.Subject()">
+
+                <p class="discreet"
+                   tal:condition="python: isCourse and not topicContents and here.listCriteria()">
+                    There are currently no events scheduled for this course.
+                </p>
+    
+                <p class="discreet"
+                   tal:define="isAnon context/@@plone_portal_state/anonymous"
+                   tal:condition="python: not topicContents and here.listCriteria() and not isAnon and not isCourse"
+                   i18n:domain="atcontenttypes"
+                   i18n:translate="description_no_items_in_topic">
+                    There are currently no results for this search.
+                </p>
+
+            </tal:noresults>
 
             <p class="discreet"
                tal:condition="not: here/listCriteria"
