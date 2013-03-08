@@ -50,6 +50,11 @@
     /> 
 
     <five:implements
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        interface=".interfaces.IExtensionExtender"
+    /> 
+
+    <five:implements
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.IExtensionExtender"
     /> 
