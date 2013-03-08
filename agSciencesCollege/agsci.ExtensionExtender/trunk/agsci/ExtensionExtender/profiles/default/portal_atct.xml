@@ -38,6 +38,15 @@
    <criteria>ATListCriterion</criteria>
   </index>
 
+  <index
+    name="Courses"
+    description="Courses"
+    enabled="True"
+    friendlyName="Courses">
+   <criteria>ATSelectionCriterion</criteria>
+   <criteria>ATListCriterion</criteria>
+  </index>
+
  </topic_indexes>
 
  <topic_metadata>
@@ -64,6 +73,12 @@
     description="Subtopics"
     enabled="True"
     friendlyName="Subtopics" />
+
+  <metadata
+    name="Courses"
+    description="Courses"
+    enabled="True"
+    friendlyName="Courses" />
 
  </topic_metadata> 
  
