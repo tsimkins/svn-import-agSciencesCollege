@@ -5,11 +5,11 @@
     subsite not: context/main_site|nothing">
 
     <a href="http://www.psu.edu"
-       id="logo-psu" ><span class="hiddenStructure">Penn State University</span></a>
+       id="logo-psu" ><img tal:attributes="src string:${view/navigation_root_url}/two-tone-psu-logo.png" alt="Penn State University" /></a>
     
     <a href="http://agsci.psu.edu"
        id="logo-college"
-       tal:condition="subsite"><span class="hiddenStructure">College of Agricultural Sciences</span></a>
+       tal:condition="subsite"><img tal:attributes="src string:${view/navigation_root_url}/college-text.png" alt="College of Agricultural Sciences" /></a>
 
     <tal:printlogo condition="subsite">    
         <img class="subsite"

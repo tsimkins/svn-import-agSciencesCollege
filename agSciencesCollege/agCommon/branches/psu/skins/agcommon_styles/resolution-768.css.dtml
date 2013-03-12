@@ -25,6 +25,12 @@ body {
 	padding-right: 0;
 }
 
+#content #rightcolumn .portletHeader {
+    text-align: left;
+    padding-left: 0.75em !important;
+    padding-right: 0.5em !important;
+}
+
 #content #rightcolumn,
 #content #rightcolumn .portlet {
 	background-color: transparent;
@@ -70,11 +76,15 @@ body {
 #portal-column-content.sl.sr {
     float: left;
     margin: 0;
-    width: 93.220338983050847%;  /* (590-40)/590 */
-    padding-left: 3.389830508474576%;  /* 20/590 */
-    padding-right: 3.389830508474576%;  /* 20/590 */
+    width: 97.26027397260274%;
+    padding-left: 1.36986301369863%;
+    padding-right: 1.36986301369863%;
     display: block;
     background-color: transparent;
+}
+
+#portal-column-two .visualPadding {
+    padding: 0.75em 0;
 }
 
 #portal-column-two .portletFooter {
@@ -153,11 +163,16 @@ div.portletsAboveContentE {
     width: 100%;
 }
 
+#portal-columns {
+    margin-top: 0.125em;
+}
+
 #portal-top-navigation {
     margin: 0;
     padding: 0 0 0.125em 0;
     background-color: transparent;
     background-image: none;
+    border-bottom: 1px solid #999999;
 }
 
 #portal-top-navigation li {
@@ -223,11 +238,6 @@ div.portletsAboveContentE {
     font-size: 1.4375em;
 }
 
-body.penn-state-header #portal-header,
-#portal-header {
-    background-image: url("&dtml-portal_url;/PSUheader.png");
-}
-
 #logo-college {
     display: none;
 }
@@ -264,6 +274,20 @@ body.template-document_homepage_view #portal-column-one {
 .portletDropdown select {
     max-width: 100%;
     width: auto;
+}
+
+
+#visual-portal-wrapper {
+    margin-top: 0.1875em;
+}
+
+#portal-header {
+    margin-bottom: 0.1875em;
+    padding-bottom: 1.375em;
+}
+
+#centercolumn.agCommonPortlet .portletWrapper {
+    margin: 0 0 1em 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

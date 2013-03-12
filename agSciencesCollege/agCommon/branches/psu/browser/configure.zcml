@@ -20,8 +20,8 @@
     <!-- Viewlet Managers -->
     
     <browser:viewletManager
-        name="agcommon.abovecontentviews"
-        provides=".interfaces.IAboveContentViews"
+        name="agcommon.abovecolumns"
+        provides=".interfaces.IAboveColumns"
         class="plone.app.viewletmanager.manager.OrderedViewletManager"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -156,7 +156,7 @@
     <!-- Top Navigation -->
     <browser:viewlet
         name="agcommon.topnavigation"
-        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+        manager=".interfaces.IAboveColumns"
         class=".viewlets.TopNavigationViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"

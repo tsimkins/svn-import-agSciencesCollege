@@ -10,13 +10,14 @@
 #portal-breadcrumbs.homepage {
 	background-color: &dtml-breadcrumbBackgroundColor;;
 	color: &dtml-breadcrumbTextColor;;
-	padding: 0 0.5em 0.1875em 0.5em;
+	padding: 0 1.13314447592068% 0.1875em 1.13314447592068%; /*8/706*/
 	z-index: 20;
 	position: relative;
 	opacity: 0.80;
 	filter: alpha(opacity=80);	
-	margin: 0.1875em;
 	line-height: 1.5em; 
+	margin: 0.1875em 0.424929178470255% 0.1875em 0.56657223796034%; /* L 4/706, R 3/706 */
+	width: 96.742209631728045%; /*(706-8-4-3-8)/706*/
 }
 
 #portal-breadcrumbs.homepage .breadcrumbSeparator {
@@ -57,10 +58,14 @@
 /*========= Content ============*/
 
 #content {
-    margin: 0 !important;
-    width: auto;
+    margin: 0 0.424929178470255% 0 0.56657223796034% !important;
+    width: 99.008498583569405%;
 	padding: 0 !important;
     font-size: 1em;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-width: 0;
 }
 
 
@@ -146,13 +151,15 @@
 /* ================= Columns ===================== */
 #centercolumn {
     padding-bottom: 0.25em;
-	margin: 0 0.4251803118839%; /* 3/705.583 */
-	width: 99.208739439584004%;  /* 700/705.583 */
+	margin: 0;
+	width: 100%;
+	display: table-cell;
 }
 
 #centercolumn.sr {
-    float: left;
-    width: 74.25593445420312%
+    float: none;
+    width: 71.162123385939742%; /* (92*5)+(8*4)+4/697 */
+    padding-right: 0.573888091822095%; /* 4/696 */
 }
 
 /* ================= Portlet headers ===================== */
@@ -207,10 +214,11 @@
     margin: 0 0.5625em;
 }
 
-.agCommonPortlet .portletItem a.title {
-	font-size: 1.05em;
-	font-weight: bold;
-	margin-top: 7px;
+#centercolumn.agCommonPortlet .portletItem a.title {
+	font-size: 1.5em;
+	line-height: 1.25em;
+	font-weight: normal;
+	margin-top: 0.375em;
 	text-decoration: none;
 	border-width: 0;
 	display: block;
@@ -381,14 +389,15 @@
 /* ================= Right Column =====================*/
 
 #rightcolumn {
-    display: block;
-	margin: 0 0.424929178470255% 0.1875em 0;
+    display: table-cell;
+	margin: 0;
 	padding: 0;
 	font-weight: normal;
 	background-color: &dtml-frontRightPortletBackgroundColor;;
 	color: &dtml-frontRightPortletTextColor;;
-	width: 24.468524610145086%;
-	float: right;
+	width: 28.981348637015782%; /* (92*2+8+4+4+2)/697 */
+	float: none;
+	vertical-align: top;
 }
 
 #rightcolumn .portlet {

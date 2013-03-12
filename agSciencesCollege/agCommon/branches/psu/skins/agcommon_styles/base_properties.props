@@ -47,49 +47,50 @@ globalBackgroundColor:string=#FFF2CF
 evenRowBackgroundColor:string=#FFF7DF 
 oddRowBackgroundColor:string=transparent
 
-maxWidth:string=896px
+maxWidth:string=910px
 minWidth:string=785px
 
 siteLogoTopMargin:string=42px
 siteLogoFontSize:string=23px
 
 insideBreadcrumbBackgroundColor:string=transparent
-insideBreadcrumbTextColor:string=#DF7E0D
-insideBreadcrumbSeparatorColor:string=#EFC177
-insideBreadcrumbLinkColor:string=#619BDF
+insideBreadcrumbTextColor:string=#333333
+insideBreadcrumbSeparatorColor:string=#715C3C
+insideBreadcrumbLinkColor:string=#265FCF
 
 breadcrumbBackgroundColor:string=#333333
 breadcrumbTextColor:string=#FFFFFF
 breadcrumbSeparatorColor:string=#EFC177
 breadcrumbLinkColor:string=#FFFFFF
 
-topnavigationBackgroundColor:string=#FF630F
+topnavigationBackgroundColor:string=#254C76
 topnavigationButtonBackgroundColor:string=transparent
-topnavigationTextColor:string=#FFFFFF
-topnavigationTextHoverColor:string=#FFEB8F
-topnavigationGradientBackground:string=#C83400
+topnavigationTextColor:string=#F6F6F6
+topnavigationTextHoverColor:string=#FFFDF1
+topnavigationGradientBackground:string=#173A5F
 
-topnavigationAlternateBackgroundColor:string=#FFD07F
-topnavigationAlternateGradientBackground:string=#DF9845
-topnavigationAlternateTextColor:string=#4F2605
-topnavigationAlternateTextHoverColor:string=#6F3507
+topnavigationAlternateBackgroundColor:string=#00649C
+topnavigationAlternateGradientBackground:string=#004F8F
+topnavigationAlternateTextColor:string=#FFFFFF
+topnavigationAlternateTextHoverColor:string=#FFFFFF
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
-bodyBackgroundColor:string=#99B4DF
+bodyBackgroundColor:string=#9F9F9F
+bodyBackgroundGradientColor:string=#BFBFBF
 backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#5F3B12
-frontRightPortletHeaderBackgroundColor:string=#FFD86F
-frontRightPortletLinkColor:string=#003FAC
-frontRightPortletLinkHoverColor:string=#3366CC
+frontRightPortletHeaderTextColor:string=#F6F6F6
+frontRightPortletHeaderBackgroundColor:string=#4D4D4D
+frontRightPortletLinkColor:string=#154A8B
+frontRightPortletLinkHoverColor:string=#003FAC
 frontRightPortletTextColor:string=#3F3F3F
-frontRightPortletBackgroundColor:string=#F5F5F5
+frontRightPortletBackgroundColor:string=#F6F6F6
 
-insideRightPortletHeaderTextColor:string=#2F4977
+insideRightPortletHeaderTextColor:string=#4D4D4D
 insideRightPortletHeaderBackgroundColor:string=transparent
-insideRightPortletBackgroundColor:string=#F5F5F5
+insideRightPortletBackgroundColor:string=#F6F6F6
 insideRightPortletTextColor:string=#333333
 insideRightPortletLinkColor:string=#003399
 insideRightPortletLinkHoverColor:string=#3366CC
@@ -98,37 +99,37 @@ homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
 homepageTransparentOverlayColor:string=#000000
 
-leftNavTitleBackground:string=#1B243F
-leftNavTitleColor:string=#f5f5f5
+leftNavTitleBackground:string=#00619A
+leftNavTitleColor:string=#FBFBFB
 leftNavBorderColor:string=#DDDDDD
-leftNavTextColor:string=#595C5F
-leftNavTextHoverColor:string=#265FCF
+leftNavTextColor:string=#4B4D4F
+leftNavTextHoverColor:string=#003FAC
 leftNavBackgroundColor:string=#FFFFFF
-leftSubNavBackground:string=#F5F5F5
+leftSubNavBackground:string=#F6F6F6
 
 leftLinkTextColor:string=#003399
 leftLinkTextHoverColor:string=#3366CC
 
 leftButtonArrowBackground_external:string=#F3A72E
-leftButtonBackground_external:string=#DFB27D
-leftButtonBackgroundBorder_external:string=#6D4300
-leftButtonTextColor_external:string=#1F1204
+leftButtonBackground_external:string=#0066A1
+leftButtonBackgroundBorder_external:string=#00589F
+leftButtonTextColor_external:string=#FFFFFF
 
 leftButtonArrowBackground_internal:string=#487aab
-leftButtonBackground_internal:string=#155595
+leftButtonBackground_internal:string=#28496C
 leftButtonBackgroundBorder_internal:string=#506e94
 leftButtonTextColor_internal:string=#FFFFFF
 
 documentDescriptionColor:string=#000000
-documentTitleColor:string=#003399
+documentTitleColor:string=#000000
 documentHeadingColor:string=#000000
 documentSubHeadingColor:string=#000000
 
-footerBackgroundColor:string=#09285E
-footerLinkColor:string=#99CCFF
-footerTextColor:string=#528CA3
+footerBackgroundColor:string=#13233C
+footerLinkColor:string=#9ACDFF
+footerTextColor:string=#D1E2EF
 
-sitemapBackgroundColor:string=#0F1A2F
+sitemapBackgroundColor:string=#1B1D1F
 sitemapHeaderColor:string=#FFFFFF
 sitemapLinkColor:string=#e0e0e0
 

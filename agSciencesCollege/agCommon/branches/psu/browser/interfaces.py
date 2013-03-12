@@ -11,8 +11,8 @@ class IThemeSpecific(IClassicTheme):
        in agCommon/browser/configure.zcml.
     """
 
-class IAboveContentViews(IViewletManager):
-    """A viewlet manager that sits above the content views
+class IAboveColumns(IViewletManager):
+    """A viewlet manager that sits above the columns
     """
 
 class IRightColumn(IColumn):

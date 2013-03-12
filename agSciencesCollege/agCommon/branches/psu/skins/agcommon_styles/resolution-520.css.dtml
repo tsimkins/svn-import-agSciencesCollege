@@ -5,6 +5,11 @@
 
 /* YOUR CSS RULES START HERE */
 
+#portal-top {
+    padding-bottom: 0.25em;
+    background-image: none;
+}
+
 #portal-top-navigation li {
     width: 50%; 
 }
@@ -21,6 +26,7 @@
 
 #portal-column-one-visualPadding.visualPadding {
     line-height: 0;
+    padding: 0;
 }
 
 #portal-breadcrumbs {
@@ -32,15 +38,14 @@
 }
 
 #portal-column-one {
-    float: left;
+    float: none;
     margin: 0;
     width: 96.610169491525424%;  /* (590-20)/590 */
-    padding-left: 1.694915254237288%;  /* 10/590 */
+    padding: 1.694915254237288%;  /* 10/590 */
     padding-right: 1.694915254237288%;  /* 10/590 */
     display: block;
     background-image: none !important;
     border: none;
-    margin-top: 0.5em;
 }
 
 #portal-column-content, #portal-column-content.sl, #portal-column-content.sr, #portal-column-content.sl.sr {
@@ -162,9 +167,9 @@ body.navigation-subsite #portal-column-one .portletNavigationSubHeader.active {
 }
 
 #navigation-mobile .portletWrapper {
-    width: 100%;
-    margin: 0;
     padding: 0;
+    margin: 0.25em 1.69492% 0.5em 1.69492%;
+    width: 96.6102%;
 }
 
 #navigation-mobile .portletWrapper>.portletNavigationTree {
@@ -305,6 +310,10 @@ body.mobile #portal-header>#portal-searchbox {
     display: none;
 }
 
+#portal-header {
+    padding-bottom: 0.375em;
+}
+
 #search-mobile #portal-searchbox {
     position: relative;
     width: 95.384615384615385%;  /* (520-24)/520 */
@@ -368,6 +377,16 @@ body.mobile #portal-header>#portal-searchbox {
 
 #portlets-mobile #addthis p {
     text-align: left;
+}
+
+#viewlet-below-content #portlets-mobile .portletWrapper {
+    margin: 1.25em 2.16216%;
+    width: 95.67568%;
+}
+
+#portlets-mobile .linkButton, #portal-column-one .linkButton, #portal-column-two .linkButton, #rightcolumn .linkButton,
+#portlets-mobile .linkIcon, #portal-column-one .linkIcon, #portal-column-two .linkIcon {
+    margin: 1.25em 0;
 }
 
 #navigation-mobile #mobile-search-button .portletNavigationHeader {
@@ -460,6 +479,12 @@ table.nutrition {
     width: auto;
     display: block;
     max-width: 100%;
+}
+
+#portlets-mobile .linkButton a, #portlets-mobile .linkButton a:hover, #portal-column-one .linkButton a, #portal-column-two .linkButton .portletItem a, #portal-column-one .linkButton a:hover, #portal-column-two .linkButton .portletItem a:hover, #rightcolumn .linkButton .portletItem a, #rightcolumn .linkButton .portletItem a:hover {
+    font-size: 1.0625em;
+    padding: 8px 2.37907%;
+    width: 95.24186%;
 }
 
 /* YOUR CSS RULES STOP HERE */

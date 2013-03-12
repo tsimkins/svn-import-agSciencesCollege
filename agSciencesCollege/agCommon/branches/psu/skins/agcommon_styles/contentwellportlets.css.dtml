@@ -15,10 +15,10 @@
 	background-color: &dtml-sitemapBackgroundColor;;
 	font-size: 0.625em;
 	margin: 0;
-    border-width: 0 1px;
+    border-width: 0;
     border-style: solid;
     border-color:  &dtml-sitemapBackgroundColor;;
-    width: 99.776785714285714%; /* 894/896 */
+    width: 100%;
 	padding: 0.375em 0;
     border-collapse: separate;
     border-spacing: 0;
@@ -256,7 +256,7 @@ div.portletsAboveContentE {
     display: inline-block;
     padding: 0.5em 0;
 	color: &dtml-sitemapLinkColor; !important;
-	background-color: &dtml-sitemapBackgroundColor; !important;
+	background-color: transparent !important;
 }
 
 #portlets-below dl.linkIcon li.icon a:first-child {

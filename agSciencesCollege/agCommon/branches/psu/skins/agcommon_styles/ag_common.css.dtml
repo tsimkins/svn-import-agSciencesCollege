@@ -8,27 +8,26 @@
 /* = body =================================================== */
 
 body {
-    background-color: &dtml-bodyBackgroundColor;;
-    background-image:url('&dtml-portal_url;/bodyBackground.png');
+    background-color: &dtml-bodyBackgroundGradientColor;;
+    background-image: url('&dtml-portal_url;/bodyBackground.png?startColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundGradientColor.replace('#','')">&height=600');
     color: #000000;
     background-repeat: repeat-x;
     background-position: left top;
     font-size: 100% !important;
 }
 
-
 /* = visual-portal-wrapper ================================== */
 
 #visual-portal-wrapper {
-    background-color: &dtml-backgroundColor;;
-    margin: 0 auto;
-    padding: 0 6px 0.375em 6px;
+    background-color: transparent;
+    margin: -1em auto 0 auto;
+    padding: 0;
     max-width: &dtml-maxWidth;;
-    min-width: &dtml-minWidth;;
+    border: 1px solid #3F3F3F;
     /* Drop Shadow */
-    -moz-box-shadow: 0 0 0.625em #333333;
-    -webkit-box-shadow: 0 0 0.625em #333333;
-    box-shadow: 0 0 0.625em #333333;
+    -moz-box-shadow: 0 0.9375em 0.375em #333333;
+    -webkit-box-shadow: 0 0.9375em 0.375em #333333;
+    box-shadow: 0 0.9375em 0.375em #333333;
 }
 
 
@@ -36,27 +35,20 @@ body {
 
 #portal-top {
     margin: 0;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #808080;
-    width: 99.776785714285714%; /* 894/896 */
-    border-collapse: separate;
-    border-spacing: 0;
-    display: table;
+    background-image:url('&dtml-portal_url;/bg-header.jpg');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-color: #1e2d4c;
 }
-
 
 /* = portal-header ========================================= */
 
 #portal-header {
-    background: &dtml-backgroundColor; url(&dtml-portal_url;/&dtml-logoName;) no-repeat left 0.6875em;
-    margin: 0.0625em 0 0 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 0 2.375em 0;
+    max-width: &dtml-maxWidth;;
+    text-align: left;
     position: relative;
-    min-height: 4.6875em;
-}
-
-body.penn-state-header #portal-header {
-    background-image: url(&dtml-portal_url;/penn-state-header.gif);
 }
 
 #portal-header a {
@@ -112,24 +104,26 @@ body.penn-state-header #portal-header {
 /* = logo-psu ============================================== */
 
 #logo-psu {
-    height: 55px;
-    width: 90px;
-    top: 15px;
-    left: 5px;
+    top: 12px;
+    left: 8px;
     position: absolute;
     display: block;
+    width: 124px;
 }
 
+#logo-psu img {
+    width: 100%;
+}
 
 /* = logo-college ========================================== */
 
 #logo-college {
     display: block;
-    height: 33px;
-    left: 101px;
+    height: 38px;
+    left: 98px;
     position: absolute;
-    top: 38px;
-    width: 56px;
+    top: 35px;
+    width: 69px;
 }
 
 
@@ -145,11 +139,11 @@ body.penn-state-header #portal-header {
 #logo-site {
     font-family: Arial,Helvetica,sans-serif;
     font-size: &dtml-siteLogoFontSize;;
-    margin-left: 188px;
+    margin-left: 22.74247491638796%;
     letter-spacing: 0.02em;
     position: static;
-    margin-top: &dtml-siteLogoTopMargin;;
-    color: #1144AA;
+    margin-top: 38px;
+    color: #FFFFFF;
     display: block;
 }
 
@@ -183,30 +177,32 @@ body.penn-state-header #portal-header {
     font-weight: normal;
 }
 
+#portal-breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
 /* = portal-columns ======================================== */
 
 #portal-columns {
     margin: 0;
     padding: 0;
     background-color: transparent;
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0;
     display: table;
-    width: 99.776785714285714%; /* 894/896 */
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #808080;
+    width: 100%;
+    border-width: 0;
 }
 
 /* = portal-column-one ===================================== */
 
 #portal-column-one {
-    background: &dtml-leftNavBackgroundColor; url(&dtml-portal_url;/&dtml-bottomLeftColumnBackgroundImage;) no-repeat center bottom;
+    background-color: &dtml-leftNavBackgroundColor;;
     border-color: &dtml-leftNavBorderColor;;
     border-style: solid;
     border-width: 0 1px 0 0;
-    width: 20.964125560538117%;   /* 187/892 */
-    padding: 0.336322869955157%;  /* 3/892 */
+    width: 22.307692307692308%; /* ((8+8+3)+(92*2))/910 */
+    padding: 0;
     margin: 0;
     vertical-align: top;
     display: table-cell;
@@ -218,8 +214,8 @@ body.penn-state-header #portal-header {
 }
 
 #portal-column-one-visualPadding.visualPadding {
-    margin-bottom: 9.375em;
-    padding: 0;
+    margin:0;
+    padding: 0 4.926108374384236%;  /* 10/203 */
 }
 
 #portal-column-one a {
@@ -239,19 +235,14 @@ body.penn-state-header #portal-header {
 
 #portal-column-one .portletWrapper,
 #portlets-mobile .portletWrapper {
-    margin: 0 3.20855614973262% 1.25em 3.20855614973262%;  /* 6/187 */
-    width: 93.58288770053476%;
+    margin: 0 0 1.25em 0; 
+    width: 100%;
     padding: 0;
     font-size: 0.71875em;
 }
 
-
-#portlets-mobile .portletWrapper {
-    margin: 0 1.60427807486631% 1.25em 1.60427807486631%;  /* 6/187 */
-}
-
 #navigation-mobile .portletWrapper {
-    margin: 0 -1.7941593898646% 1.25em -1.7941593898646%;
+    margin: 0 0 1.25em 0;
 }
 
 #portal-column-one .portletHeader,
@@ -338,8 +329,8 @@ body.penn-state-header #portal-header {
     border-bottom: 0;
     background-color: &dtml-leftNavTitleBackground;;
     color: &dtml-backgroundColor;;
-    margin: -0.260869565217391em -5.293132811784655% 0 -5.293132811784655%;
-    padding: 0.9375em;
+    margin: 0 -6.010928961748634% 0 -4.918032786885246%; /* 9/183 L and 11/183 R*/
+    padding: 0.9375em 6.17283950617284%; /* 10/162 */
     font-size: 1em;
     border-bottom: 1px solid &dtml-leftNavBorderColor;;
     text-transform: none;
@@ -393,18 +384,9 @@ body.penn-state-header #portal-header {
 
 #navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeItem,
 #portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItem {
-    padding: 0 0.5em 0 1em;
-    margin-left: 0.25em;
+    padding: 0 0.375em 0 0.75em;
     background-color: transparent;
 }
-
-#navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
-#navigation-mobile .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode,
-#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeItemInPath,
-#portal-column-one .portletNavigationTree ul.navTreeLevel1 li.navTreeCurrentNode {
-    background: transparent url(&dtml-portal_url;/blue_bullet.png) no-repeat 0.375em 0.75em;
-}
-
 
 #navigation-mobile .portletNavigationTree .portletItem li li,
 #navigation-mobile .navTreeItem a,
@@ -454,7 +436,7 @@ body.penn-state-header #portal-header {
 #navigation-mobile ul.navTreeLevel1 .navTreeItem a,
 #portal-column-one ul.navTreeLevel1 .navTreeItem a {
     padding-top: 0.25em;
-    padding-bottom: 0.45em;
+    padding-bottom: 0.375em;
 }
 
 #navigation-mobile ul.navTreeLevel1 .navTreeItem a,
@@ -474,7 +456,7 @@ body.penn-state-header #portal-header {
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {
     background-color: &dtml-leftSubNavBackground;;
     border: &dtml-leftNavBorderColor; solid 1px;
-    margin: 0 0.25em 0.75em 0.25em;
+    margin: 0 0 0.75em 0.5em;
 }
 
 #navigation-mobile .navTreeItem .navTreeCurrentItem,
@@ -613,7 +595,7 @@ body.penn-state-header #portal-header {
 #portlets-mobile .linkIcon,
 #portal-column-one .linkIcon,
 #portal-column-two .linkIcon {
-    margin: 1em 0;
+    margin: 1em 4.324324324324324%; /* 8/185 */
 }
 
 #portlets-mobile .linkIcon .portletItem li,
@@ -671,7 +653,7 @@ body.penn-state-header #portal-header {
 #portal-column-one .linkButton,
 #portal-column-two .linkButton,
 #rightcolumn .linkButton {
-    margin: 30px 0;
+    margin: 1.25em 2.162162162162162%; /* 4/185 */
 }
 
 #portlets-mobile .linkButton ul,
@@ -790,22 +772,23 @@ body.penn-state-header #portal-header {
 }
 
 #portal-column-content.sl {
-    width: 78.299776286353468%; /* (894 - (187+3+3+1)) / 894 */
+    width: 77.362637362637363%; /* ((7*92)+(7*8)+4)/910 */
 }
 
 #portal-column-content.sr {
     margin-right: 0;
-    width: 78.674972035794183%; /* (894 - (172.64575+9+9)) / 894 */
+    width: 77.362637362637363%; /* ((7*92)+(7*8)+4)/910 */
 }
 
 #portal-column-content.sl.sr {
-    width: 59.21188479%;
+    width: 54.945054945054945%; /* (5*92)+(5*8))/910 */
 }
 
 /* = portal-top-navigation ================================= */
 
 #portal-top-navigation {
-    margin: 0.375em 0 0 0;
+    margin: 0 auto;
+    max-width: &dtml-maxWidth;;
     padding: 0;
     background-color: &dtml-topnavigationBackgroundColor;;
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
@@ -815,6 +798,7 @@ body.penn-state-header #portal-header {
     z-index: 10;
     position: relative;
     border-width: 0;
+    text-align: center;
 }
 
 #portal-top-navigation.empty {
@@ -843,7 +827,7 @@ body.penn-state-header #portal-header {
     background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
     background-repeat: repeat-x;
     background-position: bottom left;
-    border-color: &dtml-topnavigationBackgroundColor;;
+    border-color: &dtml-topnavigationGradientBackground;;
     border-width: 0 0 0 1px;
     border-style: solid;
     display: block;
@@ -878,7 +862,7 @@ body.penn-state-header #portal-header {
 
 #portal-top-navigation li a:hover {
     background-image: none;
-    background-color: <dtml-var expr="gradientEnd(startColor=topnavigationBackgroundColor, count=2)">;
+    background-color: <dtml-var expr="gradientEnd(startColor=topnavigationBackgroundColor, count=1)">;
     color: &dtml-topnavigationTextHoverColor; !important;
 }
 
@@ -886,13 +870,15 @@ body.penn-state-header #portal-header {
 /* = portal-column-two ===================================== */
 
 #portal-column-two {
-    padding: 0.75em 1.006711409395973%; /* 9/894 */
+    padding: 0;
     margin: 0;
     background-color: &dtml-insideRightPortletBackgroundColor;;
-    width: 19.31160614541387%;  /* 172.64575/894 */
+    width: 22.417582417582418%; /* ((8+8+4)+(92*2))/910 */
     vertical-align: top;
     display: table-cell;
 }
+
+
 
 #portal-column-two h2 {
     font-size: 1em;
@@ -903,7 +889,7 @@ body.penn-state-header #portal-header {
 }
 
 #portal-column-two .visualPadding {
-    padding: 0;
+    padding: 0.75em 3.92156862745098%; /* 8/204 */
 }
 
 #portal-column-two dd.portletItem {
@@ -1203,6 +1189,7 @@ html.kupu-html {
 #content #content-core .tileSummary:first-child,
 #content .standardView .classificationListing .tileItemLeadImage:first-child {
     border-top: none !important;
+    padding-top: 0.5em;
 }
 
 #content .tileItemLeadImage .tileTitle,
@@ -1342,17 +1329,12 @@ body.template-person_view #content h3 {
 
 #portal-footer {
     margin: 0;
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #808080;
-    border-collapse: separate;
-    border-spacing: 0;
-    display: table;
+    border-width: 0;
     background-color: &dtml-footerBackgroundColor;;
     color: &dtml-footerTextColor;;
     font-size: 0.71875em;
     padding: 0.5em 0;
-    width: 99.776785714285714%; /* 894/896 */
+    width: 100%;
 }
 
 #portal-footer a, #portal-footer a:visited {
@@ -2734,6 +2716,10 @@ form.searchPage {
     border-top: 1px solid #999999;
     margin-top: 1.25em;
     padding-top: 0.75em;
+}
+
+#homepageimage {
+    background-size: 100%;
 }
 
 /* YOUR CSS RULES STOP HERE */

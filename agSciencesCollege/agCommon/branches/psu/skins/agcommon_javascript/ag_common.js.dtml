@@ -698,7 +698,7 @@ function mobileNav() {
     {
         if (jq("#navigation-mobile").size())
         {
-            jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-top');
+            jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-above-columns');
 
             jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
             jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
@@ -706,11 +706,11 @@ function mobileNav() {
     }
     else
     {
-        var mobile_nav = jq("#portal-top #navigation-mobile");
+        var mobile_nav = jq("#navigation-mobile");
 
         if (! mobile_nav.size() )
         {
-            mobile_nav = jq('<div id="navigation-mobile"></div>').insertAfter("#portal-header");
+            mobile_nav = jq('<div id="navigation-mobile"></div>').insertAfter("#portal-top");
             mobile_portletWrapper = jq('<div class="portletWrapper"></div>').appendTo(mobile_nav);
 
             if (jq("#portal-top-navigation li").size())
