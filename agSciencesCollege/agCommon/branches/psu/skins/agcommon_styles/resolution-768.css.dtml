@@ -67,6 +67,7 @@ body {
 
 #portal-column-one-visualPadding.visualPadding {
     margin-bottom: 0;
+    padding: 0 0 0 4.92611%;
 }
 
 #portal-column-two, 
@@ -76,13 +77,13 @@ body {
 #portal-column-content.sl.sr {
     float: left;
     margin: 0;
-    width: 97.26027397260274%;
-    padding-left: 1.36986301369863%;
-    padding-right: 1.36986301369863%;
+    width: 95.932203389830508%;  /* (590-24)/590 */
+    padding-left: 2.033898305084746%;  /* 12/590 */
+    padding-right: 2.033898305084746%;  /* 12/590 */
     display: block;
     background-color: transparent;
 }
-
+    
 #portal-column-two .visualPadding {
     padding: 0.75em 0;
 }
@@ -98,11 +99,10 @@ body.portaltype-homepage #portal-column-content {
     padding-right: 1.694915254237288%;  /* 10/590 */
 }
 
-
-#content {
-    margin: 0.5em 0 0 0;
+#portal-column-content #content {
+    margin: 0.5em 0 0 0 !important;
     padding: 0;
-    width: 100%;
+    width: 100% !important;
 }
 
 #panorama-homepage-image {
@@ -127,7 +127,9 @@ body.template-panorama_homepage_view #portal-breadcrumbs {
 #portal-column-content #homepageimage {
     margin-left: 0 !important;
     margin-right: 0 !important;
-    width: 100%
+    width: 100%;
+    background-size: 100% auto;
+    background-color: #FFFFFF;
 }
 
 #homepageimage.nobreadcrumbs {
@@ -168,7 +170,7 @@ div.portletsAboveContentE {
 }
 
 #portal-top-navigation {
-    margin: 0;
+    margin: 0.1875em 0;
     padding: 0 0 0.125em 0;
     background-color: transparent;
     background-image: none;
@@ -209,20 +211,43 @@ div.portletsAboveContentE {
     margin-right: 0.625em;
 }
 
+/* Centercolumn feedmixer without left column */
+
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
-    width: 25.177025963808025%;
+    width: 17.606602475928473%; /* 128/727 */
+    margin-left: 1.650618982118294%; /* 12/727 */
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
-    margin-left: 27.435387673956262%; /* 138/503 */
+    margin-left: 21.320495185694635%; /* 155/727 */
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage,
 #centercolumn.agCommonPortlet .portletfeedmixerimageright .portletItem .rssImage {
+    width: 17.606602475928473% !important; /* 128/727 */
+}
+
+
+/* Centercolumn feedmixer with left column */
+
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
+    width: 25.177025963808025%;
+}
+
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
+    margin-left: 30.815109343936382%; /* 155/503 */
+}
+
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage,
+#portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageright .portletItem .rssImage {
     width: 25.177025963808025% !important;
 }
+
+
 
 #two-column-left, #two-column-right,
 #portal-column-content.sr #two-column-left, #portal-column-content.sr #two-column-right {
@@ -234,8 +259,9 @@ div.portletsAboveContentE {
 }
 
 #logo-site {
-    margin-left: 110px;
+    margin-left: 23.904382470119522%; /*180px*/
     font-size: 1.4375em;
+    margin-top: 36px;
 }
 
 #logo-college {
@@ -278,16 +304,20 @@ body.template-document_homepage_view #portal-column-one {
 
 
 #visual-portal-wrapper {
-    margin-top: 0.1875em;
+    margin-top: 0;
 }
 
 #portal-header {
-    margin-bottom: 0.1875em;
+    margin-bottom: 0;
     padding-bottom: 1.375em;
 }
 
 #centercolumn.agCommonPortlet .portletWrapper {
     margin: 0 0 1em 0;
+}
+
+#content #centercolumn.agCommonPortlet .portletItem a.title {
+    font-size: 1.375em;
 }
 
 /* YOUR CSS RULES STOP HERE */

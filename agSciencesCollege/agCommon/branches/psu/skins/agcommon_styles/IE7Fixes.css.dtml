@@ -72,27 +72,28 @@ body.template-document_homepage_view #rightcolumn {
 
 /* Make all the dynamic stuff fixed width */
 #visual-portal-wrapper {
-    width: 895px;
+    width: 908px;
 }
 
 #portal-columns {
-    background-color: transparent;
-    border-collapse: separate;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #808080;
-    border-spacing: 0;
+    background-color: #FFFFFF;
+    border: none;
     margin: 0;
     padding: 0;
-    width: 99.776536312849162%;
+    width: 100%;
 }
 
 #portal-column-one {
     margin: 0;
     padding: 0;
-    width: 187px;
+    width: 203px;
     float: left;
     background-image: none;
     border-right: none;
+}
+
+#portal-column-one .portletWrapper {
+    width: 185px !important;
 }
 
 #portal-column-one-visualPadding.visualPadding {
@@ -102,7 +103,7 @@ body.template-document_homepage_view #rightcolumn {
 #portal-column-two {
     padding: 12px;
     vertical-align: top;
-    width: 150px;
+    width: 180px;
     float: left;
 }
 

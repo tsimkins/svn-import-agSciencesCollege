@@ -10,7 +10,8 @@ fontSmallSize:string=85%
 
 backgroundColor:string=#FFFFFF
 
-linkColor:string=#436976
+linkColor:string=#265FCF
+linkHoverColor:string=#003399
 linkActiveColor:string=Red
 linkVisitedColor:string=Purple
 
@@ -41,13 +42,13 @@ columnTwoWidth:string=16em
 agCommonPropertiesStartHere:string=_____________________________________________________
 
 globalFontColor:string=#436976
-globalBorderColor:string=#AF9A62
-globalBackgroundColor:string=#FFF2CF
+globalBorderColor:string=#BD8748
+globalBackgroundColor:string=#FCF2CF
 
-evenRowBackgroundColor:string=#FFF7DF 
+evenRowBackgroundColor:string=#FDF8E2 
 oddRowBackgroundColor:string=transparent
 
-maxWidth:string=910px
+maxWidth:string=908px
 minWidth:string=785px
 
 siteLogoTopMargin:string=42px
@@ -63,14 +64,14 @@ breadcrumbTextColor:string=#FFFFFF
 breadcrumbSeparatorColor:string=#EFC177
 breadcrumbLinkColor:string=#FFFFFF
 
-topnavigationBackgroundColor:string=#254C76
+topnavigationBackgroundColor:string=#215996
 topnavigationButtonBackgroundColor:string=transparent
 topnavigationTextColor:string=#F6F6F6
 topnavigationTextHoverColor:string=#FFFDF1
-topnavigationGradientBackground:string=#173A5F
+topnavigationGradientBackground:string=#1F4B7B
 
-topnavigationAlternateBackgroundColor:string=#00649C
-topnavigationAlternateGradientBackground:string=#004F8F
+topnavigationAlternateBackgroundColor:string=#0075BD
+topnavigationAlternateGradientBackground:string=#0A63AC
 topnavigationAlternateTextColor:string=#FFFFFF
 topnavigationAlternateTextHoverColor:string=#FFFFFF
 
@@ -83,12 +84,12 @@ backgroundStripeThreeColor:string=#08265a
 
 frontRightPortletHeaderTextColor:string=#F6F6F6
 frontRightPortletHeaderBackgroundColor:string=#4D4D4D
-frontRightPortletLinkColor:string=#154A8B
+frontRightPortletLinkColor:string=#2256BD
 frontRightPortletLinkHoverColor:string=#003FAC
 frontRightPortletTextColor:string=#3F3F3F
 frontRightPortletBackgroundColor:string=#F6F6F6
 
-insideRightPortletHeaderTextColor:string=#4D4D4D
+insideRightPortletHeaderTextColor:string=#4B4B4B
 insideRightPortletHeaderBackgroundColor:string=transparent
 insideRightPortletBackgroundColor:string=#F6F6F6
 insideRightPortletTextColor:string=#333333
@@ -99,7 +100,7 @@ homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
 homepageTransparentOverlayColor:string=#000000
 
-leftNavTitleBackground:string=#00619A
+leftNavTitleBackground:string=#0271B9
 leftNavTitleColor:string=#FBFBFB
 leftNavBorderColor:string=#DDDDDD
 leftNavTextColor:string=#4B4D4F
@@ -107,11 +108,11 @@ leftNavTextHoverColor:string=#003FAC
 leftNavBackgroundColor:string=#FFFFFF
 leftSubNavBackground:string=#F6F6F6
 
-leftLinkTextColor:string=#003399
-leftLinkTextHoverColor:string=#3366CC
+leftLinkTextColor:string=#2256BD
+leftLinkTextHoverColor:string=#003FAC
 
 leftButtonArrowBackground_external:string=#F3A72E
-leftButtonBackground_external:string=#0066A1
+leftButtonBackground_external:string=#4F4F4F
 leftButtonBackgroundBorder_external:string=#00589F
 leftButtonTextColor_external:string=#FFFFFF
 

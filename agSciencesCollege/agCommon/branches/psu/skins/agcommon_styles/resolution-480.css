@@ -80,25 +80,24 @@ div.portletsAboveContentE {
 }
 
 #portal-header {
-    background-size: 1050px;
     min-height: 45px;
 }
 
 #logo-psu {
     top: 10px;
-    width: 62px; 
+    width: 70px; 
     height: 26px;
     left: 5px;
 }
 
 #logo-site {
     font-size: 1em;
-    margin-left: 55px;
+    margin-left: 80px;
     margin-top: 25px;
 }
 
-#logo-site img {
-    width: 200px;
+#logo-site.extension {
+    width: 180px;
 }
 
 #content #centercolumn.agCommonPortlet .portletItem a.title {

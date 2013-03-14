@@ -10,6 +10,11 @@
 
 function resizeColumns()
 {
+    if (msieversion() <= 7 && msieversion() > 0)
+    {
+        return false;
+    }
+    
     setTimeout("doresizeColumns()", 300);
 }
 
@@ -193,6 +198,12 @@ jq(document).ready(
 
 jq(document).ready(
 	function () {
+
+        if (msieversion() <= 6 && msieversion() > 0)
+        {
+            return false;
+        }
+
 
         isTwoColumn = jq('body.custom-two-column').length;
 

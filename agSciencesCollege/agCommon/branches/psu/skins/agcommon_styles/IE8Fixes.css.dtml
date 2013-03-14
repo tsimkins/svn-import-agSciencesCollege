@@ -15,11 +15,11 @@
 }
 
 #portal-column-one {
-    width: 21.655984488448845%;
+    width: 22.333333333333333%;
 }
 
 #portal-column-one .visualPadding {
-    width: 97.384336013455965%;
+    width: 90.54726368159204%;
 }
 
 #portal-column-one .portletNavigationTree .portletItem ul.navTreeLevel1 {

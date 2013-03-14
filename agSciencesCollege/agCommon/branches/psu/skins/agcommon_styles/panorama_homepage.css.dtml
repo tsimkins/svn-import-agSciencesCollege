@@ -45,14 +45,13 @@
 #portal-breadcrumbs.homepage {
     margin: 0;
     padding-top: 0;
+    width: 97.797356828193833%;
 }
 
 #panorama-homepage-image {
     background-repeat: no-repeat;
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #808080;
-    margin-top: -1.6875em;
+    margin-top: -1.75em;
+    background-size: 100% auto;
 }
 
 #panorama-homepage-image.nobreadcrumbs {

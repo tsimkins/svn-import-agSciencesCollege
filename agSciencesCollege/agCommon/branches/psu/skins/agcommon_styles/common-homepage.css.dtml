@@ -153,12 +153,12 @@
     padding-bottom: 0.25em;
 	margin: 0;
 	width: 100%;
-	display: table-cell;
+	display: block;
 }
 
 #centercolumn.sr {
-    float: none;
-    width: 71.162123385939742%; /* (92*5)+(8*4)+4/697 */
+    float: left;
+    width: 70.731707317073171%; /* (92*5)+(8*4)+1/697 */
     padding-right: 0.573888091822095%; /* 4/696 */
 }
 
@@ -215,13 +215,16 @@
 }
 
 #centercolumn.agCommonPortlet .portletItem a.title {
-	font-size: 1.5em;
+	font-size: 1.375em;
 	line-height: 1.25em;
 	font-weight: normal;
 	margin-top: 0.375em;
-	text-decoration: none;
-	border-width: 0;
+	border: none;
 	display: block;
+}
+
+#centercolumn.agCommonPortlet .portletItem a.title:hover {
+    text-decoration: underline;
 }
 
 .agCommonPortlet .portletItem .summary {
@@ -389,14 +392,14 @@
 /* ================= Right Column =====================*/
 
 #rightcolumn {
-    display: table-cell;
+    display: block;
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
 	background-color: &dtml-frontRightPortletBackgroundColor;;
 	color: &dtml-frontRightPortletTextColor;;
-	width: 28.981348637015782%; /* (92*2+8+4+4+2)/697 */
-	float: none;
+	width: 28.694404591104735%; /* (92*2+8+4+4)/697 */
+	float: left;
 	vertical-align: top;
 }
 
