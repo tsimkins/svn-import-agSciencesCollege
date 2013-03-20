@@ -6,6 +6,7 @@ from Products.CMFPlone.utils import normalizeString
 from Acquisition import aq_acquire, aq_base
 from urllib import urlencode
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
+from zope.component import getMultiAdapter
 
 class IAgCommonUtilities(Interface):
 
@@ -198,5 +199,17 @@ class AgCommonUtilities(BrowserView):
             body_classes.extend(['custom-%s' % str(x) for x in custom_class.split()])
         except AttributeError:
             pass
+            
+        # Set "empty-top-navigation" body class
+        try:
+            topMenu = aq_acquire(self.context, 'top-menu')
+        except AttributeError:
+            topMenu = 'topnavigation'
+
+        portal_actions = getToolByName(self.context, 'portal_actions')
+
+        if not portal_actions.get(topMenu, None):
+            body_classes.append('empty-top-navigation')
+        
 
         return ' '.join(body_classes)

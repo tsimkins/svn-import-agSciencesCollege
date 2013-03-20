@@ -40,14 +40,14 @@
 #portal-column-one {
     float: none;
     margin: 0;
-    padding-left: 3.38983%;
-    padding-right: 3.38983%;
-    width: 93.2203%;
+    padding: 0 1.69492%;
+    width: 96.6102%;
     display: block;
     background-image: none !important;
     border: none;
 }
-
+body.portaltype-homepage #portal-column-two, 
+body.portaltype-homepage #portal-column-content,
 #portal-column-two, 
 #portal-column-content,
 #portal-column-content.sl,
@@ -89,6 +89,10 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
     border: 1px solid &dtml-leftNavTitleBackground;;
+}
+
+body.empty-top-navigation #portal-column-one .portletNavigationHeader {
+    background-color: &dtml-leftNavTitleBackground;;
 }
 
 #portal-column-one .portletNavigationSubHeader {
@@ -244,14 +248,18 @@ body.navigation-subsite #portal-column-one .portletNavigationSubHeader.active {
     display: none;
 }
 
+#logo-psu, #logo-psu.subsite {
+    width: 85px;
+}
+
 #logo-site {
     font-size: 1.1875em;
-    margin-left: 20.792079207920792%; /* 100px */
+    margin-left: 100px;
     margin-top: 30px;
 }
 
 #logo-site.extension {
-    width: 47.524752475247525%;
+    width: 230px;
 }
 
 #portlets-mobile .imagePortlet a {
@@ -497,6 +505,32 @@ table.nutrition {
     padding: 8px 2.37907%;
     width: 95.24186%;
 }
+
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
+    float: right;
+    text-align: right;
+    margin-left: 1.65062%;
+    width: 26.525198938992042%;
+    margin-right: 0;
+}
+
+#centercolumn.agCommonPortlet .portletItem {
+    margin: 0;
+}
+
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .title, #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .date, #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary {
+    margin-left: 0;
+}
+
+#content #homepage-text.sc {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left:  0;
+    padding-right: 0;
+}
+
+
 
 /* YOUR CSS RULES STOP HERE */
 

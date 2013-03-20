@@ -1116,7 +1116,7 @@ function applyUTM(selector, utm)
     );
 }
 
-/* Appply the tags to the footer */
+/* Apply the tags to the footer */
 
 jq(document).ready(
     function () {
@@ -1127,6 +1127,25 @@ jq(document).ready(
         }
     }
 );
+
+
+/* Add tableWrapper div to tables for logged out view. */
+
+jq(document).ready(
+    function () {
+        if (! jq('#portal-personaltools').size())
+        {
+            jq('#content table').each(
+                function () {
+                    var tableWrapper = jq('<div class="tableWrapper"></div>');
+                    tableWrapper.insertBefore(jq(this));
+                    jq(this).appendTo(tableWrapper);
+                }  
+            );
+        }
+    }
+);
+
 
 /* YOUR JAVASCRIPT STOPS HERE */
 

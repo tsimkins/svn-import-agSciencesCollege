@@ -1,7 +1,7 @@
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage,
 #centercolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage, #centercolumn.agCommonPortlet .portletfeedmixerimageright .portletItem .rssImage,
 .agCommonPortlet .portletfeedmixer .portletItem .rssImage {
-    max-width: 40% !important;
-    width: 40% !important;
+    width: 33%;
 }
 
 .agCommonPortlet .portletfeedmixer .portletItem .rssImage img {

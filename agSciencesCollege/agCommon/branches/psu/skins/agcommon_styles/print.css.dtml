@@ -14,8 +14,8 @@ body {
 }
 
 #visual-portal-wrapper {
-	max-width: none;
-	min-width: none;
+	max-width: auto;
+	min-width: 0;
 	width: 100%;
     background: #FFFFFF;
     background-image: none;

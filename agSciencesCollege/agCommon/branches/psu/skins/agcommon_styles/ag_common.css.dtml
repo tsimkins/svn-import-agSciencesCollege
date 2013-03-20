@@ -37,7 +37,7 @@ body {
     background-image:url('&dtml-portal_url;/bg-header.jpg');
     background-repeat: no-repeat;
     background-position: left bottom;
-    background-color: #1e2d4c;
+    background-color: &dtml-portalHeaderBackgroundColor;;
 }
 
 /* = portal-header ========================================= */
@@ -104,10 +104,14 @@ body {
 
 #logo-psu {
     top: 12px;
-    left: 10px;
+    left: 9px;
     position: absolute;
     display: block;
-    width: 16.519823788546256%; /*150px*/;
+    width: 148px;
+}
+
+#logo-psu.subsite {
+    width: 190px;
 }
 
 #logo-psu img, #logo-college img {
@@ -119,10 +123,10 @@ body {
 #logo-college {
     display: block;
     height: 40px;
-    left: 12.775330396475771%; /* 116px */;
+    left: 121px;
     position: absolute;
-    top: 38px;
-    width: 7.599118942731278%; /* 74px */
+    top: 40px;
+    width: 72px
 }
 
 
@@ -138,12 +142,13 @@ body {
 #logo-site {
     font-family: Arial,Helvetica,sans-serif;
     font-size: &dtml-siteLogoFontSize;;
-    margin-left: 23.127753303964758%; /*210px*/
+    margin-left: 212px;
     letter-spacing: 0.02em;
     position: static;
     margin-top: 45px;
     color: #FFFFFF;
     display: block;
+    padding-right: 1em;
 }
 
 
@@ -214,7 +219,6 @@ body {
 
 #portal-column-one-visualPadding.visualPadding {
     margin:0;
-    xpadding: 0 4.926108374384236%;  /* 10/203 */
     padding: 0 4.95049504950495%;  /* 10/202 */
     
 }
@@ -335,6 +339,11 @@ body {
     border: none;
     text-transform: none;
 }
+
+body.empty-top-navigation #portal-column-one .portletNavigationHeader {
+    background-color: &dtml-leftNavStandaloneTitleBackground;;
+}
+
 
 #portal-column-one .portletNavigationHeader a,
 #navigation-mobile .portletNavigationHeader span {
@@ -537,9 +546,9 @@ body {
     padding: 0.5em 0 1em 0;
 }
 
-#portal-column-one .imagePortlet li,
-#portal-column-two .imagePortlet li,
-#portlets-mobile .imagePortlet li {
+#portal-column-one .imagePortlet dd,
+#portal-column-two .imagePortlet dd,
+#portlets-mobile .imagePortlet dd {
     margin: 0.5em 0 1em 0;
 }
 
@@ -572,23 +581,15 @@ body {
     color: &dtml-leftLinkTextHoverColor;;
 }
 
-#portal-column-one .imagePortlet p,
-#portal-column-two .imagePortlet p,
-#portlets-mobile .imagePortlet p {
-    display: block;
-    text-align: center;
-    font-size: 0.9375em;
-}
-
-#portal-column-one .imagePortlet .portlet li a.icon,
-#portal-column-two .imagePortlet .portlet li a.icon,
-#portlets-mobile .imagePortlet .portlet li a.icon {
+#portal-column-one .imagePortlet .portlet dd a.icon,
+#portal-column-two .imagePortlet .portlet dd a.icon,
+#portlets-mobile .imagePortlet .portlet dd a.icon {
     margin-bottom: 0.1875em;
 }
 
-#portal-column-one .imagePortlet .portlet li a.shadow:hover img,
-#portal-column-two .imagePortlet .portlet li a.shadow:hover img,
-#portlets-mobile .imagePortlet .portlet li a.shadow:hover img {
+#portal-column-one .imagePortlet .portlet dd a.shadow:hover img,
+#portal-column-two .imagePortlet .portlet dd a.shadow:hover img,
+#portlets-mobile .imagePortlet .portlet dd a.shadow:hover img {
     -moz-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     -webkit-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
@@ -1131,7 +1132,7 @@ html.kupu-html {
 
 #content h2, html.kupu-html h2 {
     color: &dtml-documentHeadingColor;;
-    font-size: 1.5625;
+    font-size: 1.5625em;
     margin: 1.25em 0 0.5em 0;
     padding: 0 0 0.0625em 0;
     border: none;
@@ -2776,6 +2777,18 @@ form.searchPage {
 #content .portletFooter a:hover {
     border: none;
     text-decoration: underline;
+}
+
+body.template-default_error_message #visual-portal-wrapper {
+    margin: 0 auto;
+}
+
+body.template-default_error_message #visual-portal-wrapper #portal-header {
+    padding: 0 0 1.25em;
+}
+
+body.template-default_error_message #visual-portal-wrapper #portal-top {
+    padding-top: 0.25em;
 }
 
 /* YOUR CSS RULES STOP HERE */

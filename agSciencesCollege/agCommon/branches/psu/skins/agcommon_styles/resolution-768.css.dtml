@@ -258,8 +258,21 @@ div.portletsAboveContentE {
     width: 100%;
 }
 
+#logo-psu, #logo-psu.subsite {
+    width: 112px;
+}
+
+#logo-psu.subsite {
+    overflow: hidden;
+}
+
+#logo-psu.subsite img {
+    max-width: 128.4796573875803%;
+    width: 128.4796573875803%;
+}
+
 #logo-site {
-    margin-left: 23.904382470119522%; /*180px*/
+    margin-left: 128px;
     font-size: 1.4375em;
     margin-top: 36px;
 }
@@ -309,7 +322,7 @@ body.template-document_homepage_view #portal-column-one {
 
 #portal-header {
     margin-bottom: 0;
-    padding-bottom: 1.375em;
+    padding-bottom: 1.25em;
 }
 
 #centercolumn.agCommonPortlet .portletWrapper {
@@ -318,6 +331,7 @@ body.template-document_homepage_view #portal-column-one {
 
 #content #centercolumn.agCommonPortlet .portletItem a.title {
     font-size: 1.375em;
+    margin-top: 0.25em;
 }
 
 /* YOUR CSS RULES STOP HERE */

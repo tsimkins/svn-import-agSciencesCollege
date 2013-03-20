@@ -3,14 +3,13 @@
 
     <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
     
-    <dl class="portlet imagePortlet">
+    <dl class="portlet imagePortlet" tal:condition="view/images">
+
+        <tal:image repeat="limage view/images">
     
-        <dd class="portletItem" tal:condition="view/images">
-               
-            <ul>
-                <tal:image repeat="limage view/images">
-                    <li tal:attributes="class python: icon and 'icon' or ''"
-                        tal:define="title limage/title;
+            <dd class="portletItem"
+                tal:attributes="class python: icon and 'icon portletItem' or 'portletItem'"
+                tal:define="title limage/title;
                                     description limage/description|limage/title;
                                     icon limage/icon|nothing">
                         <a tal:define="shadow limage/shadow|nothing"
@@ -25,12 +24,8 @@
                             <span tal:content="structure description">Link</span>
                         </tal:caption>
                         </a>
-                    </li>
-                </tal:image>        
-            </ul>
-                
-        </dd>
-    
+            </dd>
+        </tal:image>       
     </dl>
 
 </tal:block>

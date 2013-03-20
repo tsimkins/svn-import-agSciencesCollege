@@ -8,7 +8,7 @@
 /* ================ Homepage Image ================ */
 
 #homepageimage {
-	background-color: #999999;
+	background-color: transparent;
 	border: 0 none;
 	display: block;
 	margin: 0.25em 0.424929178470255% 0.25em 0.56657223796034%; /* L:4/706, R:3/706 */

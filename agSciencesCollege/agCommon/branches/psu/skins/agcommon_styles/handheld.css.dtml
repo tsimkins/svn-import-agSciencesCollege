@@ -7,17 +7,6 @@
 
 /* This is site-level customizations in CSS */
 
-#logo-college, #logo-psu,
-#goSearch, #addthis {
-    display: none;
-    height: 0;
-    width: 0;
-    visibility: hidden;
-}
-
-body {
-    background: #FFFFFF;
-}
 
 /* YOUR CSS RULES STOP HERE */
 

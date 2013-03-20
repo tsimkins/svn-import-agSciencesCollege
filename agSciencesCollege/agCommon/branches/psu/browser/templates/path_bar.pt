@@ -4,7 +4,7 @@
      tal:define="breadcrumbs view/breadcrumbs;
                  is_rtl view/is_rtl">
 
-    <tal:agsci tal:condition="python:view.site != 'agsci.psu.edu'">
+    <tal:agsci tal:condition="python:view.site not in ['extension.psu.edu', 'agsci.psu.edu']">
         <span id="breadcrumbs-agsci">
             <a href="http://agsci.psu.edu">AgSci</a>
         </span>    

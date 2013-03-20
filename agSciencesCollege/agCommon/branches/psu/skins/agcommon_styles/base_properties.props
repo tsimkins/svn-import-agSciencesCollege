@@ -54,6 +54,8 @@ minWidth:string=785px
 siteLogoTopMargin:string=42px
 siteLogoFontSize:string=23px
 
+portalHeaderBackgroundColor:string=#1E2D4C;
+
 insideBreadcrumbBackgroundColor:string=transparent
 insideBreadcrumbTextColor:string=#333333
 insideBreadcrumbSeparatorColor:string=#715C3C
@@ -76,8 +78,8 @@ topnavigationAlternateTextColor:string=#FFFFFF
 topnavigationAlternateTextHoverColor:string=#FFFFFF
 
 bottomLeftColumnBackgroundImage:string=leftnavbg.jpg
-bodyBackgroundColor:string=#9F9F9F
-bodyBackgroundGradientColor:string=#BFBFBF
+bodyBackgroundColor:string=#8F8F8F
+bodyBackgroundGradientColor:string=#AFAFAF
 backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
@@ -100,7 +102,8 @@ homepageH1TextColor:string=#EEEEEE
 homepageH2TextColor:string=#EEEEEE
 homepageTransparentOverlayColor:string=#000000
 
-leftNavTitleBackground:string=#0271B9
+leftNavTitleBackground:string=#1E2D4C;
+leftNavStandaloneTitleBackground:string=#0271B9
 leftNavTitleColor:string=#FBFBFB
 leftNavBorderColor:string=#DDDDDD
 leftNavTextColor:string=#4B4D4F

@@ -90,13 +90,13 @@
 
 #content #homepage-text {
     display: block;
-	margin: 0 0.424929178470255%; /* 3/706 */
-	padding: 0.375em 2.274787535410765%; /* 9/706 */
+	margin: 0 0.429799426934097%; /* 3/698 */
+	padding: 0.375em 1.289398280802292%; /* 9/698 */
 
 }
 
 #content #homepage-text.sr {
-	width: 69.546742209631728%;  /* (700-24)/706 */
+	width: 67.765042979942693%;  /* (698-24-201)/698 */
 	float: left;
 }
 
@@ -191,6 +191,7 @@
 	color: &dtml-frontRightPortletHeaderTextColor; !important;
 	margin: 0;
 	text-decoration: none;
+	border: none !important;
 }
 
 /* ================= Portlet item =====================*/
@@ -327,8 +328,8 @@
 #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
     float: left; 
     margin: 0.625em 0 0.625em 0;
-    max-width: 100%;
-    text-align: right;
+    width: 100%;
+    text-align: left;
 }
 
 .agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
@@ -470,6 +471,7 @@
 	text-decoration: none;
 	border: none;
 	font-weight: normal;
+	clear: both;
 }
 
 /* make email address wrap in rightcolumn  person portlet */
@@ -479,7 +481,8 @@
 }
 
 #rightcolumn .portletfeedmixer a.title {
-    margin-top: 0.25em;
+    margin-top: 0.125em;
+    margin-left: 0;
 }
 
 #rightcolumn dl.portletfeedmixer .summary {
