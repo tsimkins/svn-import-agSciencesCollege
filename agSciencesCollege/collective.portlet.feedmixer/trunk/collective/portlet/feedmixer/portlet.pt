@@ -70,7 +70,7 @@
 
                 <div class="portletItemDetails summary"
                     tal:condition="show_summary"
-                    tal:content="entry/summary_detail/value">
+                    tal:content="entry/summary_detail/value|nothing">
                     [Feed Summary]
                 </div>
                 
