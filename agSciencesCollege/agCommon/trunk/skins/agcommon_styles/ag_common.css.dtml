@@ -550,9 +550,9 @@ body.penn-state-header #portal-header {
     padding: 0.5em 0 1em 0;
 }
 
-#portal-column-one .imagePortlet li,
-#portal-column-two .imagePortlet li,
-#portlets-mobile .imagePortlet li {
+#portal-column-one .imagePortlet dd,
+#portal-column-two .imagePortlet dd,
+#portlets-mobile .imagePortlet dd {
     margin: 0.5em 0 1em 0;
 }
 
@@ -585,23 +585,15 @@ body.penn-state-header #portal-header {
     color: &dtml-leftLinkTextHoverColor;;
 }
 
-#portal-column-one .imagePortlet p,
-#portal-column-two .imagePortlet p,
-#portlets-mobile .imagePortlet p {
-    display: block;
-    text-align: center;
-    font-size: 0.9375em;
-}
-
-#portal-column-one .imagePortlet .portlet li a.icon,
-#portal-column-two .imagePortlet .portlet li a.icon,
-#portlets-mobile .imagePortlet .portlet li a.icon {
+#portal-column-one .imagePortlet .portlet dd a.icon,
+#portal-column-two .imagePortlet .portlet dd a.icon,
+#portlets-mobile .imagePortlet .portlet dd a.icon {
     margin-bottom: 0.1875em;
 }
 
-#portal-column-one .imagePortlet .portlet li a.shadow:hover img,
-#portal-column-two .imagePortlet .portlet li a.shadow:hover img,
-#portlets-mobile .imagePortlet .portlet li a.shadow:hover img {
+#portal-column-one .imagePortlet .portlet dd a.shadow:hover img,
+#portal-column-two .imagePortlet .portlet dd a.shadow:hover img,
+#portlets-mobile .imagePortlet .portlet dd a.shadow:hover img {
     -moz-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     -webkit-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
