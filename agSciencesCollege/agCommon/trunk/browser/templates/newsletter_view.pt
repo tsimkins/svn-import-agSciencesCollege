@@ -91,7 +91,7 @@ h2 {
     margin-top: 1pt;
 }
 
-#portal-column-two .imagePortlet .portletItem dd {
+#portal-column-two .imagePortlet .portletItem {
     padding: 0;
     margin: 0;
     text-align: center;

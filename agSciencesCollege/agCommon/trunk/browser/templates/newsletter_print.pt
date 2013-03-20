@@ -198,6 +198,11 @@
             margin-top: 0.375em;
             text-align: left;
         }
+
+        .imagePortlet {
+            display: none;
+        }
+
     </style>
 </metal:local_style_slot>
 
