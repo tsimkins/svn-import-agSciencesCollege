@@ -242,9 +242,16 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Master Well Owner' : 'Master Well Owner Network (MWON) Volunteer Training',
             'MWON' : 'Master Well Owner Network (MWON) Volunteer Training',
             'Pesticide Testing' : 'Pennsylvania Pesticide Applicator Certification Training',
+            'Pesticide Update Meeting' : 'Pennsylvania Pesticide Applicator Certification Training',
+            'Pesticide Core Credit Recertification' : 'Pennsylvania Pesticide Applicator Certification Training',
             'Agricultural Rescue Training' : 'PAgricultural Rescue Training',
             'Fundamentals of HACCP' : 'Fundamentals of Hazard Analysis Critical Control Point (HACCP)',
             'Principles of HACCP for Meat and Poultry Processors' : 'Hazard Analysis Critical Control Point (HACCP) for Meat and Poultry Processors',
+            'Shale' : 'Shale Gas 101',
+            'Sheep Shearing Workshops' : 'Sheep Shearing Instruction',
+            'Six Steps to a Highly Effective Organization' : 'Six Steps to an Effective Organization',
+            'Tools for Equine Health & Soundness' : 'Tools for Equine Health and Soundness',
+            
         }
 
         if skip_if_exists and hasattr(event_brain, 'extension_courses') and event_brain.extension_courses:
