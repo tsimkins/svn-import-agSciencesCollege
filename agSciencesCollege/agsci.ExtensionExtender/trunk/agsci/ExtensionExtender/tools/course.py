@@ -7,6 +7,7 @@ from Products.CMFCore.utils import getToolByName
 import xlrd
 import sqlite3
 import Zope2
+import re
 
 class ExtensionCourseTool(UniqueObject, SimpleItem):
 
@@ -227,5 +228,59 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
         else:
             return results
 
+    security.declarePublic('getCourseForEvent')
+    
+    def getCourseForEvent(self, event_brain, skip_if_exists=True):
+
+        abbr = {
+            'BKC' : 'Better Kid Care',
+            'Technology Tuesdays' : 'Technology Tuesday Series',
+            'StrongWomen' : 'Strong Women/Growing Stronger',
+            'Strong Women' : 'Strong Women/Growing Stronger',
+            'Cooking for Crowds' : 'Cooking for Crowds-Volunteer Food Safety',
+            'Land Use Webinar Series' : 'Land Use Planning',
+            'Master Well Owner' : 'Master Well Owner Network (MWON) Volunteer Training',
+            'MWON' : 'Master Well Owner Network (MWON) Volunteer Training',
+            'Pesticide Testing' : 'Pennsylvania Pesticide Applicator Certification Training',
+            'Agricultural Rescue Training' : 'PAgricultural Rescue Training',
+            'Fundamentals of HACCP' : 'Fundamentals of Hazard Analysis Critical Control Point (HACCP)',
+            'Principles of HACCP for Meat and Poultry Processors' : 'Hazard Analysis Critical Control Point (HACCP) for Meat and Poultry Processors',
+        }
+
+        if skip_if_exists and hasattr(event_brain, 'extension_courses') and event_brain.extension_courses:
+            return event_brain.extension_courses[0]
+
+        title = event_brain.Title.decode('utf-8').lower().strip()
+        
+        char_regex = re.compile("[^a-zA-Z0-9]", re.I|re.M)
+       
+        def normalize(i):
+            return char_regex.sub('', i).lower()
+        
+        courses = sorted([x.strip() for x in self.getCourses()], key=lambda x: len(x), reverse=True)
+        
+        # Check for exact title match
+        for c in courses:
+            if c.lower() in title:
+                return c
+
+        # Check for normalized title match
+        for c in courses:
+            if normalize(c) in normalize(title):
+                return c
+
+        # Check for abbreviated title match
+        for c in courses:
+            for a in sorted(abbr.keys(), key=lambda x: len(x), reverse=True):
+                if a.lower() in title and abbr[a] == c:
+                    return c
+
+        # Check for abbreviated normalized title match
+        for c in courses:
+            for a in sorted(abbr.keys(), key=lambda x: len(x), reverse=True):
+                if normalize(a) in normalize(title) and abbr[a] == c:
+                    return c
+        
+        return ''
 
 InitializeClass(ExtensionCourseTool)
