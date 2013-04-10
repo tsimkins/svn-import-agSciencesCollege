@@ -27,10 +27,6 @@
 	height: 0;
 }
 
-#portal-column-one .linkIcon ul {
-	margin-left: 0;
-}
-
 body.template-document_homepage_view #rightcolumn {
     position: relative;
 }
@@ -52,14 +48,6 @@ body.template-document_homepage_view #rightcolumn {
 #content {
     min-height: 0;
 }
-
-#portlets-below dl.linkIcon dd ul { 
-    margin-left: 0 !important; 
-} 
-
-.imagePortlet dd ul { 
-    margin-left: 0 !important; 
-} 
 
 #relatedItemBox dt {
     display: inline;

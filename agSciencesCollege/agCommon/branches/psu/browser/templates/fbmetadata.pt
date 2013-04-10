@@ -29,4 +29,11 @@
     <meta property="fb:page_id" tal:attributes="content view/fbpageid" />
     <meta property="fb:app_id" tal:attributes="content view/fbappid" />
 
+    <!-- Twitter Metadata -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" tal:attributes="content view/fb_url"/>
+    <meta name="twitter:title" tal:attributes="content string:${view/fb_title} &mdash; ${view/fb_site_name}"/>
+    <meta name="twitter:description" tal:condition="context/Description" tal:attributes="content context/Description"/>    
+    <meta name="twitter:image" tal:attributes="content view/fb_image"/>
+
 </tal:fbmetadata>

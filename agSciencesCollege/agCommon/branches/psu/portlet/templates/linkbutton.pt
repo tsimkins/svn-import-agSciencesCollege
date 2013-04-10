@@ -3,36 +3,27 @@
 
 <h2 class="portletHeader" tal:condition="view/data/show_header" tal:content="view/data/header" />
 
-<dl class="portlet linkButton">
+<dl class="portlet linkButton" tal:condition="view/linkButtons">
+        
+    <dd tal:repeat="lbutton view/linkButtons"
+        tal:attributes="id string:linkbutton-${lbutton/id};
+                        class python: lbutton.get('internal') and 'internal-link portletItem' or 'portletItem'">
+        <tal:linkButton  
+            tal:define="title lbutton/title;
+                        id lbutton/id;
+                        description lbutton/description|lbutton/title;
+                        icon python: lbutton.get('icon') or '';">
 
-    <dd class="portletItem" tal:condition="view/linkButtons">
-           
-        <ul>
-        
-            <li tal:repeat="lbutton view/linkButtons"
-                tal:attributes="id string:linkbutton-${lbutton/id};
-                                class python: lbutton.get('internal') and 'internal-link'">
-                <tal:linkButton  
-                    tal:define="title lbutton/title;
-                                id lbutton/id;
-                                description lbutton/description|lbutton/title;
-                                icon python: lbutton.get('icon') or '';">
-                           <strong>
-                           <a tal:attributes="href lbutton/url;
-                                              title description;"
-                           ><span tal:condition="not:icon"
-                                  tal:content="title">Link</span><img tal:condition="icon" 
-                                                                      tal:attributes="src icon;
-                                                                                      alt title;" /></a>
-                           </strong>
-                  </tal:linkButton>
-                   
-            </li>
-        
-        </ul>
+                    <a tal:attributes="href lbutton/url;
+                                        title description;"
+                    ><span tal:condition="not:icon"
+                            tal:content="title">Link</span><img tal:condition="icon" 
+                                                                tal:attributes="src icon;
+                                                                                alt title;" /></a>
+
+            </tal:linkButton>
             
     </dd>
-
 
 </dl>
 </tal:block>

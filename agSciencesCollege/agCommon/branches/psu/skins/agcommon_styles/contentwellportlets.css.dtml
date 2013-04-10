@@ -238,7 +238,7 @@ div.portletsAboveContentE {
 
 /* Link Icon Portlet */
 
-#portlets-below dl.linkIcon li {
+#portlets-below dl.linkIcon dd {
     margin: 0;
     padding: 0;
 }
@@ -251,15 +251,15 @@ div.portletsAboveContentE {
     padding-right: 0.375em;
 }
 
-#portlets-below dl.linkIcon li.icon a,
-#portlets-below dl.linkIcon li.icon a:hover {
+#portlets-below dl.linkIcon dd.icon a,
+#portlets-below dl.linkIcon dd.icon a:hover {
     display: inline-block;
     padding: 0.5em 0;
 	color: &dtml-sitemapLinkColor; !important;
 	background-color: transparent !important;
 }
 
-#portlets-below dl.linkIcon li.icon a:first-child {
+#portlets-below dl.linkIcon dd.icon a:first-child {
     display: inline-block;
 	margin-left: 3.061225114535738%;
 }

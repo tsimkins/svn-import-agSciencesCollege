@@ -4,12 +4,6 @@
 
 /* <dtml-with base_properties> */
 
-#portlets-below dl.linkIcon dd ul { 
-    margin-left: 0 !important; 
-    margin-top: 0 !important;
-} 
-
-
 #portal-column-two .visualPadding {
     width: 90%;
 }

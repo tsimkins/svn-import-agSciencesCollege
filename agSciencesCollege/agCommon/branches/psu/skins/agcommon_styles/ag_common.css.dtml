@@ -581,15 +581,15 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     color: &dtml-leftLinkTextHoverColor;;
 }
 
-#portal-column-one .imagePortlet .portlet dd a.icon,
-#portal-column-two .imagePortlet .portlet dd a.icon,
-#portlets-mobile .imagePortlet .portlet dd a.icon {
+#portal-column-one .imagePortlet dd a.icon,
+#portal-column-two .imagePortlet dd a.icon,
+#portlets-mobile .imagePortlet dd a.icon {
     margin-bottom: 0.1875em;
 }
 
-#portal-column-one .imagePortlet .portlet dd a.shadow:hover img,
-#portal-column-two .imagePortlet .portlet dd a.shadow:hover img,
-#portlets-mobile .imagePortlet .portlet dd a.shadow:hover img {
+#portal-column-one .imagePortlet dd a.shadow:hover img,
+#portal-column-two .imagePortlet dd a.shadow:hover img,
+#portlets-mobile .imagePortlet dd a.shadow:hover img {
     -moz-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     -webkit-box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
     box-shadow: 0 0 0.4375em &dtml-leftLinkTextHoverColor;;
@@ -620,32 +620,28 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portlets-mobile .linkIcon,
 #portal-column-one .linkIcon,
-#portal-column-two .linkIcon {
+#portal-column-two dl.linkIcon {
     margin: 1em 2.162162162162162%; /* 4/185 */
 }
 
-#portlets-mobile .linkIcon .portletItem li,
-#portal-column-one .linkIcon .portletItem li,
-#portal-column-two .linkIcon .portletItem li,
-#rightcolumn .linkIcon .portletItem li {
+#portlets-mobile .linkIcon .portletItem,
+#portal-column-one .linkIcon .portletItem,
+#portal-column-two dl.linkIcon .portletItem,
+#rightcolumn .linkIcon .portletItem {
     line-height: 1.1875em;
-    margin: 1.25em 0;
-    padding-left: 2.375em;
+    margin: 1em 0;
+    padding: 0 0 0 2.375em;
     background-color: transparent;
     background-image: none;
 }
 
-#rightcolumn .linkIcon .portletItem li {
-    margin: 1em 0;
-}
-
-#rightcolumn .linkIcon .portletItem li {
-    padding-left: 2.375em !important;
+#rightcolumn .linkIcon .portletItem {
+    margin: 1em;
 }
 
 #portlets-mobile .linkIcon a,
 #portal-column-one .linkIcon a,
-#portal-column-two .linkIcon a,
+#portal-column-two dl.linkIcon a,
 #rightcolumn .linkIcon a {
     text-decoration: none;
     color: &dtml-leftLinkTextColor;;
@@ -653,7 +649,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portlets-mobile .linkIcon a:hover span,
 #portal-column-one .linkIcon a:hover span,
-#portal-column-two .linkIcon a:hover span,
+#portal-column-two dl.linkIcon a:hover span,
 #rightcolumn .linkIcon a:hover span {
     text-decoration: underline;
     color: &dtml-leftLinkTextHoverColor;;
@@ -661,14 +657,14 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portlets-mobile .linkIcon a span,
 #portal-column-one .linkIcon a span,
-#portal-column-two .linkIcon a span,
+#portal-column-two dl.linkIcon a span,
 #rightcolumn .linkIcon a span {
     vertical-align: middle;
 }
 
 #portlets-mobile .linkIcon img, 
 #portal-column-one .linkIcon img, 
-#portal-column-two .linkIcon img,
+#portal-column-two dl.linkIcon img,
 #rightcolumn .linkIcon img {
 	padding-right: 0.375em;
     color: &dtml-leftLinkTextHoverColor;;
@@ -687,17 +683,10 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     padding: 1.25em 0;
 }
 
-#portlets-mobile .linkButton ul,
-#portal-column-one .linkButton ul,
-#portal-column-two .linkButton ul,
-#rightcolumn .linkButton ul {
-    margin: 0;
-}
-
-#portlets-mobile .linkButton li,
-#portal-column-one .linkButton li,
-#portal-column-two .linkButton .portletItem li,
-#rightcolumn .linkButton li {
+#portlets-mobile .linkButton dd,
+#portal-column-one .linkButton dd,
+#portal-column-two .linkButton .portletItem,
+#rightcolumn .linkButton dd {
     display: block;
     padding: 0;
     border: 2px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_external, count=2)">;
@@ -716,22 +705,13 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     box-shadow: 0 2px 2px #D1D6DF;    
 }
 
-#portlets-mobile .linkButton li:hover,
-#portal-column-one .linkButton li:hover,
-#portal-column-two .linkButton .portletItem li:hover,
-#rightcolumn .linkButton li:hover {
+#portlets-mobile .linkButton dd:hover,
+#portal-column-one .linkButton dd:hover,
+#portal-column-two .linkButton .portletItem:hover,
+#rightcolumn .linkButton dd:hover {
     -moz-box-shadow: 0 1px 1px #A4A8AF;
     -webkit-box-shadow: 0 1px 1px #A4A8AF;
     box-shadow: 0 1px 1px #A4A8AF;   
-}
-
-#portlets-mobile .linkButton strong,
-#portal-column-one .linkButton strong,
-#portal-column-two .linkButton strong,
-#rightcolumn .linkButton strong {
-    padding: 0;
-    margin: 0;
-    display: block
 }
 
 #portlets-mobile .linkButton a,
@@ -754,18 +734,18 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     width: 90.483724194536468%;
 }
 
-#portlets-mobile .linkButton li.internal-link a,
-#portal-column-one .linkButton li.internal-link a,
-#portal-column-two .linkButton li.internal-link a,
-#rightcolumn .linkButton li.internal-link a {
+#portlets-mobile .linkButton dd.internal-link a,
+#portal-column-one .linkButton dd.internal-link a,
+#portal-column-two .linkButton dd.internal-link a,
+#rightcolumn .linkButton dd.internal-link a {
     color: &dtml-leftButtonTextColor_internal;;
     background-color: transparent;
 }
 
-#portlets-mobile .linkButton li.internal-link,
-#portal-column-one .linkButton li.internal-link,
-#portal-column-two .linkButton li.internal-link,
-#rightcolumn .linkButton li.internal-link {
+#portlets-mobile .linkButton dd.internal-link,
+#portal-column-one .linkButton dd.internal-link,
+#portal-column-two .linkButton dd.internal-link,
+#rightcolumn .linkButton dd.internal-link {
     background-color: &dtml-leftButtonBackground_internal;;
     border: 1px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_internal, count=2)">;
     background-repeat: repeat-x;
@@ -773,10 +753,10 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-position: left bottom;
 }
 
-#portlets-mobile .linkButton li.internal-link:hover,
-#portal-column-one .linkButton li.internal-link:hover,
-#portal-column-two .linkButton .portletItem li.internal-link:hover,
-#rightcolumn .linkButton li.internal-link:hover {
+#portlets-mobile .linkButton dd.internal-link:hover,
+#portal-column-one .linkButton dd.internal-link:hover,
+#portal-column-two .linkButton .portletItem.internal-link:hover,
+#rightcolumn .linkButton dd.internal-link:hover {
     border-color:<dtml-var expr="gradientEnd(startColor=leftButtonBackground_external)">;
 }
 
@@ -1084,8 +1064,6 @@ dl.people .adr {
 }
 
 /* Removing because this breaks listings with icons */
-/* #content a[href^="http:"],
-#content a[href^="https:"], */
 
 #content a.link-external,
 #content a.link-https {
@@ -1105,6 +1083,10 @@ dl.people .adr {
     color: &dtml-linkColor;;
     border-bottom: 1px solid #D1D6DF;
     text-decoration: none;
+}
+
+#content .contentLeadImageContainer a {
+    border-bottom: none;
 }
 
 #content a:hover {
@@ -1544,6 +1526,10 @@ div.comment img.avatar {
 
 .tileHeadline a, .tileTitle a {
     color: &dtml-linkColor; !important;
+}
+
+#content .tileHeadline a {
+    border-bottom: none;
 }
 
 #content .tileHeadline a.state-private, 
@@ -2124,6 +2110,10 @@ dl.portalMessageOneColumn dd {
 .icons-on #content #listing-table .contenttype-topic {
     line-height: 2em !important;
     display: block;
+}
+
+.icons-on #content #listing-table a {
+    border-bottom: none;
 }
 
 .icons-on #portal-column-two .contenttype-document,
@@ -2791,6 +2781,14 @@ body.template-default_error_message #visual-portal-wrapper #portal-top {
     padding-top: 0.25em;
 }
 
+.portletWrapper .portletTwitter .portletItem {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.portletWrapper .portletTwitter .portletItem iframe {
+    width: 100%;
+}
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

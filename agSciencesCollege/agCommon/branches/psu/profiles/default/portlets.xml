@@ -46,6 +46,11 @@
         title="Contact Portlet"
     />
 
+    <portlet
+        addview="agcommon.Twitter"
+        title="Twitter Portlet"
+    />
+
     <!-- Let's remove some portlets that we don't use, to minimize confusion -->
     
     <portlet

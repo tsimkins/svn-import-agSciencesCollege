@@ -38,10 +38,6 @@
     display: none;
 }
 
-#portal-column-two dl.linkIcon .portletItem li {
-    background-color: transparent;
-}
-
 #portal-breadcrumbs.homepage {
     margin: 0;
     padding-top: 0;

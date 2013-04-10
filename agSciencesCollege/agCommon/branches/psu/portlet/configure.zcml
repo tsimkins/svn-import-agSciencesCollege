@@ -57,6 +57,15 @@
         editview=".contact.EditForm"
         />
 
+    <plone:portlet
+        name="agcommon.Twitter"
+        interface=".twitter.ITwitter"
+        assignment=".twitter.Assignment"
+        renderer=".twitter.Renderer"
+        addview=".twitter.AddForm"
+        editview=".twitter.EditForm"
+        />
+
     <utility
       component=".vocabulary.PortalActionsVocabularyFactory"
       name="agcommon.portlet.portal_actions"

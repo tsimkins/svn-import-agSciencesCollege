@@ -166,7 +166,7 @@
 
 .agCommonPortlet .portletHeader {
 	background-color: &dtml-frontRightPortletHeaderBackgroundColor;; 
-	padding: 0.25em 0.25em 0.375em 0.25em !important;
+	padding: 0.3125em 0.25em 0.375em 0.25em !important;
 	border-width: 0;
 	margin: 0 !important;
 	line-height: 1.3125em;
@@ -178,13 +178,9 @@
     font-family: Arial, Helvetica, Helv, sans-serif;
 }
 
-#centercolumn .portletHeader {
+#centercolumn .portletHeader, #rightcolumn .portletHeader {
 	padding-left: 0.75em !important;
 	padding-right: 0.5em !important;
-}
-
-#rightcolumn .portletHeader {
-	text-align: center;
 }
 
 .agCommonPortlet .portletHeader a {  

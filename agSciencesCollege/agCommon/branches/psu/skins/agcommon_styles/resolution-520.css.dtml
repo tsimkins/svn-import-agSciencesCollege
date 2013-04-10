@@ -403,8 +403,13 @@ body.mobile #portal-header>#portal-searchbox {
     width: 95.67568%;
 }
 
-#portlets-mobile .linkButton, #portal-column-one .linkButton, #portal-column-two .linkButton, #rightcolumn .linkButton,
-#portlets-mobile .linkIcon, #portal-column-one .linkIcon, #portal-column-two .linkIcon {
+#portlets-mobile .linkButton, 
+#portal-column-one .linkButton,
+#portal-column-two .linkButton,
+#rightcolumn .linkButton,
+#portlets-mobile .linkIcon,
+#portal-column-one .linkIcon,
+#portal-column-two .linkIcon {
     margin: 1.25em 0;
 }
 
@@ -500,7 +505,14 @@ table.nutrition {
     max-width: 100%;
 }
 
-#portlets-mobile .linkButton a, #portlets-mobile .linkButton a:hover, #portal-column-one .linkButton a, #portal-column-two .linkButton .portletItem a, #portal-column-one .linkButton a:hover, #portal-column-two .linkButton .portletItem a:hover, #rightcolumn .linkButton .portletItem a, #rightcolumn .linkButton .portletItem a:hover {
+#portlets-mobile .linkButton a,
+#portlets-mobile .linkButton a:hover,
+#portal-column-one .linkButton a,
+#portal-column-two .linkButton .portletItem a,
+#portal-column-one .linkButton a:hover,
+#portal-column-two .linkButton .portletItem a:hover,
+#rightcolumn .linkButton .portletItem a,
+#rightcolumn .linkButton .portletItem a:hover {
     font-size: 1.0625em;
     padding: 8px 2.37907%;
     width: 95.24186%;
