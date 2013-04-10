@@ -115,5 +115,5 @@ table.nutrition {
   * Use the strong tag to set emphasis on particular text
   */
 .nutrition strong {
-	font-weight : x-bolder;
+	font-weight : bolder;
 }
