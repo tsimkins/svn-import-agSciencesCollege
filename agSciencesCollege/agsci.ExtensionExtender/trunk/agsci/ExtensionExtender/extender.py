@@ -125,25 +125,14 @@ class FSDExtensionExtender(object):
             ),
         ),
 
-        _ProgramsField(
-            "extension_programs",
-                schemata="Professional Information",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Programs",
-                description=u"Programs that this person is associated with",
-            ),
-        ),
-
         _TopicsField(
             "extension_topics",
                 schemata="Professional Information",
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Topics",
-                description=u"Topics that this person is associated with",
+                label=u"Programs",
+                description=u"Extension programs that this item is associated with",
             ),
         ),
 
@@ -153,8 +142,8 @@ class FSDExtensionExtender(object):
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Subtopics",
-                description=u"Subtopics that this person is associated with",
+                label=u"Topics",
+                description=u"Topics within the program(s) that this item is associated with",
             ),
         ),
         
@@ -169,6 +158,16 @@ class FSDExtensionExtender(object):
             ),
         ),
 
+        _ProgramsField(
+            "extension_programs",
+                schemata="Professional Information",
+                required=False,
+                searchable=True,
+                widget = InAndOutWidget(
+                label=u"Legacy Programs",
+                description=u"This is only for compatibility purposes and will be removed shortly.",
+            ),
+        ),
 
     ]
 
@@ -195,24 +194,14 @@ class ExtensionExtender(object):
                 description=u"Counties that this item is associated with",
             ),
         ),
-        _ProgramsField(
-            "extension_programs",
-                schemata="categorization",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Programs",
-                description=u"Programs that this item is associated with",
-            ),
-        ),
         _TopicsField(
             "extension_topics",
                 schemata="categorization",
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Topics",
-                description=u"Topics that this item is associated with",
+                label=u"Programs",
+                description=u"Extension programs that this item is associated with",
             ),
         ),
         _SubtopicsField(
@@ -221,8 +210,18 @@ class ExtensionExtender(object):
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Subtopics",
-                description=u"Subtopics that this item is associated with",
+                label=u"Topics",
+                description=u"Topics within the program(s) that this item is associated with",
+            ),
+        ),
+        _ProgramsField(
+            "extension_programs",
+                schemata="categorization",
+                required=False,
+                searchable=True,
+                widget = InAndOutWidget(
+                label=u"Legacy Programs",
+                description=u"This is only for compatibility purposes and will be removed shortly.",
             ),
         ),
     ]
@@ -334,14 +333,13 @@ class ExtensionPublicationExtender(object):
 
 class ExtensionEventExtender(object):
     adapts(IATEvent)
-    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
 
     layer = IExtensionExtenderLayer
     
     fields = [
         _CoursesField(
             "extension_courses",
-                schemata="categorization",
                 required=False,
                 searchable=True,
                 widget = SelectionWidget(
@@ -352,6 +350,17 @@ class ExtensionEventExtender(object):
         ),
     ]
     
+    def fiddle(self, schema):
+        # Make "Location" mandatory
+        tmp_field = schema['location'].copy()
+        tmp_field.required=True
+        schema['location'] = tmp_field
+
+        # Put courses before location
+        schema.moveField('extension_courses', after='location')
+
+        return schema
+
     def __init__(self, context):
         self.context = context
 
