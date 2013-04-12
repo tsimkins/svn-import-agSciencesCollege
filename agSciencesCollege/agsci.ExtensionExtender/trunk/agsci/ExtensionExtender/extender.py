@@ -357,7 +357,7 @@ class ExtensionEventExtender(object):
         schema['location'] = tmp_field
 
         # Put courses before location
-        schema.moveField('extension_courses', after='location')
+        schema.moveField('extension_courses', before='location')
 
         return schema
 
