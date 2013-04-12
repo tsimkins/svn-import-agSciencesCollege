@@ -157,16 +157,8 @@
                     </ul>
                 </tal:areas>
 
-                <tal:areas condition="extension_programs">
-                    <h3>Programs</h3>
-                    <ul>
-                        <li tal:repeat="x extension_programs"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
                 <tal:areas condition="extension_topics">
-                    <h3>Topics</h3>
+                    <h3>Programs</h3>
                     <ul>
                         <li tal:repeat="x extension_topics"
                             tal:content="x" />
@@ -174,9 +166,17 @@
                 </tal:areas>
                 
                 <tal:areas condition="extension_subtopics">
-                    <h3>Subtopics</h3>
+                    <h3>Topics</h3>
                     <ul>
                         <li tal:repeat="x extension_subtopics"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+
+                <tal:areas condition="extension_programs">
+                    <h3>Legacy Programs</h3>
+                    <ul>
+                        <li tal:repeat="x extension_programs"
                             tal:content="x" />
                     </ul>
                 </tal:areas>
