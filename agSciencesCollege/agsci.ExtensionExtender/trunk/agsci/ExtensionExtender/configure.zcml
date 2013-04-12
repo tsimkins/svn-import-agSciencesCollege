@@ -49,6 +49,12 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
+    <adapter
+        name="agsci.ExtensionExtender.extender.ExtensionEvent.fiddle"
+        factory=".extender.ExtensionEventExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    /> 
+
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IExtensionExtender"
