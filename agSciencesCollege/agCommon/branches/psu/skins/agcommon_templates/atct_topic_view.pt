@@ -107,8 +107,10 @@
 
             </tal:listing>
 
-            <tal:noresults
+            <tal:course
                 define="isCourse python:'courses' in context.Subject()">
+                
+                <h2 tal:condition="isCourse">Upcoming Events</h2>
 
                 <p class="discreet"
                    tal:condition="python: isCourse and not topicContents and here.listCriteria()">
@@ -123,7 +125,7 @@
                     There are currently no results for this search.
                 </p>
 
-            </tal:noresults>
+            </tal:course>
 
             <p class="discreet"
                tal:condition="not: here/listCriteria"
