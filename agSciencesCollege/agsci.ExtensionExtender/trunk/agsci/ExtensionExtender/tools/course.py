@@ -250,6 +250,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Technology Tuesdays' : 'Technology Tuesday Series',
             'StrongWomen' : 'Strong Women/Growing Stronger',
             'Strong Women' : 'Strong Women/Growing Stronger',
+            'Growing Stronger' : 'Strong Women/Growing Stronger',
             'Cooking for Crowds' : 'Cooking for Crowds-Volunteer Food Safety',
             'Land Use Webinar Series' : 'Land Use Planning',
             'Master Well Owner' : 'Master Well Owner Network (MWON) Volunteer Training',
@@ -261,9 +262,13 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Fundamentals of HACCP' : 'Fundamentals of Hazard Analysis Critical Control Point (HACCP)',
             'Principles of HACCP for Meat and Poultry Processors' : 'Hazard Analysis Critical Control Point (HACCP) for Meat and Poultry Processors',
             'Shale' : 'Shale Gas 101',
+            'Safe Drinking Water Clinic' : 'Safe Drinking Water Clinics',
             'Sheep Shearing Workshops' : 'Sheep Shearing Instruction',
             'Six Steps to a Highly Effective Organization' : 'Six Steps to an Effective Organization',
             'Tools for Equine Health & Soundness' : 'Tools for Equine Health and Soundness',
+            'Social Media Boot Camp' : 'Social Media Boot Camp for Agricultural Businesses',
+            'Raising Chickens' : 'Backyard Poultry',
+            
             
         }
 
