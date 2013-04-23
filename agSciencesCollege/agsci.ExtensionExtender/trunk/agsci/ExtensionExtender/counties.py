@@ -371,6 +371,8 @@ def reconcileCounties():
         counties = data.get(county)
         if len(counties) > len(set(counties)):
             print "Duplicate Counties %s" % county
+        if county not in counties:
+            print "Missing self %s" % county
         for c in counties:
             if not data.get(c):
                 print "Invalid county %s in %s" % (c, county)

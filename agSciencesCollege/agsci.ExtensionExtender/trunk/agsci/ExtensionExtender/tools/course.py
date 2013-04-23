@@ -95,6 +95,19 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
         return results
 
+    security.declarePrivate('validateCourse')
+    def validateCourse(self, course):
+        
+        conn = self.conn()
+
+        c = conn.cursor()
+
+        results = c.execute("""select distinct course, description, body_text from courses where course = ?""", (course,)).fetchall()
+
+        conn.close()
+
+        return results
+
 
     security.declarePublic('getCoursesByCategory')
     def getCoursesByCategory(self, category):
@@ -217,7 +230,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
         c = conn.cursor()
 
-        results = c.execute("""select distinct category, topic, subtopic from courses order by category, topic, subtopic""").fetchall()
+        results = c.execute("""select distinct category, topic, subtopic from courses where subtopic is not null and subtopic != '' order by category, topic, subtopic""").fetchall()
 
         conn.close()
 
