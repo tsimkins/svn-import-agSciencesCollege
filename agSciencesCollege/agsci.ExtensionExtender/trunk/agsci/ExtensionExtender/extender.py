@@ -348,17 +348,29 @@ class ExtensionEventExtender(object):
                 format='select'
             ),
         ),
+        _ExtensionStringField(
+            "zip_code",
+                required=False,
+                searchable=True,
+                widget=StringWidget(
+                    label=u"ZIP Code",
+                    description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter '00000'.",
+                ),
+        ),
     ]
     
     def fiddle(self, schema):
         # Make "Location" mandatory
-        tmp_field = schema['location'].copy()
-        tmp_field.required=True
-        schema['location'] = tmp_field
+        schema['location'].required=True
+
+        tmp_field = schema['extension_counties'].copy()
+        tmp_field.schemata = 'default'
+        schema['extension_counties'] = tmp_field
 
         # Put courses before location
-        schema.moveField('extension_courses', before='location')
-
+        schema.moveField('extension_courses', after='description')
+        schema.moveField('zip_code', after='startDate')
+        schema.moveField('extension_counties', after='zip_code')
         return schema
 
     def __init__(self, context):

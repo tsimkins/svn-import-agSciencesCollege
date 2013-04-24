@@ -65,7 +65,7 @@ class CountyView(TagsView):
             return []
 
 
-class ProgramView(CountyView):
+class CoursesView(CountyView):
 
     def __init__(self, context, request):
         self.context = context
@@ -76,9 +76,25 @@ class ProgramView(CountyView):
         self.singular_title = 'Course'
         self.plural_title = 'Courses'
 
-        self.obj_tags = 'extension_programs'
+        self.obj_tags = 'extension_courses'
         self.target_view = 'courses'
-        self.catalog_index = 'Programs'
+        self.catalog_index = 'Courses'
+
+
+class ProgramView(CountyView):
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+        self.url_tags = []
+
+        # Overrite configuration
+        self.singular_title = 'Program'
+        self.plural_title = 'Programs'
+
+        self.obj_tags = 'extension_topics'
+        self.target_view = 'programs'
+        self.catalog_index = 'Topics'
 
 
 class TopicView(CountyView):
@@ -92,22 +108,6 @@ class TopicView(CountyView):
         self.singular_title = 'Topic'
         self.plural_title = 'Topics'
 
-        self.obj_tags = 'extension_topics'
-        self.target_view = 'topics'
-        self.catalog_index = 'Topics'
-
-
-class SubtopicView(CountyView):
-
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-        self.url_tags = []
-
-        # Overrite configuration
-        self.singular_title = 'Subtopic'
-        self.plural_title = 'Subtopics'
-
         self.obj_tags = 'extension_subtopics'
-        self.target_view = 'subtopics'
+        self.target_view = 'topics'
         self.catalog_index = 'Subtopics'

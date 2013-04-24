@@ -33,9 +33,9 @@ class TypesVocabulary(object):
     def __call__(self, context):
         return SimpleVocabulary([
             SimpleTerm('extension_counties', title="County"),
-            SimpleTerm('extension_programs', title="Course"),
-            SimpleTerm('extension_topics', title="Topic"),
-            SimpleTerm('extension_subtopics', title="Subtopic"),
+            SimpleTerm('extension_courses', title="Course"),
+            SimpleTerm('extension_topics', title="Program"),
+            SimpleTerm('extension_subtopics', title="Topic"),
         ])
 
 TypesVocabularyFactory = TypesVocabulary()
@@ -101,7 +101,7 @@ class Renderer(TagsRenderer):
     def obj_tags(self):
         return {
             'extension_counties' : 'extension_counties',
-            'extension_programs' : 'extension_programs',
+            'extension_courses' : 'extension_courses',
             'extension_topics' : 'extension_topics',
             'extension_subtopics' : 'extension_subtopics',
         }.get(self.data.drilldown_type, 'unknown')
@@ -110,7 +110,7 @@ class Renderer(TagsRenderer):
     def target_view(self):
         return {
             'extension_counties' : 'counties',
-            'extension_programs' : 'courses',
+            'extension_courses' : 'courses',
             'extension_topics' : 'topics',
             'extension_subtopics' : 'subtopics',
         }.get(self.data.drilldown_type, 'unknown')
@@ -119,7 +119,7 @@ class Renderer(TagsRenderer):
     def catalog_index(self):
         return {
             'extension_counties' : 'Counties',
-            'extension_programs' : 'Programs',
+            'extension_courses' : 'Courses',
             'extension_topics' : 'Topics',
             'extension_subtopics' : 'Subtopics',
         }.get(self.data.drilldown_type, 'unknown')

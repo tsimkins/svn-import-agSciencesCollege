@@ -33,6 +33,15 @@
     <browser:page
         for="*"
         name="courses"
+        class=".views.drilldown.CoursesView"
+        template="templates/drilldown.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="programs"
         class=".views.drilldown.ProgramView"
         template="templates/drilldown.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
@@ -48,16 +57,6 @@
         permission="zope2.View"
     />
     
-    <browser:page
-        for="*"
-        name="subtopics"
-        class=".views.drilldown.SubtopicView"
-        template="templates/drilldown.pt"
-        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
-        permission="zope2.View"
-    />
-
-
     <browser:page
         for="*"
         name="extension_program_county"

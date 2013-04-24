@@ -185,7 +185,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
         c = conn.cursor()
 
-        results = c.execute("""select distinct category, topic, subtopic from courses where course = ? order by category, topic, subtopic""", (course,)).fetchall()
+        results = c.execute("""select distinct category, topic, subtopic from courses where course = ? and subtopic is not null and subtopic != '' order by category, topic, subtopic""", (course,)).fetchall()
 
         conn.close()
 

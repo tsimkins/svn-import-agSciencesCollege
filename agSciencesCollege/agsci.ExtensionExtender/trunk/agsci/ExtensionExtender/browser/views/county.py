@@ -92,7 +92,7 @@ class ExtensionProgramCountyView(FolderView):
         all_programs = self.request.form.get('program')
 
         if not all_programs:
-            all_programs = portal_catalog.uniqueValuesFor('Programs')
+            all_programs = portal_catalog.uniqueValuesFor('Topics')
         elif isinstance(all_programs, str):
             all_programs = [all_programs]
 
@@ -114,7 +114,7 @@ class ExtensionProgramCountyView(FolderView):
                 counties[c][p] = []
 
         for r in portal_catalog.searchResults({'portal_type' : 'FSDPerson'}):
-            for p in r.extension_programs:
+            for p in r.extension_topics:
                 for c in r.extension_counties:
                     if p in all_programs and c in all_counties:
                         programs[p][c].append(r)
