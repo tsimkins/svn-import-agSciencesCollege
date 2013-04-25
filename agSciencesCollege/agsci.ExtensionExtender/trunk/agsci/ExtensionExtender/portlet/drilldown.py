@@ -111,8 +111,8 @@ class Renderer(TagsRenderer):
         return {
             'extension_counties' : 'counties',
             'extension_courses' : 'courses',
-            'extension_topics' : 'topics',
-            'extension_subtopics' : 'subtopics',
+            'extension_topics' : 'programs',
+            'extension_subtopics' : 'topics',
         }.get(self.data.drilldown_type, 'unknown')
 
     @property 
