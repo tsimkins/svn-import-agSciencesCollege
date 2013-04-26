@@ -17,24 +17,36 @@
        id="logo-college"
        tal:condition="subsite"><img tal:attributes="src string:${view/navigation_root_url}/college-text.png" alt="College of Agricultural Sciences" /></a>
 
-    <tal:printlogo condition="subsite">    
+    <tal:printlogo condition="python: portal_title != 'Penn State Extension'">    
+
         <img class="subsite"
             id="logo-print"
             tal:attributes="src string:${view/navigation_root_url}/college_black_stacked.png" 
             alt="" 
             width="192"
             height="71"
-            tal:condition="python: portal_title != 'Penn State Extension'" />
-    </tal:printlogo>
+            tal:condition="subsite" />
 
-    <tal:printlogo condition="not:subsite">    
         <img 
             id="logo-print"
             tal:attributes="src string:${view/navigation_root_url}/psu_black_short.png" 
             alt=""
             width="121"
-            height="58" />
+            height="58"
+            tal:condition="not:subsite" />
+
     </tal:printlogo>
+
+
+    <tal:printlogo condition="python: portal_title == 'Penn State Extension'">    
+        <img class="extension"
+            id="logo-print"
+            tal:attributes="src string:${view/navigation_root_url}/extension-factsheet.png" 
+            alt="" 
+            width="412"
+            height="30" />
+    </tal:printlogo>
+    
 
     <a id="logo-site" tal:condition="python: portal_title != 'Penn State Extension'" 
         tal:content="portal_title"

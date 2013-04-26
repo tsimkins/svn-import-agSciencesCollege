@@ -141,8 +141,8 @@
                     alt="" /><span tal:content="string:Twitter" /></a>
                 </dd>
                 <dd tal:condition="facebook_url">
-                    <a tal:attributes="href facebook_url"><img tal:attributes="src string:${portal_url}/icons/facebook.png" alt="" />
-                    <span tal:content="string:Facebook" /></a>
+                    <a tal:attributes="href facebook_url"><img tal:attributes="src string:${portal_url}/icons/facebook.png" 
+                    alt="" /><span tal:content="string:Facebook" /></a>
                 </dd>
                 <dd tal:condition="linkedin_url">
                     <a tal:attributes="href linkedin_url"><img tal:attributes="src string:${portal_url}/icons/linkedin.png" 

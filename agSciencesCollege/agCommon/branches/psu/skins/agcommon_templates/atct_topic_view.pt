@@ -20,10 +20,17 @@
                                    order_by_title here/order_by_title|nothing;
                                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
                                    isCourse python:'courses' in context.Subject();
+                                   noEventsCourse python:'courses-online-ondemand' in context.Subject();
                                    topicContents python: (order_by_title or order_by_id) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title) or topicContents;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    batch topicContents;">
-        <h2 tal:condition="isCourse">Upcoming Events</h2>
+        <tal:course condition="python: isCourse and not noEventsCourse">
+            <h2>Upcoming Events</h2>
+            <p class="discreet"
+                tal:condition="python: not topicContents and here.listCriteria()">
+                There are currently no events scheduled for this course.
+            </p>
+        </tal:course>
         <tal:listing condition="topicContents">
             <a style='text-align: right' href="#"
                tal:condition="nocall: here/asPDF|nothing"
@@ -107,11 +114,6 @@
             </tal:custom>
 
             </tal:listing>
-
-            <p class="discreet"
-                tal:condition="python: isCourse and not topicContents and here.listCriteria()">
-                There are currently no events scheduled for this course.
-            </p>
 
             <p class="discreet"
                 tal:define="isAnon context/@@plone_portal_state/anonymous"

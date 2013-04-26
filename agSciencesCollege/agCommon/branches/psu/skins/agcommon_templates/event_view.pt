@@ -144,11 +144,20 @@
                               extension_counties context/extension_counties|nothing;
                               extension_programs context/extension_programs|nothing;
                               extension_topics context/extension_topics|nothing;
+                              extension_courses context/extension_courses|nothing;
                               extension_subtopics context/extension_subtopics|nothing;"
                               condition="python: (not isAnon) and (extension_counties or extension_programs or extension_topics or extension_subtopics)">
 
                 <h2>Event Metadata</h2>
                 <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the counties and programs associated with this event.</p>
+                <tal:areas condition="extension_courses">
+                    <h3>Course</h3>
+                    <ul>
+                        <li tal:repeat="x extension_courses"
+                            tal:content="x" />
+                    </ul>
+                </tal:areas>
+
                 <tal:areas condition="extension_counties">
                     <h3>Counties</h3>
                     <ul>

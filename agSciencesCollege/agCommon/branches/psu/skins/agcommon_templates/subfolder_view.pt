@@ -26,7 +26,12 @@
 
 
         <tal:subfolder metal:define-macro="subfolders_macro"
-                      define="folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']})">
+                      define="is_a_topic python:context.portal_type=='Topic';
+                              order_by_id here/order_by_id|nothing;
+                              order_by_title here/order_by_title|nothing;
+                              agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                              folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']});
+                              folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;">
 
             <tal:noContents condition="python: len(folderContents) == 0">
                 <metal:listing metal:use-macro="context/@@folder_listing_z3/macros/listing" />

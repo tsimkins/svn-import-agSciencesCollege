@@ -17,6 +17,7 @@ body {
 	max-width: auto;
 	min-width: 0;
 	width: 100%;
+	margin-top: 0;
     background: #FFFFFF;
     background-image: none;
     /* Remove Drop Shadow */
@@ -28,8 +29,10 @@ body {
 /* Remove vertical borders */
 
 #portal-top, #portal-columns, #portal-footer, #clear-space-before-footer {
-	border-left:0px;
-	border-right:0px;
+	border-left:0;
+	border-right:0;
+	background-image: none;
+	background-color: transparent;
 }
 
 /* Portal Header and Logo */
@@ -37,7 +40,6 @@ body {
 #portal-header {
 	background-color: #FFFFFF;
 	background-image: none;
-	min-height: 80px;
 }
 
 #logo-psu, #logo-college {
@@ -49,6 +51,11 @@ body {
 	position: absolute;
 	top: 0;
 	left: 7px;
+}
+
+#logo-print.extension {
+	left: 0;
+	top: 0.25em;
 }
 
 #logo-site {
@@ -67,8 +74,7 @@ body {
 }
 
 #logo-site.extension {
-    left: 23px;
-    top: 0;
+    display: none;
 }
 
 #logo-site a {
@@ -87,12 +93,13 @@ body {
 	background-color: #EEEEEE;
 	color: #000000;
 	border: 1px solid #666666;
-	padding-left: 8px;
-	margin-top: 8px;
+	padding: 0 0.5em;
+	margin: 0.5em 0;
+	line-height: 1.6em;
 }
 
 #portal-breadcrumbs>span {
-    font-size: 0.875em;
+    font-size: 0.75em;
 }
 
 #portal-breadcrumbs a {
@@ -127,9 +134,16 @@ body.template-document_homepage_view #homepageimage {
 
 #content h1 {
     line-height: 1.10em;
+    font-size: 1.75em;
 }
 
 #content h2 {
+    font-size: 1.5em;
+    line-height: 1.10em;
+}
+
+#content h3 {
+    font-size: 1.125em;
     line-height: 1.10em;
 }
 
@@ -150,6 +164,8 @@ body.template-document_homepage_view #homepageimage {
 
 #content {
 	padding: 0px !important;
+	margin:  0;
+	width: 100%;
 	line-height: 1.5em;
 	font-size: 1.0625em;
 }
@@ -184,10 +200,11 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 	font-size: 0.75em;
     margin: 5px 0 0 0;
     padding: 0;
-    border-width: 0;
-    border-left: 0px;
-    border-right: 0px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-top-color: #CCCCCC; 
 	clear: both;
+	text-align: left;
 }
 
 #portal-footer p.footerLinks {
@@ -196,9 +213,13 @@ body.template-document_homepage_view #rightcolumn, #portal-column-two {
 
 #portal-footer p:first-child {
 	display: block;
-    border-width: 1px 0 0 0;
-    border-style: solid;
-    border-top-color: #CCCCCC; 
+}
+
+#portal-footer a,
+#portal-footer a:visited {
+    color: #000000;
+    border-bottom: none;
+    text-decoration: none;
 }
 
 /* Other doodads */
