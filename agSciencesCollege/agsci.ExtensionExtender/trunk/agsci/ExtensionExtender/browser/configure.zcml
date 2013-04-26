@@ -32,7 +32,7 @@
 
     <browser:page
         for="*"
-        name="courses"
+        name="course"
         class=".views.drilldown.CoursesView"
         template="templates/drilldown.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"

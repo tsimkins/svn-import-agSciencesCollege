@@ -110,7 +110,7 @@ class Renderer(TagsRenderer):
     def target_view(self):
         return {
             'extension_counties' : 'counties',
-            'extension_courses' : 'courses',
+            'extension_courses' : 'course',
             'extension_topics' : 'programs',
             'extension_subtopics' : 'topics',
         }.get(self.data.drilldown_type, 'unknown')
@@ -179,7 +179,7 @@ class Renderer(TagsRenderer):
             items = self.portal_catalog.searchResults({self.catalog_index : available_tags, 'path' : path})                
 
         for i in items:
-            if hasattr(i, self.obj_tags):
+            if hasattr(i, self.obj_tags) and getattr(i, self.obj_tags):
                 for t in getattr(i, self.obj_tags):
                     if available_tags:
                         if t in available_tags:
