@@ -268,6 +268,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Tools for Equine Health & Soundness' : 'Tools for Equine Health and Soundness',
             'Social Media Boot Camp' : 'Social Media Boot Camp for Agricultural Businesses',
             'Raising Chickens' : 'Backyard Poultry',
+            'OMK' : 'Operation Military Kids',
             
             
         }
