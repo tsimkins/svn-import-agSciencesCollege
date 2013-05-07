@@ -1163,6 +1163,16 @@ jq(document).ready(
     }
 );
 
+jq(document).ready(
+    function () {
+        jq('#content span.required').each(
+            function () {
+                jq(this).html('&#x25a0;');
+            }  
+        );
+    }
+);
+
 
 /* YOUR JAVASCRIPT STOPS HERE */
 

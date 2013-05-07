@@ -74,9 +74,11 @@ body.section-front-page #portlets-above .portletWrapper {
     padding-top: 50px;
 }
 
-body.section-front-page #content #portlets-above .portletItem a {
+body.section-front-page #content #portlets-above .portletItem a,
+body.section-front-page #content #portlets-above .portletItem a:hover {
     padding-left: 8px !important;
     padding-top: 0.5em !important;
+    border-bottom: none;
 }
 
 /* Animals */

@@ -21,7 +21,8 @@
         
         <metal:js fill-slot="javascript_head_slot">
             <!-- Homepage JavaScript -->
-            <script tal:condition="python:'background-images' in context.keys()" 
+            <script tal:define="acquire_background_images context/acquire_background_images|nothing"
+                    tal:condition="python: acquire_background_images or 'background-images' in context.keys()" 
                     type="text/javascript" 
                     src="background-images/getHomepageImage.js"></script>
         </metal:js>
