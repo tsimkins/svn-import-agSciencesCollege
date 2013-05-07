@@ -8,6 +8,7 @@ import xlrd
 import sqlite3
 import Zope2
 import re
+from DateTime import DateTime
 
 class ExtensionCourseTool(UniqueObject, SimpleItem):
 
@@ -248,9 +249,9 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
         abbr = {
             'BKC' : 'Better Kid Care',
             'Technology Tuesdays' : 'Technology Tuesday Series',
-            'StrongWomen' : 'Strong Women/Growing Stronger',
-            'Strong Women' : 'Strong Women/Growing Stronger',
-            'Growing Stronger' : 'Strong Women/Growing Stronger',
+            'StrongWomen' : u'StrongWomen\u2122/Growing Stronger',
+            'Strong Women' : u'StrongWomen\u2122/Growing Stronger',
+            'Growing Stronger' : u'StrongWomen\u2122/Growing Stronger',
             'Cooking for Crowds' : 'Cooking for Crowds-Volunteer Food Safety',
             'Land Use Webinar Series' : 'Land Use Planning',
             'Master Well Owner' : 'Master Well Owner Network (MWON) Volunteer Training',
@@ -308,5 +309,73 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
                     return c
         
         return ''
+
+    def setCourseAttributes(self):
+
+        now = DateTime()
+        
+        portal_catalog = getToolByName(self, "portal_catalog")
+
+        # Find all upcoming events
+        results = portal_catalog.searchResults({'portal_type' : 'Event', 'end' : {'query' : now, 'range' : 'min'}, 'review_state' : ['published', 'published-hidden']})
+        
+        for r in results:
+
+            # Skip if we have a course set
+            if r.extension_courses:
+                continue
+
+            title = r.Title.decode('utf-8')
+
+            # Skip if we have a 4-H or Master Gardener event
+            is_excluded = False
+
+            for e in ['4-H', 'Master Gardener', 'Youth and Family:4-H', 'Plants and Pests:Master Gardener Program']:
+                if e in title or e in r.extension_topics:
+                    is_excluded = True
+                    break
+
+            if is_excluded:
+                continue
+
+            # Automagically determine course
+            course = self.getCourseForEvent(r, skip_if_exists=False)
+
+            if course:
+                # Get 
+                o = r.getObject()
+                
+                # Automagically determine topics and subtopics
+                topics = self.getCourseTopics(course)
+                subtopics = self.getCourseSubtopics(course)
+    
+                # Get existing topics and subtopics
+                course_topics = list(r.extension_topics)
+                course_subtopics = list(r.extension_subtopics)
+
+                # Set course for event
+                o.extension_courses = (course, )
+
+                # Set topics and subtopics
+                for tt in topics:
+                    t = ":".join(tt)
+                    if t not in course_topics:
+                        course_topics.append(t)
+
+                for tt in subtopics:
+
+                    if not tt[2]:
+                        continue
+
+                    t = ":".join(tt)
+
+                    if t not in course_subtopics:
+                        course_subtopics.append(t)
+
+                if tuple(course_topics) != tuple(r.extension_topics) or tuple(course_subtopics) != tuple(r.extension_subtopics):
+                    o.extension_topics = course_topics
+                    o.extension_subtopics = course_subtopics
+    
+                o.reindexObject()
 
 InitializeClass(ExtensionCourseTool)
