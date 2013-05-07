@@ -327,17 +327,6 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
             title = r.Title.decode('utf-8')
 
-            # Skip if we have a 4-H or Master Gardener event
-            is_excluded = False
-
-            for e in ['4-H', 'Master Gardener', 'Youth and Family:4-H', 'Plants and Pests:Master Gardener Program']:
-                if e in title or e in r.extension_topics:
-                    is_excluded = True
-                    break
-
-            if is_excluded:
-                continue
-
             # Automagically determine course
             course = self.getCourseForEvent(r, skip_if_exists=False)
 
