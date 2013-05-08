@@ -143,7 +143,7 @@
             </form>
 
             <metal:deadline define-macro="registration_deadline">
-            <div class="eventDateLocation" tal:condition="registration_deadline"><strong>Registration deadline:</strong> 
+            <div tal:condition="registration_deadline"><strong>Registration deadline:</strong> 
                 <span tal:condition="registration_allowed" tal:replace="python:toLocalizedTime(registration_deadline, long_format=1)" />
                 <span tal:condition="not: registration_allowed">Registration is closed.</span>
 
