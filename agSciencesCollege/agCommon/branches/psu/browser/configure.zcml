@@ -618,5 +618,22 @@
         template="templates/sharing.pt"
         />
 
+    <!-- Download registrations -->
+    <browser:page
+        for="*"
+        name="event_registration_view"
+        class=".views.registration.RegistrationView"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
 
+    <!-- Download registrations -->
+    <browser:page
+        for="Products.PloneFormGen.interfaces.form.IPloneFormGenForm"
+        name="download_csv"
+        class=".views.registration.DownloadCSVView"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+    
 </configure>

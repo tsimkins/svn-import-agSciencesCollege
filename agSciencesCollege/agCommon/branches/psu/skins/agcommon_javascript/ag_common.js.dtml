@@ -1173,6 +1173,14 @@ jq(document).ready(
     }
 );
 
+/* Duplicate registration button on event */
+
+jq(document).ready(
+    function () {
+        jq('form.event-registration-public').clone().attr('class', 'event-registration-button').insertBefore("#content-core .eventDateLocation");
+        jq('form.event-registration-button input[type=submit]').attr('value', 'Register');
+    }
+);
 
 /* YOUR JAVASCRIPT STOPS HERE */
 
