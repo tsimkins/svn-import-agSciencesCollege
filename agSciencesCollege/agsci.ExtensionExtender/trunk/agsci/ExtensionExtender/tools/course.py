@@ -321,10 +321,6 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
         
         for r in results:
 
-            # Skip if we have a course set
-            if r.extension_courses:
-                continue
-
             title = r.Title.decode('utf-8')
 
             # Automagically determine course
