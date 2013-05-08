@@ -75,8 +75,8 @@ class ISimilar(IPortletDataProvider):
         required=False,
         default=False)
         
-    query_subtopics = schema.Bool(
-        title=_(u"Search Subtopics"),
+    query_courses = schema.Bool(
+        title=_(u"Search Course"),
         description=_(u""),
         required=False,
         default=False)
@@ -111,21 +111,21 @@ class Assignment(base.Assignment):
     query_counties = False
     query_programs = False
     query_topics = False
-    query_subtopics = False
+    query_courses = False
     query_title = False
     limit = 10
     show_dates = True
 
     def __init__(self, header=header, show_header=show_header, query_portal_type=query_portal_type,
                  query_counties=query_counties, query_programs=query_programs, query_topics=query_topics, 
-                 query_subtopics=query_subtopics, query_title=query_title, limit=limit, show_dates=show_dates):
+                 query_courses=query_courses, query_title=query_title, limit=limit, show_dates=show_dates):
         self.header = header
         self.show_header = show_header
         self.query_portal_type = query_portal_type
         self.query_counties = query_counties
         self.query_programs = query_programs
         self.query_topics = query_topics
-        self.query_subtopics = query_subtopics
+        self.query_courses = query_courses
         self.query_title = query_title
         self.limit = limit
         self.show_dates = show_dates
@@ -184,8 +184,8 @@ class Renderer(base.Renderer):
         return self.data.query_topics
 
     @property
-    def query_subtopics(self):
-        return self.data.query_subtopics
+    def query_courses(self):
+        return self.data.query_courses
 
     @property
     def query_title(self):
@@ -210,6 +210,7 @@ class Renderer(base.Renderer):
             if self.query_portal_type in ['Event']:
                 similar_query['sort_on'] = 'start'
                 similar_query['sort_order'] = 'ascending'
+                similar_query['start'] = {'query' : DateTime(), 'range' : 'min'}
                 similar_query['end'] = {'query' : DateTime(), 'range' : 'min'}
 
             if self.query_portal_type in ['News Item']:
@@ -220,14 +221,14 @@ class Renderer(base.Renderer):
         if self.query_counties and self.context.extension_counties:
             similar_query['Counties'] = self.context.extension_counties
 
-        if self.query_programs and self.context.extension_programs:
-            similar_query['Programs'] = self.context.extension_programs
+        if self.query_programs and self.context.extension_topics:
+            similar_query['Programs'] = self.context.extension_topics
 
-        if self.query_topics and self.context.extension_topics:
-            similar_query['Topics'] = self.context.extension_topics
+        if self.query_topics and self.context.extension_subtopics:
+            similar_query['Topics'] = self.context.extension_subtopics
 
-        if self.query_subtopics and self.context.extension_subtopics:
-            similar_query['Subtopics'] = self.context.extension_subtopics
+        if self.query_courses and self.context.extension_courses:
+            similar_query['Courses'] = self.context.extension_courses
 
         if self.query_title and self.context.Title():
             similar_query['Title'] = self.context.Title()
@@ -241,7 +242,7 @@ class Renderer(base.Renderer):
                 brains.append(b)
         
         brains = brains[:self.limit]
-        
+
         return brains
 
     def render(self):

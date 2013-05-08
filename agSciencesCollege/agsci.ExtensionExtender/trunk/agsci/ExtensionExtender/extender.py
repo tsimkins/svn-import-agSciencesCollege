@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget, DateTimeField, CalendarWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -15,6 +15,7 @@ from Products.ATContentTypes.interfaces.event import IATEvent
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _ExtensionBlobField(ExtensionField, BlobField): pass
+class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
 
 class _ExtensionLinesField(ExtensionField, LinesField):
 
@@ -73,15 +74,27 @@ class _SubtopicsField(_ExtensionLinesField):
             return DisplayList([('N/A', 'N/A')])
 
 class _CountiesField(_ExtensionLinesField):
-    def Vocabulary(self, content_instance):
-
+    def getCounties(self, content_instance):
         ptool = getToolByName(content_instance, 'portal_properties')
         props = ptool.get("extension_properties")
 
         if props and props.extension_counties:
-            return DisplayList([(x.strip(), x.strip()) for x in sorted(props.extension_counties)])
+            return [(x.strip(), x.strip()) for x in sorted(props.extension_counties)]
         else:
-            return DisplayList([('N/A', 'N/A')])
+            return [('N/A', 'N/A')]
+
+    def Vocabulary(self, content_instance):
+        return DisplayList(self.getCounties(content_instance))
+
+class _EventCountiesField(_CountiesField):
+    def Vocabulary(self, content_instance):
+
+        counties = self.getCounties(content_instance)
+
+        if len(counties) > 1:
+            counties.insert(0, ('N/A', 'N/A'))
+
+        return DisplayList(counties)
 
 class _ProgramsField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
@@ -183,48 +196,60 @@ class ExtensionExtender(object):
 
     layer = IExtensionExtenderLayer
     
-    fields = [
-        _CountiesField(
-            "extension_counties",
-                schemata="categorization",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Counties",
-                description=u"Counties that this item is associated with",
+    @property
+    def fields(self):
+        fields = self.custom_fields()
+        fields.extend(self.base_fields())
+        return fields
+
+    def custom_fields(self):
+        return [
+            _CountiesField(
+                "extension_counties",
+                    schemata="categorization",
+                    required=False,
+                    searchable=True,
+                    widget = InAndOutWidget(
+                    label=u"Counties",
+                    description=u"Counties that this item is associated with",
+                ),
             ),
-        ),
-        _TopicsField(
-            "extension_topics",
-                schemata="categorization",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Programs",
-                description=u"Extension programs that this item is associated with",
+        ]
+
+
+    def base_fields(self):
+        return [
+            _TopicsField(
+                "extension_topics",
+                    schemata="categorization",
+                    required=False,
+                    searchable=True,
+                    widget = InAndOutWidget(
+                    label=u"Programs",
+                    description=u"Extension programs that this item is associated with",
+                ),
             ),
-        ),
-        _SubtopicsField(
-            "extension_subtopics",
-                schemata="categorization",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Topics",
-                description=u"Topics within the program(s) that this item is associated with",
+            _SubtopicsField(
+                "extension_subtopics",
+                    schemata="categorization",
+                    required=False,
+                    searchable=True,
+                    widget = InAndOutWidget(
+                    label=u"Topics",
+                    description=u"Topics within the program(s) that this item is associated with",
+                ),
             ),
-        ),
-        _ProgramsField(
-            "extension_programs",
-                schemata="categorization",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Legacy Programs",
-                description=u"This is only for compatibility purposes and will be removed shortly.",
+            _ProgramsField(
+                "extension_programs",
+                    schemata="categorization",
+                    required=False,
+                    searchable=True,
+                    widget = InAndOutWidget(
+                    label=u"Legacy Programs",
+                    description=u"This is only for compatibility purposes and will be removed shortly.",
+                ),
             ),
-        ),
-    ]
+        ]    
 
     def __init__(self, context):
         self.context = context
@@ -331,34 +356,76 @@ class ExtensionPublicationExtender(object):
         return self.fields
 
 
-class ExtensionEventExtender(object):
+class ExtensionEventExtender(ExtensionExtender):
     adapts(IATEvent)
     implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
 
     layer = IExtensionExtenderLayer
     
-    fields = [
-        _CoursesField(
-            "extension_courses",
-                required=False,
-                searchable=True,
-                widget = SelectionWidget(
-                label=u"Course",
-                description=u"Course that this event is associated with",
-                format='select'
-            ),
-        ),
-        _ExtensionStringField(
-            "zip_code",
-                required=False,
-                searchable=True,
-                widget=StringWidget(
-                    label=u"ZIP Code",
-                    description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter '00000'.",
+    def custom_fields(self):
+        return [
+            _EventCountiesField(
+                "extension_counties",
+                    schemata="categorization",
+                    required=True,
+                    searchable=True,
+                    widget = MultiSelectionWidget(
+                    label=u"County",
+                    description=u"County in which this event occurs. Choose 'N/A' if this is a webinar or virtual event.",
                 ),
-        ),
-    ]
-    
+            ),
+
+            _CoursesField(
+                "extension_courses",
+                    required=False,
+                    searchable=True,
+                    widget = SelectionWidget(
+                    label=u"Course",
+                    description=u"Course that this event is associated with",
+                    format='select'
+                ),
+            ),
+            _ExtensionStringField(
+                "zip_code",
+                    required=True,
+                    searchable=True,
+                    widget=StringWidget(
+                        label=u"ZIP Code",
+                        description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter '00000'.",
+                    ),
+            ),
+            _ExtensionBooleanField(
+                "free_registration",
+                    required=False,
+                    searchable=False,
+                    widget=BooleanWidget(
+                        label=u"Enable online event registration (for free events only).",
+                        description=u"",
+                        condition="python:member.has_role('Manager')",
+                    ),
+            ),
+            _ExtensionStringField(
+                "free_registration_email",
+                    required=False,
+                    searchable=False,
+                    widget=StringWidget(
+                        label=u"Email address for registration responses.",
+                        description=u"Use this field if you would like to receive an email for each registration.",
+                        condition="python:member.has_role('Manager')",
+                    ),
+            ),
+            _ExtensionDateTimeField(
+                "free_registration_deadline",
+                    required=False,
+                    searchable=False,
+                    widget=CalendarWidget(
+                        label=u"Registration deadline.",
+                        description=u"After this date, registrations will not be permitted.",
+                        condition="python:member.has_role('Manager')",
+                    ),
+            ),
+        ]
+
     def fiddle(self, schema):
         # Make "Location" mandatory
         schema['location'].required=True

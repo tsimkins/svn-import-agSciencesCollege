@@ -294,3 +294,27 @@ function countAvailableChildren(o) {
     return count;
  
 }
+
+
+/* Set counties to non-multiple select for everything except 4-H */
+
+jq(document).ready(
+    function() {
+        if (! jq("body.section-4-h").size())
+        {
+            jq("body.portaltype-event  #archetypes-fieldname-extension_counties select#extension_counties").each(
+                function () {
+                    jq(this).attr('multiple', '');
+                }
+            );
+        }
+
+        jq("<h2 class='form-separator'>Cancel Event</h2>").insertBefore(jq("body.portaltype-event #archetypes-fieldname-eventCanceled"));
+
+        jq("<h2 class='form-separator'>Online Event Registration</h2>").insertBefore(jq("body.portaltype-event #archetypes-fieldname-free_registration"));
+
+        jq("<h2 class='form-separator'>Event Details</h2>").insertBefore(jq("body.portaltype-event #archetypes-fieldname-eventUrl"));
+
+        jq("<h2 class='form-separator'>Event Location</h2>").insertBefore(jq("body.portaltype-event #archetypes-fieldname-location"));
+    }
+);
