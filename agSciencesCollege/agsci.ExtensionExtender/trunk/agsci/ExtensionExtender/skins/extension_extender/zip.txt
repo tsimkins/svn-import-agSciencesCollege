@@ -161,6 +161,7 @@ zipcode	locationtext	county
 15260	Pittsburgh, PA	Allegheny
 15261	Pittsburgh, PA	Allegheny
 15262	Pittsburgh, PA	Allegheny
+15263	Pittsburgh, PA	Allegheny
 15264	Pittsburgh, PA	Allegheny
 15265	Pittsburgh, PA	Allegheny
 15266	Pittsburgh, PA	Allegheny
@@ -168,6 +169,7 @@ zipcode	locationtext	county
 15268	Pittsburgh, PA	Allegheny
 15270	Pittsburgh, PA	Allegheny
 15272	Pittsburgh, PA	Allegheny
+15273	Pittsburgh, PA	Allegheny
 15274	Pittsburgh, PA	Allegheny
 15275	Pittsburgh, PA	Allegheny
 15276	Pittsburgh, PA	Allegheny
@@ -177,7 +179,9 @@ zipcode	locationtext	county
 15281	Pittsburgh, PA	Allegheny
 15282	Pittsburgh, PA	Allegheny
 15283	Pittsburgh, PA	Allegheny
+15285	Pittsburgh, PA	Allegheny
 15286	Pittsburgh, PA	Allegheny
+15288	Pittsburgh, PA	Allegheny
 15289	Pittsburgh, PA	Allegheny
 15290	Pittsburgh, PA	Allegheny
 15295	Pittsburgh, PA	Allegheny
@@ -211,7 +215,6 @@ zipcode	locationtext	county
 15341	Holbrook, PA	Greene
 15342	Houston, PA	Washington
 15344	Jefferson, PA	Greene
-15344	Jefferson, PA	York
 15345	Marianna, PA	Washington
 15346	Mather, PA	Greene
 15347	Meadow Lands, PA	Washington
@@ -254,7 +257,7 @@ zipcode	locationtext	county
 15423	Coal Center, PA	Washington
 15424	Confluence, PA	Somerset
 15425	Connellsville, PA	Fayette
-15427	Daisytown, PA	Cambria
+15427	Daisytown, PA	Washington
 15428	Dawson, PA	Fayette
 15429	Denbo, PA	Washington
 15430	Dickerson Run, PA	Fayette
@@ -291,7 +294,7 @@ zipcode	locationtext	county
 15465	Mount Braddock, PA	Fayette
 15466	Newell, PA	Fayette
 15467	New Geneva, PA	Fayette
-15468	New Salem, PA	York
+15468	New Salem, PA	Fayette
 15469	Normalville, PA	Fayette
 15470	Ohiopyle, PA	Fayette
 15472	Oliver, PA	Fayette
@@ -358,7 +361,7 @@ zipcode	locationtext	county
 15610	Acme, PA	Westmoreland
 15611	Adamsburg, PA	Westmoreland
 15612	Alverton, PA	Westmoreland
-15613	Apollo, PA	Armstrong
+15613	Apollo, PA	Westmoreland
 15615	Ardara, PA	Westmoreland
 15616	Armbrust, PA	Westmoreland
 15617	Arona, PA	Westmoreland
@@ -723,6 +726,7 @@ zipcode	locationtext	county
 16333	Ludlow, PA	McKean
 16334	Marble, PA	Clarion
 16335	Meadville, PA	Crawford
+16340	Pittsfield, PA	Warren
 16341	Pleasantville, PA	Bedford
 16341	Pleasantville, PA	Venango
 16342	Polk, PA	Venango
@@ -756,7 +760,6 @@ zipcode	locationtext	county
 16402	Bear Lake, PA	Warren
 16403	Cambridge Springs, PA	Crawford
 16404	Centerville, PA	Crawford
-16404	Centerville, PA	Washington
 16405	Columbus, PA	Warren
 16406	Conneautville, PA	Crawford
 16407	Corry, PA	Erie
@@ -764,7 +767,7 @@ zipcode	locationtext	county
 16411	East Springfield, PA	Erie
 16412	Edinboro, PA	Erie
 16413	Elgin, PA	Erie
-16415	Fairview, PA	Butler
+16415	Fairview, PA	Erie
 16416	Garland, PA	Warren
 16417	Girard, PA	Erie
 16420	Grand Valley, PA	Warren
@@ -805,6 +808,8 @@ zipcode	locationtext	county
 16522	Erie, PA	Erie
 16530	Erie, PA	Erie
 16531	Erie, PA	Erie
+16532	Erie, PA	Erie
+16533	Erie, PA	Erie
 16534	Erie, PA	Erie
 16538	Erie, PA	Erie
 16541	Erie, PA	Erie
@@ -956,7 +961,7 @@ zipcode	locationtext	county
 16861	New Millport, PA	Clearfield
 16863	Olanta, PA	Clearfield
 16864	Orviston, PA	Centre
-16865	Pennsylvania Furnace, PA	Huntingdon
+16865	Pennsylvania Furnace, PA	Centre
 16866	Philipsburg, PA	Centre
 16868	Pine Grove Mills, PA	Centre
 16870	Port Matilda, PA	Centre
@@ -978,6 +983,7 @@ zipcode	locationtext	county
 16914	Columbia Cross Roads, PA	Bradford
 16915	Coudersport, PA	Potter
 16917	Covington, PA	Tioga
+16918	Cowanesque, PA	Tioga
 16920	Elkland, PA	Tioga
 16921	Gaines, PA	Tioga
 16922	Galeton, PA	Potter
@@ -987,7 +993,7 @@ zipcode	locationtext	county
 16927	Harrison Valley, PA	Potter
 16928	Knoxville, PA	Tioga
 16929	Lawrenceville, PA	Tioga
-16930	Liberty, PA	Allegheny
+16930	Liberty, PA	Tioga
 16932	Mainesburg, PA	Tioga
 16933	Mansfield, PA	Tioga
 16935	Middlebury Center, PA	Tioga
@@ -1176,6 +1182,7 @@ zipcode	locationtext	county
 17266	Walnut Bottom, PA	Cumberland
 17267	Warfordsburg, PA	Fulton
 17268	Waynesboro, PA	Franklin
+17270	Williamson, PA	Franklin
 17271	Willow Hill, PA	Franklin
 17272	Zullinger, PA	Franklin
 17301	Abbottstown, PA	Adams
@@ -1201,6 +1208,7 @@ zipcode	locationtext	county
 17323	Franklintown, PA	York
 17324	Gardners, PA	Adams
 17325	Gettysburg, PA	Adams
+17326	Gettysburg, PA	Adams
 17327	Glen Rock, PA	York
 17329	Glenville, PA	York
 17331	Hanover, PA	Lehigh
@@ -1257,7 +1265,7 @@ zipcode	locationtext	county
 17505	Bird In Hand, PA	Lancaster
 17506	Blue Ball, PA	Lancaster
 17507	Bowmansville, PA	Lancaster
-17508	Brownstown, PA	Cambria
+17508	Brownstown, PA	Lancaster
 17509	Christiana, PA	Lancaster
 17512	Columbia, PA	Lancaster
 17516	Conestoga, PA	Lancaster
@@ -1319,6 +1327,7 @@ zipcode	locationtext	county
 17607	Lancaster, PA	Lancaster
 17608	Lancaster, PA	Lancaster
 17611	Lancaster, PA	Lancaster
+17622	Lancaster, PA	Lancaster
 17699	Lancaster, PA	Lancaster
 17701	Williamsport, PA	Clinton
 17701	Williamsport, PA	Lycoming
@@ -1365,6 +1374,7 @@ zipcode	locationtext	county
 17769	Slate Run, PA	Lycoming
 17771	Trout Run, PA	Lycoming
 17772	Turbotville, PA	Northumberland
+17773	Tylersville, PA	Clinton
 17774	Unityville, PA	Lycoming
 17776	Waterville, PA	Lycoming
 17777	Watsontown, PA	Northumberland
@@ -1512,7 +1522,7 @@ zipcode	locationtext	county
 18049	Emmaus, PA	Lehigh
 18050	Flicksville, PA	Northampton
 18051	Fogelsville, PA	Lehigh
-18052	Whitehall, PA	Allegheny
+18052	Whitehall, PA	Lehigh
 18053	Germansville, PA	Lehigh
 18054	Green Lane, PA	Montgomery
 18055	Hellertown, PA	Northampton
@@ -1655,7 +1665,7 @@ zipcode	locationtext	county
 18425	Greeley, PA	Pike
 18426	Greentown, PA	Pike
 18427	Hamlin, PA	Wayne
-18428	Hawley, PA	Wayne
+18428	Hawley, PA	Pike
 18430	Herrick Center, PA	Susquehanna
 18431	Honesdale, PA	Wayne
 18433	Jermyn, PA	Lackawanna
@@ -1705,10 +1715,12 @@ zipcode	locationtext	county
 18509	Scranton, PA	Lackawanna
 18510	Scranton, PA	Lackawanna
 18512	Scranton, PA	Lackawanna
+18514	Scranton, PA	Lackawanna
 18515	Scranton, PA	Lackawanna
 18517	Taylor, PA	Lackawanna
 18518	Old Forge, PA	Lackawanna
 18519	Scranton, PA	Lackawanna
+18522	Scranton, PA	Lackawanna
 18540	Scranton, PA	Lackawanna
 18577	Scranton, PA	Lackawanna
 18601	Beach Haven, PA	Luzerne
@@ -1743,7 +1755,7 @@ zipcode	locationtext	county
 18642	Duryea, PA	Luzerne
 18643	Pittston, PA	Luzerne
 18644	Wyoming, PA	Luzerne
-18651	Plymouth, PA	Montgomery
+18651	Plymouth, PA	Luzerne
 18653	Ransom, PA	Lackawanna
 18654	Shawanese, PA	Luzerne
 18655	Shickshinny, PA	Luzerne
@@ -1965,7 +1977,7 @@ zipcode	locationtext	county
 19110	Philadelphia, PA	Philadelphia
 19111	Philadelphia, PA	Philadelphia
 19112	Philadelphia, PA	Philadelphia
-19113	Philadelphia, PA	Philadelphia
+19113	Philadelphia, PA	Delaware
 19114	Philadelphia, PA	Philadelphia
 19115	Philadelphia, PA	Philadelphia
 19116	Philadelphia, PA	Philadelphia
@@ -2016,6 +2028,7 @@ zipcode	locationtext	county
 19173	Philadelphia, PA	Philadelphia
 19175	Philadelphia, PA	Philadelphia
 19176	Philadelphia, PA	Philadelphia
+19177	Philadelphia, PA	Philadelphia
 19178	Philadelphia, PA	Philadelphia
 19179	Philadelphia, PA	Philadelphia
 19181	Philadelphia, PA	Philadelphia
@@ -2077,7 +2090,7 @@ zipcode	locationtext	county
 19372	Thorndale, PA	Chester
 19373	Thornton, PA	Delaware
 19374	Toughkenamon, PA	Chester
-19375	Unionville, PA	Centre
+19375	Unionville, PA	Chester
 19376	Wagontown, PA	Chester
 19380	West Chester, PA	Chester
 19381	West Chester, PA	Chester
@@ -2129,7 +2142,7 @@ zipcode	locationtext	county
 19460	Phoenixville, PA	Chester
 19462	Plymouth Meeting, PA	Montgomery
 19464	Pottstown, PA	Montgomery
-19465	Pottstown, PA	Montgomery
+19465	Pottstown, PA	Chester
 19468	Royersford, PA	Montgomery
 19470	Saint Peters, PA	Chester
 19472	Sassamansville, PA	Montgomery
@@ -2141,10 +2154,13 @@ zipcode	locationtext	county
 19480	Uwchland, PA	Chester
 19481	Valley Forge, PA	Chester
 19482	Valley Forge, PA	Chester
+19483	Valley Forge, PA	Montgomery
 19484	Valley Forge, PA	Montgomery
 19485	Valley Forge, PA	Montgomery
 19486	West Point, PA	Montgomery
 19487	King Of Prussia, PA	Montgomery
+19488	Norristown, PA	Montgomery
+19489	Norristown, PA	Montgomery
 19490	Worcester, PA	Montgomery
 19492	Zieglerville, PA	Montgomery
 19493	Valley Forge, PA	Chester
@@ -2208,3 +2224,4 @@ zipcode	locationtext	county
 19610	Reading, PA	Berks
 19611	Reading, PA	Berks
 19612	Reading, PA	Berks
+19640	Reading, PA	Berks
