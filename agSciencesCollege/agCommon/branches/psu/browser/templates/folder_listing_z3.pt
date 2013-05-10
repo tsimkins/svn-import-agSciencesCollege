@@ -206,16 +206,22 @@
 
                                     <strong>Where:</strong>
 
-                                    <tal:location metal:define-macro="event_location"
-                                        define="map_link item/map_link|nothing">
-
-                                        <a tal:attributes="href map_link" tal:omit-tag="not: map_link">
-                                            <span tal:content="string:${item/location}"
-                                                    tal:condition="item/location"
-                                                    class="location">Oslo</span>
-                                        </a>
-                                    
-                                    </tal:location>
+                                    <metal:location metal:define-macro="event_location">
+                                        <tal:location
+                                            define="map_link item/map_link|nothing;
+                                                    long_location item/location|nothing;
+                                                    short_location item/short_location|nothing;
+                                                    location python: short_location or long_location or None;">
+    
+                                            <a tal:attributes="href map_link" tal:omit-tag="not: map_link">
+                                                <span tal:content="location"
+                                                        tal:condition="location"
+                                                        class="location">Oslo</span>
+                                            </a>
+    
+                                        
+                                        </tal:location>
+                                    </metal:location>
                                 </div>
                            </tal:event-date>
                         </metal:event-date>
