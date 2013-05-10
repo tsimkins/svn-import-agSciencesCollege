@@ -377,6 +377,17 @@
         original="icon"
         />
 
+
+    <!-- Add 'short_location' method to Events -->
+    
+    <monkey:patch
+        description="Add 'short_location' method to Events"
+        class="Products.ATContentTypes.content.event.ATEvent"
+        replacement=".patch.eventShortLocation"
+        original="short_location"
+        ignoreOriginal="True"
+        />
+
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
     <five:implements

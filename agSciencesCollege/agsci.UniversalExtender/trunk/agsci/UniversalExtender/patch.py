@@ -329,3 +329,20 @@ def icon(self, portal_type):
     return "%s/%s" % (self.base, icon)
 
 
+def eventShortLocation(self):
+    """Products.ATContentTypes.content.event.ATEvent"""
+
+    if hasattr(self, 'zip_code'):
+        zip = getattr(self, 'zip_code')
+        if zip:
+            try:
+                ezt = getToolByName(self, "extension_zipcode_tool")
+            except AttributeError:
+                return None
+
+            zipinfo = ezt.getZIPInfo(zip)
+            
+            if zipinfo:
+                return zipinfo[1]
+
+    return None
