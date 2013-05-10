@@ -311,7 +311,8 @@ class FactsheetPDFView(FolderView):
         text = text.replace('&nbsp;', ' ')
 
         # Colors - Maybe have presets?
-        header_rgb = (0.42,0.56,0.07)
+        #header_rgb = (0.42,0.56,0.07)
+        header_rgb = (0.12,0.18,0.30)
 
         # Styles
 
