@@ -1339,6 +1339,10 @@ body.template-person_view #content h3 {
     border: none;
 }
 
+#addthis a:hover {
+    border-bottom: none;
+}
+
 #addthis p {
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -2433,6 +2437,10 @@ body.template-search_z3 form.searchPage input {
 
 body.template-fg_thankspage_view_p3 #content blockquote dt {
     font-weight: bold;
+}
+
+body.template-fg_thankspage_view_p3 #content blockquote dd {
+    margin-bottom: 0.75em;
 }
 
 /* For deleted events */

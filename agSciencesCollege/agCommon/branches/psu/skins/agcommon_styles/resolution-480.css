@@ -103,3 +103,8 @@ div.portletsAboveContentE {
     font-size: 1.125em;
 }
     
+form.event-registration-button input[type="submit"] {
+    float: none;
+    display: block;
+    margin: 0.5em 0 1em 0;
+}
