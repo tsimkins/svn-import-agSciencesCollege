@@ -36,10 +36,16 @@ class AgCommonUtilities(BrowserView):
         except AttributeError:
             show_event_location = False
                 
-        if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent') and item.location.strip():
-            return item.location.strip()
-        else:
-            return None        
+        if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent'):
+            if hasattr(item, 'short_location'):
+                if isinstance(item, AbstractCatalogBrain) and item.short_location:
+                    return item.short_location
+                elif item.short_location():
+                    return item.short_location()
+            elif item.location.strip():
+                return item.location.strip()
+
+        return None        
      
     def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
 
