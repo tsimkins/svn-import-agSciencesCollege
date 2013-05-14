@@ -2754,7 +2754,7 @@ dl.person-connect img {
 }
 
 [align="justify"], .documentText [align="center"] {
-    text-align: left;
+    text-align: left !important;
 }
 
 .portletDropdown select {
