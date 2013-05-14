@@ -319,16 +319,31 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
         # Find all upcoming events
         results = portal_catalog.searchResults({'portal_type' : 'Event', 'end' : {'query' : now, 'range' : 'min'}, 'review_state' : ['published', 'published-hidden']})
         
+        # Set course for the events
         for r in results:
+        
+            # Automagically determine course
+            course = self.getCourseForEvent(r, skip_if_exists=False)
+            
+            if course and r.extension_courses and course in r.extension_courses:
+                # Skip if the course is already assigned
+                continue
 
             title = r.Title.decode('utf-8')
 
-            # Automagically determine course
-            course = self.getCourseForEvent(r, skip_if_exists=False)
-
             if course:
-                # Get 
+                # Get object
                 o = r.getObject()
+
+                # Set course for event
+                o.extension_courses = (course, )
+                o.reindexObject()
+            
+        # Update the topics and subtopics
+        for r in results:
+        
+            if r.extension_courses:
+                course = r.extension_courses[0]
                 
                 # Automagically determine topics and subtopics
                 topics = self.getCourseTopics(course)
@@ -337,9 +352,6 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
                 # Get existing topics and subtopics
                 course_topics = list(r.extension_topics)
                 course_subtopics = list(r.extension_subtopics)
-
-                # Set course for event
-                o.extension_courses = (course, )
 
                 # Set topics and subtopics
                 for tt in topics:
