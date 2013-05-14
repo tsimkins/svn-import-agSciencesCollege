@@ -17,8 +17,9 @@
                         eventstart entry/agsci_eventstart|nothing;
                         eventend entry/agsci_eventend|nothing;
                         eventlocation entry/agsci_eventlocation|nothing;
+                        eventshortlocation entry/agsci_eventshortlocation|nothing;
                         contact_info python:view.contact_info(entry);
-                        event_info python:(is_printed_newsletter and (eventstart or eventlocation or contact_info)) or False;
+                        event_info python:(is_printed_newsletter and (eventstart or eventlocation or eventshortlocation or contact_info)) or False;
                         className string:portletItem;
                         className python:isFirst and className + ' first' or className;
                         className python:show_summary and className + ' summary' or className;
@@ -57,11 +58,15 @@
                 <tal:eventinfo 
                      condition="show_event_info">
 
-                    <div tal:condition="eventlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+                    <div tal:condition="python: eventlocation and not eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+                    <div tal:condition="eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventshortlocation" /></div>
                 </tal:eventinfo>
 
                 <tal:newsletter condition="is_printed_newsletter">
-                    <div tal:condition="eventlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+                    <div tal:condition="python: eventlocation and not eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
+
+                    <div tal:condition="eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventshortlocation" /></div>
+                    
                     <div tal:condition="contact_info" class="portletItemDetails">
                         <strong>Contact:</strong>
                         <span tal:replace="contact_info" />
