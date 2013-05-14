@@ -94,12 +94,23 @@ class ISimilar(IPortletDataProvider):
         required=True,
         default=10)
 
+    limit_radius = schema.Int(
+        title=_(u"Limit Radius"),
+        description=_(u"Show only events within this many miles"),
+        required=True,
+        default=150)
+
     show_dates = schema.Bool(
         title=_(u"Show dates"),
         description=_(u""),
         required=False,
         default=True)
 
+    show_location = schema.Bool(
+        title=_(u"Show location rather than title"),
+        description=_(u""),
+        required=False,
+        default=False)
 
 class Assignment(base.Assignment):
 
@@ -114,11 +125,14 @@ class Assignment(base.Assignment):
     query_courses = False
     query_title = False
     limit = 10
+    limit_radius = 150
     show_dates = True
+    show_location = False
 
     def __init__(self, header=header, show_header=show_header, query_portal_type=query_portal_type,
                  query_counties=query_counties, query_programs=query_programs, query_topics=query_topics, 
-                 query_courses=query_courses, query_title=query_title, limit=limit, show_dates=show_dates):
+                 query_courses=query_courses, query_title=query_title, limit=limit, limit_radius=limit_radius, show_dates=show_dates,
+                 show_location=show_location):
         self.header = header
         self.show_header = show_header
         self.query_portal_type = query_portal_type
@@ -128,7 +142,9 @@ class Assignment(base.Assignment):
         self.query_courses = query_courses
         self.query_title = query_title
         self.limit = limit
+        self.limit_radius = limit_radius
         self.show_dates = show_dates
+        self.show_location = show_location
 
                 
     @property
@@ -196,11 +212,18 @@ class Renderer(base.Renderer):
         return self.data.limit
 
     @property
+    def limit_radius(self):
+        return self.data.limit_radius
+
+    @property
     def show_dates(self):
         return self.data.show_dates
 
+    @property
+    def show_location(self):
+        return self.data.show_location
+
     def results(self):
-        context = aq_inner(self.context)
 
         similar_query = {'sort_limit' : self.limit + 1}
         
@@ -233,17 +256,30 @@ class Renderer(base.Renderer):
         if self.query_title and self.context.Title():
             similar_query['Title'] = self.context.Title()
 
-        all_brains = self.catalog.searchResults(similar_query)
+        if self.context.portal_type in ['Event'] and self.query_portal_type in ['Event'] and self.limit_radius and self.limit_radius > 0:
+            if hasattr(self.context, 'zip_code') and self.context.zip_code and self.context.zip_code != '00000':
+                ezt = getToolByName(self.context, "extension_zipcode_tool")
+                zip_codes = ezt.getNearbyZIPs(self.context.zip_code, self.limit_radius)
+                search_zip_codes = set(self.catalog.uniqueValuesFor('zip_code')) & set(zip_codes)
+                similar_query['zip_code'] = list(search_zip_codes)
 
-        brains = []
 
-        for b in all_brains:
-            if b.UID != self.context.UID():
-                brains.append(b)
-        
-        brains = brains[:self.limit]
+        if similar_query.get('Counties') or similar_query.get('Programs') or similar_query.get('Courses') or similar_query.get('Title'):
+    
+            all_brains = self.catalog.searchResults(similar_query)
+    
+            brains = []
+    
+            for b in all_brains:
+                if b.UID != self.context.UID():
+                    brains.append(b)
+            
+            brains = brains[:self.limit]
+    
+            return brains
 
-        return brains
+        else:
+            return []
 
     def render(self):
         return xhtml_compress(self._template())

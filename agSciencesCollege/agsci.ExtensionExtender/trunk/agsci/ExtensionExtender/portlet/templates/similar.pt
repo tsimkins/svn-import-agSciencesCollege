@@ -7,7 +7,8 @@
     tal:define="plone_view context/@@plone;
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
                 getIcon nocall:plone_view/getIcon;
-    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');">
+    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+    			show_location view/show_location|nothing">
 
     <tal:events tal:repeat="obj view/results">
     <dd class="portletItem"
@@ -24,10 +25,21 @@
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/download' % obj.getURL()) or obj.getURL();
                            title obj/Description">
-            <img tal:replace="structure item_icon/html_tag" />
-            <span tal:replace="item_title_or_id">
+            <span 
+                tal:replace="item_title_or_id"
+                tal:condition="not: show_location">
              Title
             </span>
+            <tal:location
+                define="long_location obj/location|nothing;
+                        short_location obj/short_location|nothing;
+                        location python: short_location or long_location or None;">
+
+                <span tal:content="location"
+                        tal:condition="location">Oslo</span>
+            
+            </tal:location>
+
         </a>
 			<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
             <div class="portletItemDetails date"
