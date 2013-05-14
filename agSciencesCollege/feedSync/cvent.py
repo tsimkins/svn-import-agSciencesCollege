@@ -122,7 +122,7 @@ def importEvents(context, emailUsers=['trs22'],
     if newEvents:
         myStatus.append("Sending email to: %s" % ", ".join(emailUsers))
         mFrom = "do.not.reply@psu.edu"
-        mSubj = "CVENT Events Imported"
+        mSubj = "CVENT Events Imported: %s" % portal.getId()
         mTitle = "<p><strong>The following events from cvent have been imported.</strong></p>"
         statusText = "\n".join(newEvents)
         mailHost = context.MailHost
