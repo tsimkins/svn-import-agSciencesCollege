@@ -98,6 +98,8 @@
     	<dc:date tal:content="python: obj_item['start']().HTML4()">Start date</dc:date>
     	<agsci:eventlocation tal:condition="obj_item/location"
     	                     tal:content="obj_item/location">The Location</agsci:eventlocation>
+    	<agsci:eventshortlocation tal:condition="obj_item/short_location"
+    	                     tal:content="obj_item/short_location">The ShortLocation</agsci:eventshortlocation>
     	<agsci:eventstart tal:content="python: obj_item['start']().HTML4()"></agsci:eventstart>
     	<agsci:eventend tal:content="python: obj_item['end']().HTML4()"></agsci:eventend>
     	<tal:contactinfo 
