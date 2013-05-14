@@ -343,7 +343,10 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
         for r in results:
         
             if r.extension_courses:
-                course = r.extension_courses[0]
+                # Get object
+                o = r.getObject()
+                
+                course = o.extension_courses[0]
                 
                 # Automagically determine topics and subtopics
                 topics = self.getCourseTopics(course)
