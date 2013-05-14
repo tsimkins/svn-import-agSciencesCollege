@@ -270,6 +270,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Social Media Boot Camp' : 'Social Media Boot Camp for Agricultural Businesses',
             'Raising Chickens' : 'Backyard Poultry',
             'OMK' : 'Operation Military Kids',
+            'Home Canning Workshops' : 'Home Food Preservation',
             
             
         }
