@@ -1085,7 +1085,7 @@ dl.people .adr {
     text-decoration: none;
 }
 
-#content .contentLeadImageContainer a {
+#content .contentLeadImageContainer a, #content .contentLeadImageContainer a:hover {
     border-bottom: none;
 }
 

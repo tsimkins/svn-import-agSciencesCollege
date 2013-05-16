@@ -38,8 +38,9 @@ class AgCommonUtilities(BrowserView):
                 
         if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent'):
             if hasattr(item, 'short_location'):
-                if isinstance(item, AbstractCatalogBrain) and item.short_location:
-                    return item.short_location
+                if isinstance(item, AbstractCatalogBrain):
+                    if item.short_location:
+                        return item.short_location
                 elif item.short_location():
                     return item.short_location()
             elif item.location.strip():
