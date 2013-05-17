@@ -9,6 +9,14 @@ img, embed, object {
     max-width: 100%;
 }
 
+embed, object, iframe {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0.25em 0;
+}
+
 #homepageimage {
     background-size: 100%;
     background-repeat: no-repeat;

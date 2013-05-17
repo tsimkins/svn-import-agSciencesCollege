@@ -21,7 +21,7 @@
                 objectList python:(True or order_by_id or order_by_title) and agcommon_utilities.reorderTopicContents(objectList, order_by_id=order_by_id, order_by_title=order_by_title) or objectList;
                 objects python: objectList[:max];
 ">
-
+asdf <span tal:content="python:len(objectList)" />
 <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/xml;;charset=utf-8')" />
 
 <channel rdf:about="" tal:attributes="rdf:about request/URL">
