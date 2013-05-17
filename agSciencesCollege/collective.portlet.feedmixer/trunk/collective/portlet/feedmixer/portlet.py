@@ -19,9 +19,11 @@ from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 
 import socket
 
+import random
+
 class Assignment(base.Assignment):
     """Portlet assignment.
-    
+
     This is what is actually managed through the portlets UI and associated
     with columns.
     """
@@ -43,18 +45,19 @@ class Assignment(base.Assignment):
     target_collection = None
     image_position = 'right'
     image_size = 'small'
-    
+    random = False
+
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
-                 show_header=show_header, show_date=show_date, 
+                 show_header=show_header, show_date=show_date,
                  show_event_info=show_event_info,
-                 show_summary=show_summary, 
+                 show_summary=show_summary,
                  show_image=show_image, show_footer=show_footer,
                  cache_timeout=cache_timeout,
                  alternate_footer_link=alternate_footer_link,
                  reverse_feed=reverse_feed,
                  assignment_context_path=assignment_context_path,
-                 target_collection=target_collection, image_position=image_position, 
-                 image_size=image_size):
+                 target_collection=target_collection, image_position=image_position,
+                 image_size=image_size, random=random):
         self.title=title
         self.feeds=feeds
         self.items_shown=items_shown
@@ -71,7 +74,8 @@ class Assignment(base.Assignment):
         self.target_collection = target_collection
         self.image_position = image_position
         self.image_size = image_size
-        
+        self.random = random
+
     def Title(self):
         """Returns the title. The function is used by Plone to render <title> correctly."""
         return self.title
@@ -123,7 +127,14 @@ class Renderer(base.Renderer):
             return self.data.image_position
         else:
             return 'right'
-            
+
+    @property
+    def random(self):
+        if self.data.random:
+            return self.data.random
+        else:
+            return False
+
     @property
     def image_size(self):
         if self.data.image_size:
@@ -196,13 +207,13 @@ class Renderer(base.Renderer):
         else:
             return more_url
 
-    @property        
+    @property
     def feed_urls(self):
         if self.data.feeds:
             return (url.strip() for url in self.data.feeds.split())
         else:
             return ()
-        
+
 
     def cleanFeed(self, feed):
         """Sanitize the feed.
@@ -227,7 +238,7 @@ class Renderer(base.Renderer):
 
         # http://www.feedparser.org/docs/changes-41.html
         # I'm betting this is causing our hangs!
-        
+
         # http://mxm-mad-science.blogspot.com/2009/01/small-trick-for-socket-timouts-in-plone.html
         # Resetting back to original timeout as soon as the call completes
 
@@ -236,9 +247,9 @@ class Renderer(base.Renderer):
         socket.setdefaulttimeout(10)
 
         feed=feedparser.parse(url)
-                    
+
         socket.setdefaulttimeout(orig_timeout)
-        
+
         return self.cleanFeed(feed)
 
     def getFeed(self, url):
@@ -270,7 +281,7 @@ class Renderer(base.Renderer):
             feed = self.fetchFeed(url)
 
             if len(feed.get('entries', [])) == 0 or feed.status == 404:
-                # If we don't have any entries (i.e. the feed is blank) 
+                # If we don't have any entries (i.e. the feed is blank)
                 # then just return the cached copy.
                 return cached_feed
             else:
@@ -290,26 +301,35 @@ class Renderer(base.Renderer):
         return entries
 
     # Removing because this breaks full.pt in Plone 4
-    # Also, it seems to be caching logic ('mergeEntriesFromFeeds') 
+    # Also, it seems to be caching logic ('mergeEntriesFromFeeds')
     # rather than data, so it's not really helping anything.
     # @request.cache(get_key=lambda func,self:self.data.feed_urls, get_request="self.request")
 
     @property
     def entries(self):
         entries = self.allEntries
-        return entries[:self.data.items_shown]
+
+        if len(entries) <= self.data.items_shown:
+            return entries
+
+        elif self.random:
+            indexes = sorted(random.sample(range(0,len(entries)), self.data.items_shown))
+            return [entries[x] for x in indexes]
+
+        else:
+            return entries[:self.data.items_shown]
 
     @property
     def allEntries(self):
         feeds=[self.getFeed(url) for url in self.feed_urls]
-            
+
         if self.data.target_collection:
             feeds.append(self.collection_feed())
-        
+
         feeds=[feed for feed in feeds if feed is not None]
 
         entries=self.mergeEntriesFromFeeds(feeds)
-        
+
         if self.data.reverse_feed:
             return [x for x in reversed(entries)]
         else:
@@ -346,17 +366,23 @@ class Renderer(base.Renderer):
 
             # This "old_header" logic works around the fact that
             # calling the RSS template sets the "Content-Type" header
-            # to "text/xml", which causes validation errors because 
+            # to "text/xml", which causes validation errors because
             # the browser is trying to parse it as XML.
-            
+
             original_header = self.request.response.getHeader('content-type')
-            feed = feedparser.parse(collection.RSS().encode("utf-8")) 
+            
+            if self.random:
+                # if we have a random option checked, we need to pull the full
+                # RSS feed so we have the whole set to choose from.
+                feed = feedparser.parse(collection.fullRSS().encode("utf-8"))
+            else:
+                feed = feedparser.parse(collection.RSS().encode("utf-8"))
             self.request.response.setHeader('Content-Type', original_header)
             return self.cleanFeed(feed)
 
         else:
             return None
-            
+
 class AddForm(base.AddForm):
     """Portlet add form.
     """

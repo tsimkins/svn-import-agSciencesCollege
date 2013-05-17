@@ -141,6 +141,14 @@ class IFeedMixer(IPortletDataProvider):
             default=False,
             required=False)   
 
+    random = schema.Bool(
+            title=_(u"random",
+                default=u"Select random items"),
+            description=_(u"description_title",
+                default=u"If enabled, items will be selected randomly, rather than based on sort order"),
+            default=False,
+            required=False) 
+
     def entries():
         """Return feed entries for all feeds.
 
