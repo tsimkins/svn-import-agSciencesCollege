@@ -11,6 +11,10 @@ from interfaces import INoComments
 from DateTime import DateTime
 from plone.app.blob.interfaces import IBlobField
 from Products.Archetypes.interfaces import IFileField, IImageField, ITextField
+from Products.CMFPlone import utils
+from Products.CMFPlone.browser.navigation import get_view_url
+from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
+from plone.app.layout.navigation.root import getNavigationRoot
 
 from agsci.subsite.content.interfaces import ITagRoot
 
@@ -346,3 +350,45 @@ def eventShortLocation(self):
                 return zipinfo[1]
 
     return None
+
+def breadcrumbs(self):
+
+    def getTitle(context):
+        if hasattr(context, 'hasProperty'):
+            if context.hasProperty('short_breadcrumb'):
+                alt_title = context.getProperty('short_breadcrumb')
+                if alt_title:
+                    return alt_title
+        return utils.pretty_title_or_id(context, context)        
+
+    context = aq_inner(self.context)
+    request = self.request
+    container = utils.parent(context)
+
+    name, item_url = get_view_url(context)
+
+    if container is None:
+        return ({'absolute_url': item_url,
+                    'Title': getTitle(context),},
+                )
+
+    view = getMultiAdapter((container, request), name='breadcrumbs_view')
+    base = tuple(view.breadcrumbs())
+
+    # Some things want to be hidden from the breadcrumbs
+    if IHideFromBreadcrumbs.providedBy(context):
+        return base
+
+    if base:
+        item_url = '%s/%s' % (base[-1]['absolute_url'], name)
+
+    rootPath = getNavigationRoot(context)
+    itemPath = '/'.join(context.getPhysicalPath())
+
+    # don't show default pages in breadcrumbs or pages above the navigation root
+    if not utils.isDefaultPage(context, request) and not rootPath.startswith(itemPath):
+        base += ({'absolute_url': item_url,
+                    'Title': getTitle(context), },
+                )
+
+    return base

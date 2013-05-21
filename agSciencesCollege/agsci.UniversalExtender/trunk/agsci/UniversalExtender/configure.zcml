@@ -387,6 +387,15 @@
         original="short_location"
         ignoreOriginal="True"
         />
+        
+    <!-- Add 'short_breadcrumb' override -->
+    
+    <monkey:patch
+        description="Add 'short_breadcrumb' override"
+        class="Products.CMFPlone.browser.navigation.PhysicalNavigationBreadcrumbs"
+        replacement=".patch.breadcrumbs"
+        original="breadcrumbs"
+        />
 
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
