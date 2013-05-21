@@ -44,6 +44,12 @@
     /> 
 
     <adapter
+        name="agsci.ExtensionExtender.extender.ExtensionCountiesExtender"
+        factory=".extender.ExtensionCountiesExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <adapter
         name="agsci.ExtensionExtender.extender.ExtensionEventExtender"
         factory=".extender.ExtensionEventExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"

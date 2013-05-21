@@ -7,8 +7,7 @@
     tal:define="plone_view context/@@plone;
                 toLocalizedTime nocall:plone_view/toLocalizedTime;
                 getIcon nocall:plone_view/getIcon;
-    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-    			show_location view/show_location|nothing">
+    			agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');">
 
     <tal:events tal:repeat="obj view/results">
     <dd class="portletItem"
@@ -26,36 +25,43 @@
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/download' % obj.getURL()) or obj.getURL();
                            title obj/Description">
             <span 
-                tal:replace="item_title_or_id"
-                tal:condition="not: show_location">
+                tal:replace="item_title_or_id" >
+
              Title
             </span>
-            <tal:location
+
+
+        </a>
+
+		<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
+        <div class="portletItemDetails date"
+                tal:condition="view/data/show_dates">
+                <span tal:replace="python:toLocalizedTime(obj.Date)" />
+        </div>
+		</tal:block>
+
+		<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
+        <div class="portletItemDetails date"
+                tal:condition="view/data/show_dates">
+                <strong tal:condition="view/show_location|nothing">When:</strong>
+                <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end)" />
+
+        </div>
+		</tal:block>
+
+		<tal:block 
+		     tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'"
                 define="long_location obj/location|nothing;
                         short_location obj/short_location|nothing;
                         location python: short_location or long_location or None;">
 
-                <span tal:content="location"
-                        tal:condition="location">Oslo</span>
-            
-            </tal:location>
-
-        </a>
-			<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
-            <div class="portletItemDetails date"
-                  tal:condition="view/data/show_dates"
-                  tal:content="python:toLocalizedTime(obj.Date)">
-                Date
+            <div class="portletItemDetails location"
+                    tal:condition="python: location and view.show_location">
+                    <strong>Where:</strong>
+                    <span tal:replace="location" />
             </div>
-			</tal:block>
 
-			<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
-            <div class="portletItemDetails date"
-                  tal:condition="view/data/show_dates"
-                  tal:content="python:toLocalizedTime(item_start, end_time=item_end)">
-                Date
-            </div>
-			</tal:block>
+		</tal:block>
 
     </dd>
     </tal:events>

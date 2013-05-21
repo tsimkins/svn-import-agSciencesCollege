@@ -2,7 +2,7 @@ from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, 
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IExtensionExtenderLayer, IExtensionExtender, IExtensionPublicationExtender
+from interfaces import IExtensionExtenderLayer, IExtensionExtender, IExtensionPublicationExtender, IExtensionCountiesExtender
 from zope.component import adapts
 from zope.interface import implements
 from Products.Archetypes.utils import DisplayList
@@ -445,3 +445,15 @@ class ExtensionEventExtender(ExtensionExtender):
 
     def getFields(self):
         return self.fields
+
+# Add Counties to anything
+class ExtensionCountiesExtender(ExtensionExtender):
+    adapts(IExtensionCountiesExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+
+    def base_fields(self):
+        return []
+
+

@@ -107,7 +107,7 @@ class ISimilar(IPortletDataProvider):
         default=True)
 
     show_location = schema.Bool(
-        title=_(u"Show location rather than title"),
+        title=_(u"Show location "),
         description=_(u""),
         required=False,
         default=False)

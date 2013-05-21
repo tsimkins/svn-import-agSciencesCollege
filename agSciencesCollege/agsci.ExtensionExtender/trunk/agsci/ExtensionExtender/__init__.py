@@ -3,7 +3,7 @@ ExtensionExtenderMessageFactory = MessageFactory('agsci.ExtensionExtender')
 from Products.CMFCore.utils import getToolByName
 from Products.PythonScripts.Utility import allow_module
 from Products.Five.utilities.interfaces import IMarkerInterfaces
-from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
+from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender, IExtensionCountiesExtender
 
 from Products.CMFCore import DirectoryView
 
@@ -66,3 +66,10 @@ def enablePublication(context):
     else:
         return False
     
+def enableCounties(context):
+    if not IExtensionCountiesExtender.providedBy(context):
+        adapted = IMarkerInterfaces(context)
+        adapted.update(add=[IExtensionCountiesExtender])
+        return True
+    else:
+        return False
