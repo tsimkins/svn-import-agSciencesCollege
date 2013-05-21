@@ -22,7 +22,7 @@ body.template-atct_edit #image-header {
 }
 
 #portal-column-content.sr #image-header {
-	margin: -1.75em 0 0 0;
+	margin: -1.6875em 0 0 0;
 }
 
 #image-header.nobreadcrumbs {
