@@ -354,11 +354,16 @@ def eventShortLocation(self):
 def breadcrumbs(self):
 
     def getTitle(context):
-        if hasattr(context, 'hasProperty'):
-            if context.hasProperty('short_breadcrumb'):
-                alt_title = context.getProperty('short_breadcrumb')
-                if alt_title:
-                    return alt_title
+
+        try:
+            if hasattr(context, 'hasProperty'):
+                if context.hasProperty('short_breadcrumb'):
+                    alt_title = context.getProperty('short_breadcrumb')
+                    if alt_title:
+                        return alt_title
+        except TypeError:
+            pass
+
         return utils.pretty_title_or_id(context, context)        
 
     context = aq_inner(self.context)
