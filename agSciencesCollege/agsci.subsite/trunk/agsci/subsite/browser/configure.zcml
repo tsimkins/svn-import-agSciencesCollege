@@ -23,6 +23,14 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="*"
+        name="tags_rss"
+        class=".views.tags.TagsView"
+        template="templates/tags_rss_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
 
     <!-- Blog News View -->
     <browser:page
