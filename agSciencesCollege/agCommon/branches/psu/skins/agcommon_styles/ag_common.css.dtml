@@ -2791,6 +2791,18 @@ body.template-default_error_message #visual-portal-wrapper #portal-top {
     padding-top: 0.25em;
 }
 
+body.template-default_error_message #visual-portal-wrapper dt {
+    margin-top: 1em;
+}
+
+body.template-default_error_message #portal-breadcrumbs {
+    display: none;
+}
+
+body.template-default_error_message #content {
+    margin-top: 1em;
+}
+
 .portletWrapper .portletTwitter .portletItem {
     padding-left: 0.5em;
     padding-right: 0.5em;

@@ -22,6 +22,7 @@
 
 body.section-front-page #portlets-above .portlet {
     min-height: 18em;
+    margin-top: 0.375em;
 }
 
 body.section-front-page #portlets-above dl.portlet:first-child .portletHeader {
@@ -63,7 +64,6 @@ body.section-front-page #portlets-above .portletHeader, #portlets-above .portlet
 
 body.section-front-page #portlets-above .portletHeader {
     display: block;
-    width: 192px;
     background: &dtml-topnavigationGradientBackground;;
     font-family: Arial, Helvetica, Helv, sans-serif;
     letter-spacing: 0.0125em;
@@ -72,6 +72,7 @@ body.section-front-page #portlets-above .portletHeader {
 body.section-front-page #portlets-above .portletWrapper {
     background-repeat: no-repeat;
     padding-top: 50px;
+    background-size: 100% 50px;
 }
 
 body.section-front-page #content #portlets-above .portletItem a,
