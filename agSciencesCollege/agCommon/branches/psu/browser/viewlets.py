@@ -499,17 +499,33 @@ class PathBarViewlet(AgCommonViewlet):
         
     def update(self):
         super(PathBarViewlet, self).update()
-        
+
+        # Get the site id
+        self.site = getSite().getId()
+                
         self.navigation_root_url = self.portal_state.navigation_root_url()
     
         self.is_rtl = self.portal_state.is_rtl()
 
         breadcrumbs_view = getMultiAdapter((self.context, self.request),
                                            name='breadcrumbs_view')
-        self.breadcrumbs = breadcrumbs_view.breadcrumbs()
-        
-        # Get the site id
-        self.site = getSite().getId()
+                                           
+        if 'extension.psu.edu' in self.site:
+            start_breadcrumbs = 2
+        else:
+            start_breadcrumbs = 1
+        end_breadcrumbs = 2
+        total_breadcrumbs = start_breadcrumbs + end_breadcrumbs
+
+        all_breadcrumbs = breadcrumbs_view.breadcrumbs()
+
+        if len(all_breadcrumbs) > (total_breadcrumbs + 1):
+            empty = {'absolute_url': None, 'Title': '...', }
+            all_breadcrumbs = list(all_breadcrumbs)
+            self.breadcrumbs = all_breadcrumbs[0:start_breadcrumbs] + [empty] + all_breadcrumbs[-1*end_breadcrumbs:]
+        else:
+            self.breadcrumbs = all_breadcrumbs
+
 
 class LeadImageHeader(LeadImageViewlet, AgCommonViewlet):
 
