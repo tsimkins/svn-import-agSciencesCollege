@@ -30,16 +30,19 @@ valid_tags = [
 IMAGE_FIELD_NAME = 'image'
 IMAGE_CAPTION_FIELD_NAME = 'imageCaption'
 
-def sync(myContext, url=url, valid_tags=valid_tags):
+def sync(context, url=url, valid_tags=valid_tags):
     # Be an admin
-    admin = myContext.acl_users.getUserById('trs22')
-    admin = admin.__of__(myContext.acl_users)
+    admin = context.acl_users.getUserById('trs22')
+    admin = admin.__of__(context.acl_users)
     newSecurityManager(None, admin) 
 
     print "Syncing RSS feeds from %s" % url
     site = getSite()
     wftool =  getToolByName(site, 'portal_workflow')
-
+    portal_catalog = getToolByName(site, 'portal_catalog')
+    numeric_ids = [x for x in portal_catalog.uniqueValuesFor('id') if x.isdigit()]
+    news_ids = [x.getId for x in portal_catalog.searchResults({'portal_type' : 'News Item', 'id' : numeric_ids, 'SearchText' : 'news.psu.edu'})]
+    
     feed = feedparser.parse(url)
 
     theReturn = []
@@ -51,26 +54,36 @@ def sync(myContext, url=url, valid_tags=valid_tags):
 
         date_published_parsed = item.get('published_parsed')
         date_published = item.get('published')        
-        
-        dateStamp = datetime.now().strftime('%Y-%m-%d %H:%M')
+
+        now = datetime.now()
+        dateStamp = now.strftime('%Y-%m-%d %H:%M')
         
         if date_published_parsed:
             local_time = time.localtime(timegm(date_published_parsed))
             dateStamp = time.strftime('%Y-%m-%d %H:%M', local_time)
+            this_year = time.strftime('%Y', local_time)
         elif date_published:
             try:
                 dateStamp = time.strftime('%Y-%m-%d %H:%M', time.strptime(date_published, '%A, %B %d, %Y - %H:%M'))
             except:
                 pass
 
+        this_year = dateStamp.split('-')[0]
+
         id = str(link.split("/")[4]).split('#')[0]
 
-        if not hasattr(myContext, id):
+        if id not in news_ids:
+        
+            if this_year in context.objectIds():
+                myContext = context[this_year]
+            else:
+                myContext = context
+
             myContext.invokeFactory(id=id,type_name="News Item",title=title, article_link=link, description=description)
+
             theReturn.append("Created %s" % id)
             
             theArticle = getattr(myContext, id)
-            
             
             # http://plone.org/documentation/how-to/set-creation-date
             theArticle.setCreationDate(dateStamp)
