@@ -11,11 +11,17 @@ import time
 from calendar import timegm
 import re
 
+from zope.component import getUtility
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+
 url = 'http://news.psu.edu/rss/college/agricultural-sciences'
+
+valid_tags = ['news-research', 'news-student-stories']
+
 IMAGE_FIELD_NAME = 'image'
 IMAGE_CAPTION_FIELD_NAME = 'imageCaption'
 
-def sync(myContext):
+def sync(myContext, url=url, valid_tags=valid_tags):
     # Be an admin
     admin = myContext.acl_users.getUserById('trs22')
     admin = admin.__of__(myContext.acl_users)
@@ -33,10 +39,21 @@ def sync(myContext):
         title = item.get('title', None)
         description = item.get('summary_detail', {}).get('value')
         link = item.get('links', [])[0].get('href', None).split('#')[0]
-        time_struct = item.get('published_parsed')
-        local_time = time.localtime(timegm(time_struct))
-        time.strftime('%Y-%m-%d %H:%M', local_time)
-        dateStamp = time.strftime('%Y-%m-%d %H:%M', local_time)
+
+        date_published_parsed = item.get('published_parsed')
+        date_published = item.get('published')        
+        
+        dateStamp = datetime.now().strftime('%Y-%m-%d %H:%M')
+        
+        if date_published_parsed:
+            local_time = time.localtime(timegm(date_published_parsed))
+            dateStamp = time.strftime('%Y-%m-%d %H:%M', local_time)
+        elif date_published:
+            try:
+                dateStamp = time.strftime('%Y-%m-%d %H:%M', time.strptime(date_published, '%A, %B %d, %Y - %H:%M'))
+            except:
+                pass
+
         id = str(link.split("/")[4]).split('#')[0]
 
         if not hasattr(myContext, id):
@@ -55,6 +72,9 @@ def sync(myContext):
 
             # Grab article image and set it as contentleadimage
             html = getHTML(link)
+            tags = getTags(html, valid_tags=valid_tags)
+            if tags:
+                theArticle.setSubject(tags)
             setImage(theArticle, html=html)
 
             # Set the body text
@@ -82,6 +102,22 @@ def getBodyText(html):
 
     return item.renderContents()
 
+def getTags(html, valid_tags=[]):
+    mySoup = BeautifulSoup(html)
+    normalizer = getUtility(IIDNormalizer)
+    try:
+        tags_div = mySoup.find("div", {'class' : re.compile('views-field-field-tags')})
+        items = tags_div.findAll("a", {'typeof' : re.compile('skos:Concept')})
+        article_tags = [normalizer.normalize(str(x.contents[0])).strip() for x in items]
+        if valid_tags:
+            tags = set(valid_tags) & set(article_tags)
+        else:
+            tags = list(article_tags)
+        return ['news-%s' % x for x in list(tags)]
+    except:
+        return []
+
+
 def htmlToPlainText(html):
     site = getSite()
     portal_transforms = getToolByName(site, 'portal_transforms')
@@ -92,7 +128,7 @@ def getHTML(url):
         return urllib2.urlopen(url).read()
     except HTTPError:
         print "404 for %s" % url 
-        return None
+        return ""
 
 
 def getImageAndCaption(html=None, url=None):
