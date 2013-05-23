@@ -42,6 +42,10 @@ table.events tr td:first-child {
     clear: none;
 }
 
+#content .pullquote {
+    width: 230px;
+}
+
 /* </dtml-with> */
 
 
