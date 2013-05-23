@@ -16,13 +16,15 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 url = 'http://news.psu.edu/rss/college/agricultural-sciences'
 
+# Tags (excluding news-)
+
 valid_tags = [
-    'news-research', 
-    'news-student-stories',
-    'news-students',
-    'news-international',
-    'news-extension',
-    'news-penn-state-extension'
+    'research', 
+    'student-stories',
+    'students',
+    'international',
+    'extension',
+    'penn-state-extension'
 ]
 
 IMAGE_FIELD_NAME = 'image'
@@ -79,8 +81,10 @@ def sync(myContext, url=url, valid_tags=valid_tags):
 
             # Grab article image and set it as contentleadimage
             html = getHTML(link)
+
             tags = getTags(html, valid_tags=valid_tags)
             if tags:
+                tags = ['news-%s' % x for x in list(tags)]
                 theArticle.setSubject(tags)
             setImage(theArticle, html=html)
 
@@ -116,14 +120,33 @@ def getTags(html, valid_tags=[]):
         tags_div = mySoup.find("div", {'class' : re.compile('views-field-field-tags')})
         items = tags_div.findAll("a", {'typeof' : re.compile('skos:Concept')})
         article_tags = [normalizer.normalize(str(x.contents[0])).strip() for x in items]
+
+        article_tags.extend(getTopics(html, valid_tags=valid_tags))
+        
         if valid_tags:
-            tags = set(valid_tags) & set(article_tags)
+            tags = list(set(valid_tags) & set(article_tags))
         else:
             tags = list(article_tags)
-        return ['news-%s' % x for x in list(tags)]
+
+        return tags
+
     except:
         return []
 
+def getTopics(html, valid_tags=[]):
+    mySoup = BeautifulSoup(html)
+    normalizer = getUtility(IIDNormalizer)
+    try:
+        tags_div = mySoup.find("div", {'class' : re.compile('views-field-field-topic')})
+        items = tags_div.findAll("a", {'typeof' : re.compile('skos:Concept')})
+        article_tags = [normalizer.normalize(str(x.contents[0])).strip() for x in items]
+        if valid_tags:
+            tags = list(set(valid_tags) & set(article_tags))
+        else:
+            tags = list(article_tags)
+        return tags
+    except:
+        return []
 
 def htmlToPlainText(html):
     site = getSite()
