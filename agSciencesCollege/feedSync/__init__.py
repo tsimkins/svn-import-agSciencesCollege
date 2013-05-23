@@ -16,7 +16,14 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 url = 'http://news.psu.edu/rss/college/agricultural-sciences'
 
-valid_tags = ['news-research', 'news-student-stories']
+valid_tags = [
+    'news-research', 
+    'news-student-stories',
+    'news-students',
+    'news-international',
+    'news-extension',
+    'news-penn-state-extension'
+]
 
 IMAGE_FIELD_NAME = 'image'
 IMAGE_CAPTION_FIELD_NAME = 'imageCaption'
