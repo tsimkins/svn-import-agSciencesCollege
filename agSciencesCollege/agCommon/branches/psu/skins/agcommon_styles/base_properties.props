@@ -114,15 +114,15 @@ leftSubNavBackground:string=#F6F6F6
 leftLinkTextColor:string=#2256BD
 leftLinkTextHoverColor:string=#003FAC
 
-leftButtonArrowBackground_external:string=#F3A72E
-leftButtonBackground_external:string=#4F4F4F
-leftButtonBackgroundBorder_external:string=#00589F
-leftButtonTextColor_external:string=#FFFFFF
-
-leftButtonArrowBackground_internal:string=#487aab
-leftButtonBackground_internal:string=#28496C
-leftButtonBackgroundBorder_internal:string=#506e94
+leftButtonArrowBackground_internal:string=#F3A72E
+leftButtonBackground_internal:string=#4F4F4F
+leftButtonBackgroundBorder_internal:string=#00589F
 leftButtonTextColor_internal:string=#FFFFFF
+
+leftButtonArrowBackground_external:string=#487aab
+leftButtonBackground_external:string=#28496C
+leftButtonBackgroundBorder_external:string=#506e94
+leftButtonTextColor_external:string=#FFFFFF
 
 documentDescriptionColor:string=#000000
 documentTitleColor:string=#000000
