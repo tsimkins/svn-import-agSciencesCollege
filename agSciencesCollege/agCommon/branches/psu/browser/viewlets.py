@@ -369,7 +369,7 @@ class FBMetadataViewlet(CustomTitleViewlet):
             image_field = None
             
         if leadImage_field and leadImage_field.get_size(context) > 0:
-            image_url = "%s/leadImage_mini" % context.absolute_url()
+            image_url = "%s/leadImage" % context.absolute_url()
             image_mime_type = leadImage_field.getContentType(context)
         elif image_field and image_field.get_size(context) > 0:
 
@@ -378,10 +378,7 @@ class FBMetadataViewlet(CustomTitleViewlet):
             if hasattr(image_field, 'sizes') and image_field.sizes:
                 sizes = image_field.sizes
 
-            if 'normal' in sizes.keys():
-                image_url = "%s/image_normal" % context.absolute_url()
-            else:
-                image_url = "%s/image_mini" % context.absolute_url()
+            image_url = "%s/image" % context.absolute_url()
 
             image_mime_type = image_field.getContentType(context)
 
