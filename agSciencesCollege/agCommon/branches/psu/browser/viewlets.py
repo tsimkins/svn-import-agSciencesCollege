@@ -441,12 +441,9 @@ class FBMetadataViewlet(CustomTitleViewlet):
             
             (image_url, image_mime_type) = self.getImageInfo(i)
             
-            if image_url or ISection.providedBy(i) or ISubsite.providedBy(i):
-                break
-
         # Fallback
         if not image_url:
-            image_url = "%s/leftnavbg.jpg" % self.context.portal_url()
+            image_url = "%s/social-media-site-graphic.png" % self.context.portal_url()
 
         (self.fb_image, self.link_mime_type) = (image_url, image_mime_type)
         self.link_metadata_image = self.fb_image
