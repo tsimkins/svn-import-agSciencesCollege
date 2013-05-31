@@ -438,6 +438,9 @@ class FBMetadataViewlet(CustomTitleViewlet):
             
             (image_url, image_mime_type) = self.getImageInfo(i)
             
+            if image_url:
+                break
+            
         # Fallback
         if not image_url:
             image_url = "%s/social-media-site-graphic.png" % self.context.portal_url()
