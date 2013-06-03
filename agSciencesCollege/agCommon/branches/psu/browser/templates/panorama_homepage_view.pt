@@ -10,17 +10,17 @@
         <metal:css fill-slot="style_slot">
             <!-- Common Homepage CSS -->
             <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/common-homepage.css);">
+                    tal:content="string:@import url($portal_url/000-common-homepage.css);">
             </style>
         
             <!-- Subsite CSS -->
             <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/subsite.css);">
+                    tal:content="string:@import url($portal_url/000-subsite.css);">
             </style>
         
             <!-- Panorama Homepage CSS --> 
             <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/panorama_homepage.css);">
+                    tal:content="string:@import url($portal_url/000-panorama_homepage.css);">
             </style>
         </metal:css>
         

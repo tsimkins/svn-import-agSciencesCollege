@@ -10,12 +10,12 @@
         <metal:css fill-slot="style_slot">
             <!-- Homepage CSS -->
             <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/common-homepage.css);">
+                    tal:content="string:@import url($portal_url/000-common-homepage.css);">
             </style>
 
             <!-- Subsite CSS -->
             <style type="text/css" media="all"
-                    tal:content="string:@import url($portal_url/subsite.css);">
+                    tal:content="string:@import url($portal_url/000-subsite.css);">
             </style>
         
         </metal:css>
