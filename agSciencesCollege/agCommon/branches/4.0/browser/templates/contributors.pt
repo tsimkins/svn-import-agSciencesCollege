@@ -1,0 +1,29 @@
+<div class="documentContributors"
+    tal:define="contributors view/people"
+    tal:condition="contributors">
+    <h2>Contact Information</h2>
+    <tal:contributors repeat="item contributors">
+    
+        <tal:person define="item_url item/url;
+                            item_name item/name;
+                            item_job_title item/title;">
+            <div class="tileItem visualIEFloatFix">
+                <div class="tileHeadline">
+    
+                    <a href="#"
+                        class="summary url"
+                        tal:attributes="href item_url"
+                        tal:content="item_name"
+                        tal:omit-tag="not:item_url">
+                        Item Title
+                    </a>
+                </div>
+                <div class="facultyStaffDirectory">
+                    <ul tal:condition="item_job_title" class="jobTitle discreet">
+                        <li tal:content="item_job_title" />
+                    </ul>
+                </div>
+            </div>
+        </tal:person>
+    </tal:contributors>
+</div>

@@ -1,0 +1,38 @@
+#visual-portal-wrapper {
+    padding: 0;
+    box-shadow: none;
+    min-width: 0;
+    border: none;
+}
+
+img, embed, object {
+    max-width: 100%;
+}
+
+embed, object, iframe {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0.25em 0;
+}
+
+#homepageimage {
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.contentLeadImageContainer, .captionedImage.right {
+    max-width: 43.914473684210526%;  /* 267/608 */
+    text-align: left;
+}
+
+.contentLeadImageContainer img {
+    max-width: 94.943820224719101%;
+    height: auto;
+    margin-left: 5.056179775280899%;
+}
+
+.twtr-doc {
+    width: auto !important;
+}
