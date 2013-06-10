@@ -418,5 +418,20 @@
         class="agsci.subsite.content.Blog.Blog"
         interface=".interfaces.INoComments"
     /> 
+
+    <!-- Fix from https://dev.plone.org/ticket/9177 -->
+
+    <class class="OFS.CopySupport.CopyContainer">
+        <require permission="cmf.AddPortalContent" attributes="manage_pasteObjects" />
+    </class>
+    <class class="Products.Archetypes.BaseBTreeFolder.BaseBTreeFolder">
+        <require permission="cmf.AddPortalContent" attributes="manage_pasteObjects" />
+    </class>
+    <class class="Products.Archetypes.BaseFolder.BaseFolder">
+        <require permission="cmf.AddPortalContent" attributes="manage_pasteObjects" />
+    </class>
+    <class class="Products.CMFPlone.PloneFolder.PloneFolder">
+        <require permission="cmf.AddPortalContent" attributes="manage_pasteObjects" />
+    </class>
         
 </configure>
