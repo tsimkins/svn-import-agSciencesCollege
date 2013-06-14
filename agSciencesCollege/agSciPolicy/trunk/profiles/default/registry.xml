@@ -192,16 +192,7 @@
       <title>ETags</title>
       <value_type type="plone.registry.field.ASCIILine" />
     </field>
-    <value>
-      <element>userid</element>
-      <element>skin</element>
-      <element>language</element>
-      <element>gzip</element>
-      <element>locked</element>
-      <element>lastModified</element>
-      <element>catalogCounter</element>
-      <element>resourceRegistries</element>
-    </value>
+    <value />
   </record>
   <record name="plone.app.caching.moderateCaching.plone.content.folderView.lastModified">
     <field type="plone.registry.field.Bool">
@@ -250,15 +241,7 @@
       <title>ETags</title>
       <value_type type="plone.registry.field.ASCIILine" />
     </field>
-    <value>
-      <element>userid</element>
-      <element>skin</element>
-      <element>language</element>
-      <element>gzip</element>
-      <element>locked</element>
-      <element>lastModified</element>
-      <element>resourceRegistries</element>
-    </value>
+    <value />
   </record>
   <record name="plone.app.caching.moderateCaching.plone.content.itemView.lastModified">
     <field type="plone.registry.field.Bool">
@@ -437,15 +420,7 @@
       <title>ETags</title>
       <value_type type="plone.registry.field.ASCIILine" />
     </field>
-    <value>
-      <element>userid</element>
-      <element>catalogCounter</element>
-      <element>language</element>
-      <element>gzip</element>
-      <element>skin</element>
-      <element>locked</element>
-      <element>resourceRegistries</element>
-    </value>
+    <value />
   </record>
   <record name="plone.app.caching.weakCaching.plone.content.folderView.ramCache">
     <field type="plone.registry.field.Bool">
@@ -462,14 +437,7 @@
       <title>ETags</title>
       <value_type type="plone.registry.field.ASCIILine" />
     </field>
-    <value>
-      <element>userid</element>
-      <element>language</element>
-      <element>gzip</element>
-      <element>skin</element>
-      <element>locked</element>
-      <element>resourceRegistries</element>
-    </value>
+    <value />
   </record>
   <record name="plone.app.caching.weakCaching.plone.content.itemView.ramCache">
     <field type="plone.registry.field.Bool">

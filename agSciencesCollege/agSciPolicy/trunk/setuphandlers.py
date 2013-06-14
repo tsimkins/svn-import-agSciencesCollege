@@ -414,7 +414,7 @@ def configureScripts(context):
             'target' : 'topnav-alternate-gradientBackground.png'
         },
         {
-            'src' : 'bodyBackground',
+            'src' : 'gradientBackground',
             'target' : 'bodyBackground.png'
         },
 
@@ -465,7 +465,7 @@ def installAdditionalProducts(context):
             'kupu', 'plone.app.caching', 'FacultyStaffDirectory', 'WebServerAuth', 
             'agCommon', 'collective.contentleadimage', 'collective.portlet.feedmixer', 
             'agsci.photogallery', 'agsci.subsite', 'agsci.UniversalExtender',
-            'CacheableRedirects'
+            'CacheableRedirects', 'agsci.seo'
     ]
 
     site = context.getSite()
