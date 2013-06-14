@@ -96,17 +96,6 @@ class _EventCountiesField(_CountiesField):
 
         return DisplayList(counties)
 
-class _ProgramsField(_ExtensionLinesField):
-    def Vocabulary(self, content_instance):
-
-        ptool = getToolByName(content_instance, 'portal_properties')
-        props = ptool.get("extension_properties")
-
-        if props and props.extension_programs:
-            return DisplayList([(x.strip(), x.strip()) for x in sorted(props.extension_programs)])
-        else:
-            return DisplayList([('N/A', 'N/A')])
-
 class _CoursesField(_ExtensionLinesField):
     def Vocabulary(self, content_instance):
 
@@ -171,17 +160,6 @@ class FSDExtensionExtender(object):
             ),
         ),
 
-        _ProgramsField(
-            "extension_programs",
-                schemata="Professional Information",
-                required=False,
-                searchable=True,
-                widget = InAndOutWidget(
-                label=u"Legacy Programs",
-                description=u"This is only for compatibility purposes and will be removed shortly.",
-            ),
-        ),
-
     ]
 
     def __init__(self, context):
@@ -237,16 +215,6 @@ class ExtensionExtender(object):
                     widget = InAndOutWidget(
                     label=u"Topics",
                     description=u"Topics within the program(s) that this item is associated with",
-                ),
-            ),
-            _ProgramsField(
-                "extension_programs",
-                    schemata="categorization",
-                    required=False,
-                    searchable=True,
-                    widget = InAndOutWidget(
-                    label=u"Legacy Programs",
-                    description=u"This is only for compatibility purposes and will be removed shortly.",
                 ),
             ),
         ]    
@@ -391,7 +359,7 @@ class ExtensionEventExtender(ExtensionExtender):
                     searchable=True,
                     widget=StringWidget(
                         label=u"ZIP Code",
-                        description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter '00000'.",
+                        description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter 00000.",
                     ),
             ),
             _ExtensionBooleanField(
@@ -401,7 +369,7 @@ class ExtensionEventExtender(ExtensionExtender):
                     widget=BooleanWidget(
                         label=u"Enable online event registration (for free events only).",
                         description=u"",
-                        condition="python:member.has_role('Manager')",
+                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
                     ),
             ),
             _ExtensionStringField(
@@ -411,7 +379,7 @@ class ExtensionEventExtender(ExtensionExtender):
                     widget=StringWidget(
                         label=u"Email address for registration responses.",
                         description=u"Use this field if you would like to receive an email for each registration.",
-                        condition="python:member.has_role('Manager')",
+                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
                     ),
             ),
             _ExtensionDateTimeField(
@@ -421,7 +389,7 @@ class ExtensionEventExtender(ExtensionExtender):
                     widget=CalendarWidget(
                         label=u"Registration deadline.",
                         description=u"After this date, registrations will not be permitted.",
-                        condition="python:member.has_role('Manager')",
+                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
                     ),
             ),
         ]
