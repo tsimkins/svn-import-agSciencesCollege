@@ -7,29 +7,6 @@
       i18n:domain="plone">
     <body>
 
-        <metal:css fill-slot="style_slot">
-
-            <!-- Common Homepage CSS -->
-            <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/000-common-homepage.css);">
-            </style>
-        
-            <!-- Subsite CSS -->
-            <style type="text/css" media="all" 
-                    tal:content="string:@import url($portal_url/000-subsite.css);">
-            </style>
-            
-            <!-- Panorama Homepage CSS -->
-            <style type="text/css" media="all" 
-                   tal:content="string:@import url($portal_url/000-panorama_homepage.css);">
-            </style>
-            
-            <!-- Portlet Homepage CSS -->
-            <style type="text/css" media="all" 
-                   tal:content="string:@import url($portal_url/000-portlet_homepage.css);">
-            </style>
-        </metal:css>
-
         <metal:js fill-slot="javascript_head_slot">
             <!-- Panorama Homepage JavaScript -->
             <script tal:condition="python:'background-images' in context.keys()" 

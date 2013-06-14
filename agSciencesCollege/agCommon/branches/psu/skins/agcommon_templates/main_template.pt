@@ -116,10 +116,6 @@
 
     <div id="visual-portal-wrapper">
 
-    <div id="portal-above-columns" i18n:domain="plone">
-        <div tal:replace="structure provider:agcommon.abovecolumns" tal:condition="not:ajax_load" />
-    </div>
-
         <metal:header define-slot="printheader" tal:content="nothing">
             Visual Header
         </metal:header>

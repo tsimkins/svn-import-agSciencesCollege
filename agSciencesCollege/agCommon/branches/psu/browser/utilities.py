@@ -3,10 +3,12 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString
-from Acquisition import aq_acquire, aq_base
+from Acquisition import aq_base, aq_chain
 from urllib import urlencode
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.component import getMultiAdapter
+from Products.agCommon import getContextConfig
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
 class IAgCommonUtilities(Interface):
 
@@ -31,9 +33,9 @@ class AgCommonUtilities(BrowserView):
 
     def substituteEventLocation(self, item):
 
-        try:
-            show_event_location = aq_acquire(self.context, 'show_event_location')
-        except AttributeError:
+        if getContextConfig(self.context, 'show_event_location'):
+            show_event_location = True
+        else:
             show_event_location = False
                 
         if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent'):
@@ -143,9 +145,14 @@ class AgCommonUtilities(BrowserView):
         context = aq_base(self.context)
         body_classes = []
 
+        # Get object parent
+        parent = self.context.getParentNode()
+
+        # Check for two_column attribute
         if hasattr(context, 'two_column') and context.two_column:
             body_classes.append('custom-two-column')
 
+        # Show text with only h2s with the h2s styled as h3s
         try:
             if hasattr(context, 'folder_text'):
                 body_text = str(context.folder_text)
@@ -165,7 +172,7 @@ class AgCommonUtilities(BrowserView):
         
         try:
             # Explicitly enabled or is a homepage at the root of the site
-            if getattr(self.context, 'show_mobile_nav', False) or (self.context.portal_type == 'HomePage' and self.context.getParentNode().portal_type == 'Plone Site'):
+            if getattr(self.context, 'show_mobile_nav', False) or (self.context.portal_type == 'HomePage' and parent.portal_type == 'Plone Site'):
                 body_classes.append("navigation-mobile")
         except:
             pass
@@ -173,8 +180,6 @@ class AgCommonUtilities(BrowserView):
         # If we have a property of 'enable_subsite_nav' set on
         # ourself, or if we're the default page and have it set on our parent
         # object, add a class of 'navigation-subsite'
-        parent = self.context.getParentNode()
-
         try:
             parent_default = parent.getDefaultPage()
         except AttributeError:
@@ -187,36 +192,24 @@ class AgCommonUtilities(BrowserView):
         except:
             pass
 
-        try:
-            enable_subsite_nav = aq_acquire(self.context, 'enable_subsite_nav')
-            if enable_subsite_nav:
-                body_classes.append("navigation-subsite")
-        except AttributeError:
-            pass
+        # Is subsite navigation enabled?
+        if getContextConfig(self.context, 'enable_subsite_nav'):
+            body_classes.append("navigation-subsite")
 
-        try:
-            penn_state_header = aq_acquire(self.context, 'main_site')
-            if penn_state_header:
-                body_classes.append("penn-state-header")
-        except AttributeError:
-            pass
-
-        try:
-            custom_class = aq_acquire(self.context, 'custom_class')
-            body_classes.extend(['custom-%s' % str(x) for x in custom_class.split()])
-        except AttributeError:
-            pass
+        # Use the Penn State (as opposed to the college) header if main_site is set.
+        if getContextConfig(self.context, 'main_site'):
+            body_classes.append("penn-state-header")
+            
+        # Append custom classes
+        if getContextConfig(self.context, 'custom_class'):
+            body_classes.extend(['custom-%s' % str(x) for x in getContextConfig(self.context, 'custom_class').split()])
             
         # Set "empty-top-navigation" body class
-        try:
-            topMenu = aq_acquire(self.context, 'top-menu')
-        except AttributeError:
-            topMenu = 'topnavigation'
+        topMenu =  getContextConfig(self.context, 'top-menu', 'topnavigation')
 
         portal_actions = getToolByName(self.context, 'portal_actions')
 
         if not portal_actions.get(topMenu, None):
             body_classes.append('empty-top-navigation')
         
-
         return ' '.join(body_classes)

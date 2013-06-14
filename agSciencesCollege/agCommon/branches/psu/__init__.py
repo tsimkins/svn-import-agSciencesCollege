@@ -9,7 +9,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from subprocess import Popen,PIPE
 from zLOG import LOG, INFO, ERROR
 from zope.component import getUtility
-from Acquisition import aq_inner
+from Acquisition import aq_inner, aq_chain
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.i18n.normalizer import FILENAME_REGEX
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
@@ -18,10 +18,14 @@ from Products.Archetypes.Field import HAS_PIL
 from agsci.w3c.colors import split_rgb
 from DateTime import DateTime
 from plone.app.linkintegrity.exceptions import LinkIntegrityNotificationException
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 import colorsys
 import os
 
 import re
+
+
+
 
 ATTEMPTS = 100
 
@@ -885,6 +889,85 @@ def recreateScales(obj):
     if state is None:
         obj._p_deactivate()
 
+# Context configuration
+from zope.globalrequest import getRequest
+from zope.annotation.interfaces import IAnnotations
+
+# Writes a debug message
+def debug(msg):
+    from datetime import datetime
+    f = open("/tmp/debug.log", 'a')
+    f.write(str(datetime.now()) + ' | ' + msg)
+    f.write('\n')
+    f.close()
 
 
+# This is intended to prevent multiple passes up the tree.
+# It handles cascading configurations that we use in multiple places
+# Passed a context, this retrieves a hardcoded list of properties, by
+# walking the acquisition chain, and fills a dict as it encounters those
+# properties.
+
+def _getContextConfig(context):
+
+    # Properties we'd like to retrieve
+    properties = [
+        'custom_class', 
+        'enable_subsite_nav', 
+        'main_site', 
+        'homepage_h1', 
+        'homepage_h2', 
+        'hide_breadcrumbs', 
+        'top-menu', 
+        'fbadmins', 
+        'fbappid', 
+        'fbpageid',
+        'show_event_location',
+        'footerlinks',
+        'site_title',
+        'org_title',
+        'agenda_view_day',
+        'show_date',
+        'show_image',
+        'show_read_more',
+    ]
+    
+    # Convert to dict
+    data = dict([(x,None) for x in properties])
+
+    # Walk the tree, looking for attributes
+    for i in aq_chain(context):
+        for p in data.keys():
+            if data[p] == None:
+                if hasattr(i, p):
+                    data[p] = getattr(i, p, '')
+            
+        if IPloneSiteRoot.providedBy(i):
+            break
+
+        if None not in data.values():
+            break
+
+    return data
+
+def getContextConfig(context, attr, default=None):
+    key_root = 'cache-agsci.contextconfig'
+    key_filled = '%s-%s' % (key_root, 'filled')
+    attr_key = '%s-%s' % (key_root, attr)
+
+    request = getRequest()
+    cache = IAnnotations(request)
+    
+    if not cache.get(key_filled):
+        for (k,v) in _getContextConfig(context).iteritems():
+            key = "%s-%s" % (key_root, k)
+            cache[key] = v
+            cache[key_filled] = True
+
+    rv = cache.get(attr_key)
+
+    if not rv:
+        rv = default
+
+    return rv
 

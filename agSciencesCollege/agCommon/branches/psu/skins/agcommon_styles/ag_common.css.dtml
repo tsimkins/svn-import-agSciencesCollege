@@ -20,13 +20,15 @@ body {
 
 #visual-portal-wrapper {
     background-color: #FFFFFF;
-    margin: -1em auto 0 auto;
+    margin: 1em auto 0 auto;
     padding: 0;
     max-width: &dtml-maxWidth;;
     /* Drop Shadow */
     -moz-box-shadow: 0 0 0.375em #333333;
     -webkit-box-shadow: 0 0 0.375em #333333;
     box-shadow: 0 0 0.375em #333333;
+    z-index: 20;
+    position: relative;
 }
 
 
@@ -44,7 +46,7 @@ body {
 
 #portal-header {
     margin: 0 auto;
-    padding: 0 0 2.75em 0;
+    padding: 0 0 0.75em 0;
     max-width: &dtml-maxWidth;;
     text-align: left;
     position: relative;
@@ -810,6 +812,11 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     position: relative;
     border-width: 0;
     text-align: center;
+    bottom: -1em;
+    /* Drop Shadow */
+    -moz-box-shadow: 0 0 0.375em #333333;
+    -webkit-box-shadow: 0 0 0.375em #333333;
+    box-shadow: 0 0 0.375em #333333;
 }
 
 #portal-top-navigation.empty {
@@ -2026,17 +2033,20 @@ body.template-subfolder_view div#two-column-left, body.template-subfolder_view d
 }
 
 #portal-personaltools-wrapper {
-    font-size: 0.6875em;
+    font-size: 0.625em;
     margin: 0 auto;
     max-width: &dtml-maxWidth;;
+    position: relative;
+    bottom: -1.6em;
+    z-index: 15;
 }
 
 body.icons-on #portal-header {
-    padding-bottom: 1.5em;
+    padding-bottom: 1em;
 }
 
 body.icons-on #visual-portal-wrapper {
-    margin-top: 0;
+    margin-top: 1em;
 }
 
 #portal-personaltools-wrapper .actionMenu.activated .actionMenuContent {
@@ -2824,7 +2834,7 @@ body.portaltype-topic #folderlisting-main-table table thead tr:first-child {
 /* Event registration form submit buttons */
 
 form.event-registration input[type="submit"] {
-    background: none;
+    background-image: none;
     color: &dtml-linkColor;;
     border-bottom: 1px solid #D1D6DF;
     text-decoration: none;
@@ -2880,8 +2890,7 @@ form.event-registration-button input[type="submit"] {
   http://stackoverflow.com/questions/1679952/input-type-submit-text-vertical-alignment-in-firefox
 */
 
-form.event-registration input[type="submit"]::-moz-focus-inner 
-{ 
+form.event-registration input[type="submit"]::-moz-focus-inner { 
     border: 0;
     padding: 0;
 }

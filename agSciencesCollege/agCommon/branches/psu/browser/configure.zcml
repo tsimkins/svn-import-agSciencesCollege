@@ -17,17 +17,6 @@
         name="agCommon"
         />
 
-    <!-- Viewlet Managers -->
-    
-    <browser:viewletManager
-        name="agcommon.abovecolumns"
-        provides=".interfaces.IAboveColumns"
-        class="plone.app.viewletmanager.manager.OrderedViewletManager"
-        layer=".interfaces.IThemeSpecific"
-        permission="zope2.View"
-        />
-
-
     <!-- Viewlets -->
     
     <!-- Render the browser title -->
@@ -156,7 +145,7 @@
     <!-- Top Navigation -->
     <browser:viewlet
         name="agcommon.topnavigation"
-        manager=".interfaces.IAboveColumns"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".viewlets.TopNavigationViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
@@ -168,6 +157,7 @@
         class=".viewlets.RightColumnViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         />
 
     <browser:viewlet
@@ -184,6 +174,7 @@
         class=".viewlets.HomepageImageViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         />
         
     <browser:viewlet
@@ -192,6 +183,7 @@
         class=".viewlets.CenterColumnViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         />
 
     <browser:viewlet
@@ -200,6 +192,7 @@
         class=".viewlets.HomepageTextViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         />
 
     <!-- The related items --> 
@@ -241,6 +234,7 @@
         template="templates/leadimage-header.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         />
 
     <!-- Analytics Viewlets -->

@@ -131,6 +131,47 @@
     media="handheld, screen and (max-width: 200px)" rel="stylesheet"
     rendering="import"/>
 
+
+ <!-- Common homepage: all homepages -->
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="False"
+    enabled="True" id="common-homepage.css" insert-after="*"
+    expression="python: context.getLayout() in ['document_homepage_view', 'document_subsite_view', 'panorama_homepage_view', 'portlet_homepage_view']" 
+    rel="stylesheet"
+    rendering="import"/>
+
+ <!-- Subsite homepage: subsite homepages -->    
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="False"
+    enabled="True" id="subsite.css" insert-after="common-homepage.css"
+    expression="python: context.getLayout() in ['document_subsite_view', 'panorama_homepage_view', 'portlet_homepage_view']" 
+    rel="stylesheet"
+    rendering="import"/>
+
+ <!-- Homepage: standard homepages -->  
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="False"
+    enabled="True" id="homepage.css" insert-after="subsite.css"
+    expression="python: context.getLayout() in ['document_homepage_view', ]" 
+    rel="stylesheet"
+    rendering="import"/>
+
+ <!-- Panorama homepage: panorama and portlet homepages -->
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="False"
+    enabled="True" id="panorama_homepage.css" insert-after="homepage.css"
+    expression="python: context.getLayout() in ['panorama_homepage_view', 'portlet_homepage_view']" 
+    rel="stylesheet"
+    rendering="import"/>
+
+ <!-- Portlet homepage: portlet homepages -->
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="False"
+    enabled="True" id="portlet_homepage.css" insert-after="panorama_homepage.css"
+    expression="python: context.getLayout() in ['portlet_homepage_view']" 
+    rel="stylesheet"
+    rendering="import"/>
+
 <!-- iPhone portrait mode -->
 
  <stylesheet title="" applyPrefix="False" authenticated="False"

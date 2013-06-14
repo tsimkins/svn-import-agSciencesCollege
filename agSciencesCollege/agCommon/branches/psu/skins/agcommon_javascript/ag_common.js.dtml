@@ -726,7 +726,7 @@ function mobileNav() {
     {
         if (jq("#navigation-mobile").size())
         {
-            jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-above-columns');
+            jq("#navigation-mobile #portal-top-navigation").detach().appendTo('#portal-top');
 
             jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
             jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
@@ -952,12 +952,17 @@ function equalizeTopNav() {
     if (topnav && topnavitems)
     {
         topnav_width = topnav.width();
-        topnav_width += Number(topnav.css('padding-left').replace('px', ''));
-        topnav_width += Number(topnav.css('padding-right').replace('px', ''));
-        topnav_width += Number(topnav.css('margin-left').replace('px', ''));
-        topnav_width += Number(topnav.css('margin-right').replace('px', ''));
-        topnav_width += Number(topnav.css('border-left-width').replace('px', ''));
-        topnav_width += Number(topnav.css('border-right-width').replace('px', ''));
+
+        /* Commented these out 6/13/2013. Appears that this breaks Webkit if we
+           try to compensate for the padding/margin/border.  And it doesn't make
+           a bit of difference in Firefox. */
+           
+        //topnav_width += Number(topnav.css('padding-left').replace('px', ''));
+        //topnav_width += Number(topnav.css('padding-right').replace('px', ''));
+        //topnav_width += Number(topnav.css('margin-left').replace('px', ''));
+        //topnav_width += Number(topnav.css('margin-right').replace('px', ''));
+        //topnav_width += Number(topnav.css('border-left-width').replace('px', ''));
+        //topnav_width += Number(topnav.css('border-right-width').replace('px', ''));
 
         total_item_width = 0;
 

@@ -107,6 +107,7 @@ Note: insert-before and -after accept the value "*" which means
         <viewlet name="plone.global_sections" />
         <viewlet name="plone.site_actions" />
         <viewlet name="plone.personal_bar" />
+        <viewlet name="plone.app.i18n.locales.languageselector" />
     </hidden>
 
     <hidden manager="plone.abovecontent" skinname="agCommon">

@@ -5,7 +5,7 @@ from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from cgi import escape
-from Acquisition import aq_acquire, aq_inner, aq_base, aq_chain
+from Acquisition import aq_inner, aq_base, aq_chain
 from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
@@ -23,6 +23,7 @@ from plone.portlets.interfaces import IPortletManager
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from agsci.subsite.content.interfaces import ISection, ISubsite
 from Products.CMFCore.Expression import Expression, getExprContext
+from Products.agCommon import getContextConfig
 
 
 try:
@@ -58,18 +59,11 @@ class AgCommonViewlet(ViewletBase):
 
     @property
     def homepage_h1(self):
-        try:
-            return aq_acquire(self.context, 'homepage_h1')
-        except AttributeError:
-            return None
+        return getContextConfig(self.context, 'homepage_h1')
 
     @property
     def homepage_h2(self):
-        try:
-            return aq_acquire(self.context, 'homepage_h2')
-        except AttributeError:
-            return None
-
+        return getContextConfig(self.context, 'homepage_h2')
     @property
     def hide_breadcrumbs(self):
         # Determine if we should hide breadcrumbs
@@ -77,10 +71,7 @@ class AgCommonViewlet(ViewletBase):
         if self.homepage_h1 or self.homepage_h2:
             return True
     
-        try:
-            return aq_acquire(self.context, 'hide_breadcrumbs')
-        except AttributeError:
-            return False
+        return getContextConfig(self.context, 'hide_breadcrumbs', False)
 
     def isLayout(self, views=[]):
         try:
@@ -168,10 +159,7 @@ class TopNavigationViewlet(AgCommonViewlet):
 
     def update(self):
                                         
-        try:
-            topMenu = aq_acquire(self.context, 'top-menu')
-        except AttributeError:
-            topMenu = 'topnavigation'
+        topMenu = getContextConfig(self.context, 'top-menu', 'topnavigation')
             
         self.topnavigation = self.context_state.actions().get(topMenu, None)
 
@@ -245,19 +233,6 @@ class AddThisViewlet(AgCommonViewlet):
         else:
             self.isPerson = False
         
-        ptool = getToolByName(self.context, "portal_properties")
-
-        self.hide_addthis = not ptool.agcommon_properties.enable_addthis
-
-        try:
-            self.hide_addthis = aq_acquire(self.context, 'hide_addthis')
-        except AttributeError:
-            pass
-
-        # If in folder_full_view_item, hide it on the individual items.
-        if self.isFolderFullView:
-            self.hide_addthis = True
-        
         # Integrate Extension PDF download
         self.downloadPDF = False
         if IExtensionPublicationExtender.providedBy(self.context):
@@ -270,6 +245,22 @@ class AddThisViewlet(AgCommonViewlet):
             elif hasattr(self.context, 'extension_publication_download') and self.context.extension_publication_download:
                 self.downloadPDF = True
                 self.pdf_url = '%s/pdf_factsheet' % self.context.absolute_url()
+
+    @property
+    def hide_addthis(self):
+
+        ptool = getToolByName(self.context, "portal_properties")
+
+        # Hide if not enabled in agCommon properties
+        if not ptool.agcommon_properties.enable_addthis:
+            return True
+
+        # If in folder_full_view_item, hide it on the individual items.
+        elif self.isFolderFullView:
+            return True
+
+        else:
+            return getContextConfig(self.context, 'hide_addthis', False)
 
 class FBLikeViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/fblike.pt')
@@ -296,10 +287,8 @@ class FooterViewlet(AgCommonViewlet):
             self.footer_copyright_2 = None
             self.footer_copyright_link_2 = None
       
-        try:
-            footerlinks = aq_acquire(self.context, 'footerlinks')
-        except AttributeError:
-            footerlinks = 'footerlinks'
+
+        footerlinks = getContextConfig(self.context, 'footerlinks', 'footerlinks')
 
         self.footerlinks = self.context_state.actions().get(footerlinks, None)
         
@@ -311,20 +300,16 @@ class CustomTitleViewlet(AgCommonViewlet):
         except AttributeError:
             self.page_title = self.context_state.object_title
         
-        self.portal_title = self.portal_state.portal_title
+        self.portal_title = self.portal_state.portal_title()
 
-        try:
-            self.site_title = aq_acquire(self.context, 'site_title')
-            self.org_title = "Penn State College of Ag Sciences"
-        except AttributeError:
-            self.site_title = self.portal_title()
+        self.site_title = getContextConfig(self.context, 'site_title', self.portal_title)
+        
+        if self.site_title == self.portal_title:
             self.org_title = "Penn State University"
+        else:
+            self.org_title = "Penn State College of Ag Sciences"
 
-        try:
-            self.org_title = aq_acquire(self.context, 'org_title')
-        except AttributeError:
-            self.org_title = ""
-            
+        self.org_title = getContextConfig(self.context, 'org_title', self.org_title)
         
 class TitleViewlet(CustomTitleViewlet):
     
@@ -451,23 +436,13 @@ class FBMetadataViewlet(CustomTitleViewlet):
         # FB config
         self.fbadmins = ['100001031380608','9324502','9370853','1485890864']
 
-        try:
-            self.fbadmins.extend(aq_acquire(self.context, 'fbadmins'))
-        except AttributeError:
-            pass
+        self.fbadmins.extend(getContextConfig(self.context, 'fbadmins', []))
             
         self.fbadmins = ','.join(self.fbadmins)
 
-        try:
-            self.fbappid = aq_acquire(self.context, 'fbappid')
-        except AttributeError:
-            self.fbappid = '374493189244485'
+        self.fbappid = getContextConfig(self.context, 'fbappid', '374493189244485')
 
-        try:
-            self.fbpageid = aq_acquire(self.context, 'fbpageid')
-        except AttributeError:
-            self.fbpageid = '53789486293'
-            
+        self.fbpageid = getContextConfig(self.context, 'fbpageid', '53789486293')
 
             
 class KeywordsViewlet(AgCommonViewlet):
@@ -646,36 +621,38 @@ class ContributorsViewlet(AgCommonViewlet):
         self.people = []
         
         peopleList = [x.strip() for x in self.context.Contributors()]
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
-        search_results = portal_catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
-        
-        for id in peopleList:
-            found = False
 
-            for r in search_results:
-                if r.id == id:
-
-                    obj = r.getObject()
-                    job_titles = obj.getJobTitles()
-
-                    self.people.append({'name' : obj.pretty_title_or_id(), 
-                                        'title' : job_titles and job_titles[0] or '', 
-                                        'url' : obj.absolute_url()})
-                    found = True
-
-            if not found and not psuid_re.match(id):
-                parts = id.split("|")
-                parts.extend(['']*(3-len(parts)))
-                (name, title, url) = parts
-                
-                if '@' in url:
-                    url = "mailto:%s" % url
-                elif not url.startswith('http'):
-                    url = ''
-                
-                self.people.append({'name' : name, 
-                                        'title' : title, 
-                                        'url' : url})
+        if peopleList:
+            portal_catalog = getToolByName(self.context, 'portal_catalog')
+            search_results = portal_catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
+            
+            for id in peopleList:
+                found = False
+    
+                for r in search_results:
+                    if r.id == id:
+    
+                        obj = r.getObject()
+                        job_titles = obj.getJobTitles()
+    
+                        self.people.append({'name' : obj.pretty_title_or_id(), 
+                                            'title' : job_titles and job_titles[0] or '', 
+                                            'url' : obj.absolute_url()})
+                        found = True
+    
+                if not found and not psuid_re.match(id):
+                    parts = id.split("|")
+                    parts.extend(['']*(3-len(parts)))
+                    (name, title, url) = parts
+                    
+                    if '@' in url:
+                        url = "mailto:%s" % url
+                    elif not url.startswith('http'):
+                        url = ''
+                    
+                    self.people.append({'name' : name, 
+                                            'title' : title, 
+                                            'url' : url})
 
 class CustomCommentsViewlet(CommentsViewlet):
 

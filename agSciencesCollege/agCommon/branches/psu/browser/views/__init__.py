@@ -3,7 +3,7 @@ from zope.app.component.hooks import getSite
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
-from Acquisition import aq_acquire, aq_inner
+from Acquisition import aq_inner
 from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
 from DateTime import DateTime
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -12,7 +12,7 @@ from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 from plone.memoize.instance import memoize
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
-
+from Products.agCommon import getContextConfig
 
 """
     Interface Definitions
@@ -59,30 +59,15 @@ class FolderView(BrowserView):
                                         
     @property
     def show_date(self):
-        try:
-            show_date = aq_acquire(self.context, 'show_date')
-        except AttributeError:
-            show_date = False
-        
-        return show_date
+        return getContextConfig(self.context, 'show_date', False)
 
     @property
     def show_image(self):
-        try:
-            show_image = aq_acquire(self.context, 'show_image')
-        except AttributeError:
-            show_image = False
-        
-        return show_image
+        return getContextConfig(self.context, 'show_image', False)
 
     @property
     def show_read_more(self):
-        try:
-            show_read_more = aq_acquire(self.context, 'show_read_more')
-        except AttributeError:
-            show_read_more = False
-        
-        return show_read_more
+        return getContextConfig(self.context, 'show_read_more', False)
 
     @property
     def portal_state(self):
@@ -241,11 +226,7 @@ class AgendaView(FolderView):
         # days rather than by month.  It's not worth having a separate view,
         # since it will be a very small minority of use cases.
 
-        try:
-            if aq_acquire(self.context, 'agenda_view_day'):
-                self.show_days = True
-        except AttributeError:
-            self.show_days = False
+        self.show_days = getContextConfig(self.context, 'agenda_view_day', False)
 
         days = {}
         months = {}
