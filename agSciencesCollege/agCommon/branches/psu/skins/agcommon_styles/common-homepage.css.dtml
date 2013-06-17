@@ -235,14 +235,25 @@
 
 .agCommonPortlet .portletItem .date,
 .agCommonPortlet .portletItem .location {
-	color: #76797C;
-	font-size: 0.88em;
+	color: #4D4D4D;
+	font-size: 0.9375em;
 	font-weight: normal;
 	text-align: left;
 }
 
 .agCommonPortlet .portletItem .date {
     margin-bottom: 0.25em;
+}
+
+#rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .date,
+#rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .location {
+    line-height: 1.375em;
+    margin-bottom: 0;
+}
+
+#rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .date strong,
+#rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .location strong {
+    color: #5F5F5F;
 }
 
 #centercolum .agCommonPortlet .portletItem .date,
@@ -445,14 +456,6 @@
 #rightcolumn dl.people .portletItem h2 a {
     font-weight: bold !important;
 }
-
-#rightcolumn .portletItem .date {
-	color: #4D4D4D;
-	font-weight: normal;
-	font-size: 0.9375em;
-	text-align: left;
-}
-
 
 #rightcolumn .portletItem a:hover {
 	color: &dtml-frontRightPortletLinkHoverColor;;
