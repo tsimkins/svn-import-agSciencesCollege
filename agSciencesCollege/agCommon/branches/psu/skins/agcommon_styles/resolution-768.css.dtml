@@ -343,6 +343,16 @@ body.template-document_homepage_view #portal-column-one {
     margin-top: 0.25em;
 }
 
+/* = Adjust visual-portal-wrapper and portal-top for no top nav = */
+
+body.empty-top-navigation #visual-portal-wrapper {
+    margin-top: 0;
+}
+
+body.empty-top-navigation #portal-top {
+    padding-bottom: 0;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

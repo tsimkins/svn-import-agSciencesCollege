@@ -31,7 +31,6 @@ body {
     position: relative;
 }
 
-
 /* = portal-top ============================================= */
 
 #portal-top {
@@ -40,6 +39,16 @@ body {
     background-repeat: no-repeat;
     background-position: left bottom;
     background-color: &dtml-portalHeaderBackgroundColor;;
+}
+
+/* = Adjust visual-portal-wrapper and portal-top for no top nav = */
+
+body.empty-top-navigation #visual-portal-wrapper {
+    margin-top: -1em;
+}
+
+body.empty-top-navigation #portal-top {
+    padding-bottom: 2.125em;
 }
 
 /* = portal-header ========================================= */
