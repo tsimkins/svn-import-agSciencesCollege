@@ -43,11 +43,13 @@ body {
 
 /* = Adjust visual-portal-wrapper and portal-top for no top nav = */
 
-body.empty-top-navigation #visual-portal-wrapper {
+body.empty-top-navigation #visual-portal-wrapper,
+body.icons-on.empty-top-navigation #visual-portal-wrapper {
     margin-top: -1em;
 }
 
-body.empty-top-navigation #portal-top {
+body.empty-top-navigation #portal-top,
+body.icons-on.empty-top-navigation #portal-top {
     padding-bottom: 2.125em;
 }
 
@@ -2047,7 +2049,7 @@ body.template-subfolder_view div#two-column-left, body.template-subfolder_view d
     max-width: &dtml-maxWidth;;
     position: relative;
     bottom: -1.6em;
-    z-index: 15;
+    z-index: 25;
 }
 
 body.icons-on #portal-header {
