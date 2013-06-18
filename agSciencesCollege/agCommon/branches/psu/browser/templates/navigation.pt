@@ -8,7 +8,7 @@
                 subsite_url context/subsite_url|nothing;
                 subsite_url python:subsite_url and subsite_url.replace('${portal_url}', portal_url) or None;
                 navigation_title python: view.title().lower() != 'navigation' and view.title() or root.Title();
-                enable_subsite_nav root/aq_base/enable_subsite_nav|nothing;
+                enable_subsite_nav view/isSubsite|nothing;
                 isLeftColumn view/isLeftColumn|nothing;
                 show_subsite_nav python: (include_top and enable_subsite_nav and isLeftColumn and subsite_title and subsite_url and navigation_title != subsite_title) or False 
                 ">

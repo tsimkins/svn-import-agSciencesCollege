@@ -73,9 +73,14 @@
 /*========= Editable ============*/
 
 #portal-column-content .documentEditable #content {
-    padding: 0.1875em 0 0 0 !important;
+    padding: 0.1875em 0 0 0!important;
     border-width: 0;
-    font-size: 0.84375em;
+}
+
+body.template-atct_edit #portal-column-content .documentEditable #content {
+    padding: 0.375em 2.74951% 0.375em !important;
+    border-width: 0;
+    width: 93.5%;
 }
 
 .documentEditable  {
@@ -87,6 +92,12 @@
     border-right: none;
     border-bottom: 1px solid &dtml-contentViewBorderColor;;
 }
+
+#portal-column-content .documentEditable #content #homepage-base-edit {
+    font-size: 0.84375em;
+    margin: 0 0.25em;
+}
+
 
 /*========= Homepage Text ============*/
 
