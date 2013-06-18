@@ -15,6 +15,7 @@ from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import get_view_url
 from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
 from plone.app.layout.navigation.root import getNavigationRoot
+from Products.agCommon import getContextConfig
 
 from agsci.subsite.content.interfaces import ITagRoot
 
@@ -235,6 +236,10 @@ def navigation_portlet_left_column(self):
             return False
     except AttributeError, KeyError:
         return False
+
+
+def navigation_subsite(self):
+    return getContextConfig(self.context, 'enable_subsite_nav')
         
 
 # Change logic for comments being enabled

@@ -338,6 +338,16 @@
         ignoreOriginal="True"
         />
 
+    <!-- Monkey patch navigation portlet to add isSubsite method-->
+    
+    <monkey:patch
+        description="This adds a 'isSubsite' method to the navigation renderer"
+        class="plone.app.portlets.portlets.navigation.Renderer"
+        replacement=".patch.navigation_subsite"
+        original="isSubsite"
+        ignoreOriginal="True"
+        />
+
     <!-- Monkey patch comments enabled to change folder comments logic. -->
 
     <monkey:patch
