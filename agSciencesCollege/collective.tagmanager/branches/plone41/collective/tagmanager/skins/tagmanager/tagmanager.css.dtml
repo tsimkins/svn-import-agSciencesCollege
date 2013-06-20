@@ -70,7 +70,13 @@ ul.tagmanager li {
 .tag_container {
 	float: left;
 	display: block;
-	width: 25%;
+    margin-left: 2em;
+    margin-right: 2em;
+    white-space: nowrap;
+}
+
+.tag_container div {
+    margin-bottom: 0.375em;
 }
 
 .tag_container input {

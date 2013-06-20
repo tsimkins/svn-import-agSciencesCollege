@@ -262,7 +262,7 @@
                 }
             }
             
-            tagLabel = jq('<span>' + tagLabelValue + '</span><br />');
+            tagLabel = jq('<div>' + tagLabelValue + '</div>');
             checkbox = jq('<input name="tagmanager" type="checkbox" value="' + tag.val() + '" />')
 
             if (tag.attr("checked"))
@@ -270,7 +270,7 @@
                 checkbox.attr("checked", "checked");
             }
 
-            checkbox.appendTo(tagContainer);
+            checkbox.prependTo(tagLabel);
             tagLabel.appendTo(tagContainer);
 
         }
@@ -278,7 +278,7 @@
         buttons = jq('<div class="tag_buttons"><input class="close" type="button" value="Submit" /></div>');
         buttons.appendTo(tagCheckboxes);
                 
-        overlayItem.appendTo(mainTagLink);
+        overlayItem.appendTo(jq('body'));
 
     }
 
@@ -286,7 +286,7 @@
 
 function setTags()
 {
-    jq('.tagmanager input[name="tagmanager"]').each(
+    jq('.overlay input[name="tagmanager"]').each(
         function () {
             tag_name = jq(this).attr('value');
             is_checked = jq(this).attr('checked');
