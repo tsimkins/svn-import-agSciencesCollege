@@ -27,7 +27,6 @@ body {
     -moz-box-shadow: 0 0 0.375em #333333;
     -webkit-box-shadow: 0 0 0.375em #333333;
     box-shadow: 0 0 0.375em #333333;
-    z-index: 20;
     position: relative;
 }
 
@@ -819,7 +818,6 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-repeat: repeat-x;
     background-position: bottom left;
     /* Fix bleed-through of image in Safari and Chrome */
-    z-index: 10;
     position: relative;
     border-width: 0;
     text-align: center;

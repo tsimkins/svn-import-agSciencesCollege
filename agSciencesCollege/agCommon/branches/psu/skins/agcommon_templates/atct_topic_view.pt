@@ -19,8 +19,8 @@
                                    order_by_id here/order_by_id|nothing;
                                    order_by_title here/order_by_title|nothing;
                                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                                   isCourse python:'courses' in context.Subject();
-                                   noEventsCourse python:'courses-online-ondemand' in context.Subject();
+                                   isCourse python:'courses' in context.Subject() or 'courses' in context.aq_parent.Subject();
+                                   noEventsCourse python:'courses-online-ondemand' in context.Subject() or 'courses-online-ondemand' in context.aq_parent.Subject();
                                    topicContents python: (order_by_title or order_by_id) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title) or topicContents;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    batch topicContents;">
