@@ -16,7 +16,7 @@ allow_module('agsci.ExtensionExtender')
 def initialize(context):
     pass
 
-def getContactEmails(context, county=None, program=None, topic=None, subtopic=None):
+def getContactEmails(context, county=None, topic=None, subtopic=None):
     portal_catalog = getToolByName(context, "portal_catalog")
 
     query = {'portal_type' : 'FSDPerson'}
@@ -30,9 +30,6 @@ def getContactEmails(context, county=None, program=None, topic=None, subtopic=No
 
     if subtopic:
         query['Subtopics'] = subtopic
-
-    if program:
-        query['Programs'] = program
 
     results = portal_catalog.searchResults(query)
     
@@ -48,7 +45,7 @@ def getDefaultFormEmail(context):
 
 def getExtensionConfig(context):
     config = {}
-    attrs = {'county' : 'extension_counties', 'program' : 'extension_programs', 'topic' : 'extension_topics', 'subtopic' : 'extension_subtopics'}
+    attrs = {'county' : 'extension_counties', 'topic' : 'extension_topics', 'subtopic' : 'extension_subtopics'}
     for k in attrs.keys():
         v = attrs[k]
         config[k] = []
@@ -73,3 +70,53 @@ def enableCounties(context):
         return True
     else:
         return False
+
+def pushNewsItemsToBlogs(context):
+    order = [
+        'news-food-safety',
+    ]
+    
+    dest = {
+        'news-food-safety' : {
+                            'path' : '/food/safety/news',
+                            'programs' : ['Food and Health:Food Safety', ]
+        }
+    }
+    
+    additional_tags = list(set(order) - set(dest.keys()))
+    
+    order.extend(additional_tags)
+    
+    portal_catalog = getToolByName(context, "portal_catalog")
+    
+    results = portal_catalog.searchResults({'portal_type' : 'News Item', 'Subject' : dest.keys(), 'path' : '/'.join(context.getPhysicalPath())})
+    
+    for r in results:
+        o = r.getObject()
+        o_subject = o.Subject()
+        o_programs = list(o.extension_topics)
+        new_destination = None
+        for t in order:
+            if t in o_subject:
+                o_programs.extend(dest[t]['programs'])
+                if not new_destination:
+                    new_destination = dest[t]['path']
+        o_programs = list(set(o_programs))
+        o.extension_topics = o_programs
+        o.reindexObject()
+        new_parent = context.restrictedTraverse(new_destination.replace('/', '', 1))
+        year = str(o.effective().year())
+        if year in new_parent.objectIds():
+            cb_copy_data = context.getParentNode().manage_cutObjects(ids=[o.getId()])
+            new_parent[year].manage_pasteObjects(cb_copy_data=cb_copy_data)
+    
+    
+                
+                
+                
+            
+    
+    
+    
+
+    
