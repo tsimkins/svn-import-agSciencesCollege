@@ -223,6 +223,21 @@ class Renderer(base.Renderer):
     def show_location(self):
         return self.data.show_location
 
+    @property
+    def show_location(self):
+        return self.data.show_location
+
+    # Optionally shorten title if it's part of a series, and similar to another 
+    # event of the same series.
+    def shorten_title(self, item_title):
+        context_title = self.context.Title()
+        if ':' in context_title and ':' in item_title:
+            series = '%s:' % context_title.split(':')[0].strip()
+            if item_title.startswith(series):
+                return item_title[len(series):].strip()
+        return item_title
+
+
     def results(self):
 
         similar_query = {'sort_limit' : self.limit + 1}
@@ -286,7 +301,7 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return self.results()
+        return bool(self.results())
 
 
 class AddForm(base.AddForm):

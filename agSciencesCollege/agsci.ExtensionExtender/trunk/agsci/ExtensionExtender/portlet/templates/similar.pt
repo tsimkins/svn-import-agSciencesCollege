@@ -18,16 +18,16 @@
 					item_end obj/end|obj/EndDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
-					item_title_or_id python: item_event_location_title or item_title_or_id;"
+					item_title_or_id python: item_event_location_title or item_title_or_id;
+					show_location view/show_location|nothing;
+					shorten_title nocall:view/shorten_title"
         tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd';">
         <a href="#"
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/download' % obj.getURL()) or obj.getURL();
                            title obj/Description">
-            <span 
-                tal:replace="item_title_or_id" >
-
-             Title
+            <span tal:replace="python: shorten_title(item_title_or_id)">
+              Title
             </span>
 
 
@@ -43,7 +43,7 @@
 		<tal:block tal:condition="python:item_type == 'Event' or item_type == 'TalkEvent'">
         <div class="portletItemDetails date"
                 tal:condition="view/data/show_dates">
-                <strong tal:condition="view/show_location|nothing">When:</strong>
+                <strong tal:condition="show_location">When:</strong>
                 <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end)" />
 
         </div>
@@ -56,7 +56,7 @@
                         location python: short_location or long_location or None;">
 
             <div class="portletItemDetails location"
-                    tal:condition="python: location and view.show_location">
+                    tal:condition="python: location and show_location">
                     <strong>Where:</strong>
                     <span tal:replace="location" />
             </div>
