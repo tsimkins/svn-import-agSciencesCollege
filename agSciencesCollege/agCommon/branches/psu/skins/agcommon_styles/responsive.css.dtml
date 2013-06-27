@@ -757,7 +757,7 @@
         display: block;
     }
     
-    .contentLeadImageContainer, .captionedImage, .captionedImage.right {
+    #portal-column-content.sl.sr .contentLeadImageContainer, .contentLeadImageContainer, .captionedImage, .captionedImage.right {
         float: none;
         display: block;
         max-width: 100%;

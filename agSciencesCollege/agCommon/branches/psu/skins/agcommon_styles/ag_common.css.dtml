@@ -1443,6 +1443,10 @@ dd.portletItem p {
     margin: 0.5em 0 0.5em 0;
 }
 
+#portal-column-content.sl.sr .contentLeadImageContainer {
+    max-width: 43.946276910922378%;
+}
+
 .contentLeadImageContainer img {
     margin-left: 3.552631578947368%;
     max-width: 96.447368421052632%;
@@ -1523,7 +1527,7 @@ div.tileDescription.no-description {
     padding: 1em 1.807228915662651%;
     margin: 0 0 1em 1.807228915662651%;
     line-height: 1.5em;
-    font-size: 0.9375em;
+    font-size: 1em;
     color: #575757;
     background-color: #FFFBEF;
     font-weight: normal;
