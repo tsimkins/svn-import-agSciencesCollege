@@ -1436,7 +1436,7 @@ dd.portletItem p {
 
 .contentLeadImageContainer {
     background-color: &dtml-backgroundColor;;
-    max-width: 267px;
+    max-width: 40.210843373493976%;
     width: auto;
     float: right;
     clear: both;
@@ -1444,7 +1444,9 @@ dd.portletItem p {
 }
 
 .contentLeadImageContainer img {
-    margin-left: 1em;
+    margin-left: 3.552631578947368%;
+    max-width: 96.447368421052632%;
+    height: auto;
 }
 
 .contentLeadImageContainer p.discreet {
@@ -1514,14 +1516,32 @@ div.tileDescription.no-description {
 
 /* Restyle pull quote */
 
-.pullquote {
-    border-width: 2px 0;
+.pullquote, .callout {
+    border-width: 1px;
     border-style: solid;
-    border-color: #CC9933;
-    color: #9D7627;
-    padding: 1em;
+    border-color: #DFB97D;
+    padding: 1em 1.807228915662651%;
+    margin: 0 0 1em 1.807228915662651%;
     line-height: 1.5em;
+    font-size: 0.9375em;
+    color: #575757;
+    background-color: #FFFBEF;
+    font-weight: normal;
+    font-family: Arial, Helvetica, Helv, sans-serif;
 }
+
+.pullquote {
+    width: 33.885542168674697%;
+}
+
+.callout {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 1em 2.63671875%;
+    margin-left: 3% !important;
+    margin-right: 3% !important;
+}
+    
 
 .eventDetails {
     margin-top: 1.5em;
@@ -2928,6 +2948,23 @@ h1 span.register-header {
 
 h1 span.register-header:after {
     content: ":";
+}
+
+/* Handle exclude from nav in folder view */
+
+#content .excludeFromNav {
+    border: 1px dashed #575757;
+    background-color: #f8f8f8;
+    opacity: 0.80;
+    padding: 0.5em !important;
+}
+
+div.excludeFromNav:before {
+    content: "[Excluded from navigation, hidden from public folder listing]";
+    color: #575757;
+    font-size: 0.875em;
+    padding-bottom: 0.5em;
+    display: block;
 }
 
 /* YOUR CSS RULES STOP HERE */

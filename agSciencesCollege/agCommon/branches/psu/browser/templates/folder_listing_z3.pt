@@ -53,7 +53,7 @@
                         show_event_location context/show_event_location|nothing;
                         show_description context/show_description|nothing;
                         show_image show_image|view/show_image|nothing;
-                        show_date show_date|view/show_date|nothing">
+                        show_date show_date|view/show_date|nothing;">
     <tal:listing condition="batch">
 
         <tal:dl metal:define-slot="entries">
@@ -81,9 +81,7 @@
                                    item_has_leadimage item/hasContentLeadImage;
                                    item_effective item/EffectiveDate;">
                 <metal:block define-slot="entry">
-                    <div tal:define="div_class string:tileItem visualIEFloatFix contenttype-${item_type_title};
-                                     div_class python:show_image and '%s tileItemLeadImage' % div_class or div_class"
-                         tal:attributes="class div_class">
+                    <div tal:attributes="class python: view.getItemClass(item)">
                     <tal:dt metal:define-macro="listitem">
 
                         <div class="contentLeadImageContainer"
@@ -108,7 +106,7 @@
                             </metal:leadimage>
 
                         </div>
-                        
+
                         <div tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle no-description');"
                             tal:attributes="class dt_class">
    
@@ -120,6 +118,7 @@
                                 Item Title
                            </a>
                         </div>
+
                         <tal:taglisting 
                              define="show_tags context/show_tags|nothing;
                                    tag_prefix context/tag_prefix|nothing;

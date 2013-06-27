@@ -52,11 +52,11 @@ class IFolderView(Interface):
 class FolderView(BrowserView):
 
     implements(IFolderView)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
-                                        
+
     @property
     def show_date(self):
         return getContextConfig(self.context, 'show_date', False)
@@ -106,11 +106,48 @@ class FolderView(BrowserView):
                 scale = self.prefs.desc_scale_name
                 return field.tag(context, scale=scale, css_class=css_class, title=title)
         return ''
+
+    def getItemClass(self, item):
+        # Default classes for all views
+        item_class = ['tileItem', 'visualIEFloatFix']
+
+        # If "Hide items excluded from navigation" is checked on the folder, 
+        # and this item is excluded, apply the 'excludeFromNav' class
+        if getattr(self.context.aq_base, 'hide_exclude_from_nav', False) and getattr(item, 'exclude_from_nav'):
+            item_class.append('excludeFromNav')
+        
+        # Grab folder layout
+        layout = self.context.getLayout()
+
+        # Per-layout classes
+        if layout == 'folder_summary_view':
+            # Class for rows in summary view
+            item_class.append('tileSummary')
             
+            # Special classes for person
+            if item.portal_type == 'FSDPerson':
+                item_class.append('tileItemLeadImage')
+
+            # Another if we're showing images
+            elif self.show_image:
+                item_class.append('tileSummaryLeadImage')
+            
+
+        elif layout == 'folder_listing':
+        
+            if 'excludeFromNav' not in item_class:
+                item_class.append('contenttype-%s' % item.Type.lower())
+
+            if self.show_image:
+                item_class.append('tileItemLeadImage')
+            
+
+        return " ".join(item_class)
+
 class SearchView(FolderView):
 
     implements(ISearchView)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -151,7 +188,7 @@ class SearchView(FolderView):
         filtered_results = []
         files = []
 
-        use_types_blacklist = self.request.form.get("use_types_blacklist", True) 
+        use_types_blacklist = self.request.form.get("use_types_blacklist", True)
         use_navigation_root = self.request.form.get("use_navigation_root", True)
 
         results = self.context.queryCatalog(REQUEST=self.request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root)
@@ -160,7 +197,7 @@ class SearchView(FolderView):
                 continue
             if r.portal_type in ['File']:
                 files.append(r)
-            else:            
+            else:
                 filtered_results.append(r)
         filtered_results.extend(files)
         return filtered_results
@@ -170,7 +207,7 @@ class AgendaView(FolderView):
     agenda browser view
     """
     implements(IAgendaView)
-    
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -179,13 +216,13 @@ class AgendaView(FolderView):
         if self.context.id == parent.getDefaultPage():
             self.here_url = parent.absolute_url()
         else:
-            self.here_url = self.context.absolute_url()        
+            self.here_url = self.context.absolute_url()
 
     def getFolderContents(self):
-            
+
         events = []
         folder_path = ""
-        
+
         if self.context.portal_type == 'Topic':
             try:
                 events = self.context.queryCatalog()
@@ -197,7 +234,7 @@ class AgendaView(FolderView):
                 parent_physical_path.pop()
                 folder_path = '/'.join(parent_physical_path)
                 pass
-            
+
             # If we're a collection (Topic), we may be a default page.  Figure out
             # if we're the default page, and if so, set the here_url to our parent.
             parent = self.context.getParentNode()
@@ -206,10 +243,10 @@ class AgendaView(FolderView):
 
         if not events:
             catalog = self.portal_catalog
-            
+
             if not folder_path:
                 folder_path = '/'.join(self.context.getPhysicalPath())
-                                
+
             events = catalog.searchResults({'portal_type' : ['Event', 'TalkEvent'],
                                             'path' : {'query': folder_path, 'depth' : 4},
                                             'start' : {'query' : DateTime(), 'range' : 'min'},
@@ -235,24 +272,24 @@ class AgendaView(FolderView):
         events = self.getFolderContents()
 
         for e in events:
-        
+
             if e.portal_type == 'Event' or e.portal_type == 'TalkEvent':
                 event_start = e.start
                 month = event_start.strftime('%Y-%m')
                 day = event_start.strftime('%Y-%m-%d')
-                
+
                 if not months.get(month):
-                    months[month] = {'id' : event_start.strftime(month_format).lower().replace(' ', '-'), 
+                    months[month] = {'id' : event_start.strftime(month_format).lower().replace(' ', '-'),
                                      'label' : event_start.strftime(month_format), 'items' : []}
-    
+
                 if not days.get(day):
                     days[day] = {'id' : event_start.strftime(day_format).lower().replace(' ', '-'),
                                  'label' : event_start.strftime(day_format), 'items' : []}
-                                    
-                months[month]['items'].append(e)
-                days[day]['items'].append(e)                
 
-            
+                months[month]['items'].append(e)
+                days[day]['items'].append(e)
+
+
         if self.show_days:
 
             for d in sorted(days.keys()):
@@ -265,7 +302,7 @@ class AgendaView(FolderView):
 
         return agenda
 
-            
+
 
     def getBodyText(self):
         return self.context.getBodyText()
@@ -334,7 +371,7 @@ class ModifiedSharingView(SharingView):
         existing_settings = self.existing_role_settings()
         user_results = self.user_search_results()
         group_results = self.group_search_results()
-        
+
         for g in existing_settings:
             if g['id'] != AUTH_GROUP and g['type'] == 'group':
                 g['group_url'] = "%s/@@usergroup-groupmembership?groupname=%s" % (getSite().absolute_url(), g['id'])

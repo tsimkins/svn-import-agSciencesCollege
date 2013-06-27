@@ -18,9 +18,7 @@
                 <metal:entries fill-slot="entries">
                     <metal:block use-macro="context/@@folder_listing_z3/macros/entries">
                         <metal:entry fill-slot="entry">
-                    <div tal:attributes="class div_class"
-                         tal:define="div_class string:tileItem visualIEFloatFix tileSummary;
-                                     div_class python: item_type =='FSDPerson' and '%s tileItemLeadImage' % div_class or show_image and '%s tileSummaryLeadImage' % div_class or div_class">
+                    <div tal:attributes="class python: view.getItemClass(item)">
 
                         <div class="contentLeadImageContainer"
                                 tal:condition="python: show_image or item_type == 'FSDPerson'">

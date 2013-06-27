@@ -78,9 +78,10 @@
 }
 
 body.template-atct_edit #portal-column-content .documentEditable #content {
-    padding: 0.375em 2.74951% 0.375em !important;
+    padding: 0.375em 2.75% 0.375em !important;
     border-width: 0;
-    width: 93.5%;
+    width: 94.5%;
+    margin: 0 !important;
 }
 
 .documentEditable  {
