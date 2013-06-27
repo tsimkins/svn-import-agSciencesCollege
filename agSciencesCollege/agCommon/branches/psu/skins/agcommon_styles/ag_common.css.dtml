@@ -1444,12 +1444,12 @@ dd.portletItem p {
 }
 
 #portal-column-content.sl.sr .contentLeadImageContainer {
-    max-width: 43.946276910922378%;
+    max-width: 44.279661016949153%;
 }
 
 .contentLeadImageContainer img {
-    margin-left: 3.552631578947368%;
-    max-width: 96.447368421052632%;
+    margin-left: 4.5%;
+    max-width: 95.5%;
     height: auto;
 }
 
