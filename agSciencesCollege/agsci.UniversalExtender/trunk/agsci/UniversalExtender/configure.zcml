@@ -443,5 +443,18 @@
     <class class="Products.CMFPlone.PloneFolder.PloneFolder">
         <require permission="cmf.AddPortalContent" attributes="manage_pasteObjects" />
     </class>
+
+    <!-- Customize left navigation logic -->
+    <adapter 
+        for="*
+             .interfaces.ICustomNavigation"
+        factory=".adapters.CustomNavtreeStrategy"
+        provides="plone.app.layout.navigation.interfaces.INavtreeStrategy" />
+
+    <five:implements 
+        class="plone.app.portlets.portlets.navigation.Assignment"
+        interface=".interfaces.ICustomNavigation" />
+
+
         
 </configure>

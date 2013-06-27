@@ -1,5 +1,6 @@
-from zope.interface import Interface
+from zope.interface import Interface, Attribute
 from plone.theme.interfaces import IDefaultPloneLayer
+from plone.app.portlets.portlets.navigation import INavigationPortlet
 
 class IUniversalExtenderLayer(IDefaultPloneLayer):
     """A Layer Specific to UniversalExtender"""
@@ -16,7 +17,7 @@ class IFolderTopicExtender(Interface):
 class ITopicExtender(Interface):
     """ marker interface """
     
-class IFolderExtender(Interface):
+class IFolderExtender(Interface, INavigationPortlet):
     """ marker interface """
 
 class IMarkdownDescriptionExtender(Interface):
@@ -30,3 +31,9 @@ class INoComments(Interface):
     
 class ITagExtender(Interface):
     """ marker interface """
+
+class IEventModifiedEvent(Interface):
+    context = Attribute("The content object that was saved.")
+
+class ICustomNavigation(INavigationPortlet):
+    """ marker interfaces """

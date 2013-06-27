@@ -471,6 +471,30 @@ class FolderExtender(object):
             searchable=True,
             validators=('isTidyHtmlWithCleanup',),
         ),
+        
+        _ExtensionBooleanField(
+            "hide_exclude_from_nav",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Hide items excluded from navigation in folder listing.",
+                description=u"Hide items from folder listing if 'Exclude from navigation' is checked for those items.",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+        
+        _ExtensionBooleanField(
+            "hide_subnavigation",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Hide subnavigation when displaying the main folder listing.",
+                description=u"",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
     ]
 
     def __init__(self, context):
