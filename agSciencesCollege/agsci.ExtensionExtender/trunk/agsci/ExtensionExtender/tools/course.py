@@ -10,6 +10,17 @@ import sqlite3
 import Zope2
 import re
 from DateTime import DateTime
+from plone.memoize import ram
+from time import time
+
+# Cache for 5 minutes
+@ram.cache(lambda *args: time() // (5*60))
+
+def getCachedCourses(portal_catalog):
+
+    results =  portal_catalog.searchResults({'portal_type' : ['Topic', 'Folder'], 'Subject' : 'courses', 'sort_on' : 'sortable_title'})
+
+    return [x.Title for x in results]
 
 class ExtensionCourseTool(UniqueObject, SimpleItem):
 
@@ -26,10 +37,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
     security.declarePublic('getCourses')
     def getCourses(self):
-        
-        results =  self.portal_catalog.searchResults({'portal_type' : ['Topic', 'Folder'], 'Subject' : 'courses', 'sort_on' : 'sortable_title'})
-
-        return [x.Title for x in results]
+        return getCachedCourses(self.portal_catalog)
 
     security.declarePublic('getCourseInfo')
     def getCourseInfo(self, course):
