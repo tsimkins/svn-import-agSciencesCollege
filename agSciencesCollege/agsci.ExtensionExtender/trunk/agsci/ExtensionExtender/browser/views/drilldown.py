@@ -1,5 +1,5 @@
 from agsci.subsite.browser.views.tags import TagsView
-
+from agsci.ExtensionExtender.counties import getSurroundingCounties
 class CountyView(TagsView):
 
     def __init__(self, context, request):
@@ -52,6 +52,13 @@ class CountyView(TagsView):
     def getFolderContents(self):
         tag_root = self.tag_root
         tags = self.tags
+
+        # If we're looking at counties, add the surrounding counties as well.
+        if self.catalog_index == 'Counties':
+            all_tags = []
+            for t in tags:
+                all_tags.extend(getSurroundingCounties(t))
+            tags = list(set(all_tags))
 
         default_page = tag_root.getDefaultPage()
 

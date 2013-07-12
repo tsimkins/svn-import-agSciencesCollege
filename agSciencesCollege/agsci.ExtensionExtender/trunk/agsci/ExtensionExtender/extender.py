@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget, DateTimeField, CalendarWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -15,7 +15,7 @@ from Products.ATContentTypes.interfaces.event import IATEvent
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _ExtensionBlobField(ExtensionField, BlobField): pass
-class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
+
 
 class _ExtensionLinesField(ExtensionField, LinesField):
 
@@ -52,6 +52,7 @@ class _ExtensionLinesField(ExtensionField, LinesField):
 
 
 class _TopicsField(_ExtensionLinesField):
+
     def Vocabulary(self, content_instance):
 
         ptool = getToolByName(content_instance, 'portal_properties')
@@ -63,6 +64,7 @@ class _TopicsField(_ExtensionLinesField):
             return DisplayList([('N/A', 'N/A')])
 
 class _SubtopicsField(_ExtensionLinesField):
+
     def Vocabulary(self, content_instance):
 
         ptool = getToolByName(content_instance, 'portal_properties')
@@ -74,6 +76,7 @@ class _SubtopicsField(_ExtensionLinesField):
             return DisplayList([('N/A', 'N/A')])
 
 class _CountiesField(_ExtensionLinesField):
+
     def getCounties(self, content_instance):
         ptool = getToolByName(content_instance, 'portal_properties')
         props = ptool.get("extension_properties")
@@ -87,6 +90,7 @@ class _CountiesField(_ExtensionLinesField):
         return DisplayList(self.getCounties(content_instance))
 
 class _EventCountiesField(_CountiesField):
+
     def Vocabulary(self, content_instance):
 
         counties = self.getCounties(content_instance)
@@ -97,6 +101,7 @@ class _EventCountiesField(_CountiesField):
         return DisplayList(counties)
 
 class _CoursesField(_ExtensionLinesField):
+
     def Vocabulary(self, content_instance):
 
         extension_courses_tool = getToolByName(content_instance, 'extension_course_tool')
@@ -360,36 +365,6 @@ class ExtensionEventExtender(ExtensionExtender):
                     widget=StringWidget(
                         label=u"ZIP Code",
                         description=u"5-digit ZIP Code for event location. For webinars and other virtual events, enter 00000.",
-                    ),
-            ),
-            _ExtensionBooleanField(
-                "free_registration",
-                    required=False,
-                    searchable=False,
-                    widget=BooleanWidget(
-                        label=u"Enable online event registration (for free events only).",
-                        description=u"",
-                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
-                    ),
-            ),
-            _ExtensionStringField(
-                "free_registration_email",
-                    required=False,
-                    searchable=False,
-                    widget=StringWidget(
-                        label=u"Email address for registration responses.",
-                        description=u"Use this field if you would like to receive an email for each registration.",
-                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
-                    ),
-            ),
-            _ExtensionDateTimeField(
-                "free_registration_deadline",
-                    required=False,
-                    searchable=False,
-                    widget=CalendarWidget(
-                        label=u"Registration deadline.",
-                        description=u"After this date, registrations will not be permitted.",
-                        condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
                     ),
             ),
         ]
