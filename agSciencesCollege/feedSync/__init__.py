@@ -130,12 +130,12 @@ def getTags(html, valid_tags=[]):
     mySoup = BeautifulSoup(html)
     normalizer = getUtility(IIDNormalizer)
     try:
-        tags_div = mySoup.find("div", {'class' : re.compile('views-field-field-tags')})
-        items = tags_div.findAll("a", {'typeof' : re.compile('skos:Concept')})
-        article_tags = [normalizer.normalize(str(x.contents[0])).strip() for x in items]
+        article_tags = []
 
-        article_tags.extend(getTopics(html, valid_tags=valid_tags))
-        
+        for tags_div in mySoup.findAll("div", {'class' : re.compile('article-related-terms')}):
+            items = tags_div.findAll("a")
+            article_tags.extend([normalizer.normalize(str(x.contents[0])).strip() for x in items])
+
         if valid_tags:
             tags = list(set(valid_tags) & set(article_tags))
         else:
@@ -143,21 +143,6 @@ def getTags(html, valid_tags=[]):
 
         return tags
 
-    except:
-        return []
-
-def getTopics(html, valid_tags=[]):
-    mySoup = BeautifulSoup(html)
-    normalizer = getUtility(IIDNormalizer)
-    try:
-        tags_div = mySoup.find("div", {'class' : re.compile('views-field-field-topic')})
-        items = tags_div.findAll("a", {'typeof' : re.compile('skos:Concept')})
-        article_tags = [normalizer.normalize(str(x.contents[0])).strip() for x in items]
-        if valid_tags:
-            tags = list(set(valid_tags) & set(article_tags))
-        else:
-            tags = list(article_tags)
-        return tags
     except:
         return []
 
