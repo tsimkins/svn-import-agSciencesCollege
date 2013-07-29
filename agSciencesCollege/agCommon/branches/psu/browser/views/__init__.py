@@ -13,6 +13,11 @@ from plone.memoize.instance import memoize
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
 from Products.agCommon import getContextConfig
+try:
+    from agsci.ExtensionExtender.counties import getSurroundingCounties
+except ImportError:
+    def getSurroundingCounties(c):
+        return c
 
 """
     Interface Definitions
@@ -77,6 +82,10 @@ class FolderView(BrowserView):
     def context_state(self):
         return getMultiAdapter((self.context, self.request),
                                 name=u'plone_context_state')
+
+    @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
 
     @property
     def anonymous(self):
@@ -190,7 +199,32 @@ class SearchView(FolderView):
 
         use_types_blacklist = self.request.form.get("use_types_blacklist", True)
         use_navigation_root = self.request.form.get("use_navigation_root", True)
+        
+        # Counties
+        counties = self.request.form.get('Counties')
 
+        if counties and len(counties) == 1:
+            self.request.form['Counties'] = getSurroundingCounties(counties[0])
+        
+        # ZIP Code search
+        
+        search_zip = self.request.form.get('zip_code')
+        search_zip_radius = self.request.form.get('zip_code_radius')
+        
+        if search_zip and search_zip_radius:
+
+            try:
+                ziptool = getToolByName(self.context, 'extension_zipcode_tool')
+            except AttributeError:
+                pass
+            else:
+                # We have a ziptool
+                zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
+                all_zips = self.portal_catalog.uniqueValuesFor('zip_code')
+                search_zip_list = list(set(zips) & set(all_zips))
+                self.request.form['zip_code'] = search_zip_list
+            
+        
         results = self.context.queryCatalog(REQUEST=self.request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root)
         for r in results:
             if self.anonymous and r.portal_type == 'Event' and r.end < now:
@@ -306,10 +340,6 @@ class AgendaView(FolderView):
 
     def getBodyText(self):
         return self.context.getBodyText()
-
-    @property
-    def portal_catalog(self):
-        return getToolByName(self.context, 'portal_catalog')
 
     @property
     def portal(self):

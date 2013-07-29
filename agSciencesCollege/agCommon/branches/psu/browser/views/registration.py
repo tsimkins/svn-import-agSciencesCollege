@@ -6,6 +6,7 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
+from Products.agCommon import getContextConfig
 
 class IRegistrationView(Interface):
 
@@ -48,6 +49,9 @@ class RegistrationView(BrowserView):
                 if registration_deadline < now:
                     return False
         return True
+    
+    def registrationURL(self):
+        return getContextConfig(self.context, 'registration_url')
         
 
 class DownloadCSVView(RegistrationView):

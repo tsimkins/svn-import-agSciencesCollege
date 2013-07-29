@@ -26,7 +26,7 @@ class IImage(IPortletDataProvider):
         required=True,
         default=False)
 
-    items = schema.Choice(title=_(u'Link/Icon Set Id'),
+    items = schema.Choice(title=_(u'Image Set Id'),
                        description=_(u'The id of the image set in portal_actions'),
                        required=True,
                        vocabulary="agcommon.portlet.portal_actions"
@@ -98,7 +98,7 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IImage)
-    label = _(u"Add Icon and Link Portlet")
+    label = _(u"Add Image Portlet")
     description = _(u"This portlet displays linked images configured in portal_actions.")
 
     def create(self, data):
@@ -106,5 +106,5 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IImage)
-    label = _(u"Edit Icon and Link Portlet")
+    label = _(u"Edit Image Portlet")
     description = _(u"This portlet displays linked images configured in portal_actions.")

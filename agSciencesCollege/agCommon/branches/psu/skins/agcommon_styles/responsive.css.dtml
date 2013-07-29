@@ -625,6 +625,10 @@
     #portal-column-one .portletHeader {
         display: none;
     }
+
+    #portal-column-one .portletWrapper .portlet-mobile-navigation {
+        display: block;
+    }
     
     #portal-column-one .portletNavigationHeader {
         margin: 0.25em 0 0.25em 0;
@@ -651,6 +655,7 @@
     body.navigation-subsite #portal-column-one .portletNavigationSubHeader {
         border-top: 1px solid #666666;
         border-bottom: 1px solid #666666;
+        margin-top: 0.5625em;
     }
     
     body.navigation-subsite #portal-column-one .portletNavigationSubHeader.active {

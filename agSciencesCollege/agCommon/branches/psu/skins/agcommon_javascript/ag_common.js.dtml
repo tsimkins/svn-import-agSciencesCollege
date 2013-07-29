@@ -180,7 +180,7 @@ jq(document).ready( function () {
 
 jq(document).ready(
 	function () {
-        jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription, body.custom-semicolon-delimited #content .documentDescription').each(
+        jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription, body.custom-semicolon-delimited #content .tileDescription p').each(
 
             function()
             {
@@ -731,6 +731,16 @@ function mobileNav() {
             jq("#navigation-mobile .portletNavigationTree").detach().appendTo("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
             jq("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child .portletNavigationTree").show()
         }
+        
+        // replace spurious &nbsp; that adds to vertical space between portlets.
+        var visualPadding = jq("#portal-column-one-visualPadding");
+
+        if (visualPadding.size())
+        {
+            var html = visualPadding.html();
+            html = html.replace('&nbsp;', ' ');
+            visualPadding.html(html);
+        }
     }
     else
     {
@@ -827,10 +837,16 @@ function mobileNav() {
             jq("#portal-column-one .portletWrapper").each(
                 function () {
 
-                    if (jq(this).children(".portlet, .portletStaticText").size() && ! jq(this).children(".portletNavigationTree").size())
+                    if (
+                         (
+                            jq(this).children(".portlet, .portletStaticText").size() && 
+                            ! jq(this).children(".portletNavigationTree").size() 
+                         ) && ! (is_homepage && jq(this).children(".portlet-mobile-navigation").size())
+                    )
                     {
                         jq(this).appendTo(jq(mobile_portlets));
                     }
+
                 }
             );
 
@@ -844,7 +860,7 @@ function adjustSearch() {
     {
         if (jq("#search-mobile").size())
         {
-            jq("#search-mobile #portal-searchbox").detach().insertBefore("#portal-header #logo-psu");
+            jq("#search-mobile #portal-searchbox").detach().appendTo("#portal-header");
             jq("#portal-header #portal-searchbox").show()
             jq("#search-mobile").remove();
             jq("#mobile-search-button").remove();

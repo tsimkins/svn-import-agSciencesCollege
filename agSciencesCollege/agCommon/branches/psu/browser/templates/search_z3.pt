@@ -50,7 +50,10 @@
               class="searchPage"
               tal:define="portal_types python: request.form.get('portal_type');
                           subjects python: request.form.get('Subject');
-                          folder_path request/form/path|nothing"
+                          review_states python: request.form.get('review_state');
+                          folder_path python: request.form.get('path');
+                          counties python: request.form.get('Counties');
+                          zip_code python: request.form.get('zip_code')"
               tal:condition="not:is_advanced_search">
             <input class="searchPage"
                    name="SearchableText"
@@ -85,19 +88,45 @@
                 </tal:subject>
             </metal:subject>
 
-            <metal:localsearch define-macro="localsearch" tal:condition="folder_path">
-                <input id="localsearchbox_currentfolder_only" 
-                       class="noborder"
-                       type="hidden" 
-                       name="path"
-                       tal:attributes="value folder_path"
-                       />
-                <label for="localsearchbox_currentfolder_only" 
-                       class="hiddenStructure"
-                       i18n:translate="label_searchbox_currentfolder_only">
-                    only in current section
-                </label>
-            </metal:localsearch>
+            <metal:review_state define-macro="review_state">
+    
+                <tal:review_state condition="review_states" 
+                                 repeat="t review_states">
+    
+                    <input type="hidden" tal:attributes="value t" name="review_state:list" />
+    
+                </tal:review_state>
+            </metal:review_state>
+
+            <metal:folder_path define-macro="localsearch" tal:condition="folder_path">
+    
+                <tal:folder_path condition="folder_path" 
+                                 repeat="t folder_path">
+    
+                    <input type="hidden" tal:attributes="value t" name="path:list" />
+    
+                </tal:folder_path>
+            </metal:folder_path>
+
+            <metal:counties define-macro="counties" tal:condition="counties">
+    
+                <tal:counties condition="counties" 
+                                 repeat="t counties">
+    
+                    <input type="hidden" tal:attributes="value t" name="Counties:list" />
+    
+                </tal:counties>
+            </metal:counties>
+
+            <metal:zip_code define-macro="zip_code" tal:condition="zip_code">
+    
+                <tal:zip_code condition="zip_code" 
+                                 repeat="t zip_code">
+    
+                    <input type="hidden" tal:attributes="value t" name="zip_code:list" />
+    
+                </tal:zip_code>
+            </metal:zip_code>
 
             
             <p class="discreet"

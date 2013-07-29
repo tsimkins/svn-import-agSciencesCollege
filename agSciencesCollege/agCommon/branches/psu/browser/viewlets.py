@@ -24,7 +24,12 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from agsci.subsite.content.interfaces import ISection, ISubsite
 from Products.CMFCore.Expression import Expression, getExprContext
 from Products.agCommon import getContextConfig
+from plone.app.layout.viewlets.common import SearchBoxViewlet
 
+try:
+    from agsci.ExtensionExtender.counties import data as county_data
+except ImportError:
+    county_data = {}
 
 try:
     from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
@@ -698,6 +703,10 @@ class PortletsBelowViewlet(ViewletBase):
             managers.append(name)
         return managers
 
+class LocalSearchViewlet(SearchBoxViewlet):
+
+    def counties(self):
+        return sorted(county_data.keys())
 
 
 # provideAdapter for viewlets to be registered in standalone mode

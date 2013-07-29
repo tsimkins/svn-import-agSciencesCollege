@@ -1,9 +1,9 @@
-<h2 class="portletHeader"
+<h2 tal:attributes="class string:portletHeader"
     tal:define="collection_url view/collection_url;">
         <span tal:replace="view/data/header" />
 </h2>
     
-<dl class="portlet portletCollection"
+<dl tal:attributes="class string:portlet portletCollection"
     i18n:domain="plone"
     tal:define="collection_url view/collection_url;
                 plone_view context/@@plone;

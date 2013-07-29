@@ -930,6 +930,7 @@ def _getContextConfig(context):
         'show_date',
         'show_image',
         'show_read_more',
+        'registration_url',
     ]
     
     # Convert to dict

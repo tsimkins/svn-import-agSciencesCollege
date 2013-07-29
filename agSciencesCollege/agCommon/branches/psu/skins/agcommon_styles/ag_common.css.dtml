@@ -642,9 +642,16 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #rightcolumn .linkIcon .portletItem {
     line-height: 1.1875em;
     margin: 1em 0;
-    padding: 0 0 0 2.375em;
+    padding: 0;
     background-color: transparent;
     background-image: none;
+}
+
+#portlets-mobile .linkIcon .icon,
+#portal-column-one .linkIcon .icon,
+#portal-column-two dl.linkIcon .icon,
+#rightcolumn .linkIcon .icon {
+    padding-left: 2.375em;
 }
 
 #rightcolumn .linkIcon .portletItem {
@@ -1538,12 +1545,13 @@ div.tileDescription.no-description {
     width: 33.885542168674697%;
 }
 
-.callout {
+#content .callout {
     font-size: 1em;
     font-weight: bold;
     padding: 1em 2.63671875%;
     margin-left: 3% !important;
     margin-right: 3% !important;
+    margin-top: 1em;
 }
     
 
@@ -1860,12 +1868,27 @@ body.template-pgv_sg_carousel_view #content {
     text-align: left;
 }
 
+#portal-localsearchbox .searchTitle {
+    display: block;
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+}
+
+#portal-localsearchbox .search_criteria {
+    padding-bottom: 0.5em;
+}
+
 #localSearchBox {
     width: 87.865168539325843%;
     padding: 1px 0.898876404494382%;
     border-style: solid;
     border-color: #999999;
     background-image: none;
+}
+
+#localSearchBox.extra_search_fields {
+    width: 98.202247191011236%;
 }
 
 #portal-localsearchbox .searchButton {
@@ -2969,6 +2992,16 @@ div.excludeFromNav:before {
     font-size: 0.875em;
     padding-bottom: 0.5em;
     display: block;
+}
+
+/* Listing after text rules */
+
+body.listing-after-text #content .documentDescription {
+    margin-bottom: 0.75em;
+}
+
+body.listing-after-text #content #content-text {
+    margin-top: 1em;
 }
 
 /* YOUR CSS RULES STOP HERE */

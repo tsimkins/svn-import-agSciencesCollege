@@ -212,4 +212,8 @@ class AgCommonUtilities(BrowserView):
         if not portal_actions.get(topMenu, None):
             body_classes.append('empty-top-navigation')
         
+        # Contents below folder
+        if getattr(context, "listing_after_text", False):
+            body_classes.append('listing-after-text')
+        
         return ' '.join(body_classes)

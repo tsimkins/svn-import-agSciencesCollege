@@ -69,7 +69,7 @@ Note: insert-before and -after accept the value "*" which means
     
     <order manager="plone.abovecontentbody" skinname="agCommon">
         <viewlet name="collective.contentleadimage.full" insert-after="contentwellportlets.portletsabovecontent"/>
-        <viewlet name="agcommon.homepage_text" insert-after="collective.contentleadimage.fullagcommon.rightcolumn" />
+        <viewlet name="agcommon.homepage_text" insert-after="collective.contentleadimage.full" />
         <viewlet name="agcommon.localsearchbox" insert-after="agcommon.homepage_text" />
         <viewlet name="agcommon.centercolumn" insert-after="agcommon.localsearchbox" />
         <viewlet name="agcommon.rightcolumn" insert-after="agcommon.centercolumn" />

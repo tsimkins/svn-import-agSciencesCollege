@@ -258,6 +258,14 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
     margin-bottom: 0.25em;
 }
 
+#centercolumn.agCommonPortlet .portletfeedmixer .portletItem .date {
+    margin-bottom: 0;
+}
+
+#centercolumn.agCommonPortlet .portletfeedmixer .portletItem .summary {
+    margin-top: 0.25em;     
+}
+
 #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .date,
 #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .location {
     line-height: 1.375em;
@@ -383,10 +391,7 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 
 .agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .title,
 .agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .date,
-.agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary,
-.agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .title,
-.agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .date,
-.agCommonPortlet .portletfeedmixerimageright.portletfeedmixerimagelarge .portletItem .summary {
+.agCommonPortlet .portletfeedmixerimageleft.portletfeedmixerimagelarge .portletItem .summary {
     margin-left: 46.719681908548708%; /* 235/503 */
 }
 
@@ -474,6 +479,10 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
     color: &dtml-frontRightPortletLinkHoverColor;;
     background-color: transparent;
     text-decoration: underline;
+}
+
+#rightcolumn .linkIcon .portletItem a:hover {
+    text-decoration: none;
 }
 
 #rightcolumn .portletItem a, 

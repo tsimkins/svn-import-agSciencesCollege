@@ -122,13 +122,16 @@
                         allowRegistration nocall: registration_view/allowRegistration;
                         event_editor python: canEditEvent(context);
                         registration_allowed python: allowRegistration(context);
-                        registration_deadline context/free_registration_deadline|nothing;">
+                        registration_deadline context/free_registration_deadline|nothing;
+                        registration_url registration_view/registrationURL|string:${portal_url}/register;
+                        registration_url python:registration_url and registration_url.replace('${portal_url}', 
+portal_url) or ''">
 
             <h2>Registration</h2>
             
             <form tal:condition="python: not event_editor and registration_allowed"
                 class="event-registration event-registration-public" 
-                tal:attributes="action string:${portal_url}/register" 
+                tal:attributes="action registration_url" 
                 method="post">
                 <input type="hidden" name="uid" tal:attributes="value context/UID" />
                 <input type="submit" value="Register for this event" />
@@ -136,7 +139,7 @@
 
             <form tal:condition="event_editor"
                 class="event-registration" 
-                tal:attributes="action string:${portal_url}/register/download_csv" 
+                tal:attributes="action string:${registration_url}/download_csv" 
                 method="post">
                 <input type="hidden" name="uid" tal:attributes="value context/UID" />
                 <input type="submit" value="Download Registration Information" />
