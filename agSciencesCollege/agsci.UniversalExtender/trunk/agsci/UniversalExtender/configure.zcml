@@ -455,6 +455,5 @@
         class="plone.app.portlets.portlets.navigation.Assignment"
         interface=".interfaces.ICustomNavigation" />
 
-
         
 </configure>

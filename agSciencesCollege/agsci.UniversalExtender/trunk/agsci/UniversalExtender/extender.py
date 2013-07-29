@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -22,7 +22,7 @@ class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _TextExtensionField(ExtensionField, TextField): pass
 class _ExtensionLinesField(ExtensionField, LinesField): pass
-
+class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
 
 class _TagsField(_ExtensionLinesField):
     def Vocabulary(self, context):
@@ -213,6 +213,36 @@ class EventExtender(object):
                 label=u"Map To Location",
                 description=u"e.g. Google Maps link",
             ),
+        ),
+        _ExtensionBooleanField(
+            "free_registration",
+                required=False,
+                searchable=False,
+                widget=BooleanWidget(
+                    label=u"Enable online event registration (for free events only).",
+                    description=u"",
+                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                ),
+        ),
+        _ExtensionStringField(
+            "free_registration_email",
+                required=False,
+                searchable=False,
+                widget=StringWidget(
+                    label=u"Email address for registration responses.",
+                    description=u"Use this field if you would like to receive an email for each registration.",
+                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                ),
+        ),
+        _ExtensionDateTimeField(
+            "free_registration_deadline",
+                required=False,
+                searchable=False,
+                widget=CalendarWidget(
+                    label=u"Registration deadline.",
+                    description=u"After this date, registrations will not be permitted.",
+                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                ),
         ),
         _ExtensionBooleanField(
             "eventCanceled",
