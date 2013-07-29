@@ -1,5 +1,8 @@
 
-<h2 class="portletHeader" tal:condition="view/show_header|nothing" tal:content="structure view/title" />
+<h2 
+    tal:attributes="class string:portletHeader" 
+    tal:condition="view/show_header|nothing" 
+    tal:content="structure view/title" />
 
 <dl tal:attributes="class string:portlet portletfeedmixer portletfeedmixerimage${view/image_position} portletfeedmixerimage${view/image_size};"
     tal:define="is_printed_newsletter view/is_printed_newsletter|nothing;"

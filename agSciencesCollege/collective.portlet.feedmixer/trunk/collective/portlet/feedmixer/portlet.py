@@ -57,7 +57,8 @@ class Assignment(base.Assignment):
                  reverse_feed=reverse_feed,
                  assignment_context_path=assignment_context_path,
                  target_collection=target_collection, image_position=image_position,
-                 image_size=image_size, random=random):
+                 image_size=image_size, random=random, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.title=title
         self.feeds=feeds
         self.items_shown=items_shown
