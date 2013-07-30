@@ -1880,15 +1880,11 @@ body.template-pgv_sg_carousel_view #content {
 }
 
 #localSearchBox {
-    width: 87.865168539325843%;
+    width: 98.202247191011236%;
     padding: 1px 0.898876404494382%;
     border-style: solid;
     border-color: #999999;
     background-image: none;
-}
-
-#localSearchBox.extra_search_fields {
-    width: 98.202247191011236%;
 }
 
 #portal-localsearchbox .searchButton {

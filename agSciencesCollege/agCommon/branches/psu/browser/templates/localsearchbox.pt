@@ -5,8 +5,8 @@
                  localsearch_title context/localsearch_title|localsearch_title;
                  localsearch_counties context/localsearch_counties|nothing;
                  localsearch_zip_code context/localsearch_zip_code|nothing;
-                 has_extra_search_fields python:(localsearch_counties or localsearch_counties);
                  portal_types context/localsearch_type|nothing;
+                 programs context/localsearch_program|nothing;
                  review_states context/localsearch_state|nothing;
                  subjects context/localsearch_subject|nothing;
                  view_folder_path python: [view.folder_path];
@@ -30,13 +30,13 @@
                     title="Search this section..."
                     accesskey="4"
                     tal:attributes="value request/SearchableText|nothing;
-                                    title string:keywords...;
-                                    class python:has_extra_search_fields and 'inputLabel extra_search_fields' or 'has_extra_search_fields'"
+                                    title string:Keywords...;"
                     class="inputLabel" 
-                    autocomplete="off"/>
+                    autocomplete="off" />
 
             <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
             <metal:subject use-macro="context/@@search_z3/macros/subject" />
+            <metal:programs use-macro="context/@@search_z3/macros/programs" />
             <tal:localsearch condition="not: localsearch_entire_site">
                 <metal:localsearch use-macro="context/@@search_z3/macros/localsearch" />
             </tal:localsearch>
@@ -45,7 +45,6 @@
 
 
         <div id="counties_search"  class="search_criteria" tal:condition="localsearch_counties">   
-            and/or 
 
             <label for="counties"
                     i18n:translate="counties_search">Near County</label>
@@ -61,8 +60,6 @@
 
         <div id="zip_code_search"  class="search_criteria" tal:condition="localsearch_zip_code">   
 
-            and/or 
-            
             <label for="zip_code"
                     i18n:translate="zip_code_search">ZIP Code</label>
 

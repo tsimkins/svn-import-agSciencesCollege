@@ -53,7 +53,8 @@
                           review_states python: request.form.get('review_state');
                           folder_path python: request.form.get('path');
                           counties python: request.form.get('Counties');
-                          zip_code python: request.form.get('zip_code')"
+                          zip_code python: request.form.get('zip_code');
+                          programs python: request.form.get('Topics');"
               tal:condition="not:is_advanced_search">
             <input class="searchPage"
                    name="SearchableText"
@@ -127,6 +128,16 @@
     
                 </tal:zip_code>
             </metal:zip_code>
+
+            <metal:programs define-macro="programs" tal:condition="programs">
+    
+                <tal:programs condition="programs" 
+                                 repeat="t programs">
+    
+                    <input type="hidden" tal:attributes="value t" name="Topics:list" />
+    
+                </tal:programs>
+            </metal:programs>
 
             
             <p class="discreet"
