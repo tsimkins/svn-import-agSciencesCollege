@@ -240,7 +240,14 @@ class FlexsliderViewlet(HomepageImageViewlet, FolderView):
     def folderContents(self):
         target = self.slider_target
         if target and target.portal_type == 'Topic':
-            return target.queryCatalog()
+            item_count = target.itemCount
+
+            if not item_count:
+                item_count = 7
+
+            results = target.queryCatalog()
+
+            return results[:item_count]
 
     def slider_title(self):
         target = self.slider_target

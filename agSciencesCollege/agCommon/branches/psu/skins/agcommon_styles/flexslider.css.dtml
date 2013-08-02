@@ -101,9 +101,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
     max-height: 265px;
 }
 
-.flexslider .tileHeadline,
-.flexslider .tileBody,
-.flexslider .tileFooter {
+.flexslider .flexslider-text {
+    max-height: 265px;
+    overflow: hidden;
     margin-left: 72.453371592539455%;
     margin-right: 0.717360114777618%;
 }
@@ -136,10 +136,10 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 .flexslider .tileFooter p {
     margin: 0;
     padding: 0;
+    text-align: right;
 }    
 
 .flexslider .tileFooter a {
-    float: right;
     font-size: 0.6875em;
     text-decoration: none;
     padding-right: 0.75em;
@@ -151,7 +151,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
     text-align: left;
     margin-left: 72.453371592539455%;
     margin-right: 0.717360114777618%;
-    width: 26.829268292682927%;
+    width: 125px;
     margin-top: -1em;
 }
 

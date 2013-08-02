@@ -446,9 +446,7 @@
         float: none;
     }
 
-    #viewlet-above-content .flexslider .tileHeadline, 
-    #viewlet-above-content .flexslider .tileBody, 
-    #viewlet-above-content .flexslider .tileFooter {
+    #viewlet-above-content .flexslider .flexslider-text {
         margin: 0
     }
     
