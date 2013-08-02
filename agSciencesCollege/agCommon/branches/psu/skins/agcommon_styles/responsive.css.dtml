@@ -49,6 +49,22 @@
         width: auto !important;
     }
 
+    /* Flexslider */
+
+    #viewlet-above-content .flexslider .tileHeadline {
+        font-size: 1.25em;
+        line-height: 1.25em;
+    }
+    
+    #viewlet-above-content .flexslider .tileBody p {
+        font-size: 0.8125em;
+        line-height: 1.25em;
+    }
+
+    #viewlet-above-content .flexslider .tileFooter a {
+        font-size: 0.625em;
+    }
+
 }
 
 /*------------------------ END resolution-890.css ----------------------------*/
@@ -404,6 +420,51 @@
     body.empty-top-navigation #portal-top {
         padding-bottom: 0;
     }
+    
+    /* Flexslider */
+    
+    #viewlet-above-content .flexslider .contentLeadImageContainer img {
+        max-height: 303px;
+    }
+
+    #viewlet-above-content .flex-control-nav {
+        margin-left: 0;
+    }
+    
+    #viewlet-above-content .flexslider {
+        width: 100%;
+        margin: 3px 0 10px 0;
+    }
+    
+    #viewlet-above-content .flexslider .contentLeadImageContainer {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #viewlet-above-content .flexslider .contentLeadImageContainer img {
+        float: none;
+    }
+
+    #viewlet-above-content .flexslider .tileHeadline, 
+    #viewlet-above-content .flexslider .tileBody, 
+    #viewlet-above-content .flexslider .tileFooter {
+        margin: 0
+    }
+    
+    #viewlet-above-content .flexslider .tileHeadline {
+        margin-top: 0.5em;
+    }
+    
+    #viewlet-above-content .flex-direction-nav li a {
+        top: 35%; 
+    }
+
+    #viewlet-above-content .flex-direction-nav li .next {
+        left: auto;
+        right: 0;
+    }
+
 }
 
 /*------------------------ END resolution-768.css ----------------------------*/
@@ -1096,7 +1157,58 @@
         padding-left:  0;
         padding-right: 0;
     }
+
+    /* Flexslider */
+
+    #viewlet-above-content h2.flexslider-title {
+        background-color: #4D4D4D;
+        border: none !important;
+        color: #F6F6F6 !important;
+        font-family: Arial,Helvetica,Helv,sans-serif;
+        font-size: 0.8125em !important;
+        font-size: 1.4375em;
+        font-weight: bold;
+        line-height: 1.25em;
+        margin: 0.25em 0 0 0;
+        padding: 0.3125em 0.75em 0.375em 0.75em !important;
+        text-align: left;
+        text-transform: none;
+        width: auto;
+        height: auto;
+    }
+
+
+    #viewlet-above-content .flexslider {
+        background-color: #F5F5F5;
+        padding: 8px 1.691331923890063%;
+        width: 96.194503171247357%;
+        border: 1px solid #4D4D4D;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    #viewlet-above-content .flexslider .tileBody p {
+        color: #4D4D4D;
+    }
+
+    #viewlet-above-content .flexslider .tileHeadline a,
+    #viewlet-above-content .flexslider .tileHeadline a:visited {
+        color: #0068A9;
+    }
+    
+    #viewlet-above-content .flex-direction-nav li .next {
+        left: auto;
+        right: 1.720430107526882%;
+    }
+
+    #viewlet-above-content .flex-direction-nav li .prev {
+        left: 1.720430107526882%;
+        right: auto;
+    }
+
 }    
+
+
 
 /*------------------------ END resolution-520.css ----------------------------*/
 
@@ -1214,6 +1326,13 @@
         display: block;
         margin: 0.5em 0 1em 0;
     }
+
+    /* Flexslider */
+
+    #viewlet-above-content .flex-direction-nav li a {
+        top: 90px;
+    }
+    
 }
 
 /*------------------------ END resolution-480.css ----------------------------*/
@@ -1278,6 +1397,12 @@
     #logo-site img {
         width: 175px;
     }
+
+    /* Flexslider */
+
+    #viewlet-above-content .flex-direction-nav li a {
+        top: 75px;
+    }
 }
 
 /*------------------------ END resolution-320.css ----------------------------*/
@@ -1288,6 +1413,12 @@
 
     #header-mobile #portal-searchbox #SearchableText {
         display: block;
+    }
+    
+    /* Flexslider */
+
+    #viewlet-above-content .flex-direction-nav li a {
+        top: 50px;
     }
 
 }

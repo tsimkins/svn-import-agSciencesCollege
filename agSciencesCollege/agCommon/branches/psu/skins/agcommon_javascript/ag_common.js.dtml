@@ -1203,6 +1203,52 @@ jq(document).ready(
     }
 );
 
+/* Flexslider Load and Tracking */
+
+jq(window).load(function() {
+    if (jq('.flexslider').size())
+    {
+    	jq('.flexslider').flexslider(
+    		{
+    		    randomize: true,
+    		    slideshow : false,
+    		}
+    	);
+    	
+    	jq('.flexslider .flex-control-nav li a').click(
+            function() {
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html()]);
+            }
+    	);
+    
+    	jq('.flexslider .flex-direction-nav li a.next').click(
+            function() {
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Next']);
+            }
+    	);
+    
+    	jq('.flexslider .flex-direction-nav li a.prev').click(
+            function() {
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Previous']);
+            }
+    	);
+    
+    	jq('.flexslider .tileHeadline a').click(
+            function() {
+                var article_title = jq(this).html();
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Headline Click', article_title]);
+            }
+    	);
+    
+    	jq('.flexslider .tileFooter a').click(
+            function() {
+                var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Footer Click', article_title]);
+            }
+    	);
+    }
+});
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */

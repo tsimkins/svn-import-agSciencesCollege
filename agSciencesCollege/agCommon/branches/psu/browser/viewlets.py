@@ -24,6 +24,7 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from agsci.subsite.content.interfaces import ISection, ISubsite
 from Products.CMFCore.Expression import Expression, getExprContext
 from Products.agCommon import getContextConfig
+from Products.agCommon.browser.views import FolderView
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 
 try:
@@ -73,7 +74,12 @@ class AgCommonViewlet(ViewletBase):
     def hide_breadcrumbs(self):
         # Determine if we should hide breadcrumbs
 
+        # If we have a homepage overlay set
         if self.homepage_h1 or self.homepage_h2:
+            return True
+
+        # If we have a slider configured on a homepage
+        if getattr(self.context, 'portal_type') in ['HomePage'] and self.context.getReferences(relationship = 'IsHomePageSliderFor'):
             return True
     
         return getContextConfig(self.context, 'hide_breadcrumbs', False)
@@ -221,6 +227,25 @@ class HomepageTextViewlet(AgCommonViewlet):
 class HomepageImageViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/homepageimage.pt')
 
+    @property
+
+    def slider_target(self):
+        target = self.context.getReferences(relationship = 'IsHomePageSliderFor')
+        if target:
+            return target[0]
+
+class FlexsliderViewlet(HomepageImageViewlet, FolderView):   
+    index = ViewPageTemplateFile('templates/flexslider.pt')
+    
+    def folderContents(self):
+        target = self.slider_target
+        if target and target.portal_type == 'Topic':
+            return target.queryCatalog()
+
+    def slider_title(self):
+        target = self.slider_target
+        if target and target.portal_type == 'Topic':
+            return target.Title()
 
 class AddThisViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/addthis.pt')

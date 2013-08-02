@@ -22,22 +22,26 @@
 -->
  <javascript id="swfobject.js"
     cacheable="True" compression="safe" cookable="False"
-    enabled="True" expression="" inline="False"/>
+    enabled="True" expression="" inline="False" />
 
  <javascript id="ag_common.js"
     cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" inline="False"/>
+    enabled="True" expression="" inline="False" />
 
  <javascript id="scroller.js"
     cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="python:portal.id == 'thinkagain.psu.edu'" inline="False"/>
+    enabled="True" expression="python:portal.id == 'thinkagain.psu.edu'" inline="False" />
 
  <javascript id="semicolon-delimited.js"
-    remove="True"/>
+    remove="True" />
     
  <javascript id="fluid-images.js"
     cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" inline="False"
     conditionalcomment="lte IE 7" />
+    
+ <javascript id="jquery.flexslider.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" inline="False" />
 </object>
 

@@ -130,6 +130,16 @@
     rel="stylesheet"
     rendering="import"/>
 
+ <!-- Flex slider -->
+ <stylesheet title="" applyPrefix="False" authenticated="False"
+    cacheable="True" compression="safe" conditionalcomment="" cookable="True"
+    enabled="True" id="flexslider.css" insert-after="panorama_homepage.css"
+    expression="python: context.getLayout() in ['document_homepage_view', ]" 
+    rel="stylesheet"
+    rendering="import"/>
+
+
+
 <!-- iPhone portrait mode -->
 
  <stylesheet title="" applyPrefix="False" authenticated="False"

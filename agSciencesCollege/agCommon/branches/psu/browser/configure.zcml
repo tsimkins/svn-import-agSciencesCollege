@@ -176,6 +176,15 @@
         permission="zope2.View"
         for="agsci.subsite.content.interfaces.IHomePage"
         />
+
+    <browser:viewlet
+        name="agcommon.flexslider"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".viewlets.FlexsliderViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
+        />
         
     <browser:viewlet
         name="agcommon.centercolumn"

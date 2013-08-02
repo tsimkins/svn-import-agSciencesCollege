@@ -102,7 +102,7 @@ class FolderView(BrowserView):
         portal = getUtility(IPloneSiteRoot)
         return ILeadImagePrefsForm(portal)
 
-    def tag(self, obj, css_class='tileImage'):
+    def tag(self, obj, css_class='tileImage', scale=None):
         context = aq_inner(obj)
         field = context.getField(IMAGE_FIELD_NAME)
         titlef = context.getField(IMAGE_CAPTION_FIELD_NAME)
@@ -112,7 +112,8 @@ class FolderView(BrowserView):
             title = ''
         if field is not None:
             if field.get_size(context) != 0:
-                scale = self.prefs.desc_scale_name
+                if not scale:
+                    scale = self.prefs.desc_scale_name
                 return field.tag(context, scale=scale, css_class=css_class, title=title)
         return ''
 
