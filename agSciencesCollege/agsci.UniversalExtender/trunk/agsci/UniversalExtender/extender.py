@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -14,15 +14,17 @@ from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.interfaces import IContributors
 from Products.CMFCore.interfaces import ISiteRoot
-from agsci.subsite.content.interfaces import ITagRoot
+from agsci.subsite.content.interfaces import ITagRoot, IHomePage
 from Products.Archetypes.utils import DisplayList
 from collective.contentleadimage.extender import show_leadimage
+from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _TextExtensionField(ExtensionField, TextField): pass
 class _ExtensionLinesField(ExtensionField, LinesField): pass
 class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
+class _ExtensionReferenceField(ExtensionField, ReferenceField): pass
 
 class _TagsField(_ExtensionLinesField):
     def Vocabulary(self, context):
@@ -36,6 +38,33 @@ class _TagsField(_ExtensionLinesField):
 # mere mortals so they can't upload a picture from 10 years ago
 # when they were 20 pounds lighter and had hair. Professional
 # portaits only!
+
+class HomePageExtender(object):
+    adapts(IHomePage)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+
+    fields = [
+        _ExtensionReferenceField(
+            "slider_target",
+            widget = ReferenceBrowserWidget(
+                label=u"HomePage Slider",
+                description=u"Choose an collection for the objects that will appear in the homepage slider.",
+                show_path=True,
+                condition="python:member.has_role('Manager')",
+            ),
+            schemata="settings",
+            relationship = 'IsHomePageSliderFor',
+            allowed_types = ('Topic',),
+        ),
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
 
 
 class FSDPersonExtender(object):

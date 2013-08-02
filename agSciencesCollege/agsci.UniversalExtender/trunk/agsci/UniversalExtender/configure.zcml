@@ -27,6 +27,14 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
 
+    <!-- Additional fields for HomePage -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.HomePageExtender"
+        factory=".extender.HomePageExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
     <!-- FSD Person changes -->
 
     <adapter
