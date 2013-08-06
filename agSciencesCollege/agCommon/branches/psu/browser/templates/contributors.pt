@@ -1,12 +1,15 @@
 <div class="documentContributors"
-    tal:define="contributors view/people"
+    tal:define="contributors view/people;
+                is_printed_newsletter view/is_printed_newsletter"
     tal:condition="contributors">
     <h2>Contact Information</h2>
     <tal:contributors repeat="item contributors">
     
         <tal:person define="item_url item/url;
                             item_name item/name;
-                            item_job_title item/title;">
+                            item_job_title item/title;
+                            item_phone item/phone;
+                            item_email item/email;">
             <div class="tileItem visualIEFloatFix">
                 <div class="tileHeadline">
     
@@ -19,9 +22,16 @@
                     </a>
                 </div>
                 <div class="facultyStaffDirectory">
-                    <ul tal:condition="item_job_title" class="jobTitle discreet">
+                    <ul tal:condition="item_job_title" class="jobTitle">
                         <li tal:content="item_job_title" />
                     </ul>
+                    <div tal:condition="item_email">
+                        Email: <span tal:replace="item_email" tal:condition="is_printed_newsletter" />
+                               <span tal:replace="structure python:context.spamProtectFSD(item_email)" tal:condition="not: is_printed_newsletter" />
+                    </div>
+                    <div tal:condition="item_phone">
+                        Phone: <span tal:content="item_phone" />
+                    </div>
                 </div>
             </div>
         </tal:person>

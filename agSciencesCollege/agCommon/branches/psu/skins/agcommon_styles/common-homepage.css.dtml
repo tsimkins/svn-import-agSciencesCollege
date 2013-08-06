@@ -69,6 +69,9 @@
     border-width: 0;
 }
 
+#portal-localsearchbox {
+    font-size: 0.84375em;
+}
 
 /*========= Editable ============*/
 

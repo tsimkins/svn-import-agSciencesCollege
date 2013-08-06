@@ -80,7 +80,30 @@ class Renderer(base.Renderer):
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
         self.linkIcons = context_state.actions().get(self.data.items, None)
-        
+
+    def getIconClass(self, icon):
+        icon_classes = {
+            'icons/blogger.png' : 'sprite sprite-blogger',
+            'icons/contact.png' : 'sprite sprite-contact',
+            'icons/directory.png' : 'sprite sprite-directory',
+            'icons/facebook.png' : 'sprite sprite-facebook',
+            'icons/feed.png' : 'sprite sprite-feed',
+            'icons/flickr.png' : 'sprite sprite-flickr',
+            'icons/instagram.png' : 'sprite sprite-instagram',
+            'icons/linkedin.png' : 'sprite sprite-linkedin',
+            'icons/message.png' : 'sprite sprite-message',
+            'icons/podcast.png' : 'sprite sprite-podcast',
+            'icons/twitter.png' : 'sprite sprite-twitter',
+            'icons/typepad.png' : 'sprite sprite-typepad',
+            'icons/youtube.png' : 'sprite sprite-youtube',
+        }
+
+        for k in icon_classes.keys():
+            if icon.endswith(k):
+                return icon_classes[k]
+
+        return 'icon'
+
     def render(self):
         return xhtml_compress(self._template())
 

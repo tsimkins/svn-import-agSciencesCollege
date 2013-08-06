@@ -1,93 +1,98 @@
-<div id="portal-localsearchbox"
-     i18n:domain="plone"
-     tal:condition="context/localsearch|nothing"
-     tal:define="localsearch_title string:Search this section;
-                 localsearch_title context/localsearch_title|localsearch_title;
-                 localsearch_counties context/localsearch_counties|nothing;
-                 localsearch_zip_code context/localsearch_zip_code|nothing;
-                 portal_types context/localsearch_type|nothing;
-                 programs context/localsearch_program|nothing;
-                 review_states context/localsearch_state|nothing;
-                 subjects context/localsearch_subject|nothing;
-                 view_folder_path python: [view.folder_path];
-                 folder_path context/localsearch_path|view_folder_path|nothing;
-                 localsearch_entire_site context/localsearch_entire_site|nothing">
-    <form id="plonelocalsearchform" 
-          name="searchform"
-          action="search"
-          tal:attributes="action string:${view/site_url}/search">
+<tal:localsearch
+     tal:condition="context/localsearch|nothing">
 
-        <div class="LSBox search_criteria">
-            <label for="localSearchBox" 
-                   class="searchTitle"
-                   tal:content="localsearch_title">Search Site</label>
-               
-            <input name="SearchableText"
-                    id="localSearchBox"
-                    type="text"
-                    size="18"
-                    value=""
-                    title="Search this section..."
-                    accesskey="4"
-                    tal:attributes="value request/SearchableText|nothing;
-                                    title string:Keywords...;"
-                    class="inputLabel" 
-                    autocomplete="off" />
+    <div id="portal-localsearchbox"
+         i18n:domain="plone"
+         tal:attributes="class python:has_extra_search_fields and 'extra_search_fields' or ''"
+         tal:define="localsearch_title string:Search this section;
+                     localsearch_title context/localsearch_title|localsearch_title;
+                     localsearch_counties context/localsearch_counties|nothing;
+                     localsearch_zip_code context/localsearch_zip_code|nothing;
+                     portal_types context/localsearch_type|nothing;
+                     programs context/localsearch_program|nothing;
+                     review_states context/localsearch_state|nothing;
+                     subjects context/localsearch_subject|nothing;
+                     view_folder_path python: [view.folder_path];
+                     folder_path context/localsearch_path|view_folder_path|nothing;
+                     localsearch_entire_site context/localsearch_entire_site|nothing;
+                     has_extra_search_fields python: (localsearch_counties or localsearch_zip_code); ">
 
-            <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
-            <metal:subject use-macro="context/@@search_z3/macros/subject" />
-            <metal:programs use-macro="context/@@search_z3/macros/programs" />
-            <tal:localsearch condition="not: localsearch_entire_site">
-                <metal:localsearch use-macro="context/@@search_z3/macros/localsearch" />
-            </tal:localsearch>
-            <metal:review_state use-macro="context/@@search_z3/review_state" />
-        </div>
+        <form id="plonelocalsearchform" 
+              name="searchform"
+              action="search"
+              tal:attributes="action string:${view/site_url}/search">
+    
+            <div class="LSBox">
+                <label for="localSearchBox" 
+                       class="searchTitle"
+                       tal:content="localsearch_title">Search Site</label>
+                   
+                <input name="SearchableText"
+                        id="localSearchBox"
+                        type="text"
+                        size="18"
+                        value=""
+                        title="Search this section..."
+                        accesskey="4"
+                        tal:attributes="value request/SearchableText|nothing;
+                                        title string:Keywords...;"
+                        class="inputLabel search_criteria" 
+                        autocomplete="off" />
+    
+                <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
+                <metal:subject use-macro="context/@@search_z3/macros/subject" />
+                <metal:programs use-macro="context/@@search_z3/macros/programs" />
+                <tal:localsearch condition="not: localsearch_entire_site">
+                    <metal:localsearch use-macro="context/@@search_z3/macros/localsearch" />
+                </tal:localsearch>
+                <metal:review_state use-macro="context/@@search_z3/review_state" />
+    
+                <div id="counties_search"  class="search_criteria" tal:condition="localsearch_counties">   
+        
+                    <label for="counties"
+                            i18n:translate="counties_search">Near County</label>
+        
+                    <select id="counties" name="Counties:list">
+                        <option value="">Select a county...</option>
+                        <option tal:repeat="c view/counties" tal:attributes="value c" tal:content="c" />
+                    </select>
+        
+                </div>
+        
+        
+        
+                <div id="zip_code_search"  class="search_criteria" tal:condition="localsearch_zip_code">   
+        
+                    <label for="zip_code"
+                            i18n:translate="zip_code_search">ZIP Code</label>
+        
+                    <input id="zip_code" name="zip_code" type="text" size="5" />
+        
+                    <label for="zip_code_radius"
+                            i18n:translate="zip_code_radius_search">Radius</label>
+        
+                    <select id="zip_code_radius" name="zip_code_radius">
+                        <option value="10">10 miles</option>
+                        <option value="25" selected="selected">25 miles</option>
+                        <option value="50">50 miles</option>
+                        <option value="100">100 miles</option>                    
+                    </select>
+        
+                </div>
+                
+                <input class="searchButton"
+                        type="submit"
+                        id = "localSearch"
+                        value = "Go"
+        		/>
+            </div>
+    
+            <div class="visualClear"><!-- --></div>
+    
+        </form>
+    
+    </div>
 
-
-        <div id="counties_search"  class="search_criteria" tal:condition="localsearch_counties">   
-
-            <label for="counties"
-                    i18n:translate="counties_search">Near County</label>
-
-            <select id="counties" name="Counties:list">
-                <option value="">Select a county...</option>
-                <option tal:repeat="c view/counties" tal:attributes="value c" tal:content="c" />
-            </select>
-
-        </div>
-
-
-
-        <div id="zip_code_search"  class="search_criteria" tal:condition="localsearch_zip_code">   
-
-            <label for="zip_code"
-                    i18n:translate="zip_code_search">ZIP Code</label>
-
-            <input id="zip_code" name="zip_code" type="text" size="5" />
-
-            <label for="zip_code_radius"
-                    i18n:translate="zip_code_radius_search">Radius</label>
-
-            <select id="zip_code_radius" name="zip_code_radius">
-                <option value="10">10 miles</option>
-                <option value="25" selected="selected">25 miles</option>
-                <option value="50">50 miles</option>
-                <option value="100">100 miles</option>                    
-            </select>
-
-        </div>
-
-
-        <input class="searchButton"
-                type="submit"
-                id = "localSearch"
-                value = "Go"
-		/>
-
-    </form>
-
-    <div class="visualClear"><!-- --></div>
-
-</div>
+</tal:localsearch>
 
 <div tal:condition="context/localsearch|nothing" class="visualClear"><!-- --></div>

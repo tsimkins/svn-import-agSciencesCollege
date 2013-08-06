@@ -243,26 +243,50 @@ div.portletsAboveContentE {
     padding: 0;
 }
 
+#portlets-below dl.linkIcon dd.icon,
+#portlets-below dl.linkIcon dd.sprite {
+    margin: 0.75em 0;
+}
+
 #portlets-below dl.linkIcon a {
     padding: 0.25em 3.061225114535738%;
 }
 
 #portlets-below dl.linkIcon img {
-    padding-right: 0.375em;
+    padding-right: 0.5em;
 }
 
-#portlets-below dl.linkIcon dd.icon a,
-#portlets-below dl.linkIcon dd.icon a:hover {
-    display: inline-block;
-    padding: 0.5em 0;
+/* Sprites */
+
+#portlets-below dl.linkIcon dd.sprite,
+#portlets-below dl.linkIcon dd.icon {
+    min-height: 24px;
+}
+
+#portlets-below dl.linkIcon dd.sprite a,
+#portlets-below dl.linkIcon dd.icon a {
+    padding: 0;
 	color: &dtml-sitemapLinkColor; !important;
 	background-color: transparent !important;
+    vertical-align: middle;
 }
 
-#portlets-below dl.linkIcon dd.icon a:first-child {
-    display: inline-block;
-	margin-left: 3.061225114535738%;
+#portlets-below dl.linkIcon dd.sprite a:hover,
+#portlets-below dl.linkIcon dd.icon a:hover {
+	color: &dtml-sitemapLinkColor; !important;
+	text-decoration: underline;
 }
+
+#portlets-below dl.linkIcon dd.sprite a {
+    margin-left: 2.875em;
+    padding-top: 0.25em
+}
+
+#portlets-below dl.linkIcon dd.icon,
+#portlets-below dl.linkIcon dd.sprite {
+	margin: 0.75em 3.061225114535738%;
+}
+
 
 /* YOUR CSS RULES STOP HERE */
 

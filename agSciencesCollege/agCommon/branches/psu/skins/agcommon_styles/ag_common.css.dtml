@@ -630,6 +630,30 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 /* Link Icons */
 
+.linkIcon .sprite-blogger { background-position: 0 0;  } 
+.linkIcon .sprite-contact { background-position: 0 -124px;  } 
+.linkIcon .sprite-directory { background-position: 0 -248px;  } 
+.linkIcon .sprite-facebook { background-position: 0 -372px;  } 
+.linkIcon .sprite-feed { background-position: 0 -496px;  } 
+.linkIcon .sprite-flickr { background-position: 0 -620px;  } 
+.linkIcon .sprite-instagram { background-position: 0 -744px;  } 
+.linkIcon .sprite-linkedin { background-position: 0 -868px;  } 
+.linkIcon .sprite-message { background-position: 0 -992px;  } 
+.linkIcon .sprite-podcast { background-position: 0 -1116px;  } 
+.linkIcon .sprite-twitter { background-position: 0 -1240px;  } 
+.linkIcon .sprite-typepad { background-position: 0 -1364px;  } 
+.linkIcon .sprite-youtube { background-position: 0 -1488px;  } 
+
+.linkIcon .sprite {
+    background-image: url(&dtml-portal_url;/linkicon-sprites.png) !important;
+    background-repeat: no-repeat;
+}
+
+.linkIcon .sprite a {
+    margin-left: 2.5em;
+    vertical-align: middle;
+}
+
 #portlets-mobile .linkIcon,
 #portal-column-one .linkIcon,
 #portal-column-two dl.linkIcon {
@@ -641,17 +665,11 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #portal-column-two dl.linkIcon .portletItem,
 #rightcolumn .linkIcon .portletItem {
     line-height: 1.1875em;
-    margin: 1em 0;
+    margin: 0.875em 0;
     padding: 0;
     background-color: transparent;
     background-image: none;
-}
-
-#portlets-mobile .linkIcon .icon,
-#portal-column-one .linkIcon .icon,
-#portal-column-two dl.linkIcon .icon,
-#rightcolumn .linkIcon .icon {
-    padding-left: 2.375em;
+    min-height: 24px;
 }
 
 #rightcolumn .linkIcon .portletItem {
@@ -664,6 +682,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #rightcolumn .linkIcon a {
     text-decoration: none;
     color: &dtml-leftLinkTextColor;;
+    display: block;
 }
 
 #portlets-mobile .linkIcon a:hover span,
@@ -679,6 +698,14 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #portal-column-two dl.linkIcon a span,
 #rightcolumn .linkIcon a span {
     vertical-align: middle;
+    display: inline-block;
+}
+
+#portlets-mobile .linkIcon .sprite a span,
+#portal-column-one .linkIcon .sprite a span,
+#portal-column-two dl.linkIcon .sprite a span,
+#rightcolumn .linkIcon .sprite a span {
+    padding-top: 0.375em;
 }
 
 #portlets-mobile .linkIcon img, 
@@ -687,8 +714,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #rightcolumn .linkIcon img {
 	padding-right: 0.375em;
     color: &dtml-leftLinkTextHoverColor;;
-    margin: -0.1875em 0 0 -2.375em;
-    float: left;
+    margin: 0;
 }
 
 
@@ -1846,6 +1872,10 @@ body.template-pgv_sg_carousel_view #content {
     margin-left: 0.5em;
 }
 
+#document-toc .portletItem ol > li > ol > li > ol {
+    display: none;
+}
+
 #subject_existing_keywords {
     max-width: 18em;
 }
@@ -1875,26 +1905,43 @@ body.template-pgv_sg_carousel_view #content {
     font-weight: normal;
 }
 
-#portal-localsearchbox .search_criteria {
-    padding-bottom: 0.5em;
+#portal-localsearchbox.extra_search_fields .search_criteria {
+    margin-bottom: 0.5em;
+}
+
+#portal-localsearchbox.extra_search_fields #counties_search,  
+#portal-localsearchbox.extra_search_fields #zip_code_search {
+    float: left;
+    margin-right: 0.96502%;
+    padding: 0.25em 0.125em;
 }
 
 #localSearchBox {
-    width: 98.202247191011236%;
-    padding: 1px 0.898876404494382%;
+    width: 88.66104%;
+    padding: 0.125em 0.96502%;
     border-style: solid;
     border-color: #999999;
     background-image: none;
+    float: left;
+    margin: 0 0.96502% 0 0;
+}
+
+#portal-localsearchbox.extra_search_fields #localSearchBox {
+    width: 97.82871%;
+    float: none;
+    margin: 0 0 0.5em 0;
 }
 
 #portal-localsearchbox .searchButton {
     background-color: #FFD35F;
     border: 1px solid #EF6500;
-    padding: 3px 0.898876404494382%;
+    padding: 0.1875em 0.96502%;
     margin-top: 0;
     color: #3F1B00;
     background-image: none;
-    width: 7.865168539325843%;
+    width: 8.202653799758745%; /* Numbers don't add up because of -moz-box-sizing and equivalents. */
+    display: inline-block;
+    float: left;
 }
 
 #fblike, #commenting span {
@@ -2553,6 +2600,14 @@ body.template-folder_full_view #content-core .item {
 
 .documentContributors {
     font-size: 0.875em;
+}
+
+.documentContributors .facultyStaffDirectory {
+    font-size: 0.96875em;
+}
+
+.documentContributors .facultyStaffDirectory div {
+    color: #4D4D4D;
 }
 
 #content .documentContributors h2 {

@@ -674,13 +674,15 @@ class ContributorsViewlet(AgCommonViewlet):
     
                         self.people.append({'name' : obj.pretty_title_or_id(), 
                                             'title' : job_titles and job_titles[0] or '', 
-                                            'url' : obj.absolute_url()})
+                                            'url' : obj.absolute_url(),
+                                            'phone' : obj.getOfficePhone(),
+                                            'email' : obj.getEmail()})
                         found = True
     
                 if not found and not psuid_re.match(id):
                     parts = id.split("|")
-                    parts.extend(['']*(3-len(parts)))
-                    (name, title, url) = parts
+                    parts.extend(['']*(5-len(parts)))
+                    (name, title, url, email, phone) = parts
                     
                     if '@' in url:
                         url = "mailto:%s" % url
@@ -689,7 +691,14 @@ class ContributorsViewlet(AgCommonViewlet):
                     
                     self.people.append({'name' : name, 
                                             'title' : title, 
-                                            'url' : url})
+                                            'url' : url,
+                                            'phone' : phone,
+                                            'email' : email})
+
+    @property
+    def is_printed_newsletter(self):
+        return 'newsletter_print' in self.request.getURL()
+
 
 class CustomCommentsViewlet(CommentsViewlet):
 

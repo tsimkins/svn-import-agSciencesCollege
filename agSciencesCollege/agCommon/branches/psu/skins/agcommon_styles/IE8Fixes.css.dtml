@@ -46,6 +46,9 @@ table.events tr td:first-child {
     width: 230px;
 }
 
+#portal-localsearchbox .searchButton {
+    margin-top: 4px;
+
 /* </dtml-with> */
 
 

@@ -152,18 +152,20 @@
             margin-bottom: 10pt;
         }
 
+        .facultyStaffDirectory {
+            margin-bottom: 0.625em;
+        }
+
         ul.jobTitle {
             line-height: 1.25em;
             list-style: none !important;
             margin: 0;
             padding: 0;
-            margin-bottom: 0.625em;
         }
         
         ul.jobTitle li {
             margin-bottom: 0.125em;
             padding: 0;
-            font-size: 9pt;
         }
 
         .documentContributors .tileHeadline {
