@@ -117,7 +117,8 @@ class FolderView(BrowserView):
                 return field.tag(context, scale=scale, css_class=css_class, title=title)
         return ''
 
-    def getItemClass(self, item):
+    def getItemClass(self, item, layout='folder_listing'):
+
         # Default classes for all views
         item_class = ['tileItem', 'visualIEFloatFix']
 
@@ -125,9 +126,6 @@ class FolderView(BrowserView):
         # and this item is excluded, apply the 'excludeFromNav' class
         if getattr(self.context.aq_base, 'hide_exclude_from_nav', False) and getattr(item, 'exclude_from_nav'):
             item_class.append('excludeFromNav')
-        
-        # Grab folder layout
-        layout = self.context.getLayout()
 
         # Per-layout classes
         if layout == 'folder_summary_view':

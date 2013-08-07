@@ -18,7 +18,7 @@
                 <metal:entries fill-slot="entries">
                     <metal:block use-macro="context/@@folder_listing_z3/macros/entries">
                         <metal:entry fill-slot="entry">
-                    <div tal:attributes="class python: view.getItemClass(item)">
+                    <div tal:attributes="class python: view.getItemClass(item, layout)">
 
                         <div class="contentLeadImageContainer"
                                 tal:condition="python: show_image or item_type == 'FSDPerson'">

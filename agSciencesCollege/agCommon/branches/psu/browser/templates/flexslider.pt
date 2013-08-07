@@ -12,7 +12,7 @@
                 <metal:entries fill-slot="entries">
                     <metal:block use-macro="context/@@folder_listing_z3/macros/entries">
                         <metal:entry fill-slot="entry">
-                            <li tal:attributes="class python: view.getItemClass(item)">
+                            <li class="tileItem">
             
                                 <div class="contentLeadImageContainer">
                                     <tal:leadimage
