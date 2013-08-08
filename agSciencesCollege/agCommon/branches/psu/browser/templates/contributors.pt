@@ -26,10 +26,12 @@
                         <li tal:content="item_job_title" />
                     </ul>
                     <div tal:condition="item_email">
+                        <span tal:condition="is_printed_newsletter">/ </span>
                         Email: <span tal:replace="item_email" tal:condition="is_printed_newsletter" />
                                <span tal:replace="structure python:context.spamProtectFSD(item_email)" tal:condition="not: is_printed_newsletter" />
                     </div>
                     <div tal:condition="item_phone">
+                        <span tal:condition="is_printed_newsletter">/ </span>
                         Phone: <span tal:content="item_phone" />
                     </div>
                 </div>

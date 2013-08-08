@@ -156,16 +156,22 @@
             margin-bottom: 0.625em;
         }
 
+        .facultyStaffDirectory div {
+            display: inline;
+        }
+
         ul.jobTitle {
             line-height: 1.25em;
             list-style: none !important;
             margin: 0;
             padding: 0;
+            display: inline;
         }
         
         ul.jobTitle li {
             margin-bottom: 0.125em;
             padding: 0;
+            display: inline;
         }
 
         .documentContributors .tileHeadline {
