@@ -294,7 +294,7 @@
     <!-- Monkey Patch collection portlet to not list empty collections -->
 
     <monkey:patch
-        description="This makes the collection portlet not list empty collections"
+        description="This provides portlet ordering for collection portlets"
         class="plone.portlet.collection.collection.Renderer"
         replacement=".patch._standard_results"
         original="_standard_results"

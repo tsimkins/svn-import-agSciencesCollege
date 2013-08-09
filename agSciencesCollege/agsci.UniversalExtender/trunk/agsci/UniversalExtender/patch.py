@@ -49,6 +49,7 @@ def customTableContents(self):
 def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None):
     """Convert time to localized time
     """
+
     context = aq_inner(self.context)
     util = getToolByName(context, 'translation_service')
 
@@ -74,9 +75,17 @@ def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None)
 
         end_full_fmt = friendly(util.ulocalized_time(end_time, long_format, time_only, context=context,
                                        domain='plonelocales', request=self.request))
-        start = DateTime(time)
-        end = DateTime(end_time)
         
+        if not isinstance(time, DateTime):
+            start = DateTime(time)
+        else:
+            start = time
+
+        if not isinstance(end_time, DateTime):
+            end = DateTime(end_time)
+        else:
+            end = end_time
+
         start_date_fmt = start.strftime('%Y-%m-%d')
         end_date_fmt = end.strftime('%Y-%m-%d')       
 
@@ -180,18 +189,7 @@ def _standard_results(self):
         if limit and limit > 0:
             results = results[:limit]
 
-    # This verifies that collections have contents before displaying them.
-    # Intended to work with county sites in order to only show counties with
-    # [Events, People, etc.] in the collection.
-    
-    valid_results = []
-
-    for r in results:
-        if r.portal_type == 'Topic' and not len(r.getObject().queryCatalog()):
-            continue
-        valid_results.append(r)
-
-    return valid_results
+    return results
 
 # The "UberSelectionWidget" used by the collection portlet (and soon to be used 
 # by the FeedMixer portlet) annoyingly has a hardcoded limit of 20 results.  This
