@@ -58,6 +58,18 @@ class HomePageExtender(object):
             relationship = 'IsHomePageSliderFor',
             allowed_types = ('Topic',),
         ),
+        _ExtensionBooleanField(
+            "slider_random",
+                required=False,
+                searchable=False,
+                default=True,
+                widget=BooleanWidget(
+                    label=u"Randomize HomePage Slider",
+                    description=u"Display slider images in a random rather than sequential order.",
+                    condition="python:member.has_role('Manager')",
+                ),
+            schemata="settings",
+        ),
     ]
 
     def __init__(self, context):
