@@ -308,6 +308,10 @@ class Renderer(base.Renderer):
 
     @property
     def entries(self):
+        return self.memoized_entries()
+        
+    @memoize
+    def memoized_entries(self):
         entries = self.allEntries
 
         if len(entries) <= self.data.items_shown:
