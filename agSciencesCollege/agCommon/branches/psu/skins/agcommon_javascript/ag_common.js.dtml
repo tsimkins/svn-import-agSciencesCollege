@@ -1206,6 +1206,21 @@ jq(document).ready(
 /* Flexslider Load and Tracking */
 
 jq(window).load(function() {
+    
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4037316-1']);
+    _gaq.push(['_trackPageview']);
+
+    // PDF tracking
+    jq('#addthis .pdf a').click(
+        function() {
+            _gaq.push(['_trackEvent', 'Download PDF']);
+        }
+	);
+
+    
+    // flexslider load and tracking
+   
     if (jq('.flexslider').size())
     {
     	jq('.flexslider').flexslider(
