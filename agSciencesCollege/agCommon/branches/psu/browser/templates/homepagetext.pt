@@ -4,6 +4,13 @@
                  hsc python:plone_view.have_portlets('agcommon.centercolumn', view);"
      tal:attributes="class python:(hsc and hsr and 'sc sr') or (hsc and 'sc') or (hsr and 'sr') or ''">
 
+    <tal:addthis tal:define="homepage_text python:True">
+
+        <div tal:replace="structure provider:agcommon.addthis" />
+
+    </tal:addthis>
+
+
     <h1 class="documentFirstHeading"> 
         <metal:field use-macro="python:here.widget('title', mode='view')">
         Title

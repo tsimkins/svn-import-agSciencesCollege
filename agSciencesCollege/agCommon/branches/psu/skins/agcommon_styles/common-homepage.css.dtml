@@ -39,7 +39,9 @@
 /* Don't show addthis on homepage */ 
 
 #addthis {
-    display: none;
+    margin: 0.25em 0.25em 0.75em 0.75em;
+    padding: 0; 
+
 }
 
 

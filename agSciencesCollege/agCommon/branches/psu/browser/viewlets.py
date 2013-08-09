@@ -299,6 +299,25 @@ class AddThisViewlet(AgCommonViewlet):
         else:
             return getContextConfig(self.context, 'hide_addthis', False)
 
+    @property
+    def show_addthis(self):
+        if self.hide_addthis:
+            return False
+
+        if not self.anonymous:
+            return False
+
+        if self.isHomePage:
+            if self.showHomepageText:
+                # Only show the viewlet if we're called from inside the 
+                # homepage text viewlet.  We're discovering this by the 
+                # lack of a manager
+                return not (self.manager)
+            else:
+                return False
+        
+        return True
+        
 class FBLikeViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/fblike.pt')
 
@@ -755,3 +774,5 @@ class LocalSearchViewlet(SearchBoxViewlet):
 provideAdapter(ContributorsViewlet, adapts=(Interface,IDefaultBrowserLayer,IBrowserView), provides=IContentProvider, name='agcommon.contributors')
 
 provideAdapter(AnalyticsViewlet, adapts=(Interface,IDefaultBrowserLayer,IBrowserView), provides=IContentProvider, name='plone.analytics')
+
+provideAdapter(AddThisViewlet, adapts=(Interface,IDefaultBrowserLayer,IBrowserView), provides=IContentProvider, name='agcommon.addthis')

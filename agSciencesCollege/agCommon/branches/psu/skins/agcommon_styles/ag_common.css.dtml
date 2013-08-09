@@ -9,10 +9,14 @@
 
 body {
     background-color: &dtml-bodyBackgroundGradientColor;;
-    background-image: url('&dtml-portal_url;/bodyBackground.png?startColor=<dtml-var expr="bodyBackgroundColor.replace('#','')">&endColor=<dtml-var expr="bodyBackgroundGradientColor.replace('#','')">&height=600');
+
+    background-position: 0 -280px; 
+    background-repeat: repeat-x;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+        
     color: #000000;
     background-repeat: repeat-x;
-    background-position: left top;
+
     font-size: 100% !important;
 }
 
@@ -741,10 +745,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     margin: 0 0 15px 0;
     list-style-type: none;
     list-style-image: none;
-    background-color: &dtml-leftButtonBackground_external;;
+
+    background-color: #133151;
+    background-position: 0 -5px; 
     background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbutton-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_external.replace('#','')">&height=20');
-    background-position: left bottom;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+
     -moz-box-shadow: 0 2px 2px #D1D6DF;
     -webkit-box-shadow: 0 2px 2px #D1D6DF;
     box-shadow: 0 2px 2px #D1D6DF;    
@@ -791,11 +797,13 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #portal-column-one .linkButton dd.internal-link,
 #portal-column-two .linkButton dd.internal-link,
 #rightcolumn .linkButton dd.internal-link {
-    background-color: &dtml-leftButtonBackground_internal;;
     border: 1px solid <dtml-var expr="gradientEnd(startColor=leftButtonBackground_internal, count=2)">;
+
+    background-color: #3b3b3b;
     background-repeat: repeat-x;
-    background-image: url('&dtml-portal_url;/leftbuttonInternal-gradientBackground.png?startColor=<dtml-var expr="leftButtonBackground_internal.replace('#','')">&height=20');
-    background-position: left bottom;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+    background-position: 0 -95px;
+
 }
 
 #portlets-mobile .linkButton dd.internal-link:hover,
@@ -846,10 +854,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     margin: 0 auto;
     max-width: &dtml-maxWidth;;
     padding: 0;
-    background-color: &dtml-topnavigationBackgroundColor;;
-    background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
+
+    background-color: #1f4b7b;
     background-repeat: repeat-x;
-    background-position: bottom left;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+    background-position: 0 -275px;
+    
     /* Fix bleed-through of image in Safari and Chrome */
     position: relative;
     border-width: 0;
@@ -884,10 +894,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 }
 
 #portal-top-navigation li a {
-    background-color: &dtml-topnavigationBackgroundColor;;
-    background-image:url('&dtml-portal_url;/topnav-gradientBackground.png?startColor=<dtml-var expr="topnavigationBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationGradientBackground.replace('#','')">&height=20');
+
+    background-color: #0a63ac;
     background-repeat: repeat-x;
-    background-position: bottom left;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+    background-position: 0 -275px;
+    
     border-color: &dtml-topnavigationGradientBackground;;
     border-width: 0 0 0 1px;
     border-style: solid;
@@ -901,10 +913,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portal-top-navigation li.alternate a,
 #portal-top-navigation li.alternate a:hover {
-    background-image:url('&dtml-portal_url;/topnav-alternate-gradientBackground.png?startColor=<dtml-var expr="topnavigationAlternateBackgroundColor.replace('#','')">&endColor=<dtml-var expr="topnavigationAlternateGradientBackground.replace('#','')">&height=20');
-    background-color: &dtml-topnavigationAlternateBackgroundColor;;
+
+    background-color: #0a63ac;
     background-repeat: repeat-x;
-    background-position: bottom left;
+    background-image: url(&dtml-portal_url;/background-sprites.png);
+    background-position: 0 -185px;
+    
     color: &dtml-topnavigationAlternateTextColor; !important;
 }
 
@@ -1384,15 +1398,32 @@ body.template-person_view #content h3 {
 #addthis a {
     text-decoration: none;
     color: #333333;
-    float:left;
+    float: none;
     border: none;
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
 }
 
 #addthis a:hover {
     border-bottom: none;
 }
 
-#addthis p {
+#addthis div.pdf {
+    margin: 0.25em 0;
+}
+
+#addthis div.pdf a {
+    font-size: 0.625em;
+    color: &dtml-linkColor;;
+}
+
+#addthis .addthis_toolbox {
+    text-align: right;
+    font-size: 0.6875em;
+}
+
+#addthis h2 {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #999999;
@@ -1917,7 +1948,7 @@ body.template-pgv_sg_carousel_view #content {
 }
 
 #localSearchBox {
-    width: 88.66104%;
+    width: 88.195991091314031%;
     padding: 0.125em 0.96502%;
     border-style: solid;
     border-color: #999999;
@@ -3053,6 +3084,10 @@ body.listing-after-text #content .documentDescription {
 
 body.listing-after-text #content #content-text {
     margin-top: 1em;
+}
+
+input {
+    background-image: none;
 }
 
 /* YOUR CSS RULES STOP HERE */
