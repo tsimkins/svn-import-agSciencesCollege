@@ -1410,7 +1410,7 @@ body.template-person_view #content h3 {
 }
 
 #addthis div.pdf {
-    margin: 0.25em 0;
+    margin: 0.5em 0 0.25em 0;
 }
 
 #addthis div.pdf a {

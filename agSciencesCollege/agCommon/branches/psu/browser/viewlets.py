@@ -254,6 +254,13 @@ class FlexsliderViewlet(HomepageImageViewlet, FolderView):
         if target and target.portal_type == 'Topic':
             return target.Title()
 
+    def slider_random(self):
+        if getattr(self.context, 'slider_random', False):
+            return "random"
+        else:
+            return "sequential"
+
+
 class AddThisViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/addthis.pt')
 

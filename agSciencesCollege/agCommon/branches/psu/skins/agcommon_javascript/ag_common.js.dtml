@@ -179,7 +179,7 @@ jq(document).ready( function () {
 */
 
 jq(document).ready(
-	function () {
+    function () {
         jq('body.custom-semicolon-delimited #content .description, body.custom-semicolon-delimited #content .documentDescription, body.custom-semicolon-delimited #content .tileDescription p').each(
 
             function()
@@ -207,14 +207,14 @@ jq(document).ready(
             }
         );
 
-	}
+    }
 )
 
 
 /* For folders with the 'two_column' property set, split the folder listing into two columns */
 
 jq(document).ready(
-	function () {
+    function () {
 
         if (msieversion() <= 6 && msieversion() > 0)
         {
@@ -314,8 +314,8 @@ jq(document).ready(
                 );
 
             }
-    	}
-	}
+        }
+    }
 )
 
 /*
@@ -1216,51 +1216,75 @@ jq(window).load(function() {
         function() {
             _gaq.push(['_trackEvent', 'Download PDF']);
         }
-	);
+    );
 
     
     // flexslider load and tracking
    
-    if (jq('.flexslider').size())
+    var fs = jq('.flexslider')
+   
+    if (fs.size())
     {
-    	jq('.flexslider').flexslider(
-    		{
-    		    randomize: true,
-    		    slideshow : false,
-    		}
-    	);
-    	
-    	jq('.flexslider .flex-control-nav li a').click(
+        var randomize = true;
+        
+        if (fs.attr('data-random') == 'sequential')
+        {
+            randomize = false;
+        }
+        
+        fs.flexslider(
+            {
+                randomize: randomize,
+                slideshow : false,
+                start: function(slider) {
+                    // Mark non-screen reader friendly items as aria-hidden.
+                    jq('.flexslider .clone').attr('aria-hidden', 'true');
+                    jq('.flexslider .flex-control-nav').attr('aria-hidden', 'true');
+                    jq('.flexslider .flex-direction-nav').attr('aria-hidden', 'true');
+                }
+
+            }
+        );
+        
+        jq('.flexslider .flex-control-nav li a').click(
             function() {
                 _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html()]);
             }
-    	);
+        );
     
-    	jq('.flexslider .flex-direction-nav li a.next').click(
+        jq('.flexslider .flex-direction-nav li a.next').click(
             function() {
                 _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Next']);
             }
-    	);
+        );
     
-    	jq('.flexslider .flex-direction-nav li a.prev').click(
+        jq('.flexslider .flex-direction-nav li a.prev').click(
             function() {
                 _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Previous']);
             }
-    	);
+        );
     
-    	jq('.flexslider .tileHeadline a').click(
+        jq('.flexslider .tileHeadline a').click(
             function() {
                 var article_title = jq(this).html();
                 _gaq.push(['_trackEvent', 'Homepage Slider', 'Headline Click', article_title]);
             }
-    	);
+        );
     
-    	jq('.flexslider .tileFooter a').click(
+        jq('.flexslider .tileFooter a').click(
             function() {
                 var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
                 _gaq.push(['_trackEvent', 'Homepage Slider', 'Footer Click', article_title]);
             }
-    	);
+        );
+
+        jq('.flexslider .contentLeadImageContainer a').click(
+            function() {
+                var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                _gaq.push(['_trackEvent', 'Homepage Slider', 'Image Click', article_title]);
+            }
+        );
+        
     }
 });
 
