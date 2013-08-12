@@ -1,0 +1,41 @@
+Metadata-Version: 1.0
+Name: collective.portletclass
+Version: 1.0
+Summary: Add custom CSS classes to Plone portlet wrappers for flexible theming.
+Home-page: https://github.com/shuttlethread/collective.portletclass
+Author: Laurence Rowe
+Author-email: lrowe@shuttlethread.com
+License: GPL version 2
+Description: =======================
+        collective.portletclass
+        =======================
+        
+        Adds a "Portlet CSS class" field to portlet add/edit forms to set additional
+        CSS classes on the portlet wrapper.
+        
+        
+        Changelog
+        =========
+        
+        1.0 - 2013-02-24
+        ----------------
+        
+        - Fix tal expression to deal with traversal problems
+          [vangheem]
+        
+        
+        0.1 - 2011-10-25
+        ----------------
+        
+        - Initial release.
+          [elro]
+        
+Keywords: plone
+Platform: Any
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Zope2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python

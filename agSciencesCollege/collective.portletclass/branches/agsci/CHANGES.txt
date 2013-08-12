@@ -1,0 +1,15 @@
+Changelog
+=========
+
+1.0 - 2013-02-24
+----------------
+
+- Fix tal expression to deal with traversal problems
+  [vangheem]
+
+
+0.1 - 2011-10-25
+----------------
+
+- Initial release.
+  [elro]
