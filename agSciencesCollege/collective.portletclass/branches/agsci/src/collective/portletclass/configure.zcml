@@ -15,10 +15,19 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <browser:jbot
-        directory="templates"
-        layer=".interfaces.ICollectivePortletClassLayer"
-         />
+    <adapter
+      factory=".adapters.CustomColumnPortletManagerRenderer"
+      provides="plone.portlets.interfaces.IPortletManagerRenderer"
+      for=".interfaces.ICollectivePortletClassLayer"
+      name="collective.portletclass.column"
+      />
+
+    <adapter
+      factory=".adapters.CustomDashboardPortletManagerRenderer"
+      provides="plone.portlets.interfaces.IPortletManagerRenderer"
+      for=".interfaces.ICollectivePortletClassLayer"
+      name="collective.portletclass.dashboard"
+      />
 
     <monkey:patch
         description="Add CSS class field to portlets."
