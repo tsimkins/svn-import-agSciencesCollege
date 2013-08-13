@@ -1,7 +1,7 @@
 <tal:block repeat="portlet options/portlets">
 <div tal:define="assignment python: portlet['assignment'];
-                 portletclass python: getattr(assignment, 'collective_portletclass', '');
-                 portletclass python:' ' + portletclass if portletclass else '';"
+                 portletclass_utilities python: context.restrictedTraverse('@@portletclass_utilities');
+                 portletclass python: portletclass_utilities.getPortletClass(assignment);"
      tal:attributes="id string:portletwrapper-${portlet/hash};
                      class string:portletWrapper kssattr-portlethash-${portlet/hash}${portletclass};
                      data-portlethash portlet/hash"

@@ -16,3 +16,10 @@ class ICollectivePortletClass(Interface):
         required=False,
         default=u'',
         )
+    mobile_navigation = schema.Bool(
+        title=_(u'portlet-mobile-navigation', u'Treat portlet as mobile navigation'),
+        description=_(u'portlet-mobile-navigation-description',
+            u'If this box is checked, and this portlet is in the left column, it not moved below content.'),
+        required=False,
+        default=False,
+        )

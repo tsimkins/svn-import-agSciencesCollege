@@ -5,8 +5,6 @@
     xmlns:monkey="http://namespaces.plone.org/monkey"
     i18n_domain="collective.portletclass">
 
-    <includeDependencies package="." />
-
     <genericsetup:registerProfile
         name="default"
         title="collective.portletclass"
@@ -14,20 +12,6 @@
         description='Adds a "Portlet CSS class" field to portlet add/edit forms to set additional CSS classes on the portlet wrapper.'
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-
-    <adapter
-      factory=".adapters.CustomColumnPortletManagerRenderer"
-      provides="plone.portlets.interfaces.IPortletManagerRenderer"
-      for=".interfaces.ICollectivePortletClassLayer"
-      name="collective.portletclass.column"
-      />
-
-    <adapter
-      factory=".adapters.CustomDashboardPortletManagerRenderer"
-      provides="plone.portlets.interfaces.IPortletManagerRenderer"
-      for=".interfaces.ICollectivePortletClassLayer"
-      name="collective.portletclass.dashboard"
-      />
 
     <monkey:patch
         description="Add CSS class field to portlets."
@@ -51,5 +35,81 @@
         />
 
     <adapter factory=".patch.CollectivePortletClass" />
+
+    <!-- Utilities View -->
+    
+    <browser:page
+        for="*"
+        name="portletclass_utilities"
+        class=".CollectivePortletClassUtilities"
+        permission="zope2.View"
+        allowed_interface=".ICollectivePortletClassUtilities"
+    />
+    
+    <!-- Assignment patches (copied from hexagonit.portletstyle) -->
+
+    <monkey:patch
+        description="Patch plone.app.portlets Assignment to have __init__"
+        class="plone.app.portlets.portlets.base.Assignment"
+        original="__init__"
+        replacement=".patch.base_assignment__init__"
+        ignoreOriginal="true"
+    />
+    
+    <monkey:patch
+        description="Patch events portlet's Assignment class"
+        class="plone.app.portlets.portlets.events.Assignment"
+        original="__init__"
+        replacement=".patch.events_assignment__init__"
+        />
+        
+    <monkey:patch
+        description="Patch navigation portlet's Assignment class"
+        class="plone.app.portlets.portlets.navigation.Assignment"
+        original="__init__"
+        replacement=".patch.navigation_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch news portlet's Assignment class"
+        class="plone.app.portlets.portlets.news.Assignment"
+        original="__init__"
+        replacement=".patch.news_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch recent-item portlet's Assignment class"
+        class="plone.app.portlets.portlets.recent.Assignment"
+        original="__init__"
+        replacement=".patch.recent_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch RSS portlet's Assignment class"
+        class="plone.app.portlets.portlets.rss.Assignment"
+        original="__init__"
+        replacement=".patch.rss_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch Search portlet's Assignment class"
+        class="plone.app.portlets.portlets.search.Assignment"
+        original="__init__"
+        replacement=".patch.search_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch static-text portlet's Assignment class"
+        class="plone.portlet.static.static.Assignment"
+        original="__init__"
+        replacement=".patch.static_assignment__init__"
+        />
+    
+    <monkey:patch
+        description="Patch collection portlet's Assignment class"
+        class="plone.portlet.collection.collection.Assignment"
+        original="__init__"
+        replacement=".patch.collection_assignment__init__"
+        />
 
 </configure>
