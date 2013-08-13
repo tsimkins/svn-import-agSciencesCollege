@@ -555,7 +555,6 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                         jq(nav).hide();
                     }
 
-
                     // Set child item
                     jq(this).data('child', jq(nav));
                     jq(this).data('other_buttons', other_buttons);
@@ -741,6 +740,19 @@ function mobileNav() {
             html = html.replace('&nbsp;', ' ');
             visualPadding.html(html);
         }
+
+        // Insert #portal-column-one-mobile-nav children after first portletwrapper
+        // From http://stackoverflow.com/questions/1394020/jquery-each-backwards
+
+        jq(jq('#portal-column-one-mobile-nav').children().get().reverse()).each(
+            function () {
+               jq(this).detach().insertAfter("#portal-column-one #portal-column-one-visualPadding .portletWrapper:first-child");
+            }
+        );
+        
+        jq('#portal-column-one-mobile-nav').remove();
+        
+
     }
     else
     {
@@ -773,6 +785,14 @@ function mobileNav() {
                 }
             }
         }
+        
+        // Create mobile nav placeholder for left column mobile portlets
+        var left_mobile_nav = jq('#portal-column-one-mobile-nav');
+        
+        if ( ! left_mobile_nav.size() )
+        {
+            jq('<div id="portal-column-one-mobile-nav"></div>').appendTo(jq("#navigation-mobile .portletWrapper"));
+        }
 
     }
 
@@ -793,7 +813,7 @@ function mobileNav() {
 
     // Make mobile top navigation +/-
     var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
-    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
+    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree, #portal-column-one-mobile-nav", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
 
     // Make table of contents +/-
     toggleButtons("#content #document-toc .portletHeader", "#content #document-toc .portletItem", false, []);
@@ -837,11 +857,15 @@ function mobileNav() {
             jq("#portal-column-one .portletWrapper").each(
                 function () {
 
-                    if (
-                         (
+                    if (jq(this).hasClass("portlet-mobile-navigation"))
+                    {
+                        jq(this).appendTo(jq("#portal-column-one-mobile-nav"));
+                    }
+
+                    else if (
                             jq(this).children(".portlet, .portletStaticText").size() && 
                             ! jq(this).children(".portletNavigationTree").size() 
-                         ) && ! (is_homepage && jq(this).children(".portlet-mobile-navigation").size())
+
                     )
                     {
                         jq(this).appendTo(jq(mobile_portlets));
@@ -849,6 +873,8 @@ function mobileNav() {
 
                 }
             );
+            
+            
 
         }
     }
@@ -875,7 +901,7 @@ function adjustSearch() {
 
         if (! search_mobile.size() )
         {
-            search_mobile = jq('<div id="search-mobile"></div>').appendTo("#navigation-mobile .portletWrapper");
+            search_mobile = jq('<div id="search-mobile"></div>');
             jq("#portal-header #portal-searchbox").appendTo(search_mobile);
             var mobile_search_button = jq('<div id="mobile-search-button"><h2 class="portletHeader portletNavigationHeader"><span>Search<span></h2></div>');
             if (jq("#portal-top-navigation li").size())
@@ -886,6 +912,8 @@ function adjustSearch() {
             {
                 mobile_search_button.insertBefore(search_mobile);
             }
+
+            search_mobile.insertAfter(mobile_search_button);
 
             jq('<div class="visualClear" id="clear-after-mobile-search"><!-- --></div>').insertAfter("#mobile-search-button");
 

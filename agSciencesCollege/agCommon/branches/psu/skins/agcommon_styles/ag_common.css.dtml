@@ -3090,6 +3090,10 @@ input {
     background-image: none;
 }
 
+#portal-column-one-mobile-nav {
+    font-size: 0.71875em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

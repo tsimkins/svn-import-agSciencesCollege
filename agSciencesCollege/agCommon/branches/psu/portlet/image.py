@@ -54,7 +54,8 @@ class Assignment(base.Assignment):
     show_caption = ""
     hide = False
 
-    def __init__(self, header=u"", show_header=u"", items=items, show_caption=show_caption, hide=False):
+    def __init__(self, header=u"", show_header=u"", items=items, show_caption=show_caption, hide=False, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.items = items

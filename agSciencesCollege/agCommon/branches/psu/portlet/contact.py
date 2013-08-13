@@ -94,8 +94,8 @@ class Assignment(base.Assignment):
 
     implements(IContact)
 
-    def __init__(self, header=u"", show_header=False, address=None, directions_text=None, directions_link=None, office_hours=None, phone=None, fax=None, 
-                       email=None, hide=False):
+    def __init__(self, header=u"", show_header=False, address=None, directions_text=None, directions_link=None, office_hours=None, phone=None, fax=None, email=None, hide=False, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.address = address

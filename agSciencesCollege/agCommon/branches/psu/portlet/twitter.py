@@ -49,7 +49,8 @@ class Assignment(base.Assignment):
 
     implements(ITwitter)
 
-    def __init__(self, header=u"", show_header=False, twitter_url=None, widget_id=None, widget_height=600):
+    def __init__(self, header=u"", show_header=False, twitter_url=None, widget_id=None, widget_height=600, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.twitter_url = twitter_url
