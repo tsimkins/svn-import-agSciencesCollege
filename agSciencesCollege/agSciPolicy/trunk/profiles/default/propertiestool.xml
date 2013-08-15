@@ -82,7 +82,8 @@
   <property name="visible_ids" type="boolean">True</property>
   <property name="enable_livesearch" type="boolean">False</property>
   <property name="webstats_js" type="string">
-     &lt;script type="text/javascript"&gt;  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));  &lt;/script&gt;  &lt;script type="text/javascript"&gt;  var pageTracker = _gat._getTracker("UA-4037316-1");  pageTracker._setDomainName("psu.edu");  pageTracker._initData();  pageTracker._trackPageview();  &lt;/script&gt;</property>
+    &lt;script type="text/javascript"&gt;  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-4037316-1']);  _gaq.push(['_trackPageview']);  _gaq.push(['_setDomainName', 'psu.edu']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();&lt;/script&gt;
+  </property>
   <property name="icon_visibility" type="string">authenticated</property>
   <property name="enable_inline_editing" type="boolean">False</property>
   <property name="enable_sitemap" type="boolean">True</property>
