@@ -685,7 +685,9 @@
         display: none;
     }
 
-    #portal-column-one .portletWrapper .portlet-mobile-navigation {
+    #portal-column-one-mobile-nav, 
+    #portal-column-one #portal-column-one-mobile-nav .portletHeader,
+    #portal-column-one #portal-column-one-mobile-nav .portlet {
         display: block;
     }
     
@@ -1203,6 +1205,13 @@
         left: 1.720430107526882%;
         right: auto;
     }
+    
+    #portal-column-one-mobile-nav .portletHeader,
+    #portal-column-one-mobile-nav .portlet {
+        margin: 0 0.5em;
+        padding: 0;
+    }
+        
 
 }    
 

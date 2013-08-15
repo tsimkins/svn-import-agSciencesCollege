@@ -602,7 +602,7 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                                 if(jq(this).parent().attr('id') == 'site-navigation')
                                 {
                                     // set text to hide
-                                    jq(this).children('span').text('Hide Navigation');
+                                    jq(this).children('span').text('Hide Site Navigation');
                                 }
 
                                 jq(this).data('child').show();
@@ -628,7 +628,7 @@ function toggleButtons(header, nav, show_nav, other_buttons)
                                 if(jq(this).parent().attr('id') == 'site-navigation')
                                 {
                                     // set text to show
-                                    jq(this).children('span').text('Show Navigation');
+                                    jq(this).children('span').text('Show Site Navigation');
                                 }
 
                                 jq(this).data('child').hide();
@@ -720,6 +720,10 @@ function toggleNav(header, nav, show_nav)
 
 function mobileNav() {
 
+    // Set homepage and subsite variables
+    var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite-root").size() ? true : false;
+    var is_subsite = jq("body.navigation-subsite").size() ? true : false;
+
     // Move top nav bar below content, except for homepages.
     if (window.innerWidth > 520)
     {
@@ -791,29 +795,38 @@ function mobileNav() {
         
         if ( ! left_mobile_nav.size() )
         {
-            jq('<div id="portal-column-one-mobile-nav"></div>').appendTo(jq("#navigation-mobile .portletWrapper"));
+//            jq('<div id="portal-column-one-mobile-nav"></div>').appendTo(jq("#navigation-mobile .portletWrapper"));
+            if (is_subsite)
+            {
+                jq('<div id="portal-column-one-mobile-nav"></div>').appendTo(jq("#portal-column-one-visualPadding"));
+            }
+            else
+            {
+                jq('<div id="portal-column-one-mobile-nav"></div>').appendTo(jq("#portal-column-one-visualPadding"));
+            }
         }
 
-    }
+        jq("#portal-column-one .portlet-mobile-navigation ").each(
+            function () {
+                jq(this).appendTo(jq("#portal-column-one-mobile-nav"));
+            }
+        );
 
-
+    }    
     // Make left navigation +/-
-    var is_homepage = jq("body.portaltype-homepage, body.navigation-subsite-root").size() ? true : false;
-    var is_subsite = jq("body.navigation-subsite").size() ? true : false;
     
-    if (! is_subsite)
+    if (is_subsite)
     {
-        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", is_homepage);
+        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one #portal-column-one-mobile-nav", is_homepage);
     }
     else
     {
-        //alert("Do something different for the subsite nav.");
-        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationSubHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree", is_homepage);
+        toggleNav("#portal-column-one .portletWrapper:first-child .portletNavigationHeader", "#portal-column-one .portletWrapper:first-child .portletNavigationTree, #portal-column-one .portletWrapper:first-child .portletNavigationSubHeader, #portal-column-one #portal-column-one-mobile-nav", is_homepage);
     }
 
     // Make mobile top navigation +/-
     var show_mobile_nav = jq("body.navigation-mobile").size() ? true : false;
-    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree, #portal-column-one-mobile-nav", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
+    toggleButtons("#navigation-mobile .portletWrapper #site-navigation .portletNavigationHeader", "#portal-top-navigation, #navigation-mobile .portletWrapper>.portletNavigationTree, #navigation-mobile  #portal-column-one-mobile-nav", show_mobile_nav, ["#navigation-mobile .portletWrapper #mobile-search-button .portletNavigationHeader"]);
 
     // Make table of contents +/-
     toggleButtons("#content #document-toc .portletHeader", "#content #document-toc .portletItem", false, []);
@@ -857,14 +870,10 @@ function mobileNav() {
             jq("#portal-column-one .portletWrapper").each(
                 function () {
 
-                    if (jq(this).hasClass("portlet-mobile-navigation"))
-                    {
-                        jq(this).appendTo(jq("#portal-column-one-mobile-nav"));
-                    }
-
-                    else if (
+                    if (
                             jq(this).children(".portlet, .portletStaticText").size() && 
-                            ! jq(this).children(".portletNavigationTree").size() 
+                            ! jq(this).children(".portletNavigationTree").size()  &&
+                            ! jq(this).hasClass("portlet-mobile-navigation")
 
                     )
                     {
@@ -1235,10 +1244,6 @@ jq(document).ready(
 
 jq(window).load(function() {
     
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-4037316-1']);
-    _gaq.push(['_trackPageview']);
-
     // PDF tracking
     jq('#addthis .pdf a').click(
         function() {

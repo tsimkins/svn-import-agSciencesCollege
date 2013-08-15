@@ -1423,6 +1423,7 @@ body.template-person_view #content h3 {
     font-size: 0.6875em;
 }
 
+body.template-person_view #content #addthis h2,
 #addthis h2 {
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -1432,6 +1433,8 @@ body.template-person_view #content h3 {
     font-size: 0.625em;
     margin-top: 0;
     margin-bottom: 3px !important;
+    font-weight: normal;
+    font-family: Verdana,​Arial,​Helvetica,​sans-serif;
 }
 
 .comment #addthis {
@@ -2927,6 +2930,10 @@ form.searchPage {
     text-decoration: underline;
 }
 
+body.template-default_error_message {
+    background-image: none;
+}
+
 body.template-default_error_message #visual-portal-wrapper {
     margin: 0 auto;
 }
@@ -2945,6 +2952,10 @@ body.template-default_error_message #visual-portal-wrapper dt {
 
 body.template-default_error_message #portal-breadcrumbs {
     display: none;
+}
+
+body.template-default_error_message #portal-columns {
+    margin-top: 1em;
 }
 
 body.template-default_error_message #content {
@@ -3090,7 +3101,7 @@ input {
     background-image: none;
 }
 
-#portal-column-one-mobile-nav {
+#navigation-mobile  #portal-column-one-mobile-nav {
     font-size: 0.71875em;
 }
 
