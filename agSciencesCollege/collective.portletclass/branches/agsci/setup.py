@@ -34,7 +34,6 @@ setup(
         'plone.app.portlets',
         'plone.browserlayer',
         'setuptools',
-        'z3c.jbot',
         'zope.component',
         'zope.event',
         'zope.formlib',
