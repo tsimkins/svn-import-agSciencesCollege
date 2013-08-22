@@ -49,7 +49,8 @@ class Assignment(base.Assignment):
     show_header = False
     hide = False
 
-    def __init__(self, header=u"", show_header=False, hide=False):
+    def __init__(self, header=u"", show_header=False, hide=False, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.hide = hide
