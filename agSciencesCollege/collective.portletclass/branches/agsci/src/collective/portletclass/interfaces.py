@@ -23,3 +23,24 @@ class ICollectivePortletClass(Interface):
         required=False,
         default=False,
         )
+    parent_only = schema.Bool(
+        title=_(u'portlet-parent-only', u'Only show portlet on this object.'),
+        description=_(u'portlet-parent-only-description',
+            u'Overrides portlet display for child objects.'),
+        required=False,
+        default=False,
+        )
+    more_text = schema.Bool(
+        title=_(u'portlet-more-text', u'Show portlet title in "More" text.'),
+        description=_(u'portlet-more-text-description',
+            u'For Feedburner and Collection portlets'),
+        required=False,
+        default=False,
+        )
+    more_text_custom = schema.TextLine(
+        title=_(u'portlet-more-text-custom', u'Custom "More" text'),
+        description=_(u'portlet-more-text-custom-description',
+            u'Do not include "More" for this field.'),
+        required=False,
+        default=u'',
+        )

@@ -1,0 +1,7 @@
+<layers>
+  <layer
+    name="collective.portletclass"
+    interface="collective.portletclass.interfaces.ICollectivePortletClassLayer"
+    remove="True"
+    />
+</layers>

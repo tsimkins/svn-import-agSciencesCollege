@@ -5,25 +5,79 @@ from zope.component import adapts
 from zope.interface import implements
 from zope.formlib import form
 from zope.lifecycleevent import ObjectCreatedEvent
+from ZODB.POSException import ConflictError
+
+from plone.portlet.collection.collection import Assignment as collection_assignment
+from collective.portlet.feedmixer.portlet import Assignment as feedmixer_assignment
+from plone.app.portlets.storage import PortletAssignmentMapping
 
 from .interfaces import ICollectivePortletClassLayer, ICollectivePortletClass
 
-portletclass_fields = zope.schema.getFieldsInOrder(ICollectivePortletClass)
+def portletclass_fields(self):
+    all_fields = zope.schema.getFieldsInOrder(ICollectivePortletClass)
+    fields = []
+    for (k,v) in all_fields:
+        if filter_fields(self, k):
+            fields.append((k,v))
+    return fields
 
+# A bunch of ugly logic to enable different fields on different portlet types
+# and portlet managers
+def filter_fields(self, k):
+
+    # Only show mobile_navigation field in left column
+    if k == 'mobile_navigation':
+
+        # Get portlet manager
+        try:
+            manager = self.context.__parent__.__manager__
+        except AttributeError:
+            manager = ""
+
+        if manager != 'plone.leftcolumn':
+            return False
+
+
+    # Only show More text related ones for collection and feedmixer
+    if k in ('more_text', 'more_text_custom'):
+        if isinstance(self.context, collection_assignment):
+            return True
+        elif isinstance(self.context, feedmixer_assignment):
+            return True
+        else:
+            return False
+
+    # Only show parent_only on folderish objects
+    if k in ('parent_only'):
+        for o in self.aq_chain:
+            if isinstance(o, PortletAssignmentMapping):
+                if o.aq_parent.isPrincipiaFolderish:
+                    return True
+
+        return False
+
+    # Irony: Disable collective_portletclass (the original purpose of this 
+    # product) until we find a use case for it.
+    
+    if k in ('collective_portletclass', ):
+        return False
+
+    return True
+    
 def collective_portletclass__init__(self, context, request):
     # Patch the __init__ methods of portlet add and edit forms to append the
     # portletclass field.
     self.context = context
     self.request = request
     if ICollectivePortletClassLayer.providedBy(self.request):
-        for (k,v) in portletclass_fields:
+        for (k,v) in portletclass_fields(self):
             self.form_fields = self.form_fields + form.Fields(v)
 
 def collective_portletclass_createAndAdd(self, data):
     # Patch the createAndAdd method of portlet add forms to remove the
     # portletclass field from the assignment creation data, setting it manually.
     if ICollectivePortletClassLayer.providedBy(self.request):
-        for (k,v) in portletclass_fields:
+        for (k,v) in portletclass_fields(self):
             value = data[v.__name__]
             del data[v.__name__]
             ob = self.create(data)
@@ -125,6 +179,8 @@ class CollectivePortletClass(object):
     def __init__(self, context):
         self.context = context
 
+    # collective_portletclass
+
     @property
     def collective_portletclass(self):
         return getattr(self.context, 'collective_portletclass', u'')
@@ -136,6 +192,9 @@ class CollectivePortletClass(object):
         elif getattr(self.context, 'collective_portletclass', None) is not None:
             del self.context.collective_portletclass
 
+
+    # mobile_navigation
+
     @property
     def mobile_navigation(self):
         return getattr(self.context, 'mobile_navigation', u'')
@@ -146,3 +205,65 @@ class CollectivePortletClass(object):
             setattr(self.context, 'mobile_navigation', value)
         elif getattr(self.context, 'mobile_navigation', None) is not None:
             del self.context.mobile_navigation
+
+
+    # parent_only
+    
+    @property
+    def parent_only(self):
+        return getattr(self.context, 'parent_only', u'')
+
+    @parent_only.setter
+    def parent_only(self, value):
+        if value:
+            setattr(self.context, 'parent_only', value)
+        elif getattr(self.context, 'parent_only', None) is not None:
+            del self.context.parent_only
+
+
+    # more_text
+
+    @property
+    def more_text(self):
+        return getattr(self.context, 'more_text', u'')
+
+    @more_text.setter
+    def more_text(self, value):
+        if value:
+            setattr(self.context, 'more_text', value)
+        elif getattr(self.context, 'more_text', None) is not None:
+            del self.context.more_text
+
+    # more_text_custom
+
+    @property
+    def more_text_custom(self):
+        return getattr(self.context, 'more_text_custom', u'')
+
+    @more_text_custom.setter
+    def more_text_custom(self, value):
+        if value:
+            setattr(self.context, 'more_text_custom', value)
+        elif getattr(self.context, 'more_text_custom', None) is not None:
+            del self.context.more_text_custom
+
+
+# Patch for showing portlets only on parent object
+
+def renderer_filter(self, portlets):
+    filtered = []
+    for p in portlets:
+        try:
+            if p['assignment'].available:
+                if getattr(p['assignment'], 'parent_only', False):
+                    if p['key'] != "/".join(self.context.getPhysicalPath()):
+                        continue
+                filtered.append(p)
+        except ConflictError:
+            raise
+        except Exception, e:
+            logger.exception(
+                "Error while determining assignment availability of "
+                "portlet (%r %r %r): %s" % ( 
+                p['category'], p['key'], p['name'], str(e)))
+    return filtered

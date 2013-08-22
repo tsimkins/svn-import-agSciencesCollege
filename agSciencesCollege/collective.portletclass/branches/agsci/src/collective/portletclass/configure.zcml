@@ -28,7 +28,7 @@
         />
 
     <monkey:patch
-        description="Add CSS class field to portlets."
+        description="Add custom class field to portlets."
         class="plone.app.portlets.browser.formhelper.EditForm"
         original="__init__"
         replacement=".patch.collective_portletclass__init__"
@@ -110,6 +110,15 @@
         class="plone.portlet.collection.collection.Assignment"
         original="__init__"
         replacement=".patch.collection_assignment__init__"
+        />
+
+
+    <!-- Tweak 'filtered' method -->
+    <monkey:patch
+        description="Patch for showing portlets only on parent object"
+        class="plone.portlets.manager.PortletManagerRenderer"
+        original="filter"
+        replacement=".patch.renderer_filter"
         />
 
 </configure>
