@@ -3105,6 +3105,12 @@ input {
     font-size: 0.71875em;
 }
 
+/* For the "More" link */
+
+.portletFooter .hiddenStructure {
+    display: inline-block;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
