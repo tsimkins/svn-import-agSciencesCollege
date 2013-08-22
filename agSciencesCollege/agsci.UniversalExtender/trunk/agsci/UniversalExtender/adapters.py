@@ -15,8 +15,8 @@ class CustomNavtreeStrategy(NavtreeStrategy):
         sitemapDecision = SitemapNavtreeStrategy.subtreeFilter(self, node)
         if sitemapDecision == False:
             return False
-        if self.context.absolute_url() == node['getURL']:
-            if getattr(self.context.aq_base, 'hide_subnavigation', False):
+        if getattr(self.context.aq_base, 'hide_subnavigation', False):
+            if "/".join(self.context.getPhysicalPath()) == node['path']:
                 return False
         depth = node.get('depth', 0)
         if depth > 0 and self.bottomLevel > 0 and depth >= self.bottomLevel:
