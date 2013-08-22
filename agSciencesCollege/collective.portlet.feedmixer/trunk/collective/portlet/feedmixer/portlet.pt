@@ -85,12 +85,15 @@
         </dd>
     </tal:entry>
     
-    <dd class="portletFooter">
-      <a href="#"
-          class="tile"
+    <dd class="portletFooter"
           tal:condition="view/show_footer|nothing"
-          tal:attributes="href view/more_url"
-          i18n:translate="box_full_feed_view">More&hellip;</a>
+         tal:define="more_title view/data/more_text_custom|view/data/header|nothing;
+                     more_text view/data/more_text|nothing">
+        <a href="#"
+            class="tile"
+            tal:attributes="href view/more_url"
+            i18n:translate="box_full_feed_view">More<span class="hiddenStructure" 
+                                                          tal:omit-tag="more_text"> <span tal:replace="more_title" /></span>&hellip;</a>
     </dd>
 
 </dl>
