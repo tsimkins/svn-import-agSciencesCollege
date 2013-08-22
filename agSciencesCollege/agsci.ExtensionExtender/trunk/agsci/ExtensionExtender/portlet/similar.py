@@ -132,7 +132,8 @@ class Assignment(base.Assignment):
     def __init__(self, header=header, show_header=show_header, query_portal_type=query_portal_type,
                  query_counties=query_counties, query_programs=query_programs, query_topics=query_topics, 
                  query_courses=query_courses, query_title=query_title, limit=limit, limit_radius=limit_radius, show_dates=show_dates,
-                 show_location=show_location):
+                 show_location=show_location, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.query_portal_type = query_portal_type

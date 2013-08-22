@@ -77,7 +77,8 @@ class Assignment(TagsAssignment):
     dropdown = False
     drilldown_type = None
 
-    def __init__(self, header=u"", show_header=False, drilldown_type=None, dropdown=False):
+    def __init__(self, header=u"", show_header=False, drilldown_type=None, dropdown=False, *args, **kwargs):
+        base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
         self.data.drilldown_type = drilldown_type
@@ -163,8 +164,14 @@ class Renderer(TagsRenderer):
     def tag_root(self):
         return self.parent_object
 
+
+    
     @property
     def tags(self):
+        return self.memoized_tags()
+
+    @memoize
+    def memoized_tags(self):
         normalizer = getUtility(IIDNormalizer)
         tag_root = self.tag_root
         
