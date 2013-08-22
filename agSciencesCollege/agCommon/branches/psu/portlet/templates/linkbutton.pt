@@ -7,7 +7,7 @@
         
     <dd tal:repeat="lbutton view/linkButtons"
         tal:attributes="id string:linkbutton-${lbutton/id};
-                        class python: lbutton.get('internal') and 'internal-link portletItem' or 'portletItem'">
+                        class python: view.getClass(lbutton);">
         <tal:linkButton  
             tal:define="title lbutton/title;
                         id lbutton/id;

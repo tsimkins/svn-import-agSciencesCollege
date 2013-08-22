@@ -73,8 +73,10 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 /* Custom */
 
 .flexslider {
-    border: none;
-    margin: 3px 0.575539568345324%;
+    border: 1px solid #8F8F8F;
+    margin: 3px 0.567375886524823% 3px 0.567375886524823%;
+    border-radius: 0;
+    background-color: #F6F6F6;
 }
 
 .flexslider .tileItem {
@@ -123,26 +125,33 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 
 .flexslider .tileBody p {
     margin: 0.25em 0 0 0;
-    color: #575757;
+    color: #4F4F4F;
     font-size: 0.875em;
     line-height: 1.375em;
 }
 
 .flexslider .tileFooter {
-    margin: 0.25em 0 0 0;
+    margin: 0.25em 0 0.25em 0;
     padding: 0;
 }  
 
 .flexslider .tileFooter p {
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: left;
+    line-height: 1.5625em;
 }    
 
 .flexslider .tileFooter a {
     font-size: 0.6875em;
     text-decoration: none;
-    padding-right: 0.75em;
+    padding: 0.25em 0.375em;
+    background-color: #FFE269;
+    border: 1px solid #EFCE4A;
+}
+
+.flexslider .tileFooter a .hiddenStructure {
+    display: inline-block;
 }
 
 .flex-control-nav {
@@ -152,7 +161,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
     margin-left: 72.453371592539455%;
     margin-right: 0.717360114777618%;
     width: 125px;
-    margin-top: -1em;
+    margin-top: -1.3125em;
 }
 
 .flex-control-nav a {

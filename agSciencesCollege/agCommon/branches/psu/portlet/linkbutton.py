@@ -81,7 +81,16 @@ class Renderer(base.Renderer):
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
         self.linkButtons = context_state.actions().get(self.data.items, None)
-        
+
+    def getClass(self, licon):
+        klass = ['portletItem']
+        internal = licon.get('internal')
+
+        if internal:
+            klass.append('internal-link')
+
+        return " ".join(klass)
+
     def render(self):
         return xhtml_compress(self._template())
 

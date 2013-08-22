@@ -61,6 +61,10 @@
         line-height: 1.25em;
     }
 
+    #viewlet-above-content .flexslider .tileFooter p {
+        text-align: right;
+    }
+
     #viewlet-above-content .flexslider .tileFooter a {
         font-size: 0.625em;
     }
@@ -428,7 +432,7 @@
     }
 
     #viewlet-above-content .flex-control-nav {
-        margin-left: 0;
+        margin-left: 0.375em;
     }
     
     #viewlet-above-content .flexslider {
@@ -447,7 +451,7 @@
     }
 
     #viewlet-above-content .flexslider .flexslider-text {
-        margin: 0
+        margin: 0 0.375em;
     }
     
     #viewlet-above-content .flexslider .tileHeadline {
@@ -1170,10 +1174,10 @@
         font-weight: bold;
         line-height: 1.25em;
         margin: 0.25em 0 0 0;
-        padding: 0.3125em 0.75em 0.375em 0.75em !important;
+        padding: 0.3125em 1.923076923076923% 0.375em 1.923076923076923% !important;
         text-align: left;
         text-transform: none;
-        width: auto;
+        width: 96.153846153846154%;
         height: auto;
     }
 

@@ -7,12 +7,11 @@
 <dl class="portlet linkIcon" tal:condition="view/linkIcons">
 
     <tal:linkIcon repeat="licon view/linkIcons">
-        <dd tal:attributes="class python: icon and '%s portletItem' % icon_class or 'portletItem'"
+        <dd tal:attributes="class python:view.getClass(licon)"
             tal:define="title licon/title;
                         description licon/description|licon/title;
                         icon licon/icon|nothing;
-                        icon_class python:view.getIconClass(icon);
-                        show_icon python: (icon and icon_class == 'icon') and True or False;">
+                        show_icon python: view.show_icon(licon)">
             <a tal:attributes="href licon/url;
                                 title title;"
                 ><img tal:condition="show_icon" 

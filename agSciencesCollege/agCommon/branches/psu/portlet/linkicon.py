@@ -87,7 +87,7 @@ class Renderer(base.Renderer):
             'icons/blogger.png' : 'sprite sprite-blogger',
             'icons/contact.png' : 'sprite sprite-contact',
             'icons/directory.png' : 'sprite sprite-directory',
-            'icons/facebook.png' : 'sprite sprite-facebook',
+            'icons/afacebook.png' : 'sprite sprite-facebook',
             'icons/feed.png' : 'sprite sprite-feed',
             'icons/flickr.png' : 'sprite sprite-flickr',
             'icons/instagram.png' : 'sprite sprite-instagram',
@@ -104,6 +104,17 @@ class Renderer(base.Renderer):
                 return icon_classes[k]
 
         return 'icon'
+
+    def getClass(self, licon):
+        klass = ['portletItem']
+        icon = licon.get('icon')
+        if icon:
+            klass.append(self.getIconClass(icon))
+        return " ".join(klass)
+
+    def show_icon(self, licon):
+        icon = licon.get('icon')
+        return (icon and self.getIconClass(icon) == 'icon')
 
     def render(self):
         return xhtml_compress(self._template())

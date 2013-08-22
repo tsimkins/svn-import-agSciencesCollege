@@ -26,6 +26,7 @@ from Products.CMFCore.Expression import Expression, getExprContext
 from Products.agCommon import getContextConfig
 from Products.agCommon.browser.views import FolderView
 from plone.app.layout.viewlets.common import SearchBoxViewlet
+from plone.memoize.instance import memoize
 
 try:
     from agsci.ExtensionExtender.counties import data as county_data
@@ -168,48 +169,62 @@ class PortletViewlet(AgCommonViewlet):
 class TopNavigationViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/topnavigation.pt')
 
-    def update(self):
-                                        
-        topMenu = getContextConfig(self.context, 'top-menu', 'topnavigation')
-            
-        self.topnavigation = self.context_state.actions().get(topMenu, None)
+    def getClassName(self, saction):
+        klass = []
+        if saction.get('url') == self.container_url():
+            klass.append('alternate')
+        elif saction.get('alternate_color'):
+            klass.append('alternate')
+        return " ".join(klass)
 
+    @memoize
+    def container_url(self):
         # URL that contains the section
-        self.container_url = None
+        container_url = None
+        topnavigation = self.topnavigation()
 
-        if self.topnavigation:
-            matches = []
-    
-            for t in self.topnavigation:
-                portal_url = self.context.portal_url()
-                context_url = self.context.absolute_url()
-                menu_url = t.get('url')
-                urls = [menu_url]
-                
-                # Handle additional URLs configured in portal_actions
-                if t.get('additional_urls'):
-                    econtext = getExprContext(self.context)
-                    for u in t.get('additional_urls'):
-                        try:
-                            url_expr = Expression(u)
-                            urls.append(url_expr.__call__(econtext))
-                        except:
-                            pass
-                        
-                for t_url in urls:
-                    # Remove trailing / to normalize
-                    if t_url.endswith("/"):
-                        t_url = t_url[0:-1]
-                    if portal_url.endswith("/"):
-                        portal_url = portal_url[0:-1]
-                    if context_url.endswith("/"):
-                        context_url = context_url[0:-1]
-                        
-                    if portal_url != t_url and context_url.startswith(t_url):
-                        matches.append(menu_url) # Remove trailing slash
+        matches = []
 
-            if matches:
-                self.container_url = sorted(matches, key=lambda x:len(x), reverse=True)[0]
+        for t in self.topnavigation():
+            portal_url = self.context.portal_url()
+            context_url = self.context.absolute_url()
+            menu_url = t.get('url')
+            urls = [menu_url]
+            
+            # Handle additional URLs configured in portal_actions
+            if t.get('additional_urls'):
+                econtext = getExprContext(self.context)
+                for u in t.get('additional_urls'):
+                    try:
+                        url_expr = Expression(u)
+                        urls.append(url_expr.__call__(econtext))
+                    except:
+                        pass
+                    
+            for t_url in urls:
+                # Remove trailing / to normalize
+                if t_url.endswith("/"):
+                    t_url = t_url[0:-1]
+                if portal_url.endswith("/"):
+                    portal_url = portal_url[0:-1]
+                if context_url.endswith("/"):
+                    context_url = context_url[0:-1]
+                    
+                if portal_url != t_url and context_url.startswith(t_url):
+                    matches.append(menu_url) # Remove trailing slash
+
+        if matches:
+            container_url = sorted(matches, key=lambda x:len(x), reverse=True)[0]
+
+        return container_url
+
+    @memoize
+    def topnavigation(self):
+        topMenu = getContextConfig(self.context, 'top-menu', 'topnavigation')
+        return self.context_state.actions().get(topMenu, None)
+
+    def update(self):
+        pass
 
 
 class RightColumnViewlet(PortletViewlet):   

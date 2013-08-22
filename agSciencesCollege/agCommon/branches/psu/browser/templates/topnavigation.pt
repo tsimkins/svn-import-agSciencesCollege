@@ -8,8 +8,7 @@
                         id saction/id;
                         url saction/url;
                         description saction/description|saction/title;
-                        className python:saction.get('alternate_color') and 'alternate' or '';
-                        className python:url == view.container_url and 'alternate' or '';"
+                        className python:view.getClassName(saction);"
             tal:attributes="id string:topnav-${saction/id};
                             class className"><a
                href=""
