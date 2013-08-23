@@ -48,6 +48,19 @@ table.events tr td:first-child {
 
 #portal-localsearchbox .searchButton {
     margin-top: 4px;
+}
+
+#content .contentLeadImageContainer {
+    width: 267px;
+    max-width: 267px;
+}
+
+#content .contentLeadImageContainer img {
+    margin-left: 12px;
+    max-width: 255px;
+    width: 255px;
+    height: auto;
+}
 
 /* </dtml-with> */
 

@@ -73,8 +73,8 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 /* Custom */
 
 .flexslider {
-    border: 1px solid #8F8F8F;
-    margin: 3px 0.567375886524823% 3px 0.567375886524823%;
+    border: 1px solid #B3BBBF;
+    margin: 0.25em 0.567375886524823% 0.75em 0.567375886524823%;
     border-radius: 0;
     background-color: #F6F6F6;
 }
@@ -106,8 +106,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 .flexslider .flexslider-text {
     max-height: 265px;
     overflow: hidden;
-    margin-left: 72.453371592539455%;
-    margin-right: 0.717360114777618%;
+    margin-left: 70.79136690647482%;
+    padding: 0 1.440922190201729%;
+    width: 26.22478386167147%;
 }
 
 .flexslider .tileHeadline {
@@ -170,8 +171,8 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 
 .flex-direction-nav li a {
     width: 30px; 
-    height: 35px; 
-    margin: -13px 0 0; 
+    height: 37px; 
+    margin: -14px 0 0; 
     display: block; 
     background-image: url(&dtml-portal_url;/bg_slider_arrows.png);
     background-repeat: no-repeat; 
@@ -179,6 +180,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
     top: 50%; 
     cursor: pointer; 
     text-indent: -999em;
+    opacity: 0.66;
 }
 
 .flex-direction-nav li .next {
