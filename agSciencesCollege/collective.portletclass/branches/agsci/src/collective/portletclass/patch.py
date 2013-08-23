@@ -76,14 +76,19 @@ def collective_portletclass__init__(self, context, request):
 def collective_portletclass_createAndAdd(self, data):
     # Patch the createAndAdd method of portlet add forms to remove the
     # portletclass field from the assignment creation data, setting it manually.
+    
+    ob = None
+    
     if ICollectivePortletClassLayer.providedBy(self.request):
         for (k,v) in portletclass_fields(self):
             value = data[v.__name__]
             del data[v.__name__]
             ob = self.create(data)
             v.set(ob, value)
-    else:
+
+    if not ob:
         ob = self.create(data)
+
     zope.event.notify(ObjectCreatedEvent(ob))
     return self.add(ob)
 #-------------------------------------------------------------------------------
