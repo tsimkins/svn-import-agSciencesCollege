@@ -202,9 +202,7 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
         
         rv = []
         
-        if zipcode:
-            rv.append(zipcode)
-
+        if z1 and z2:
             conn = self.conn()
     
             c = conn.cursor()
@@ -215,8 +213,8 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
     
             rv.extend([x[0] for x in results])
 
-            return rv
+            return rv[0]
         else:
-            return []
+            return 0
 
 InitializeClass(ExtensionZIPCodeTool)
