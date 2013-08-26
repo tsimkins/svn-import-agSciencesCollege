@@ -194,4 +194,29 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
         else:
             return False
 
+    security.declarePublic('getDistance')
+    def getDistance(self, z1, z2):
+        
+        z1 = self.toZIP5(z1)
+        z2 = self.toZIP5(z2)
+        
+        rv = []
+        
+        if zipcode:
+            rv.append(zipcode)
+
+            conn = self.conn()
+    
+            c = conn.cursor()
+    
+            results = c.execute("""select distance from zipcode_distance where src_zipcode = ? and dst_zipcode = ?""", (z1,z2)).fetchall()
+    
+            conn.close()
+    
+            rv.extend([x[0] for x in results])
+
+            return rv
+        else:
+            return []
+
 InitializeClass(ExtensionZIPCodeTool)
