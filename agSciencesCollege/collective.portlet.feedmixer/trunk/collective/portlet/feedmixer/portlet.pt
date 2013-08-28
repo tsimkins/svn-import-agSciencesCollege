@@ -87,7 +87,7 @@
     
     <dd class="portletFooter"
           tal:condition="view/show_footer|nothing"
-         tal:define="more_title view/data/more_text_custom|view/data/header|nothing;
+         tal:define="more_title view/data/more_text_custom|view/title|nothing;
                      more_text view/data/more_text|nothing">
         <a href="#"
             class="tile"
