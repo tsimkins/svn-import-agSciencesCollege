@@ -52,7 +52,7 @@ class HomePageExtender(object):
                 label=u"HomePage Slider",
                 description=u"Choose an collection for the objects that will appear in the homepage slider.",
                 show_path=True,
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
             schemata="settings",
             relationship = 'IsHomePageSliderFor',
@@ -66,7 +66,7 @@ class HomePageExtender(object):
                 widget=BooleanWidget(
                     label=u"Randomize HomePage Slider",
                     description=u"Display slider images in a random rather than sequential order.",
-                    condition="python:member.has_role('Manager')",
+                    condition="python:member.has_role('Manager', object)",
                 ),
             schemata="settings",
         ),
@@ -143,7 +143,7 @@ class FSDPersonExtender(object):
             widget=StringWidget(
                 label=u"Primary Profile URL",
                 description=u"Providing a URL and setting the view to 'Person Alias' will redirect public users to this URL.",
-                condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')",
+                condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
             ),
             validators = ('isURL'),
         ),
@@ -156,7 +156,7 @@ class FSDPersonExtender(object):
         
         for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
             for fieldName in schema.getSchemataFields(hideme):
-                fieldName.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
+                fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
 
         # Check for "allow_person_image" in site_properties.  If it's not there and checked, remove the image.
         ptool = getToolByName(self.context, 'portal_properties')
@@ -165,7 +165,7 @@ class FSDPersonExtender(object):
         if props and not props.getProperty('allow_person_image'):
             # Restrict the image field to Personnel Managers
             image_field = schema['image'].copy()
-            image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
+            image_field.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
             schema['image'] = image_field
 
         return schema
@@ -202,11 +202,11 @@ class FSDPersonModifier(object):
         
         for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
             for fieldName in schema.getSchemataFields(hideme):
-                fieldName.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
+                fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
 
         # Restrict the image field to Personnel Managers
         image_field = schema['image'].copy()
-        image_field.widget.condition="python:member.has_role('Manager') or member.has_role('Personnel Manager')"
+        image_field.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
         schema['image'] = image_field
 
         return schema
@@ -262,7 +262,7 @@ class EventExtender(object):
                 widget=BooleanWidget(
                     label=u"Enable online event registration (for free events only).",
                     description=u"",
-                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
         _ExtensionStringField(
@@ -272,7 +272,7 @@ class EventExtender(object):
                 widget=StringWidget(
                     label=u"Email address for registration responses.",
                     description=u"Use this field if you would like to receive an email for each registration.",
-                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
         _ExtensionDateTimeField(
@@ -282,7 +282,7 @@ class EventExtender(object):
                 widget=CalendarWidget(
                     label=u"Registration deadline.",
                     description=u"After this date, registrations will not be permitted.",
-                    condition="python:member.has_role('Manager') or member.has_role('Event Organizer')",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
         _ExtensionBooleanField(
@@ -438,7 +438,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show description",
                 description=u"This will show the description for each item in the folder listing.",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
 
@@ -461,7 +461,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show date",
                 description=u"This will show the publication date for each item in the folder listing.",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
 
@@ -473,7 +473,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show description for contents",
                 description=u"This will show the description for the items in the folder listing",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
 
@@ -496,7 +496,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Show text after folder contents",
                 description=u"This will show the Body Text field after the folder contents instead of before.",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
 
@@ -508,7 +508,7 @@ class FolderTopicExtender(object):
             widget=BooleanWidget(
                 label=u"Two column display",
                 description=u"This will automatically display the contents of the folder in two columns.  This is best for short titles/descriptions.",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
         
@@ -551,7 +551,7 @@ class FolderExtender(object):
             widget=BooleanWidget(
                 label=u"Hide items excluded from navigation in folder listing.",
                 description=u"Hide items from folder listing if 'Exclude from navigation' is checked for those items.",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
         
@@ -563,7 +563,7 @@ class FolderExtender(object):
             widget=BooleanWidget(
                 label=u"Hide subnavigation when displaying the main folder listing.",
                 description=u"",
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
             ),
         ),
     ]
@@ -638,7 +638,7 @@ class MarkdownDescriptionExtender(object):
             widget=BooleanWidget(
                 label=u"Render description as Markdown",
                 description=u"This will allow you to use Markdown formatting in the description field",
-                condition="python:member.has_role('Manager')"
+                condition="python:member.has_role('Manager', object)"
             ),
         ),
     ]   
@@ -711,7 +711,7 @@ class CommentsExtender(object):
             default=False,
             schemata="settings",
             widget=BooleanWidget(
-                condition="python:member.has_role('Manager')",
+                condition="python:member.has_role('Manager', object)",
                 label=u"Allow comments on folder contents.",
                 description=u"If selected, users can add comments to the items within this folder and its subfolders.",
             ),
