@@ -3,7 +3,6 @@
 
  <include package=".browser" />
  <include package=".portlet" />
- <include package="five.pt" />
  <include file="profiles.zcml" />
 
  <utility name="Portlet Manager" factory=".sharing.PortletManagerRole"/>

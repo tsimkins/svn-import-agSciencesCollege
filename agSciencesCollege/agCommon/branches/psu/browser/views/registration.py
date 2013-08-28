@@ -7,6 +7,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.agCommon import getContextConfig
+from zope.app.component.hooks import getSite
 
 class IRegistrationView(Interface):
 
@@ -38,7 +39,7 @@ class RegistrationView(BrowserView):
     
     def canEditEvent(self, event):
         mt = getToolByName(self.context, 'portal_membership')
-        return mt.checkPermission('cmf.ModifyPortalContent', event)
+        return mt.checkPermission('Modify portal content', event)
     
     def allowRegistration(self, event):
         now = DateTime()
@@ -51,7 +52,12 @@ class RegistrationView(BrowserView):
         return True
     
     def registrationURL(self):
-        return getContextConfig(self.context, 'registration_url')
+        url = getContextConfig(self.context, 'registration_url')
+
+        if url:
+            return url.replace('${portal_url}', '')
+        else:
+            return "%s/register" % getSite().absolute_url()
         
 
 class DownloadCSVView(RegistrationView):

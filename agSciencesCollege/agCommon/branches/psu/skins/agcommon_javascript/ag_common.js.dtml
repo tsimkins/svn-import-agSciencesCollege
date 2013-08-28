@@ -1243,51 +1243,52 @@ jq(document).ready(
 /* Flexslider Load and Event Tracking */
 
 jq(window).load(function() {
-
-    // Image Portlet Tracking
-    jq('.imagePortlet a').click(
-        function() {
-            var button_title = jq(this).children('img').attr('alt');            
-
-            if (! button_title)
-            {
-                button_title = jq(this).children('span').html();
-            }
-
-            _gaq.push(['_trackEvent', 'Image Portlet', button_title]);
-        }
-    );
-
-    // Link Icon Tracking
-    jq('.linkIcon a').click(
-        function() {
-            var icon_title = jq(this).children('span').html();
-
-            _gaq.push(['_trackEvent', 'Link Icon', icon_title]);
-        }
-    );
+    if (! jq('#portal-personaltools').size())
+    {
+        // Image Portlet Tracking
+        jq('.imagePortlet a').click(
+            function() {
+                var button_title = jq(this).children('img').attr('alt');            
     
-    // Link Button Tracking
-    jq('.linkButton a').click(
-        function() {
-            var button_title = jq(this).children('span').html();
-            
-            if (! button_title)
-            {
-                button_title = jq(this).children('img').attr('alt');
-            }
-
-            _gaq.push(['_trackEvent', 'Link Button', button_title]);
-        }
-    );
+                if (! button_title)
+                {
+                    button_title = jq(this).children('span').html();
+                }
     
-    // PDF tracking
-    jq('#addthis .pdf a').click(
-        function() {
-            _gaq.push(['_trackEvent', 'AddThis', 'Download PDF']);
-        }
-    );
-
+                _gaq.push(['_trackEvent', 'Image Portlet', button_title]);
+            }
+        );
+    
+        // Link Icon Tracking
+        jq('.linkIcon a').click(
+            function() {
+                var icon_title = jq(this).children('span').html();
+    
+                _gaq.push(['_trackEvent', 'Link Icon', icon_title]);
+            }
+        );
+        
+        // Link Button Tracking
+        jq('.linkButton a').click(
+            function() {
+                var button_title = jq(this).children('span').html();
+                
+                if (! button_title)
+                {
+                    button_title = jq(this).children('img').attr('alt');
+                }
+    
+                _gaq.push(['_trackEvent', 'Link Button', button_title]);
+            }
+        );
+        
+        // PDF tracking
+        jq('#addthis .pdf a').click(
+            function() {
+                _gaq.push(['_trackEvent', 'AddThis', 'Download PDF']);
+            }
+        );
+    }
     
     // flexslider load and tracking
    
@@ -1315,46 +1316,48 @@ jq(window).load(function() {
 
             }
         );
-        
-        jq('.flexslider .flex-control-nav li a').click(
-            function() {
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html()]);
-            }
-        );
-    
-        jq('.flexslider .flex-direction-nav li a.next').click(
-            function() {
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Next']);
-            }
-        );
-    
-        jq('.flexslider .flex-direction-nav li a.prev').click(
-            function() {
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Previous']);
-            }
-        );
-    
-        jq('.flexslider .tileHeadline a').click(
-            function() {
-                var article_title = jq(this).html();
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Headline Click', article_title]);
-            }
-        );
-    
-        jq('.flexslider .tileFooter a').click(
-            function() {
-                var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Footer Click', article_title]);
-            }
-        );
 
-        jq('.flexslider .contentLeadImageContainer a').click(
-            function() {
-                var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
-                _gaq.push(['_trackEvent', 'Homepage Slider', 'Image Click', article_title]);
-            }
-        );
+        if (! jq('#portal-personaltools').size())
+        {
+            jq('.flexslider .flex-control-nav li a').click(
+                function() {
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html()]);
+                }
+            );
         
+            jq('.flexslider .flex-direction-nav li a.next').click(
+                function() {
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Next']);
+                }
+            );
+        
+            jq('.flexslider .flex-direction-nav li a.prev').click(
+                function() {
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Next/Previous Navigation', 'Previous']);
+                }
+            );
+        
+            jq('.flexslider .tileHeadline a').click(
+                function() {
+                    var article_title = jq(this).html();
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Headline Click', article_title]);
+                }
+            );
+        
+            jq('.flexslider .tileFooter a').click(
+                function() {
+                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Footer Click', article_title]);
+                }
+            );
+    
+            jq('.flexslider .contentLeadImageContainer a').click(
+                function() {
+                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Image Click', article_title]);
+                }
+            );
+        }        
     }
 });
 
