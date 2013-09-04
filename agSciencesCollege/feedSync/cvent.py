@@ -27,7 +27,7 @@ def agsciEvents(soup, summaryURL):
             eventLink = eventCell.find('a')
             eventId = eventLink['e']
             eventTitle = str(eventLink.contents[0])
-            eventURL = summaryURL % eventId
+            eventURL = getCventSummaryURL(summaryURL % eventId)
 
             results.append((eventLink, eventId, eventTitle, eventDate, eventURL))
 
@@ -46,11 +46,18 @@ def extensionEvents(soup, summaryURL):
             eventDateText =  eventLink.contents[0].strip()     
             eventDate = strftime("%Y-%m-%d", strptime(eventDateText, "%m/%d/%y"))
             eventId = eventLink['e']
-            eventURL = summaryURL % eventId
+            eventURL = getCventSummaryURL(summaryURL % eventId)
 
             results.append((eventLink, eventId, eventTitle, eventDate, eventURL))
 
     return results
+
+def getCventSummaryURL(url):
+    page = urllib2.urlopen(url)
+    new_url = page.geturl()
+    if '?' in new_url:
+        new_url = new_url.split('?')[0]
+    return new_url
 
 def importEvents(context, emailUsers=['trs22'],
                  cventURL = "http://guest.cvent.com/EVENTS/Calendar/Calendar.aspx?cal=9d9ed7b8-dd56-46d5-b5b3-8fb79e05acaf",
