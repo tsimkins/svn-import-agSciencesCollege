@@ -55,7 +55,7 @@ table.events tr td:first-child {
     max-width: 267px;
 }
 
-#content .contentLeadImageContainer a img {
+#content > .contentLeadImageContainer a img {
     margin-left: 12px;
     max-width: 255px;
     width: 255px;
