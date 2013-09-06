@@ -50,12 +50,12 @@ table.events tr td:first-child {
     margin-top: 4px;
 }
 
-#content .contentLeadImageContainer {
+#content > .contentLeadImageContainer {
     width: 267px;
     max-width: 267px;
 }
 
-#content .contentLeadImageContainer img {
+#content .contentLeadImageContainer a img {
     margin-left: 12px;
     max-width: 255px;
     width: 255px;
