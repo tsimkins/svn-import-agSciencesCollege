@@ -7,100 +7,9 @@
 # By default we allow robots to access all areas of our site 
 # already accessible to anonymous users
 
-User-agent: *
-Disallow: /search
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
-Disallow: /m/
-Disallow: /nonmobile
-&dtml-getDisallowedPaths;
-Crawl-delay: 5
-
-
-# Add Googlebot-specific syntax extension to exclude forms 
-# that are repeated for each piece of content in the site 
-# the wildcard is only supported by Googlebot
-# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx;=sibling
-
-User-Agent: Googlebot
-Disallow: /search
-Disallow: /search_rss
-Disallow: /*ics_view$
-Disallow: /*vcs_view$
-Disallow: /*sendto_form$
-Disallow: /*folder_factories$
-Disallow: /*folder_contents$
-Disallow: /*?searchterm=*
-Disallow: /*image$
-Disallow: /*image_*
-Disallow: /*image_view_fullscreen$
-Disallow: /m/
-Disallow: /nonmobile
-Disallow: /*newsletter_print
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
-
-# Apparently Yahoo supports wildcards, too?
-# http://help.yahoo.com/l/us/yahoo/search/webcrawler/slurp-02.html
-
-User-Agent: Slurp
-Disallow: /search
-Disallow: /search_rss
-Disallow: /*ics_view$
-Disallow: /*vcs_view$
-Disallow: /*sendto_form$
-Disallow: /*folder_factories$
-Disallow: /*folder_contents$
-Disallow: /*?searchterm=*
-Disallow: /*image$
-Disallow: /*image_*
-Disallow: /*image_view_fullscreen$
-Disallow: /m/
-Disallow: /nonmobile
-Disallow: /*newsletter_print
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
-
-# Penn State's Google Search Appliance
-User-Agent: PennStateSpider
-Disallow: /*ics_view$
-Disallow: /*vcs_view$
-Disallow: /*sendto_form$
-Disallow: /*folder_factories$
-Disallow: /*folder_contents$
-Disallow: /*?searchterm=*
-Disallow: /m/
-Disallow: /nonmobile
-Disallow: /*newsletter_print
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
-
 # Yandex bot
 User-agent: Yandex
 Disallow: /
-
-User-Agent: bingbot
-Disallow: /search
-Disallow: /search_rss
-Disallow: /*ics_view$
-Disallow: /*vcs_view$
-Disallow: /*sendto_form$
-Disallow: /*folder_factories$
-Disallow: /*folder_contents$
-Disallow: /*?searchterm=*
-Disallow: /*image$
-Disallow: /*image_*
-Disallow: /*image_view_fullscreen$
-Disallow: /m/
-Disallow: /nonmobile
-Disallow: /*newsletter_print
-Disallow: /sandbox
-Disallow: /intranet
-Disallow: /private
 
 # Dicoveryengine.com
 User-agent: discobot
@@ -117,5 +26,27 @@ Disallow: /
 # Exabot
 User-agent: Exabot
 Disallow: /
+
+User-agent: *
+Disallow: /nonmobile
+Disallow: /search
+Disallow: /search_rss
+Disallow: /m/
+Disallow: /nonmobile
+Disallow: /sandbox
+Disallow: /intranet
+Disallow: /private
+&dtml-getDisallowedPaths;
+Disallow: /*ics_view$
+Disallow: /*vcs_view$
+Disallow: /*sendto_form$
+Disallow: /*folder_factories$
+Disallow: /*folder_contents$
+Disallow: /*?searchterm=*
+Disallow: /*image$
+Disallow: /*image_*
+Disallow: /*image_view_fullscreen$
+Disallow: /*newsletter_print
+Crawl-delay: 5
 
 </dtml-with>
