@@ -68,7 +68,9 @@
   <body>
     <metal:fill fill-slot="content-core">
       <metal:main_macro define-macro="content-core"
-            tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+            tal:define="contentFilter contentFilter|request/contentFilter|nothing;
+            contentFilter python:contentFilter and dict(contentFilter) or {};
+            portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
             base_macros context/base/macros;
             standalone_view python:True;
             view_template python:'%s_view' % portal_type;
@@ -82,11 +84,11 @@
             agenda_anchors context/agenda_anchors|nothing;
             show_days view/show_days|nothing;
             limit_display python:99999;
-            view_data view/data|nothing;
+            view_data python: view.data(contentFilter);
             data_count python:view_data and len(view_data) or 0;
             test nocall:view/test">
 
-        <div id="document-toc" class="portlet toc agendaLinks" tal:condition="python: data_count > 1 and agenda_anchors">
+        <div id="document-toc" class="portlet toc agendaLinks" tal:condition="python: data_count > 1 and agenda_anchors and not contentFilter">
             <h2 class="portletHeader" tal:content="python: show_days and 'Days' or 'Months'" />
             <ul class="portletItem">
                 <li tal:repeat="month view_data">

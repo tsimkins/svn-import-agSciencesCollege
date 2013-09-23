@@ -251,14 +251,14 @@ class AgendaView(FolderView):
         else:
             self.here_url = self.context.absolute_url()
 
-    def getFolderContents(self):
+    def getFolderContents(self, contentFilter={}):
 
         events = []
         folder_path = ""
 
         if self.context.portal_type == 'Topic':
             try:
-                events = self.context.queryCatalog()
+                events = self.context.queryCatalog(**contentFilter)
             except AttributeError:
                 # We don't like a relative path here for some reason.
                 # Until we figure it out, fall through and just do the default query.
@@ -286,7 +286,7 @@ class AgendaView(FolderView):
                                             'sort_on' : 'start' })
         return events
 
-    def data(self):
+    def data(self, contentFilter={}):
 
         site_properties = getToolByName(self.context, 'portal_properties').get("site_properties")
         day_format = site_properties.localTimeFormat
@@ -302,7 +302,7 @@ class AgendaView(FolderView):
         months = {}
         agenda = []
 
-        events = self.getFolderContents()
+        events = self.getFolderContents(contentFilter)
 
         for e in events:
 

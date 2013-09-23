@@ -1361,6 +1361,22 @@ jq(window).load(function() {
     }
 });
 
+/* Blur contents on submit of local search form. */
+
+jq(document).ready(
+
+    function() {
+
+        jq('#plonelocalsearchform').submit(
+            function() {
+                jq("#content-core").fadeTo(0,0.25);
+            }
+        )
+    }
+
+);
+
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */

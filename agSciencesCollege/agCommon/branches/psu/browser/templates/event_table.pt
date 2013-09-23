@@ -68,7 +68,9 @@
   <body>
     <metal:fill fill-slot="content-core">
       <metal:main_macro define-macro="content-core"
-            tal:define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+            tal:define="contentFilter contentFilter|request/contentFilter|nothing;
+            contentFilter python:contentFilter and dict(contentFilter) or {};
+            portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
             base_macros context/base/macros;
             standalone_view python:True;
             view_template python:'%s_view' % portal_type;
@@ -78,9 +80,11 @@
             kssClassesView context/@@kss_field_decorator_view;
             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
             normalizeString nocall: context/plone_utils/normalizeString;
-            templateId template/getId;">
+            templateId template/getId;
+            view_data python: view.data(contentFilter);
+            data_count python:view_data and len(view_data) or 0;">
 
-        <tal:bymonth repeat="month view/data">
+        <tal:bymonth repeat="month view_data">
 
             <h2 class="section-title" tal:content="month/label" />
 

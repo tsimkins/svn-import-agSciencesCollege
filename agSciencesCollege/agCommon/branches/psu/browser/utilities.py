@@ -10,6 +10,12 @@ from zope.component import getMultiAdapter
 from Products.agCommon import getContextConfig
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
+try:
+    from agsci.ExtensionExtender.counties import getSurroundingCounties
+except ImportError:
+    def getSurroundingCounties(c):
+        return c
+
 class IAgCommonUtilities(Interface):
 
     def substituteEventLocation(self):
@@ -25,6 +31,9 @@ class IAgCommonUtilities(Interface):
         pass
 
     def customBodyClass(self):
+        pass
+
+    def contentFilter(self):
         pass
 
 class AgCommonUtilities(BrowserView):
@@ -217,3 +226,47 @@ class AgCommonUtilities(BrowserView):
             body_classes.append('listing-after-text')
         
         return ' '.join(body_classes)
+
+    def contentFilter(self):
+
+        contentFilter = {}
+
+        portal_catalog = getToolByName(self.context, "portal_catalog")
+        indexes = portal_catalog.indexes()
+
+        for k in self.request.form.keys():
+
+            if k in indexes:
+
+                # ZIP Code search            
+                if k == 'zip_code':
+
+                    search_zip = self.request.form.get(k)
+                    search_zip_radius = self.request.form.get('zip_code_radius')
+                    
+                    if not search_zip_radius:
+                        search_zip_radius = 25 # Default radius
+                    
+                    if search_zip and search_zip_radius:
+            
+                        try:
+                            ziptool = getToolByName(self.context, 'extension_zipcode_tool')
+                        except AttributeError:
+                            pass
+                        else:
+                            # We have a ziptool
+                            zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
+                            all_zips = portal_catalog.uniqueValuesFor('zip_code')
+                            search_zip_list = list(set(zips) & set(all_zips))
+                            contentFilter['zip_code'] = search_zip_list
+                elif k == 'Counties':
+                    counties = self.request.form.get(k)
+            
+                    if counties:
+                        if len(counties) == 1:
+                            contentFilter[k] = getSurroundingCounties(counties[0])
+                        else:
+                            contentFilter[k] = counties
+                else:
+                    contentFilter[k] = self.request.form[k]
+        return contentFilter

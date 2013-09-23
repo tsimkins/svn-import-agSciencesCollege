@@ -790,6 +790,16 @@ class LocalSearchViewlet(SearchBoxViewlet):
     def counties(self):
         return sorted(county_data.keys())
 
+    def searchURL(self):
+
+        if self.context.portal_type in ['Topic']:
+            parent = self.context.getParentNode()
+            if self.context.getId() == parent.getDefaultPage():
+                return parent.absolute_url()
+            else:
+                return self.context.absolute_url()
+        else:
+            return '%s/search' % self.site_url
 
 # provideAdapter for viewlets to be registered in standalone mode
 

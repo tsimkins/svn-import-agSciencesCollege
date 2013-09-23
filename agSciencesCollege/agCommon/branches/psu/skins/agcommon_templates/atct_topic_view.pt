@@ -15,7 +15,9 @@
                             standalone_view python:True">
 
         <metal:listingmacro define-macro="listing">
-        <tal:topiccontents define="topicContents python:here.queryCatalog(batch=True);
+        <tal:topiccontents define="contentFilter contentFilter|request/contentFilter|nothing;
+                                   contentFilter python:contentFilter and dict(contentFilter) or {};
+                                   topicContents python:here.queryCatalog(batch=True, **contentFilter);
                                    order_by_id here/order_by_id|nothing;
                                    order_by_title here/order_by_title|nothing;
                                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');

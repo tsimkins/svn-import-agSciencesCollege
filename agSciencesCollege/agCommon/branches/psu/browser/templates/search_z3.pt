@@ -54,7 +54,8 @@
                           folder_path python: request.form.get('path');
                           counties python: request.form.get('Counties');
                           zip_code python: request.form.get('zip_code');
-                          programs python: request.form.get('Topics');"
+                          programs python: request.form.get('Topics');
+                          collection_filter python: request.form.get('collection_filter');"
               tal:condition="not:is_advanced_search">
             <input class="searchPage"
                    name="SearchableText"
@@ -139,7 +140,12 @@
                 </tal:programs>
             </metal:programs>
 
-            
+            <metal:collection_filter define-macro="collection_filter" tal:condition="collection_filter">
+    
+                    <input type="hidden" value="True" name="collection_filter" />
+
+            </metal:collection_filter>
+ 
             <p class="discreet"
                i18n:translate="search_results_advanced"
                tal:condition="not:isAnon">
