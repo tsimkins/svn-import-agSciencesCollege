@@ -792,14 +792,20 @@ class LocalSearchViewlet(SearchBoxViewlet):
 
     def searchURL(self):
 
+        default_search_url ='%s/search' % self.site_url
+
         if self.context.portal_type in ['Topic']:
-            parent = self.context.getParentNode()
-            if self.context.getId() == parent.getDefaultPage():
-                return parent.absolute_url()
+            if self.context.getProperty('localsearch_override_collection', False):
+                return default_search_url # If we override the collection filtering behavior
             else:
-                return self.context.absolute_url()
+                parent = self.context.getParentNode()
+                
+                if self.context.getId() == parent.getDefaultPage():
+                    return parent.absolute_url()
+                else:
+                    return self.context.absolute_url()
         else:
-            return '%s/search' % self.site_url
+            return default_search_url
 
 # provideAdapter for viewlets to be registered in standalone mode
 
