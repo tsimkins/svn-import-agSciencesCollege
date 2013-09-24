@@ -125,6 +125,10 @@
                 There are currently no results for this search.
             </p>
 
+            <tal:noresults condition="python: not topicContents and here.listCriteria() and contentFilter">
+                <h2> No Results</h2>
+                <p> No results matching your search criteria were found. </p>
+            </tal:noresults>
 
             <p class="discreet"
                tal:condition="not: here/listCriteria"

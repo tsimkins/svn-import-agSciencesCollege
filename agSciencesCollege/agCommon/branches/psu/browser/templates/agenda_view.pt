@@ -104,6 +104,13 @@
             <div metal:use-macro="context/@@folder_listing_z3/macros/listing" />
             </tal:items>
         </tal:bymonth>
+        
+        <tal:noresults condition="not: view_data">
+            <tal:localsearch condition="contentFilter">
+                <h2> No Results</h2>
+                <p> No results matching your search criteria were found. </p>
+            </tal:localsearch>
+        </tal:noresults>
 
       </metal:main_macro>
     </metal:fill>
