@@ -260,7 +260,7 @@ class EventExtender(object):
                 required=False,
                 searchable=False,
                 widget=BooleanWidget(
-                    label=u"Enable online event registration (for free events only).",
+                    label=u"Enable online event registration (for no-fee events only).",
                     description=u"",
                     condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
