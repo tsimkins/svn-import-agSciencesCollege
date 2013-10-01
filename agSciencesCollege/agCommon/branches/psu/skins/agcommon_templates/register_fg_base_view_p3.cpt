@@ -94,7 +94,7 @@
     
     
             <h1 class="documentFirstHeading">
-              <span class="register-header">Register for</span> <span tal:content="item/Title" />
+              <span class="register-header">Register for Event</span> <span tal:content="item/Title" />
             </h1>
     
             <p class="documentDescription"
@@ -111,6 +111,8 @@
             <tal:form condition="registration_allowed">
 
             <h2>Registration Information</h2>
+
+            <p>There is no fee for this event, but pre-registration is requested.</p>
     
             <div tal:replace="structure provider:plone.abovecontentbody" />
                 

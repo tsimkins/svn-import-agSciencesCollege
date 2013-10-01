@@ -3065,12 +3065,10 @@ form.event-registration input[type="submit"]::-moz-focus-inner {
 h1 span.register-header {
     display: block;
     font-size: 0.75em;
-    margin: 0.25em 0;
-    color: #666666;
-}
-
-h1 span.register-header:after {
-    content: ":";
+    margin: 0.25em -0.5em 0.5em -0.5em;
+    background-color: #575757;
+    color: #FFFFFF;
+    padding: 0.5em 0.5em;
 }
 
 /* Handle exclude from nav in folder view */
@@ -3112,6 +3110,16 @@ input {
 
 .portletFooter .hiddenStructure {
     display: inline-block;
+}
+
+/* Registration Page */
+
+body.template-register_fg_base_view_p3 .event-registration-deadline {
+    margin-top: 1.25em;
+}
+
+body.template-register_fg_base_view_p3 #addthis {
+    display: none;
 }
 
 /* YOUR CSS RULES STOP HERE */

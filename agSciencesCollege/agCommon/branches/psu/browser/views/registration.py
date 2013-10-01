@@ -42,13 +42,20 @@ class RegistrationView(BrowserView):
         return mt.checkPermission('Modify portal content', event)
     
     def allowRegistration(self, event):
+        if not event:
+            return False
+
         now = DateTime()
+        
+        if now > event.end():
+            return False
         
         if hasattr(event, 'free_registration_deadline'):
             registration_deadline = getattr(event, 'free_registration_deadline')
             if registration_deadline:
-                if registration_deadline < now:
+                if now > registration_deadline:
                     return False
+
         return True
     
     def registrationURL(self):
