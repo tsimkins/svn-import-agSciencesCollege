@@ -49,7 +49,7 @@ class CountyView(TagsView):
         except KeyError:
             return []
 
-    def getFolderContents(self):
+    def getFolderContents(self, contentFilter={}):
         tag_root = self.tag_root
         tags = self.tags
 
