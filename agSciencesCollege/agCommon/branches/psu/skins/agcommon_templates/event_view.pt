@@ -42,6 +42,7 @@
                                     contact_email context/contact_email;
                                     contact_name python:context.contact_name() or None;
                                     contact_phone context/contact_phone;
+                                    location context/location;
                                     here_url context/@@plone_context_state/object_url;">
 
         <tal:wherewhen>
@@ -49,31 +50,31 @@
                              canceled python:isCanceled and 'canceled' or ''"
                  tal:attributes="class string:eventSummary vcard eventDateLocation ${canceled}">
                 <h2 class="hiddenStructure">Date and Location</h2>
+                <metal:wherewhen define-macro="wherewhen">
                 <div class="event_when">
                     <h3>When<span class="hiddenStructure"> (Date/Time)</span></h3>
 
                     <metal:when define-macro="event_when">
-
-                        <span tal:replace="python:toLocalizedTime(here.start(), end_time=here.end(), long_format=1)" />
-
+                        <metal:date define-slot="formatted_date">
+                            <span tal:replace="python:toLocalizedTime(here.start(), end_time=here.end(), long_format=1)" />
+                        </metal:date>
                     </metal:when>
 
                 </div>
-                <div tal:condition="context/location" class="event_where">
+                <div tal:condition="location" class="event_where">
                     <h3>Where</h3>
                     <metal:where define-macro="event_where">
 
                         <a tal:omit-tag="not: map_link"
                             tal:attributes="href map_link;
-                                            title string:Directions to ${here/location}">
-                            <metal:field use-macro="python:here.widget('location', mode='view')">
-                            Location
-                            </metal:field>
+                                            title string:Directions to ${location}">
+                            <span tal:content="location" />
                         </a>
 
                     </metal:where>
 
                 </div>
+                </metal:wherewhen>
                 <div class="event_add_calendar">
                     <h3>Add to calendar</h3>
                     <metal:add_to_calendar define-macro="event_add_calendar">
@@ -126,7 +127,24 @@
                         registration_url registration_view/registrationURL">
 
             <h2>Registration</h2>
-            
+
+            <metal:cost define-macro="registration_cost">
+            <div class="event-registration" tal:condition="registration_allowed"><h3>Cost</h3> 
+            There is no fee to attend this event.  However, pre-registration is requested.
+            </div>
+            </metal:cost>
+
+            <metal:deadline define-macro="registration_deadline">
+            <div class="event-registration" tal:condition="registration_deadline">
+                <tal:open condition="registration_allowed">
+                    <h3>Registration deadline</h3> 
+                    <span tal:replace="python:toLocalizedTime(registration_deadline, long_format=1)" />
+                </tal:open>
+                <span tal:condition="not: registration_allowed">Registration for this event is closed.</span>
+
+            </div>
+            </metal:deadline>
+           
             <form tal:condition="python: not event_editor and registration_allowed"
                 class="event-registration event-registration-public" 
                 tal:attributes="action registration_url" 
@@ -143,13 +161,6 @@
                 <input type="submit" value="Download Registration Information" />
             </form>
 
-            <metal:deadline define-macro="registration_deadline">
-            <div class="event-registration-deadline" tal:condition="registration_deadline"><strong>Registration deadline:</strong> 
-                <span tal:condition="registration_allowed" tal:replace="python:toLocalizedTime(registration_deadline, long_format=1)" />
-                <span tal:condition="not: registration_allowed">Registration is closed.</span>
-
-            </div>
-            </metal:deadline>
         </metal:register>
 
         <tal:contact>

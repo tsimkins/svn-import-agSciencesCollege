@@ -1245,6 +1245,14 @@ jq(document).ready(
 jq(window).load(function() {
     if (! jq('#portal-personaltools').size())
     {
+        // Track Pageview for Thank You page for forms
+        
+        if (jq('body.template-fg_register_thankspage_view_p3, body.fg_thankspage_view_p3').size())
+        {
+            _gaq.push(['_trackPageview', window.location.pathname + '/thank-you']);
+        }
+
+        
         // Image Portlet Tracking
         jq('.imagePortlet a').click(
             function() {

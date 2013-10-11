@@ -83,6 +83,8 @@
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         item_start item/start|item/StartDate|nothing;
                         item_end item/end|item/EndDate|nothing;
+                        location item/location|nothing;
+                        map_link item/map_link|nothing;
                         show_event_location python:False;
                         registration_allowed python: allowRegistration(item);
                         registration_deadline item/free_registration_deadline|nothing;">
@@ -103,17 +105,23 @@
                 Description
             </p>
     
+            <h2>Event Information</h2>
+
             <metal:event
-               metal:use-macro="context/@@folder_listing_z3/macros/event_date" />
+               use-macro="context/event_view/macros/wherewhen">
+                <metal:date fill-slot="formatted_date">
+                    <span tal:replace="python:toLocalizedTime(item_start, end_time=item_end, long_format=1)" />
+                </metal:date>
+            </metal:event>
+
+            <metal:deadline metal:use-macro="context/event_view/macros/registration_cost" />
 
             <metal:deadline metal:use-macro="context/event_view/macros/registration_deadline" />
 
             <tal:form condition="registration_allowed">
 
             <h2>Registration Information</h2>
-
-            <p>There is no fee for this event, but pre-registration is requested.</p>
-    
+   
             <div tal:replace="structure provider:plone.abovecontentbody" />
                 
                 <tal:if tal:condition="here/getFormPrologue | nothing">
