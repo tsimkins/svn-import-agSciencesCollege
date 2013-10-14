@@ -741,7 +741,7 @@ function mobileNav() {
         if (visualPadding.size())
         {
             var html = visualPadding.html();
-            html = html.replace('&nbsp;', ' ');
+            html = html.replace('&nbsp;', ' ').trim();
             visualPadding.html(html);
         }
 
@@ -1245,6 +1245,90 @@ jq(document).ready(
 jq(window).load(function() {
     if (! jq('#portal-personaltools').size())
     {
+        function getPortletManager(el)
+        {
+            if (jq(el).parents("#portal-column-one").size())
+            {
+                return "Left Column";
+            }
+            else if (jq(el).parents("#portal-column-two").size())
+            {
+                return "Right Column";
+            }
+            else if (jq(el).parents("#centercolumn").size())
+            {
+                return "Center Column";
+            }
+            else if (jq(el).parents("#rightcolumn").size())
+            {
+                return "Right Column (Homepage)";
+            }
+            else if (jq(el).parents("#portlets-above").size())
+            {
+                return "Content Well";
+            }
+            else if (jq(el).parents("#portlets-below").size())
+            {
+                return "Footer";
+            }
+            else
+            {
+                return "Other";
+            }
+
+        }
+        
+        function getPortletTitle(el)
+        {
+            var pm = getPortletManager(el);
+            var pw = jq(el).parents(".portletWrapper");
+            if (pw.size())
+            {
+                var ph = pw.children(".portletHeader");
+                
+                if (ph.children("span").size())
+                {
+                    ph = ph.children("span");
+                }
+
+                if (ph.children("a").size())
+                {
+                    ph = ph.children("a");
+                }
+                
+                var ph_text = ph.html();
+
+                if (ph_text)
+                {
+                    return pm + ": " + ph_text.trim().replace("&amp;", "&");
+                }
+            }
+            
+            return pm;
+                
+        }
+
+        function getButtonTitle(el)
+        {
+            el = jq(el);
+            if (el.children("span").size())
+            {
+                el = el.children("span");
+            }
+
+            var el_text = el.html();
+
+            if (el_text)
+            {
+                return el_text.trim().replace("&amp;", "&");
+            }
+            else
+            {
+                return "";
+            }
+        }
+            
+        
         // Track Pageview for Thank You page for forms
         
         if (jq('body.template-fg_register_thankspage_view_p3, body.fg_thankspage_view_p3').size())
@@ -1252,41 +1336,126 @@ jq(window).load(function() {
             _gaq.push(['_trackPageview', window.location.pathname + '/thank-you']);
         }
 
+        // Top navigation tracking
+        jq('#portal-top-navigation li a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Top Navigation', button_title]);
+            }
+        );
+
+        // Navigation Portlet Header tracking
+        jq('.portletNavigationHeader a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                button_title = button_title + " (Navigation Heading)";
+                var portlet_title = getPortletTitle(this);
+
+                _gaq.push(['_trackEvent', 'Navigation Portlet', button_title, portlet_title]);
+            }
+        );
+
+        jq('.portletNavigationSubHeader a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                button_title = button_title + " (Navigation Subheading)";
+                var portlet_title = getPortletTitle(this);
+
+                _gaq.push(['_trackEvent', 'Navigation Portlet', button_title, portlet_title]);
+            }
+        );
+
+
+        // Navigation Portlet tracking
+        jq('.portletNavigationTree li a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                var portlet_title = getPortletTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Navigation Portlet', button_title, portlet_title]);
+            }
+        );
+
+
+
+        // Feedmixer Portlet Tracking
+        jq('.portletfeedmixer .portletItem a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                var portlet_title = getPortletTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Feedmixer Portlet', button_title, portlet_title]);
+            }
+        );
+
+        // Collection Portlet Tracking
+        jq('.portletCollection .portletItem a').click(
+            function() {
+                var button_title = getButtonTitle(this);
+                var portlet_title = getPortletTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Collection Portlet', button_title, portlet_title]);
+            }
+        );
+
+        // Feedmixer Portlet Tracking (More)
+        jq('.portletfeedmixer .portletFooter a').click(
+            function() {
+                var button_title = "More...";
+                var portlet_title = getPortletTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Feedmixer Portlet', button_title, portlet_title]);
+            }
+        );
+
+        // Collection Portlet Tracking (More)
+        jq('.portletCollection .portletFooter a').click(
+            function() {
+                var button_title = "More...";
+                var portlet_title = getPortletTitle(this);
+                
+                _gaq.push(['_trackEvent', 'Collection Portlet', button_title, portlet_title]);
+            }
+        );
         
         // Image Portlet Tracking
         jq('.imagePortlet a').click(
             function() {
                 var button_title = jq(this).children('img').attr('alt');            
-    
+                var portlet_title = getPortletTitle(this);
+                    
                 if (! button_title)
                 {
-                    button_title = jq(this).children('span').html();
+                    button_title = getButtonTitle(this);
                 }
-    
-                _gaq.push(['_trackEvent', 'Image Portlet', button_title]);
+
+                _gaq.push(['_trackEvent', 'Image Portlet', button_title, portlet_title]);
             }
         );
     
         // Link Icon Tracking
         jq('.linkIcon a').click(
             function() {
-                var icon_title = jq(this).children('span').html();
-    
-                _gaq.push(['_trackEvent', 'Link Icon', icon_title]);
+                var icon_title = getButtonTitle(this);
+                var portlet_title = getPortletTitle(this);
+                                    
+                _gaq.push(['_trackEvent', 'Link Icon', icon_title, portlet_title]);
             }
         );
         
         // Link Button Tracking
         jq('.linkButton a').click(
             function() {
-                var button_title = jq(this).children('span').html();
-                
+                var button_title = getButtonTitle(this);
+                var portlet_title = getPortletTitle(this);
+
                 if (! button_title)
                 {
                     button_title = jq(this).children('img').attr('alt');
                 }
-    
-                _gaq.push(['_trackEvent', 'Link Button', button_title]);
+                    
+                _gaq.push(['_trackEvent', 'Link Button', button_title, portlet_title]);
             }
         );
         
@@ -1329,7 +1498,7 @@ jq(window).load(function() {
         {
             jq('.flexslider .flex-control-nav li a').click(
                 function() {
-                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html()]);
+                    _gaq.push(['_trackEvent', 'Homepage Slider', 'Dot Navigation', 'Dot ' + jq(this).html().trim()]);
                 }
             );
         
@@ -1347,21 +1516,21 @@ jq(window).load(function() {
         
             jq('.flexslider .tileHeadline a').click(
                 function() {
-                    var article_title = jq(this).html();
+                    var article_title = jq(this).html().trim();
                     _gaq.push(['_trackEvent', 'Homepage Slider', 'Headline Click', article_title]);
                 }
             );
         
             jq('.flexslider .tileFooter a').click(
                 function() {
-                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html().trim()
                     _gaq.push(['_trackEvent', 'Homepage Slider', 'Footer Click', article_title]);
                 }
             );
     
             jq('.flexslider .contentLeadImageContainer a').click(
                 function() {
-                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html();
+                    var article_title = jq(this).parents('li.tileItem').find('.tileHeadline a').html().trim()
                     _gaq.push(['_trackEvent', 'Homepage Slider', 'Image Click', article_title]);
                 }
             );
