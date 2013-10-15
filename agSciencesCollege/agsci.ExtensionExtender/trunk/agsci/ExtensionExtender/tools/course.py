@@ -76,6 +76,14 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
     security.declarePublic('getCourseForEvent')
     def getCourseForEvent(self, event_brain, skip_if_exists=True):
 
+        if skip_if_exists and hasattr(event_brain, 'extension_courses') and event_brain.extension_courses:
+            return event_brain.extension_courses[0]
+        
+        return self.getCourseForEventTitle(event_brain.Title)
+
+    security.declarePublic('getCourseForEventTitle')
+    def getCourseForEventTitle(self, event_title):
+
         abbr = {
             'BKC' : 'Better Kid Care',
             'Technology Tuesdays' : 'Technology Tuesday Series',
@@ -101,14 +109,10 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
             'Raising Chickens' : 'Backyard Poultry',
             'OMK' : 'Operation Military Kids',
             'Home Canning Workshops' : 'Home Food Preservation',
-            
-            
+           
         }
 
-        if skip_if_exists and hasattr(event_brain, 'extension_courses') and event_brain.extension_courses:
-            return event_brain.extension_courses[0]
-
-        title = event_brain.Title.decode('utf-8').lower().strip()
+        title = event_title.decode('utf-8').lower().strip()
         
         char_regex = re.compile("[^a-zA-Z0-9]", re.I|re.M)
        
