@@ -26,6 +26,7 @@
     <tal:foldercontents define="custom_sort python:{'sort_on': 'effective', 'sort_order': 'descending'};
                         contentFilter contentFilter|request/contentFilter|custom_sort;
                         contentFilter python:contentFilter and dict(contentFilter) or {};
+                        contentFilter python: dict(contentFilter.items() + custom_sort.items());
                         limit_display limit_display|request/limit_display|nothing;
                         limit_display python:limit_display and int(limit_display) or None;
                         more_url more_url|request/more_url|string:folder_contents;
