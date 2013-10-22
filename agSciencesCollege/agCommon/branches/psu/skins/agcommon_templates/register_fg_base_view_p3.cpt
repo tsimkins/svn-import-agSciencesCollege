@@ -120,7 +120,7 @@
 
             <tal:form condition="registration_allowed">
 
-            <h2>Registration Information</h2>
+            <h2>Registrant's Information</h2>
    
             <div tal:replace="structure provider:plone.abovecontentbody" />
                 

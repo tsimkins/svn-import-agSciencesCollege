@@ -331,7 +331,7 @@
 
     <!-- Table of Contents Viewlet -->
     <browser:viewlet
-        name="agcommon.tableofcontents"
+        name="plone.tableofcontents"
         for=".interfaces.ITableOfContents"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         class=".viewlets.TableOfContentsViewlet"
@@ -351,6 +351,11 @@
 
     <five:implements
         class="Products.ATContentTypes.content.event.ATEvent"
+        interface=".interfaces.ITableOfContents"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.ITableOfContents"
     /> 
 
