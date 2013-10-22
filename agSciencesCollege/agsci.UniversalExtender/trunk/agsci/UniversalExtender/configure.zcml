@@ -219,6 +219,10 @@
         interface=".interfaces.ITableOfContentsExtender"
     /> 
 
+    <five:implements
+        class="Products.ATContentTypes.content.folder.ATFolder"
+        interface=".interfaces.ITableOfContentsExtender"
+    /> 
 
     <!-- Contributors Extender -->
 
@@ -327,10 +331,18 @@
         original="getTableContents"
         ignoreOriginal="True"
         />
-        
+
+    <monkey:patch
+        description="This adds a 'getTableContents' method to the event type"
+        class="Products.ATContentTypes.content.event.ATEvent"
+        replacement=".patch.customTableContents"
+        original="getTableContents"
+        ignoreOriginal="True"
+        />        
+
     <monkey:patch
         description="This adds a 'getTableContents' method to the folder type"
-        class="Products.ATContentTypes.content.event.ATEvent"
+        class="Products.ATContentTypes.content.folder.ATFolder"
         replacement=".patch.customTableContents"
         original="getTableContents"
         ignoreOriginal="True"
