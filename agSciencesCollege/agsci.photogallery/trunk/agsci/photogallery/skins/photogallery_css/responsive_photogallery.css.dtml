@@ -67,6 +67,10 @@
 	background-color: #000000;
 }
 
+#content .rg-caption h2 a {
+	color: #5D98FF !important;
+}
+
 #content .rg-caption h2.description {
     border-bottom: 1px solid #666666 !important;
 }

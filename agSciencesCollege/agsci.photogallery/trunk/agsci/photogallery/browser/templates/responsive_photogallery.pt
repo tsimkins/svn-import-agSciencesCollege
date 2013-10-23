@@ -7,7 +7,7 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<body>
+<body tal-define="isAnon context/@@plone_portal_state/anonymous;">
 
     <metal:style fill-slot="style_slot">
     </metal:style>
@@ -19,7 +19,7 @@
 				<div class="rg-loading"></div>
 				<div class="rg-caption-wrapper">
 					<div class="rg-caption" style="display:none;">
-						<h2></h2>
+                        <h2><a tal:omit-tag="isAnon"></a></h2>
 						<p></p>
 					</div>
 				</div>
@@ -60,7 +60,10 @@
                                                          data-xlarge string:${i/getURL}/image_galleryzoom; 
                                                          alt i/Title; 
                                                          data-title i/Title; 
-                                                         data-description i/Description;" 
+                                                         data-description i/Description;
+                                                         data-editlink editlink;"
+                                          tal:define="editlink string:${i/getURL}/edit;
+                                                      editlink python: not isAnon and editlink or ''"
                                              />
                                 </a>
                             </li>

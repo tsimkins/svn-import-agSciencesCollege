@@ -236,14 +236,24 @@ jQuery(function() {
 					xlargesrc	= $thumb.data('xlarge'),
 					title		= $thumb.data('title');
 					desc		= $thumb.data('description');
-				
+					editlink	= $thumb.data('editlink');
+
 				jQuery('<img/>').load( function() {
 					$rgGallery.find('div.rg-image').empty().append('<a class="fancybox" href="' + xlargesrc + '"><img src="' + largesrc + '" /></a>');
 					
 					if( title )
 					{
                         var desc_class = desc ? 'description' : '';
-						$rgGallery.find('div.rg-caption').show().children('h2').empty().text( title ).removeClass().addClass(desc_class);
+                        if (editlink)
+                        {
+    						$rgGallery.find('div.rg-caption').show().children('h2').children('a').empty().text( title );
+    						$rgGallery.find('div.rg-caption').children('h2').removeClass().addClass(desc_class);
+    						$rgGallery.find('div.rg-caption').show().children('h2').children('a').attr('href', editlink);
+                        }
+                        else
+                        {
+    						$rgGallery.find('div.rg-caption').show().children('h2').empty().text( title ).removeClass().addClass(desc_class);
+                        }
 						$rgGallery.find('div.rg-caption').show().children('p').empty().text( desc );
 					}
 
