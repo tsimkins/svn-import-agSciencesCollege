@@ -15,20 +15,76 @@ import re
 
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, BaseDocTemplate, Frame, PageTemplate, FrameBreak
-from reportlab.platypus.flowables import HRFlowable, KeepTogether
+from reportlab.platypus.flowables import HRFlowable, KeepTogether, ImageAndFlowables, ParagraphAndImage
+from reportlab.platypus.figures import ImageFigure as ImageFigureBase
+from reportlab.platypus.figures import FlexFigure
 from reportlab.platypus.tables import Table, TableStyle
 from reportlab.platypus.tableofcontents import TableOfContents
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib.utils import ImageReader
 from reportlab.lib.colors import Color
+from reportlab.rl_config import _FUZZ
+from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER
 
 from io import BytesIO
 from uuid import uuid4
 
+from PIL import Image as PILImage
+
+import os
+
 from zope.app.component.hooks import getSite
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+
+class ImageFigure(ImageFigureBase, Image):
+    """Image with a caption below it"""
+    def __init__(self, img_data, caption, width, height, background=None, align='right'):
+        self.img = PILImage.open(img_data)
+        w, h = self.img.size
+        scaleFactor = width/w
+        FlexFigure.__init__(self, w*scaleFactor, h*scaleFactor, caption, background)
+        self.border=0
+        self.captionFont='Helvetica'
+        self.captionTextColor='gray'
+        self.scaleFactor = self._scaleFactor = scaleFactor
+        self.vAlign = 'TOP'
+        self.hAlign = 'LEFT'
+
+    def drawFigure(self):
+        (w,h) = self.img.size
+        self.canv.drawInlineImage(self.img, -1*w*self.scaleFactor*self.scaleFactor, -1, w*self.scaleFactor, h*self.scaleFactor)
+
+    def drawCaption(self):
+        (w,h) = self.img.size
+        self.captionStyle.alignment = TA_LEFT
+        self.captionPara.drawOn(self.canv, -1*w*self.scaleFactor*self.scaleFactor, 0)  
+
+    @property
+    def drawWidth(self):
+        return self.width
+
+    @property
+    def drawHeight(self):
+        caption_height = self.captionPara.wrap(self.width, 100)[1] + self.captionGap
+        return self.figureHeight + caption_height
+
+    def _restrictSize(self,aW,aH):
+        if self.drawWidth>aW+_FUZZ or self.drawHeight>aH+_FUZZ:   
+            self._oldDrawSize = self.drawWidth, self.drawHeight 
+            factor = min(float(aW)/self.drawWidth,float(aH)/self.drawHeight)
+            self.drawWidth *= factor
+            self.drawHeight *= factor
+        return self.drawWidth, self.drawHeight
+
+    def _unRestrictSize(self):
+        dwh = getattr(self,'_oldDrawSize',None)
+        if dwh:
+            self.drawWidth, self.drawHeight = dwh
+
+
+
 
 class FactsheetDocTemplate(BaseDocTemplate):
     def __init__(self, filename, **kw):
@@ -73,13 +129,15 @@ class FactsheetPDFView(FolderView):
         pdf = self.createPDF() # Remove this line when done debugging
 
         try:
-            pdf = self.createPDF()
+            #pdf = self.createPDF()
+            pass
         except:
             # Also send email
             return "<h1>Error</h1><p>Sorry, an error has occurred.</p>"
 
         self.request.response.setHeader('Content-Type', 'application/pdf')
         self.request.response.setHeader('Content-Disposition', 'attachment; filename="%s.pdf"' % filename)
+
         return pdf
 
     def getPublicationCode(self):
@@ -301,6 +359,17 @@ class FactsheetPDFView(FolderView):
         if hasattr(self.context, 'extension_publication_description_body') and self.context.extension_publication_description_body:
             description_body = True
 
+        # Number of columns
+        column_count = 2
+
+        if hasattr(self.context, 'extension_publication_column_count'):
+            column_count = getattr(self.context, 'extension_publication_column_count', '2')
+
+        try:
+            column_count = int(column_count)
+        except:
+            column_count = 2
+
         # Grab the publication code
         publication_code = self.getPublicationCode()
 
@@ -393,11 +462,14 @@ class FactsheetPDFView(FolderView):
         element_padding = 6
 
         # Document image setttings
-        max_image_width = doc.width/2-18
+        if column_count <= 2:
+            max_image_width = doc.width/2-18
+        else:
+            max_image_width = doc.width/column_count-18
 
         # Returns a reportlab image object based on a Plone image object
 
-        def getImage(img_obj, scale=True, reader=False, width=max_image_width, style="", hAlign="CENTER"):
+        def getImage(img_obj, scale=True, reader=False, width=max_image_width, style="", hAlign="CENTER", caption="", leadImage=False):
 
             img_width = img_obj.width
             img_height = img_obj.height
@@ -414,7 +486,10 @@ class FactsheetPDFView(FolderView):
             if reader:
                 return ImageReader(img_data)
             else:
-                img = Image(img_data, width=img_width, height=img_height)
+                if caption or leadImage:
+                    img = ImageFigure(img_data, caption=caption, width=img_width, height=img_height, align="right")
+                else:
+                    img = Image(img_data, width=img_width, height=img_height)
 
                 if style:
                     img.style = style
@@ -491,19 +566,27 @@ class FactsheetPDFView(FolderView):
         title_column_height = title_y - title_column_y
 
         title_frame_title = Frame(doc.leftMargin, title_y, doc.width, title_height, id='title_title')
-        title_frame1 = Frame(doc.leftMargin, title_column_y, doc.width/2-element_padding, title_column_height, id='title_col1')
-        title_frame2 = Frame(doc.leftMargin+doc.width/2+element_padding, title_column_y, doc.width/2-element_padding,
-                       title_column_height, id='title_col2')
+
+        title_frames = [title_frame_title]
+
+        for i in range(0,column_count):
+            lm = doc.leftMargin + i * (doc.width/column_count+element_padding)
+            w = doc.width/column_count-element_padding
+            title_frame = Frame(lm, title_column_y, w, title_column_height, id='title_col%d' % i)
+            title_frames.append(title_frame)
 
         #Two Columns For remaining page
 
-        other_frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-element_padding, doc.height, id='other_col1')
-        other_frame2 = Frame(doc.leftMargin+doc.width/2+element_padding, doc.bottomMargin, doc.width/2-element_padding,
-                       doc.height, id='other_col2')
+        other_frames = []
 
+        for i in range(0,column_count):
+            lm = doc.leftMargin + i * (doc.width/column_count+element_padding)
+            w = doc.width/column_count-element_padding
+            other_frame = Frame(lm, doc.bottomMargin, w, doc.height, id='other_col%d' % i)
+            other_frames.append(other_frame)
 
-        title_template = PageTemplate(id="title_template", frames=[title_frame_title,title_frame1,title_frame2],onPage=header_footer)
-        other_template = PageTemplate(id="other_template", frames=[other_frame1,other_frame2],onPage=footer)
+        title_template = PageTemplate(id="title_template", frames=title_frames,onPage=header_footer)
+        other_template = PageTemplate(id="other_template", frames=other_frames,onPage=footer)
 
         doc.addPageTemplates([title_template,other_template])
         doc.handle_nextPageTemplate("other_template")
@@ -541,11 +624,12 @@ class FactsheetPDFView(FolderView):
         if leadImage_field and leadImage_caption_field:
             leadImage = leadImage_field.get(self.context)
             leadImage_caption = leadImage_caption_field.get(self.context)
-            if leadImage.get_size():
-                pdf.append(getImage(leadImage))
-            if leadImage_caption:
-                pdf.append(Paragraph(leadImage_caption, discreet))
 
+            if leadImage.get_size():
+
+                img = getImage(leadImage, caption=leadImage_caption, leadImage=True)
+
+                pdf.append(img)
 
         # portal_transforms will let us convert HTML into plain text
         portal_transforms = getToolByName(self.context, 'portal_transforms')
@@ -563,6 +647,30 @@ class FactsheetPDFView(FolderView):
         # Loop through Soup contents
         for item in soup.contents:
             pdf.extend(getContent(item))
+
+        # Embed images in paragraphs if we're a single column
+        if column_count == 1 and False:
+
+            for i in range(1,len(pdf)-1):
+                if isinstance(pdf[i], Image):
+                    p_pos = 0
+                    paragraphs = []
+                    
+                    for j in range(i+1, len(pdf)-1):
+                        if isinstance(pdf[j], Paragraph):
+                            paragraphs.append(pdf[j])
+                            pdf[j] = None
+
+                    if paragraphs:
+    
+                        pdf[i].hAlign="RIGHT"
+                        
+                        img_paragraph = ImageAndFlowables(pdf[i], paragraphs,imageLeftPadding=element_padding)
+                        pdf[i] = img_paragraph
+
+
+            while None in pdf:
+                pdf.remove(None)
 
         # All done with contents, appending line and statement
         pdf.append(HRFlowable(width='100%', spaceBefore=4, spaceAfter=4))

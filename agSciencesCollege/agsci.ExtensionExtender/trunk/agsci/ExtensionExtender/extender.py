@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, IntegerField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -12,6 +12,7 @@ from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.blob.field import BlobField
 from Products.ATContentTypes.interfaces.event import IATEvent
 
+class _ExtensionIntegerField(ExtensionField, IntegerField): pass
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _ExtensionBlobField(ExtensionField, BlobField): pass
@@ -295,8 +296,21 @@ class ExtensionPublicationExtender(object):
                 description=u"Verify the formatting of this PDF after checking this box. You may have to tweak the content to obtain a nicely formatted PDF.",
             ),
         ),
+        
+        _ExtensionIntegerField(
+            "extension_publication_column_count",
+            schemata="Publication",
+            required=False,
+            default='2',
+            widget=SelectionWidget(
+                label=u"Number of columns in publication",
+                description=u"",
+                format='select'
+            ),
+            vocabulary=([(str(x), str(x)) for x in range(0,5)]),
+        ),
 
-        _ExtensionBooleanField(
+        _ExtensionStringField(
             "extension_publication_description_body",
             schemata="Publication",
             required=False,
