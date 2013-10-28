@@ -202,7 +202,7 @@ def importEvents(context,
                         if r.extension_topics:
                             myObject.extension_topics = tuple(r.extension_topics)
                         if r.extension_subtopics:
-                            myObject.extension_suvtopics = tuple(r.extension_subtopics)
+                            myObject.extension_subtopics = tuple(r.extension_subtopics)
                         
 
             myObject.reindexObject()
