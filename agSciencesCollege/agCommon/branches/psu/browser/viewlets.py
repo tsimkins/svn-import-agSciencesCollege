@@ -41,6 +41,15 @@ except ImportError:
             Placeholder interface
         """
 
+try:
+    from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
+except ImportError:
+    class IUniversalPublicationExtender(Interface):
+        """
+            Placeholder interface
+        """
+
+
 from zope.publisher.interfaces.browser import IBrowserView,IDefaultBrowserLayer
 
 from Products.Five.browser import BrowserView
@@ -294,7 +303,7 @@ class AddThisViewlet(AgCommonViewlet):
         
         # Integrate Extension PDF download
         self.downloadPDF = False
-        if IExtensionPublicationExtender.providedBy(self.context):
+        if IExtensionPublicationExtender.providedBy(self.context) or IUniversalPublicationExtender.providedBy(self.context):
             if hasattr(self.context, 'extension_publication_file') and self.context.extension_publication_file:
                 self.downloadPDF = True
                 self.pdf_url = '%s/extension_publication_file' % self.context.absolute_url()

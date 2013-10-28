@@ -2405,6 +2405,7 @@ table.plain th {
 
 table.plain {
     font-size: 0.875em;
+    margin: 1em 0;
 }
 
 table.plain th, table.plain td {
