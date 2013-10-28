@@ -84,9 +84,9 @@ def getCventEvents(acct_num='',
 
 
 def importEvents(context,
-                 acct_num=acct_num,
-                 login_name=login_name,
-                 passwd=passwd,
+                 acct_num='',
+                 login_name='',
+                 passwd='',
                  emailUsers=['trs22'],
                  eventsURL="https://agsci.psu.edu/conferences/event-calendar",
                  owner=None,
@@ -186,9 +186,24 @@ def importEvents(context,
                     myObject.extension_counties = (zipInfo[2], )
 
             if course_tool:
+
+                # Set the course
                 course = course_tool.getCourseForEventTitle(eventTitle)
+
                 if course:
                     myObject.extension_courses = (course, )
+                    
+                    # Set the program/topic based on what the course has.
+                    
+                    results = course_tool.getCourseInfo(course)
+
+                    if results:
+                        r = results[0]
+                        if r.extension_topics:
+                            myObject.extension_topics = tuple(r.extension_topics)
+                        if r.extension_subtopics:
+                            myObject.extension_suvtopics = tuple(r.extension_subtopics)
+                        
 
             myObject.reindexObject()
 
