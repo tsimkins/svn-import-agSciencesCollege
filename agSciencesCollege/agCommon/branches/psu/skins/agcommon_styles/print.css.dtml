@@ -395,11 +395,12 @@ body.template-factsheet_view #portal-top, body.template-factsheet_view #portal-h
 }
 
 
-a:link:after, a:visited:after {
+a[href^="http"]:link:after, a[href^="http"]:visited:after {
     content:" [" attr(href) "] "; 
 }
 
-#portal-top a:link:after, #portal-top a:visited:after {
+#portal-top a:link:after, #portal-top a:visited:after,
+.contentLeadImageContainer a:link:after, .contentLeadImageContainer a:visited:after {
     content:""; 
 }
 

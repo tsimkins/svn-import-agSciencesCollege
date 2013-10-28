@@ -1560,9 +1560,18 @@ p {
     margin: 1em 0;
 }
 
-#content p {
+#content p{
     margin: 0.375em 0 1.125em 0;
 }
+
+#content dd {
+    margin: 0 0 1.5em 0;
+}
+
+#content dt {
+    margin: 0.375em 0 0.5em 0;
+}
+
 
 /* Photo Album */
 .photoAlbumEntry {
@@ -1772,8 +1781,12 @@ body.template-folder_summary_view_z3 .effectiveDate {
 }
 
 body.template-news_listing #content dd {
-    margin-bottom: 2em;
-    margin-left: 0;
+    margin: 0 0 2em 0;
+    padding-bottom: 0;
+}
+
+body.template-news_listing #content dt {
+    margin: 0;
 }
 
 #content .tileSubItem dd {
