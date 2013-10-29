@@ -650,10 +650,15 @@ class FactsheetPDFView(FolderView):
             leadImage_caption = leadImage_caption_field.get(self.context)
 
             if leadImage.get_size():
+                if column_count == 1:
+                    pdf.append(getImage(leadImage, caption=leadImage_caption, leadImage=True))
 
-                img = getImage(leadImage, caption=leadImage_caption, leadImage=True)
+                else:
+                    pdf.append(getImage(leadImage)) 
 
-                pdf.append(img)
+                    if leadImage_caption: 
+                        pdf.append(Paragraph(leadImage_caption, discreet)) 
+
 
         # portal_transforms will let us convert HTML into plain text
         portal_transforms = getToolByName(self.context, 'portal_transforms')
@@ -732,6 +737,7 @@ class FactsheetPDFView(FolderView):
 
         # Create PDF - multibuild instead of build for table of contents
         # functionality
+
         doc.multiBuild(pdf)
         #doc.build(pdf)
 
