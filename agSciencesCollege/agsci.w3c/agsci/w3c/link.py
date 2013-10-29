@@ -54,7 +54,7 @@ def findBrokenLinks(context, redirects={}, shortened=[], url_pattern=None, debug
     
         if not return_codes.get(url):
             try:
-                data = urllib2.urlopen(url, None, 10)
+                data = urllib2.urlopen(url, None, 30)
             except ValueError:
                 return_codes[url] = 999
                 return 999
