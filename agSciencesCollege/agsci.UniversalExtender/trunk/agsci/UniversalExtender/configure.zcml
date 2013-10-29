@@ -267,6 +267,14 @@
         interface="agsci.subsite.content.interfaces.ITagRoot"
     /> 
 
+    <!-- Publication Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.UniversalPublicationExtender"
+        factory=".extender.UniversalPublicationExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
     <!-- Monkey Patch folder by adding 'getText' method -->
 
     <monkey:patch

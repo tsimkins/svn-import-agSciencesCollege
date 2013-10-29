@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField, FileWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -6,7 +6,7 @@ from Products.ATContentTypes.interfaces.document import IATDocument
 from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender, IUniversalPublicationExtender
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -18,6 +18,7 @@ from agsci.subsite.content.interfaces import ITagRoot, IHomePage
 from Products.Archetypes.utils import DisplayList
 from collective.contentleadimage.extender import show_leadimage
 from archetypes.referencebrowserwidget import ReferenceBrowserWidget
+from plone.app.blob.field import BlobField
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
@@ -25,6 +26,7 @@ class _TextExtensionField(ExtensionField, TextField): pass
 class _ExtensionLinesField(ExtensionField, LinesField): pass
 class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
 class _ExtensionReferenceField(ExtensionField, ReferenceField): pass
+class _ExtensionBlobField(ExtensionField, BlobField): pass
 
 class _TagsField(_ExtensionLinesField):
     def Vocabulary(self, context):
@@ -783,6 +785,56 @@ class TagRootExtender(object):
         schema.moveField('available_public_tags', after='folder_text')
 
         return schema
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+
+class UniversalPublicationExtender(object):
+    adapts(IUniversalPublicationExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IUniversalExtenderLayer
+    
+    @property
+    def fields(self):
+        fields = self.custom_fields()
+        fields.extend(self.base_fields())
+        return fields
+
+    def base_fields(self):
+        return [
+
+            _ExtensionStringField(
+                "extension_publication_url",
+                    schemata="Publication",
+                    required=False,
+                    searchable=False,
+                    widget=StringWidget(
+                        label=u"External Publication URL",
+                        description=u"",
+                    ),
+                    validators = ('isURL'),
+            ),
+    
+            _ExtensionBlobField(
+                "extension_publication_file",
+                schemata="Publication",
+                required=False,
+                widget=FileWidget(
+                    label=u"Publication file",
+                    description=u"",
+                ),
+            ),
+
+        ]
+
+    def custom_fields(self):
+        return []
+
 
     def __init__(self, context):
         self.context = context
