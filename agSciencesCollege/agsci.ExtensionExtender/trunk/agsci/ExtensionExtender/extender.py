@@ -1,4 +1,4 @@
-from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, IntegerField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget
+from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, StringWidget, LinesWidget, BooleanField, BooleanWidget, FileWidget, SelectionWidget, MultiSelectionWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
@@ -11,8 +11,8 @@ from Acquisition import aq_acquire, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.blob.field import BlobField
 from Products.ATContentTypes.interfaces.event import IATEvent
+from agsci.UniversalExtender.extender import UniversalPublicationExtender
 
-class _ExtensionIntegerField(ExtensionField, IntegerField): pass
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
 class _ExtensionBlobField(ExtensionField, BlobField): pass
@@ -235,112 +235,93 @@ class ExtensionExtender(object):
 
 
 #--
-class ExtensionPublicationExtender(object):
+class ExtensionPublicationExtender(UniversalPublicationExtender):
     adapts(IExtensionPublicationExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IExtensionExtenderLayer
     
-    fields = [
-        _ExtensionStringField(
-            "extension_publication_code",
-                schemata="Publication",
-                required=False,
-                searchable=True,
-                widget=StringWidget(
-                    label=u"Publication Code",
-                    description=u"",
-                ),
-        ),
-
-        _ExtensionStringField(
-            "extension_publication_series",
-                schemata="Publication",
-                required=False,
-                searchable=True,
-                widget=StringWidget(
-                    label=u"Publication Series",
-                    description=u"Optional",
-                ),
-        ),
-
-        _ExtensionStringField(
-            "extension_publication_url",
-                schemata="Publication",
-                required=False,
-                searchable=False,
-                widget=StringWidget(
-                    label=u"External Publication URL",
-                    description=u"",
-                ),
-                validators = ('isURL'),
-        ),
-
-        _ExtensionBlobField(
-            "extension_publication_file",
-            schemata="Publication",
-            required=False,
-            widget=FileWidget(
-                label=u"Publication file",
-                description=u"",
-            ),
-        ),
-
-        _ExtensionBooleanField(
-            "extension_publication_download",
-            schemata="Publication",
-            required=False,
-            default=False,
-            widget=BooleanWidget(
-                label=u"Automatically generate PDF",
-                description=u"Verify the formatting of this PDF after checking this box. You may have to tweak the content to obtain a nicely formatted PDF.",
-            ),
-        ),
-        
-        _ExtensionIntegerField(
-            "extension_publication_column_count",
-            schemata="Publication",
-            required=False,
-            default='2',
-            widget=SelectionWidget(
-                label=u"Number of columns in publication",
-                description=u"",
-                format='select'
-            ),
-            vocabulary=([(str(x), str(x)) for x in range(0,5)]),
-        ),
-
-        _ExtensionStringField(
-            "extension_publication_description_body",
-            schemata="Publication",
-            required=False,
-            default=False,
-            widget=BooleanWidget(
-                label=u"Show description in body rather than header.",
-                description=u"",
-            ),
-        ),
-
-        _ExtensionBooleanField(
-            "extension_publication_long_statement",
-            schemata="Publication",
-            required=False,
-            default=False,
-            widget=BooleanWidget(
-                label=u"Show long statement on generated PDF.",
-                description=u"",
-            ),
-        ),
-        
-
-
-    ]
-
     def __init__(self, context):
         self.context = context
 
     def getFields(self):
         return self.fields
+
+    def custom_fields(self):
+        return [
+            _ExtensionStringField(
+                "extension_publication_code",
+                    schemata="Publication",
+                    required=False,
+                    searchable=True,
+                    widget=StringWidget(
+                        label=u"Publication Code",
+                        description=u"",
+                    ),
+            ),
+    
+            _ExtensionStringField(
+                "extension_publication_series",
+                    schemata="Publication",
+                    required=False,
+                    searchable=True,
+                    widget=StringWidget(
+                        label=u"Publication Series",
+                        description=u"Optional",
+                    ),
+            ),
+    
+            _ExtensionBooleanField(
+                "extension_publication_download",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Automatically generate PDF",
+                    description=u"Verify the formatting of this PDF after checking this box. You may have to tweak the content to obtain a nicely formatted PDF.",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
+            
+            _ExtensionStringField(
+                "extension_publication_column_count",
+                schemata="Publication",
+                required=False,
+                default='2',
+                widget=SelectionWidget(
+                    label=u"Number of columns in publication",
+                    description=u"",
+                    format='select',
+                    condition="python:member.has_role('Manager', object)",
+                ),
+                vocabulary=([(str(x), str(x)) for x in range(1,4)]),
+            ),
+    
+            _ExtensionStringField(
+                "extension_publication_description_body",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Show description in body rather than header.",
+                    description=u"",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
+    
+            _ExtensionBooleanField(
+                "extension_publication_long_statement",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Show long statement on generated PDF.",
+                    description=u"",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
+
+        ]
 
 
 class ExtensionEventExtender(ExtensionExtender):

@@ -40,26 +40,41 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 class ImageFigure(ImageFigureBase, Image):
     """Image with a caption below it"""
-    def __init__(self, img_data, caption, width, height, background=None, align='right'):
+    def __init__(self, img_data, caption, width, height, background=None, align='right', max_image_width=None, column_count=1):
         self.img = PILImage.open(img_data)
         w, h = self.img.size
-        scaleFactor = width/w
+
+        if max_image_width > w:
+            scaleFactor = max_image_width/w            
+        else:
+            scaleFactor = width/w            
+
         FlexFigure.__init__(self, w*scaleFactor, h*scaleFactor, caption, background)
         self.border=0
         self.captionFont='Helvetica'
         self.captionTextColor='gray'
+        self.captionSize=9
         self.scaleFactor = self._scaleFactor = scaleFactor
         self.vAlign = 'TOP'
         self.hAlign = 'LEFT'
+        self.column_count = column_count
 
     def drawFigure(self):
         (w,h) = self.img.size
-        self.canv.drawInlineImage(self.img, -1*w*self.scaleFactor*self.scaleFactor, -1, w*self.scaleFactor, h*self.scaleFactor)
-
+        if self.column_count == 1:
+            self.canv.drawInlineImage(self.img, x=-w*self.scaleFactor/2, y=0, width=w*self.scaleFactor, height=h*self.scaleFactor)
+        else:
+            self.canv.drawInlineImage(self.img, x=0, y=0, width=w*self.scaleFactor, height=h*self.scaleFactor)
+            
     def drawCaption(self):
         (w,h) = self.img.size
         self.captionStyle.alignment = TA_LEFT
-        self.captionPara.drawOn(self.canv, -1*w*self.scaleFactor*self.scaleFactor, 0)  
+
+        if self.column_count == 1:
+            self.captionPara.drawOn(self.canv, -w*self.scaleFactor/2, 0)  
+        else:
+            self.captionPara.drawOn(self.canv, 0, 0)  
+
 
     @property
     def drawWidth(self):
@@ -460,16 +475,20 @@ class FactsheetPDFView(FolderView):
 
         # Standard padding for document elements
         element_padding = 6
-
+        
         # Document image setttings
-        if column_count <= 2:
-            max_image_width = doc.width/2-18
-        else:
-            max_image_width = doc.width/column_count-18
+        max_image_width = doc.width/column_count-(3*element_padding)
+        
+        if column_count <= 1:
+            max_image_width = doc.width/2-(3*element_padding)
 
         # Returns a reportlab image object based on a Plone image object
 
-        def getImage(img_obj, scale=True, reader=False, width=max_image_width, style="", hAlign="CENTER", caption="", leadImage=False):
+        def getImage(img_obj, scale=True, reader=False, width=max_image_width, style="", column_count=column_count, caption="", leadImage=False, hAlign=None, body_image=True):
+
+            if not leadImage and body_image and column_count == 1:
+                # Special case to make one column body images 66% of the page
+                width = 1.33*width
 
             img_width = img_obj.width
             img_height = img_obj.height
@@ -484,19 +503,24 @@ class FactsheetPDFView(FolderView):
                 img_data = BytesIO(img_obj._data)
 
             if reader:
-                return ImageReader(img_data)
+                img = ImageReader(img_data)
             else:
                 if caption or leadImage:
-                    img = ImageFigure(img_data, caption=caption, width=img_width, height=img_height, align="right")
+                    img = ImageFigure(img_data, caption=caption, width=img_width, height=img_height, align="right", max_image_width=width, column_count=column_count)
                 else:
                     img = Image(img_data, width=img_width, height=img_height)
 
-                if style:
-                    img.style = style
+            if style:
+                img.style = style
 
+            if hAlign:
                 img.hAlign = hAlign
+            elif column_count == 1:
+                img.hAlign = TA_LEFT
+            else:
+                img.hAlign = TA_CENTER
 
-                return img
+            return img
 
         #-------------- calculated coordinates/w/h
 
@@ -544,7 +568,7 @@ class FactsheetPDFView(FolderView):
             canvas.line(doc.leftMargin, doc.height+header_image_height-title_height-element_padding, doc.width+doc.leftMargin, doc.height+header_image_height-title_height-element_padding)
 
             # Extension logo
-            canvas.drawImage(getImage(header_image, scale=False, reader=True), header_image_x, header_image_y, width=header_image_width, height=header_image_height, preserveAspectRatio=True,mask='auto')
+            canvas.drawImage(getImage(header_image, scale=False, reader=True), header_image_x, header_image_y, width=header_image_width, height=header_image_height, preserveAspectRatio=True, mask='auto')
 
             # Footer
             canvas.drawImage(getImage(footer_image, scale=False, reader=True), doc.leftMargin, doc.bottomMargin, width=doc.width, height=footer_image_height, preserveAspectRatio=True, mask='auto')
@@ -648,18 +672,19 @@ class FactsheetPDFView(FolderView):
         for item in soup.contents:
             pdf.extend(getContent(item))
 
-        # Embed images in paragraphs if we're a single column
-        if column_count == 1 and False:
-
+        # Embed lead images in paragraphs if we're a single column
+        if column_count == 1:
             for i in range(1,len(pdf)-1):
-                if isinstance(pdf[i], Image):
-                    p_pos = 0
+                if isinstance(pdf[i], ImageFigureBase):
+
                     paragraphs = []
                     
                     for j in range(i+1, len(pdf)-1):
                         if isinstance(pdf[j], Paragraph):
                             paragraphs.append(pdf[j])
                             pdf[j] = None
+                        else:
+                            break
 
                     if paragraphs:
     
@@ -667,7 +692,6 @@ class FactsheetPDFView(FolderView):
                         
                         img_paragraph = ImageAndFlowables(pdf[i], paragraphs,imageLeftPadding=element_padding)
                         pdf[i] = img_paragraph
-
 
             while None in pdf:
                 pdf.remove(None)
@@ -677,8 +701,8 @@ class FactsheetPDFView(FolderView):
 
         # Extension and Outreach logos
 
-        pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT'))
-        pdf.append(getImage(outreach_image, style=padded_image))
+        pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT', body_image=False))
+        pdf.append(getImage(outreach_image, style=padded_image, body_image=False))
 
         # Choose which statement
         if use_long_statement:
