@@ -24,7 +24,8 @@ import os
 
 import re
 
-
+from Products.Five.utilities.interfaces import IMarkerInterfaces
+from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
 
 
 ATTEMPTS = 100
@@ -973,3 +974,10 @@ def getContextConfig(context, attr, default=None):
 
     return rv
 
+def enablePDF(context):
+    if not IUniversalPublicationExtender.providedBy(context):
+        adapted = IMarkerInterfaces(context)
+        adapted.update(add=[IUniversalPublicationExtender])
+        return True
+    else:
+        return False
