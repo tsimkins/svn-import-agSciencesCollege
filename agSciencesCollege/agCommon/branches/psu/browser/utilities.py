@@ -258,6 +258,7 @@ class AgCommonUtilities(BrowserView):
                             zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
                             all_zips = portal_catalog.uniqueValuesFor('zip_code')
                             search_zip_list = list(set(zips) & set(all_zips))
+                            search_zip_list.append('00000')
                             contentFilter['zip_code'] = search_zip_list
                 elif k == 'Counties':
                     counties = self.request.form.get(k)

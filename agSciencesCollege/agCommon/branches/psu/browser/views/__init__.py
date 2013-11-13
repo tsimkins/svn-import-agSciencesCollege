@@ -221,9 +221,9 @@ class SearchView(FolderView):
                 zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
                 all_zips = self.portal_catalog.uniqueValuesFor('zip_code')
                 search_zip_list = list(set(zips) & set(all_zips))
+                search_zip_list.append('00000')
                 self.request.form['zip_code'] = search_zip_list
             
-        
         results = self.context.queryCatalog(REQUEST=self.request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root)
         for r in results:
             if self.anonymous and r.portal_type == 'Event' and r.end < now:
