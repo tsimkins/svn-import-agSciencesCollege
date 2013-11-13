@@ -20,8 +20,12 @@
 
 /* --------------------------- Customizations to front page portlets -------------------------------- */
 
+body.section-front-page #portal-column-one {
+    border: none;
+}
+
 body.section-front-page #portlets-above .portlet {
-    min-height: 18em;
+    min-height: 20em;
     margin-top: 0.375em;
 }
 
@@ -36,7 +40,6 @@ body.section-front-page h1.documentFirstHeading {
 body.section-front-page #content #homepage-text p.documentDescription {
     font-size: 1.25em;
     line-height: 1.375em;
-    margin-top: 1em;
     margin-right: 0.25em;
 }
 
