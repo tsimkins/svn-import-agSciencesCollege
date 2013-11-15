@@ -41,8 +41,13 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
 
     security.declarePublic('getCourseInfo')
     def getCourseInfo(self, course):
-        course = course.replace('(', '').replace(')', '')
-        return self.portal_catalog.searchResults({'portal_type' : ['Topic', 'Folder'], 'Subject' : 'courses', 'sort_on' : 'sortable_title', 'Title' : course})
+        sanitized_course = course.replace('(', '').replace(')', '')
+        courses = []
+        for r in self.portal_catalog.searchResults({'portal_type' : ['Topic', 'Folder'], 'Subject' : 'courses', 'sort_on' : 'sortable_title', 'Title' : sanitized_course}):
+            if r.Title.lower().strip() == course.lower().strip():
+                courses.append(r)
+        return courses
+        
 
     security.declarePublic('getCourseTopics')
     def getCourseTopics(self, course):
