@@ -208,7 +208,6 @@ def importEvents(context,
             myObject.reindexObject()
 
             myStatus.append("Created event %s (id %s)" % (eventTitle, eventId))
-            break
 
         else:
             myStatus.append("Skipped event %s (id %s)" % (eventTitle, eventId))
