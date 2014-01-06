@@ -14,7 +14,7 @@ class IRegistrationView(Interface):
     def getEventByUID(self):
         pass
         
-    def canEditEvent(self, event):
+    def canViewRegistrations(self, event):
         pass
 
 
@@ -36,11 +36,18 @@ class RegistrationView(BrowserView):
                 o = r.getObject()
                 return o
         return None
-    
-    def canEditEvent(self, event):
+
+    def canViewRegistrations(self, event):
         mt = getToolByName(self.context, 'portal_membership')
-        return mt.checkPermission('Modify portal content', event)
-    
+        member = mt.getAuthenticatedMember()
+
+        if member.has_role('Event Registration Viewer', event):
+            return True
+        elif mt.checkPermission('Modify portal content', event):
+            return True
+        else:
+            return False
+            
     def allowRegistration(self, event):
         if not event:
             return False
@@ -78,15 +85,15 @@ class DownloadCSVView(RegistrationView):
         writer = csv.writer(out)
         event = self.getEventByUID()
         
-        if event and self.canEditEvent(event) and save_data:
+        if event and self.canViewRegistrations(event) and save_data:
             filename = "%s.csv" % event.getId()
+
             titles = save_data.getColumnTitles()
-            titles.pop(0)
-            writer.writerow(titles)
+            writer.writerow(titles[1:])
             for r in save_data.getSavedFormInput():
-                data_uid = r.pop(0)
+                data_uid = r[0]
                 if data_uid == event.UID():
-                    writer.writerow(r)
+                    writer.writerow(r[1:])
         else:
            filename = "error.csv"
            writer.writerow(["Error retrieving registration information. Either event does not exist, or you do not have the appropriate permissions."])

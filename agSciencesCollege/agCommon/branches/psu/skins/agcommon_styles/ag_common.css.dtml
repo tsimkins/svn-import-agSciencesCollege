@@ -1830,7 +1830,7 @@ body.template-subfolder_view #content-core>.tileItem>.tileItem .facultyStaffDire
 
 body.template-subfolder_view #content .tileItem .tileItem .facultyStaffDirectory .jobTitle {
     font-size: 0.9375em;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 body.template-subfolder_view #content .tileSubItem .tileItem {
@@ -2227,8 +2227,8 @@ dl.portalMessageOneColumn {
 }
 
 dl.portalMessageOneColumn dt {
-    margin: 0;
-    background-color: #DF6929;
+    margin: 0 !important;
+    background-color: #C74606;
 }
 
 dl.portalMessageOneColumn dd {
@@ -2528,23 +2528,30 @@ body.template-event_view #content .event-registration h3:after {
 }
 
 #content .eventDateLocation.canceled,
-table.events td.canceled span {
+table.events td.canceled span,
+.portlet .canceled .date,
+.portlet .canceled .location {
     text-decoration: line-through;
-    -moz-opacity: 0.40;
-    -khtml-opacity: 0.40;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-    filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=40)";
-    filter: "alpha(opacity=40)";
-    opacity: 0.40;
+    color: #717171 !important;
 }
 
-#content .listingWarning {
-    color: #DF6929;
+#content .eventDateLocation.canceled h3 {
+    color: #717171 !important;
+}
+
+#content .listingWarning,
+.portlet .listingWarning {
+    color: #C74606;
     font-size: 1.25em;
     font-variant: small-caps;
     font-weight: bold;
     margin: 0.5em 0;
     padding: 0;
+}
+
+.portlet .listingWarning {
+    font-size: 1em;
+    margin: 0.375em 0;
 }
 
 #content table.events .listingWarning {

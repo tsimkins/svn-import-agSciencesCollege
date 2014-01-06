@@ -87,7 +87,8 @@
                         map_link item/map_link|nothing;
                         show_event_location python:False;
                         registration_allowed python: allowRegistration(item);
-                        registration_deadline item/free_registration_deadline|nothing;">
+                        registration_deadline item/free_registration_deadline|nothing;
+                        isAnon context/@@plone_portal_state/anonymous;">
 
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -118,7 +119,7 @@
 
             <metal:deadline metal:use-macro="context/event_view/macros/registration_deadline" />
 
-            <tal:form condition="registration_allowed">
+            <tal:form condition="python: registration_allowed or not isAnon">
 
             <h2>Registrant's Information</h2>
    

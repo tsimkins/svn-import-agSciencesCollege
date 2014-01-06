@@ -47,7 +47,7 @@
         table td.header div, table td.header h1, table td.header hr {
             width: 100%;
             margin-left: 0;
-            margin-right: 0;
+            margin-right: 15px;
             padding-left: 0;
             padding-right: 0;
 
@@ -80,6 +80,31 @@
 
         .eventDateLocation {
             margin: 0.25em 0 0.5em 0;
+        }
+
+        table.leadimage,
+        #leadimage-left,
+        #leadimage-right {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        table.leadimage {
+            width: 100%;
+        }
+                    
+        #leadimage-left {
+            width: 56.666666666666667%;
+        }
+        
+        #leadimage-right {
+            width: 43.333333333333333%;
+        }
+        
+        div.graphic-header-agsci,
+        div.graphic-header-extension {
+            margin: 12pt 0 8pt 0;
         }
 
     </style>
@@ -250,6 +275,34 @@
 <metal:content-listing fill-slot="content-listing">
     <!-- No additional content -->
 </metal:content-listing>
+
+<metal:graphic fill-slot="content-header-graphic"
+    tal:define="hide_header_graphic context/hide_header_graphic|nothing">
+    
+    <tal:header-graphic condition="not: hide_header_graphic">
+
+    	<div tal:condition="is_extension"
+            class="graphic-header-extension">
+            <a href="http://extension.psu.edu">
+            <img tal:attributes="src string:${portal_url}/extension-newsletter-header-print.png" 
+                                 alt="Penn State Extension" width="765" 
+                                 border="0"
+                                 height="85" /></a>
+        </div>
+    
+    
+    	<div tal:condition="not: is_extension"
+            class="graphic-header-agsci">
+            <a href="http://agsci.psu.edu">
+            <img tal:attributes="src string:${portal_url}/college-newsletter-header-print.png" 
+                                 alt="Penn State College of Agricultural Sciences" width="765" 
+                                 border="0"
+                                 height="85" /></a>
+        </div>
+
+    </tal:header-graphic>
+    
+</metal:graphic>
 
 <metal:content-listing fill-slot="content-spotlight" 
                        tal:define="batch view/getSpotlightItems">

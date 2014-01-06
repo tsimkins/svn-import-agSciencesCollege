@@ -119,9 +119,9 @@
         <metal:register define-macro="register"
             tal:condition="context/free_registration|nothing"
             tal:define="registration_view python: context.restrictedTraverse('@@event_registration_view');
-                        canEditEvent nocall: registration_view/canEditEvent;
+                        canViewRegistrations nocall: registration_view/canViewRegistrations;
                         allowRegistration nocall: registration_view/allowRegistration;
-                        event_editor python: canEditEvent(context);
+                        can_view_registrations python: canViewRegistrations(context);
                         registration_allowed python: allowRegistration(context);
                         registration_deadline context/free_registration_deadline|nothing;
                         registration_url registration_view/registrationURL">
@@ -145,7 +145,7 @@
             </div>
             </metal:deadline>
            
-            <form tal:condition="python: not event_editor and registration_allowed"
+            <form tal:condition="python: (registration_allowed) or (not isAnon and not registration_allowed)"
                 class="event-registration event-registration-public" 
                 tal:attributes="action registration_url" 
                 method="post">
@@ -153,7 +153,7 @@
                 <input type="submit" value="Register for this event" />
             </form>
 
-            <form tal:condition="event_editor"
+            <form tal:condition="can_view_registrations"
                 class="event-registration" 
                 tal:attributes="action string:${registration_url}/download_csv" 
                 method="post">

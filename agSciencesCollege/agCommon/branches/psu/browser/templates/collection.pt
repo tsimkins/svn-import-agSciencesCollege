@@ -20,8 +20,11 @@
 					item_end obj/end|obj/EndDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
-					item_title_or_id python: item_event_location_title or item_title_or_id;"
-        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd';">
+					item_title_or_id python: item_event_location_title or item_title_or_id;
+					isCanceled obj/eventCanceled|nothing;
+                    canceled python:isCanceled and 'canceled' or '';
+                    item_class python:oddrow and 'portletItem even' or 'portletItem odd'"
+        tal:attributes="class string:${item_class} ${canceled};">
         <a href="#"
            class="tile"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/download' % obj.getURL()) or obj.getURL();
@@ -31,6 +34,7 @@
              Title
             </span>
         </a>
+        <div tal:condition="canceled" class="listingWarning"> Event Canceled </div>
 			<tal:block tal:condition="python:item_type != 'Event' and item_type != 'TalkEvent'">
             <div class="portletItemDetails date"
                   tal:condition="view/data/show_dates"

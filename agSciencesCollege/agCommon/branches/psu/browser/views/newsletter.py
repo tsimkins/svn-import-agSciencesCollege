@@ -3,6 +3,7 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_acquire, aq_inner
 from BeautifulSoup import BeautifulSoup
 from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
+from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 from DateTime import DateTime
 from plone.registry import field
 from plone.registry.interfaces import IRegistry
@@ -23,7 +24,7 @@ class INewsletterView(Interface):
     def test():
         """ test method"""
 
-class NewsletterView(AgCommonUtilities):
+class NewsletterView(AgCommonUtilities, LeadImageViewlet):
 
     implements(INewsletterView)
     
