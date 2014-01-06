@@ -222,6 +222,11 @@ class FactsheetPDFView(FolderView):
         # <table> element.
         def getTableData(item):
 
+            def getCellSpan(cell):
+                colspan = int(cell.get('colspan', 1))
+                rowspan  = int(cell.get('rowspan', 1))
+                return (colspan, rowspan)
+
             th_bg = Color(0.8,0.8,0.8)
             th_text = Color(0,0,0)
             grid = Color(0.6,0.6,0.6)
@@ -238,26 +243,34 @@ class FactsheetPDFView(FolderView):
 
                 for i in tr.findAll('th'):
                     table_row.append(getInlineContents(i))
+                    (colspan, rowspan) = getCellSpan(i)
+                    c_max = c_index + colspan - 1
+                    r_max = r_index + rowspan - 1
                     table_style.extend([
                         ('FONTNAME', (c_index,r_index), (c_index,r_index), 'Times-Bold'),
                         ('FONTSIZE', (c_index,r_index), (c_index,r_index), 9),
                         ('BACKGROUND', (c_index,r_index), (c_index,r_index), th_bg),
-                        ('GRID', (c_index,r_index), (c_index,r_index), 0.5, grid),
+                        ('GRID', (c_index,r_index), (c_max,r_max), 0.5, grid),
                         ('TEXTCOLOR', (c_index,r_index), (c_index,r_index), th_text),
                         ('LEFTPADDING', (c_index,r_index), (c_index,r_index), 3),
                         ('RIGHTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                        ('SPAN', (c_index,r_index), (c_max,r_max)),
                       ]
                     )
                     c_index = c_index + 1
 
                 for i in tr.findAll('td'):
                     table_row.append(getInlineContents(i))
+                    (colspan, rowspan) = getCellSpan(i)
+                    c_max = c_index + colspan - 1
+                    r_max = r_index + rowspan - 1
                     table_style.extend([
-                        ('GRID', (c_index,r_index), (c_index,r_index), 0.5, grid),
+                        ('GRID', (c_index,r_index), (c_max,r_max), 0.5, grid),
                         ('FONTNAME', (c_index,r_index), (c_index,r_index), 'Times-Roman'),
                         ('FONTSIZE', (c_index,r_index), (c_index,r_index), 9),
                         ('LEFTPADDING', (c_index,r_index), (c_index,r_index), 3),
                         ('RIGHTPADDING', (c_index,r_index), (c_index,r_index), 3),
+                        ('SPAN', (c_index,r_index), (c_max,r_max)),
                       ]
                     )
                     if i.get('align', '').lower() == 'right':
@@ -309,11 +322,18 @@ class FactsheetPDFView(FolderView):
 
                     # Pull images out of items and add before
                     for img in item.findAll('img'):
-                        has_image = True
                         img.extract()
-                        #src = urljoin("/".join(self.context.getPhysicalPath()).replace('/'.join(self.site.getPhysicalPath()), ''), img['src'])
                         src = img['src'].replace(self.site.absolute_url(), '')
-                        img_obj = self.site.unrestrictedTraverse(str(src.replace('/', '', 1)))
+
+                        if src.startswith('/'):
+                            src = src.replace('/', '', 1)
+                            
+                        try:
+                            img_obj = self.site.unrestrictedTraverse(src)
+                        except KeyError:
+                            continue
+
+                        has_image = True
                         pdf_image = getImage(img_obj)
                         pdf.append(pdf_image)
 
@@ -711,7 +731,7 @@ class FactsheetPDFView(FolderView):
 
         # Choose which statement
         if use_long_statement:
-            aa_statement = """The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and harassment against any person because of age, ancestry, color, disability or handicap, genetic information, national origin, race, religious creed, sex, sexual orientation, gender identity, or veteran status and retaliation due to the reporting of discrimination or harassment. Discrimination, harassment, or retaliation against faculty, staff, or students will not be tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-5901; Tel 814-865-4700/V, 814-863-0471/TTY."""
+            aa_statement = """The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and harassment against any person because of age, ancestry, color, disability or handicap, genetic information, national origin, race, religious creed, sex, sexual orientation, gender identity, or veteran status and retaliation due to the reporting of discrimination or harassment. Discrimination, harassment, or retaliation against faculty, staff, or students will not be tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-5901; Tel 814-863-0471."""
         else:
             aa_statement = """Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce."""
         statement_text = ("""<b>Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</b>

@@ -300,7 +300,7 @@ function countAvailableChildren(o) {
 
 jq(document).ready(
     function() {
-        if (! jq("body.section-4-h").size())
+        if (! jq("body.section-4-h body.custom-multicounty").size())
         {
             jq("body.portaltype-event  #archetypes-fieldname-extension_counties select#extension_counties").each(
                 function () {
