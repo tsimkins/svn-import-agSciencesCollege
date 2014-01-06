@@ -27,7 +27,7 @@ translation = {
     'ecosystems.psu.edu' : 'http://ecosystems.psu.edu',
     'animalscience.psu.edu' : 'http://animalscience.psu.edu',
     'extension.psu.edu' : 'http://extension.psu.edu',
-    'ipm' : 'http://extension.psu.edu/ipm',
+    'ipm' : 'http://extension.psu.edu/pests/ipm',
 }
 
 def checkSiteColorContrast(site):
