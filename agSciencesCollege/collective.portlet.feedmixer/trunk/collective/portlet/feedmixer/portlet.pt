@@ -23,11 +23,13 @@
                         eventshortlocation entry/agsci_eventshortlocation|nothing;
                         contact_info python:view.contact_info(entry);
                         event_info python:(is_printed_newsletter and (eventstart or eventlocation or eventshortlocation or contact_info)) or False;
+    					isCanceled entry/agsci_eventcanceled|nothing;
                         className string:portletItem;
                         className python:isFirst and className + ' first' or className;
                         className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
                         className python:event_info and className + '  printed-event' or className;
+                        className python:isCanceled and className + '  canceled' or className;
                         hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
                         imageURL python:hasImage and entry.enclosures[0].href + view.image_suffix or None;
                         imageCaption python:hasImage and (hasattr(entry.enclosures[0], 'title') and entry.enclosures[0].title) or entry.title"
@@ -44,7 +46,9 @@
                class ="title"
                tal:attributes="href entry/link;
                                title entry/title"><span tal:replace="structure entry/title">Title</span></a>
-                               
+
+                <div tal:condition="isCanceled" class="listingWarning"> Event Canceled </div>
+
                 <div class="portletItemDetails date"
 	                tal:condition="show_date">
 	                
