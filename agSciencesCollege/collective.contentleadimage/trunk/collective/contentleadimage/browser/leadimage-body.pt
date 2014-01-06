@@ -1,3 +1,5 @@
+<metal:leadimage define-macro="contentleadimage">
+
 <tal:comment tal:replace="nothing">
     Changed newsImageContainer to contentLeadImageContainer so we can style it separately
 </tal:comment>
@@ -30,3 +32,5 @@
     </p>
 
 </div>
+
+</metal:leadimage>
