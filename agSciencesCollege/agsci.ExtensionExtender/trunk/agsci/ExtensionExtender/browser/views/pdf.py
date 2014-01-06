@@ -329,7 +329,7 @@ class FactsheetPDFView(FolderView):
                             src = src.replace('/', '', 1)
                             
                         try:
-                            img_obj = self.site.unrestrictedTraverse(src)
+                            img_obj = self.site.restrictedTraverse(str(src))
                         except KeyError:
                             continue
 
