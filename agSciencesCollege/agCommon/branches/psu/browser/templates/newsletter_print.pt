@@ -10,12 +10,17 @@
 
 <metal:local_style_slot fill-slot="local_style_slot">
     <style type="text/css">
-        .contentLeadImageContainer {
-            background-color: White;
+        .contentLeadImageContainer, img.image-right, img.image-left {
+            background-color: transparent;
             float: right;
             margin: 0.375em 0 0.5em;
             max-width: 267px;
             width: auto;
+            clear: right;
+        }
+        
+        .contentLeadImageContainer:first-child {
+            clear: none;
         }
         
         .contentLeadImageContainer img {
@@ -51,6 +56,10 @@
             padding-left: 0;
             padding-right: 0;
 
+        }
+        
+        table td.header div.contentLeadImageContainer {
+            margin-right: 0;
         }
         
         #portal-column-content {
@@ -250,7 +259,7 @@
                 
                 $('#portal-column-content .item').each(
                     function() {
-                        leadImage = $(this).find('.contentLeadImageContainer');
+                        leadImage = $(this).find('.contentLeadImageContainer:first-child');
                         description = $(this).find('.documentDescription')
                         if (description)
                         {
