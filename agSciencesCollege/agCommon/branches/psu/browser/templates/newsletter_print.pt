@@ -18,17 +18,17 @@
             width: auto;
             clear: right;
         }
-        
+
         .contentLeadImageContainer:first-child {
             clear: none;
         }
-        
-        .contentLeadImageContainer img {
+
+        .contentLeadImageContainer img, img.image-right, img.image-left {
             margin-left: 1em;
             border: medium none;
             vertical-align: middle;
         }
-        
+
         .contentLeadImageContainer p.discreet {
             padding-left: 1.125em;
         }
@@ -38,17 +38,17 @@
             font-size: 85%;
             font-weight: normal;
         }
-        
+
         #portal-column-two {
             display: none;
         }
-        
+
         #portal-columns {
             width: 98%;
             margin: 0 1%;
             padding: 0;
         }
-        
+
         table td.header div, table td.header h1, table td.header hr {
             width: 100%;
             margin-left: 0;
@@ -57,11 +57,11 @@
             padding-right: 0;
 
         }
-        
+
         table td.header div.contentLeadImageContainer {
             margin-right: 0;
         }
-        
+
         #portal-column-content {
             width: 100%;
             margin-left: 0;
@@ -69,20 +69,20 @@
             padding-left: 0;
             padding-right: 0;
         }
-        
+
         .portletFooter {
             display: none;
         }
-        
+
         .event_add_calendar, .hiddenStructure {
             display: none;
         }
-        
+
         .event_where h3, .event_when h3, .event_phone h3, .event_contact h3 {
             font-weight: bold;
             display: inline;
         }
-        
+
         .event_where h3:after, .event_when h3:after, .event_phone h3:after, .event_contact h3:after {
             content: ": ";
         }
@@ -102,15 +102,15 @@
         table.leadimage {
             width: 100%;
         }
-                    
+
         #leadimage-left {
             width: 56.666666666666667%;
         }
-        
+
         #leadimage-right {
             width: 43.333333333333333%;
         }
-        
+
         div.graphic-header-agsci,
         div.graphic-header-extension {
             margin: 12pt 0 8pt 0;
@@ -127,15 +127,15 @@
         body, p, li, h1, h2, h3, div, span  {
             font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", Times, serif !important;
         }
-        
+
         p.documentDescription {
             font-weight: bold;
         }
-        
+
         .portletItem {
             margin: 0 0 6pt 12pt;
         }
-        
+
         .item {
             clear: both;
             margin-top: 10pt;
@@ -155,7 +155,7 @@
             color: #0000EE;
             font-weight: bold;
         }
-        
+
         #portal-column-content .portletItem a {
             font-weight: bold;
         }
@@ -201,7 +201,7 @@
             padding: 0;
             display: inline;
         }
-        
+
         ul.jobTitle li {
             margin-bottom: 0.125em;
             padding: 0;
@@ -219,7 +219,7 @@
             caption-side: bottom;
             font-size: 0.9375em;
         }
- 
+
         .documentText table th, .documentText table td {
             border: 1px solid #666666;
             padding: 0.25em 0.375em;
@@ -240,7 +240,7 @@
             margin-top: 0.375em;
             text-align: left;
         }
-        
+
         .imagePortlet {
             display: none;
         }
@@ -256,7 +256,7 @@
 
         $(document).ready(
             function() {
-                
+
                 $('#portal-column-content .item').each(
                     function() {
                         leadImage = $(this).find('.contentLeadImageContainer:first-child');
@@ -267,7 +267,7 @@
                         }
                     }
                 );
-                
+
                 //window.print();
             }
         );
@@ -287,51 +287,51 @@
 
 <metal:graphic fill-slot="content-header-graphic"
     tal:define="hide_header_graphic context/hide_header_graphic|nothing">
-    
+
     <tal:header-graphic condition="not: hide_header_graphic">
 
     	<div tal:condition="is_extension"
             class="graphic-header-extension">
             <a href="http://extension.psu.edu">
-            <img tal:attributes="src string:${portal_url}/extension-newsletter-header-print.png" 
-                                 alt="Penn State Extension" width="765" 
+            <img tal:attributes="src string:${portal_url}/extension-newsletter-header-print.png"
+                                 alt="Penn State Extension" width="765"
                                  border="0"
                                  height="85" /></a>
         </div>
-    
-    
+
+
     	<div tal:condition="not: is_extension"
             class="graphic-header-agsci">
             <a href="http://agsci.psu.edu">
-            <img tal:attributes="src string:${portal_url}/college-newsletter-header-print.png" 
-                                 alt="Penn State College of Agricultural Sciences" width="765" 
+            <img tal:attributes="src string:${portal_url}/college-newsletter-header-print.png"
+                                 alt="Penn State College of Agricultural Sciences" width="765"
                                  border="0"
                                  height="85" /></a>
         </div>
 
     </tal:header-graphic>
-    
+
 </metal:graphic>
 
-<metal:content-listing fill-slot="content-spotlight" 
+<metal:content-listing fill-slot="content-spotlight"
                        tal:define="batch view/getSpotlightItems">
     <div id="content-spotlight">
-    
+
     <metal:listing use-macro="here/newsletter_view/macros/listing">
         <metal:featured-articles fill-slot="featured-articles">
             <!-- none -->
         </metal:featured-articles>
-        
+
     <metal:block use-macro="context/@@newsletter_view/macros/entries">
         <metal:entry fill-slot="entry">
             <div tal:condition="python: view.isSpotlight(item)"
                  tal:replace="structure python:view.getHTML(item)" />
         </metal:entry>
-        
+
     </metal:block>
-    
+
     </metal:listing>
-    
+
     </div>
 </metal:content-listing>
 
