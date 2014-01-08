@@ -93,10 +93,8 @@ def importEvents(context,
                  daysback=7):
 
     # Return values
-
     myStatus = []
     newEvents = []
-
 
     # Date calculations
     end = datetime.utcnow()
@@ -105,7 +103,7 @@ def importEvents(context,
     start_datestamp = start.strftime('%Y-%m-%dT%H:%M:%S')
     end_datestamp = end.strftime('%Y-%m-%dT%H:%M:%S')
 
-    # More Zopey goodness
+    # More Zopey goodness to set owner of events
 
     if owner:
         admin = context.acl_users.getUserById(owner)
@@ -138,7 +136,6 @@ def importEvents(context,
                                passwd=passwd,
                                start_datestamp=start_datestamp,
                                end_datestamp=end_datestamp)
-
 
     for r in cventData:
         # Basic Data
@@ -211,7 +208,6 @@ def importEvents(context,
 
         else:
             myStatus.append("Skipped event %s (id %s)" % (eventTitle, eventId))
-            #newEvents.append("<li>NOT: <a href=\"%s/%s\">%s</a></li>" % (eventsURL, eventId, eventLink.contents[0]))
 
     if newEvents:
         myStatus.append("Sending email to: %s" % ", ".join(emailUsers))
@@ -227,7 +223,7 @@ def importEvents(context,
             mMsg = "\n".join(["\n\n", mTitle, "<ul>", statusText, "<ul>"])
             mailHost.secureSend(mMsg.encode('utf-8'), mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
 
-    #transaction.commit()
     myStatus.append("Finished Loading")
+
     return "\n".join(myStatus)
-    #return newEvents
+
