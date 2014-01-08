@@ -261,10 +261,10 @@ class Renderer(base.Renderer):
             similar_query['Counties'] = self.context.extension_counties
 
         if self.query_programs and self.context.extension_topics:
-            similar_query['Programs'] = self.context.extension_topics
+            similar_query['Topics'] = self.context.extension_topics
 
         if self.query_topics and self.context.extension_subtopics:
-            similar_query['Topics'] = self.context.extension_subtopics
+            similar_query['Subtopics'] = self.context.extension_subtopics
 
         if self.query_courses and self.context.extension_courses:
             similar_query['Courses'] = self.context.extension_courses
@@ -280,8 +280,8 @@ class Renderer(base.Renderer):
                 similar_query['zip_code'] = list(search_zip_codes)
 
 
-        if similar_query.get('Counties') or similar_query.get('Programs') or similar_query.get('Courses') or similar_query.get('Title'):
-    
+        if similar_query.get('Counties') or similar_query.get('Topics') or similar_query.get('Subtopics') or similar_query.get('Courses') or similar_query.get('Title'):
+
             all_brains = self.catalog.searchResults(similar_query)
     
             brains = []
