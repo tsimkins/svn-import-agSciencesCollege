@@ -70,9 +70,11 @@
                 </tal:eventinfo>
 
                 <tal:newsletter condition="is_printed_newsletter">
-                    <div tal:condition="python: eventlocation and not eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventlocation" /></div>
 
-                    <div tal:condition="eventshortlocation" class="portletItemDetails location"><strong>Where:</strong> <span tal:replace="eventshortlocation" /></div>
+                    <div tal:define="printed_newsletter_location eventshortlocation|eventlocation|nothing"
+                         tal:condition="python: printed_newsletter_location and not show_event_info"
+                         class="portletItemDetails location"><strong>Where:</strong> 
+                         <span tal:replace="printed_newsletter_location" /></div>
                     
                     <div tal:condition="contact_info" class="portletItemDetails">
                         <strong>Contact:</strong>
