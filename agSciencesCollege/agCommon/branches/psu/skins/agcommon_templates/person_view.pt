@@ -12,12 +12,7 @@
   <body>
 
   <metal:title fill-slot="content-title">                              
-      <h1 class="fn n documentFirstHeading">
-        <span class="given-name" tal:content="context/getFirstName"><tal:comment replace="nothing">[First Name]</tal:comment></span>
-        <span class="additional-name" tal:content="context/getMiddleName | nothing"><tal:comment replace="nothing">[Middle Name]</tal:comment></span>
-        <span class="family-name" tal:content="context/getLastName"><tal:comment replace="nothing">[Last Name]</tal:comment></span>
-        <span class="honorific-suffix" tal:content="context/getSuffix"><tal:comment replace="nothing">[ suffix i.e. Dr]</tal:comment></span>
-      </h1>
+
   </metal:title>
 
   <metal:main fill-slot="content-core">
@@ -26,6 +21,13 @@
              tal:define="isExpired python:context.contentExpired();
              isEditor python:checkPermission('Modify portal content', context);
              showExpired python: not isExpired or (isExpired and isEditor)" >
+      <h1 class="fn n documentFirstHeading">
+        <span class="given-name" tal:content="context/getFirstName"><tal:comment replace="nothing">[First Name]</tal:comment></span>
+        <span class="additional-name" tal:content="context/getMiddleName | nothing"><tal:comment replace="nothing">[Middle Name]</tal:comment></span>
+        <span class="family-name" tal:content="context/getLastName"><tal:comment replace="nothing">[Last Name]</tal:comment></span>
+        <span class="honorific-suffix" tal:content="context/getSuffix"><tal:comment replace="nothing">[ suffix i.e. Dr]</tal:comment></span>
+      </h1>
+      
 
             <tal:redirect define="layout here/layout|nothing;
                                   primary_profile context/primary_profile|nothing;

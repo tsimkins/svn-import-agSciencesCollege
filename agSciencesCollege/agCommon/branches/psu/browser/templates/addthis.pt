@@ -24,10 +24,7 @@
                 },
             },
             shorteners: {
-                bitly: {
-                    login: 'agsciences',
-                    apiKey: 'R_11192adaf574c9763309c696ce2439a1'
-                }
+                bitly: {}
             }
         }
 
