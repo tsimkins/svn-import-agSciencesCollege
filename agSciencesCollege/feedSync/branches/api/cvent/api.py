@@ -31,8 +31,21 @@ class fixNamespace(MessagePlugin):
 def getCventEvents(acct_num='',
                  login_name='',
                  passwd='',
-                  start_datestamp='',
-                  end_datestamp=''):
+                 start_datestamp='',
+                 end_datestamp='',
+                 uid=None):
+
+    def toUID(u):
+        segments = [8, 4, 4, 4, 12]
+        values = []
+        u = u.upper().replace('-', '')
+        if len(u) == sum(segments):
+            for i in range(0,len(segments)):
+                l = segments[i]
+                s = sum(segments[x] for x in range(0,i))
+                values.append(u[s:s+l])
+        return "-".join(values)
+            
 
     # Results list
     results = []
@@ -48,10 +61,13 @@ def getCventEvents(acct_num='',
 
 
     # Get Updated objects
-
     _CvObjectType = client.factory.create('ns1:CvObjectType')
-    updated = client.service.GetUpdated(_CvObjectType.Event, start_datestamp, end_datestamp)
-    rv = client.service.Retrieve(_CvObjectType.Event, updated)
+
+    if uid:
+        rv = client.service.Retrieve(_CvObjectType.Event, {'Id' : [toUID(uid)]})
+    else:
+        updated = client.service.GetUpdated(_CvObjectType.Event, start_datestamp, end_datestamp)
+        rv = client.service.Retrieve(_CvObjectType.Event, updated)
 
 
     # Package object data
@@ -67,7 +83,10 @@ def getCventEvents(acct_num='',
     
             r['id'] = str(o._Id).lower()
             r['Title'] = str(o._EventTitle)
-            r['location'] = str('%s, %s' % (o._City, o._StateCode))
+            if o._City and o._StateCode:
+                r['location'] = str('%s, %s' % (o._City, o._StateCode))
+            else:
+                r['location'] = 'N/A'
             r['zip_code'] = str(o._PostalCode)
             r['start'] = DateTime(o._EventStartDate)
             r['end'] = DateTime(o._EventEndDate)
@@ -90,7 +109,8 @@ def importEvents(context,
                  emailUsers=['trs22'],
                  eventsURL="https://agsci.psu.edu/conferences/event-calendar",
                  owner=None,
-                 daysback=7):
+                 daysback=7,
+                 uid=None):
 
     # Return values
     myStatus = []
@@ -135,7 +155,8 @@ def importEvents(context,
                                login_name=login_name,
                                passwd=passwd,
                                start_datestamp=start_datestamp,
-                               end_datestamp=end_datestamp)
+                               end_datestamp=end_datestamp,
+                               uid=uid)
 
     for r in cventData:
         # Basic Data
