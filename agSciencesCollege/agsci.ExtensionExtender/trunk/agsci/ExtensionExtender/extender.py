@@ -128,8 +128,9 @@ class FSDExtensionExtender(object):
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Counties",
-                description=u"Counties that this person is associated with",
+                    label=u"Counties",
+                    description=u"Counties that this person is associated with",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
             ),
         ),
 
@@ -139,8 +140,9 @@ class FSDExtensionExtender(object):
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Programs",
-                description=u"Extension programs that this item is associated with",
+                    label=u"Programs",
+                    description=u"Extension programs that this item is associated with",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
             ),
         ),
 
@@ -150,8 +152,9 @@ class FSDExtensionExtender(object):
                 required=False,
                 searchable=True,
                 widget = InAndOutWidget(
-                label=u"Topics",
-                description=u"Topics within the program(s) that this item is associated with",
+                    label=u"Topics",
+                    description=u"Topics within the program(s) that this item is associated with",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
             ),
         ),
         

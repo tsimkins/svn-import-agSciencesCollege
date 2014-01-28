@@ -121,7 +121,10 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
     security.declarePublic('toZIP5')
     def toZIP5(self, zipcode):
         zipcode = zipcode.strip()
-        match_obj = self.zip_regex.match(zipcode)
+        try:
+            match_obj = self.zip_regex.match(zipcode)
+        except TypeError:
+            return None
         if match_obj:
             if match_obj.group(1) == '00000':
                 return None
@@ -195,7 +198,7 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
             return False
 
     security.declarePublic('getDistance')
-    def getDistance(self, z1, z2):
+    def getDistance(self, z1, z2, novalue=0):
         
         z1 = self.toZIP5(z1)
         z2 = self.toZIP5(z2)
@@ -203,6 +206,10 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
         rv = []
         
         if z1 and z2:
+        
+            if z1 == z2:
+                return 0
+
             conn = self.conn()
     
             c = conn.cursor()
@@ -212,9 +219,10 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
             conn.close()
     
             rv.extend([x[0] for x in results])
+            
+            if rv:
+                return rv[0]
 
-            return rv[0]
-        else:
-            return 0
+        return novalue
 
 InitializeClass(ExtensionZIPCodeTool)
