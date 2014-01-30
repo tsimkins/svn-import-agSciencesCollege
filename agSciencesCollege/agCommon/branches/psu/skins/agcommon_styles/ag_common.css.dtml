@@ -312,6 +312,19 @@ body.icons-on.empty-top-navigation #portal-top {
 #portlets-mobile .portletStaticText .portletItem h3,
 #portlets-mobile .portletContact .portletItem h3 {
     border: none;
+    font-size: 1.0625em;
+    font-weight: bold;
+    margin-bottom: 0.25em;
+    margin-top: 0.375em;
+}
+
+#portal-column-one .portletStaticText .portletItem h4,
+#portal-column-two .portletStaticText .portletItem h4,
+#portal-column-one .portletContact .portletItem h4,
+#portal-column-two .portletContact .portletItem h4,
+#portlets-mobile .portletStaticText .portletItem h4,
+#portlets-mobile .portletContact .portletItem h4 {
+    border: none;
     font-size: 1em;
     font-weight: bold;
     margin-bottom: 0.25em;
@@ -1022,6 +1035,10 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #portal-column-two .portletItem ul {
     margin: 0;
     padding: 0;
+}
+
+#portal-column-two .portletItem ul.indent {
+    margin: 0 0 1em 1em;
 }
 
 #portal-column-two .portletItem li {
@@ -1975,6 +1992,10 @@ body.template-pgv_sg_carousel_view #content {
     padding: 0.25em 0.125em;
 }
 
+.searchPage #zip_code_search {
+    padding: 0.75em 0.125em;
+}
+
 #localSearchBox {
     width: 88.195991091314031%;
     padding: 0.125em 0.96502%;
@@ -2607,7 +2628,7 @@ body.template-search_z3 #content {
 
 body.template-search form.searchPage input,
 body.template-search_z3 form.searchPage input {
-    font-size: 1.25em !important;
+    font-size: 1em !important;
 }
 
 /* Form Thanks Page */
@@ -3178,6 +3199,11 @@ body.template-register_fg_base_view_p3 #content .event_where h3:after {
 
 body.template-register_fg_base_view_p3 #addthis {
     display: none;
+}
+
+.zip_distance {
+    color: #767676;
+    margin: 0.5em 0 0 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

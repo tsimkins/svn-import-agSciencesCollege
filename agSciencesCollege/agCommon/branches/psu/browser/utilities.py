@@ -59,9 +59,23 @@ class AgCommonUtilities(BrowserView):
 
         return None        
      
-    def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None):
+    def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None, zip_code_input=None):
 
-        if order_by_id:
+        try:
+            ziptool = getToolByName(self.context, 'extension_zipcode_tool')
+        except AttributeError:
+            ziptool = None
+
+        if ziptool and zip_code_input:
+
+            def getDistance(z1, z2):
+                return ziptool.getDistance(z1, z2,novalue=9999)
+
+            topicContents = sorted([x for x in topicContents], key=lambda x: getDistance(getattr(x, 'zip_code', ''), zip_code_input))
+
+            return topicContents
+
+        elif order_by_id:
 
             def getId(item):
                 if isinstance(item, AbstractCatalogBrain):
@@ -233,19 +247,20 @@ class AgCommonUtilities(BrowserView):
 
         portal_catalog = getToolByName(self.context, "portal_catalog")
         indexes = portal_catalog.indexes()
+        indexes.append('zip_code_input') # Because we're doing a calculation on it, not a raw search
 
         for k in self.request.form.keys():
 
             if k in indexes:
 
                 # ZIP Code search            
-                if k == 'zip_code':
+                if k == 'zip_code_input':
 
-                    search_zip = self.request.form.get(k)
+                    search_zip = self.request.form.get('zip_code_input')
                     search_zip_radius = self.request.form.get('zip_code_radius')
                     
                     if not search_zip_radius:
-                        search_zip_radius = 25 # Default radius
+                        search_zip_radius = 50 # Default radius
                     
                     if search_zip and search_zip_radius:
             

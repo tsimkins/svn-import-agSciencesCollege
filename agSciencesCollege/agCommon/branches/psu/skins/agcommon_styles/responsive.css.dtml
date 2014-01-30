@@ -468,6 +468,15 @@
         left: auto;
         right: 0;
     }
+    
+    #content .searchResults dt.contenttype-fsdperson .searchLeadImageContainer {
+        margin: 0 0 0 -20.852%;
+    }
+
+    #content .searchResults dt.contenttype-fsdperson .searchLeadImageContainer .tileImage {
+        width: 100%;
+        height: auto;
+    }
 
 }
 
@@ -1220,7 +1229,6 @@
         margin: 0 0.5em;
         padding: 0;
     }
-        
 
 }    
 
@@ -1347,6 +1355,15 @@
 
     #viewlet-above-content .flex-direction-nav li a {
         top: 90px;
+    }
+ 
+    #content .searchResults dt.contenttype-fsdperson .searchLeadImageContainer {
+        display: none;
+    }
+
+    #content .searchResults dt.contenttype-fsdperson,
+    #content .searchResults dd.contenttype-fsdperson {
+        padding-left: 0;
     }
     
 }

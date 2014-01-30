@@ -1,5 +1,5 @@
 <tal:localsearch
-     tal:condition="context/localsearch|nothing">
+     tal:condition="context/localsearch|context/aq_base/localsearch_this|nothing">
 
     <div id="portal-localsearchbox"
          i18n:domain="plone"
@@ -18,7 +18,8 @@
                      view_folder_path python: [view.folder_path];
                      folder_path context/localsearch_path|view_folder_path|nothing;
                      localsearch_entire_site context/localsearch_entire_site|is_a_topic|nothing;
-                     has_extra_search_fields python: (localsearch_counties or localsearch_zip_code); ">
+                     has_extra_search_fields python: (localsearch_counties or localsearch_zip_code);
+                     zip_code_input request/zip_code_input|nothing;">
 
         <form id="plonelocalsearchform" 
               name="searchform"
@@ -66,32 +67,10 @@
                     </select>
         
                 </div>
-        
-        
-        
-                <div id="zip_code_search"  class="search_criteria" tal:condition="localsearch_zip_code">   
-        
-                    <label for="zip_code"
-                            i18n:translate="zip_code_search">ZIP Code</label>
-        
-                    <input id="zip_code" name="zip_code" type="text" size="5" tal:attributes="value request/zip_code|nothing" />
-        
-                    <label for="zip_code_radius"
-                            i18n:translate="zip_code_radius_search">Radius</label>
-        
-                    <select id="zip_code_radius" 
-                        name="zip_code_radius"
-                        tal:define="default_zip_code_radius string:25;
-                                        zip_code_radius request/zip_code_radius|default_zip_code_radius|nothing;
-                                        radius python: ['10', '25', '50', '100'];">
-                        <tal:options repeat="r radius">
-                            <option tal:attributes="value r;
-                                                    selected python: r == zip_code_radius and 'selected' or '';"
-                                    tal:content="string: ${r} miles" />
-                        </tal:options>
-                    </select>
-        
-                </div>
+
+                <tal:zip tal:condition="localsearch_zip_code">
+                    <metal:zip  use-macro="context/@@search_z3/macros/zip_code" />
+                </tal:zip>
                 
                 <input class="searchButton"
                         type="submit"

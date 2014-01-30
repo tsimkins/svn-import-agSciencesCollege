@@ -37,11 +37,17 @@
                  is_advanced_search request/form/advanced_search|nothing;
                  advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form;
                  searchterm request/SearchableText|nothing;
-                 isAnon context/@@plone_portal_state/anonymous;">
+                 isAnon context/@@plone_portal_state/anonymous;
+                 ezt context/extension_zipcode_tool|nothing;
+                 getDistance nocall: ezt/getDistance|nothing;
+                 toZIP5 nocall: ezt/toZIP5|nothing;
+                 validateZIP nocall: ezt/validateZIP|nothing;
+                 zip_code_input python: request.form.get('zip_code_input');">
+
     <div id="content-core">
         <h1 class="documentFirstHeading">
             <span i18n:translate="heading_search_results">
-                <span tal:replace="view/page_title" /> 
+                <span tal:replace="view/page_title" />
             </span>
         </h1>
 
@@ -53,11 +59,12 @@
                           review_states python: request.form.get('review_state');
                           folder_path python: request.form.get('path');
                           counties python: request.form.get('Counties');
-                          zip_code python: request.form.get('zip_code');
                           programs python: request.form.get('Topics');
                           collection_filter python: request.form.get('collection_filter');"
               tal:condition="not:is_advanced_search">
+            <label for="SearchableText">Keywords</label>
             <input class="searchPage"
+                   id="SearchableText"
                    name="SearchableText"
                    type="text"
                    size="25"
@@ -65,87 +72,117 @@
                    i18n:attributes="title title_search_title;"
                    tal:attributes="value searchterm;"
                    />
+
+<tal:zip-input tal:condition="zip_code_input">
+    <metal:zip_code define-macro="zip_code">
+        <tal:zip 
+             define="basic_default_zip_code_radius string:50;
+                     custom_default_zip_code_radius context/localsearch_zip_code_default_radius|nothing;
+                     default_zip_code_radius python: custom_default_zip_code_radius or basic_default_zip_code_radius;
+                     zip_code_radius request/zip_code_radius|default_zip_code_radius|nothing;">
+            <div id="zip_code_search"  class="search_criteria">
+
+                <label for="zip_code_input"
+                        i18n:translate="zip_code_input">ZIP Code</label>
+
+                <input id="zip_code_input" name="zip_code_input" type="text" size="5" tal:attributes="value request/zip_code_input|nothing" />
+
+                <label for="zip_code_radius"
+                       tal:condition="python: zip_code_radius and zip_code_radius.replace('9', '')"
+                       i18n:translate="zip_code_radius_search">Radius</label>
+
+                <select id="zip_code_radius"
+                    name="zip_code_radius"
+                    tal:define="radius python: ['10', '25', '50', '100'];"
+                    tal:condition="python: zip_code_radius and zip_code_radius.replace('9', '')">
+                    <tal:options repeat="r radius">
+                        <option tal:attributes="value r;
+                                                selected python: r == zip_code_radius and 'selected' or '';"
+                                tal:content="string: ${r} miles" />
+                    </tal:options>
+                </select>
+                <input type="hidden" name="zip_code_radius"
+                        tal:attributes="value zip_code_radius"
+                        tal:condition="python: zip_code_radius and not zip_code_radius.replace('9', '')" />
+
+            </div>
+        </tal:zip>
+    </metal:zip_code>
+</tal:zip-input>
+
+
+
             <input class="searchPage searchButton"
                    type="submit"
                    value="Search"
                    i18n:attributes="value label_search;"/>
 
             <metal:portal_type define-macro="portal_type">
-    
-                <tal:portal_type condition="portal_types" 
+
+                <tal:portal_type condition="portal_types"
                                  repeat="t portal_types">
-    
+
                     <input type="hidden" tal:attributes="value t" name="portal_type:list" />
-    
+
                 </tal:portal_type>
             </metal:portal_type>
 
             <metal:subject define-macro="subject">
-    
-                <tal:subject condition="subjects" 
+
+                <tal:subject condition="subjects"
                                  repeat="s subjects">
-    
+
                     <input type="hidden" tal:attributes="value s" name="Subject:list" />
-    
+
                 </tal:subject>
             </metal:subject>
 
             <metal:review_state define-macro="review_state">
-    
-                <tal:review_state condition="review_states" 
+
+                <tal:review_state condition="review_states"
                                  repeat="t review_states">
-    
+
                     <input type="hidden" tal:attributes="value t" name="review_state:list" />
-    
+
                 </tal:review_state>
             </metal:review_state>
 
             <metal:folder_path define-macro="localsearch" tal:condition="folder_path">
-    
-                <tal:folder_path condition="folder_path" 
+
+                <tal:folder_path condition="folder_path"
                                  repeat="t folder_path">
-    
+
                     <input type="hidden" tal:attributes="value t" name="path:list" />
-    
+
                 </tal:folder_path>
             </metal:folder_path>
 
             <metal:counties define-macro="counties" tal:condition="counties">
-    
-                <tal:counties condition="counties" 
+
+                <tal:counties condition="counties"
                                  repeat="t counties">
-    
+
                     <input type="hidden" tal:attributes="value t" name="Counties:list" />
-    
+
                 </tal:counties>
             </metal:counties>
 
-            <metal:zip_code define-macro="zip_code" tal:condition="zip_code">
-    
-                <tal:zip_code condition="zip_code" 
-                                 repeat="t zip_code">
-    
-                    <input type="hidden" tal:attributes="value t" name="zip_code:list" />
-    
-                </tal:zip_code>
-            </metal:zip_code>
-
             <metal:programs define-macro="programs" tal:condition="programs">
-    
-                <tal:programs condition="programs" 
+
+                <tal:programs condition="programs"
                                  repeat="t programs">
-    
+
                     <input type="hidden" tal:attributes="value t" name="Topics:list" />
-    
+
                 </tal:programs>
             </metal:programs>
 
             <metal:collection_filter define-macro="collection_filter" tal:condition="collection_filter">
-    
+
                     <input type="hidden" value="True" name="collection_filter" />
 
             </metal:collection_filter>
- 
+
             <p class="discreet"
                i18n:translate="search_results_advanced"
                tal:condition="not:isAnon">
@@ -246,34 +283,34 @@
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                     <img tal:replace="structure item_icon/html_tag" />
-                    <a href="#" 
+                    <a href="#"
                         tal:condition="exists:item_object/image_thumb"
-                        tal:attributes="href url">
+                        tal:attributes="href url"
+                        class="searchLeadImageContainer">
                         <img src="" alt=""
                                 tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
                     </a>
-                    <a
-                        href="#"
-                        tal:attributes="href url;
-                                        class string:$item_wf_state_class"
+                    <a href="#"
+                       tal:attributes="href url;
+                                       class string:tileTitle ${item_wf_state_class}"
                 tal:content="result/pretty_title_or_id" />
                 </dt>
 
-                <dd>
+                <dd tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
 
                 <div class="documentByLine effectiveDate" tal:condition="python: result_type == 'News Item'"> <span tal:replace="python:toLocalizedTime(item_effective,long_format=0)" /> </div>
 
-                    <tal:event 
+                    <tal:event
                          condition="python: result_type == 'Event'">
                          <div metal:use-macro="context/@@folder_listing_z3/macros/event_date" />
                     </tal:event>
 
-                    <tal:person 
-                         condition="python: result_type == 'FSDPerson'"
-                         tal:define="person nocall:item_object">
-                         <div metal:use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
+                    <tal:person
+                        condition="python: result_type == 'FSDPerson'"
+                        tal:define="person nocall:item_object">
+                        <div metal:use-macro="context/@@folder_summary_view_z3/macros/fsd_summary" />
                     </tal:person>
-                    
+
                     <p tal:content="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
                         Cropped description
                     </p>

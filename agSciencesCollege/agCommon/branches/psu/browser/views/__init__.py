@@ -193,6 +193,11 @@ class SearchView(FolderView):
     def getResults(self):
         now = DateTime()
 
+        try:
+            ziptool = getToolByName(self.context, 'extension_zipcode_tool')
+        except AttributeError:
+            ziptool = None
+
         filtered_results = []
         files = []
 
@@ -207,24 +212,19 @@ class SearchView(FolderView):
         
         # ZIP Code search
         
-        search_zip = self.request.form.get('zip_code')
+        search_zip = self.request.form.get('zip_code_input')
         search_zip_radius = self.request.form.get('zip_code_radius')
         
-        if search_zip and search_zip_radius:
-
-            try:
-                ziptool = getToolByName(self.context, 'extension_zipcode_tool')
-            except AttributeError:
-                pass
-            else:
-                # We have a ziptool
-                zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
-                all_zips = self.portal_catalog.uniqueValuesFor('zip_code')
-                search_zip_list = list(set(zips) & set(all_zips))
-                search_zip_list.append('00000')
-                self.request.form['zip_code'] = search_zip_list
+        if ziptool and search_zip and search_zip_radius:
+            # We have a ziptool
+            zips = ziptool.getNearbyZIPs(search_zip, search_zip_radius)
+            all_zips = self.portal_catalog.uniqueValuesFor('zip_code')
+            search_zip_list = list(set(zips) & set(all_zips))
+            search_zip_list.append('00000')
+            self.request.form['zip_code'] = search_zip_list
             
         results = self.context.queryCatalog(REQUEST=self.request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root)
+
         for r in results:
             if self.anonymous and r.portal_type == 'Event' and r.end < now:
                 continue
@@ -232,7 +232,16 @@ class SearchView(FolderView):
                 files.append(r)
             else:
                 filtered_results.append(r)
+        
         filtered_results.extend(files)
+        
+        def getDistance(z1, z2):
+            return ziptool.getDistance(z1, z2,novalue=9999)
+        
+        # Switch order for people to distance
+        if ziptool and search_zip and 'FSDPerson' in self.request.form.get('portal_type', []):
+            filtered_results.sort(key=lambda x: getDistance(x.zip_code, search_zip))
+        
         return filtered_results
 
 class AgendaView(FolderView):

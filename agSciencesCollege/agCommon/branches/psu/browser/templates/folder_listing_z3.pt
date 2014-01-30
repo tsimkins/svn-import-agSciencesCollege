@@ -37,8 +37,9 @@
                         folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
                         order_by_id here/order_by_id|nothing;
                         order_by_title here/order_by_title|nothing;
+                        zip_code_input request/zip_code_input|nothing;
                         agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                        folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;
+                        folderContents python: (is_a_topic and (order_by_id or order_by_title or zip_code_input)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title, zip_code_input=zip_code_input) or folderContents;
                         site_properties context/portal_properties/site_properties;
                         use_view_action site_properties/typesUseViewActionInListings|python:();
                         Batch python:modules['Products.CMFPlone'].Batch;
@@ -54,7 +55,12 @@
                         show_description context/show_description|nothing;
                         show_image show_image|view/show_image|nothing;
                         show_date show_date|view/show_date|nothing;
-                        layout context/getLayout;">
+                        layout context/getLayout;
+                        ezt context/extension_zipcode_tool|nothing;
+                        getDistance nocall: ezt/getDistance|nothing;
+                        toZIP5 nocall: ezt/toZIP5|nothing;
+                        validateZIP nocall:ezt/validateZIP|nothing;">
+
     <tal:listing condition="batch">
 
         <tal:dl metal:define-slot="entries">
@@ -218,7 +224,16 @@
                                                         tal:condition="location"
                                                         class="location">Oslo</span>
                                             </a>
-    
+                                            
+                                            <metal:zip define-macro="zip-distance">
+                                            <tal:zip
+                                                define="item_zip item/zip_code|nothing;"
+                                                condition="python: zip_code_input and item_zip and getDistance and toZIP5 and validateZIP and validateZIP(zip_code_input) and validateZIP(item_zip)">
+                                                <div class="zip_distance" tal:define="distance python: '%0d' % round(getDistance(zip_code_input, item_zip))">
+                                                    <span tal:replace="distance" /> miles from <span tal:replace="python:toZIP5(zip_code_input)" />
+                                                </div>
+                                            </tal:zip>
+                                            </metal:zip>
                                         
                                         </tal:location>
                                     </metal:location>

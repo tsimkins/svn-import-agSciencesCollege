@@ -94,6 +94,47 @@ body.template-fsd_atoz_view #portal-localsearchbox {
     margin: 0.5em 0;
 }
 
+#content .searchResults dd.contenttype-fsdperson ul.jobTitle li {
+    margin-bottom: 0;
+}
+
+#content .searchResults dt.contenttype-fsdperson {
+    margin: 0.125em 0 0.125em 0;
+    padding: 0.5em 0 0 0;
+    border-top: 1px solid #DDDDDD;
+}
+
+#content .searchResults dt.contenttype-fsdperson:first-child {
+    border-top: none;
+}
+
+#content .searchResults dt.contenttype-fsdperson .searchLeadImageContainer {
+    float: left;
+    margin: 0 0 0 -18.852459016393443%;
+    text-align: center;
+    width: 17.486338797814208%;
+    border: none;
+    padding-top: 0.25em;
+}
+
+#content .searchResults dt.contenttype-fsdperson .searchLeadImageContainer .tileImage {
+    float: none;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#content .searchResults dt.contenttype-fsdperson,
+#content .searchResults dd.contenttype-fsdperson {
+    padding-left: 18.852459016393443%;
+}
+
+#content .searchResults ul.jobTitle {
+    list-style-type: none;
+    margin: 0.125em 0;
+    list-style-image: none;
+}
+
 #content .tileItem .facultyStaffDirectory ul.jobTitle {
     margin: 0;
     line-height: 1.25em;
