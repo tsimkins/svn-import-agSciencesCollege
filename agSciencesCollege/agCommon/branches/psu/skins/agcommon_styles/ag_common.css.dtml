@@ -1539,6 +1539,14 @@ dd.portletItem p {
     margin: 0.5em 0 0.5em 0;
 }
 
+.contentLeadImageContainerFullWidth {
+    max-width: 100%;
+    width: auto;
+    float: none;
+    clear: both;
+    margin: 0.5em 0 0.5em 0;
+}
+
 #portal-column-content.sl.sr .contentLeadImageContainer {
     max-width: 44.279661016949153%;
 }
@@ -1547,6 +1555,13 @@ dd.portletItem p {
     margin-left: 4.5%;
     max-width: 95.5%;
     height: auto;
+}
+
+.contentLeadImageContainerFullWidth img {
+    margin-left: 0;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
 }
 
 .contentLeadImageContainer p.discreet {
