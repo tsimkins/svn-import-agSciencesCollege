@@ -555,8 +555,6 @@ class FactsheetPDFView(FolderView):
         extension_url_image = self.site.portal_skins.agcommon_images['extension-url.png']
         extension_url_image_width = 0.5*max_image_width
 
-        outreach_image = self.site.portal_skins.agcommon_images['outreach-statement-long-black.png']
-
         # Colored background box
         header_bg_y = doc.height + header_image_height
         header_bg_height = header_image_height + header_image_padding
@@ -724,10 +722,9 @@ class FactsheetPDFView(FolderView):
         # All done with contents, appending line and statement
         pdf.append(HRFlowable(width='100%', spaceBefore=4, spaceAfter=4))
 
-        # Extension and Outreach logos
+        # Extension logo
 
         pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT', body_image=False))
-        pdf.append(getImage(outreach_image, style=padded_image, body_image=False))
 
         # Choose which statement
         if use_long_statement:
