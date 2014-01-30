@@ -435,6 +435,16 @@
         original="breadcrumbs"
         />
 
+    <!-- Add 'zip_code' to FSDPerson -->
+    
+    <monkey:patch
+        description="Add 'zip_code' method to FSDPerson"
+        class="Products.FacultyStaffDirectory.Person.Person"
+        replacement=".patch.fsdpersonzipcode"
+        original="zip_code"
+        ignoreOriginal="True"
+        />
+
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
     <five:implements

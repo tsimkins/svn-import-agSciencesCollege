@@ -400,3 +400,13 @@ def breadcrumbs(self):
                 )
 
     return base
+
+
+def fsdpersonzipcode(self):
+    try:
+        ezt = getToolByName(self, 'extension_zipcode_tool')
+    except AttributeError:
+        return None
+    if hasattr(self, 'getOfficePostalCode'):
+        return ezt.toZIP5(self.getOfficePostalCode())
+    return None
