@@ -16,7 +16,7 @@ from Products.agCommon.browser.interfaces import IContributors
 from Products.CMFCore.interfaces import ISiteRoot
 from agsci.subsite.content.interfaces import ITagRoot, IHomePage
 from Products.Archetypes.utils import DisplayList
-from collective.contentleadimage.extender import show_leadimage
+from collective.contentleadimage.extender import show_leadimage, leadimage_full_width
 from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 from plone.app.blob.field import BlobField
 
@@ -382,7 +382,9 @@ class NewsItemExtender(object):
             validators = ('isURL'),
         ),
         
-        show_leadimage
+        show_leadimage,
+        
+        leadimage_full_width,
 
     ]
 
