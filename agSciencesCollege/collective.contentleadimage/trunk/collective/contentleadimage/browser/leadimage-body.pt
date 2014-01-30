@@ -7,7 +7,8 @@
 <div class="contentLeadImageContainer" i18n:domain="collective.contentleadimage"
      tal:define="tag python: view.bodyTag();
                  show_leadimage_context context/show_leadimage_context|nothing"
-     tal:condition="python: show_leadimage_context and tag">
+     tal:condition="python: show_leadimage_context and tag"
+     tal:attributes="class view/getClass">
 
     <tal:comment tal:replace="nothing">
         We need to format the link differently if our source data is a news item

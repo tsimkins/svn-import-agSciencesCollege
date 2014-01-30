@@ -81,6 +81,16 @@ show_leadimage = _ExtensionBooleanField(
             ),
         )
 
+leadimage_full_width = _ExtensionBooleanField(
+            "leadimage_full_width",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Full width lead image",
+                description=u"This will show a large lead image on the object display.",
+            ),
+        )
 
 class LeadImageExtender(object):
     adapts(ILeadImageable)
@@ -114,7 +124,9 @@ class LeadImageExtender(object):
 
         captionField,
 
-        show_leadimage
+        show_leadimage,
+
+        leadimage_full_width,
 
         ]
 
@@ -180,7 +192,9 @@ if HAS_BLOB:
 
             captionField,
             
-            show_leadimage
+            show_leadimage,
+
+            leadimage_full_width,
 
             ]
 

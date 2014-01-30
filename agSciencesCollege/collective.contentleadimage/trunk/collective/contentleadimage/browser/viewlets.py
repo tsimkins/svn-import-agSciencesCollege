@@ -19,6 +19,20 @@ class LeadImageViewlet(ViewletBase):
         portal = getUtility(IPloneSiteRoot)
         return ILeadImagePrefsForm(portal)
 
+    @property
+    def full_width(self):
+
+        full_width = False
+
+        context = aq_inner(self.context)
+
+        full_widthfield = context.getField('leadimage_full_width')
+
+        if full_widthfield:
+            full_width = full_widthfield.get(context)
+
+        return full_width
+
     def bodyTag(self, css_class=''):
         """ returns img tag """
         context = aq_inner(self.context)
@@ -31,7 +45,7 @@ class LeadImageViewlet(ViewletBase):
         
         leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
         newsitemcaption = context.getField('imageCaption')
-
+        
         imageCaption = None
 
         if leadimagefield:
@@ -47,10 +61,15 @@ class LeadImageViewlet(ViewletBase):
         if not imageCaption:
             imageCaption = context.Title()
         
+
+        
         if field is not None and \
           field.getFilename(context) is not None and \
             field.get_size(context) != 0:
-                scale = self.prefs.body_scale_name
+                if self.full_width:
+                    scale = "galleryzoom"
+                else:
+                    scale = self.prefs.body_scale_name
                 
                 return field.tag(context, scale=scale, css_class=css_class,alt=imageCaption,title=imageCaption)
         return ''
@@ -109,3 +128,10 @@ class LeadImageViewlet(ViewletBase):
         context = aq_inner(self.context)
         portal_type = getattr(context, 'portal_type', None)
         return portal_type == 'News Item'
+
+    def getClass(self):
+
+        if self.full_width:
+            return "contentLeadImageContainerFullWidth"
+        else:
+            return "contentLeadImageContainer"
