@@ -227,7 +227,8 @@
                                             
                                             <metal:zip define-macro="zip-distance">
                                             <tal:zip
-                                                define="item_zip item/zip_code|nothing;"
+                                                define="zip_code_input zip_code_input|nothing;
+                                                        item_zip item/zip_code|nothing;"
                                                 condition="python: zip_code_input and item_zip and getDistance and toZIP5 and validateZIP and validateZIP(zip_code_input) and validateZIP(item_zip)">
                                                 <div class="zip_distance" tal:define="distance python: '%0d' % round(getDistance(zip_code_input, item_zip))">
                                                     <span tal:replace="distance" /> miles from <span tal:replace="python:toZIP5(zip_code_input)" />
