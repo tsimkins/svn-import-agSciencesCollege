@@ -1539,12 +1539,12 @@ dd.portletItem p {
     margin: 0.5em 0 0.5em 0;
 }
 
-.contentLeadImageContainerFullWidth {
+.contentLeadImageContainerFullWidth, .contentLeadImageContainerLeft {
     max-width: 100%;
     width: auto;
     float: none;
     clear: both;
-    margin: 0.5em 0 0.5em 0;
+    margin: 0.5em 0 1.25em 0;
 }
 
 #portal-column-content.sl.sr .contentLeadImageContainer {
@@ -1557,15 +1557,24 @@ dd.portletItem p {
     height: auto;
 }
 
-.contentLeadImageContainerFullWidth img {
+.contentLeadImageContainerFullWidth img, .contentLeadImageContainerLeft img {
     margin-left: 0;
     max-width: 100%;
     height: auto;
     width: 100%;
 }
 
+.contentLeadImageContainerLeft img {
+    width: auto;
+}
+
 .contentLeadImageContainer p.discreet {
     padding-left: 1.125em;
+}
+
+#portal-column-content p.discreet img {
+    margin-top: 1em;
+    display: block;
 }
 
 .portletItemDetails {

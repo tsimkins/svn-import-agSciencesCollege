@@ -6,6 +6,16 @@
     
 /* YOUR CSS RULES START HERE */
 
+/*------------------------- large-site.css ------------------------------*/
+
+@media handheld, screen and (min-width: 891px) {
+    .contentLeadImageContainer {
+        max-width: 52.7107%;
+    }
+}
+
+/*------------------------ END rlarge-site.css ----------------------------*/
+
 /*------------------------- resolution-890.css ------------------------------*/
 
 @media handheld, screen and (max-width: 890px) {
