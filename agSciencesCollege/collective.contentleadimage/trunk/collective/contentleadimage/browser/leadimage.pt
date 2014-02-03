@@ -1,5 +1,35 @@
-<div i18n:domain="collective.contentleadimage">
+<metal:leadimage define-macro="contentleadimage">
 
-    <img tal:replace="structure python:view.descTag(css_class='tileImage')" />
+<tal:comment tal:replace="nothing">
+    Changed newsImageContainer to contentLeadImageContainer so we can style it separately
+</tal:comment>
+
+<div class="contentLeadImageContainer" i18n:domain="collective.contentleadimage"
+     tal:define="tag python: view.bodyTag();
+                 show_leadimage_context context/show_leadimage_context|nothing"
+     tal:condition="python: show_leadimage_context and tag"
+     tal:attributes="class view/getClass">
+
+    <tal:comment tal:replace="nothing">
+        We need to format the link differently if our source data is a news item
+    </tal:comment>
+    
+    <a href="#"
+       tal:condition="view/isNewsItem"
+       tal:attributes="href string:${context/absolute_url}/image_view_fullscreen"
+       id="parent-fieldname-leadImage">
+       <img tal:replace="structure tag" src="" alt="" />
+    </a>
+    <a href="#"
+       tal:condition="not:view/isNewsItem"
+       tal:attributes="href string:${context/absolute_url}/leadImage/image_view_fullscreen"
+       id="parent-fieldname-leadImage">
+       <img tal:replace="structure tag" src="" alt="" />
+    </a>
+
+    <p class="discreet" tal:condition="view/caption" tal:content="view/caption" />
+
 
 </div>
+
+</metal:leadimage>

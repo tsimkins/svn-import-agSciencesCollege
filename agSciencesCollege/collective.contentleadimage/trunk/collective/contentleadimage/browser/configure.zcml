@@ -6,23 +6,12 @@
     
     <include package="plone.app.contentmenu" />
     
-    <!-- Custom viewlet -->
-    <browser:viewlet
-        name="collective.contentleadimage.thumbnail"
-        for="..interfaces.ILeadImageable"
-        class=".viewlets.LeadImageViewlet"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-        template="leadimage.pt"
-        layer="..interfaces.ILeadImageSpecific"
-        permission="zope2.View"
-    />
-
     <browser:viewlet
         name="collective.contentleadimage.full"
         for="..interfaces.ILeadImageable"
         class=".viewlets.LeadImageViewlet"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="leadimage-body.pt"
+        template="leadimage.pt"
         layer="..interfaces.ILeadImageSpecific"
         permission="zope2.View"
     />

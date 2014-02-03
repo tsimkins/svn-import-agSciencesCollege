@@ -33,12 +33,11 @@ class LeadImageViewlet(ViewletBase):
 
         return full_width
 
-    def bodyTag(self, css_class=''):
-        """ returns img tag """
+    def getImageAndCaptionFields(self):
+
         context = aq_inner(self.context)
-        
+
         # Use News Item image as Content Lead Image, if it exists
-        field = None
         
         leadimagefield = context.getField(IMAGE_FIELD_NAME)
         newsitemfield =  context.getField('image')
@@ -46,73 +45,56 @@ class LeadImageViewlet(ViewletBase):
         leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
         newsitemcaption = context.getField('imageCaption')
         
+        if leadimagefield and leadimagecaption:
+            return (leadimagefield, leadimagecaption)
+
+        elif newsitemfield and newsitemcaption:
+            return (newsitemfield, newsitemcaption)
+
+        else:
+            return (None, None)
+
+    def bodyTag(self, css_class=''):
+        """ returns img tag """
+
+        context = aq_inner(self.context)
+
+        (imageField, imageCaptionField) = self.getImageAndCaptionFields()
+
         imageCaption = None
 
-        if leadimagefield:
-            field = leadimagefield
-            if leadimagecaption:
-                imageCaption = str(leadimagecaption.get(context)).strip()
-
-        if newsitemfield:
-            field = newsitemfield
-            if newsitemcaption:
-                imageCaption = str(newsitemcaption.get(context)).strip()
+        if imageCaptionField:
+            imageCaption = str(imageCaptionField.get(context)).strip()
         
         if not imageCaption:
             imageCaption = context.Title()
-        
 
-        
-        if field is not None and \
-          field.getFilename(context) is not None and \
-            field.get_size(context) != 0:
+
+        if imageField is not None and \
+           imageField.getFilename(context) is not None and \
+           imageField.get_size(context) != 0:
+
                 if self.full_width:
                     scale = "galleryzoom"
                 else:
                     scale = self.prefs.body_scale_name
                 
-                return field.tag(context, scale=scale, css_class=css_class,alt=imageCaption,title=imageCaption)
-        return ''
+                return imageField.tag(context, scale=scale, css_class=css_class,alt=imageCaption,title=imageCaption)
 
-    def descTag(self, css_class='tileImage'):
-        """ returns img tag """
-        context = aq_inner(self.context)
-
-        # Use News Item image as Content Lead Image image, if it exists
-        field = None
-
-        leadimagefield = context.getField(IMAGE_FIELD_NAME)
-        newsitemfield =  context.getField('image')
-
-        if leadimagefield:
-            field = leadimagefield
-        if newsitemfield:
-            field = newsitemfield
-            
-        if field is not None and \
-          field.getFilename(context) is not None and \
-            field.get_size(context) != 0:
-                scale = self.prefs.desc_scale_name
-                return field.tag(context, scale=scale, css_class=css_class)
         return ''
 
     def caption(self):
         context = aq_inner(self.context)
 
-        leadimagefield = context.getField(IMAGE_FIELD_NAME)
-        newsitemfield =  context.getField('image')
+        (imageField, imageCaptionField) = self.getImageAndCaptionFields()
 
-        leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
-        newsitemcaption = context.getField('imageCaption')
+        imageCaption = ''
 
-        # Use News Item caption as Content Lead Image caption, if it exists
-        if leadimagefield and leadimagecaption and leadimagecaption.get(context):
-            return context.widget(IMAGE_CAPTION_FIELD_NAME, mode='view')
-        elif newsitemfield and newsitemcaption and newsitemcaption.get(context):
-            return context.widget('imageCaption', mode='view')
-        else:
-            return ''
-        
+        if imageCaptionField:
+            imageCaption = str(imageCaptionField.get(context)).strip()
+
+        return imageCaption
+
     def render(self):
         context = aq_inner(self.context)
         portal_type = getattr(context, 'portal_type', None)
@@ -132,6 +114,16 @@ class LeadImageViewlet(ViewletBase):
     def getClass(self):
 
         if self.full_width:
+            (imageField, imageCaptionField) = self.getImageAndCaptionFields()
+            
+            if imageField:
+                img = imageField.get(self.context)
+                if img:
+                    width = img.width
+                    # Don't stretch the image if it isn't full-width
+                    if width < 650: # Magic number! 
+                        return "contentLeadImageContainerLeft"
+            
             return "contentLeadImageContainerFullWidth"
         else:
             return "contentLeadImageContainer"
