@@ -1,5 +1,5 @@
 jq(document).ready(function() {
-    jq(".contentLeadImageContainer a#parent-fieldname-leadImage").each(
+    jq(".contentLeadImageContainer a#parent-fieldname-leadImage, .contentLeadImageContainerLeft a#parent-fieldname-leadImage, .contentLeadImageContainerFullWidth a#parent-fieldname-leadImage").each(
         function () {
             var href = jq(this).attr('href');
             if (href.indexOf('leadImage/image_view_fullscreen') >= 0)
