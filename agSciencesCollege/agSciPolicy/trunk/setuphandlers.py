@@ -1,4 +1,8 @@
-from zope.app.component.hooks import setSite
+try:
+    from zope.app.component.hooks import setSite
+except ImportError:
+    from zope.component.hooks import setSite
+
 from zope.component import getSiteManager, getUtility, getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 from Products.CMFCore.utils import getToolByName
