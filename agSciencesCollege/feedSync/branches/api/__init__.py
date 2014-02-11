@@ -1,7 +1,12 @@
 import feedparser
 from datetime import datetime
 from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 from AccessControl.SecurityManagement import newSecurityManager
 import urllib2
 from urllib2 import HTTPError
