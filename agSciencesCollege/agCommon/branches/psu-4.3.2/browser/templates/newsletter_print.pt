@@ -1,0 +1,366 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/newsletter_view/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:local_style_slot fill-slot="local_style_slot">
+    <style type="text/css">
+        .contentLeadImageContainer, img.image-right, img.image-left {
+            background-color: transparent;
+            float: right;
+            margin: 0.375em 0 0.5em;
+            max-width: 267px;
+            width: auto;
+            clear: right;
+        }
+
+        .contentLeadImageContainer:first-child {
+            clear: none;
+        }
+
+        .contentLeadImageContainer img, img.image-right, img.image-left {
+            margin-left: 1em;
+            border: medium none;
+            vertical-align: middle;
+        }
+
+        .contentLeadImageContainer p.discreet {
+            padding-left: 1.125em;
+        }
+
+        .discreet {
+            color: #4F4F4F;
+            font-size: 85%;
+            font-weight: normal;
+        }
+
+        #portal-column-two {
+            display: none;
+        }
+
+        #portal-columns {
+            width: 98%;
+            margin: 0 1%;
+            padding: 0;
+        }
+
+        table td.header div, table td.header h1, table td.header hr {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 15px;
+            padding-left: 0;
+            padding-right: 0;
+
+        }
+
+        table td.header div.contentLeadImageContainer {
+            margin-right: 0;
+        }
+
+        #portal-column-content {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .portletFooter {
+            display: none;
+        }
+
+        .event_add_calendar, .hiddenStructure {
+            display: none;
+        }
+
+        .event_where h3, .event_when h3, .event_phone h3, .event_contact h3 {
+            font-weight: bold;
+            display: inline;
+        }
+
+        .event_where h3:after, .event_when h3:after, .event_phone h3:after, .event_contact h3:after {
+            content: ": ";
+        }
+
+        .eventDateLocation {
+            margin: 0.25em 0 0.5em 0;
+        }
+
+        table.leadimage,
+        #leadimage-left,
+        #leadimage-right {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        table.leadimage {
+            width: 100%;
+        }
+
+        #leadimage-left {
+            width: 56.666666666666667%;
+        }
+
+        #leadimage-right {
+            width: 43.333333333333333%;
+        }
+
+        div.graphic-header-agsci,
+        div.graphic-header-extension {
+            margin: 12pt 0 8pt 0;
+        }
+
+    </style>
+
+    <style media="print,screen">
+
+        h1.headline {
+            font-size: 16pt;
+        }
+
+        body, p, li, h1, h2, h3, div, span  {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", Times, serif !important;
+        }
+
+        p.documentDescription {
+            font-weight: bold;
+        }
+
+        .portletItem {
+            margin: 0 0 6pt 12pt;
+        }
+
+        .item {
+            clear: both;
+            margin-top: 10pt;
+            margin-bottom: 10pt;
+            padding-bottom: 10pt;
+            border-bottom: 1px solid #9F9F9F;
+        }
+
+        #portal-column-content a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        #portal-column-content a strong,
+        #portal-column-content a.standalone {
+            text-decoration: underline;
+            color: #0000EE;
+            font-weight: bold;
+        }
+
+        #portal-column-content .portletItem a {
+            font-weight: bold;
+        }
+
+        #portal-column-content .portletfeedmixer .printed-event {
+            margin-right: 12pt;
+        }
+
+        #portal-column-content .portletfeedmixer .printed-event a.title {
+            font-size: 1.125em;
+            border-bottom: 1px solid #CCCCCC;
+            padding-bottom: 0.03125em;
+            margin-bottom: 0.0625em;
+            display: block;
+        }
+
+        td.footer p.legal {
+            display: none;
+        }
+
+        td.footer a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .effectiveDate {
+            margin-bottom: 10pt;
+        }
+
+        .facultyStaffDirectory {
+            margin-bottom: 0.625em;
+        }
+
+        .facultyStaffDirectory div {
+            display: inline;
+        }
+
+        ul.jobTitle {
+            line-height: 1.25em;
+            list-style: none !important;
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        ul.jobTitle li {
+            margin-bottom: 0.125em;
+            padding: 0;
+            display: inline;
+        }
+
+        .documentContributors .tileHeadline {
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        .documentText table {
+            border-collapse: collapse;
+            margin: 0.375em 0 0.5em 0;
+            caption-side: bottom;
+            font-size: 0.9375em;
+        }
+
+        .documentText table th, .documentText table td {
+            border: 1px solid #666666;
+            padding: 0.25em 0.375em;
+        }
+
+        .documentText table th {
+            background-color: #B8B8B8;
+            text-align: left;
+        }
+
+        .documentText table tr.even td {
+            background-color: #EBEBEB;
+        }
+
+        .documentText table.listing caption {
+            color: #333333;
+            font-size: 0.8125em;
+            margin-top: 0.375em;
+            text-align: left;
+        }
+
+        .imagePortlet {
+            display: none;
+        }
+
+    </style>
+</metal:local_style_slot>
+
+<metal:javascriptslot fill-slot="javascript_head_slot">
+
+    <script tal:attributes="src string:${portal_url}/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(
+            function() {
+
+                $('#portal-column-content .item').each(
+                    function() {
+                        leadImage = $(this).find('.contentLeadImageContainer:first-child');
+                        description = $(this).find('.documentDescription')
+                        if (description)
+                        {
+                            description.before(leadImage);
+                        }
+                    }
+                );
+
+                //window.print();
+            }
+        );
+
+
+    </script>
+
+</metal:javascriptslot>
+
+<metal:view-online fill-slot="view-online">
+    <!-- No link -->
+</metal:view-online>
+
+<metal:content-listing fill-slot="content-listing">
+    <!-- No additional content -->
+</metal:content-listing>
+
+<metal:graphic fill-slot="content-header-graphic"
+    tal:define="hide_header_graphic context/hide_header_graphic|nothing">
+
+    <tal:header-graphic condition="not: hide_header_graphic">
+
+    	<div tal:condition="is_extension"
+            class="graphic-header-extension">
+            <a href="http://extension.psu.edu">
+            <img tal:attributes="src string:${portal_url}/extension-newsletter-header-print.png"
+                                 alt="Penn State Extension" width="765"
+                                 border="0"
+                                 height="85" /></a>
+        </div>
+
+
+    	<div tal:condition="not: is_extension"
+            class="graphic-header-agsci">
+            <a href="http://agsci.psu.edu">
+            <img tal:attributes="src string:${portal_url}/college-newsletter-header-print.png"
+                                 alt="Penn State College of Agricultural Sciences" width="765"
+                                 border="0"
+                                 height="85" /></a>
+        </div>
+
+    </tal:header-graphic>
+
+</metal:graphic>
+
+<metal:content-listing fill-slot="content-spotlight"
+                       tal:define="batch view/getSpotlightItems">
+    <div id="content-spotlight">
+
+    <metal:listing use-macro="here/newsletter_view/macros/listing">
+        <metal:featured-articles fill-slot="featured-articles">
+            <!-- none -->
+        </metal:featured-articles>
+
+    <metal:block use-macro="context/@@newsletter_view/macros/entries">
+        <metal:entry fill-slot="entry">
+            <div tal:condition="python: view.isSpotlight(item)"
+                 tal:replace="structure python:view.getHTML(item)" />
+        </metal:entry>
+
+    </metal:block>
+
+    </metal:listing>
+
+    </div>
+</metal:content-listing>
+
+<metal:featured-articles fill-slot="featured-articles">
+    <!-- none -->
+</metal:featured-articles>
+
+<metal:entries fill-slot="entries">
+    <metal:block use-macro="context/@@newsletter_view/macros/entries">
+        <metal:entry fill-slot="entry">
+            <div tal:condition="python: view.showItem(item)"
+                 tal:replace="structure python:view.getHTML(item)" />
+        </metal:entry>
+    </metal:block>
+</metal:entries>
+
+<metal:portlets fill-slot="portlets_two_slot">
+
+</metal:portlets>
+
+<metal:portlets fill-slot="portlets_bottom_slot">
+    <tal:block replace="structure provider:plone.rightcolumn" />
+</metal:portlets>
+
+<metal:analytics fill-slot="analytics_viewlet">
+
+    <tal:block replace="structure provider:plone.analytics" tal:condition="view/anonymous" />
+
+</metal:analytics>
+
+</body>
+</html>
