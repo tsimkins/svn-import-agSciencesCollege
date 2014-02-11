@@ -34,7 +34,10 @@ from PIL import Image as PILImage
 
 import os
 
-from zope.app.component.hooks import getSite
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 

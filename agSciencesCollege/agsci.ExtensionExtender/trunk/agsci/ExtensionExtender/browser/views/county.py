@@ -1,7 +1,11 @@
 from zope.interface import implements
 from Products.CMFCore.utils import getToolByName
 from Products.agCommon.browser.views import FolderView, IFolderView
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
 
 class ByCountyView(FolderView):
     """

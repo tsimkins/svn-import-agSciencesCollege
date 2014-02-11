@@ -4,7 +4,12 @@ from Globals import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 import xlrd
 import sqlite3
 import Zope2
