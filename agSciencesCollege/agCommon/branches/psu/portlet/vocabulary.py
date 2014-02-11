@@ -3,7 +3,12 @@ from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from Products.CMFPlone import PloneMessageFactory as _
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 from Products.CMFCore.utils import getToolByName
 
 class PortalActionsVocabulary(object):

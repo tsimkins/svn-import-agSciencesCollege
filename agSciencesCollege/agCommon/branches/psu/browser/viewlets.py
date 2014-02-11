@@ -10,7 +10,12 @@ from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
 from plone.app.discussion.browser.comments import CommentsViewlet
 from zope.interface import implements
