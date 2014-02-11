@@ -1,6 +1,11 @@
 from Products.CMFCore.utils import getToolByName
 from BeautifulSoup import BeautifulSoup, Tag, NavigableString
-from zope.app.component.hooks import getSite
+
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 from agsci.w3c import Report
 import re
 

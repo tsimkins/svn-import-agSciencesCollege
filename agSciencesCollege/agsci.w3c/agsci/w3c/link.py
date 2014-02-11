@@ -1,4 +1,8 @@
-from zope.app.component.hooks import getSite
+try:
+    from zope.app.component.hooks import getSite
+except ImportError:
+    from zope.component.hooks import getSite
+
 from agsci.w3c.site import translateURL
 
 from zope.component import getSiteManager

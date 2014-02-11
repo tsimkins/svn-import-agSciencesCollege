@@ -1,4 +1,7 @@
-from zope.app.component.hooks import setSite, getSite
+try:
+    from zope.app.component.hooks import getSite, setSite
+except ImportError:
+    from zope.component.hooks import getSite, setSite
 
 try:
     from Products.agCommon import calculateGradient
