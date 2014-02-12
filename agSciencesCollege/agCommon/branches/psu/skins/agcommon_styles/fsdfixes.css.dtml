@@ -30,7 +30,7 @@
 }
 
 .facultyStaffDirectory.personView .headshot {
-    margin: 0 0 0 !important;
+    margin: 0 0 1em 1em !important;
     padding-right: 0;
     text-align: right;
     float: right;
@@ -80,6 +80,10 @@ body.template-classification_standard_view #portal-column-content .classificatio
 .facultyStaffDirectory .standardView .caption {
     margin-left: 0;
     padding-left: 0;
+}
+
+.facultyStaffDirectory.personView .biography {
+    margin-top: 0.5em;
 }
 
 body.template-fsd_atoz_view .facultyStaffDirectory h2 {

@@ -14,14 +14,12 @@ from zope.component import getMultiAdapter
 request = container.REQUEST
 RESPONSE =  request.RESPONSE
 
-
-results = context.queryCatalog()
 portal_state = getMultiAdapter((context, request), name=u'plone_portal_state')
 anonymous = portal_state.anonymous()
 
+results = context.queryCatalog()
 
-
-if 'courses-annual' in context.Subject() and results and len(results) == 1 and anonymous:
+if results and len(results) == 1 and anonymous:
     event = results[0]
     return RESPONSE.redirect(event.getURL())
 else:

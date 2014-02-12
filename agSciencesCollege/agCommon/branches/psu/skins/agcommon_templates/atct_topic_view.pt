@@ -24,11 +24,12 @@
                                    agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
                                    isCourse python:'courses' in context.Subject() or 'courses' in context.aq_parent.Subject();
                                    noEventsCourse python:'courses-online-ondemand' in context.Subject() or 'courses-online-ondemand' in context.aq_parent.Subject();
-                                   annualCourse python: 'courses-annual' in context.Subject() or 'courses-annual' in context.aq_parent.Subject() and context.getLayout() == 'course_annual_redirect';
+                                   annualCourse python: context.getLayout() == 'course_annual_redirect' and len(topicContents) <= 1;
                                    topicContents python: (order_by_title or order_by_id or zip_code_input) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title, zip_code_input=zip_code_input) or topicContents;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    batch topicContents;
                                    isAnon context/@@plone_portal_state/anonymous">
+
         <tal:course condition="python: isCourse and not noEventsCourse and not annualCourse">
             <h2>Upcoming Events</h2>
             <p class="discreet"
@@ -38,30 +39,29 @@
         </tal:course>
 
         <tal:annual
-             condition="python: annualCourse and not isAnon and len(topicContents) == 1">
+             condition="python: annualCourse and not isAnon">
             <dl class="portalMessage info">
-                <dt i18n:translate="">Info</dt>
                 <dd i18n:translate="">
-                    You are seeing this page because this course is set to an '<strong>annual</strong>' course, and 
-                    you are logged in.
-                    <br /><br />
-                    If there is one (and only one) upcoming event, the public visitor will be 
-                    redirected to that event. 
+                    <p>You are seeing this page because:</p>
+                    <ul>
+                    <li>You are logged in.</li>
+                    <li>This course is set to an '<strong>annual</strong>' course</li>
+                    <li>There is one (and only one) upcoming event.</li>
+                    </ul>
+                    <p>The public visitor will be 
+                        <span tal:condition="python: len(topicContents) == 1">
+                            redirected to <a tal:attributes="href python: topicContents[0].getURL()"
+                                             tal:content="python: topicContents[0].Title" />.
+                        </span>
+                        <span tal:condition="python: len(topicContents) == 0">
+                            shown the landing page with no 'Upcoming Events' listing 
+                        </span>
+                    </p>
                 </dd>
             </dl>
         </tal:annual>
-            
-        <tal:listing condition="topicContents">
-            <a style='text-align: right' href="#"
-               tal:condition="nocall: here/asPDF|nothing"
-               tal:attributes="href string:${here_url}/asPDF/atct_topic_pdf_template/atct_topic_pdf"
-               i18n:translate="label_download_as_pdf"
-               i18n:domain="atcontenttypes">
-                Download PDF
-            </a>
-        </tal:listing>
 
-        <tal:listing condition="topicContents">
+        <tal:listing condition="python: topicContents and not noEventsCourse and not annualCourse">
             <tal:default condition="not:here/getCustomView|nothing"
                          define="folderContents topicContents;
                                  view nocall:context/@@folder_listing_z3;">
