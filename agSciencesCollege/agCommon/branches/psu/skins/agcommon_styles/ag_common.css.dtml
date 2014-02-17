@@ -3083,7 +3083,7 @@ form.event-registration input[type="submit"] {
     padding: 0;
     border-width: 0 0 1px 0;
     font-weight: bold;
-    margin: 0.75em 0;
+    margin: 0.75em 0 0 0;
     white-space: normal;
     text-align: left;
 }
@@ -3110,10 +3110,10 @@ form.event-registration-button input[type="submit"] {
     cursor: pointer; 
     padding: 0.5em 3em;
     font-weight: bold;
-    margin: 0.5em 0 0.5em 1em;
+    margin: 0.5em 0 0.5em 0;
     white-space: normal;
     text-align: center;
-    float: right;
+    float: none;
     clear: both;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -3209,7 +3209,7 @@ body.template-register_fg_base_view_p3 #content .event-registration,
 body.template-register_fg_base_view_p3 #content .event_when,
 body.template-register_fg_base_view_p3 #content .event_where {
     line-height: 1.3125em;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.375em;
 }
 
 body.template-register_fg_base_view_p3 #content .event-registration h3,

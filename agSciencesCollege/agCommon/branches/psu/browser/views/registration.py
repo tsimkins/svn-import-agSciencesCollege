@@ -15,10 +15,25 @@ except ImportError:
 
 class IRegistrationView(Interface):
 
+    def getEventUID(self):
+        pass
+
     def getEventByUID(self):
         pass
-        
+       
     def canViewRegistrations(self, event):
+        pass
+
+    def allowRegistration(self, event):
+        pass
+
+    def registrationURL(self):
+        pass
+
+    def getRegistrations(self, show_titles=True):
+        pass
+
+    def getAttendeeCount(self):
         pass
 
 
@@ -30,8 +45,15 @@ class RegistrationView(BrowserView):
         self.context = context
         self.request = request
 
+    def getEventUID(self):
+        if self.context.portal_type == 'Event':
+            return self.context.UID()
+        else:
+            return self.request.form.get('uid')
+
     def getEventByUID(self):
-        uid = self.request.form.get('uid')
+        uid = self.getEventUID()
+        
         if uid:
             portal_catalog = getToolByName(self.context, "portal_catalog")
             results = portal_catalog.searchResults({'portal_type' : 'Event', 'UID' : uid})
@@ -67,8 +89,18 @@ class RegistrationView(BrowserView):
                 if now > registration_deadline:
                     return False
 
+        if hasattr(event, 'free_registration_attendee_limit'):
+            attendee_limit = getattr(event, 'free_registration_attendee_limit')
+            if attendee_limit:
+                attendeeCount = self.getAttendeeCount()
+                if attendeeCount >= attendee_limit:
+                    return False
+
         return True
-    
+
+    def getAttendeeCount(self):
+        return len(self.getRegistrations(show_titles=False))
+
     def registrationURL(self):
         url = getContextConfig(self.context, 'registration_url')
 
@@ -76,6 +108,22 @@ class RegistrationView(BrowserView):
             return url.replace('${portal_url}', '')
         else:
             return "%s/register" % getSite().absolute_url()
+
+    def getRegistrations(self, show_titles=True):
+        r_form = self.context.restrictedTraverse('register')
+        save_data = r_form['save-data']
+        uid = self.getEventUID()
+        
+        data = []
+        
+        if uid and save_data:
+            if show_titles:
+                data.append(save_data.getColumnTitles()[1:])
+            for r in save_data.getSavedFormInput():
+                if r[0] == uid:
+                    data.append(r[1:])     
+
+        return data
         
 
 class DownloadCSVView(RegistrationView):
@@ -83,21 +131,16 @@ class DownloadCSVView(RegistrationView):
     security.declareProtected(permissions.ModifyPortalContent, '__call__')
 
     def __call__(self):
-        r_form = self.context.restrictedTraverse('register')
-        save_data = r_form['save-data']
         out = StringIO()
         writer = csv.writer(out)
         event = self.getEventByUID()
         
-        if event and self.canViewRegistrations(event) and save_data:
+        registrations = self.getRegistrations()
+        
+        if event and self.canViewRegistrations(event) and registrations:
             filename = "%s.csv" % event.getId()
-
-            titles = save_data.getColumnTitles()
-            writer.writerow(titles[1:])
-            for r in save_data.getSavedFormInput():
-                data_uid = r[0]
-                if data_uid == event.UID():
-                    writer.writerow(r[1:])
+            for r in registrations:
+                writer.writerow(r)
         else:
            filename = "error.csv"
            writer.writerow(["Error retrieving registration information. Either event does not exist, or you do not have the appropriate permissions."])

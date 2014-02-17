@@ -78,6 +78,7 @@
                         getEventByUID nocall: registration_view/getEventByUID;
                         toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                         allowRegistration nocall: registration_view/allowRegistration;
+                        canViewRegistrations nocall: registration_view/canViewRegistrations;
                         item python: getEventByUID();
                         item_type item/portal_type|nothing;
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
@@ -87,7 +88,10 @@
                         map_link item/map_link|nothing;
                         show_event_location python:False;
                         registration_allowed python: allowRegistration(item);
+                        can_view_registrations python: canViewRegistrations(item);
                         registration_deadline item/free_registration_deadline|nothing;
+                        attendee_limit item/free_registration_attendee_limit|nothing;
+                        attendee_count registration_view/getAttendeeCount;
                         isAnon context/@@plone_portal_state/anonymous;">
 
 
@@ -119,6 +123,16 @@
 
             <metal:deadline metal:use-macro="context/event_view/macros/registration_deadline" />
 
+            <tal:status condition="can_view_registrations">
+
+                <h2>Event Registration Status</h2>
+
+                <metal:deadline metal:use-macro="context/event_view/macros/registration_closed" />
+
+                <metal:deadline metal:use-macro="context/event_view/macros/registration_count" />
+
+            </tal:status>
+            
             <tal:form condition="python: registration_allowed or not isAnon">
 
             <h2>Registrant's Information</h2>

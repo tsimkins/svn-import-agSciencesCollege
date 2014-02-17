@@ -31,7 +31,6 @@
        </dl>
 </metal:canceled>
 
-
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core"
                         tal:define="kssClassesView context/@@kss_field_decorator_view;
@@ -112,9 +111,12 @@
 
         </tal:wherewhen>
 
-        <metal:field use-macro="python:context.widget('text', mode='view')">
-        Body text
-        </metal:field>
+        <div metal:define-macro="text-field-view"
+             class="documentText">
+            <metal:field use-macro="python:here.widget('text', mode='view')">
+                Body text
+            </metal:field>
+        </div>
 
         <metal:register define-macro="register"
             tal:condition="context/free_registration|nothing"
@@ -124,38 +126,52 @@
                         can_view_registrations python: canViewRegistrations(context);
                         registration_allowed python: allowRegistration(context);
                         registration_deadline context/free_registration_deadline|nothing;
+                        attendee_limit context/free_registration_attendee_limit|nothing;
+                        attendee_count registration_view/getAttendeeCount;
                         registration_url registration_view/registrationURL">
 
             <h2>Registration</h2>
 
             <metal:cost define-macro="registration_cost">
-            <div class="event-registration" tal:condition="registration_allowed"><h3>Cost</h3> 
-            There is no fee to attend this event.  However, pre-registration is requested.
+            <div class="event-registration" tal:condition="registration_allowed"><h3>Cost</h3>
+            There is no fee to attend this event.  However, pre-registration is
+                <span tal:condition="not: attendee_limit">requested.</span>
+                <span tal:condition="attendee_limit">required.</span>
             </div>
             </metal:cost>
 
             <metal:deadline define-macro="registration_deadline">
             <div class="event-registration" tal:condition="registration_deadline">
                 <tal:open condition="registration_allowed">
-                    <h3>Registration deadline</h3> 
+                    <h3>Registration deadline</h3>
                     <span tal:replace="python:toLocalizedTime(registration_deadline, long_format=1)" />
                 </tal:open>
-                <span tal:condition="not: registration_allowed">Registration for this event is closed.</span>
-
             </div>
             </metal:deadline>
-           
+
+            <metal:closed define-macro="registration_closed">
+            <div class="event-registration" tal:condition="not: registration_allowed">
+                Registration for this event is closed.
+            </div>
+            </metal:closed>
+
+            <div class="event-registration" metal:define-macro="registration_count" tal:condition="can_view_registrations">
+            <h3>Registration Count</h3>
+            <span tal:condition="attendee_limit" tal:content="string:${attendee_count}/${attendee_limit} attendees." />
+            <span tal:condition="not: attendee_limit" tal:content="string:${attendee_count} attendees." />
+            </div>
+
             <form tal:condition="python: (registration_allowed) or (not isAnon and not registration_allowed)"
-                class="event-registration event-registration-public" 
-                tal:attributes="action registration_url" 
+                class="event-registration event-registration-public"
+                tal:attributes="action registration_url"
                 method="post">
                 <input type="hidden" name="uid" tal:attributes="value context/UID" />
                 <input type="submit" value="Register for this event" />
             </form>
 
             <form tal:condition="can_view_registrations"
-                class="event-registration" 
-                tal:attributes="action string:${registration_url}/download_csv" 
+                class="event-registration"
+                tal:attributes="action string:${registration_url}/download_csv"
                 method="post">
                 <input type="hidden" name="uid" tal:attributes="value context/UID" />
                 <input type="submit" value="Download Registration Information" />
@@ -220,7 +236,7 @@
                             tal:content="x" />
                     </ul>
                 </tal:areas>
-                
+
                 <tal:areas condition="extension_subtopics">
                     <h3>Topics</h3>
                     <ul>
@@ -238,7 +254,6 @@
                 </tal:areas>
 
         </tal:metadata>
-
 
         <span class="visualClear"><!-- --></span>
 
