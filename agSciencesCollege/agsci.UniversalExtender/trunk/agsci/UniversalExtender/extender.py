@@ -1,4 +1,4 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField, FileWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField, FileWidget, IntegerField, IntegerWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
 from Products.ATContentTypes.interfaces.news import IATNewsItem
@@ -27,6 +27,7 @@ class _ExtensionLinesField(ExtensionField, LinesField): pass
 class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
 class _ExtensionReferenceField(ExtensionField, ReferenceField): pass
 class _ExtensionBlobField(ExtensionField, BlobField): pass
+class _ExtensionIntegerField(ExtensionField, IntegerField): pass
 
 class _TagsField(_ExtensionLinesField):
     def Vocabulary(self, context):
@@ -283,7 +284,17 @@ class EventExtender(object):
                 searchable=False,
                 widget=CalendarWidget(
                     label=u"Registration deadline.",
-                    description=u"After this date, registrations will not be permitted.",
+                    description=u"Registrations will not be permitted after this date.",
+                    condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
+                ),
+        ),
+        _ExtensionIntegerField(
+            "free_registration_attendee_limit",
+                required=False,
+                searchable=False,
+                widget=IntegerWidget(
+                    label=u"Maximum Attendees",
+                    description=u"Additional registrations not be permitted after this number of registrations.",
                     condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
