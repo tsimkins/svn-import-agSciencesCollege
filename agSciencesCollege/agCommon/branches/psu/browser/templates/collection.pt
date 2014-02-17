@@ -19,6 +19,7 @@
 					item_start obj/start|obj/StartDate|nothing;
 					item_end obj/end|obj/EndDate|nothing;
 					item_title_or_id obj/pretty_title_or_id;
+					item_title_or_id python: agcommon_utilities.substituteTitle(obj, context);
 					item_event_location_title python: agcommon_utilities.substituteEventLocation(obj);
 					item_title_or_id python: item_event_location_title or item_title_or_id;
 					isCanceled obj/eventCanceled|nothing;

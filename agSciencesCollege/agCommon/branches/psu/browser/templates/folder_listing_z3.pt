@@ -69,6 +69,7 @@
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
                                    item_event_location_title python: agcommon_utilities.substituteEventLocation(item);
+                                   item_title_or_id python: agcommon_utilities.substituteTitle(item, context);
                                    item_title_or_id python: item_event_location_title or item_title_or_id;
                                    item_description item/Description;
                                    item_type item/portal_type;

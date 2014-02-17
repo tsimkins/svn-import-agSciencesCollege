@@ -21,6 +21,9 @@ class IAgCommonUtilities(Interface):
     def substituteEventLocation(self):
         pass
 
+    def substituteTitle(self):
+        pass
+
     def reorderTopicContents(self):
         pass
 
@@ -57,7 +60,18 @@ class AgCommonUtilities(BrowserView):
             elif item.location.strip():
                 return item.location.strip()
 
-        return None        
+        return None  
+
+    def substituteTitle(self, item, context):
+
+        item_title = item.Title.strip()
+
+        if 'courses' in context.Subject():
+            course_title = '%s:' % context.Title().strip()
+            if item_title.startswith(course_title):
+                item_title = item_title.replace(course_title, '', 1).strip()
+
+        return item_title
      
     def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None, zip_code_input=None):
 
