@@ -147,6 +147,12 @@
                 <p> No results matching your search criteria were found. </p>
             </tal:noresults>
 
+            <tal:noresults 
+                tal:define="no_results_message context/no_results_message|nothing"
+                condition="python: no_results_message and not topicContents">
+                <p tal:content="no_results_message" />
+            </tal:noresults>
+
             <p class="discreet"
                tal:condition="not: here/listCriteria"
                i18n:domain="atcontenttypes"
