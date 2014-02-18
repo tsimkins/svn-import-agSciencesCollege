@@ -28,7 +28,8 @@
                                    topicContents python: (order_by_title or order_by_id or zip_code_input) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title, zip_code_input=zip_code_input) or topicContents;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    batch topicContents;
-                                   isAnon context/@@plone_portal_state/anonymous">
+                                   isAnon context/@@plone_portal_state/anonymous;
+                                   no_results_message context/no_results_message|nothing">
 
         <tal:course condition="python: isCourse and not noEventsCourse and not annualCourse">
             <h2>Upcoming Events</h2>
@@ -37,6 +38,11 @@
                 There are currently no events scheduled for this course.
             </p>
         </tal:course>
+
+        <tal:noresults 
+            condition="python: no_results_message and not topicContents">
+            <p tal:content="no_results_message" />
+        </tal:noresults>
 
         <tal:annual
              condition="python: annualCourse and not isAnon">
@@ -136,7 +142,7 @@
             </tal:listing>
 
             <p class="discreet"
-                tal:condition="python: not topicContents and here.listCriteria() and not isAnon and not isCourse"
+                tal:condition="python: not topicContents and here.listCriteria() and not isAnon and not isCourse and not no_results_message"
                 i18n:domain="atcontenttypes"
                 i18n:translate="description_no_items_in_topic">
                 There are currently no results for this search.
@@ -145,12 +151,6 @@
             <tal:noresults condition="python: not topicContents and here.listCriteria() and contentFilter">
                 <h2> No Results</h2>
                 <p> No results matching your search criteria were found. </p>
-            </tal:noresults>
-
-            <tal:noresults 
-                tal:define="no_results_message context/no_results_message|nothing"
-                condition="python: no_results_message and not topicContents">
-                <p tal:content="no_results_message" />
             </tal:noresults>
 
             <p class="discreet"

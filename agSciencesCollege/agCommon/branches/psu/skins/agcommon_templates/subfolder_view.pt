@@ -96,7 +96,8 @@
                                          order_by_title subfolder/order_by_title|nothing;
                                          subfolderContents python:subfolder.getFolderContents() or (is_a_topic and subfolder.queryCatalog(sort_limit=limit)[:limit]) or [];
                                          subfolderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(subfolderContents, order_by_id=order_by_id, order_by_title=order_by_title) or subfolderContents;
-                                         batch subfolderContents;">
+                                         batch subfolderContents;
+                                         no_results_message subfolder/no_results_message|nothing">
 
                                 <tal:listing condition="subfolderContents">
 
@@ -145,11 +146,16 @@
                                 </tal:listing>
                     
                                 <p class="discreet"
-                                    tal:condition="python: not isAnon and not subfolderContents"
+                                    tal:condition="python: not isAnon and not subfolderContents and not no_results_message "
                                     i18n:domain="atcontenttypes"
                                     i18n:translate="description_no_items_in_topic">
                                     There are currently no results for this search.
                                 </p>
+
+                                <tal:noresults 
+                                    condition="python: no_results_message and not subfolderContents">
+                                    <p tal:content="no_results_message" />
+                                </tal:noresults>
                     
                                 <p class="tileFooter" tal:condition="python:topicCount > limit">
                                     <a href=""
