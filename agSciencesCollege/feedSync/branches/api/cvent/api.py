@@ -89,7 +89,10 @@ def getCventEvents(acct_num='',
                 r['location'] = 'N/A'
             r['zip_code'] = str(o._PostalCode)
             r['start'] = DateTime(o._EventStartDate)
-            r['end'] = DateTime(o._EventEndDate)
+            if hasattr(o, '_EventEndDate'):
+                r['end'] = DateTime(o._EventEndDate)
+            else:
+                r['end'] = r['start']
             r['category'] = str(o._Category)
 
             for u in o.WeblinkDetail:
