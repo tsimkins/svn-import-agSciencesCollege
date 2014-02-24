@@ -298,6 +298,16 @@ class EventExtender(object):
                     condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
+        _TextExtensionField(
+            "free_registration_confirmation_message",
+            required=False,
+            widget=RichWidget(
+                label=u"Email Confirmation Message",
+                description=u"Additional text sent as part of confirmation email.",
+            ),
+            default_output_type="text/x-html-safe",
+            validators=('isTidyHtmlWithCleanup',),
+        ),
         _ExtensionBooleanField(
             "eventCanceled",
             required=False,
