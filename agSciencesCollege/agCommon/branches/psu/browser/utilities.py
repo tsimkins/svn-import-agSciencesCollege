@@ -38,6 +38,7 @@ class IAgCommonUtilities(Interface):
 
     def contentFilter(self):
         pass
+    
 
 class AgCommonUtilities(BrowserView):
 
@@ -299,4 +300,5 @@ class AgCommonUtilities(BrowserView):
                             contentFilter[k] = counties
                 else:
                     contentFilter[k] = self.request.form[k]
+
         return contentFilter

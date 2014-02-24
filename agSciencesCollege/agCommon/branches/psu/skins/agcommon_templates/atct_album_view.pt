@@ -17,6 +17,7 @@
                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                  templateId template/getId;
                  view nocall:context/@@folder_listing_z3;
+                 leadImageTag nocall: view/tag;
                  test nocall:view/test;
                  batch python:Batch(images, 12, int(b_start), orphan=1)">
     
@@ -38,21 +39,31 @@
                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                  templateId template/getId;
                  image_count python:12;
-                 batch python:Batch(images, image_count, int(b_start), orphan=1)">
+                 batch python:Batch(images, image_count, int(b_start), orphan=1);">
 
         <div class="photoAlbum">
 
         <tal:images tal:condition="batch" tal:repeat="image batch">
-            <div class="photoAlbumEntry">
-                        <a tal:define="id python:int(b_start)+int(repeat['image'].number()-1)"
+            <div tal:define="isImage python: image.portal_type == 'Image';
+                             klass python: isImage and 'photoAlbumImage' or ''"
+                 tal:attributes="class string:photoAlbumEntry ${klass}">
+                        <a tal:define="id python:int(b_start)+int(repeat['image'].number()-1);
+                                       image_title image/Title;
+                                       image_description image/Description;
+                                       a_title python: image_description and '%s: %s' % (image_title, image_description) or image_title"
                            tal:attributes="href string:${image/absolute_url}/view;
-                                           title image/Description">
-                            <span class="photoAlbumEntryWrapper">
-                            <img src="" alt="" tal:replace="structure python:image.tag(scale='thumb', title=image.Description())" />
-                            </span>
-                    <span class="photoAlbumEntryTitle" tal:content="image/pretty_title_or_id">
-                       Title
-                    </span>
+                                           title a_title">
+                            <div class="photoAlbumEntryWrapper">
+                                <img src="" alt="" 
+                                     tal:condition="isImage" 
+                                     tal:replace="structure python:image.tag(scale='thumb', title=a_title)" />
+                                <img src="" alt="" 
+                                     tal:condition="not:isImage" 
+                                     tal:replace="structure python:leadImageTag(image, scale='thumb', )" />
+                                <div class="photoAlbumEntryTitle" tal:content="image/pretty_title_or_id">
+                                   Title
+                                </div>
+                            </div>
                         </a>
             </div>
         </tal:images>

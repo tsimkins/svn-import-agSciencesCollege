@@ -7,6 +7,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.agCommon import getContextConfig
+import HTMLParser
 
 try:
     from zope.app.component.hooks import getSite
@@ -36,6 +37,8 @@ class IRegistrationView(Interface):
     def getAttendeeCount(self):
         pass
 
+    def unescapeHTML(self, e):
+        pass
 
 class RegistrationView(BrowserView):
 
@@ -124,6 +127,10 @@ class RegistrationView(BrowserView):
                     data.append(r[1:])     
 
         return data
+
+    def unescapeHTML(self, e):
+        h = HTMLParser.HTMLParser()
+        return h.unescape(e)
         
 
 class DownloadCSVView(RegistrationView):

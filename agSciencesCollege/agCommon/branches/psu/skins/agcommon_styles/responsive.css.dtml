@@ -1239,7 +1239,17 @@
         margin: 0 0.5em;
         padding: 0;
     }
-
+    
+    .photoAlbumEntry {
+        width: 46.7105263157895%;
+        padding: 0 1.644736842105263%;
+    }
+    
+    .fancybox-wrap {
+        position: absolute !important;
+        top: 15px !important;
+    }
+    
 }    
 
 
@@ -1375,7 +1385,7 @@
     #content .searchResults dd.contenttype-fsdperson {
         padding-left: 0;
     }
-    
+
 }
 
 /*------------------------ END resolution-480.css ----------------------------*/
