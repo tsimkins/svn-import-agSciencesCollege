@@ -144,7 +144,7 @@ class ExtensionZIPCodeTool(UniqueObject, SimpleItem):
     
             c = conn.cursor()
     
-            results = c.execute("""select zipcode, city, county from zipcodes where zipcode = ? limit 1""", (zipcode,)).fetchone()
+            results = c.execute("""select zipcode, city, county, lat, lon from zipcodes where zipcode = ? limit 1""", (zipcode,)).fetchone()
     
             conn.close()
     

@@ -23,6 +23,22 @@
 
     <browser:page
         for="*"
+        name="kml"
+        class=".views.kml.KMLView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="kml_all"
+        class=".views.kml.KMLAllView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
         name="counties"
         class=".views.drilldown.CountyView"
         template="templates/drilldown.pt"
