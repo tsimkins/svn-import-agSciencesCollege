@@ -753,7 +753,7 @@ def onBlogCreation(blog, event):
             smart_obj = blog[id]
             smart_obj.setLayout('folder_summary_view')
             smart_obj.show_date = True
-            smart_obj.show_images = True
+            smart_obj.show_image = True
             smart_obj.setExcludeFromNav(True)
             smart_obj.unmarkCreationFlag()
             smart_obj.reindexObject()
