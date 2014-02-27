@@ -9,7 +9,7 @@
 <body>
 
 <metal:content fill-slot="content-text">
-    
+
     <div metal:define-macro="text-field-view"
         tal:define="has_text exists:context/aq_explicit/getText;
                     text python:has_text and here.getText() or '';
@@ -18,7 +18,7 @@
         tal:content="structure text">
         [ Body Text ]
     </div>
-    
+
 </metal:content>
 
 <metal:content-core fill-slot="content-core">
@@ -27,7 +27,7 @@
                                 test nocall:view/test">
 
     <metal:listingmacro define-macro="listing">
-    
+
     <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
                         contentFilter python:contentFilter and dict(contentFilter) or {};
                         limit_display limit_display|request/limit_display|nothing;
@@ -106,6 +106,10 @@
                                                    tal:condition="newsitem_image"
                                                    tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
 
+                                           <img src="" alt=""
+	 	                                                   tal:condition="item_has_leadimage"
+	 	                                                   tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
+
                                        </tal:img>
                                     </tal:leadimage>
 
@@ -115,7 +119,7 @@
 
                         <div tal:define="dt_class python:test(item_description, 'tileTitle', 'tileTitle no-description');"
                             tal:attributes="class dt_class">
-   
+
                             <img tal:replace="structure item_icon/html_tag" />
                             <a href="#"
                                tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);
@@ -125,7 +129,7 @@
                            </a>
                         </div>
 
-                        <tal:taglisting 
+                        <tal:taglisting
                              define="show_tags context/show_tags|nothing;
                                    tag_prefix context/tag_prefix|nothing;
                                    tag_prefix python: tag_prefix and tag_prefix + '-' or ''"
@@ -137,14 +141,14 @@
                                </tal:tags>
                             </p>
                        </tal:taglisting>
-   
-   
-                       <tal:byline condition="show_about">                    
-   
+
+
+                       <tal:byline condition="show_about">
+
                            <div class="documentByLine">
-   
+
                                &mdash;
-   
+
                                <tal:name tal:condition="item_creator"
                                    tal:define="author python:pas_member.info(item_creator);
                                                creator_short_form author/username;
@@ -161,9 +165,9 @@
                                    Bob Dobalina
                                  </a>
                                  </span>
-   
+
                                </tal:name>
-   
+
                                <tal:modified condition="python: item_type != 'Event'">
                                    &mdash;
                                    <tal:mod i18n:translate="box_last_modified">
@@ -173,7 +177,7 @@
                                      August 16, 2001 at 23:35:59
                                    </span>
                                </tal:modified>
-   
+
                                <metal:description define-slot="description_slot">
                                    <tal:comment replace="nothing">
                                        Place custom listing info for custom types here
@@ -184,8 +188,8 @@
                    </tal:dt>
 
                     <metal:show-date define-macro="show-date">
-                        <div class="documentByLine effectiveDate" 
-                             tal:condition="show_date" 
+                        <div class="documentByLine effectiveDate"
+                             tal:condition="show_date"
                              tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                     </metal:show-date>
 
@@ -195,7 +199,7 @@
                             <tal:event-date condition="python: item_type == 'Event'"
                                             define="isCanceled item/eventCanceled|nothing;
                                                     canceled python:isCanceled and 'canceled' or ''">
-    
+
                                 <div tal:condition="isCanceled" class="listingWarning">
                                     Event Canceled
                                 </div>
@@ -217,13 +221,13 @@
                                                     long_location item/location|nothing;
                                                     short_location item/short_location|nothing;
                                                     location python: short_location or long_location or None;">
-    
+
                                             <a tal:attributes="href map_link" tal:omit-tag="not: map_link">
                                                 <span tal:content="location"
                                                         tal:condition="location"
                                                         class="location">Oslo</span>
                                             </a>
-                                            
+
                                             <metal:zip define-macro="zip-distance">
                                             <tal:zip
                                                 define="zip_code_input zip_code_input|nothing;
@@ -234,7 +238,7 @@
                                                 </div>
                                             </tal:zip>
                                             </metal:zip>
-                                        
+
                                         </tal:location>
                                     </metal:location>
                                 </div>
@@ -257,7 +261,7 @@
                         </tal:show_description>
 
                    </div>
-                    <div class="visualClear" 
+                    <div class="visualClear"
                          tal:condition="show_image"><!-- --></div>
                 </div>
 
