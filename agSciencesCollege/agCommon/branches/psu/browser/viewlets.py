@@ -727,11 +727,15 @@ class ContributorsViewlet(AgCommonViewlet):
                         obj = r.getObject()
                         job_titles = obj.getJobTitles()
     
-                        self.people.append({'name' : obj.pretty_title_or_id(), 
+                        self.people.append({
+                                            'name' : obj.pretty_title_or_id(), 
                                             'title' : job_titles and job_titles[0] or '', 
                                             'url' : obj.absolute_url(),
                                             'phone' : obj.getOfficePhone(),
-                                            'email' : obj.getEmail()})
+                                            'email' : obj.getEmail(),
+                                            'image' : getattr(obj, 'image_thumb', None),
+                                            'tag' : getattr(obj, 'tag', None)
+                                            })
                         found = True
     
                 if not found and not psuid_re.match(id):

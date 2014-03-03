@@ -1250,6 +1250,15 @@
         top: 15px !important;
     }
     
+    .documentContributors .contentLeadImageContainer {
+        display: none;
+    }
+
+    #content .documentContributors .tileHeadline,
+    .documentContributors .facultyStaffDirectory {
+        margin-left: 0;
+    }
+    
 }    
 
 

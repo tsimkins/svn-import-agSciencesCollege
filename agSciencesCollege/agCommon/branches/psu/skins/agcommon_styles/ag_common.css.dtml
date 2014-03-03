@@ -2737,21 +2737,16 @@ body.template-folder_full_view #content-core .item {
     margin-top: 0.75em;
 }
 
+
+/* Contact Information (contributors) */
+
 .documentContributors {
     font-size: 0.875em;
 }
 
-.documentContributors .facultyStaffDirectory {
-    font-size: 0.96875em;
-}
-
-.documentContributors .facultyStaffDirectory div {
-    color: #4D4D4D;
-}
-
 #content .documentContributors h2 {
     color: &dtml-documentSubHeadingColor;;
-    margin: 1.125em 0 0 0;
+    margin: 1.125em 0 0.375em 0;
     font-size: 1.375em;
     padding: 0;
     border: none;
@@ -2759,12 +2754,42 @@ body.template-folder_full_view #content-core .item {
     font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
 }
 
-#content .documentContributors h3.tileHeadline {
+#content .documentContributors .tileItem {
+    margin-bottom: 1em;
+    padding-top: 0.75em;
+    border-top: 1px solid #DDDDDD;
+}
+
+#content .documentContributors .documentContributorsItems .tileItem:first-child {
+    border-top: none;
+}
+
+.documentContributors .contentLeadImageContainer {
+    float: left;
+    margin: 0 1.506024096385542% 0 1.506024096385542%;
+    width: 6.325301204819277%;
+    padding-top: 0.25em;
+}
+
+.documentContributors .contentLeadImageContainer img {
+    margin: 0;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+}
+
+#content .documentContributors .tileHeadline {
     font-size: 1.1875em;
+    margin-left: 9.337349397590361%;
 } 
 
-#content .documentContributors .tileItemLeadImage:first-child {
-    border: none !important;
+.documentContributors .facultyStaffDirectory {
+    font-size: 0.96875em;
+    margin-left: 9.337349397590361%;
+}
+
+.documentContributors .facultyStaffDirectory div {
+    color: #4D4D4D;
 }
 
 .discreet {
