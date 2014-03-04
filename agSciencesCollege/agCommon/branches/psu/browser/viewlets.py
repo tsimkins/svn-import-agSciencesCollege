@@ -706,14 +706,30 @@ class ContributorsViewlet(AgCommonViewlet):
     implements(IContentProvider)
 
     index = ViewPageTemplateFile('templates/contributors.pt')
-    
-    def update(self):
+
+    def title(self):
+        return getContextConfig(self.context, 'contact_title', default='Contact Information')
+
+    def showCreators(self):
+        return not not getContextConfig(self.context, 'contact_creators')
+
+    def showForContentTypes(self):
+        return getContextConfig(self.context, 'person_portlet_types', default=['News Item'])
+
+    @property
+    def people(self):
+       
         psuid_re = re.compile("^[A-Za-z][A-Za-z0-9_]*$") # Using one from FSD
         
-        self.people = []
+        people = []
         
-        peopleList = [x.strip() for x in self.context.Contributors()]
-
+        if self.showCreators():
+            if self.context.portal_type not in self.showForContentTypes():
+                return people
+            peopleList = [x.strip() for x in self.context.listCreators()]
+        else:
+            peopleList = [x.strip() for x in self.context.Contributors()]
+            
         if peopleList:
             portal_catalog = getToolByName(self.context, 'portal_catalog')
             search_results = portal_catalog.searchResults({'portal_type' : 'FSDPerson', 'id' : peopleList })
@@ -727,7 +743,7 @@ class ContributorsViewlet(AgCommonViewlet):
                         obj = r.getObject()
                         job_titles = obj.getJobTitles()
     
-                        self.people.append({
+                        people.append({
                                             'name' : obj.pretty_title_or_id(), 
                                             'title' : job_titles and job_titles[0] or '', 
                                             'url' : obj.absolute_url(),
@@ -748,11 +764,13 @@ class ContributorsViewlet(AgCommonViewlet):
                     elif not url.startswith('http'):
                         url = ''
                     
-                    self.people.append({'name' : name, 
+                    people.append({'name' : name, 
                                             'title' : title, 
                                             'url' : url,
                                             'phone' : phone,
                                             'email' : email})
+
+        return people
 
     @property
     def is_printed_newsletter(self):

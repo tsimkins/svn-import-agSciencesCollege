@@ -488,6 +488,10 @@
         height: auto;
     }
 
+    #portal-column-content.sl.sr .documentContributors .contentLeadImageContainer {
+        height: 85px;
+    }
+
 }
 
 /*------------------------ END resolution-768.css ----------------------------*/

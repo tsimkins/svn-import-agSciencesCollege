@@ -2,7 +2,7 @@
     tal:define="contributors view/people;
                 is_printed_newsletter view/is_printed_newsletter"
     tal:condition="contributors">
-    <h2>Contact Information</h2>
+    <h2 tal:content="view/title|nothing">Contact Information</h2>
     
     <div class="documentContributorsItems">
         
@@ -19,7 +19,7 @@
                     <div class="contentLeadImageContainer" tal:condition="not:is_printed_newsletter">
         
                         <img tal:condition="item/image|nothing"
-                                tal:replace="structure python: path('nocall:item/tag')(scale='thumb', css_class='tileImage')" />
+                                tal:replace="structure python: path('nocall:item/tag')(scale='thumb', css_class='')" />
         
                     </div>
     

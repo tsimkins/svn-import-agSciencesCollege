@@ -2766,26 +2766,39 @@ body.template-folder_full_view #content-core .item {
 
 .documentContributors .contentLeadImageContainer {
     float: left;
-    margin: 0 1.506024096385542% 0 1.506024096385542%;
-    width: 6.325301204819277%;
-    padding-top: 0.25em;
+    margin: 0.25em 1.506024096385542% 0 1.506024096385542%;
+    width: 7.530120481927711%;
+    max-width: 7.530120481927711%;
+    height: 75px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#portal-column-content.sl.sr .documentContributors .contentLeadImageContainer {
+    width: 10.593220338983051%;
+    max-width: 10.593220338983051%;
 }
 
 .documentContributors .contentLeadImageContainer img {
-    margin: 0;
-    max-width: 100%;
+    margin: 0 0 0 -12.5%;
     height: auto;
-    width: 100%;
+    width: 125%;
+    max-width: 125%;
 }
 
 #content .documentContributors .tileHeadline {
     font-size: 1.1875em;
-    margin-left: 9.337349397590361%;
+    margin-left: 10.542168674698795%;
 } 
 
 .documentContributors .facultyStaffDirectory {
     font-size: 0.96875em;
-    margin-left: 9.337349397590361%;
+    margin-left: 10.542168674698795%;
+}
+
+#portal-column-content.sl.sr #content .documentContributors .tileHeadline ,
+#portal-column-content.sl.sr .documentContributors .facultyStaffDirectory {
+    margin-left: 14.830508474576271%;
 }
 
 .documentContributors .facultyStaffDirectory div {

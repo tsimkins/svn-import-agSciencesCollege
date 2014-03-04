@@ -933,6 +933,9 @@ def _getContextConfig(context):
         'show_image',
         'show_read_more',
         'registration_url',
+        'contact_creators',
+        'contact_title',
+        'person_portlet_types',
     ]
     
     # Convert to dict
