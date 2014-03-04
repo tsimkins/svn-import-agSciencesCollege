@@ -35,6 +35,8 @@ if uid:
             from_email = getattr(o, 'contactEmail', 'do.not.reply@psu.edu')
             if from_email:
                 from_email = "Penn State Extension <%s>" % from_email
+            else:
+                from_email = "Penn State Extension <do.not.reply@psu.edu>"
 
             # Topics and Primary Topic
             topics = ['']
