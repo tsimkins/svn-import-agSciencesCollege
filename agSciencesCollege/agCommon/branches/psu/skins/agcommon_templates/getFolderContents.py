@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=contentFilter=None,batch=False,b_size=100,full_objects=False
+##parameters=contentFilter=None,batch=False,b_size=100,full_objects=False,show_related=False
 ##title=wrapper method around to use catalog to get folder contents
 ##
 
@@ -43,7 +43,7 @@ contents = context.portal_catalog.queryCatalog(contentFilter, show_all=1,
 
 # If the portal type is a folder, and we have related items, *append* those to contents
 
-if context.portal_type in ['Folder']:
+if show_related and context.portal_type in ['Folder']:
     related = [ i for i in context.getRelatedItems() if mtool.checkPermission(View, i) ]
 
     if related:

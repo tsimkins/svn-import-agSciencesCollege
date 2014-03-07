@@ -30,7 +30,7 @@
                               order_by_id here/order_by_id|nothing;
                               order_by_title here/order_by_title|nothing;
                               agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                              folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']});
+                              folderContents python:(here.portal_type=='Topic' and here.queryCatalog(batch=True)) or here.getFolderContents({'portal_type' : ['Topic','Folder']}, show_related=True);
                               folderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(folderContents, order_by_id=order_by_id, order_by_title=order_by_title) or folderContents;">
 
             <tal:noContents condition="python: len(folderContents) == 0">
@@ -94,7 +94,7 @@
                                          limit python:is_a_topic and here.getItemCount() > 0 and here.getItemCount() or 1000;
                                          order_by_id subfolder/order_by_id|nothing;
                                          order_by_title subfolder/order_by_title|nothing;
-                                         subfolderContents python:subfolder.getFolderContents() or (is_a_topic and subfolder.queryCatalog(sort_limit=limit)[:limit]) or [];
+                                         subfolderContents python:subfolder.getFolderContents(show_related=True) or (is_a_topic and subfolder.queryCatalog(sort_limit=limit)[:limit]) or [];
                                          subfolderContents python: (is_a_topic and (order_by_id or order_by_title)) and agcommon_utilities.reorderTopicContents(subfolderContents, order_by_id=order_by_id, order_by_title=order_by_title) or subfolderContents;
                                          batch subfolderContents;
                                          no_results_message subfolder/no_results_message|nothing">
