@@ -208,7 +208,7 @@
     <browser:viewlet
         name="plone.belowcontentbody.relateditems"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class="plone.app.layout.viewlets.content.ContentRelatedItems"
+        class=".viewlets.ContentRelatedItems"
         view="plone.app.layout.globals.interfaces.IViewView"
         template="templates/document_relateditems.pt"
         layer=".interfaces.IThemeSpecific"

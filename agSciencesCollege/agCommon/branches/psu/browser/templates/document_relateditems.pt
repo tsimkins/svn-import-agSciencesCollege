@@ -1,6 +1,6 @@
 <div class="relatedItems"
      i18n:domain="plone"
-     tal:define="related view/related_items"
+     tal:define="related view/related"
      tal:condition="related">
     <div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
     <dl id="relatedItemBox"

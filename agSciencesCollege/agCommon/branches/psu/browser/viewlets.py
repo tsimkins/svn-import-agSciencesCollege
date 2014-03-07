@@ -10,6 +10,7 @@ from AccessControl import getSecurityManager
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
+from plone.app.layout.viewlets.content import ContentRelatedItems as ContentRelatedItemsBase
 
 try:
     from zope.app.component.hooks import getSite
@@ -842,6 +843,14 @@ class LocalSearchViewlet(SearchBoxViewlet):
                     return self.context.absolute_url()
         else:
             return default_search_url
+
+class ContentRelatedItems(ContentRelatedItemsBase):
+
+    def related(self):
+        if not self.context.isPrincipiaFolderish:
+            return self.related_items()
+        else:
+            return []
 
 # provideAdapter for viewlets to be registered in standalone mode
 

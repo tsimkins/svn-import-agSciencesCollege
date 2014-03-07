@@ -53,6 +53,7 @@ allow_module('urllib')
 allow_module('zope.component')
 allow_module('zope.component.getSiteManager')
 
+allow_module('Products.ZCatalog.Lazy')
 allow_module('Products.GlobalModules')
 allow_module('Products.GlobalModules.makeHomePage')
 allow_module('Products.GlobalModules.makePhotoFolder')
