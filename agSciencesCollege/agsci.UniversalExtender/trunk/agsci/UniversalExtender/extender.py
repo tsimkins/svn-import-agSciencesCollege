@@ -156,7 +156,7 @@ class FSDPersonExtender(object):
 
         # Hide the administrative tabs for non-Managers
         # https://weblion.psu.edu/trac/weblion/wiki/FacultyStaffDirectoryExtender
-        
+
         for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
@@ -202,7 +202,7 @@ class FSDPersonModifier(object):
 
         # Hide the administrative tabs for non-Managers
         # https://weblion.psu.edu/trac/weblion/wiki/FacultyStaffDirectoryExtender
-        
+
         for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
@@ -217,10 +217,10 @@ class FSDPersonModifier(object):
 
 # Check the "Exclude from navigation" by default for Links
 # and Files.  99% of the time these should be hidden, but
-# occasionally they need a link or file to show up in the 
+# occasionally they need a link or file to show up in the
 # navigation.  Can't do PhotoFolders, since they are a
 # clone of ATFolder, and it would be really ugly to extend
-# the base class, and put in a check to see if it's a 
+# the base class, and put in a check to see if it's a
 # specific type.
 
 class DefaultExcludeFromNav(object):
@@ -238,7 +238,7 @@ class DefaultExcludeFromNav(object):
         schema['excludeFromNav'] = exclude_field
 
         return schema
-        
+
 
 # Add a field for a Google Map link to the Event type
 
@@ -348,7 +348,7 @@ class EventExtender(object):
 
         # And put it before the related items
         schema.moveField('eventType', before='relatedItems')
-        """    
+        """
         # Hide the attendees field
         tmp_field = schema['attendees'].copy()
         tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
@@ -374,7 +374,7 @@ class EventExtender(object):
         # Move dates above location
         schema.moveField('endDate', before='location')
         schema.moveField('startDate', before='endDate')
-        
+
         return schema
 
     def __init__(self, context):
@@ -402,9 +402,9 @@ class NewsItemExtender(object):
             ),
             validators = ('isURL'),
         ),
-        
+
         show_leadimage,
-        
+
         leadimage_full_width,
 
     ]
@@ -536,7 +536,7 @@ class FolderTopicExtender(object):
                 condition="python:member.has_role('Manager', object)",
             ),
         ),
-        
+
     ]
 
     def __init__(self, context):
@@ -546,12 +546,12 @@ class FolderTopicExtender(object):
         return self.fields
 
 """
-    Replaces the FolderText product.  
+    Replaces the FolderText product.
 """
 
 class FolderExtender(object):
     adapts(IFolderExtender)
-    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
     layer = IUniversalExtenderLayer
 
     fields = [
@@ -567,7 +567,7 @@ class FolderExtender(object):
             searchable=True,
             validators=('isTidyHtmlWithCleanup',),
         ),
-        
+
         _ExtensionBooleanField(
             "hide_exclude_from_nav",
             required=False,
@@ -579,7 +579,7 @@ class FolderExtender(object):
                 condition="python:member.has_role('Manager', object)",
             ),
         ),
-        
+
         _ExtensionBooleanField(
             "hide_subnavigation",
             required=False,
@@ -598,6 +598,16 @@ class FolderExtender(object):
 
     def getFields(self):
         return self.fields
+
+    def fiddle(self, schema):
+
+        # http://blog.keul.it/2011/09/plone-and-related-items-use-for.html
+        # schema['relatedItems'].widget.visible['edit'] = 'invisible'
+
+        tmp_field = schema['relatedItems'].copy()
+        tmp_field.widget.visible={'edit':'visible','view':'visible'}
+        tmp_field.widget.condition="python:member.has_role('Manager', object)"
+        schema['relatedItems'] = tmp_field
 
 
 class TopicExtender(object):
@@ -625,7 +635,7 @@ class TopicExtender(object):
                     description=u"The content will show items matching the specified regex patterns first, and then sort by the default sort order.  One per line.",
             ),
         ),
-    ]   
+    ]
 
 
     def __init__(self, context):
@@ -666,7 +676,7 @@ class MarkdownDescriptionExtender(object):
                 condition="python:member.has_role('Manager', object)"
             ),
         ),
-    ]   
+    ]
 
 
     def __init__(self, context):
@@ -674,7 +684,7 @@ class MarkdownDescriptionExtender(object):
 
     def getFields(self):
         return self.fields
-        
+
 class TableOfContentsExtender(object):
     adapts(ITableOfContentsExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
@@ -692,7 +702,7 @@ class TableOfContentsExtender(object):
                 description=u"If selected, this will show a table of contents at the top of the page.",
             ),
         ),
-    ]   
+    ]
 
 
     def __init__(self, context):
@@ -700,8 +710,8 @@ class TableOfContentsExtender(object):
 
     def getFields(self):
         return self.fields
-        
-        
+
+
 # Change the "Contributors" field to "Contact Information"
 # and add instructions
 
@@ -776,7 +786,7 @@ class TagExtender(object):
         ),
 
     ]
-    
+
     def __init__(self, context):
         self.context = context
 
@@ -791,7 +801,7 @@ class TagRootExtender(object):
     layer = IUniversalExtenderLayer
 
     fields = [
-    
+
         _ExtensionLinesField(
             "available_public_tags",
             required=False,
@@ -802,7 +812,7 @@ class TagRootExtender(object):
 
         ),
     ]
-    
+
     def fiddle(self, schema):
 
         schema.moveField('available_public_tags', after='folder_text')
@@ -821,7 +831,7 @@ class UniversalPublicationExtender(object):
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IUniversalExtenderLayer
-    
+
     @property
     def fields(self):
         fields = self.custom_fields()
@@ -842,7 +852,7 @@ class UniversalPublicationExtender(object):
                     ),
                     validators = ('isURL'),
             ),
-    
+
             _ExtensionBlobField(
                 "extension_publication_file",
                 schemata="Publication",

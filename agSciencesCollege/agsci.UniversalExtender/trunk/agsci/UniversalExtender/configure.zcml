@@ -126,12 +126,18 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     />
 
+    <adapter
+        name="agsci.UniversalExtender.extender.FolderExtender.fiddle"
+        factory=".extender.FolderExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
     <five:implements
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.IFolderExtender"
     /> 
 
-
+    
     <!-- Folder and Topic Display Options -->
 
     <adapter
@@ -443,6 +449,15 @@
         replacement=".patch.fsdpersonzipcode"
         original="zip_code"
         ignoreOriginal="True"
+        />
+
+    <!-- Update queryCatalog related items sorting-->
+    
+    <monkey:patch
+        description="Update queryCatalog related items sorting"
+        class="Products.ATContentTypes.content.topic.ATTopic"
+        replacement=".patch.queryCatalog"
+        original="queryCatalog"
         />
 
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
