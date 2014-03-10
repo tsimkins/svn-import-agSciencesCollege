@@ -18,11 +18,19 @@ from plone.memoize.instance import memoize
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
 from Products.agCommon import getContextConfig
+from StringIO import StringIO 
+
 try:
     from agsci.ExtensionExtender.counties import getSurroundingCounties
 except ImportError:
     def getSurroundingCounties(c):
         return c
+
+try:
+    from pyPdf import PdfFileReader
+except ImportError:
+    def PdfFileReader(*args, **kwargs):
+        return None
 
 """
     Interface Definitions
@@ -445,3 +453,23 @@ class ModifiedSharingView(SharingView):
         current_settings.sort(key=lambda x: safe_unicode(x["type"])+safe_unicode(x["title"]))
 
         return current_settings
+
+class PublicationFileView(FolderView):
+
+    def getPDF(self):
+
+       if self.context.getContentType() in ['application/pdf']:
+            file = self.context.getFile()
+            file_data = StringIO(file.data)
+            return PdfFileReader(file_data)
+        
+       return None
+
+    def getNumPages(self):
+
+        pdf = self.getPDF()
+        
+        if pdf:
+            return pdf.getNumPages()
+        
+        return None

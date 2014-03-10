@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <metal:content-core fill-slot="content-core">
+        <metal:block define-macro="content-core"
+                     tal:define="content_type context/get_content_type|context/Format;
+                                 number_pages view/getNumPages|nothing;
+                                 publication_code context/extension_publication_code|nothing;">
+
+            <h2>Download Publication</h2>
+            <p>
+                <metal:field use-macro="python:context.widget('file', mode='view')">
+                File
+                </metal:field>
+            </p>
+
+            <div tal:condition="publication_code">
+                <h3 class="inline">Publication Code</h3> <span tal:replace="publication_code" />
+            </div>
+            
+            <div tal:condition="number_pages">
+                <h3 class="inline">Number of Pages</h3> <span tal:replace="number_pages" />
+            </div>
+
+
+            <div id="disclaimer">
+            <p>
+                <strong>
+                    This publication is available in alternative media on 
+                    request.
+                </strong>
+            </p>
+            <p>
+                Penn State is committed to affirmative action, equal 
+                opportunity, and the diversity of its workforce.
+            </p>
+
+            </div>
+
+        </metal:block>
+    </metal:content-core>
+
+</body>
+
+</html>
+

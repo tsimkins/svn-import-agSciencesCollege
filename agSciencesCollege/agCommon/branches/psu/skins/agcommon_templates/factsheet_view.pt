@@ -34,15 +34,13 @@
     <p tal:replace="structure disclaimer_text" />
     </tal:disclaimer>
 
-<div id = "disclaimer">
+<div id="disclaimer">
 
 <p>Penn State College of Agricultural Sciences research, extension, and resident education programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</p>
 <p>Visit Penn State Extension on the web: <a href="http://extension.psu.edu">http://extension.psu.edu</a></p><p>
 Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.</p>
 <p><strong>This publication is available in alternative media on request.</strong></p>
-<p>
-The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and harassment against any person because of age, ancestry, color, disability or handicap, genetic information, national origin, race, religious creed, sex, sexual orientation, gender identity, or veteran status and retaliation due to the reporting of discrimination or harassment. Discrimination, harassment, or retaliation against faculty, staff, or students will not be tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-5901; Tel 814-863-0471.
-</p>
+<p>Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce.</p>
 	<p>
 		&copy; The Pennsylvania State University 
 		<span tal:omit-tag=""

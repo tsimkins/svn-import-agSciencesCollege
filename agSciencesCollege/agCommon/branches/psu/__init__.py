@@ -25,7 +25,7 @@ import os
 import re
 
 from Products.Five.utilities.interfaces import IMarkerInterfaces
-from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
+from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender, IFilePublicationExtender
 
 
 ATTEMPTS = 100
@@ -979,9 +979,13 @@ def getContextConfig(context, attr, default=None):
     return rv
 
 def enablePDF(context):
-    if not IUniversalPublicationExtender.providedBy(context):
+    publicationInterface = IUniversalPublicationExtender
+    if context.portal_type in ['File']:
+        publicationInterface = IFilePublicationExtender
+
+    if not publicationInterface.providedBy(context):
         adapted = IMarkerInterfaces(context)
-        adapted.update(add=[IUniversalPublicationExtender])
+        adapted.update(add=[publicationInterface])
         return True
     else:
         return False

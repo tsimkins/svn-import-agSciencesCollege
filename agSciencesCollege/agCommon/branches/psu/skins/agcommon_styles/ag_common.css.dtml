@@ -2502,6 +2502,11 @@ table.plain th, table.plain td {
    border-color: #CCCCCC;
 }
 
+body.template-file_view #disclaimer {
+    margin-top: 1em;
+    border: none;
+}
+
 /* agendaLinks anchors for agenda view */
 
 body.template-agenda_view #content .agendaLinks ul {
@@ -2558,7 +2563,8 @@ body.template-agenda_view #document-toc h3 {
 }
 
 #content .eventSummary h3,
-body.template-event_view #content .event-registration h3 {
+body.template-event_view #content .event-registration h3,
+#content h3.inline {
     font-size: 1em; 
     font-weight: bold;
     border-bottom-width: 0;
@@ -2566,7 +2572,8 @@ body.template-event_view #content .event-registration h3 {
 }
 
 #content .eventSummary h3:after,
-body.template-event_view #content .event-registration h3:after {
+body.template-event_view #content .event-registration h3:after,
+#content h3.inline:after {
     content: ":";
 }
 

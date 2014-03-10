@@ -604,6 +604,16 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="agsci.UniversalExtender.interfaces.IFilePublicationExtender"
+        name="file_view"
+        class=".views.PublicationFileView"
+        template="templates/publication_file_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+
     <!-- Utilities View -->
     
     <browser:page
