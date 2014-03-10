@@ -312,18 +312,6 @@ class ExtensionPublicationExtender(UniversalPublicationExtender):
                 ),
             ),
     
-            _ExtensionBooleanField(
-                "extension_publication_long_statement",
-                schemata="Publication",
-                required=False,
-                default=False,
-                widget=BooleanWidget(
-                    label=u"Show long statement on generated PDF.",
-                    description=u"",
-                    condition="python:member.has_role('Manager', object)",
-                ),
-            ),
-
         ]
 
 

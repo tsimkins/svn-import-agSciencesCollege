@@ -1,11 +1,12 @@
 from zope.i18nmessageid import MessageFactory
-ExtensionExtenderMessageFactory = MessageFactory('agsci.ExtensionExtender')
 from Products.CMFCore.utils import getToolByName
 from Products.PythonScripts.Utility import allow_module
 from Products.Five.utilities.interfaces import IMarkerInterfaces
 from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender, IExtensionCountiesExtender
-
+from Products.agCommon import enablePDF
 from Products.CMFCore import DirectoryView
+
+ExtensionExtenderMessageFactory = MessageFactory('agsci.ExtensionExtender')
 
 # Register our skins directory - this makes it available via portal_skins.
 
@@ -56,6 +57,9 @@ def getExtensionConfig(context):
     return config
 
 def enablePublication(context):
+    if context.portal_type in ['File']:
+        return enablePDF(context)
+
     if not IExtensionPublicationExtender.providedBy(context):
         adapted = IMarkerInterfaces(context)
         adapted.update(add=[IExtensionPublicationExtender])

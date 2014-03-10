@@ -384,13 +384,6 @@ class FactsheetPDFView(FolderView):
         desc = self.context.Description()
         text = self.context.getText()
 
-
-        # Determine whether or not to use long affirmative action statement
-        use_long_statement = False
-
-        if hasattr(self.context, 'extension_publication_long_statement') and self.context.extension_publication_long_statement:
-            use_long_statement = True
-
         # Determine whether to push description into body text
         description_body = False
 
@@ -730,10 +723,7 @@ class FactsheetPDFView(FolderView):
         pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT', body_image=False))
 
         # Choose which statement
-        if use_long_statement:
-            aa_statement = """The Pennsylvania State University is committed to the policy that all persons shall have equal access to programs, facilities, admission, and employment without regard to personal characteristics not related to ability, performance, or qualifications as determined by University policy or by state or federal authorities. It is the policy of the University to maintain an academic and work environment free of discrimination, including harassment. The Pennsylvania State University prohibits discrimination and harassment against any person because of age, ancestry, color, disability or handicap, genetic information, national origin, race, religious creed, sex, sexual orientation, gender identity, or veteran status and retaliation due to the reporting of discrimination or harassment. Discrimination, harassment, or retaliation against faculty, staff, or students will not be tolerated at The Pennsylvania State University. Direct all inquiries regarding the nondiscrimination policy to the Affirmative Action Director, The Pennsylvania State University, 328 Boucke Building, University Park, PA 16802-5901; Tel 814-863-0471."""
-        else:
-            aa_statement = """Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce."""
+        aa_statement = """Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce."""
         statement_text = ("""<b>Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</b>
 
         Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.
