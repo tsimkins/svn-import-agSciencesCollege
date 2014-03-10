@@ -43,3 +43,9 @@ class IUniversalPublicationExtender(Interface):
         Marker interface to denote something as a "publication", which will add
         the necessary fields to it.
     """
+
+class IFilePublicationExtender(Interface):
+    """
+        Marker interface to denote something as a "publication", which will add
+        the necessary fields to it.
+    """

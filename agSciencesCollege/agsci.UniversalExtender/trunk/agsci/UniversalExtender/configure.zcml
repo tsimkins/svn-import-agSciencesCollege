@@ -276,10 +276,17 @@
     <!-- Publication Extender -->
 
     <adapter
+        name="agsci.UniversalExtender.extender.FilePublicationExtender"
+        factory=".extender.FilePublicationExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <adapter
         name="agsci.UniversalExtender.extender.UniversalPublicationExtender"
         factory=".extender.UniversalPublicationExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
+
 
     <!-- Monkey Patch folder by adding 'getText' method -->
 

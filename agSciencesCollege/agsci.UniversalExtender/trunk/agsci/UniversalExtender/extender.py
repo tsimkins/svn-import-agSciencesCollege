@@ -6,7 +6,7 @@ from Products.ATContentTypes.interfaces.document import IATDocument
 from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender, IUniversalPublicationExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender, IUniversalPublicationExtender, IFilePublicationExtender
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -874,3 +874,23 @@ class UniversalPublicationExtender(object):
 
     def getFields(self):
         return self.fields
+
+class FilePublicationExtender(UniversalPublicationExtender):
+    adapts(IFilePublicationExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IUniversalExtenderLayer
+
+    def base_fields(self):
+        return [
+            _ExtensionStringField(
+                "extension_publication_code",
+                    schemata="Publication",
+                    required=False,
+                    searchable=True,
+                    widget=StringWidget(
+                        label=u"Publication Code",
+                        description=u"",
+                    ),
+            ),
+        ]
