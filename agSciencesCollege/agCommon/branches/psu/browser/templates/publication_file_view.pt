@@ -29,8 +29,11 @@
                 <h3 class="inline">Number of Pages</h3> <span tal:replace="number_pages" />
             </div>
 
+        </metal:block>
+    </metal:content-core>
 
-            <div id="disclaimer">
+    <metal:footer fill-slot="footer">
+        <div id="disclaimer">
             <p>
                 <strong>
                     This publication is available in alternative media on 
@@ -42,11 +45,9 @@
                 opportunity, and the diversity of its workforce.
             </p>
 
-            </div>
+        </div>
 
-        </metal:block>
-    </metal:content-core>
-
+    </metal:footer>
 </body>
 
 </html>

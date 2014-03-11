@@ -319,6 +319,15 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="agcommon.contributors"
+        for="agsci.UniversalExtender.interfaces.IFilePublicationExtender"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.ContributorsViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
     <five:implements
         class="Products.ATContentTypes.content.document.ATDocument"
         interface=".interfaces.IContributors"
@@ -360,7 +369,17 @@
     /> 
 
     <!-- Portlet Managers -->
-    
+
+    <browser:viewlet
+        name="plone.manage_portlets_fallback"
+        for="plone.portlets.interfaces.ILocalPortletAssignable"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class="plone.app.layout.viewlets.common.ManagePortletsFallbackViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
 	<browser:page
 		for="plone.portlets.interfaces.ILocalPortletAssignable"
 		class="plone.app.portlets.browser.manage.ManageContextualPortlets"
