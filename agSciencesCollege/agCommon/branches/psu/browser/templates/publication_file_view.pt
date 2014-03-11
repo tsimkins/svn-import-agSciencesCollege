@@ -35,10 +35,8 @@
     <metal:footer fill-slot="footer">
         <div id="disclaimer">
             <p>
-                <strong>
-                    This publication is available in alternative media on 
-                    request.
-                </strong>
+                This publication is available in alternative media on 
+                request.
             </p>
         </div>
 
