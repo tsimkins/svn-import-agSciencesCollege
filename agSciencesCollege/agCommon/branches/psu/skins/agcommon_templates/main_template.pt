@@ -251,8 +251,6 @@
                 </div>
               </metal:block>
 
-              <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
-
             </div>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 
