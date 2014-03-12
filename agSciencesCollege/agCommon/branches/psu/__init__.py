@@ -27,7 +27,6 @@ import re
 from Products.Five.utilities.interfaces import IMarkerInterfaces
 from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender, IFilePublicationExtender
 
-
 ATTEMPTS = 100
 
 GLOBALS = globals()
@@ -978,8 +977,10 @@ def getContextConfig(context, attr, default=None):
 
     return rv
 
-def enablePDF(context):
+def enablePublication(context):
+    
     publicationInterface = IUniversalPublicationExtender
+
     if context.portal_type in ['File']:
         publicationInterface = IFilePublicationExtender
 
