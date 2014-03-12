@@ -2,8 +2,7 @@ from zope.i18nmessageid import MessageFactory
 from Products.CMFCore.utils import getToolByName
 from Products.PythonScripts.Utility import allow_module
 from Products.Five.utilities.interfaces import IMarkerInterfaces
-from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender, IExtensionCountiesExtender
-from Products.agCommon import enablePDF
+from agsci.ExtensionExtender.interfaces import IExtensionCountiesExtender
 from Products.CMFCore import DirectoryView
 
 ExtensionExtenderMessageFactory = MessageFactory('agsci.ExtensionExtender')
@@ -55,17 +54,6 @@ def getExtensionConfig(context):
             if val:
                 config[k] = list(val)
     return config
-
-def enablePublication(context):
-    if context.portal_type in ['File']:
-        return enablePDF(context)
-
-    if not IExtensionPublicationExtender.providedBy(context):
-        adapted = IMarkerInterfaces(context)
-        adapted.update(add=[IExtensionPublicationExtender])
-        return True
-    else:
-        return False
     
 def enableCounties(context):
     if not IExtensionCountiesExtender.providedBy(context):

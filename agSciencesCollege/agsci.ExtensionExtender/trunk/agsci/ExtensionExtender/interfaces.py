@@ -1,5 +1,6 @@
 from zope.interface import Interface
 from plone.theme.interfaces import IDefaultPloneLayer
+from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
 
 class IExtensionExtenderLayer(IDefaultPloneLayer):
     """A Layer Specific to StartingPoint"""
@@ -7,7 +8,7 @@ class IExtensionExtenderLayer(IDefaultPloneLayer):
 class IExtensionExtender(Interface):
     """ marker interface """
     
-class IExtensionPublicationExtender(Interface):
+class IExtensionPublicationExtender(IUniversalPublicationExtender):
     """
         Marker interface to denote something as a "publication", which will add
         the necessary fields to it.
