@@ -42,8 +42,10 @@ contents = context.portal_catalog.queryCatalog(contentFilter, show_all=1,
     show_inactive=show_inactive, )
 
 # If the portal type is a folder, and we have related items, *append* those to contents
-
+# Not enabled, but saving as reference code.
+"""
 if show_related and context.portal_type in ['Folder']:
+
     related = [ i for i in context.getRelatedItems() if mtool.checkPermission(View, i) ]
 
     if related:
@@ -53,6 +55,7 @@ if show_related and context.portal_type in ['Folder']:
         related.sort(key=lambda x: uids.index(x.UID))
         related = LazyCat([related])
         contents = contents + related
+"""
 
 
 if mtool.isAnonymousUser() and hasattr(context, 'hide_exclude_from_nav') and context.hide_exclude_from_nav:

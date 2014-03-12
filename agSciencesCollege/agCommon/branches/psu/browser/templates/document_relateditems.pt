@@ -1,9 +1,10 @@
-<div class="relatedItems"
-     i18n:domain="plone"
-     tal:define="related view/related"
+<div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
+
+<tal:relatedItems i18n:domain="plone"
+     tal:define="related view/related_items"
      tal:condition="related">
-    <div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
-    <dl id="relatedItemBox"
+
+    <div id="relatedItems"
               tal:define="ploneview nocall:context/@@plone;
                           normalizeString nocall:ploneview/normalizeString;
                           tools nocall:context/@@plone_tools;
@@ -11,10 +12,11 @@
                           getInfoFor python:wf_tool.getInfoFor;
                           site_properties context/portal_properties/site_properties;
                           use_view_action site_properties/typesUseViewActionInListings|python:();">
-        <dt tal:define="related_content context/related_content|string:Related content"
-            i18n:translate="label_related_items"><tal:related_content replace="related_content" /></dt>
+        <h2 tal:define="related_content context/related_content|string:Related content"
+            i18n:translate="label_related_items"><tal:related_content replace="related_content" /></h2>
+        <ul>
         <tal:related repeat="item related">
-            <dd tal:define="
+            <li tal:define="
                     desc                item/Description;
                     item_icon           python:ploneview.getIcon(item);
                     item_type           item/portal_type;
@@ -23,7 +25,7 @@
                     item_wf_state_class python: 'state-' + normalizeString(item_wf_state);
                     item_url            item/getURL|item/absolute_url;
                     item_url            python:(item_type in use_view_action and item_type != 'File') and item_url+'/view' or item_url">
-                <span tal:attributes="class item_type_class">
+
                     <a href="" class=""
                        tal:attributes="href  item_url;
                                        title desc;
@@ -41,8 +43,9 @@
                         </span>
 
                     </tal:file>
-        </span>
-            </dd>
+            </li>
         </tal:related>
-    </dl>
-</div>
+        </ul>
+
+    </div>
+</tal:relatedItems>

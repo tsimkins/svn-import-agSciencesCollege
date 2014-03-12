@@ -1757,7 +1757,7 @@ div.comment img.avatar {
 
 /* Related items */
 
-dl#relatedItemBox {
+#relatedItems {
     border: 1px solid &dtml-globalBorderColor;;
     line-height: 1.5em;
     margin: 2.5em 0;
@@ -1765,24 +1765,34 @@ dl#relatedItemBox {
     width: auto;
 }
 
-#relatedItemBox dt {
+#relatedItems h2 {
     margin-top: -0.8em;
     background-color: #FFFFFF;
     display: inline-block;
-    padding: 0 0.8em;
-    margin-top: -0.85em;
+    padding: 0 0.8125em;
+    margin-top: -0.75em;
+    margin-bottom: 0;
     padding: 0 0.5em;
+    border: none;
+    font-size: 1.125em;
 }
 
-#relatedItemBox dd {
-    margin: 0.5em;
+#content #relatedItems ul {
+    margin: 0.5em 0 0 0;
+    padding: 0 0.625em;
 }
 
-#relatedItemBox ul.visualNoMarker, #relatedItemBox ol.visualNoMarker {
+#relatedItems li {
+    margin: 0.625em 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+#relatedItems ul.visualNoMarker, #relatedItems ol.visualNoMarker {
     line-height: 1.5em;
 }
 
-#relatedItemBox img {
+#relatedItems img {
     display: none;
 }
 
