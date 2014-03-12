@@ -825,21 +825,42 @@ class TagRootExtender(object):
     def getFields(self):
         return self.fields
 
+class BasePublicationExtender(object):
 
-class UniversalPublicationExtender(object):
+    @property
+    def fields(self):
+        return [
+            _ExtensionStringField(
+                "extension_publication_code",
+                    schemata="Publication",
+                    required=False,
+                    searchable=True,
+                    widget=StringWidget(
+                        label=u"Publication Code",
+                        description=u"",
+                    ),
+            ),
+        ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+# For content (pages, folders, etc.)
+
+class ContentPublicationExtender(BasePublicationExtender):
     adapts(IUniversalPublicationExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IUniversalExtenderLayer
-
+    
     @property
     def fields(self):
-        fields = self.custom_fields()
-        fields.extend(self.base_fields())
-        return fields
+        fields = super(ContentPublicationExtender, self).fields
 
-    def base_fields(self):
-        return [
+        fields.extend([
 
             _ExtensionStringField(
                 "extension_publication_url",
@@ -863,34 +884,14 @@ class UniversalPublicationExtender(object):
                 ),
             ),
 
-        ]
+        ])
+        
+        return fields
 
-    def custom_fields(self):
-        return []
 
 
-    def __init__(self, context):
-        self.context = context
-
-    def getFields(self):
-        return self.fields
-
-class FilePublicationExtender(UniversalPublicationExtender):
+class FilePublicationExtender(BasePublicationExtender):
     adapts(IFilePublicationExtender)
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IUniversalExtenderLayer
-
-    def base_fields(self):
-        return [
-            _ExtensionStringField(
-                "extension_publication_code",
-                    schemata="Publication",
-                    required=False,
-                    searchable=True,
-                    widget=StringWidget(
-                        label=u"Publication Code",
-                        description=u"",
-                    ),
-            ),
-        ]

@@ -273,7 +273,7 @@
         interface="agsci.subsite.content.interfaces.ITagRoot"
     /> 
 
-    <!-- Publication Extender -->
+    <!-- Publication Extenders -->
 
     <adapter
         name="agsci.UniversalExtender.extender.FilePublicationExtender"
@@ -282,8 +282,8 @@
     /> 
 
     <adapter
-        name="agsci.UniversalExtender.extender.UniversalPublicationExtender"
-        factory=".extender.UniversalPublicationExtender"
+        name="agsci.UniversalExtender.extender.ContentPublicationExtender"
+        factory=".extender.ContentPublicationExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
