@@ -50,7 +50,23 @@ class _ExtensionLinesField(ExtensionField, LinesField):
             return ()
 
 
+class _DepartmentsField(_ExtensionLinesField):
 
+    def Vocabulary(self, content_instance):
+
+        return DisplayList(
+            [
+                ('abe', 'Agricultural and Biological Engineering'),
+                ('aese', 'Agricultural Economics, Sociology, and Education'),
+                ('animalscience', 'Animal Science'),
+                ('ecosystems', 'Ecosystem Science and Management'),
+                ('ento', 'Entomology'),
+                ('foodscience', 'Food Science'),
+                ('plantpath', 'Plant Pathology and Environmental Microbiology'),
+                ('plantscience', 'Plant Science'),
+                ('vbs', 'Veterinary and Biomedical Sciences' ),
+            ]
+        )
 
 class _TopicsField(_ExtensionLinesField):
 
@@ -228,7 +244,7 @@ class ExtensionExtender(object):
         ]    
 
     @property
-    def publication_series_field(self):
+    def publication_fields(self):
         return [
             _ExtensionStringField(
                 "extension_publication_series",
@@ -239,6 +255,28 @@ class ExtensionExtender(object):
                         label=u"Publication Series",
                         description=u"Optional",
                     ),
+            ),
+            _ExtensionBooleanField(
+                "extension_publication_listing",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Include in Extension Publications listing?",
+                    description=u"",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
+            _DepartmentsField(
+                "agsci_departments",
+                    schemata="Publication",
+                    required=False,
+                    searchable=False,
+                    widget = InAndOutWidget(
+                    label=u"Departments",
+                    description=u"Academic Departments that this item is associated with",
+                    condition="python:member.has_role('Manager', object)",
+                ),
             ),
         ]
 
@@ -260,7 +298,7 @@ class ExtensionContentPublicationExtender(ContentPublicationExtender, ExtensionE
     @property
     def fields(self):
         fields = super(ExtensionContentPublicationExtender, self).fields
-        fields.extend(self.publication_series_field)
+        fields.extend(self.publication_fields)
         # Custom Options
         fields.extend([
             _ExtensionBooleanField(
@@ -309,6 +347,8 @@ class ExtensionContentPublicationExtender(ContentPublicationExtender, ExtensionE
     def fiddle(self, schema):
         # Put Publication series after publication code
         schema.moveField('extension_publication_series', after='extension_publication_code')
+        schema.moveField('extension_publication_listing', pos='bottom')
+        schema.moveField('agsci_departments', pos='bottom')
         return schema
         
 
@@ -320,13 +360,15 @@ class ExtensionFilePublicationExtender(FilePublicationExtender, ExtensionExtende
     @property
     def fields(self):
         fields = super(ExtensionFilePublicationExtender, self).fields
-        fields.extend(self.publication_series_field)
+        fields.extend(self.publication_fields)
         fields.extend(super(ExtensionFilePublicationExtender, self).program_fields)
         return fields
 
     def fiddle(self, schema):
         # Put Publication series after publication code
         schema.moveField('extension_publication_series', after='extension_publication_code')
+        schema.moveField('extension_publication_listing', pos='bottom')
+        schema.moveField('agsci_departments', pos='bottom')
         return schema
 
 class ExtensionEventExtender(ExtensionExtender):
