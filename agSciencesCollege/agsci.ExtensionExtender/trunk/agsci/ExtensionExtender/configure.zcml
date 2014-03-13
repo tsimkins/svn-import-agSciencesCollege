@@ -94,11 +94,6 @@
         interface=".interfaces.IExtensionExtender"
     /> 
     
-    <five:implements
-        class="Products.FacultyStaffDirectory.Person.Person"
-        interface=".interfaces.IExtensionExtender"
-    /> 
-
     <interface
         interface=".interfaces.IExtensionPublicationExtender"
         />
