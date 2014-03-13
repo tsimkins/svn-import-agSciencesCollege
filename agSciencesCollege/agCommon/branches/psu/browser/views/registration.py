@@ -81,6 +81,9 @@ class RegistrationView(BrowserView):
         if not event:
             return False
 
+        if not self.registrationForm:
+            return False
+
         now = DateTime()
         
         if now > event.end():
@@ -104,16 +107,36 @@ class RegistrationView(BrowserView):
     def getAttendeeCount(self):
         return len(self.getRegistrations(show_titles=False))
 
+    @property
     def registrationURL(self):
+        form = self.registrationForm
+        if form:
+            return form.absolute_url()
+        else:
+            return None
+
+    @property
+    def registrationForm(self):
         url = getContextConfig(self.context, 'registration_url')
 
         if url:
-            return url.replace('${portal_url}', '')
+            url = url.replace('${portal_url}', '')
+            if url.startswith('/'):
+                url = url[1:]
         else:
-            return "%s/register" % getSite().absolute_url()
+            url = "register"
+        
+        try:
+            return self.context.restrictedTraverse(url)
+        except AttributeError:
+            return None
 
     def getRegistrations(self, show_titles=True):
-        r_form = self.context.restrictedTraverse('register')
+        r_form = self.registrationForm
+
+        if not r_form or 'save-data' not in r_form.objectIds():
+            return []
+            
         save_data = r_form['save-data']
         uid = self.getEventUID()
         
