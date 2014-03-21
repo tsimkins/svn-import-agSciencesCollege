@@ -368,6 +368,25 @@
         interface=".interfaces.ITableOfContents"
     /> 
 
+    <!-- Publication Code -->
+    <browser:viewlet
+        name="agcommon.publicationcode"
+        for="agsci.ExtensionExtender.interfaces.IExtensionPublicationExtender"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.PublicationCode"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <browser:viewlet
+        name="agcommon.publicationcode"
+        for="agsci.UniversalExtender.interfaces.IUniversalPublicationExtender"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".viewlets.PublicationCode"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
     <!-- Portlet Managers -->
 
     <browser:viewlet
@@ -552,6 +571,16 @@
         action="@@event_table"
         layer=".interfaces.IThemeSpecific"
         description="A view of events in table format"
+    />
+
+    <!-- Newsletter View -->
+    <browser:page
+        for="*"
+        name="invitation_view"
+        class=".views.newsletter.EventInvitationView"
+        template="templates/invitation_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
     />
 
     <!-- Newsletter View -->
