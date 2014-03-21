@@ -12,9 +12,9 @@ is_topic = context.portal_type == 'Topic'
 
 if images:
     if is_topic:
-        result['images'] = context.queryCatalog(portal_type=('Image',),
-                                                full_objects=True)
-        result['images'].extend(context.queryCatalog({'hasContentLeadImage' : True, },
+        result['images'] = list(context.queryCatalog(portal_type=('Image',),
+                                                full_objects=True))
+        result['images'].extend(context.queryCatalog(hasContentLeadImage=True,
                                                       full_objects=True))
     else:
         result['images'] = context.getFolderContents({'portal_type': ('Image',)},
@@ -50,9 +50,9 @@ if others:
     if filtered:
         # We don't need the full objects for the folder_listing
         if is_topic:
-            result['others'] = context.queryCatalog({'portal_type' : filtered, 'hasContentLeadImage' : [None, False,], })
+            result['others'] = context.queryCatalog(portal_type=filtered, hasContentLeadImage=[None, False,], )
         else:
-            result['others'] = context.getFolderContents({'portal_type': filtered, 'hasContentLeadImage' : [None, False,]})
+            result['others'] = context.getFolderContents(portal_type=filtered, hasContentLeadImage=[None, False,])
     else:
         result['others'] = ()
 
