@@ -11,7 +11,8 @@ from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.app.layout.nextprevious.view import NextPreviousView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
 from plone.app.layout.viewlets.content import ContentRelatedItems as ContentRelatedItemsBase
-
+from Products.ContentWellPortlets.browser.viewlets import ContentWellPortletsViewlet
+ 
 try:
     from zope.app.component.hooks import getSite
 except ImportError:
@@ -236,7 +237,7 @@ class TopNavigationViewlet(AgCommonViewlet):
     @memoize
     def topnavigation(self):
         topMenu = getContextConfig(self.context, 'top-menu', 'topnavigation')
-        return self.context_state.actions().get(topMenu, None)
+        return self.context_state.actions(category=topMenu)
 
     def update(self):
         pass
@@ -383,7 +384,7 @@ class FooterViewlet(AgCommonViewlet):
 
         footerlinks = getContextConfig(self.context, 'footerlinks', 'footerlinks')
 
-        self.footerlinks = self.context_state.actions().get(footerlinks, None)
+        self.footerlinks = self.context_state.actions(category=footerlinks)
         
 class CustomTitleViewlet(AgCommonViewlet):
 
@@ -550,7 +551,7 @@ class KeywordsViewlet(AgCommonViewlet):
         
         sm = getSecurityManager()
         
-        self.user_actions = self.context_state.actions().get('user', None)
+        self.user_actions = self.context_state.actions(category='user')
         
         plone_utils = getToolByName(self.context, 'plone_utils')
         
@@ -787,20 +788,7 @@ class CustomCommentsViewlet(CommentsViewlet):
         except AttributeError:
             self.xid = md5(self.context.absolute_url()).hexdigest()
 
-
-class PortletsBelowViewlet(ViewletBase):
-    render = ViewPageTemplateFile('templates/portletsbelowcontent.pt')
-        
-    def update(self):
-        """
-        Define everything we want to call in the template
-        """
-        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
-        self.manageUrl =  '%s/@@manage-portletsbelowcontent' % context_state.view_url()
-        
-        ## This is the way it's done in plone.app.portlets.manager, so we'll do the same
-        mt = getToolByName(self.context, 'portal_membership')
-        self.canManagePortlets = mt.checkPermission('Portlets: Manage portlets', self.context)
+class _ContentWellPortletsViewlet(ContentWellPortletsViewlet):
 
     def have_portlets(self, view=None):
         """Determine whether a column should be shown.
@@ -809,19 +797,32 @@ class PortletsBelowViewlet(ViewletBase):
         context = aq_inner(self.context)
         layout = getMultiAdapter((context, self.request), name=u'plone_layout')
 
-        for manager_name in self.portletManagers():
+        for (manager_obj, manager_name) in self.portletManagers():
             if layout.have_portlets(manager_name, view=view):
                 portlets = True
         
         return portlets
 
-    def portletManagers(self):
+    def portletManagersToShow(self):
+        visibleManagers = []
+        for mgr, name in self.portletManagers():
+            if mgr(self.context, self.request, self).visible:
+                visibleManagers.append(name)
+        
         managers = []
-        for n in range(1,7):
-            name = 'ContentWellPortlets.BelowPortletManager%d' % n
-            managers.append(name)
+        numManagers = len(visibleManagers)
+        for counter, name in enumerate(visibleManagers):
+            managers.append((name, (name.split('.')[-1])))
         return managers
 
+class PortletsBelowViewlet(_ContentWellPortletsViewlet):
+    name = 'BelowPortletManager'
+    manage_view = '@@manage-portletsbelowcontent'
+
+class PortletsAboveViewlet(_ContentWellPortletsViewlet):
+    name = 'AbovePortletManager'
+    manage_view = '@@manage-portletsabovecontent'
+    
 class LocalSearchViewlet(SearchBoxViewlet):
 
     def counties(self):
@@ -851,6 +852,16 @@ class ContentRelatedItems(ContentRelatedItemsBase):
             return self.related_items()
         else:
             return []
+
+class PublicationCode(AgCommonViewlet):
+
+    def render(self):
+        if hasattr(self.context, 'extension_publication_code'):
+            code = self.context.extension_publication_code
+            if code:
+                return """<div><h2 class="inline">Publication Code:</h2> %s</div>""" % code
+        return ""
+
 
 # provideAdapter for viewlets to be registered in standalone mode
 

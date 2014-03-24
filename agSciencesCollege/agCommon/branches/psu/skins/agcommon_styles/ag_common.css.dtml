@@ -2574,7 +2574,8 @@ body.template-agenda_view #document-toc h3 {
 
 #content .eventSummary h3,
 body.template-event_view #content .event-registration h3,
-#content h3.inline {
+#content h3.inline, 
+#content h2.inline {
     font-size: 1em; 
     font-weight: bold;
     border-bottom-width: 0;

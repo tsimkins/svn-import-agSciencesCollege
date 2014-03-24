@@ -24,6 +24,11 @@ class INewsletterView(Interface):
     def test():
         """ test method"""
 
+class IEventInvitationView(Interface):
+
+    def test():
+        """ test method"""
+
 class NewsletterView(AgCommonUtilities, LeadImageViewlet):
 
     implements(INewsletterView)
@@ -342,3 +347,7 @@ class NewsletterPrint(NewsletterView):
     implements(INewsletterView)
 
     pass
+
+class EventInvitationView(NewsletterView):
+
+    implements(IEventInvitationView)

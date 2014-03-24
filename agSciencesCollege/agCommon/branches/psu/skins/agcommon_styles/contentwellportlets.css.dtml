@@ -25,16 +25,11 @@
     display: table;
 }
 
-#portlets-below div.portletsBelowContentF {
-	clear: both;
-	height: 1px;
-}
-
-div.portletsBelowContentA,
-div.portletsBelowContentB,
-div.portletsBelowContentC,
-div.portletsBelowContentD,
-div.portletsBelowContentE {
+div.BelowPortletManager1,
+div.BelowPortletManager2,
+div.BelowPortletManager3,
+div.BelowPortletManager4,
+div.BelowPortletManager5 {
 	width: 18.642533936651584%; /* ((884 - 60)/5)/884 */
 	float: left;
 	padding: 0.5em 0.678733031674208%;  /* 6/884 */
@@ -131,16 +126,11 @@ div.portletsBelowContentE {
 	padding-bottom: 6px;
 }
 
-#portlets-above div.portletsAboveContentF {
-	clear: both;
-	height: 1px;
-}
-
-div.portletsAboveContentA,
-div.portletsAboveContentB,
-div.portletsAboveContentC,
-div.portletsAboveContentD,
-div.portletsAboveContentE {
+div.AbovePortletManager1,
+div.AbovePortletManager2,
+div.AbovePortletManager3,
+div.AbovePortletManager4,
+div.AbovePortletManager5 {
 	width: 33%;
 	float: left;
 }

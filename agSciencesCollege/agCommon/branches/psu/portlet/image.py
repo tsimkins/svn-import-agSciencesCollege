@@ -87,7 +87,7 @@ class Renderer(base.Renderer):
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
-        self.images = context_state.actions().get(self.data.items, None)
+        self.images = context_state.actions(category=self.data.items)
         
     def render(self):
         return xhtml_compress(self._template())

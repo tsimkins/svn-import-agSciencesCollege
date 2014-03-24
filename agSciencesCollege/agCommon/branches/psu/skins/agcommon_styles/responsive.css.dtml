@@ -222,16 +222,16 @@
         height: 100%;
     }
     
-    div.portletsBelowContentA,
-    div.portletsBelowContentB,
-    div.portletsBelowContentC,
-    div.portletsBelowContentD,
-    div.portletsBelowContentE,
-    div.portletsAboveContentA,
-    div.portletsAboveContentB,
-    div.portletsAboveContentC,
-    div.portletsAboveContentD,
-    div.portletsAboveContentE {
+    div.BelowPortletManager1,
+    div.BelowPortletManager2,
+    div.BelowPortletManager3,
+    div.BelowPortletManager4,
+    div.BelowPortletManager5,
+    div.AbovePortletManager1,
+    div.AbovePortletManager2,
+    div.AbovePortletManager3,
+    div.AbovePortletManager4,
+    div.AbovePortletManager5 {
     	width: 48.4375%; /* ((768 - 24)/2)/768 */
     	float: left;
     	padding: 0.5em 0.78125%;  /* 6/768 */
@@ -1273,16 +1273,16 @@
 
 @media handheld, screen and (max-width: 480px) {
 
-    div.portletsBelowContentA,
-    div.portletsBelowContentB,
-    div.portletsBelowContentC,
-    div.portletsBelowContentD,
-    div.portletsBelowContentE,
-    div.portletsAboveContentA,
-    div.portletsAboveContentB,
-    div.portletsAboveContentC,
-    div.portletsAboveContentD,
-    div.portletsAboveContentE {
+    div.BelowPortletManager1,
+    div.BelowPortletManager2,
+    div.BelowPortletManager3,
+    div.BelowPortletManager4,
+    div.BelowPortletManager5,
+    div.AbovePortletManager1,
+    div.AbovePortletManager2,
+    div.AbovePortletManager3,
+    div.AbovePortletManager4,
+    div.AbovePortletManager5 {
     	width: 97.5%; /* (480 - 12)/480 */
     	float: left;
     	padding: 0.5em 1.25%;  /* 6/480 */

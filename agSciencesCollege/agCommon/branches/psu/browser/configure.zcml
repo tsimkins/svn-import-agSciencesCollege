@@ -265,13 +265,15 @@
         />
         
     <!-- Content Well Portlet Relocation -->
+
     <browser:viewlet
         name="contentwellportlets.portletsabovecontent"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class="Products.ContentWellPortlets.browser.viewlets.PortletsAboveViewlet"
-        layer="Products.ContentWellPortlets.browser.interfaces.IContentWellPortlets"
+        class=".viewlets.PortletsAboveViewlet"
+        layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
-        />
+        template="templates/portletsabovecontent.pt"
+    />
 
     <browser:viewlet
         name="contentwellportlets.portletsbelowcontent"
@@ -279,6 +281,7 @@
         class=".viewlets.PortletsBelowViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        template="templates/portletsbelowcontent.pt"
         />
 
     <browser:viewlet
@@ -701,5 +704,5 @@
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
     />
-    
+
 </configure>

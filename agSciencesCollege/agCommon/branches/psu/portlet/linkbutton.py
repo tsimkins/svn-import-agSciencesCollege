@@ -80,7 +80,7 @@ class Renderer(base.Renderer):
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
-        self.linkButtons = context_state.actions().get(self.data.items, None)
+        self.linkButtons = context_state.actions(category=self.data.items)
 
     def getClass(self, licon):
         klass = ['portletItem']

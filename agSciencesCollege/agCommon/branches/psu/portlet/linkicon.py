@@ -80,7 +80,7 @@ class Renderer(base.Renderer):
         
         context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         
-        self.linkIcons = context_state.actions().get(self.data.items, None)
+        self.linkIcons = context_state.actions(category=self.data.items)
 
     def getIconClass(self, icon):
         icon_classes = {

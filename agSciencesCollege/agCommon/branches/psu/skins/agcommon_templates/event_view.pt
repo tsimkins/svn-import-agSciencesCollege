@@ -74,7 +74,7 @@
 
                 </div>
                 </metal:wherewhen>
-                <div class="event_add_calendar">
+                <div class="event_add_calendar" metal:define-slot="event_add_calendar">
                     <h3>Add to calendar</h3>
                     <metal:add_to_calendar define-macro="event_add_calendar">
                     <a class="img"
