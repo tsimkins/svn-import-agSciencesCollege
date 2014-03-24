@@ -30,7 +30,3 @@ class ITableOfContents(Interface):
 class IContributors(Interface):
     """These are the content types that can have a contributors listing
     """
-
-class IHiddenViewletManager(IViewletManager):
-    """Permanently hides unwanted viewlets
-    """
