@@ -216,6 +216,14 @@ class Renderer(base.Renderer):
             return ()
 
 
+    def getLoggedOnUser(self):
+        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
+
+        if portal_state.anonymous():
+            return 'anonymous'
+        else:
+            return portal_state.member().getId()
+
     def cleanFeed(self, feed):
         """Sanitize the feed.
 
@@ -253,7 +261,7 @@ class Renderer(base.Renderer):
 
         return self.cleanFeed(feed)
 
-    def getFeed(self, url):
+    def getFeed(self, url, collection=False):
         """Fetch a feed.
 
         This may return a cached result if the cache entry is considered to
@@ -263,12 +271,15 @@ class Renderer(base.Renderer):
         now=time.time()
 
         chooser=getUtility(ICacheChooser)
-        cache=chooser("collective.portlet.feedmixer.FeedCache")
+        cache=chooser("collective.portlet.feedmixer.FeedCache-%s" % self.getLoggedOnUser())
 
         cached_data=cache.get(url, None)
 
         if not cached_data:
-            feed = self.fetchFeed(url)
+            if collection:
+                feed = self.collection_feed()
+            else:
+                feed = self.fetchFeed(url)
             cache[url]=(now, feed)
             return feed
 
@@ -279,7 +290,10 @@ class Renderer(base.Renderer):
             if now <= (timestamp + self.data.cache_timeout):
                 return cached_feed
 
-            feed = self.fetchFeed(url)
+            if collection:
+                feed = self.collection_feed()
+            else:
+                feed = self.fetchFeed(url)
 
             if len(feed.get('entries', [])) == 0 or feed.status == 404:
                 # If we don't have any entries (i.e. the feed is blank)
@@ -329,7 +343,7 @@ class Renderer(base.Renderer):
         feeds=[self.getFeed(url) for url in self.feed_urls]
 
         if self.data.target_collection:
-            feeds.append(self.collection_feed())
+            feeds.append(self.getFeed(url=self.data.target_collection, collection=True))
 
         feeds=[feed for feed in feeds if feed is not None]
 
