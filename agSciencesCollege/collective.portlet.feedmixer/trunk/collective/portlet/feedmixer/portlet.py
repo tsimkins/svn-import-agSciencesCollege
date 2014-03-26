@@ -215,15 +215,6 @@ class Renderer(base.Renderer):
         else:
             return ()
 
-
-    def getLoggedOnUser(self):
-        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
-
-        if portal_state.anonymous():
-            return 'anonymous'
-        else:
-            return portal_state.member().getId()
-
     def cleanFeed(self, feed):
         """Sanitize the feed.
 
@@ -268,19 +259,32 @@ class Renderer(base.Renderer):
         be fresh. Returned feeds have been cleaned using the cleanFeed method.
         """
 
+        # Grab current time
         now=time.time()
 
+        # Determine if we're anonymous
+        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
+        isAnon = portal_state.anonymous()
+
+        # If we're a collection, but not anonymous, run the query
+        if collection and not isAnon:
+            return self.collection_feed()
+
+        # Start determining cached data
         chooser=getUtility(ICacheChooser)
-        cache=chooser("collective.portlet.feedmixer.FeedCache-%s" % self.getLoggedOnUser())
-
+        cache=chooser("collective.portlet.feedmixer.FeedCache")
         cached_data=cache.get(url, None)
-
+        
+        # If we don't have cached data, add a copy to cache and return the feed
         if not cached_data:
+
             if collection:
                 feed = self.collection_feed()
             else:
                 feed = self.fetchFeed(url)
+
             cache[url]=(now, feed)
+
             return feed
 
         else:
