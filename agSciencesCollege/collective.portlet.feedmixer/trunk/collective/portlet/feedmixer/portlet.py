@@ -274,7 +274,7 @@ class Renderer(base.Renderer):
         chooser=getUtility(ICacheChooser)
         cache=chooser("collective.portlet.feedmixer.FeedCache")
         cached_data=cache.get(url, None)
-        
+
         # If we don't have cached data, add a copy to cache and return the feed
         if not cached_data:
 
@@ -291,7 +291,7 @@ class Renderer(base.Renderer):
 
             (timestamp, cached_feed)=cached_data
 
-            if now <= (timestamp + self.data.cache_timeout):
+            if cached_feed and (now <= (timestamp + self.data.cache_timeout)):
                 return cached_feed
 
             if collection:
