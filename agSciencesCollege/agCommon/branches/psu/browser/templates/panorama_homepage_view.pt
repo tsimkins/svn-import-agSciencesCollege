@@ -9,7 +9,8 @@
 
         <metal:js fill-slot="javascript_head_slot">
             <!-- Panorama Homepage JavaScript -->
-            <script tal:condition="python:'background-images' in context.keys()" 
+            <script async
+                    tal:condition="python:'background-images' in context.keys()" 
                     type="text/javascript" 
                     src="background-images/getPanoramaHomepageImage.js"></script>
         </metal:js>
