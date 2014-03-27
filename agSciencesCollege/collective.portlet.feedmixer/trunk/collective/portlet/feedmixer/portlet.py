@@ -299,7 +299,12 @@ class Renderer(base.Renderer):
             else:
                 feed = self.fetchFeed(url)
 
-            if len(feed.get('entries', [])) == 0 or feed.status == 404:
+            try:
+                feed_status = feed.status
+            except AttributeError:
+                feed_status = 200
+
+            if len(feed.get('entries', [])) == 0 or feed_status == 404:
                 # If we don't have any entries (i.e. the feed is blank)
                 # then just return the cached copy.
                 return cached_feed
