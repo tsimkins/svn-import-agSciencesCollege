@@ -4,12 +4,9 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=contentFilter=None,batch=False,b_size=100,full_objects=False,show_related=False
+##parameters=contentFilter=None,batch=False,b_size=100,full_objects=False
 ##title=wrapper method around to use catalog to get folder contents
 ##
-
-from Products.CMFCore.permissions import View
-from Products.ZCatalog.Lazy import LazyCat
 
 mtool = context.portal_membership
 cur_path = '/'.join(context.getPhysicalPath())
@@ -40,23 +37,6 @@ if batch:
 # with their own unrelated method (Topics)
 contents = context.portal_catalog.queryCatalog(contentFilter, show_all=1,
     show_inactive=show_inactive, )
-
-# If the portal type is a folder, and we have related items, *append* those to contents
-# Not enabled, but saving as reference code.
-"""
-if show_related and context.portal_type in ['Folder']:
-
-    related = [ i for i in context.getRelatedItems() if mtool.checkPermission(View, i) ]
-
-    if related:
-        uids = [r.UID() for r in related]
-        query = dict(UID=uids)
-        related = [x for x in context.portal_catalog(query)]
-        related.sort(key=lambda x: uids.index(x.UID))
-        related = LazyCat([related])
-        contents = contents + related
-"""
-
 
 if mtool.isAnonymousUser() and hasattr(context, 'hide_exclude_from_nav') and context.hide_exclude_from_nav:
     contents = [ x for x in contents if not x.exclude_from_nav ]

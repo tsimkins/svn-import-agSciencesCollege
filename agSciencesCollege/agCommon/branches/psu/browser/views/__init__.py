@@ -273,7 +273,7 @@ class AgendaView(FolderView):
         else:
             self.here_url = self.context.absolute_url()
 
-    def getFolderContents(self, contentFilter={}, show_related=False):
+    def getFolderContents(self, contentFilter={}):
 
         events = []
         folder_path = ""
