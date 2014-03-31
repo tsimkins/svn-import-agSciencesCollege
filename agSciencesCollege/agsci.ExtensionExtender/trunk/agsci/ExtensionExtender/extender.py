@@ -448,7 +448,7 @@ class ExtensionEventExtender(ExtensionExtender):
 
         # Put courses before location
         schema.moveField('extension_courses', after='description')
-        schema.moveField('zip_code', after='startDate')
+        schema.moveField('zip_code', after='endDate')
         schema.moveField('extension_counties', after='zip_code')
         return schema
 
