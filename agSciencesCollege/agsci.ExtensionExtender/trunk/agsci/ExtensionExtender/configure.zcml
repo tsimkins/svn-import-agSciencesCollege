@@ -79,6 +79,12 @@
         provides="archetypes.schemaextender.interfaces.ISchemaModifier"
     /> 
 
+    <adapter
+        name="agsci.ExtensionExtender.extender.TranslationExtender"
+        factory=".extender.TranslationExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IExtensionExtender"

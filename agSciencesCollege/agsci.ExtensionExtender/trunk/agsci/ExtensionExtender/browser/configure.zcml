@@ -126,4 +126,13 @@
         description="A view of items separated by county."
     />
 
+    <browser:page
+        for="Products.ATContentTypes.interfaces.event.IATEvent"
+        name="print_registration"
+        class=".views.registration.EventPrintRegistration"
+        template="templates/print_registration.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
 </configure>

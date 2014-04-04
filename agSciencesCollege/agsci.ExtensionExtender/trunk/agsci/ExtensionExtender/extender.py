@@ -11,6 +11,7 @@ from Acquisition import aq_acquire, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.blob.field import BlobField
 from Products.ATContentTypes.interfaces.event import IATEvent
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
 from agsci.UniversalExtender.extender import ContentPublicationExtender, FilePublicationExtender
 
 class _ExtensionStringField(ExtensionField, StringField): pass
@@ -463,3 +464,28 @@ class ExtensionCountiesExtender(ExtensionExtender):
         return super(ExtensionCountiesExtender, self).counties_field
 
 
+class TranslationExtender(object):
+    adapts(IATContentType)
+
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+
+    fields = [
+        _ExtensionBooleanField(
+            "provide_translation_widget",
+            schemata="settings",
+            required=False,
+            default=False,
+            widget=BooleanWidget(
+                label=u"Provide translation widget",
+                description=u"",
+            ),
+        ),
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
