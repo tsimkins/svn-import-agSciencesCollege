@@ -4,7 +4,7 @@
     tal:condition="view/show_header|nothing" 
     tal:content="structure view/title" />
 
-<dl tal:attributes="class string:portlet portletfeedmixer portletfeedmixerimage${view/image_position} portletfeedmixerimage${view/image_size};"
+<dl tal:attributes="class string:portlet portletCollection portletfeedmixer portletfeedmixerimage${view/image_position} portletfeedmixerimage${view/image_size};"
     tal:define="is_printed_newsletter view/is_printed_newsletter|nothing;"
     i18n:domain="collective.portlet.feedmixer">
 
