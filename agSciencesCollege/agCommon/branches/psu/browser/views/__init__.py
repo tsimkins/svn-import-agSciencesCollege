@@ -1,5 +1,8 @@
 from zope.interface import implements, Interface
 
+from RestrictedPython.Utilities import same_type as _same_type
+from RestrictedPython.Utilities import test as _test
+
 try:
     from zope.app.component.hooks import getSite
 except ImportError:
@@ -9,7 +12,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Acquisition import aq_inner
-from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
+from collective.contentleadimage.utils import getImageAndCaptionFields, getImageAndCaptionFieldNames
 from DateTime import DateTime
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility, getMultiAdapter
@@ -41,26 +44,22 @@ class IAgendaView(Interface):
     agenda view interface
     """
 
-    def test():
-        """ test method"""
+    pass
 
 class IEventTableView(Interface):
     """
     event table view interface
     """
 
-    def test():
-        """ test method"""
+    pass
 
 class ISearchView(Interface):
 
-    def test():
-        """ test method"""
+    pass
 
 class IFolderView(Interface):
 
-    def test():
-        """ test method"""
+    pass
 
 
 """
@@ -104,21 +103,27 @@ class FolderView(BrowserView):
     def anonymous(self):
         return self.portal_state.anonymous()
 
-    def test(self, a, b, c):
-        if a:
-            return b
-        else:
-            return c
+    # Providing Restricted Python "test" method
+    def test(self, *args):
+        return _test(*args)
+
+    # Providing Restricted Python "test" same_type
+    def same_type(self, arg1, *args):
+        return _same_type(arg1, *args)
 
     @property
     def prefs(self):
         portal = getUtility(IPloneSiteRoot)
         return ILeadImagePrefsForm(portal)
 
+    def getImageFieldName(self, obj):
+        return getImageAndCaptionFieldNames(obj)[0]
+
     def tag(self, obj, css_class='tileImage', scale=None):
         context = aq_inner(obj)
-        field = context.getField(IMAGE_FIELD_NAME)
-        titlef = context.getField(IMAGE_CAPTION_FIELD_NAME)
+
+        (field, titlef) = getImageAndCaptionFields(obj)
+
         if titlef is not None:
             title = titlef.get(context)
         else:
@@ -473,3 +478,7 @@ class PublicationFileView(FolderView):
             return pdf.getNumPages()
         
         return None
+
+class RSSTemplateView(FolderView):
+
+    pass

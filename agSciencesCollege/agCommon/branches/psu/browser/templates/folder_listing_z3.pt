@@ -97,21 +97,13 @@
 
                             <metal:leadimage define-macro="leadimage">
 
-                                    <tal:leadimage
-                                         tal:define="item_object item/getObject|nothing;
-                                                     newsitem_image exists:item_object/image_thumb;">
-                                       <tal:img
-                                           tal:condition="python: newsitem_image or item_has_leadimage">
-                                           <img src="" alt=""
-                                                   tal:condition="newsitem_image"
-                                                   tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
+                                <tal:leadimage
+                                        tal:condition="item_has_leadimage"
+                                        tal:define="item_object item/getObject|nothing;">
 
-                                           <img src="" alt=""
-	 	                                                   tal:condition="item_has_leadimage"
-	 	                                                   tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
+                                        <img tal:replace="structure python:view.tag(item_object, css_class='tileImage')" />
 
-                                       </tal:img>
-                                    </tal:leadimage>
+                                </tal:leadimage>
 
                             </metal:leadimage>
 

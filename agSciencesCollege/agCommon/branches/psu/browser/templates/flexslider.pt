@@ -15,25 +15,18 @@
                         <metal:entry fill-slot="entry">
                             <li class="tileItem">
             
-                                <div class="contentLeadImageContainer">
+                                <div class="contentLeadImageContainer"
+                                    tal:condition="item_has_leadimage">
                                     <tal:leadimage
-                                            tal:define="item_object item/getObject|nothing;
-                                                        newsitem_image exists:item_object/image_thumb;">
-                                        <tal:img
-                                            tal:condition="python: newsitem_image or item_has_leadimage">
-                                            <a href="#"
-                                                tal:attributes="class string: summary url ${item_wf_state_class};
-                                                            href python:test(item_type in use_view_action, item_url+'/view', item_url);">
+                                            tal:define="item_object item/getObject|nothing;">
 
+                                        <a href="#"
+                                           tal:attributes="class string: summary url ${item_wf_state_class};
+                                                           href python:test(item_type in use_view_action, item_url+'/view', item_url);">
 
-                                                <img src="" alt=""
-                                                        tal:condition="newsitem_image"
-                                                        tal:replace="structure python: path('nocall:item_object/tag')(scale='large', css_class='tileImage')" />
-                                                <img src="" alt=""
-                                                        tal:condition="item_has_leadimage"
-                                                        tal:replace="structure python:view.tag(item_object, css_class='tileImage', scale='large')" />
-                                            </a>
-                                        </tal:img>
+                                            <img tal:replace="structure python:view.tag(item_object, css_class='tileImage', scale='large')" />
+                                        </a>
+
                                     </tal:leadimage>
                                 </div>
                                 <div class="flexslider-text">

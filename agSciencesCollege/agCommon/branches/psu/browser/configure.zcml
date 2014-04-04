@@ -451,7 +451,17 @@
         />
 
     <!-- Views -->
-    
+
+    <!-- RSS Template --> 
+    <browser:page
+        for="*"
+        name="rss_template_z3"
+        class=".views.RSSTemplateView"
+        template="templates/rss_template_z3.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+  
     <!-- Homepage View --> 
     <browser:page
         for="*"
