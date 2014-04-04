@@ -3,8 +3,7 @@ from zope.component import getUtility
 from zope.component import getMultiAdapter
 from plone.app.layout.viewlets import ViewletBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
-from collective.contentleadimage.config import IMAGE_FIELD_NAME
-from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
+from collective.contentleadimage.utils import getImageAndCaptionFields as _getImageAndCaptionFields
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 
 # We're going to display the lead image first, and then the news item image.
@@ -37,22 +36,7 @@ class LeadImageViewlet(ViewletBase):
 
         context = aq_inner(self.context)
 
-        # Use News Item image as Content Lead Image, if it exists
-        
-        leadimagefield = context.getField(IMAGE_FIELD_NAME)
-        newsitemfield =  context.getField('image')
-        
-        leadimagecaption = context.getField(IMAGE_CAPTION_FIELD_NAME)
-        newsitemcaption = context.getField('imageCaption')
-        
-        if leadimagefield and leadimagecaption:
-            return (leadimagefield, leadimagecaption)
-
-        elif newsitemfield and newsitemcaption:
-            return (newsitemfield, newsitemcaption)
-
-        else:
-            return (None, None)
+        return _getImageAndCaptionFields(context)
 
     def bodyTag(self, css_class=''):
         """ returns img tag """
