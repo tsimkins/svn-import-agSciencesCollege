@@ -30,15 +30,15 @@
                         className python:oddrow and className + ' odd' or className + ' even';
                         className python:event_info and className + '  printed-event' or className;
                         className python:isCanceled and className + '  canceled' or className;
-                        hasImage python:view.show_image and entry.get('enclosures') and entry.enclosures[0] or None;
-                        imageURL python:hasImage and entry.enclosures[0].href + view.image_suffix or None;
-                        imageCaption python:hasImage and (hasattr(entry.enclosures[0], 'title') and entry.enclosures[0].title) or entry.title"
+                        leadimage entry/agsci_leadimage|nothing;
+                        hasImage python:(view.show_image and leadimage) or None;
+                        imageURL python:hasImage and entry.agsci_leadimage.get('url') + view.image_suffix or None;"
             tal:attributes="class className">
 
     
             <div class="rssImage" tal:condition="hasImage">
 
-                <img tal:attributes="src imageURL; alt imageCaption; title imageCaption" />
+                <img tal:attributes="src imageURL; alt python:'';" />
             
             </div>
 

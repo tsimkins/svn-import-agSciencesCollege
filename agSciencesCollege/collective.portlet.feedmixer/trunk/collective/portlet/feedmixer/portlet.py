@@ -17,6 +17,8 @@ from collective.portlet.feedmixer.interfaces import IFeedMixer
 
 from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 
+from urlparse import urlparse
+
 import socket
 
 import random
@@ -266,9 +268,18 @@ class Renderer(base.Renderer):
         portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
         isAnon = portal_state.anonymous()
 
-        # If we're a collection, but not anonymous, run the query
-        if collection and not isAnon:
-            return self.collection_feed()
+        # If we're a collection, and don't have psu.edu in the URL, or are not 
+        # anonymous, run the query
+
+        if collection:
+
+            try:
+                live_site = urlparse(self.collection().absolute_url()).hostname.endswith('psu.edu')
+            except:
+                live_site = False
+            
+            if not live_site or not isAnon:
+                return self.collection_feed()
 
         # Start determining cached data
         chooser=getUtility(ICacheChooser)
