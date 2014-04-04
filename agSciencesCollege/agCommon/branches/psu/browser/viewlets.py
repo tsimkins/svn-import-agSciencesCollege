@@ -35,6 +35,8 @@ from Products.agCommon.browser.views import FolderView
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.memoize.instance import memoize
 
+from urllib import urlencode
+
 try:
     from agsci.ExtensionExtender.counties import data as county_data
 except ImportError:
@@ -355,6 +357,28 @@ class AddThisViewlet(AgCommonViewlet):
                 return False
         
         return True
+
+    @property
+    def translationLanguages(self):
+        return dict ([
+                        ('fr', u'Fran&ccedil;ais'),
+                        ('es', u'Espa&ntilde;ol'), 
+                    ]
+                )
+
+    def showTranslationWidget(self):
+        return getContextConfig(self.context, 'provide_translation_widget', False)
+
+    def getTranslationLanguages(self):
+        return self.translationLanguages.keys()
+
+    def getTranslationUrl(self, c):
+        data = { 'u' : self.context.absolute_url(), 'sl' : 'en', 'tl' : c }
+        return "http://translate.google.com/translate?%s" % urlencode(data)
+
+    def getTranslationLabel(self, c):
+        return self.translationLanguages.get(c, '')
+
         
 class FBLikeViewlet(AgCommonViewlet):   
     index = ViewPageTemplateFile('templates/fblike.pt')

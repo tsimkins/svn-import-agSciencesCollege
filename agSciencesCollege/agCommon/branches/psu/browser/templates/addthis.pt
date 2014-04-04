@@ -45,19 +45,36 @@
 		<a class="addthis_button_email" title="Share: Email"></a>
 		<a tal:condition="view/isSyndicationAllowed" 
 		   title="RSS Feed"
-		   tal:attributes="href string:RSS"><span><img width="16" height="16" alt="RSS Feed"
-		                                         tal:attributes="src string:${context/portal_url}/icons/rss.jpg" /></span></a>
+           class="addthis_button_rss"
+		   tal:attributes="href string:RSS">
+		      <span>
+		          <span class="addthis_label">RSS Feed</span>
+		      </span>
+        </a>
 		<a class="addthis_button_print" title="Print"></a>
+
+		<div class="pdf">
+    		<a tal:condition="view/downloadPDF|nothing" 
+    		   title="Download PDF"
+               class="addthis_button_pdf"
+    		   tal:attributes="href view/pdf_url">
+    		      <span>
+    		          <span>Download PDF</span>
+    		      </span>
+            </a>
+        </div>
 
 		</div>
 		
 		<!-- AddThis Button END -->
 		<div style="font-size: 0px; clear: both"><!-- --></div>
 
-		<div class="pdf"><a tal:condition="view/downloadPDF|nothing" 
-		   title="Download PDF"
-		   tal:attributes="href view/pdf_url"> Download PDF <img width="16" height="16" alt=""
-		                                         tal:attributes="src string:${context/portal_url}/pdf.png" /> </a></div>
+        <div class="translate" tal:condition="view/showTranslationWidget|nothing">
+        <h2>Translate</h2>
+        <ul>
+            <li tal:repeat="r view/getTranslationLanguages"><a tal:attributes="href python: view.getTranslationUrl(r)" tal:content="structure python: view.getTranslationLabel(r)"></a></li>
+        </ul>
+        </div>
 
 	</div>
 	</tal:addthis>

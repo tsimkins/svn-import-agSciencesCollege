@@ -1443,8 +1443,9 @@ body.template-person_view #content h3 {
 }
 
 #addthis div.pdf a {
-    font-size: 0.625em;
+    font-size: 0.9375em;
     color: &dtml-linkColor;;
+    display: block;
 }
 
 #addthis .addthis_toolbox {
@@ -1469,6 +1470,73 @@ body.template-person_view #content #addthis h2,
 
 .comment #addthis {
     display: none;
+}
+
+/* = Add This Replacement Sprites ========================== */
+
+#addthis .addthis_toolbox a[class^=addthis_button] > span {
+    background-image: url(&dtml-portal_url;/addthis-sprite.png);
+    line-height: 16px !important;
+    cursor: pointer;
+    display: block;
+}
+
+#addthis .addthis_toolbox a.addthis_button_email > span { 
+    background-position: 0 0; width: 16px; height: 16px; 
+} 
+
+#addthis .addthis_toolbox a.addthis_button_facebook > span { 
+    background-position: 0 -66px; width: 16px; height: 16px; 
+} 
+
+#addthis .addthis_toolbox a.addthis_button_print > span { 
+    background-position: 0 -198px; width: 16px; height: 16px; 
+} 
+
+#addthis .addthis_toolbox a.addthis_button_rss > span { 
+    background-position: 0 -264px; width: 16px; height: 16px; 
+} 
+
+#addthis .addthis_toolbox a.addthis_button_twitter > span { 
+    background-position: 0 -330px; width: 16px; height: 16px; 
+} 
+
+#addthis .addthis_toolbox a.addthis_button_pdf > span {
+    background-position: right -132px;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+
+#addthis .addthis_label {
+    height: 1px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    top: auto !important;
+    width: 1px !important;
+}
+
+/* = translate widget ========================================= */
+
+#addthis .translate {
+    margin-top: 1em;
+}
+
+#addthis .translate ul {
+    font-size: 0.6875em;
+    list-style-image: none;
+    list-style-type: none;
+}
+
+#addthis .translate ul li {
+    margin: 0;
+    text-align: right
+}
+
+#addthis .translate ul li a {
+    font-size: 0.9375em;
+    color: &dtml-linkColor;;
+    display: block;
+    border-bottom: none;
 }
 
 /* = portal-footer ========================================= */
@@ -2449,10 +2517,6 @@ q {
     margin-bottom: 0.125em;
 }
 
-#portlets-mobile .portletfeedmixer .portletItem .title,
-#portal-column-one .portletfeedmixer .portletItem .title {
-    font-size: 1.125em;
-}
 
 #portlets-mobile .portletfeedmixer .even,
 #portal-column-one .portletfeedmixer .even {

@@ -60,6 +60,15 @@
         template="templates/skip_links.pt"
         />
 
+    <!-- Navigation viewlet -->
+    <browser:viewlet
+        name="plone.links.navigation"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+        class="plone.app.layout.links.viewlets.NavigationViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/links-navigation.pt"
+        />
 
     <!-- Links to RSS feed for syndicated content -->
 

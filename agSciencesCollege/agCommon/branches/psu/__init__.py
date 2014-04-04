@@ -936,6 +936,7 @@ def _getContextConfig(context):
         'contact_creators',
         'contact_title',
         'person_portlet_types',
+        'provide_translation_widget',
     ]
     
     # Convert to dict
