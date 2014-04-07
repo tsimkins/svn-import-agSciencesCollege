@@ -88,11 +88,11 @@
                                tal:content="brain/eventCanceled|nothing" />
                 
                         <agsci:eventlocation 
-                               tal:condition="brain/location"
+                               tal:condition="brain/location|nothing"
                                tal:content="brain/location" />
                 
                         <agsci:eventshortlocation 
-                               tal:condition="brain/short_location"
+                               tal:condition="brain/short_location|nothing"
                                tal:content="brain/short_location" />
                 
                         <agsci:eventstart 
