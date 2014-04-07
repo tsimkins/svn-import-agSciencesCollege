@@ -19,7 +19,7 @@ provideAdapter(hasContentLeadImage, name='hasContentLeadImage')
 
 def getImageAndCaptionFieldNames(context):
 
-    if context.portal_type in ['News Item']:
+    if context.portal_type in ['News Item', 'FSDPerson']:
         return ('image', 'imageCaption')
     else:
         return (IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME)
@@ -34,5 +34,7 @@ def getImageAndCaptionFields(context):
     
     if leadimagefield and leadimagecaption:
         return (leadimagefield, leadimagecaption)
+    elif leadimagefield:
+        return (leadimagefield, None)
     else:
         return (None, None)
