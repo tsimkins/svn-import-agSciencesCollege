@@ -87,7 +87,7 @@ class Renderer(base.Renderer):
             'icons/blogger.png' : 'sprite sprite-blogger',
             'icons/contact.png' : 'sprite sprite-contact',
             'icons/directory.png' : 'sprite sprite-directory',
-            'icons/afacebook.png' : 'sprite sprite-facebook',
+            'icons/facebook.png' : 'sprite sprite-facebook',
             'icons/feed.png' : 'sprite sprite-feed',
             'icons/flickr.png' : 'sprite sprite-flickr',
             'icons/instagram.png' : 'sprite sprite-instagram',
