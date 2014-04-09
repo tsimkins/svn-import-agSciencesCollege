@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rdf:RDF
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
-  xmlns="http://purl.org/rss/1.0/"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns:agsci="http://agsci.psu.edu/namespaces/rss">
 
 <tal:block
-    define="
-        syn context/portal_syndication;
-        folderContents view/getFolderContents|nothing;
-        folderContents python:folderContents or is_a_topic and context.queryCatalog(batch=True, **contentFilter) or context.getFolderContents(contentFilter, batch=True, b_size=100);
-        objectList folderContents;
-        max_items python:len(objectList)">
-    <metal:block use-macro="context/rss_template/macros/master">
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    define="folderContents view/getFolderContents|nothing;
+            objectList python: list(folderContents);
+            max_items python:len(objectList)">
+
+    <metal:block use-macro="context/@@rss_template_z3/macros/master">
         <metal:title 
             fill-slot="title"
             tal:define="org_title context/org_title|nothing;
@@ -26,12 +17,7 @@
             tal:content="feed_title">
                 The title
          </metal:title>
-        <metal:block fill-slot="syndication">
-            <syn:updatePeriod tal:content="python:syn.getUpdatePeriod(context) or default">hourly</syn:updatePeriod>
-            <syn:updateFrequency tal:content="python:syn.getUpdateFrequency(context) or default">2</syn:updateFrequency>
-            <syn:updateBase tal:content="python:syn.getHTML4UpdateBase(context) or default">2000-01-01T12:00+00:00</syn:updateBase>
-        </metal:block>
     </metal:block>
+
 </tal:block>
 
-</rdf:RDF>
