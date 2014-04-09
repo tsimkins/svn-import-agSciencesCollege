@@ -28,15 +28,10 @@
 
 
         <p class="discreet">
-            <span tal:condition="exists:entry/author"
-                  tal:omit-tag=""
-                  i18n:translate="feed_entry_author">
-                  <tal:block condition="exists:entry/feed/title"> From <span i18n:name="feed_title" tal:replace="structure entry/feed/title"> feed title</span></tal:block>
-            </span> <br />
             <span tal:omit-tag="" i18n:translate="feed_entry_modified">
-                Published on <span name="publication_time"
+                <span name="publication_time"
                     tal:content="python:toLocalizedTime(entry['updated'])">
-                    Nov 1</span>.
+                    Nov 1</span>
             </span>
         </p>
         <div class="tileBody">

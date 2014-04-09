@@ -10,6 +10,7 @@ from plone.app.portlets.portlets import base
 from plone.memoize.interfaces import ICacheChooser
 from plone.memoize.instance import memoize
 
+from zope.component.interfaces import ComponentLookupError
 from zope.formlib import form
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -265,8 +266,11 @@ class Renderer(base.Renderer):
         now=time.time()
 
         # Determine if we're anonymous
-        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
-        isAnon = portal_state.anonymous()
+        try:
+            portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
+            isAnon = portal_state.anonymous()
+        except ComponentLookupError:
+            isAnon = False
 
         # If we're a collection, and don't have psu.edu in the URL, or are not 
         # anonymous, run the query
