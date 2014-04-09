@@ -349,11 +349,13 @@ def onSubsiteCreation(subsite, event, add_group=True, is_plone_site=False, is_co
                     show_header=True,
                     show_date=True,
                     show_summary=True,
-                    show_image=False,
-                    show_footer=False,
+                    show_image=True,
+                    show_footer=True,
                     cache_timeout=1800,
                     assignment_context_path=None)
-                    
+
+        subsite_news.more_text = True
+
         saveAssignment(homepage_centerColumn, subsite_news)
 
         if 'news' in subsite.objectIds() and 'spotlight' in subsite.news.objectIds() and 'recent' in subsite.news.spotlight.objectIds():
