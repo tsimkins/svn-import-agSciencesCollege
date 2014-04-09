@@ -281,6 +281,7 @@
         class=".viewlets.PortletsAboveViewlet"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"
+        for="agsci.subsite.content.interfaces.IHomePage"
         template="templates/portletsabovecontent.pt"
     />
 
