@@ -174,7 +174,7 @@ def importEvents(context,
         
         # Translations and date manipulation
 
-        eventTitle = eventTitle.decode("utf-8")
+        #eventTitle = eventTitle.decode("utf-8")
         
         eventStartDate = eventStart.strftime("%Y-%m-%d")
         eventStartTime = eventStart.strftime("%H:%M:%S")
