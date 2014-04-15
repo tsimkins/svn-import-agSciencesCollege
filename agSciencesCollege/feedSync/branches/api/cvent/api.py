@@ -81,8 +81,8 @@ def getCventEvents(acct_num='',
             # Initialize data
             r = {}
     
-            r['id'] = str(o._Id).lower()
-            r['Title'] = str(o._EventTitle)
+            r['id'] = unicode(o._Id).lower()
+            r['Title'] = unicode(o._EventTitle)
             if o._City and o._StateCode:
                 r['location'] = str('%s, %s' % (o._City, o._StateCode))
             else:
