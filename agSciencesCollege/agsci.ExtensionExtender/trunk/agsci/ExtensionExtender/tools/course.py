@@ -122,7 +122,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
            
         }
 
-        title = event_title.decode('utf-8').lower().strip()
+        title = unicode(event_title).lower().strip()
         
         char_regex = re.compile("[^a-zA-Z0-9]", re.I|re.M)
        
@@ -174,7 +174,7 @@ class ExtensionCourseTool(UniqueObject, SimpleItem):
                 # Skip if the course is already assigned
                 continue
 
-            title = r.Title.decode('utf-8')
+            title = unicode(r.Title)
 
             if course:
                 # Get object
