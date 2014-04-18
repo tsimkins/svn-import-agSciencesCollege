@@ -183,6 +183,10 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     />
 
+    <!-- Removing Markdown option -->
+
+    <!--
+
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IMarkdownDescriptionExtender"
@@ -206,7 +210,9 @@
     <five:implements
         class="Products.ATContentTypes.content.document.ATDocument"
         interface=".interfaces.IMarkdownDescriptionExtender"
-    />    
+    />  
+
+    -->  
 
     <!-- Table of Contents Extender -->
 
@@ -228,6 +234,25 @@
     <five:implements
         class="Products.ATContentTypes.content.folder.ATFolder"
         interface=".interfaces.ITableOfContentsExtender"
+    /> 
+
+    <!-- Full Width Table of Contents Extender -->
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FullWidthTableOfContentsExtender"
+        factory=".extender.FullWidthTableOfContentsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    />
+
+    <adapter
+        name="agsci.UniversalExtender.extender.FullWidthTableOfContentsExtender.fiddle"
+        factory=".extender.FullWidthTableOfContentsExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
+
+    <five:implements
+        class="Products.ATContentTypes.content.document.ATDocument"
+        interface=".interfaces.IFullWidthTableOfContentsExtender"
     /> 
 
     <!-- Contributors Extender -->

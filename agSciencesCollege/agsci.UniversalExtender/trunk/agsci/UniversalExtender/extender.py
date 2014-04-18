@@ -6,7 +6,7 @@ from Products.ATContentTypes.interfaces.document import IATDocument
 from Products.ATContentTypes.interfaces.folder import IATFolder
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender, IUniversalPublicationExtender, IFilePublicationExtender
+from interfaces import IUniversalExtenderLayer, IFSDPersonExtender, IDefaultExcludeFromNav, IFolderTopicExtender, ITopicExtender, IFolderExtender, IMarkdownDescriptionExtender, ITableOfContentsExtender, ITagExtender, IUniversalPublicationExtender, IFilePublicationExtender, IFullWidthTableOfContentsExtender
 from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo
@@ -712,6 +712,35 @@ class TableOfContentsExtender(object):
     def getFields(self):
         return self.fields
 
+# Full Width Table Of Contents
+class FullWidthTableOfContentsExtender(object):
+    adapts(IFullWidthTableOfContentsExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+    layer = IUniversalExtenderLayer
+
+    fields = [
+        _ExtensionBooleanField(
+            "toc_full_width",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Full-width table of contents",
+                description=u"Use in long documents to show a full-width table of contents.",
+            ),
+        ),
+    ]
+
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+    def fiddle(self, schema):
+        schema.moveField('toc_full_width', after='tableContents')
+        return schema
 
 # Change the "Contributors" field to "Contact Information"
 # and add instructions

@@ -23,7 +23,10 @@ class IFolderExtender(Interface, INavigationPortlet):
 class IMarkdownDescriptionExtender(Interface):
     """ marker interface """
 
-class ITableOfContentsExtender(Interface):
+class IFullWidthTableOfContentsExtender(Interface):
+    """ marker interface """
+
+class ITableOfContentsExtender(IFullWidthTableOfContentsExtender):
     """ marker interface """
     
 class INoComments(Interface):
