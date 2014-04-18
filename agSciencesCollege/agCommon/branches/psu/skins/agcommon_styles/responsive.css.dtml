@@ -14,6 +14,25 @@
     }
 }
 
+@media handheld, screen and (min-width: 520px) {
+    #document-toc.toc-full-width,
+    #portal-column-content.sr #document-toc.full-width {
+        width: auto !important;
+        float: none;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0.375em 0 1.125em;
+        font-size: 0.9375em;
+    }
+    
+    #document-toc.toc-full-width h2.portletHeader,
+    #portal-column-content.sr #document-toc.full-width h2.portletHeader {
+        color: #000000;
+        font-size: 1.25em;
+    }
+}
+
 /*------------------------ END rlarge-site.css ----------------------------*/
 
 /*------------------------- resolution-890.css ------------------------------*/
@@ -833,7 +852,7 @@
         padding: 0;
         border: none;
         font-weight: bold;
-        font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+        font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
     }
     
     #navigation-mobile #mobile-search-button {
@@ -1058,14 +1077,17 @@
         background-repeat: no-repeat;
     }
     
-    #navigation-mobile #site-navigation .portletNavigationHeader, #document-toc .portletHeader {
+    #navigation-mobile #site-navigation .portletNavigationHeader, 
+    #document-toc .portletHeader,
+    #document-toc.full-width .portletHeader {
         background-image: url("&dtml-portal_url;/menu-expand.png");
         background-position: 98% center;
         background-repeat: no-repeat;
         background-size: auto 66%;
     }
     
-    #navigation-mobile #site-navigation .portletNavigationHeader.active,  #document-toc .portletHeader.active {
+    #navigation-mobile #site-navigation .portletNavigationHeader.active,  
+    #document-toc .portletHeader.active {
         background-image: url("&dtml-portal_url;/menu-contract.png");
     }
     
@@ -1087,15 +1109,25 @@
     body.template-by_county_listing.custom-two-column #content h2 {
         font-size: 1.09375em;
     }
+
+    #content h4, html.kupu-html h4,
+    #content h5, html.kupu-html h5 {
+        font-size: 1.03125em;
+    }
     
     #content .documentDescription {
         font-size: 1.125em;
     }
     
     /* Document table of contents */
-    #portal-column-content.sr #document-toc, #document-toc,
+    #portal-column-content.sr #document-toc, 
+    #document-toc,
     body.template-agenda_view #document-toc, 
-    body.template-agenda_view #portal-column-content.sr #document-toc {
+    body.template-agenda_view #portal-column-content.sr #document-toc,
+    #portal-column-content.sr #document-toc.full-width, 
+    #document-toc.full-width,
+    body.template-agenda_view #document-toc.full-width, 
+    body.template-agenda_view #portal-column-content.sr #document-toc.full-width {
         margin: 0.25em 0 1em 0;
         width: 96%;
         padding: 0.75em 2%; 
@@ -1104,7 +1136,9 @@
         border-radius: 3px;
     }
     
-    #portal-column-content.sr .portletHeader , #document-toc .portletHeader {
+    #portal-column-content.sr .portletHeader, 
+    #document-toc .portletHeader,
+    #document-toc.full-width .portletHeader {
         background-position: 98% center;
         background-repeat: no-repeat;
         background-size: auto 100%;

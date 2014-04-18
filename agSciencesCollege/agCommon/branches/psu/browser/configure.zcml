@@ -361,10 +361,15 @@
         permission="zope2.View"
         />
 
-    <five:implements
-        class="Products.ATContentTypes.interface.IATDocument"
-        interface=".interfaces.ITableOfContents"
-    /> 
+    <browser:viewlet       
+        name="plone.tableofcontents"
+        for="Products.ATContentTypes.interface.IATDocument"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.TableOfContentsViewlet"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+        />
+
 
     <five:implements
         class="Products.ATContentTypes.content.newsitem.ATNewsItem"

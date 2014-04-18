@@ -711,21 +711,39 @@ class TableOfContentsViewlet(AgCommonViewlet):
 
     index = ViewPageTemplateFile('templates/toc.pt')
 
-    def update(self):
+    @property
+    def enabled(self):
         obj = aq_base(self.context)
         getTableContents = getattr(obj, 'getTableContents', None)      
 
-        self.enabled = False
+        enabled = False
 
         if getTableContents is not None:
             try:
-                self.enabled = getTableContents()
+                enabled = getTableContents()
             except KeyError:   
                 # schema not updated yet
-                self.enabled = False
+                enabled = False
 
         if self.isFolderFullView:
-            self.enabled = False
+            enabled = False
+
+        if self.full_width:
+            enabled = True
+        
+        return enabled
+
+    def getClass(self):
+        klass = ['toc']
+        
+        if self.full_width:
+            klass.append('toc-full-width')
+        
+        return " ".join(klass)
+
+    @property
+    def full_width(self):
+        return getattr(self.context, 'toc_full_width', False)
 
 class ContributorsViewlet(AgCommonViewlet):
 

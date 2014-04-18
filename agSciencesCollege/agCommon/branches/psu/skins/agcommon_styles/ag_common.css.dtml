@@ -381,7 +381,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     line-height: 1.4em;
     padding: 0;
     margin: 0;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
     font-weight: bold;
     font-size: 1.3125em;
 }
@@ -392,7 +392,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     color: #293C6F !important;
     margin: 0;
     padding: 0.5em 0 0.375em 0;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
     font-weight: bold;
     border-bottom: 1px solid &dtml-leftNavBorderColor;;
     text-transform: none;
@@ -1195,7 +1195,7 @@ html.kupu-html {
 
 #content h2, html.kupu-html h2 {
     color: &dtml-documentHeadingColor;;
-    font-size: 1.5625em;
+    font-size: 1.6875em;
     margin: 1.25em 0 0.5em 0;
     padding: 0 0 0.0625em 0;
     border: none;
@@ -1358,15 +1358,17 @@ body.template-by_county_listing.custom-two-column #content h2 {
     padding: 0;
     border: none;
     font-weight: bold;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
-    font-size: 1.25em;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
+    font-size: 1.40625em;
 }
 
 #content h4, html.kupu-html h4,
 #content h5, html.kupu-html h5 {
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
-    font-size: 1.125em;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
+    font-size: 1.25em;
     color: #000000;
+    margin-top: 1em;
+    line-height: 1.3125em;
 }
 
 #content h5, html.kupu-html h5 {
@@ -2464,7 +2466,7 @@ q {
 
 #commenting.reply fieldset legend {
     font-weight: bold;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
 }
 
 #commenting.reply fieldset .discreet {
@@ -2804,7 +2806,7 @@ body.template-folder_full_view #content-core .item {
     color: #000000;
     font-size: 1.875em;
     font-weight: bold;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
 }
 
 #content .documentText p:first-child {
@@ -2833,7 +2835,7 @@ body.template-folder_full_view #content-core .item {
     padding: 0;
     border: none;
     font-weight: bold;
-    font-family: "Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
 }
 
 #content .documentContributors .tileItem {
