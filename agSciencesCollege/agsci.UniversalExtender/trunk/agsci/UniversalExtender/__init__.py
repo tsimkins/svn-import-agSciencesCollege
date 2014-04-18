@@ -24,3 +24,30 @@ Schemata.editableFields = editableFields
 
 import logging
 logging.getLogger('agsci.UniversalExtender').info("Monkey patched Products.Archetypes.Schema")
+
+# Monkey patch collection criteria
+from Products.Archetypes.atapi import IntDisplayList
+from Products.ATContentTypes.criteria.date import ATDateCriteriaSchema as _ATDateCriteriaSchema
+from Products.ATContentTypes.criteria import date
+from Products.ATContentTypes import ATCTMessageFactory as _
+
+DateOptions = IntDisplayList((
+                (     0, _(u'Now')      )
+                , (     1, _(u'1 Day')    )     
+                , (     2, _(u'2 Days')   )    
+                , (     5, _(u'5 Days')   )
+                , (     7, _(u'1 Week')   )    
+                , (    14, _(u'2 Weeks')  )       
+                , (    21, _(u'3 Weeks')  )     
+                , (    31, _(u'1 Month')  )
+                , (  31*3, _(u'3 Months') )
+                , (  31*6, _(u'6 Months') )
+                , (   365, _(u'1 Year')   )
+                , ( 365*2, _(u'2 Years')  )
+))
+
+_ATDateCriteriaSchema['value'].vocabulary = DateOptions
+
+date.ATDateCriteriaSchema = _ATDateCriteriaSchema
+
+logging.getLogger('agsci.UniversalExtender').info("Products.ATContentTypes.criteria.date.ATDateCriteriaSchema")
