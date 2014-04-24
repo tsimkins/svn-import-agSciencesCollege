@@ -564,7 +564,6 @@
     body.template-responsive_photogallery #portal-column-two,
     body.template-responsive_photogallery #viewlet-above-content,
     body.template-responsive_photogallery #portal-top,
-    body.template-responsive_photogallery #viewlet-below-content,
     body.template-responsive_photogallery #portal-top,
     body.template-responsive_photogallery #clear-space-before-footer,
     body.template-responsive_photogallery #portal-footer,
@@ -1056,7 +1055,7 @@
         text-align: left;
     }
     
-    #viewlet-below-content #portlets-mobile .portletWrapper {
+    #portal-column-content #portlets-mobile .portletWrapper {
         margin: 1.25em 2.16216%;
         width: 95.67568%;
     }

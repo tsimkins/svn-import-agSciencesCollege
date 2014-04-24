@@ -841,11 +841,11 @@ function mobileNav() {
     }
     else
     {
-        var mobile_portlets = jq("#portal-column-content #viewlet-below-content #portlets-mobile");
+        var mobile_portlets = jq("#portal-column-content #portal-column-content #portlets-mobile");
 
         if (! mobile_portlets.size() )
         {
-            mobile_portlets = jq('<div id="portlets-mobile"></div>').appendTo("#viewlet-below-content");
+            mobile_portlets = jq('<div id="portlets-mobile"></div>').appendTo("#portal-column-content");
 
             jq("#content #addthis").each(
                 function () {
