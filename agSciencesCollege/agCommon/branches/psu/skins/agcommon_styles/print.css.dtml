@@ -132,6 +132,11 @@ body.template-document_homepage_view #homepageimage {
     line-height: 16pt;
 }
 
+#content h4 {
+    font-size: 11pt;
+    line-height: 15pt;
+}
+
 /* Content */
 
 #portal-column-content {
@@ -151,7 +156,7 @@ body.template-document_homepage_view #homepageimage {
 
 #content {
 	padding: 0px !important;
-	margin:  0;
+	margin: 1em 0 0 0;
 	width: 100%;
 	line-height: 15pt;
 	font-size: 11pt;
@@ -361,6 +366,12 @@ table.listing td {
     margin-left: 0.5em;
 }
 
+#content ul {
+    list-style-image: none;
+    list-style-type: square;
+    margin: 0.375em 0 1.125em 2.5em;
+}
+
 
 /* Factsheet View */
 
@@ -397,6 +408,10 @@ body.template-factsheet_view #portal-top, body.template-factsheet_view #portal-h
 
 a[href^="http"]:link:after, a[href^="http"]:visited:after {
     content:" [" attr(href) "] "; 
+}
+
+.tileItem a[href^="http"]:link:after, .tileItem a[href^="http"]:visited:after {
+    content: none; 
 }
 
 #portal-top a:link:after, #portal-top a:visited:after,
