@@ -11,6 +11,7 @@ from zope.component import getUtility, getMultiAdapter
 from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
 from Products.agCommon.browser.views import FolderView, IFolderView
 from urlparse import urljoin
+from uuid import uuid1
 import re
 
 from reportlab.lib.pagesizes import letter
@@ -317,8 +318,12 @@ class FactsheetPDFView(FolderView):
                     for i in item.findAll('li'):
                         pdf.append(Paragraph('<bullet>&bull;</bullet>%s' % getInlineContents(i), bullet_list))
                 elif item_type in ['ol']:
+                    # Sequences were incrementing based on previous PDF generations.
+                    # Including explicit ID and reset
+                    li_uuid = uuid1().hex
                     for i in item.findAll('li'):
-                        pdf.append(Paragraph('<seq />. %s' % getInlineContents(i), bullet_list))
+                        pdf.append(Paragraph('<seq id="%s" />. %s' % (li_uuid, getInlineContents(i)), bullet_list))
+                    pdf.append(Paragraph('<seqReset id="%s" />' % li_uuid, styles['Normal']))
                 elif item_type in ['p'] or (item_type in ['div'] and 'captionedImage' in className):
 
                     has_image = False
