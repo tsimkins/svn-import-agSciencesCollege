@@ -372,6 +372,12 @@ table.listing td {
     margin: 0.375em 0 1.125em 2.5em;
 }
 
+#content ol {
+    list-style-image: none;
+    list-style-type: decimal;
+    margin: 0.375em 0 1.125em 2.5em;
+}
+
 
 /* Factsheet View */
 
