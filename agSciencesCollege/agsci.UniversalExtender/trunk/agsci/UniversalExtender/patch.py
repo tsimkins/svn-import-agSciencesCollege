@@ -70,14 +70,21 @@ def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None)
     if not time:
         return ''
 
-    start_full_fmt = friendly(util.ulocalized_time(time, long_format, time_only, context=context,
-                                domain='plonelocales', request=self.request))
-    
-    if end_time:
+    # Handle error when converting invalid times.
 
-        end_full_fmt = friendly(util.ulocalized_time(end_time, long_format, time_only, context=context,
-                                       domain='plonelocales', request=self.request))
-        
+    try:
+        start_full_fmt = friendly(util.ulocalized_time(time, long_format, time_only, context=context,
+                                  domain='plonelocales', request=self.request))
+    except ValueError:
+        return ''
+
+    if end_time:
+        try:
+            end_full_fmt = friendly(util.ulocalized_time(end_time, long_format, time_only, context=context,
+                                    domain='plonelocales', request=self.request))
+        except ValueError:
+            return ''
+
         if not isinstance(time, DateTime):
             start = DateTime(time)
         else:
@@ -99,7 +106,7 @@ def toLocalizedTime(self, time, long_format=None, time_only=None, end_time=None)
             
             # If we want the long format, return [date] [time] - [time]
             if long_format:
-                if start_time_fmt == end_time_fmt and (start_time_fmt == '00:00' or end_time_fmt == '00:00'):
+                if start_time_fmt == end_time_fmt:
                     return start_full_fmt
                 elif start_time_fmt == '00:00':
                     return end_full_fmt
