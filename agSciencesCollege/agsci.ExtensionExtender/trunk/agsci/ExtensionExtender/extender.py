@@ -282,6 +282,17 @@ class ExtensionExtender(object):
                     condition="python:member.has_role('Manager', object)",
                 ),
             ),
+            _ExtensionBooleanField(
+                "extension_publication_contact_pdc",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Contact PDC",
+                    description=u"",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
             _ExtensionStringField(
                 "extension_publication_cost",
                     schemata="Publication",

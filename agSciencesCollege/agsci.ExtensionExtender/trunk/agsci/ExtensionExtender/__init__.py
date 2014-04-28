@@ -101,14 +101,28 @@ def pushNewsItemsToBlogs(context):
         if year in new_parent.objectIds():
             cb_copy_data = context.getParentNode().manage_cutObjects(ids=[o.getId()])
             new_parent[year].manage_pasteObjects(cb_copy_data=cb_copy_data)
-    
-    
-                
-                
-                
-            
-    
-    
-    
 
+def enableMultiCounty(context):
+
+    # Add custom class to enable multi select.
+    custom_class = context.getProperty('custom_class', '').split()
+
+    if custom_class:
+        if 'multicounty' not in custom_class:
+            custom_class.append('multicounty')
+            context._updateProperty('custom_class', " ".join(custom_class))
+    else:
+        context.manage_addProperty('custom_class', 'multicounty', 'string')
+
+    # Set to Published (Hidden)
+
+    wftool = getToolByName(context, "portal_workflow")
+
+    if wftool.getInfoFor(context, 'review_state') != 'published-hidden':
+        wftool.doActionFor(context, 'publish-hidden')
+
+    context.reindexObject()
+
+    return True
+        
     
