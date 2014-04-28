@@ -10,6 +10,25 @@
 
 <metal:local_style_slot fill-slot="local_style_slot">
     <style type="text/css">
+        /* Make printable not full width on screen */
+        @media screen {
+            body {
+                background-color: #333333;
+            }
+            
+            #portal-columns {
+                max-width: 795px;
+            }
+            
+            .contentLeadImageContainer img {
+                max-width: 254px;
+            }
+
+            table td#portal-column-content, table td.header, table.leadimage td, table td.graphic-header {
+                padding-left: 15px;
+            }
+        }
+        
         .contentLeadImageContainer, img.image-right, img.image-left {
             background-color: transparent;
             float: right;
@@ -268,7 +287,7 @@
                     }
                 );
 
-                //window.print();
+                window.print();
             }
         );
 
