@@ -60,7 +60,8 @@
                           folder_path python: request.form.get('path');
                           counties python: request.form.get('Counties');
                           programs python: request.form.get('Topics');
-                          collection_filter python: request.form.get('collection_filter');"
+                          collection_filter python: request.form.get('collection_filter');
+                          show_publication python: request.form.get('show_publication');"
               tal:condition="not:is_advanced_search">
             <label for="SearchableText">Keywords</label>
             <input class="searchPage"
@@ -116,6 +117,10 @@
                    type="submit"
                    value="Search"
                    i18n:attributes="value label_search;"/>
+
+            <metal:show_publication define-macro="show_publication">
+                <input type="hidden" tal:condition="show_publication" tal:attributes="value string:True" name="showPublication:boolean" />
+            </metal:show_publication>
 
             <metal:portal_type define-macro="portal_type">
 

@@ -873,6 +873,7 @@ class LocalSearchViewlet(SearchBoxViewlet):
     def searchURL(self):
 
         default_search_url ='%s/search' % self.site_url
+        localsearch_collection_path = self.context.getProperty('localsearch_collection_path', '')
 
         if self.context.portal_type in ['Topic']:
             if self.context.getProperty('localsearch_override_collection', False):
@@ -884,8 +885,15 @@ class LocalSearchViewlet(SearchBoxViewlet):
                     return parent.absolute_url()
                 else:
                     return self.context.absolute_url()
-        else:
-            return default_search_url
+        elif localsearch_collection_path:
+            if localsearch_collection_path.startswith('/'):
+                localsearch_collection_path = localsearch_collection_path[1:]
+                try:
+                    return getSite().restrictedTraverse(localsearch_collection_path).absolute_url()
+                except AttributeError:
+                    pass
+
+        return default_search_url
 
 class ContentRelatedItems(ContentRelatedItemsBase):
 

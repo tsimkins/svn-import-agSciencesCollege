@@ -9,6 +9,7 @@
                      localsearch_title context/localsearch_title|localsearch_title;
                      localsearch_counties context/localsearch_counties|nothing;
                      localsearch_zip_code context/localsearch_zip_code|nothing;
+                     show_publication context/localsearch_show_publication|nothing;
                      hide_localsearch_text context/hide_localsearch_text|nothing;
                      localsearch_collection_filter context/localsearch_collection_filter|nothing;
                      portal_types context/localsearch_type|nothing;
@@ -44,6 +45,7 @@
                         class="inputLabel search_criteria" 
                         autocomplete="off" />
     
+                <metal:show_publication use-macro="context/@@search_z3/macros/show_publication" />
                 <metal:portal_type use-macro="context/@@search_z3/macros/portal_type" />
                 <metal:subject use-macro="context/@@search_z3/macros/subject" />
                 <metal:programs use-macro="context/@@search_z3/macros/programs" />
