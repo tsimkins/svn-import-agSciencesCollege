@@ -21,7 +21,8 @@
                   site_properties context/portal_properties/site_properties;
                   ajax_load request/ajax_load | nothing;
                   is_extension python: 'extension' in context.absolute_url();
-                  agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');"
+                  agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                  leadimage_full_width context/leadimage_full_width|nothing;"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -109,7 +110,7 @@
                                 tal:omit-tag="not: has_leadimage">
                                 <tr tal:omit-tag="not: has_leadimage">
                                     <td tal:omit-tag="not: has_leadimage"
-                                         width="340" align="left" id="leadimage-left">
+                                         width="340" align="left" id="leadimage-left" valign="top">
                                         <metal:title define-slot="content-title">
                                             <metal:comment tal:content="nothing">
                                                 If you write a custom title always use
@@ -149,7 +150,11 @@
                     </tr>
                 </metal:block>
                 <tr>
-                    <td id="portal-column-content" valign="top" tal:attributes="width python:sr and '390' or '570'" cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
+                    <td id="portal-column-content" 
+                        valign="top" 
+                        tal:attributes="width python:sr and '390' or '570';
+                                        class python: leadimage_full_width and 'large' or ''"
+                        cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">
 

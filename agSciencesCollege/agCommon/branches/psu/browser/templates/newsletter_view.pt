@@ -106,7 +106,7 @@ h2 {
 }
 
 h3 {
-    font-size: 11pt;
+    font-size: 12pt;
     margin: 0 0 3pt 0;
     font-weight: normal;
     clear: both;
@@ -253,7 +253,7 @@ hr {
     border-color: #333333;
 }
 
-img.leadimage {
+img.leadimage, img.leadimage_full {
     background-color: #EEEEEE; 
     border: 1px solid #DDDDDD; 
     color: #666666; 
@@ -261,6 +261,31 @@ img.leadimage {
     font-size: 8pt; 
     margin: 6pt 0 12pt 12pt; 
     text-align: right;
+}
+
+img.leadimage_full {
+    float: none;
+    text-align: initial;
+    margin: 6pt 0 8pt 0; 
+    display: block;
+    clear: both;
+}
+
+p.leadimage {
+    padding: 0;
+    margin: 0;
+    width: 400px;
+    clear: both;
+}
+    
+#portal-column-content.large hr.separator {
+    background-color: #DDDDDD;
+    border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    color: #DDDDDD;
+    margin-bottom: 10pt;
+    height: 1px;
 }
 
 li.nobullet, ul.nobullet li {
@@ -617,7 +642,8 @@ div.extension-footer hr {
             </tal:entry>
    
         </ol>
-        <br class="separator" />
+        <br class="separator" tal:condition="not: context/leadimage_full_width|nothing" >
+        <hr class="separator" tal:condition="context/leadimage_full_width|nothing" >
         </table>
 
         <ul tal:condition="not:notEditor" class="nobullet inline">
@@ -671,7 +697,7 @@ div.extension-footer hr {
                         tal:define="kssClassesView context/@@kss_field_decorator_view;
                                     getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                     standalone_view python:True;
-                                    templateId template/getId">
+                                    templateId template/getId;">
     
         <metal:featured tal:define="batch view/getEnabledItems">
             <metal:listingmacro define-macro="listing">
@@ -694,7 +720,8 @@ div.extension-footer hr {
                                     show_about python:not notEditor or site_properties.allowAnonymousViewAbout;
                                     show_date context/show_date|nothing;
                                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                                    pas_member context/@@pas_member;"
+                                    pas_member context/@@pas_member;
+                                    leadimage_full_width context/leadimage_full_width|nothing;"
                                     condition="notEditor">
                     <tal:listing condition="batch">
                 
@@ -726,12 +753,20 @@ div.extension-footer hr {
                                                    item_samedate python: (item_end - item_start &lt; 1) if item_type == 'Event' else False">
                                 <metal:block define-slot="entry">
                                 <tal:item metal:define-macro="listitem">
+                                    <tal:image tal:condition="leadimage_full_width">
+                                        <p class="leadimage" tal:condition="exists:item_has_leadimage">
+                                            <a tal:attributes="href item_url">
+                                                <img tal:replace="structure python:view.tag(item_object, scale='preview', css_class='leadimage_full')" border="0"/>
+                                            </a>
+                                        </p>
+                                    </tal:image>
 
                                     <h3>
                 
                                     <tal:image
-                                         tal:condition="exists:item_has_leadimage">
+                                         tal:condition="not:leadimage_full_width">
                                             <img align="right"
+                                                 tal:condition="exists:item_has_leadimage"
                                                  tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
                                     </tal:image>
                                     
@@ -783,8 +818,12 @@ div.extension-footer hr {
                                     
                                 </p>
 
-                                <br class="separator" />
-                                    
+                                <br class="separator" 
+                                    tal:condition="not: context/leadimage_full_width|nothing" >
+
+                                <hr class="separator" 
+                                    tal:condition="context/leadimage_full_width|nothing" >
+                                            
                                 </tal:item>
                             </metal:block>
                             </tal:block>
