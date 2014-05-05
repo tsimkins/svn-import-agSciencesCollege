@@ -6,7 +6,7 @@
     define="view nocall: context/@@rss_template_z3;
             syn context/portal_syndication;
             objectList python:list(here.queryCatalog());
-            max_items python:len(objectList)"
+            max_items python:len(objectList)">
 
     <metal:block use-macro="context/@@rss_template_z3/macros/master" />
 
