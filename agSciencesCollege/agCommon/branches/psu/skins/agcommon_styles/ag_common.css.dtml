@@ -1648,6 +1648,14 @@ dd.portletItem p {
     display: block;
 }
 
+#portal-column-content p.discreet br {
+    line-height: 0.25em;
+}
+
+#portal-column-content p.discreet {
+    margin-bottom: 2em;
+}
+
 .portletItemDetails {
     text-align: left;
 }
