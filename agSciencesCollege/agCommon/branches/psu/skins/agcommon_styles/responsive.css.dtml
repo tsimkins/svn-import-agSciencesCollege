@@ -12,6 +12,16 @@
     .contentLeadImageContainer {
         max-width: 52.7107%;
     }
+    
+    body.custom-fullwidth #visual-portal-wrapper, body.custom-fullwidth #portal-header,
+    body.custom-fullwidth #portal-personaltools-wrapper {
+        max-width: 100%;
+    }
+    
+    body.custom-fullwidth #content {
+        width: auto;
+        margin: 0 1.375em;
+    }
 }
 
 @media handheld, screen and (min-width: 520px) {
