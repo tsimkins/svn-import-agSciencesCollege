@@ -276,7 +276,7 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
             else:
                 a['class'] = 'standalone'
 
-        html = soup.prettify()
+        html = repr(soup)
         html = html.replace('The external news article is:', 'Full article:') # If there's a news item article link        
 
         return html
@@ -321,15 +321,23 @@ class NewsletterEmail(NewsletterView):
 
 
         if self.anonymous:
-            utm  = self.getUTM(source='newsletter', medium='email', campaign=self.newsletter_title);
     
             for a in soup.findAll('a'):
+                klass = [x.replace('utm_', '') for x in a.get('class', '').split() if x.startswith('utm_')]
+                utm_content = None
+                
+                if klass:
+                    utm_content = klass[0]
+                    
+                utm  = self.getUTM(source='newsletter', medium='email', 
+                                   campaign=self.newsletter_title, content=utm_content);
+
                 if '?' in a['href']:
                     a['href'] = '%s&%s' % (a['href'], utm) 
                 else:
                     a['href'] = '%s?%s' % (a['href'], utm)            
 
-        html = premailer.transform(unicode(soup.prettify(), 'utf-8'))
+        html = premailer.transform(unicode(repr(soup), 'utf-8'))
 
         tags = ['dl', 'dt', 'dd']
         

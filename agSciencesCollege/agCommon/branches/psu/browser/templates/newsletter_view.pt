@@ -26,6 +26,7 @@ body, p, li, h1, h2, h3, div, span {
 
 body, li, p {
     font-size: 10pt;
+    line-height: 12pt;
 }
 
 #portal-columns {
@@ -60,6 +61,7 @@ h2 a, dt.portletHeader a {
 h2 {
     font-size: 13pt;
     margin: 10pt 0 10pt 0;
+    line-height: 17pt;
 }
 
 #portal-column-two h2 {
@@ -110,6 +112,11 @@ h3 {
     margin: 0 0 3pt 0;
     font-weight: normal;
     clear: both;
+    line-height: 15pt;
+}
+
+a {
+    color: #265FCF;
 }
 
 br.separator {
@@ -138,11 +145,11 @@ div.documentDescription {
 }
 
 p {
-    margin: 0 0 10pt 0;
+    margin: 0 0 14pt 0;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 10pt;
+    margin-bottom: 13pt;
 }
 
 #portal-column-two p {
@@ -455,14 +462,14 @@ div.extension-footer hr {
     <div class="subheader">
     
         <metal:view-online define-slot="view-online">
-            <a class="view-online" 
+            <a class="view-online utm_newsletter_view_online" 
                 tal:define="more_url view/getViewOnline|nothing;
                             more_url context/more_url|more_url"
                 tal:attributes="href more_url">View 
                     <span tal:replace="context/newsletter_title|context/Title" /> online</a>
             <tal:print condition="context/show_print_newsletter|nothing">
                 <span class="discreet"> | </span>
-                <a class="view-online" 
+                <a class="view-online utm_newsletter_print" 
                     tal:define="more_url python:'%s/newsletter_print' % context.absolute_url().replace('/' + templateId, '');"
                     tal:attributes="href more_url">Print 
                         this newsletter</a>
@@ -677,7 +684,7 @@ div.extension-footer hr {
         
         <p class="discreet">This publication is available in alternative media on request. </p>
         
-        <p class="discreet">Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce.</p>
+        <p class="discreet">Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination</a>.</p>
     </div>
     </tal:extension>
 </metal:footer>
@@ -774,40 +781,13 @@ div.extension-footer hr {
 
                                         <a href="#"
                                            tal:attributes="href item_url;
-                                                           class string:$item_type_class $item_wf_state_class url"
+                                                           class string:$item_type_class $item_wf_state_class url utm_newsletter_title"
                                            tal:content="item_title_or_id">
                                             Item Title
                                         </a>
                                         
                                     </h3>
                 
-                                    <div class="documentByLine">
-                                        <span class="effectiveDate" tal:condition="show_date" tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
-                                        <tal:byline condition="show_about">
-                                            &mdash;
-                
-                                            <tal:name tal:condition="item_creator"
-                                                tal:define="author python:pas_member.info(item_creator);
-                                                            creator_short_form author/username;
-                                                            creator_long_form string:?author=${author/username};
-                                                            creator_is_openid python:'/' in creator_short_form;
-                                                            creator_id python:(creator_short_form, creator_long_form)[creator_is_openid];">
-                                              <span i18n:translate="label_by_author">
-                                                by
-                                              <a href="#"
-                                                 tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
-                                                 tal:content="author/name_or_id"
-                                                 tal:omit-tag="not:author"
-                                                 i18n:name="author">
-                                                Bob Dobalina
-                                              </a>
-                                              </span>
-                
-                                            </tal:name>
-                
-                                        </tal:byline>
-                                    </div>
-    
                                 <div tal:condition="python: item_type in ['Event', 'TalkEventType']" class="eventDateLocationBlock">
                                     <metal:event use-macro="context/folder_listing_z3/macros/event_date" />
                                 </div>
@@ -815,7 +795,10 @@ div.extension-footer hr {
                                 <p tal:condition="item_description|nothing">
                 
                                     <span tal:replace="item_description" />
-                                    
+                                    [<a href="#"
+                                        tal:attributes="href item_url;
+                                                        class string:$item_type_class $item_wf_state_class url utm_newsletter_more"
+                                        >more</a>]
                                 </p>
 
                                 <br class="separator" 
