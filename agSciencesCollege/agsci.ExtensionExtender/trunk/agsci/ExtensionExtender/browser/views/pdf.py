@@ -294,7 +294,7 @@ class FactsheetPDFView(FolderView):
 
         # Provides the PDF entities for the corresponding HTML tags.
 
-        def getContent(item):
+        def getContent(item, bump_headings=False):
             pdf = []
             if isinstance(item, Tag):
                 className=item.get('class', '').split()
@@ -303,6 +303,8 @@ class FactsheetPDFView(FolderView):
                     item_style = tag_to_style.get(item_type)
                     h = Paragraph(getItemText(item), styles[item_style])
                     h.keepWithNext = True
+                    if item_type == 'h2' and not bump_headings:
+                        h.append(HRFlowable(width='100%', thickness=0.25, spaceBefore=2, spaceAfter=4, color=styles[item_style].textColor))
                     pdf.append(h)
                 elif item_type in ['table']:
                     (table_data, table_style, caption) = getTableData(item)
@@ -432,15 +434,27 @@ class FactsheetPDFView(FolderView):
         styles['Heading1'].spaceAfter = 4
 
         styles['Heading2'].allowWidows = 0
-        styles['Heading2'].fontSize = 13
+        styles['Heading2'].fontName = 'Helvetica-Bold'
+        styles['Heading2'].fontSize = 15
+        styles['Heading2'].leading = 18
+        styles['Heading2'].spaceAfter = 8
+        styles['Heading2'].spaceAfter = 2
         styles['Heading2'].textColor = header_rgb
-        styles['Heading2'].leading = 15
-        styles['Heading2'].spaceAfter = 4
-
+        
         styles['Heading3'].allowWidows = 0
-        styles['Heading3'].fontSize = 11
-        styles['Heading3'].fontName = 'Helvetica'
-
+        styles['Heading3'].fontName = 'Helvetica-Bold'
+        styles['Heading3'].fontSize = 12
+        styles['Heading3'].leading = 14
+        styles['Heading3'].spaceAfter = 6
+        styles['Heading3'].textColor = header_rgb
+                
+        styles['Heading4'].allowWidows = 0
+        styles['Heading4'].fontName = 'Helvetica-Bold'
+        styles['Heading4'].fontSize = 10
+        styles['Heading4'].leading = 12
+        styles['Heading4'].spaceAfter = 6
+        styles['Heading4'].textColor = header_rgb
+        
         series_heading = ParagraphStyle('Series')
         series_heading.spaceBefore = 2
         series_heading.spaceAfter = 10
@@ -692,9 +706,31 @@ class FactsheetPDFView(FolderView):
             'p' : 'Normal'
         }
 
+        # Push headings to the smallest level
+
+        # If we have an h2, but not an h3 or h4, bump the heading styles down.
+
+        attrs = ['allowWidows', 'fontName', 'fontSize', 'leading', 'spaceAfter', 'textColor', ]
+
+        bump_headings = False
+
+        if '<h2' in text and not '<h3' in text and not '<h4' in text:
+
+            bump_headings = True
+        
+            heading_tags = sorted([x for x in tag_to_style.keys() if x.startswith('h')])
+
+            for i in range(0, len(heading_tags) - 1):
+                from_style = tag_to_style[heading_tags[i]]
+                to_style = tag_to_style[heading_tags[i+1]]
+                for a in attrs:
+                    styles[from_style].__dict__[a] = styles[to_style].__dict__[a]
+
+
+
         # Loop through Soup contents
         for item in soup.contents:
-            pdf.extend(getContent(item))
+            pdf.extend(getContent(item, bump_headings=bump_headings))
 
         # Embed lead images in paragraphs if we're a single column
         if column_count == 1:
@@ -728,7 +764,7 @@ class FactsheetPDFView(FolderView):
         pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT', body_image=False))
 
         # Choose which statement
-        aa_statement = """Penn State is committed to affirmative action, equal opportunity, and the diversity of its workforce."""
+        aa_statement = """Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination</a>."""
         statement_text = ("""<b>Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</b>
 
         Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.
