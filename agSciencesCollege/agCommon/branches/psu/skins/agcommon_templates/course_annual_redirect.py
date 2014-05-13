@@ -28,4 +28,4 @@ else:
     else:
         RESPONSE.setHeader('Cache-Control', 'max-age=0, s-maxage=300, must-revalidate, public, proxy-revalidate')
 
-    return context.atct_topic_view()
+    return getMultiAdapter((context, request), name=u'extension_course_view')()

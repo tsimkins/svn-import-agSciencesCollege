@@ -12,156 +12,79 @@
                             templateId template/getId;
                             view nocall:context/@@folder_listing_z3;
                             test nocall:view/test;
-                            standalone_view python:True">
+                            standalone_view python:True;
+                            plone_view context/@@plone">
 
         <metal:listingmacro define-macro="listing">
-        <tal:topiccontents define="contentFilter contentFilter|request/contentFilter|nothing;
-                                   contentFilter python:contentFilter and dict(contentFilter) or {};
-                                   topicContents python:here.queryCatalog(batch=True, **contentFilter);
-                                   order_by_id here/order_by_id|nothing;
-                                   order_by_title here/order_by_title|nothing;
-                                   zip_code_input request/zip_code_input|nothing;
-                                   agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
-                                   isCourse python:'courses' in context.Subject() or 'courses' in context.aq_parent.Subject();
-                                   noEventsCourse python:'courses-online-ondemand' in context.Subject() or 'courses-online-ondemand' in context.aq_parent.Subject();
-                                   annualCourse python: context.getLayout() == 'course_annual_redirect' and len(topicContents) <= 1;
-                                   topicContents python: (order_by_title or order_by_id or zip_code_input) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title, zip_code_input=zip_code_input) or topicContents;
-                                   use_view_action site_properties/typesUseViewActionInListings|python:();
-                                   batch topicContents;
-                                   isAnon context/@@plone_portal_state/anonymous;
-                                   no_results_message context/no_results_message|nothing">
-
-        <tal:course condition="python: isCourse and not noEventsCourse and not annualCourse">
-            <h2>Upcoming Events</h2>
-            <p class="discreet"
-                tal:condition="python: not topicContents and here.listCriteria()">
-                There are currently no events scheduled for this course.
-            </p>
-        </tal:course>
-
-        <tal:noresults 
-            condition="python: no_results_message and not topicContents">
-            <p tal:content="no_results_message" />
-        </tal:noresults>
-
-        <tal:annual
-             condition="python: annualCourse and not isAnon">
-            <dl class="portalMessage info">
-                <dd i18n:translate="">
-                    <p>You are seeing this page because:</p>
-                    <ul>
-                    <li>You are logged in.</li>
-                    <li>This course is set to an '<strong>annual</strong>' course</li>
-                    <li>There is one (and only one) upcoming event.</li>
-                    </ul>
-                    <p>The public visitor will be 
-                        <span tal:condition="python: len(topicContents) == 1">
-                            redirected to <a tal:attributes="href python: topicContents[0].getURL()"
-                                             tal:content="python: topicContents[0].Title" />.
-                        </span>
-                        <span tal:condition="python: len(topicContents) == 0">
-                            shown the landing page with no 'Upcoming Events' listing 
-                        </span>
+            <tal:topiccontents define="contentFilter contentFilter|request/contentFilter|nothing;
+                                       contentFilter python:contentFilter and dict(contentFilter) or {};
+                                       topicContents python:here.queryCatalog(batch=True, **contentFilter);
+                                       order_by_id here/order_by_id|nothing;
+                                       order_by_title here/order_by_title|nothing;
+                                       zip_code_input request/zip_code_input|nothing;
+                                       agcommon_utilities python: context.restrictedTraverse('@@agcommon_utilities');
+                                       topicContents python: (order_by_title or order_by_id or zip_code_input) and agcommon_utilities.reorderTopicContents(topicContents, order_by_id=order_by_id, order_by_title=order_by_title, zip_code_input=zip_code_input) or topicContents;
+                                       use_view_action site_properties/typesUseViewActionInListings|python:();
+                                       batch topicContents;
+                                       isAnon context/@@plone_portal_state/anonymous;
+                                       no_results_message context/no_results_message|nothing;
+                                       isCourse python:'courses' in context.Subject() or 'courses' in context.aq_parent.Subject();
+                                       noEventsCourse python:'courses-online-ondemand' in context.Subject() or 'courses-online-ondemand' in context.aq_parent.Subject();
+                                       annualCourse python: context.getLayout() == 'course_annual_redirect' and len(topicContents) <= 1;
+                                       
+                                       ">
+    
+                <metal:results-heading define-slot="results-heading" />
+        
+                <tal:noresults 
+                    condition="python: no_results_message and not topicContents">
+                    <p tal:content="no_results_message" />
+                </tal:noresults>
+        
+                <metal:annual-course define-slot="annual-course" />
+        
+                <metal:folder-listing define-slot="folder-listing">
+        
+                    <tal:listing condition="python: topicContents">
+                        <tal:default
+                             define="folderContents topicContents;
+                                     view nocall:context/@@folder_listing_z3;">
+            
+                            <metal:listing metal:use-macro="here/@@folder_listing_z3/macros/listing">
+                                <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                            </metal:listing>
+            
+                        </tal:default>
+                    </tal:listing>
+        
+                </metal:folder-listing>
+                    
+                <metal:no-results define-slot="no-results">
+                
+                    
+                    <p class="discreet"
+                        tal:condition="python: not topicContents and here.listCriteria() and not isAnon and not no_results_message"
+                        i18n:domain="atcontenttypes"
+                        i18n:translate="description_no_items_in_topic">
+                        There are currently no results for this search.
                     </p>
-                </dd>
-            </dl>
-        </tal:annual>
-
-        <tal:listing condition="python: topicContents and not noEventsCourse and not annualCourse">
-            <tal:default condition="not:here/getCustomView|nothing"
-                         define="folderContents topicContents;
-                                 view nocall:context/@@folder_listing_z3;">
-                <metal:listing metal:use-macro="here/@@folder_listing_z3/macros/listing">
-                    <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
-                </metal:listing>
-
-            </tal:default>
-
-            <tal:custom condition="here/getCustomView|nothing"
-                        define="vocab python:here.listMetaDataFields(False)">
-
-                <table class="listing"
-                       summary="Content listing"
-                       i18n:attributes="summary summary_content_listing;">
-                     <thead>
-                        <tr>
-                            <th tal:repeat="field here/getCustomViewFields"
-                                tal:content="python:vocab.getValue(field, field)"
-                                i18n:translate=""/>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tal:brain tal:repeat="obj topicContents">
-                        <tr tal:define="oddrow repeat/obj/odd;"
-                            tal:attributes="class python:test(oddrow, 'even', 'odd')">
-                            <tal:fields repeat="field here/getCustomViewFields"
-                                        define="normalizeString nocall:context/@@plone/normalizeString;
-                                                url obj/getURL;
-                                                obj_type obj/portal_type;
-                                                obj_description obj/Description;
-                                                obj_typeinfo python: here.portal_types.getTypeInfo(obj_type);
-                                                obj_icon python:plone_view.getIcon(obj);
-                                                obj_wf_state obj/review_state|python: context.portal_workflow.getInfoFor(obj, 'review_state', '');
-                                                obj_wf_state_class python:'state-' + normalizeString(obj_wf_state);
-                                                obj_url python:test(obj_type in use_view_action, url+'/view', url);
-                                                title_or_id obj/pretty_title_or_id">
-                            <tal:block define="value python: getattr(obj, field, None)">
-                                <td tal:condition="python: field != 'Title'"
-                                    tal:content="python:here.formatCatalogMetadata(value)"
-                                    i18n:translate=""/>
-                                <td tal:condition="python: field == 'Title'">
-                                    <a href="#" tal:attributes="href obj_url;
-                                                                title obj_description;">
-                                        <img src="#"
-                                             height="16"
-                                             width="16"
-                                             tal:condition="obj_icon/url"
-                                             tal:attributes="src obj_icon/url;
-                                                             alt obj_icon/description;
-                                                             title obj_icon/title;
-                                                             width obj_icon/width;
-                                                             height obj_icon/height;"/>
-                                    </a>
-                                    <a href="#"
-                                       tal:attributes="href obj_url;
-                                                       class string:${obj_wf_state_class};
-                                                       title obj_description;"
-                                       tal:content="title_or_id">
-                                        Item Title
-                                    </a>
-
-                                </td>
-                            </tal:block>
-                            </tal:fields>
-                        </tr>
-                        </tal:brain>
-                     </tbody>
-                </table>
-            </tal:custom>
-
-            </tal:listing>
-
-            <p class="discreet"
-                tal:condition="python: not topicContents and here.listCriteria() and not isAnon and not isCourse and not no_results_message"
-                i18n:domain="atcontenttypes"
-                i18n:translate="description_no_items_in_topic">
-                There are currently no results for this search.
-            </p>
-
-            <tal:noresults condition="python: not topicContents and here.listCriteria() and contentFilter">
-                <h2> No Results</h2>
-                <p> No results matching your search criteria were found. </p>
-            </tal:noresults>
-
-            <p class="discreet"
-               tal:condition="not: here/listCriteria"
-               i18n:domain="atcontenttypes"
-               i18n:translate="description_no_criteria_in_topic">
-                There are currently no criteria on which to search.
-                Please add them using the 'criteria' tab.
-            </p>
-
-        </tal:topiccontents>
+        
+                    <tal:noresults condition="python: not topicContents and here.listCriteria() and contentFilter">
+                        <h2> No Results</h2>
+                        <p> No results matching your search criteria were found. </p>
+                    </tal:noresults>
+        
+                    <p class="discreet"
+                        tal:condition="not: here/listCriteria"
+                        i18n:domain="atcontenttypes"
+                        i18n:translate="description_no_criteria_in_topic">
+                        There are currently no criteria on which to search.
+                        Please add them using the 'criteria' tab.
+                    </p>
+                    
+                </metal:no-results>
+    
+            </tal:topiccontents>
         </metal:listingmacro>
     </metal:body>
 

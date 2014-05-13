@@ -97,7 +97,7 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         <tal:register
-            tal:condition="item">
+            tal:condition="nocall: item">
     
     
             <h1 class="documentFirstHeading">
@@ -154,7 +154,7 @@
                 </tal:if>
             </tal:form>
         </tal:register>
-        <tal:register condition="not: item">
+        <tal:register condition="not: nocall: item">
             <h1 class="documentFirstHeading">Event not found</h1>
         </tal:register>                
 

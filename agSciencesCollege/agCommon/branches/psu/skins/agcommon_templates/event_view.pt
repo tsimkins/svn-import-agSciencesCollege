@@ -6,6 +6,7 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <body>
+<metal:event-body define-macro="event-body">
 
 <metal:header fill-slot="header">
     <dl class="portalMessage info"
@@ -112,7 +113,7 @@
         </tal:wherewhen>
 
         <div metal:define-macro="text-field-view"
-             class="documentText">
+             class="eventBodyText">
             <metal:field use-macro="python:here.widget('text', mode='view')">
                 Body text
             </metal:field>
@@ -259,6 +260,8 @@
 
     </metal:content-core>
 </metal:content-core>
+
+</metal:event-body>
 
 </body>
 </html>

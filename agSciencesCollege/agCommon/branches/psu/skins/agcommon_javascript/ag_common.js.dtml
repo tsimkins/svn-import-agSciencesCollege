@@ -1221,7 +1221,7 @@ jq(document).ready(
 
 jq(document).ready(
     function () {
-        jq('form.event-registration-public').clone().attr('class', 'event-registration-button').insertBefore("#content-core .documentText");
+        jq('form.event-registration-public').clone().attr('class', 'event-registration-button').insertBefore("#content-core .eventBodyText");
         jq('form.event-registration-button input[type=submit]').attr('value', 'Register');
     }
 );

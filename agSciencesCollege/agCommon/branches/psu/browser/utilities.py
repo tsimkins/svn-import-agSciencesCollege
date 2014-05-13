@@ -202,7 +202,9 @@ class AgCommonUtilities(BrowserView):
             body_text = ''
 
         if body_text and '<h2' in body_text.lower() and '<h3' not in body_text.lower():
-            body_classes.append('custom-h2-as-h3')
+            # Don't add this class on aliased courses.
+            if not getattr(context, 'extension_course_single_event', 'normal') == 'alias':
+                body_classes.append('custom-h2-as-h3')
 
         # If 'show_mobile_nav' property is set or
         # we're the homepage at the root of the site, 

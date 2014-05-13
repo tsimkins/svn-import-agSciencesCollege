@@ -2366,6 +2366,10 @@ dl.portalMessage {
     margin: 0.75em 0;
 }
 
+#content dl.portalMessage dt {
+    margin: 0 0.5em 0 0;
+}
+
 #content dl.portalMessage dd {
     margin: 0;
 }
@@ -2648,6 +2652,7 @@ body.template-agenda_view #document-toc h3 {
 
 #content .eventSummary h3,
 body.template-event_view #content .event-registration h3,
+body.template-extension_course_event_view #content .event-registration h3,
 #content h3.inline, 
 #content h2.inline {
     font-size: 1em; 
@@ -2658,6 +2663,7 @@ body.template-event_view #content .event-registration h3,
 
 #content .eventSummary h3:after,
 body.template-event_view #content .event-registration h3:after,
+body.template-extension_course_event_view #content .event-registration h3:after,
 #content h3.inline:after {
     content: ":";
 }
@@ -3217,7 +3223,8 @@ body.portaltype-topic #folderlisting-main-table table thead tr:first-child {
 
 /* Event registration form submit buttons */
 
-body.template-event_view div.event-registration {
+body.template-event_view div.event-registration,
+body.template-extension_course_event_view  div.event-registration {
     margin-top:  0.375em;
 }
 
