@@ -905,7 +905,20 @@ class ContentRelatedItems(ContentRelatedItemsBase):
 
 class PublicationCode(AgCommonViewlet):
 
-    def render(self):
+    @property
+    def publication_code(self):
+        return getattr(self.context, 'extension_publication_code', None)
+
+    @property
+    def publication_series(self):
+        return getattr(self.context, 'extension_publication_series', None)
+    
+    def show_viewlet(self):
+        return (self.publication_code or self.publication_series)
+
+    def xrender(self):
+        publication_code = getattr(self.context, 'extension_publication_code', None)
+        publication_series = getattr(self.context, 'extension_publication_code', None)
         if hasattr(self.context, 'extension_publication_code'):
             code = self.context.extension_publication_code
             if code:

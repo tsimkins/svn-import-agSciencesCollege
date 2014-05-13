@@ -1,0 +1,8 @@
+
+<div class="publication" tal:condition="view/publication_code">
+    <h2 class="inline">Publication Code:</h2> <span tal:replace="view/publication_code" />
+</div>
+
+<div class="publication" tal:condition="view/publication_series">
+    <h2 class="inline">Publication Series:</h2> <span tal:replace="view/publication_series" />
+</div>

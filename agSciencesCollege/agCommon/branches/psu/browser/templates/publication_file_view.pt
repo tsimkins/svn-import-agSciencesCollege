@@ -12,7 +12,8 @@
         <metal:block define-macro="content-core"
                      tal:define="content_type context/get_content_type|context/Format;
                                  number_pages view/getNumPages|nothing;
-                                 publication_code context/extension_publication_code|nothing;">
+                                 publication_code context/extension_publication_code|nothing;
+                                 publication_series context/extension_publication_series|nothing;">
 
             <h2>Download Publication</h2>
             <p>
@@ -21,13 +22,19 @@
                 </metal:field>
             </p>
 
-            <div tal:condition="publication_code">
-                <h3 class="inline">Publication Code</h3> <span tal:replace="publication_code" />
-            </div>
-            
-            <div tal:condition="number_pages">
+
+            <div class="publication"  tal:condition="number_pages">
                 <h3 class="inline">Number of Pages</h3> <span tal:replace="number_pages" />
             </div>
+
+            <div class="publication" tal:condition="publication_code">
+                <h3 class="inline">Publication Code</h3> <span tal:replace="publication_code" />
+            </div>
+
+            <div class="publication"  tal:condition="publication_series">
+                <h3 class="inline">Publication Series</h3> <span tal:replace="publication_series" />
+            </div>
+
 
         </metal:block>
     </metal:content-core>
