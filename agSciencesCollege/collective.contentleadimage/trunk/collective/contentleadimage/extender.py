@@ -89,6 +89,7 @@ leadimage_full_width = _ExtensionBooleanField(
             widget=BooleanWidget(
                 label=u"Full width lead image",
                 description=u"This will show a large lead image on the object display.",
+                condition="python:member.has_role('Manager', object)",
             ),
         )
 
