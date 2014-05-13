@@ -21,6 +21,60 @@
 
     <!-- Views -->        
 
+    <!-- Course View Chooser -->
+
+    <browser:page
+        for="agsci.ExtensionExtender.interfaces.IExtensionCourseExtender"
+        name="atct_topic_view"
+        class=".views.course.CourseViewChooserView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:menuItem
+        for="agsci.ExtensionExtender.interfaces.IExtensionCourseExtender"
+        menu="plone_displayviews"
+        title="Course View"
+        action="@@atct_topic_view"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        description="View For a Course that shows the upcoming event as a landing page."
+    />
+
+    <!-- Course View -->
+
+    <browser:page
+        for="agsci.ExtensionExtender.interfaces.IExtensionCourseExtender"
+        name="extension_course_view"
+        class=".views.course.CourseView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+        template="templates/extension_course_view.pt"
+    />
+
+    <!-- Course Event View -->
+
+    <browser:page
+        for="agsci.ExtensionExtender.interfaces.IExtensionCourseExtender"
+        name="extension_course_event_view"
+        class=".views.course.CourseEventView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+        template="templates/extension_course_event_view.pt"
+    />
+
+    <!-- Course Annual Event View -->
+
+    <browser:page
+        for="agsci.ExtensionExtender.interfaces.IExtensionCourseExtender"
+        name="extension_course_annual_event_view"
+        class=".views.course.CourseAnnualEventView"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+        template="templates/extension_course_annual_event_view.pt"
+    />
+
+    <!-- KML View -->
+    
     <browser:page
         for="*"
         name="kml"

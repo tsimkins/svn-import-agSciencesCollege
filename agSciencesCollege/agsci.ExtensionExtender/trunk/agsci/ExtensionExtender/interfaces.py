@@ -16,5 +16,10 @@ class IExtensionPublicationExtender(IUniversalPublicationExtender):
 
 class IExtensionCountiesExtender(Interface):
     """
-        Marker interface which allows us to a
+        Marker interface which allows us to add counties to anything
+    """
+
+class IExtensionCourseExtender(Interface):
+    """
+        Marker interface which allows us to treat a collection as a course landing page.
     """

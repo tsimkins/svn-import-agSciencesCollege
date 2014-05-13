@@ -2,7 +2,7 @@ from Products.Archetypes.public import LinesField, InAndOutWidget, StringField, 
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
-from interfaces import IExtensionExtenderLayer, IExtensionExtender, IExtensionCountiesExtender
+from interfaces import IExtensionExtenderLayer, IExtensionExtender, IExtensionCountiesExtender, IExtensionCourseExtender
 from zope.component import adapts
 from zope.interface import implements
 from Products.Archetypes.utils import DisplayList
@@ -474,7 +474,7 @@ class ExtensionCountiesExtender(ExtensionExtender):
     def fields(self):
         return super(ExtensionCountiesExtender, self).counties_field
 
-
+# Add translation widgets to an object
 class TranslationExtender(object):
     adapts(IATContentType)
 
@@ -492,6 +492,39 @@ class TranslationExtender(object):
                 label=u"Provide translation widget",
                 description=u"",
             ),
+        ),
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+
+# Add additional fields to course collections
+class CourseExtender(object):
+    adapts(IExtensionCourseExtender)
+
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IExtensionExtenderLayer
+
+    fields = [
+        _ExtensionStringField(
+            "extension_course_single_event",
+            required=False,
+            default='normal',
+            widget=SelectionWidget(
+                label=u"Single Annual Event Course Options",
+                description=u"Actions to take if there is only one annual event for this course.",
+                format="radio",
+            ),
+            vocabulary=[
+                    ('normal', 'No action'),
+                    ('redirect', 'Redirect to event URL'),
+                    ('alias', 'Display event details and registration information'),
+            ],
         ),
     ]
 

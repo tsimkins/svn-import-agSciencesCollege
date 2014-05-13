@@ -85,6 +85,12 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
+    <adapter
+        name="agsci.ExtensionExtender.extender.CourseExtender"
+        factory=".extender.CourseExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
     <five:implements
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.IExtensionExtender"

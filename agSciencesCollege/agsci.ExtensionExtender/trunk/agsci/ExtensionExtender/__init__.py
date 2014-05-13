@@ -2,7 +2,7 @@ from zope.i18nmessageid import MessageFactory
 from Products.CMFCore.utils import getToolByName
 from Products.PythonScripts.Utility import allow_module
 from Products.Five.utilities.interfaces import IMarkerInterfaces
-from agsci.ExtensionExtender.interfaces import IExtensionCountiesExtender
+from agsci.ExtensionExtender.interfaces import IExtensionCountiesExtender, IExtensionCourseExtender
 from Products.CMFCore import DirectoryView
 
 ExtensionExtenderMessageFactory = MessageFactory('agsci.ExtensionExtender')
@@ -125,4 +125,26 @@ def enableMultiCounty(context):
 
     return True
         
+def enableCourse(context):
     
+    # Set the IExtensionCourseExtender interface on the course collection landing page.
+    
+    if context.portal_type in ['Folder']:
+        default_id = context.getDefaultPage()
+        if default_id in context.objectIds():
+            context = context[default_id]
+            
+            if context.portal_type not in ['Topic']:
+                return False
+            
+        else:
+            return False
+
+    if not IExtensionCourseExtender.providedBy(context):
+        adapted = IMarkerInterfaces(context)
+        adapted.update(add=[IExtensionCourseExtender])
+        return True
+    else:
+        return False
+
+        
