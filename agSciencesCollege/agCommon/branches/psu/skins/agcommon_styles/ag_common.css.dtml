@@ -3382,6 +3382,10 @@ body.template-register_fg_base_view_p3 #addthis {
     margin: 0.5em 0 0 0;
 }
 
+div.publication {
+    margin-bottom: 0.25em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
