@@ -1305,7 +1305,78 @@
     .documentContributors .facultyStaffDirectory {
         margin-left: 0;
     }
+
+    /* Responsive tables */
+    table.responsive {
+        border-collapse: collapse;
+        width: 100%;
+        border-color: &dtml-globalBorderColor;;
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        font-size: 85%;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    #content table.responsive th {
+        text-align: left;
+        vertical-align: bottom;
+        padding: 0;
+    }
+
+    #content table.responsive td {
+        vertical-align: top;
+        border: none;
+        padding: 0;
+    }
+
+    table.responsive th:nth-child(1),
+    table.responsive td:nth-child(1) {
+        text-align: left;
+        font-weight: bold;
+    }
+
+    table.responsive td:first-child {
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+
+    table.responsive,
+    table.responsive tbody {
+        display: block;
+        width: 100%:
+    }
     
+    table.responsive thead {
+        margin: -1px 0 0 -10000px !important;
+        padding: 0 !important;
+        position: absolute;
+    }
+
+    table.responsive tr,
+    table.responsive th,
+    table.responsive td {
+        display: block;
+        padding: 0;
+        text-align: left;
+        white-space: normal;
+    }
+
+    table.responsive tr {
+        border-color: &dtml-globalBorderColor;;
+        border-style: solid;
+        border-width: 0 1px 1px 1px;
+        padding: 1em;
+    }
+
+    table.responsive th[data-title]:before,
+    table.responsive td[data-title]:before {
+        content: attr(data-title) ":\00A0";
+        font-weight: bold;
+    }
+
+    table.responsive td:empty { display: none; }
+
 }    
 
 
