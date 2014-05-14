@@ -303,9 +303,11 @@ class FactsheetPDFView(FolderView):
                     item_style = tag_to_style.get(item_type)
                     h = Paragraph(getItemText(item), styles[item_style])
                     h.keepWithNext = True
-                    if item_type == 'h2' and not bump_headings:
-                        h.append(HRFlowable(width='100%', thickness=0.25, spaceBefore=2, spaceAfter=4, color=styles[item_style].textColor))
                     pdf.append(h)
+                    if item_type == 'h2' and not bump_headings:
+                        hr = HRFlowable(width='100%', thickness=0.25, spaceBefore=2, spaceAfter=4, color=styles[item_style].textColor)
+                        hr.keepWithNext = True
+                        pdf.append(hr)
                 elif item_type in ['table']:
                     (table_data, table_style, caption) = getTableData(item)
                     table = Table(table_data)
