@@ -9,6 +9,8 @@ def hasContentLeadImage(obj):
     field = obj.getField(IMAGE_FIELD_NAME)
     
     if field is None:
+        if obj.portal_type in ['Image']:
+            return False
         field = obj.getField('image')
 
     if field is not None:
