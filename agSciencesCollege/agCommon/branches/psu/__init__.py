@@ -64,6 +64,10 @@ allow_module('ZODB.POSException.POSKeyError')
 allow_module('re')
 allow_module('re.sub')
 allow_module('re.compile')
+allow_module('re.search')
+allow_module('re.match')
+allow_module('re.I')
+allow_module('re.M')
 
 # Precompile phoneRegex
 phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
