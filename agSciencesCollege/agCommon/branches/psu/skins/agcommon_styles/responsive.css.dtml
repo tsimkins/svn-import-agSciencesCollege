@@ -1333,18 +1333,12 @@
     table.responsive th:nth-child(1),
     table.responsive td:nth-child(1) {
         text-align: left;
-        font-weight: bold;
-    }
-
-    table.responsive td:first-child {
-        font-size: 1.25em;
-        font-weight: bold;
     }
 
     table.responsive,
     table.responsive tbody {
         display: block;
-        width: 100%:
+        width: 100%;
     }
     
     table.responsive thead {

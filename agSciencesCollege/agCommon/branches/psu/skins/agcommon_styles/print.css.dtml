@@ -14,7 +14,7 @@ body {
 }
 
 #visual-portal-wrapper {
-	max-width: auto;
+	max-width: 100%;
 	min-width: 0;
 	width: 100%;
 	margin-top: 0;
@@ -42,6 +42,7 @@ body {
 #portal-header {
 	background-color: #FFFFFF;
 	background-image: none;
+	max-width: 100%;
 }
 
 #logo-psu, #logo-college {
@@ -144,6 +145,9 @@ body.template-document_homepage_view #homepageimage {
     border-style: solid;
     border-color: #666666;
     margin-top: 0.125em;
+    border-left-style: none !important;
+    border-left-width: none !important;
+    border-left-color: transparent !important;
 }
 
 #portal-column-content.sr, #portal-column-content.sl {
