@@ -67,6 +67,8 @@ captionField = LeadimageCaptionField(IMAGE_CAPTION_FIELD_NAME,
         widget = StringWidget(
                     label=_(u"Lead image caption"),
                     description=_(u"You may enter lead image caption text"),
+                    maxlength=512,
+                    size=60,
                 ),
     )
 
