@@ -158,6 +158,8 @@
         
                         <metal:slot define-slot="body">
 
+                            <metal:additional define-slot="content-before-spotlight" />
+
                             <metal:additional define-slot="content-spotlight" />            
 
                             <metal:additional define-slot="content-listing" />

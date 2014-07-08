@@ -287,7 +287,7 @@
                     }
                 );
 
-                window.print();
+                //window.print();
             }
         );
 
@@ -299,6 +299,29 @@
 <metal:view-online fill-slot="view-online">
     <!-- No link -->
 </metal:view-online>
+
+<metal:content-before-spotlight 
+    fill-slot="content-before-spotlight"
+    tal:define="notEditor not:view/canEdit;
+                batch view/getEnabledItems">
+    <tal:this-issue condition="view/showSummary">
+        <h2>In This Issue</h2>
+        <ol class="this-issue">
+            <tal:entry tal:repeat="item view/getSpotlightItems">
+    
+                <li>
+    
+                        <a tal:attributes="href item/getURL|item/absolute_url">
+                            <span tal:content="item/pretty_title_or_id" />
+                        </a>
+        
+                </li>
+    
+            </tal:entry>
+            <metal:content-listing use-macro="here/newsletter_view/macros/this-issue" />
+        </ol>
+    </tal:this-issue>
+</metal:content-before-spotlight>
 
 <metal:content-listing fill-slot="content-listing">
     <!-- No additional content -->

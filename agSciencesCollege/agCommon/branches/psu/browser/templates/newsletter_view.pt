@@ -68,7 +68,7 @@ h2 {
      font-size: 11pt;
 }
 
-#portal-column-two .portletItem, 
+#portal-column-two .portletItem,
 #portal-column-two .portlet dd {
     margin: 6pt 0 10pt 0;
     font-size: 9.5pt;
@@ -261,19 +261,19 @@ hr {
 }
 
 img.leadimage, img.leadimage_full {
-    background-color: #EEEEEE; 
-    border: 1px solid #DDDDDD; 
-    color: #666666; 
-    float: right; 
-    font-size: 8pt; 
-    margin: 6pt 0 12pt 12pt; 
+    background-color: #EEEEEE;
+    border: 1px solid #DDDDDD;
+    color: #666666;
+    float: right;
+    font-size: 8pt;
+    margin: 6pt 0 12pt 12pt;
     text-align: right;
 }
 
 img.leadimage_full {
     float: none;
     text-align: initial;
-    margin: 6pt 0 8pt 0; 
+    margin: 6pt 0 8pt 0;
     display: block;
     clear: both;
 }
@@ -284,7 +284,7 @@ p.leadimage {
     width: 400px;
     clear: both;
 }
-    
+
 #portal-column-content.large hr.separator {
     background-color: #DDDDDD;
     border-color: #DDDDDD;
@@ -401,45 +401,45 @@ div.extension-footer hr {
 </metal:javascriptslot>
 
 <metal:title fill-slot="page-title">
-    
-    <title 
+
+    <title
         tal:content="view/newsletter_title" />
 
 </metal:title>
 
 <metal:graphic fill-slot="content-header-graphic"
     define-slot="content-header-graphic">
-    
+
     <tal:header-graphic condition="not: hide_header_graphic"
         tal:define="hide_header_graphic context/hide_header_graphic|nothing">
 
     	<div tal:condition="is_extension"
             class="graphic-header-extension">
             <a href="http://extension.psu.edu">
-            <img tal:attributes="src string:${portal_url}/extension-newsletter-header.png" 
-                                 alt="Penn State Extension" width="600" 
+            <img tal:attributes="src string:${portal_url}/extension-newsletter-header.png"
+                                 alt="Penn State Extension" width="600"
                                  border="0"
                                  height="85" /></a>
         </div>
-    
-    
+
+
     	<div tal:condition="not: is_extension"
             class="graphic-header-agsci">
             <a href="http://agsci.psu.edu">
-            <img tal:attributes="src string:${portal_url}/college-newsletter-header.png" 
-                                 alt="Penn State College of Agricultural Sciences" width="600" 
+            <img tal:attributes="src string:${portal_url}/college-newsletter-header.png"
+                                 alt="Penn State College of Agricultural Sciences" width="600"
                                  border="0"
                                  height="85" /></a>
         </div>
 
     </tal:header-graphic>
-    
+
 </metal:graphic>
 
 <metal:title fill-slot="content-title"
     tal:define="site_title context/site_title|context/org_title|nothing;">
-    
-    <h1 class="documentFirstHeading" 
+
+    <h1 class="documentFirstHeading"
         tal:content="view/newsletter_title" />
 
 </metal:title>
@@ -449,7 +449,7 @@ div.extension-footer hr {
                              toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 
         <tal:date condition="not: show_date">
-            <p class="effectiveDate"> 
+            <p class="effectiveDate">
                   <span tal:replace="python:toLocalizedTime(view.currentDate).replace(' 0', ' ')" />
             </p>
         </tal:date>
@@ -460,20 +460,20 @@ div.extension-footer hr {
                  tal:define="templateId template/getId;">
 
     <div class="subheader">
-    
+
         <metal:view-online define-slot="view-online">
-            <a class="view-online utm_newsletter_view_online" 
+            <a class="view-online utm_newsletter_view_online"
                 tal:define="more_url view/getViewOnline|nothing;
                             more_url context/more_url|more_url"
-                tal:attributes="href more_url">View 
+                tal:attributes="href more_url">View
                     <span tal:replace="context/newsletter_title|context/Title" /> online</a>
             <tal:print condition="context/show_print_newsletter|nothing">
                 <span class="discreet"> | </span>
-                <a class="view-online utm_newsletter_print" 
+                <a class="view-online utm_newsletter_print"
                     tal:define="more_url python:'%s/newsletter_print' % context.absolute_url().replace('/' + templateId, '');"
-                    tal:attributes="href more_url">Print 
+                    tal:attributes="href more_url">Print
                         this newsletter</a>
-            </tal:print>                    
+            </tal:print>
         </metal:view-online>
     </div>
 
@@ -485,9 +485,9 @@ div.extension-footer hr {
             tal:define="tag python: view.bodyTag();
                         show_leadimage_context context/show_leadimage_context|nothing"
             tal:condition="python: show_leadimage_context and tag">
-    
+
             <img tal:replace="structure tag" src="" alt="" />
-    
+
     </div>
 
 </metal:leadimage>
@@ -496,8 +496,16 @@ div.extension-footer hr {
     tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 
     <div class="documentDescription" tal:content="context/Description" />
-    
+
 </metal:description>
+
+<metal:content-before-spotlight
+    define-slot="content-before-spotlight"
+    fill-slot="content-before-spotlight">
+
+    <!-- Empty -->
+
+</metal:content-before-spotlight>
 
 <metal:summary fill-slot="content-listing" define-slot="content-listing"
     tal:define="notEditor not:view/canEdit;">
@@ -508,7 +516,7 @@ div.extension-footer hr {
 
     <tal:config condition="not: notEditor">
         <h2>Newsletter Configuration</h2>
-        
+
         <tal:manager condition="python:checkPermission('Manage portal', context)">
             <h3>Edit Newsletter attributes in Plone</h3>
         <div class="discreet">These options are only available to Administrators.</div>
@@ -518,25 +526,25 @@ div.extension-footer hr {
                 <li><a tal:attributes="href string:${context/absolute_url}/content_status_history">Workflow state</a></li>
                 <li><a tal:attributes="href string:${context/absolute_url}/@@manage-portlets">Manage Portlets</a></li>
             </ul>
-        </tal:manager>    
+        </tal:manager>
         <h3>Show "In This Issue"?</h3>
         <div class="discreet"><strong>Automatic</strong> will show the "In This Issue" section if there are 5+ non-Spotlight items.</div>
         <ul class="inline nobullet">
-         <li><input type="radio" 
-                    id="summary_auto" 
-                    name="show_summary" 
-                    value="auto" 
+         <li><input type="radio"
+                    id="summary_auto"
+                    name="show_summary"
+                    value="auto"
                     tal:attributes="checked python:view.getConfig('show_summary') == 'auto' and 'checked' or ''" />
-             <label for="summary_auto">Automatic</label></li>    
-         <li><input type="radio" 
-                    id="summary_yes" 
-                    name="show_summary" 
-                    value="yes" 
-                    tal:attributes="checked python:view.getConfig('show_summary') == 'yes' and 'checked' or ''" /> 
+             <label for="summary_auto">Automatic</label></li>
+         <li><input type="radio"
+                    id="summary_yes"
+                    name="show_summary"
+                    value="yes"
+                    tal:attributes="checked python:view.getConfig('show_summary') == 'yes' and 'checked' or ''" />
              <label for="summary_yes">Yes</label></li>
-         <li><input type="radio" 
-                    id="summary_no" 
-                    name="show_summary" 
+         <li><input type="radio"
+                    id="summary_no"
+                    name="show_summary"
                     value="no"
                     tal:attributes="checked python:view.getConfig('show_summary') == 'no' and 'checked' or ''" />
               <label for="summary_no">No</label></li>
@@ -554,7 +562,7 @@ div.extension-footer hr {
                 <input type="button" id="disable-all" value="Disable All" />
             </li>
         </ul>
-       
+
         <script type="text/javascript">
             function toggleInput(isChecked)
             {
@@ -563,7 +571,7 @@ div.extension-footer hr {
                 var i = input_items.length;
 
                 while (i--)
-                {   
+                {
                     var item = input_items[i];
 
                     if (item['type'] == 'checkbox')
@@ -572,7 +580,7 @@ div.extension-footer hr {
                         {
                             item.checked=isChecked;
                         }
-                        
+
                         if (item['name'] == 'spotlight_items')
                         {
                             if (!isChecked)
@@ -584,12 +592,12 @@ div.extension-footer hr {
                 }
 
             }
-            
+
             document.getElementById("enable-all").onclick = function() {toggleInput(true)};
             document.getElementById("disable-all").onclick = function() {toggleInput(false)};
         </script>
     </tal:config>
-    
+
     <tal:listing
         tal:condition="python: view.showSummary or not notEditor"
         tal:define="contentFilter contentFilter|request/contentFilter|nothing;
@@ -598,7 +606,7 @@ div.extension-footer hr {
                     limit_display python:limit_display and int(limit_display) or None;
                     more_url more_url|request/more_url|string:folder_contents;
                     is_a_topic python:context.portal_type=='Topic';
-                    folderContents folderContents|nothing; 
+                    folderContents folderContents|nothing;
                     folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter);
                     site_properties context/portal_properties/site_properties;
                     use_view_action site_properties/typesUseViewActionInListings|python:();
@@ -618,7 +626,8 @@ div.extension-footer hr {
                 <th>Spotlight</th>
 
             </tr>
-        <ol class="this-issue" tal:omit-tag="not:notEditor">                    
+        <ol class="this-issue" tal:omit-tag="not:notEditor">
+            <metal:this-issue define-macro="this-issue">
             <tal:entry tal:repeat="item batch">
                 <tr tal:omit-tag="notEditor" tal:define="even repeat/item/even"
                     tal:attributes="class python: even and 'even' or 'odd'">
@@ -647,7 +656,8 @@ div.extension-footer hr {
                 </li>
                 </tr>
             </tal:entry>
-   
+            </metal:this-issue>
+
         </ol>
         <br class="separator" tal:condition="not: context/leadimage_full_width|nothing" >
         <hr class="separator" tal:condition="context/leadimage_full_width|nothing" >
@@ -677,13 +687,13 @@ div.extension-footer hr {
     <div class="extension-footer">
         <hr />
         <p class="discreet"><a href="http://extension.psu.edu"><strong>extension.psu.edu</strong></p>
-        
+
         <p class="discreet">Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</p>
-        
+
         <p class="discreet">Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.</p>
-        
+
         <p class="discreet">This publication is available in alternative media on request. </p>
-        
+
         <p class="discreet">Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination</a>.</p>
     </div>
     </tal:extension>
@@ -705,7 +715,7 @@ div.extension-footer hr {
                                     getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                     standalone_view python:True;
                                     templateId template/getId;">
-    
+
         <metal:featured tal:define="batch view/getEnabledItems">
             <metal:listingmacro define-macro="listing">
                 <tal:foldercontents define="notEditor not:view/canEdit;
@@ -715,7 +725,7 @@ div.extension-footer hr {
                                     limit_display python:limit_display and int(limit_display) or None;
                                     more_url more_url|request/more_url|string:folder_contents;
                                     is_a_topic python:context.portal_type=='Topic';
-                                    folderContents folderContents|nothing; 
+                                    folderContents folderContents|nothing;
                                     folderContents python:view.folderContents(folderContents=folderContents, contentFilter=contentFilter);
                                     site_properties context/portal_properties/site_properties;
                                     use_view_action site_properties/typesUseViewActionInListings|python:();
@@ -731,7 +741,7 @@ div.extension-footer hr {
                                     leadimage_full_width context/leadimage_full_width|nothing;"
                                     condition="notEditor">
                     <tal:listing condition="batch">
-                
+
                         <metal:featured-articles define-slot="featured-articles">
                             <!-- empty -->
                         </metal:featured-articles>
@@ -769,14 +779,14 @@ div.extension-footer hr {
                                     </tal:image>
 
                                     <h3>
-                
+
                                     <tal:image
                                          tal:condition="not:leadimage_full_width">
                                             <img align="right"
                                                  tal:condition="exists:item_has_leadimage"
                                                  tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
                                     </tal:image>
-                                    
+
                                     <span tal:condition="python: not view.isSpotlight(item) and view.showSummary" tal:content="string:${repeat/item/number}." />
 
                                         <a href="#"
@@ -785,15 +795,15 @@ div.extension-footer hr {
                                            tal:content="item_title_or_id">
                                             Item Title
                                         </a>
-                                        
+
                                     </h3>
-                
+
                                 <div tal:condition="python: item_type in ['Event', 'TalkEventType']" class="eventDateLocationBlock">
                                     <metal:event use-macro="context/folder_listing_z3/macros/event_date" />
                                 </div>
-                
+
                                 <p tal:condition="item_description|nothing">
-                
+
                                     <span tal:replace="item_description" />
                                     [<a href="#"
                                         tal:attributes="href item_url;
@@ -801,19 +811,19 @@ div.extension-footer hr {
                                         >more</a>]
                                 </p>
 
-                                <br class="separator" 
+                                <br class="separator"
                                     tal:condition="not: context/leadimage_full_width|nothing" >
 
-                                <hr class="separator" 
+                                <hr class="separator"
                                     tal:condition="context/leadimage_full_width|nothing" >
-                                            
+
                                 </tal:item>
                             </metal:block>
                             </tal:block>
                             </tal:entry>
                         </tal:list>
                     </tal:listing>
-        
+
                 </tal:foldercontents>
             </metal:listingmacro>
         </metal:featured>
