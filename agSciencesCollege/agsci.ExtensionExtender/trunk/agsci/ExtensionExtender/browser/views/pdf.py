@@ -502,6 +502,18 @@ class FactsheetPDFView(FolderView):
         padded_image.spaceBefore = 12
         padded_image.spaceAfter = 12
 
+        single_line = ParagraphStyle('SingleLine')
+        single_line.fontSize = 9
+        single_line.fontName = 'Times-Roman'
+        single_line.spaceBefore = 0
+        single_line.spaceAfter = 0
+
+        single_line_cr = ParagraphStyle('SingleLineCR')
+        single_line_cr.fontSize = 9
+        single_line_cr.fontName = 'Times-Roman'
+        single_line_cr.spaceBefore = 0
+        single_line_cr.spaceAfter = 10
+
         # Create document
         pdf_file = BytesIO()
         margin = 45
@@ -758,15 +770,48 @@ class FactsheetPDFView(FolderView):
             while None in pdf:
                 pdf.remove(None)
 
+        # Contributors (as Contact Information) %%%
+        contributors_viewlet = getMultiAdapter((self.context, self.request, self), name='agcommon.contributors')
+        
+        contributors_people = contributors_viewlet.people
+        
+        if contributors_people:
+            # Adding h2 this way so as to take advantage of the underline and the
+            # bump_headings parameter
+            heading = Tag(BeautifulSoup(), 'h2')
+            heading.insert(0, 'Contact Information')
+            pdf.extend(getContent(heading, bump_headings=bump_headings))
+            
+            for person in contributors_viewlet.people:
+                if person.get('url'):
+                    person_name = Paragraph("""<b><a color="blue" href="%(url)s">%(name)s</a></b>""" % person, single_line)
+                else:
+                    person_name = Paragraph("""<b>%(name)s</b>""" % person, single_line)
+
+                person_name.keepWithNext = True
+                
+                person_title = Paragraph("""%(title)s""" % person, single_line)
+                person_title.keepWithNext = True
+                
+                person_email = Paragraph("""<a color="blue" href="mailto:%(email)s">%(email)s</a>""" % person, single_line)
+                person_email.keepWithNext = True
+                                
+                person_phone = Paragraph("""%(phone)s""" % person, single_line_cr)
+
+                pdf.append(person_name)
+                pdf.append(person_title)
+                pdf.append(person_email)
+                pdf.append(person_phone)
+
         # All done with contents, appending line and statement
-        pdf.append(HRFlowable(width='100%', spaceBefore=4, spaceAfter=4))
+        pdf.append(HRFlowable(width='100%', spaceBefore=4, spaceAfter=4))                
 
         # Extension logo
 
         pdf.append(getImage(extension_url_image, scale=True, width=extension_url_image_width, style=padded_image, hAlign='LEFT', body_image=False))
 
         # Choose which statement
-        aa_statement = """Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination</a>."""
+        aa_statement = """Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination: http://guru.psu.edu/policies/AD85.html</a>."""
         statement_text = ("""<b>Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</b>
 
         Where trade names appear, no discrimination is intended, and no endorsement by Penn State Cooperative Extension is implied.
