@@ -15,13 +15,16 @@
                                 item_email item/email;">
     
                 <div class="tileItem visualIEFloatFix">
+
+                    <tal:leadImage tal:condition="item/image|nothing">
     
                     <div class="contentLeadImageContainer" tal:condition="not:is_printed_newsletter">
         
-                        <img tal:condition="item/image|nothing"
-                                tal:replace="structure python: path('nocall:item/tag')(scale='thumb', css_class='')" />
+                        <img tal:replace="structure python: path('nocall:item/tag')(scale='thumb', css_class='')" />
         
                     </div>
+                    
+                    </tal:leadImage>
     
                                 
                     <div class="tileHeadline">

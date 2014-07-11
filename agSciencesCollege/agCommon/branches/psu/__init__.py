@@ -70,7 +70,7 @@ allow_module('re.I')
 allow_module('re.M')
 
 # Precompile phoneRegex
-phoneRegex = re.compile(r"^\((\d{3})\)\s+(\d{3})\-(\d{4})$")
+phoneRegex = re.compile("^\s*(?:1[\.\- ]*)*\(*(\d{3})\)*[\.\- ]*(\d{3})[\.\- ]*(\d{4})\s*$")
 
 #Ploneify
 def ploneify(toPlone, isFile=False):
@@ -603,11 +603,21 @@ def pageToFolder(page):
 
     folder.reindexObject()
     
+def scrubPhone(i, return_original=True):
+    match = phoneRegex.match(i)
     
+    if match:
+        return "-".join(match.groups())
+    elif return_original:
+        return i
+    else:
+        return ''
+
+
 def fixPhoneNumber(myPerson):
 
     phone = myPerson.getOfficePhone()
-    newPhone = phoneRegex.sub(r"\1-\2-\3", phone)
+    newPhone = scrubPhone(phone)
 
     if newPhone != phone:
         myPerson.setOfficePhone(newPhone)

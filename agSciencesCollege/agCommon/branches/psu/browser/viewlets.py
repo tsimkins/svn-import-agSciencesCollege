@@ -30,7 +30,7 @@ from plone.portlets.interfaces import IPortletManager
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from agsci.subsite.content.interfaces import ISection, ISubsite
 from Products.CMFCore.Expression import Expression, getExprContext
-from Products.agCommon import getContextConfig
+from Products.agCommon import getContextConfig, scrubPhone
 from Products.agCommon.browser.views import FolderView
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.memoize.instance import memoize
@@ -797,22 +797,29 @@ class ContributorsViewlet(AgCommonViewlet):
                                             'tag' : getattr(obj, 'tag', None)
                                             })
                         found = True
-    
+
                 if not found and not psuid_re.match(id):
                     parts = id.split("|")
                     parts.extend(['']*(5-len(parts)))
-                    (name, title, url, email, phone) = parts
+                    (name, title, f1, f2, f3) = parts
+                    (url, email, phone) = ('', '', '')
                     
-                    if '@' in url:
-                        url = "mailto:%s" % url
-                    elif not url.startswith('http'):
-                        url = ''
+                    for i in (f1, f2, f3):
+                        if '@' in i:
+                            email = i
+                        elif i.startswith('http'):
+                            url = i
+                        else:
+                            tmp_phone = scrubPhone(i, return_original=False)
+                            if tmp_phone:
+                                phone = tmp_phone
                     
                     people.append({'name' : name, 
                                             'title' : title, 
                                             'url' : url,
                                             'phone' : phone,
-                                            'email' : email})
+                                            'email' : email,
+                                            'image' : None,})
 
         return people
 

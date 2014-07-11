@@ -2888,6 +2888,7 @@ body.template-folder_full_view #content-core .item {
 #content .documentContributors .tileHeadline {
     font-size: 1.1875em;
     margin-left: 10.542168674698795%;
+    color: #474747;
 } 
 
 .documentContributors .facultyStaffDirectory {
