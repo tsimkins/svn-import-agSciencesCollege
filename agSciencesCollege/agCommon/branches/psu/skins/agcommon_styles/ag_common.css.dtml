@@ -3395,6 +3395,16 @@ div.publication {
     margin-bottom: 0.25em;
 }
 
+/* Hide overlay on manage portlets pages */
+
+body.template-manage-centercolumn #homepageimage,
+body.template-manage-rightcolumn #homepageimage,
+body.template-manage-portlets #homepageimage,
+body.template-manage-portletsabovecontent #homepageimage,
+body.template-manage-portletsbelowcontent #homepageimage {
+    display: none;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
