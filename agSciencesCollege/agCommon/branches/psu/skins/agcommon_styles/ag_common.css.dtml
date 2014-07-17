@@ -1312,6 +1312,10 @@ html.kupu-html {
     clear: none;
 }
 
+#content .tileItemLeadImage .facultyStaffDirectory .short-bio {
+    margin-top: 0.25em;
+}
+
 #content .tileItemLeadImage .contentLeadImageContainer {
     float: left;
     margin: 0 0.5em 0 0;

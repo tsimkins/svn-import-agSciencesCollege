@@ -88,6 +88,13 @@
                                 </span>
                             </p>
 
+                            <tal:shortbio condition="view/show_short_bio|nothing">
+                                <div class="short-bio" 
+                                    tal:define="short_bio person/short_bio|nothing"
+                                    tal:condition="short_bio"
+                                    tal:content="structure short_bio" />
+                            </tal:shortbio>    
+
                             <tal:areas tal:define="areas person/extension_areas|nothing" tal:condition="areas">
 
                                 <div>Areas of Expertise:</div>

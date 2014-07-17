@@ -30,3 +30,10 @@ class ITableOfContents(Interface):
 class IContributors(Interface):
     """These are the content types that can have a contributors listing
     """
+
+class IFSDShortBio(Interface):
+    """Invisible magic switch to turn on the FSDPerson short bio behavior for a 
+       folder. Doing an interface instead of a checkbox, since it only needs to 
+       be used for half a dozen areas at most.
+       
+    """

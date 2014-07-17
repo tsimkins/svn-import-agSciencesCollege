@@ -22,6 +22,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
 from Products.agCommon import getContextConfig
 from StringIO import StringIO 
+from Products.agCommon.browser.interfaces import IFSDShortBio
 
 try:
     from agsci.ExtensionExtender.counties import getSurroundingCounties
@@ -102,6 +103,10 @@ class FolderView(BrowserView):
     @property
     def anonymous(self):
         return self.portal_state.anonymous()
+
+    @property
+    def show_short_bio(self):
+        return IFSDShortBio.providedBy(self.context)
 
     # Providing Restricted Python "test" method
     def test(self, *args):

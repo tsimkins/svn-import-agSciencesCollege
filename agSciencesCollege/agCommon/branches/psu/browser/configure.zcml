@@ -17,6 +17,10 @@
         name="agCommon"
         />
 
+    <!-- IFSDShortBio - Explicitly declaring -->
+    <interface
+        interface=".interfaces.IFSDShortBio"/>
+
     <!-- Viewlets -->
     
     <!-- Render the browser title -->
