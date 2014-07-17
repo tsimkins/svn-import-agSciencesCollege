@@ -22,7 +22,7 @@ from plone.app.blob.field import BlobField
 
 class _ExtensionStringField(ExtensionField, StringField): pass
 class _ExtensionBooleanField(ExtensionField, BooleanField): pass
-class _TextExtensionField(ExtensionField, TextField): pass
+class _ExtensionTextField(ExtensionField, TextField): pass
 class _ExtensionLinesField(ExtensionField, LinesField): pass
 class _ExtensionDateTimeField(ExtensionField, DateTimeField): pass
 class _ExtensionReferenceField(ExtensionField, ReferenceField): pass
@@ -34,13 +34,6 @@ class _TagsField(_ExtensionLinesField):
         tags = context.getAvailableTags()
         return DisplayList([(x,x) for x in tags])
 
-
-# Add fax, twitter, facebook, linkedin to FSDPerson.
-#
-# Hide extraneous tabs from mere mortals. Hide image field from
-# mere mortals so they can't upload a picture from 10 years ago
-# when they were 20 pounds lighter and had hair. Professional
-# portaits only!
 
 class HomePageExtender(object):
     adapts(IHomePage)
@@ -81,6 +74,12 @@ class HomePageExtender(object):
     def getFields(self):
         return self.fields
 
+# Add fax, twitter, facebook, linkedin to FSDPerson.
+#
+# Hide extraneous tabs from mere mortals. Hide image field from
+# mere mortals so they can't upload a picture from 10 years ago
+# when they were 20 pounds lighter and had hair. Professional
+# portaits only!
 
 class FSDPersonExtender(object):
     adapts(IPerson)
@@ -149,6 +148,18 @@ class FSDPersonExtender(object):
                 condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
             ),
             validators = ('isURL'),
+        ),
+        _ExtensionTextField('short_bio',
+            required=False,
+            schemata="settings",
+            widget=RichWidget(
+                label="Short Bio",
+                description="Used in summary view (when enabled) to provide optional text below the job titles.",
+                condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)",
+            ),
+            default_output_type="text/x-html-safe",
+            searchable=True,
+            validators=('isTidyHtmlWithCleanup',),
         ),
     ]
 
@@ -298,7 +309,7 @@ class EventExtender(object):
                     condition="python:member.has_role('Manager', object) or member.has_role('Event Organizer', object)",
                 ),
         ),
-        _TextExtensionField(
+        _ExtensionTextField(
             "free_registration_confirmation_message",
             required=False,
             widget=RichWidget(
@@ -318,7 +329,7 @@ class EventExtender(object):
                 description=u"Check this box if an event has been canceled, and provide any addition information under 'Event Cancellation Information'",
             ),
         ),
-        _TextExtensionField(
+        _ExtensionTextField(
             "eventCanceledInfo",
             required=False,
             widget=RichWidget(
@@ -556,7 +567,7 @@ class FolderExtender(object):
     layer = IUniversalExtenderLayer
 
     fields = [
-        _TextExtensionField('folder_text',
+        _ExtensionTextField('folder_text',
             required=False,
             widget=RichWidget(
                 label="Body Text",
@@ -592,6 +603,7 @@ class FolderExtender(object):
                 condition="python:member.has_role('Manager', object)",
             ),
         ),
+
     ]
 
     def __init__(self, context):
