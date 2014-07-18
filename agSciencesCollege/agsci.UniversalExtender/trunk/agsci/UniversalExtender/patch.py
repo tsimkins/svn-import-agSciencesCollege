@@ -20,6 +20,7 @@ from Products.ZCatalog.Lazy import LazyCat
 from Products.CMFCore.permissions import View
 from agsci.subsite.content.interfaces import ITagRoot
 from Products.CMFPlone.PloneBatch import Batch
+import cgi
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -482,3 +483,36 @@ def queryCatalog(self, REQUEST=None, batch=False, b_size=None,
         batch = Batch(results, b_size, int(b_start), orphan=0)
         return batch
     return results
+
+# Products.PloneFormGen.content.fieldsBase.BaseFormField
+def htmlValue(self, REQUEST):
+    """ return from REQUEST, this field's value, rendered as XHTML.
+    """
+
+    # override this if a field's value from request isn't suitable for display
+    # or is already in HTML
+
+    value = REQUEST.form.get(self.__name__, 'No Input')
+    valueType = type(value)
+
+    if valueType == type(u''):
+        value = value.encode('utf-8')
+    else:
+        value = str(value)
+
+    # eliminate square brackets around lists --
+    # they mean nothing to end users
+    if (valueType == type([])):
+        value = value[1:-1]
+
+    if value.find('\n') >= 0:
+        # strings with embedded eols will benefit from the full
+        # transform
+        pt = getToolByName(self, 'portal_transforms')
+        s = pt.convert('text_to_html', value).getData()
+        # let's return something more semantically neutral than
+        # a paragraph.
+        return s.replace('<p>', '<div>').replace('</p>', '</div>')
+    else:
+        # don't bother with the overhead of a portal transform
+        return cgi.escape(value)
