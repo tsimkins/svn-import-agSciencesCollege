@@ -524,7 +524,7 @@ def getSavedFormInputForEdit(self, **kwargs):
     sbuf = StringIO()   
     writer = csv.writer(sbuf, delimiter=delimiter)
     for row in self.getSavedFormInput():
-        writer.writerow(safe_unicode(row))
+        writer.writerow([safe_unicode(x).encode('utf-8') for x in row])
     res = sbuf.getvalue()
     sbuf.close()
 
