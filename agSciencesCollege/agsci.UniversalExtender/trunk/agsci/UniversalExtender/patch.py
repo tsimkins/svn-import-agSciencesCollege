@@ -21,6 +21,9 @@ from Products.CMFCore.permissions import View
 from agsci.subsite.content.interfaces import ITagRoot
 from Products.CMFPlone.PloneBatch import Batch
 import cgi
+from Products.CMFPlone.utils import safe_unicode
+import csv
+from StringIO import StringIO
 
 def folderGetText(self):
     """Products.ATContentTypes.content.folder.ATFolder"""
@@ -494,11 +497,8 @@ def htmlValue(self, REQUEST):
 
     value = REQUEST.form.get(self.__name__, 'No Input')
     valueType = type(value)
-
-    if valueType == type(u''):
-        value = value.encode('utf-8')
-    else:
-        value = str(value)
+    
+    value = safe_unicode(value)
 
     # eliminate square brackets around lists --
     # they mean nothing to end users
@@ -516,3 +516,16 @@ def htmlValue(self, REQUEST):
     else:
         # don't bother with the overhead of a portal transform
         return cgi.escape(value)
+
+# Products.PloneFormGen.content.fieldsBase.BaseFormField
+def getSavedFormInputForEdit(self, **kwargs):
+    """ returns saved as CSV text """
+    delimiter = self.csvDelimiter()
+    sbuf = StringIO()   
+    writer = csv.writer(sbuf, delimiter=delimiter)
+    for row in self.getSavedFormInput():
+        writer.writerow(row)
+    res = sbuf.getvalue()
+    sbuf.close()
+
+    return res

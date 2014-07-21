@@ -312,13 +312,22 @@
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     /> 
 
-    <!-- Monkey Patch PloneFormGen htmlValue - str to unicode encode -->
+    <!-- Monkey Patch PloneFormGen htmlValue - str to safe_unicode encode -->
 
     <monkey:patch
         description="Use unicode encode instead of str in htmlValue"
         class="Products.PloneFormGen.content.fieldsBase.BaseFormField"
         replacement=".patch.htmlValue"
         original="htmlValue"
+        />
+
+    <!-- Monkey Patch PloneFormGen getSavedFormInputForEdit - safe_unicode encode -->
+
+    <monkey:patch
+        description="Use safe_unicode in getSavedFormInputForEdit"
+        class="Products.PloneFormGen.content.saveDataAdapter.FormSaveDataAdapter"
+        replacement=".patch.getSavedFormInputForEdit"
+        original="getSavedFormInputForEdit"
         />
 
     <!-- Monkey Patch folder by adding 'getText' method -->
