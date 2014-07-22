@@ -215,7 +215,7 @@ table td.header div,
 table td.header h1,
 table td.header hr {
     width: 600px;
-}"
+}
 
 table.leadimage td div,
 table.leadimage td h1,
