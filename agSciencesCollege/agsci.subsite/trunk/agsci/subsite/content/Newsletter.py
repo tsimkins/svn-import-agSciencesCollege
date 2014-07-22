@@ -17,7 +17,7 @@ from agsci.subsite.content.interfaces import INewsletter
 from agsci.subsite.config import *
 
 from Products.CMFCore import permissions
-from Products.Archetypes.public import StringField, StringWidget, BooleanField
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, TextField, RichWidget
 
 Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
 
@@ -42,6 +42,16 @@ Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
             description=u"",
             condition="python:member.has_role('Manager')",
         ),
+    ),
+    TextField('subscribe_text',
+        required=False,
+        widget=RichWidget(
+            label="Subscribe/Unsubscribe Instructions",
+            description="Provided at the bottom of the newsletter, and on the subscribe page",
+        ),
+        default_output_type="text/x-html-safe",
+        searchable=True,
+        validators=('isTidyHtmlWithCleanup',),
     ),
 
 ))
@@ -124,6 +134,19 @@ class Newsletter(ATTopic):
                 result[key] = value
         return result
 
-    
+    def getNewsletterText(self):
+        text = self.getText()
+        subscribe_text = self.getSubscribe_text()
+        if subscribe_text:
+            for i in reversed(range(1,6)):
+                from_header = "h%d" % i
+                to_header = "h%d" % (i+1)
+                subscribe_text = subscribe_text.replace("<%s" % from_header, "<%s" % to_header)
+                subscribe_text = subscribe_text.replace("</%s" % from_header, "</%s" % to_header)
+
+            subscribe_text = "<h2>Subscription Information</h2>" + subscribe_text
+            
+        return text + subscribe_text
+   
 
 registerType(Newsletter, PROJECTNAME)
