@@ -226,6 +226,18 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="footer-address" tal:attributes="colspan python: sr and '2' or None" 
+                        bgcolor="#ffffff" align="left">
+                        <h2>Mailing Address</h2>
+                        <p>
+                            <span tal:condition="is_extension" tal:replace="string: Penn State Extension" />
+                            <span tal:condition="not:is_extension" tal:replace="string: Penn College of Agricultural Sciences" />
+                            <br />
+                            Agricultural Administration Building<br />
+                            University Park, PA  16802
+                    </td>
+                </tr>
                 </tbody>
             </table>
 

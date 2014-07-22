@@ -1571,6 +1571,24 @@ jq(document).ready(
 
 );
 
+/* Add custom-h2-as-h3 class to body in post. */
+jq(document).ready(
+
+    function() {
+        jq("body:not(.custom-h2-as-h3)").each( 
+            function () {
+                var body = jq(this);
+                var h2 = body.find("#content-text h2");
+                var h3 = body.find("#content-text h3");
+                if (h2.size() && ! h3.size())
+                {
+                    body.addClass("custom-h2-as-h3");
+                }
+            }
+        );
+    }
+);
+
 /* YOUR JAVASCRIPT STOPS HERE */
 
 /* </dtml-with> */

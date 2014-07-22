@@ -464,6 +464,16 @@
 
     <!-- Views -->
 
+    <!-- Newsletter subscribe --> 
+    <browser:page
+        for="agsci.subsite.content.interfaces.IBlog"
+        name="subscribe"
+        class=".views.newsletter.NewsletterSubscribeView"
+        template="templates/newsletter_subscribe_view.pt"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
     <!-- RSS Template --> 
     <browser:page
         for="*"

@@ -187,9 +187,24 @@ table td {
     padding: 5px 15px;
 }
 
-table td.footer {
+table td.footer,
+table td.footer-address {
     text-align: center;
     padding: 0 0 4pt 0;
+}
+
+table td.footer-address {
+    text-align: left;
+}
+
+table td.footer-address h2 {
+    font-size: 9pt !important;
+    margin: 5pt 0 0 0;
+}
+
+table td.footer-address p {
+    font-size: 8pt !important;
+    margin: 0;
 }
 
 table td.header {
@@ -200,7 +215,7 @@ table td.header div,
 table td.header h1,
 table td.header hr {
     width: 600px;
-}
+}"
 
 table.leadimage td div,
 table.leadimage td h1,
@@ -674,12 +689,13 @@ div.extension-footer hr {
 
 <metal:footer fill-slot="footer">
     <tal:about
-        define="has_text exists:context/aq_explicit/getText;
-                text python:has_text and here.getText() or ''"
+        define="has_text exists:context/aq_explicit/getNewsletterText;
+                text python:has_text and context.getNewsletterText() or ''"
         tal:condition="text">
     <div class="about" metal:define-slot="about">
         <hr />
         <div tal:replace="structure text">The body</div>
+
     </div>
     </tal:about>
 

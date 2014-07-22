@@ -19,6 +19,9 @@ from zope.security import checkPermission
 import premailer
 import re
 
+class INewsletterSubscribeView(Interface):
+    pass
+
 class INewsletterView(Interface):
 
     def test():
@@ -81,23 +84,7 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
         
     @property
     def newsletter_title(self):
-        try:
-            newsletter_title = aq_acquire(self.context, 'newsletter_title')
-        except AttributeError:
-            newsletter_title = None
-        try:
-            site_title = aq_acquire(self.context, 'site_title')
-        except AttributeError:
-            site_title = None
-                   
-        context_title = self.context.Title();
-
-        if newsletter_title:
-            return newsletter_title
-        elif site_title:
-            return '%s: %s' % (site_title, context_title)
-        else:
-            return context_title
+        return getattr(self.context, 'newsletter_title', self.context.Title())
 
     def isEnabled(self, item):
 
@@ -354,8 +341,51 @@ class NewsletterPrint(NewsletterView):
 
     implements(INewsletterView)
 
-    pass
-
 class EventInvitationView(NewsletterView):
 
     implements(IEventInvitationView)
+
+class NewsletterSubscribeView(NewsletterView):
+
+    implements (INewsletterSubscribeView)
+
+    @property
+    def newsletter(self):
+
+        newsletters = self.context.listFolderContents({'portal_type' : 'Newsletter'})
+
+        if not newsletters:
+            return None
+        elif len(newsletters) == 1:
+            return newsletters[0]
+        else:
+            # By id
+            if 'newsletter' in [x.getId() for x in newsletters]:
+                return self.context['newsletter']
+            else:
+                # Just pick one!
+                return newsletters[0]
+
+    @property
+    def newsletter_title(self):
+        newsletter = self.newsletter
+        
+        title = self.context.Title()
+        
+        if newsletter:
+            title = getattr(newsletter, 'newsletter_title', newsletter.Title())
+
+        return title
+
+    def page_title(self):
+        return "%s Subscription Information" % self.newsletter_title
+
+    def getText(self):
+        default_text = "<p>No newsletter subscription information available.</p>"
+
+        newsletter = self.newsletter
+
+        if not newsletter:
+            return default_text
+        else:
+            return getattr(newsletter, 'subscribe_text', default_text)

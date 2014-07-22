@@ -1536,7 +1536,7 @@ body.template-person_view #content #addthis h2,
 
 #addthis .translate ul li {
     margin: 0;
-    text-align: right
+    text-align: right;
 }
 
 #addthis .translate ul li a {
