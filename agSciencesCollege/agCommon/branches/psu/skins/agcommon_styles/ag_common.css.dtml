@@ -3409,6 +3409,12 @@ body.template-manage-portletsbelowcontent #homepageimage {
     display: none;
 }
 
+/* Body image max-width for logged in content images */
+
+body.icons-on #parent-fieldname-text img {
+    max-width: 100%;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */

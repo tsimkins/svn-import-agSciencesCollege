@@ -232,7 +232,7 @@
                         <h2>Mailing Address</h2>
                         <p>
                             <span tal:condition="is_extension" tal:replace="string: Penn State Extension" />
-                            <span tal:condition="not:is_extension" tal:replace="string: Penn College of Agricultural Sciences" />
+                            <span tal:condition="not:is_extension" tal:replace="string: Penn State College of Agricultural Sciences" />
                             <br />
                             Agricultural Administration Building<br />
                             University Park, PA  16802
