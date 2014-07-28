@@ -24,7 +24,7 @@
       <h1 class="fn n documentFirstHeading">
         <span class="given-name" tal:content="context/getFirstName"><tal:comment replace="nothing">[First Name]</tal:comment></span>
         <span class="additional-name" tal:content="context/getMiddleName | nothing"><tal:comment replace="nothing">[Middle Name]</tal:comment></span>
-        <span class="family-name" tal:content="context/getLastName"><tal:comment replace="nothing">[Last Name]</tal:comment></span>
+        <span class="family-name" tal:content="context/getLastName"><tal:comment replace="nothing">[Last Name]</tal:comment></span><tal:comma condition="context/getSuffix">,</tal:comma>
         <span class="honorific-suffix" tal:content="context/getSuffix"><tal:comment replace="nothing">[ suffix i.e. Dr]</tal:comment></span>
       </h1>
       
