@@ -268,6 +268,14 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
 
         return html
 
+    def getNewsletterText(self):
+        if hasattr(self.context.aq_explicit, 'getNewsletterText'):
+            return self.context.getNewsletterText()
+        elif hasattr(self.context.aq_explicit, 'getText'):
+            return self.context.getText()        
+        else:
+            return ""
+        
 class NewsletterModify(NewsletterView):
 
     security = ClassSecurityInfo()

@@ -688,16 +688,19 @@ div.extension-footer hr {
 
 
 <metal:footer fill-slot="footer">
-    <tal:about
-        define="has_text exists:context/aq_explicit/getNewsletterText;
-                text python:has_text and context.getNewsletterText() or ''"
-        tal:condition="text">
+
     <div class="about" metal:define-slot="about">
-        <hr />
-        <div tal:replace="structure text">The body</div>
+
+        <tal:about
+            define="newsletter_text view/getNewsletterText;"
+            condition="newsletter_text">
+
+                <hr />
+                <div tal:replace="structure newsletter_text">The body</div>
+
+        </tal:about>
 
     </div>
-    </tal:about>
 
     <tal:extension condition="is_extension">
     <div class="extension-footer">
