@@ -8,6 +8,7 @@ from urllib import urlencode
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
 from zope.component import getMultiAdapter
 from Products.agCommon import getContextConfig
+from Products.agCommon import increaseHeadingLevel as _increaseHeadingLevel
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
 try:
@@ -304,3 +305,6 @@ class AgCommonUtilities(BrowserView):
                     contentFilter[k] = self.request.form[k]
 
         return contentFilter
+
+    def increaseHeadingLevel(self, text):
+        return _increaseHeadingLevel(text)

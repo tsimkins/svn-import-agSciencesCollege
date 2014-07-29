@@ -2821,11 +2821,21 @@ body.template-folder_full_view #content-core .item {
     border: none;
 }
 
-#content h1.headline {
-    color: #000000;
-    font-size: 1.875em;
-    font-weight: bold;
-    font-family: "Lucida Grande",Tahoma,Verdana,sans-serif;
+#content h2.headline {
+    margin-top: 0.875em;
+}
+
+body.template-folder_full_view #content .documentText .documentDescription {
+    margin-bottom: 0.5em;
+}
+
+body.template-folder_full_view #content .documentText h3 {
+    margin-top: 0.875em;
+}
+
+#content h2.headline a {
+    color: &dtml-linkColor; !important;
+    border-bottom: none;
 }
 
 #content .documentText p:first-child {

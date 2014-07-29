@@ -1005,3 +1005,12 @@ def enablePublication(context):
         return True
     else:
         return False
+
+def increaseHeadingLevel(text):
+    if '<h2' in text:
+        for i in reversed(range(1,6)):
+            from_header = "h%d" % i
+            to_header = "h%d" % (i+1)
+            text = text.replace("<%s" % from_header, "<%s" % to_header)
+            text = text.replace("</%s" % from_header, "</%s" % to_header)
+    return text
