@@ -19,6 +19,8 @@ from agsci.subsite.config import *
 from Products.CMFCore import permissions
 from Products.Archetypes.public import StringField, StringWidget, BooleanField, TextField, RichWidget
 
+from Products.agCommon import increaseHeadingLevel
+
 Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
 
     StringField(
@@ -138,12 +140,7 @@ class Newsletter(ATTopic):
         text = self.getText()
         subscribe_text = self.getSubscribe_text()
         if subscribe_text:
-            for i in reversed(range(1,6)):
-                from_header = "h%d" % i
-                to_header = "h%d" % (i+1)
-                subscribe_text = subscribe_text.replace("<%s" % from_header, "<%s" % to_header)
-                subscribe_text = subscribe_text.replace("</%s" % from_header, "</%s" % to_header)
-
+            subscribe_text = increaseHeadingLevel(subscribe_text)
             subscribe_text = "<h2>Subscription Information</h2>" + subscribe_text
             
         return text + subscribe_text
