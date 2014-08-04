@@ -630,8 +630,8 @@
     <browser:menuItem
         for="Products.ATContentTypes.interface.IATTopic"
         menu="plone_displayviews"
-        title="Course Annual Redirect"
-        action="@@course_annual_redirect"
+        title="Annual Event Redirect"
+        action="@@annual_event_redirect"
         layer=".interfaces.IThemeSpecific"
         description="A redirect for a single-event collection"
     />
