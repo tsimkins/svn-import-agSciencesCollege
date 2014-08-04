@@ -1,28 +1,27 @@
-from zope.interface import implements, Interface
-
+from Acquisition import aq_inner
+from DateTime import DateTime
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.CMFPlone.utils import safe_unicode
+from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.agCommon import getContextConfig
+from Products.agCommon.browser.interfaces import IFSDShortBio
 from RestrictedPython.Utilities import same_type as _same_type
 from RestrictedPython.Utilities import test as _test
+from StringIO import StringIO 
+from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
+from collective.contentleadimage.utils import getImageAndCaptionFields, getImageAndCaptionFieldNames
+from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
+from plone.memoize.instance import memoize
+from zope.component import getUtility, getMultiAdapter
+from zope.component.interfaces import ComponentLookupError
+from zope.interface import implements, Interface
 
 try:
     from zope.app.component.hooks import getSite
 except ImportError:
     from zope.component.hooks import getSite
-
-from Products.Five import BrowserView
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
-from Acquisition import aq_inner
-from collective.contentleadimage.utils import getImageAndCaptionFields, getImageAndCaptionFieldNames
-from DateTime import DateTime
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getUtility, getMultiAdapter
-from collective.contentleadimage.leadimageprefs import ILeadImagePrefsForm
-from plone.memoize.instance import memoize
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-from plone.app.workflow.browser.sharing import SharingView, AUTH_GROUP
-from Products.agCommon import getContextConfig
-from StringIO import StringIO 
-from Products.agCommon.browser.interfaces import IFSDShortBio
 
 try:
     from agsci.ExtensionExtender.counties import getSurroundingCounties
@@ -487,3 +486,29 @@ class PublicationFileView(FolderView):
 class RSSTemplateView(FolderView):
 
     pass
+
+class AnnualEventRedirect(FolderView):
+    
+    """
+    course_annual_redirect
+    Redirect to the course's upcoming event if, and only if:
+     - The course collection has a 'course-annual' tag
+     - There is one and only one upcoming event
+     - AND current user is logged out
+    """
+
+    def __call__(self):
+        RESPONSE =  self.request.RESPONSE
+        
+        results = self.context.queryCatalog()
+        
+        if results and len(results) == 1 and self.anonymous:
+            event = results[0]
+            return RESPONSE.redirect(event.getURL())
+        else:
+            if not self.anonymous:
+                RESPONSE.setHeader('Cache-Control', 'max-age=0, must-revalidate, private')
+            else:
+                RESPONSE.setHeader('Cache-Control', 'max-age=0, s-maxage=300, must-revalidate, public, proxy-revalidate')
+        
+            return getMultiAdapter((self.context, self.request), name=u'agenda_view')()

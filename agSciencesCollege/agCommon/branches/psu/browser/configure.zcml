@@ -617,6 +617,25 @@
         description="A view of events in table format"
     />
 
+    <!-- Annual Event Redirect -->
+    
+    <browser:page
+        for="Products.ATContentTypes.interface.IATTopic"
+        name="annual_event_redirect"
+        class=".views.AnnualEventRedirect"
+        layer=".interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+    
+    <browser:menuItem
+        for="Products.ATContentTypes.interface.IATTopic"
+        menu="plone_displayviews"
+        title="Course Annual Redirect"
+        action="@@course_annual_redirect"
+        layer=".interfaces.IThemeSpecific"
+        description="A redirect for a single-event collection"
+    />
+
     <!-- Newsletter View -->
     <browser:page
         for="*"
