@@ -1,41 +1,35 @@
-from zope.component import getMultiAdapter, provideAdapter, ComponentLookupError, getUtility
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.layout.viewlets.common import ViewletBase, TableOfContentsViewlet
 from AccessControl import getSecurityManager
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
-from cgi import escape
 from Acquisition import aq_inner, aq_base, aq_chain
-from AccessControl import getSecurityManager
-from plone.portlets.interfaces import ILocalPortletAssignable
-from plone.app.layout.nextprevious.view import NextPreviousView
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile  
-from plone.app.layout.viewlets.content import ContentRelatedItems as ContentRelatedItemsBase
+from DateTime import DateTime
+from Products.CMFCore.Expression import Expression, getExprContext
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from Products.CMFPlone.utils import safe_unicode
 from Products.ContentWellPortlets.browser.viewlets import ContentWellPortletsViewlet
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile, ZopeTwoPageTemplateFile
+from Products.agCommon import getContextConfig, scrubPhone
+from Products.agCommon.browser.views import FolderView
+from agsci.subsite.content.interfaces import ISection, ISubsite
+from cgi import escape
+from collective.contentleadimage.browser.viewlets import LeadImageViewlet
+from hashlib import md5
+from plone.app.discussion.browser.comments import CommentsViewlet
+from plone.app.layout.nextprevious.view import NextPreviousView
+from plone.app.layout.viewlets.common import SearchBoxViewlet, TableOfContentsViewlet, ViewletBase
+from plone.app.layout.viewlets.content import ContentRelatedItems as ContentRelatedItemsBase
+from plone.memoize.instance import memoize
+from plone.portlets.interfaces import ILocalPortletAssignable, IPortletManager
+from urllib import urlencode
+from zope.component import getMultiAdapter, provideAdapter, ComponentLookupError, getUtility
+from zope.contentprovider.interfaces import IContentProvider
+from zope.interface import Interface, implements
+from zope.viewlet.interfaces import IViewlet
+import re
  
 try:
     from zope.app.component.hooks import getSite
 except ImportError:
     from zope.component.hooks import getSite
-
-from collective.contentleadimage.browser.viewlets import LeadImageViewlet
-from plone.app.discussion.browser.comments import CommentsViewlet
-from zope.interface import implements
-from zope.viewlet.interfaces import IViewlet
-from hashlib import md5
-import re
-from zope.contentprovider.interfaces import IContentProvider
-from zope.interface import Interface
-from plone.portlets.interfaces import IPortletManager
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from agsci.subsite.content.interfaces import ISection, ISubsite
-from Products.CMFCore.Expression import Expression, getExprContext
-from Products.agCommon import getContextConfig, scrubPhone
-from Products.agCommon.browser.views import FolderView
-from plone.app.layout.viewlets.common import SearchBoxViewlet
-from plone.memoize.instance import memoize
-
-from urllib import urlencode
 
 try:
     from agsci.ExtensionExtender.counties import data as county_data
@@ -261,15 +255,16 @@ class HomepageImageViewlet(AgCommonViewlet):
     index = ViewPageTemplateFile('templates/homepageimage.pt')
 
     @property
+    def portal_catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
 
+    @property
     def slider_target(self):
         target = self.context.getReferences(relationship = 'IsHomePageSliderFor')
         if target:
             return target[0]
+        return None
 
-class FlexsliderViewlet(HomepageImageViewlet, FolderView):   
-    index = ViewPageTemplateFile('templates/flexslider.pt')
-    
     def folderContents(self):
         target = self.slider_target
         if target and target.portal_type == 'Topic':
@@ -278,10 +273,25 @@ class FlexsliderViewlet(HomepageImageViewlet, FolderView):
             if not item_count:
                 item_count = 7
 
-            results = target.queryCatalog()
+            # Explicitly exclude expired items
+
+            query = target.buildQuery()
+            
+            query['expires'] = {'query' : DateTime(), 'range' : 'min'}
+
+            results = self.portal_catalog.searchResults(query)
 
             return results[:item_count]
 
+        return []
+
+    @property
+    def slider_has_contents(self):
+        return (len(self.folderContents()) > 0)
+        
+class FlexsliderViewlet(HomepageImageViewlet, FolderView):   
+    index = ViewPageTemplateFile('templates/flexslider.pt')
+    
     def slider_title(self):
         target = self.slider_target
         if target and target.portal_type == 'Topic':

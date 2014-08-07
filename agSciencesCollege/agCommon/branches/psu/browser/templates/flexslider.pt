@@ -1,4 +1,4 @@
-<tal:flexslider condition="view/slider_target|nothing">
+<tal:flexslider condition="view/slider_has_contents|nothing">
     <h2 class="flexslider-title" tal:content="view/slider_title|nothing" />
     
     <div class="flexslider" 
