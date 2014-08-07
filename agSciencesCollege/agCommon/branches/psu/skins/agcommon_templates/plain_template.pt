@@ -222,24 +222,12 @@
                             <a title="" id="accessibility" href="http://agsci.psu.edu/accessibility">Accessibility</a>
                             
                         </p>
-                        
+
+                        <metal:footer define-slot="email-footer" />
 
                     </td>
                 </tr>
-                <tr
-                    tal:define="hide_newsletter_footer context/hide_newsletter_footer|nothing;"
-                    tal:condition="not: hide_newsletter_footer">
-                    <td class="footer-address" tal:attributes="colspan python: sr and '2' or None" 
-                        bgcolor="#ffffff" align="left">
-                        <h2>Mailing Address</h2>
-                        <p>
-                            <span tal:condition="is_extension" tal:replace="string: Penn State Extension" />
-                            <span tal:condition="not:is_extension" tal:replace="string: Penn State College of Agricultural Sciences" />
-                            <br />
-                            Agricultural Administration Building<br />
-                            University Park, PA  16802
-                    </td>
-                </tr>
+
                 </tbody>
             </table>
 

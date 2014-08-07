@@ -15,11 +15,14 @@ from urlparse import urljoin
 from zope.component import getUtility, getMultiAdapter
 from zope.interface import implements, Interface
 from zope.security import checkPermission
+from Products.CMFPlone.utils import safe_unicode
 
 import premailer
 import re
+import urllib
 
 class INewsletterSubscribeView(Interface):
+
     pass
 
 class INewsletterView(Interface):
@@ -84,7 +87,7 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
         
     @property
     def newsletter_title(self):
-        return getattr(self.context, 'newsletter_title', self.context.Title())
+        return getattr(self.newsletter, 'newsletter_title', self.newsletter.Title())
 
     def isEnabled(self, item):
 
@@ -268,13 +271,102 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
 
         return html
 
-    def getNewsletterText(self):
-        if hasattr(self.context.aq_explicit, 'getNewsletterText'):
-            return self.context.getNewsletterText()
-        elif hasattr(self.context.aq_explicit, 'getText'):
-            return self.context.getText()        
+
+    @property
+    def newsletter(self):
+       
+        if self.context.portal_type in ['Newsletter'] or \
+           (self.context.portal_type in ['Topic'] and self.context.getLayout() == 'newsletter_view'):
+            return self.context
+
+        elif self.context.isPrincipiaFolderish:
+
+            newsletters = self.context.listFolderContents({'portal_type' : 'Newsletter'})
+    
+            if not newsletters:
+                return None
+            elif len(newsletters) == 1:
+                return newsletters[0]
+            else:
+                # By id
+                if 'newsletter' in [x.getId() for x in newsletters]:
+                    return self.context['newsletter']
+                else:
+                    # Just pick one!
+                    return newsletters[0]
+
+        return None
+       
+
+
+    @property
+    def newsletter_title(self):
+        newsletter = self.newsletter
+        
+        title = self.context.Title()
+        
+        if newsletter:
+            title = getattr(newsletter, 'newsletter_title', newsletter.Title())
+
+        return title
+
+    # If we have a @lists.psu.edu listserv, return the listserv name
+
+    @property    
+    def listserv(self):
+        domain = "lists.psu.edu".upper()
+        newsletter = self.newsletter
+        if newsletter:
+            email = getattr(newsletter, 'listserv_email', '').upper().strip()
+            if email.endswith("@%s" % domain):
+                email = email.replace("@%s" % domain, "")
+                return email
+        return ''
+
+    def listserv_contact_email(self):
+
+        listserv = self.listserv
+        
+        if listserv:
+            subject = urllib.quote('Question about %s' % listserv)
+            return '%s-request@lists.psu.edu?Subject=%s' % (listserv, subject)
         else:
-            return ""
+            return None 
+        
+    def listserv_unsubscribe_email(self):
+        
+        return self.listserv_subscribe_email(action="unsubscribe")
+
+    def listserv_subscribe_email(self, action="subscribe"):
+        
+        listserv = self.listserv
+        
+        if listserv:
+            return '%s-%s-request@lists.psu.edu' % (listserv, action)
+        else:
+            return None
+
+
+    def listserv_url(self):
+
+        listserv = self.listserv
+        
+        if listserv:
+            return 'http://lists.psu.edu/cgi-bin/wa?SUBED1=%s&A=1' % listserv
+        else:
+            return None
+
+    def getText(self):
+
+        newsletter = self.newsletter
+
+        if newsletter:
+            return newsletter.getText()
+        elif hasattr(self.context, 'getText'):
+            return self.context.getText()
+        else:
+            return ''
+
         
 class NewsletterModify(NewsletterView):
 
@@ -318,6 +410,8 @@ class NewsletterEmail(NewsletterView):
         if self.anonymous:
     
             for a in soup.findAll('a'):
+                if 'no_utm' in a.get('class', ''):
+                    continue
                 klass = [x.replace('utm_', '') for x in a.get('class', '').split() if x.startswith('utm_')]
                 utm_content = None
                 
@@ -357,43 +451,5 @@ class NewsletterSubscribeView(NewsletterView):
 
     implements (INewsletterSubscribeView)
 
-    @property
-    def newsletter(self):
-
-        newsletters = self.context.listFolderContents({'portal_type' : 'Newsletter'})
-
-        if not newsletters:
-            return None
-        elif len(newsletters) == 1:
-            return newsletters[0]
-        else:
-            # By id
-            if 'newsletter' in [x.getId() for x in newsletters]:
-                return self.context['newsletter']
-            else:
-                # Just pick one!
-                return newsletters[0]
-
-    @property
-    def newsletter_title(self):
-        newsletter = self.newsletter
-        
-        title = self.context.Title()
-        
-        if newsletter:
-            title = getattr(newsletter, 'newsletter_title', newsletter.Title())
-
-        return title
-
     def page_title(self):
         return "%s Subscription Information" % self.newsletter_title
-
-    def getText(self):
-        default_text = "<p>No newsletter subscription information available.</p>"
-
-        newsletter = self.newsletter
-
-        if not newsletter:
-            return default_text
-        else:
-            return getattr(newsletter, 'subscribe_text', default_text)

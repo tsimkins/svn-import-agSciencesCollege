@@ -325,11 +325,6 @@ ul.inline li {
     padding: 0;
 }
 
-.discreet {
-    font-size: 0.75em;
-    color: #76797c;
-}
-
 u {
     text-decoration: none !important;
 }
@@ -398,6 +393,26 @@ div.extension-footer hr {
 .extension-footer p {
     margin: 0 0 3pt;
 }
+
+table td.footer .email-footer {
+    text-align: left;
+    margin-top: 12pt;
+}
+
+table td.footer .email-footer p, 
+.discreet {
+    font-size: 8pt;
+    color: #76797c;
+    text-align: left;
+}
+
+table td.footer .email-footer h2 {
+    font-size: 10pt;
+    color: #333333;
+    margin: 8pt 0 0 0;
+    line-height: 12pt;
+}
+
 
 </style>
 
@@ -691,20 +706,20 @@ div.extension-footer hr {
 
     <div class="about" metal:define-slot="about">
 
+        <hr size="1" />
+
         <tal:about
-            define="newsletter_text view/getNewsletterText;"
-            condition="newsletter_text">
-
-                <hr />
-                <div tal:replace="structure newsletter_text">The body</div>
-
-        </tal:about>
+            define="newsletter_text view/getText;"
+            condition="newsletter_text"
+            tal:replace="structure newsletter_text" />
 
     </div>
 
     <tal:extension condition="is_extension">
     <div class="extension-footer">
-        <hr />
+
+        <hr size="1" />
+        
         <p class="discreet"><a href="http://extension.psu.edu"><strong>extension.psu.edu</strong></p>
 
         <p class="discreet">Penn State College of Agricultural Sciences research and extension programs are funded in part by Pennsylvania counties, the Commonwealth of Pennsylvania, and the U.S. Department of Agriculture.</p>
@@ -713,7 +728,7 @@ div.extension-footer hr {
 
         <p class="discreet">This publication is available in alternative media on request. </p>
 
-        <p class="discreet">Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. <a href="http://guru.psu.edu/policies/AD85.html">Nondiscrimination</a>.</p>
+        <p class="discreet">Penn State is an equal opportunity, affirmative action employer, and is committed to providing employment opportunities to minorities, women, veterans, individuals with disabilities, and other protected groups. Nondiscrimination: <a href="http://guru.psu.edu/policies/AD85.html">http://guru.psu.edu/policies/AD85.html</a>.</p>
     </div>
     </tal:extension>
 </metal:footer>
@@ -848,6 +863,53 @@ div.extension-footer hr {
         </metal:featured>
     </metal:block>
 </metal:content-core>
+
+<metal:email-footer fill-slot="email-footer">
+
+    <metal:email-footer define-slot="email-footer">
+
+        <div class="email-footer"
+            tal:define="show_newsletter_footer context/show_newsletter_footer|nothing;"
+            tal:condition="show_newsletter_footer"
+            bgcolor="#ffffff" align="left">
+    
+        <hr size="1">
+        
+        <tal:listserv 
+            define="listserv view/listserv|nothing;
+                    listserv_subscribe_email view/listserv_subscribe_email|nothing;
+                    listserv_unsubscribe_email view/listserv_unsubscribe_email|nothing;"
+            condition="listserv">
+                <h2>List Information</h2>
+                <p>You received this email because you are subscribed to the <strong tal:content="listserv" /> mailing list. If you would like to unsubscribe from this list, simply send an email to 
+                    <a class="no_utm"
+                       tal:attributes="href string: mailto:${listserv_unsubscribe_email}"
+                       tal:content="listserv_unsubscribe_email" />.
+                    
+                    No subject or message is necessary in the email.</p>
+                
+                <p>To subscribe to this list, simply send an email to  <a class="no_utm"
+                       tal:attributes="href string: mailto:${listserv_subscribe_email}"
+                       tal:content="listserv_subscribe_email" />.</p>
+                
+                <p>For any questions or problems, contact the 
+                    <a class="no_utm" 
+                       tal:attributes="href string: mailto:${view/listserv_contact_email}">list administrator</a>.</p>
+        </tal:listserv>
+            
+        <h2>Mailing Address</h2>
+        <p>
+            <span tal:condition="is_extension" tal:replace="string: Penn State Extension" />
+            <span tal:condition="not:is_extension" tal:replace="string: Penn State College of Agricultural Sciences" />
+            <br />
+            Agricultural Administration Building<br />
+            University Park, PA  16802
+        </p>
+        </div>
+                    
+    </metal:email-footer>           
+
+</metal:email-footer>
 
 <metal:portlets define-slot="portlets_two_slot" fill-slot="portlets_two_slot">
     <tal:block replace="structure provider:plone.rightcolumn" />

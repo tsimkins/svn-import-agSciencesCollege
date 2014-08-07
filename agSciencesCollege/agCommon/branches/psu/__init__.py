@@ -51,6 +51,7 @@ allow_module('urllib2')
 allow_module('urllib')
 allow_module('zope.component')
 allow_module('zope.component.getSiteManager')
+allow_module('csv')
 
 allow_module('Products.ZCatalog.Lazy')
 allow_module('Products.GlobalModules')
