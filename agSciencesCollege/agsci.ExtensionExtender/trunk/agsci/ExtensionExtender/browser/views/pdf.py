@@ -246,7 +246,7 @@ class FactsheetPDFView(FolderView):
                 table_row = []
 
                 for i in tr.findAll('th'):
-                    table_row.append(getInlineContents(i))
+                    table_row.append(Paragraph(getInlineContents(i), th_cell))
                     (colspan, rowspan) = getCellSpan(i)
                     c_max = c_index + colspan - 1
                     r_max = r_index + rowspan - 1
@@ -264,7 +264,7 @@ class FactsheetPDFView(FolderView):
                     c_index = c_index + 1
 
                 for i in tr.findAll('td'):
-                    table_row.append(getInlineContents(i))
+                    table_row.append(Paragraph(getInlineContents(i), td_cell))
                     (colspan, rowspan) = getCellSpan(i)
                     c_max = c_index + colspan - 1
                     r_max = r_index + rowspan - 1
@@ -313,11 +313,15 @@ class FactsheetPDFView(FolderView):
                     table = Table(table_data)
                     table.setStyle(table_style)
                     table.hAlign = 'LEFT'
+                    table.spaceBefore = 10
+                    table.spaceAfter = 10
+
                     if caption:
                         caption_el = Paragraph(getInlineContents(caption), discreet)
                         pdf.append(KeepTogether([table, caption_el]))
                     else:
                         pdf.append(table)
+
                 elif item_type in ['ul']:
                     for i in item.findAll('li'):
                         pdf.append(Paragraph('<bullet>&bull;</bullet>%s' % getInlineContents(i), bullet_list))
@@ -456,6 +460,18 @@ class FactsheetPDFView(FolderView):
         styles['Heading4'].leading = 12
         styles['Heading4'].spaceAfter = 6
         styles['Heading4'].textColor = header_rgb
+        
+        th_cell = ParagraphStyle('TableHeading')
+        th_cell.spaceBefore = 3
+        th_cell.spaceAfter = 6
+        th_cell.fontSize = 10
+        th_cell.fontName = 'Times-Bold'
+
+        td_cell = ParagraphStyle('TableData')
+        td_cell.spaceBefore = 3
+        td_cell.spaceAfter = 6
+        td_cell.fontSize = 10
+        td_cell.fontName = 'Times-Roman'
         
         series_heading = ParagraphStyle('Series')
         series_heading.spaceBefore = 2
