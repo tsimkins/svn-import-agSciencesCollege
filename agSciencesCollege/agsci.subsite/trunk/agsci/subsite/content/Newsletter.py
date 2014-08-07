@@ -26,7 +26,6 @@ Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
     StringField(
         "newsletter_title",
         required=False,
-        schemata="settings",
         widget=StringWidget(
             label=u"Newsletter title",
             description=u"This will override the automatically generated title of the newsletter.",
@@ -38,13 +37,24 @@ Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
         "show_print_newsletter",
         required=False,
         default=False,
-        schemata="settings",
         widget=BooleanWidget(
             label=u"Show 'Print this newsletter' link",
             description=u"",
             condition="python:member.has_role('Manager')",
         ),
     ),
+    
+    BooleanField(
+        "show_newsletter_footer",
+        required=False,
+        default=True,
+        widget=BooleanWidget(
+            label=u"Show newsletter footer with listserv information.",
+            description=u"Uncheck if you've added this information to the listserv",
+            condition="python:member.has_role('Manager')",
+        ),
+    ),
+        
     TextField('subscribe_text',
         required=False,
         widget=RichWidget(
@@ -54,6 +64,16 @@ Newsletter_schema = getattr(ATTopic, 'schema', Schema(())).copy()  +  Schema((
         default_output_type="text/x-html-safe",
         searchable=True,
         validators=('isTidyHtmlWithCleanup',),
+    ),
+    
+    StringField(
+        "listserv_email",
+        required=False,
+        widget=StringWidget(
+            label=u"Listserv Email Address",
+            description=u"Used to generate a subscribe/unsubscribe form.  Penn State (lists.psu.edu) listservs only.",
+            condition="python:member.has_role('Manager')",
+        ),
     ),
 
 ))
@@ -135,15 +155,5 @@ class Newsletter(ATTopic):
                     del result['start']
                 result[key] = value
         return result
-
-    def getNewsletterText(self):
-        text = self.getText()
-        subscribe_text = self.getSubscribe_text()
-        if subscribe_text:
-            subscribe_text = increaseHeadingLevel(subscribe_text)
-            subscribe_text = "<h2>Subscription Information</h2>" + subscribe_text
-            
-        return text + subscribe_text
-   
 
 registerType(Newsletter, PROJECTNAME)
