@@ -1,3 +1,11 @@
+<tal:collection_leadimage
+    define="show_leadimage view/show_leadimage|nothing;
+            target_collection view/target_collection|nothing"
+    condition="show_leadimage">
+    
+    <img tal:replace="structure view/target_collection_leadimage" />
+
+</tal:collection_leadimage>
 
 <h2 
     tal:attributes="class string:portletHeader" 

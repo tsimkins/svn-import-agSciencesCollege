@@ -1,28 +1,22 @@
-import itertools
-import time
-import feedparser
-
-from zope.interface import implements
-from zope.component import getMultiAdapter
-from zope.component import getUtility
-
+from Acquisition import aq_inner
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.contentleadimage.utils import getImageAndCaptionFields, getImageAndCaptionFieldNames
+from collective.portlet.feedmixer.interfaces import IFeedMixer
+from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
 from plone.app.portlets.portlets import base
-from plone.memoize.interfaces import ICacheChooser
 from plone.memoize.instance import memoize
-
+from plone.memoize.interfaces import ICacheChooser
+from urlparse import urlparse
+from zope.app.component.hooks import getSite
+from zope.component import getMultiAdapter, getUtility
 from zope.component.interfaces import ComponentLookupError
 from zope.formlib import form
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from collective.portlet.feedmixer.interfaces import IFeedMixer
-
-from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
-
-from urlparse import urlparse
-
-import socket
-
+from zope.interface import implements
+import feedparser
+import itertools
 import random
+import socket
+import time
 
 class Assignment(base.Assignment):
     """Portlet assignment.
@@ -49,6 +43,7 @@ class Assignment(base.Assignment):
     image_position = 'right'
     image_size = 'small'
     random = False
+    show_leadimage = False
 
     def __init__(self, title=title, feeds=feeds, items_shown=items_shown,
                  show_header=show_header, show_date=show_date,
@@ -60,7 +55,9 @@ class Assignment(base.Assignment):
                  reverse_feed=reverse_feed,
                  assignment_context_path=assignment_context_path,
                  target_collection=target_collection, image_position=image_position,
-                 image_size=image_size, random=random, *args, **kwargs):
+                 image_size=image_size, random=random, show_leadimage=show_leadimage,
+                 *args, **kwargs):
+
         base.Assignment.__init__(self, *args, **kwargs)
         self.title=title
         self.feeds=feeds
@@ -79,6 +76,7 @@ class Assignment(base.Assignment):
         self.image_position = image_position
         self.image_size = image_size
         self.random = random
+        self.show_leadimage = show_leadimage
 
     def Title(self):
         """Returns the title. The function is used by Plone to render <title> correctly."""
@@ -126,6 +124,49 @@ class Renderer(base.Renderer):
         return self.data.target_collection
 
     @property
+    def target_collection_obj(self):
+
+        if self.target_collection:
+
+            site = getSite()
+            
+            t = self.target_collection
+
+            if t.startswith('/'):
+                t = t[1:]
+
+            try:
+                return site.restrictedTraverse(t)
+            except KeyError:
+                return None
+
+        return None
+
+    @property
+    def target_collection_leadimage(self, css_class='feedmixerCollectionLeadImage', scale='preview'):
+        context = self.target_collection_obj
+
+        # shamelessly copied from Products.agCommon.browser.views.FolderView.tag
+        
+        if context:
+        
+            context = aq_inner(context)
+    
+            (field, titlef) = getImageAndCaptionFields(context)
+    
+            if titlef is not None:
+                title = titlef.get(context)
+            else:
+                title = ''
+
+            if field is not None:
+                if field.get_size(context) != 0:
+                    return field.tag(context, scale=scale, css_class=css_class, title=title)
+
+            return ''
+
+
+    @property
     def image_position(self):
         if self.data.image_position:
             return self.data.image_position
@@ -147,7 +188,18 @@ class Renderer(base.Renderer):
             return 'small'
 
     @property
+    def show_leadimage(self):
+        return self.data.show_leadimage
+
+    @property
     def image_suffix(self):
+    
+        # Special case for if this feedmixer portlet is on a tile homepage.
+        # Return the 'preview' (400px) size.
+        if hasattr(self.context, 'getLayout'):
+            if self.context.getLayout() == 'tile_homepage_view':
+                return '_preview'
+                
         if self.image_size == 'large':
             return '_feedmixerlarge'
         else:

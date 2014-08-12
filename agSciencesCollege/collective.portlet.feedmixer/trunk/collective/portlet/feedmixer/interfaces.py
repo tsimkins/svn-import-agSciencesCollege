@@ -49,6 +49,14 @@ class IFeedMixer(IPortletDataProvider):
             default=True,
             required=True)
 
+    show_leadimage = schema.Bool(
+            title=_(u"heading_show_leadimage",
+                default=u"Show Collection Lead Image"),
+            description=_(u"description_show_leadimage",
+                default=u""),
+            default=False,
+            required=True)
+
     show_date = schema.Bool(
             title=_(u"heading_show_date",
                 default=u"Show Item Date"),
