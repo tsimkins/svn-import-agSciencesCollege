@@ -62,6 +62,14 @@ def filter_fields(self, k):
     if k in ('collective_portletclass', ):
         return False
 
+    if k in ('portlet_width', 'portlet_item_count'):
+        for o in self.aq_chain:
+            if hasattr(o, 'getLayout'):
+                return o.getLayout() == 'tile_homepage_view'
+
+        return False
+
+
     return True
     
 def collective_portletclass__init__(self, context, request):
@@ -252,6 +260,31 @@ class CollectivePortletClass(object):
         elif getattr(self.context, 'more_text_custom', None) is not None:
             del self.context.more_text_custom
 
+    # portlet_width
+    
+    @property
+    def portlet_width(self):
+        return getattr(self.context, 'portlet_width', u'')
+
+    @portlet_width.setter
+    def portlet_width(self, value):
+        if value:
+            setattr(self.context, 'portlet_width', value)
+        elif getattr(self.context, 'portlet_width', None) is not None:
+            del self.context.portlet_width
+
+    # portlet_item_count
+    
+    @property
+    def portlet_item_count(self):
+        return getattr(self.context, 'portlet_item_count', u'')
+
+    @portlet_item_count.setter
+    def portlet_item_count(self, value):
+        if value:
+            setattr(self.context, 'portlet_item_count', value)
+        elif getattr(self.context, 'portlet_item_count', None) is not None:
+            del self.context.portlet_item_count
 
 # Patch for showing portlets only on parent object
 

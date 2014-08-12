@@ -15,5 +15,9 @@
       provides="plone.portlets.interfaces.IPortletManagerRenderer"
       />
 
+    <adapter
+      factory=".adapters.CustomContentWellPortletRenderer"
+      provides="plone.portlets.interfaces.IPortletManagerRenderer"
+    />
     
 </configure>
