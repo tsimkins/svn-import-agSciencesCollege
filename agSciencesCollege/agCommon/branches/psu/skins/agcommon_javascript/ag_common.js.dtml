@@ -1366,7 +1366,7 @@ jq(window).load(function() {
 
 
         // Feedmixer Portlet Tracking
-        jq('.portletfeedmixer .portletItem a').click(
+        jq('.portletfeedmixer .portletItem a, .portletfeedmixer .portletItem img').click(
             function() {
                 var button_title = getButtonTitle(this);
                 var portlet_title = getPortletTitle(this);
@@ -1588,6 +1588,34 @@ jq(document).ready(
         );
     }
 );
+
+/* Add onclick event to feedmixer lead image that goes to the item, so we don;t
+   have two links. */
+
+jq(document).ready(
+
+    function() {
+        jq(".portletfeedmixer .portletItem").each( 
+            function () {
+                var portletItem = jq(this);
+                var img = portletItem.find(".rssImage img");
+                var title = portletItem.find("a.title");
+
+                img.addClass("link");
+                
+                if (img.size())
+                {
+                    img.click(function () {
+                            window.location = title.attr('href');
+                        }
+                    );
+                }
+            }
+        );
+    }
+);
+
+
 
 /* YOUR JAVASCRIPT STOPS HERE */
 

@@ -114,13 +114,13 @@ class AgCommonViewlet(ViewletBase):
 
     @property
     def isHomePage(self):
-        return self.isLayout(views=['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view'])
+        return self.isLayout(views=['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view', 'tile_homepage_view'])
 
     @property
     def showHomepageText(self):
         if self.context.getText() and self.isLayout(views=['document_homepage_view']):
             return True
-        elif ( self.context.getText() or self.context.Description() ) and self.isLayout(views=['document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view']):
+        elif ( self.context.getText() or self.context.Description() ) and self.isLayout(views=['document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view', 'tile_homepage_view']):
             return True
         else:
             return False

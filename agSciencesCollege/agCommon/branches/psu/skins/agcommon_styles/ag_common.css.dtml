@@ -542,6 +542,10 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     margin-top: 0.5em;
 }
 
+.rssImage img.link {
+    cursor: pointer;
+}
+
 #portal-column-one dl.portletfeedmixer dd.summary span.date,
 #portal-column-two dl.portletfeedmixer dd.summary span.date,
 #rightcolumn dl.portletfeedmixer dd.summary span.date,

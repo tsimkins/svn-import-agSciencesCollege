@@ -1404,6 +1404,15 @@
 
     table.responsive td:empty { display: none; }
 
+    /* Zap all feedmixer images from tile homepage */
+    body.template-tile_homepage_view #portlets-above .portletItem .rssImage {
+        display: none;
+    }
+
+    body.template-tile_homepage_view #portlets-above .portletItem {
+        margin-bottom: 0.5em !important;
+    }
+
 }    
 
 

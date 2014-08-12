@@ -1,5 +1,5 @@
 <div id="centercolumn" class="agCommonPortlet" 
-     tal:condition="python: view.isHomePage and not view.isLayout(views=['portlet_homepage_view']) and (mp or hsc)"
+     tal:condition="python: view.isHomePage and not view.isLayout(views=['portlet_homepage_view', 'tile_homepage_view']) and (mp or hsc)"
      tal:define="plone_view context/@@plone;
                  mp view/can_manage_portlets;
                  hsr python:plone_view.have_portlets('agcommon.rightcolumn', view);
