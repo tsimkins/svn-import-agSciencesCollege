@@ -295,6 +295,19 @@
         h2.headline {
             margin-bottom: 6pt;
         }
+        
+        div.about h2 {
+            margin-bottom: 2pt;
+            margin-top: 6pt;
+        }
+        
+        div.about p, div.about li {
+            margin-bottom: 2pt;
+        }
+        
+        div.about {
+            margin-bottom: 6pt;
+        }
 
     </style>
 </metal:local_style_slot>
