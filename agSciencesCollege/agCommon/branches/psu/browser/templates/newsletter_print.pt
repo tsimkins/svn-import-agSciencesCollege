@@ -30,53 +30,6 @@
             }
         }
 
-        img.image-right, img.image-left {
-            float: right;
-            clear: right;
-            
-        }
-
-        .contentLeadImageContainer {
-            background-color: transparent;
-            width: 200px;
-            float: right;
-            clear: right;
-            padding: 8px;
-        }
-
-        .documentText img {
-            margin: 8px;
-        }
-
-        .contentLeadImageContainer img {
-            margin: 0px;
-        }
-
-        .contentLeadImageContainer img, img.image-right, img.image-left {
-            width: 200px;
-            border: none;
-            vertical-align: middle;
-            height: auto;
-        }
-
-        .contentLeadImageContainer:first-child {
-            clear: none;
-        }
-
-        .discreet {
-            color: #4F4F4F;
-            font-size: 9pt;
-            font-weight: normal;
-        }
-
-        .discreet.contentLeadImageContainer {
-            width: 200px;
-        }
-
-        .discreet.contentLeadImageContainer img {
-            margin-left: 0;
-        }
-
         #portal-column-two {
             display: none;
         }
@@ -320,7 +273,52 @@
             margin-bottom: 4pt;
         }
 
+        img.image-right, img.image-left {
+            float: right;
+            clear: right;
+            
+        }
 
+        .contentLeadImageContainer {
+            background-color: transparent;
+            width: 200px;
+            float: right;
+            clear: right;
+            padding: 8px;
+        }
+
+        .documentText img {
+            margin: 8px;
+        }
+
+        .contentLeadImageContainer img {
+            margin: 0px;
+        }
+
+        .contentLeadImageContainer img, img.image-right, img.image-left {
+            width: 200px;
+            border: none;
+            vertical-align: middle;
+            height: auto;
+        }
+
+        .contentLeadImageContainer:first-child {
+            clear: none;
+        }
+
+        .discreet {
+            color: #4F4F4F;
+            font-size: 9pt;
+            font-weight: normal;
+        }
+
+        .discreet.contentLeadImageContainer {
+            width: 200px;
+        }
+
+        .discreet.contentLeadImageContainer img {
+            margin-left: 0;
+        }
 
     </style>
 </metal:local_style_slot>
