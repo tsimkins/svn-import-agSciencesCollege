@@ -39,7 +39,7 @@ class TileHomepage(CSSView):
         for (block_klass, block_css, block_percent) in self.getBlockWidths(min_width=50):
             css.append("""
         
-                #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .rssImage{
+                #content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .rssImage{
                     width: 33%%;
                     float: right;
                     margin: 0 0 0.125em 0.25em;
@@ -71,24 +71,30 @@ class TileHomepage(CSSView):
         
             css.append("""
         
-                #portlets-above .portlet-width-%(block_klass)s {
+                #content #portlets-above .portlet-width-%(block_klass)s {
                     width: %(block_css)s%%;
                     float: left;
                     padding: 0;
                     margin: 0.5em 0 0 0;
                 }
                 
-                #portlets-above .portlet-width-%(block_klass)s .portletHeader,
-                #portlets-above .portlet-width-%(block_klass)s .portletFooter {
+                #content #portlets-above .portlet-width-%(block_klass)s .portletHeader,
+                #content #portlets-above .portlet-width-%(block_klass)s .portletFooter,
+                #content #portlets-above .portlet-width-%(block_klass)s img.feedmixerCollectionLeadImage {
                     display: block;
                     width: %(header_width_percent)0.6f%%;
                     margin: 0 %(header_padding_percent)0.6f%%;
                     padding: 2em 0 0.25em 0;
                 }
                 
-                #portlets-above .portlet-width-%(block_klass)s .portletFooter {
+                #content #portlets-above .portlet-width-%(block_klass)s .portletFooter {
                     padding: 0.25em 0 0 0;
                     clear: both;
+                }
+
+                #content #portlets-above .portlet-width-%(block_klass)s img.feedmixerCollectionLeadImage {
+                    padding: 0;
+                    height: auto;
                 }
 
             """ % {
@@ -123,13 +129,13 @@ class TileHomepage(CSSView):
         css.append("    /* Block width % d, Content width: %d */" % (block_width, content_width))
 
         css.append("""
-            #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-%(n)s .portletItem {
+            #content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-%(n)s .portletItem {
                 width: %(content_width_percent)0.6f%%;
                 margin: 0.375em %(padding_percent)0.6f%% 1em %(padding_percent)0.6f%%;
                 float: left;
             }
             
-            #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-%(n)s .portletItem:nth-child(%(n_child)sn + 1) {
+            #content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-%(n)s .portletItem:nth-child(%(n_child)sn + 1) {
                 clear: left;
             }
         """ % {'block_klass' : block_klass, 'n' : n, 'content_width_percent' : content_width_percent*100, 'padding_percent' : padding_percent*100, 'n_child' : column_count})
@@ -144,7 +150,7 @@ class TileHomepage(CSSView):
     
         return ["""
 
-        #portlets-above {
+        #content #portlets-above {
             display: block;
         }
 
@@ -160,7 +166,7 @@ class TileHomepage(CSSView):
             padding: 0;
         }
 
-        #portlets-above .portletHeader {
+        #content #portlets-above .portletHeader {
             display: block !important;
             font-size: 1em;
             font-weight: bold;
@@ -171,49 +177,49 @@ class TileHomepage(CSSView):
             font-family: Arial,Helvetica,Helv,sans-serif;
         }
 
-        #portlets-above .portletItem a, 
-        #portlets-above .portletItem .state-published {
+        #content #portlets-above .portletItem a, 
+        #content #portlets-above .portletItem .state-published {
             color: #2256BD !important;
             display: block;
             padding: 0 !important;
             font-size: 0.90625em;
         }
 
-        #portlets-above .portletItem a:hover, 
-        #portlets-above .portletItem .state-published:hover {
+        #content #portlets-above .portletItem a:hover, 
+        #content #portlets-above .portletItem .state-published:hover {
             text-decoration: underline;
             background-color: transparent !important;
             color: #2256BD !important;
             border-bottom: none;
         }
         
-        #portlets-above .portletItem .portletItemDetails,
-        #portlets-above .portletFooter a {
+        #content #portlets-above .portletItem .portletItemDetails,
+        #content #portlets-above .portletFooter a {
             color: #575757;
             font-weight: normal;
             font-size: 0.75em;
             line-height: 1.5em;
         }
 
-        #portlets-above .portletItem .portletItemDetails.date,
-        #portlets-above .portletItem .portletItemDetails.location {
+        #content #portlets-above .portletItem .portletItemDetails.date,
+        #content #portlets-above .portletItem .portletItemDetails.location {
             font-size: 0.6875em;
             color: #767676;
         }
 
-        #portlets-above .rssImage {
+        #content #portlets-above .rssImage {
             margin-bottom: 0.125em;
         }
 
-        #portlets-above .portletFooter {
+        #content #portlets-above .portletFooter {
         }
 
         
-        #portlets-above .portletFooter a {
+        #content #portlets-above .portletFooter a {
             color: #2256BD;
         }
 
-        #portlets-above .portletFooter a:hover {
+        #content #portlets-above .portletFooter a:hover {
             text-decoration: underline;
         }
         
@@ -223,16 +229,21 @@ class TileHomepage(CSSView):
             margin: 0;
         }
 
+        #content #portlets-above .portletStaticText {
+            font-size: 0.875em;
+            color: #575757;
+        }
+
         """ % {'homepage_text_width' : 100*homepage_text_width, 'homepage_text_padding' : 100*homepage_text_padding}]
 
     def getPortletCSS(self):
         return ["""
 
-        #portlets-above .portlet {
+        #content #portlets-above .portlet {
             margin-bottom: 1em;
         }
         
-        #portlets-above .portlet img {
+        #content #portlets-above .portlet img {
             max-width: 100%;
             width: 100%;
             height: auto;

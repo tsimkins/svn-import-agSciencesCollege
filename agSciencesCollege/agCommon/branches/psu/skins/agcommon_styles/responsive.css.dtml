@@ -1413,6 +1413,10 @@
         margin-bottom: 0.5em !important;
     }
 
+    body.template-tile_homepage_view #portlets-above img.feedmixerCollectionLeadImage {
+        display: none;
+    }
+
 }    
 
 
