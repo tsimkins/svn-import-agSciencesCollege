@@ -287,6 +287,10 @@
         div.documentDescription {
             margin-top: 6pt;
         }
+        
+        h2.headline {
+            margin-bottom: 2pt;
+        }
 
     </style>
 </metal:local_style_slot>
