@@ -21,42 +21,62 @@
             }
             
             .contentLeadImageContainer img {
-                max-width: 254px;
+                max-width: 100%;
+                height: auto;
             }
 
             table td#portal-column-content, table td.header, table.leadimage td, table td.graphic-header {
                 padding-left: 15px;
             }
         }
-        
-        .contentLeadImageContainer, img.image-right, img.image-left {
-            background-color: transparent;
+
+        img.image-right, img.image-left {
             float: right;
-            margin: 0.375em 0 0.5em;
-            max-width: 267px;
-            width: auto;
             clear: right;
+            
+        }
+
+        .contentLeadImageContainer {
+            background-color: transparent;
+            width: 200px;
+            float: right;
+            clear: right;
+            padding: 8px;
+        }
+
+        .documentText img {
+            margin: 8px;
+        }
+
+        .contentLeadImageContainer img {
+            margin: 0px;
+        }
+
+        .contentLeadImageContainer img, img.image-right, img.image-left {
+            width: 200px;
+            border: none;
+            vertical-align: middle;
+            height: auto;
         }
 
         .contentLeadImageContainer:first-child {
             clear: none;
         }
 
-        .contentLeadImageContainer img, img.image-right, img.image-left {
-            margin-left: 1em;
-            border: medium none;
-            vertical-align: middle;
-        }
-
-        .contentLeadImageContainer p.discreet {
-            padding-left: 1.125em;
-        }
-
         .discreet {
             color: #4F4F4F;
-            font-size: 85%;
+            font-size: 9pt;
             font-weight: normal;
         }
+
+        .discreet.contentLeadImageContainer {
+            width: 200px;
+        }
+
+        .discreet.contentLeadImageContainer img {
+            margin-left: 0;
+        }
+
 
         #portal-column-two {
             display: none;
@@ -283,6 +303,16 @@
                         if (description)
                         {
                             description.before(leadImage);
+                        }
+                    }
+                );
+
+                $('#portal-column-content .discreet, #portal-column-content .contentLeadImageContainerFullWidth').each(
+                    function() {
+                        img = $(this).find('img');
+                        if (img.size())
+                        {
+                            $(this).addClass('contentLeadImageContainer');
                         }
                     }
                 );
