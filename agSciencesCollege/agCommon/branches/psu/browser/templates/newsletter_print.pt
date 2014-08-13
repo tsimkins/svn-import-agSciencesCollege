@@ -224,6 +224,10 @@
         .effectiveDate {
             margin-bottom: 10pt;
         }
+        
+        #portal-column-content .effectiveDate {
+            display: none;
+        }
 
         .facultyStaffDirectory {
             margin-bottom: 0.625em;
@@ -289,7 +293,7 @@
         }
         
         h2.headline {
-            margin-bottom: 2pt;
+            margin-bottom: 6pt;
         }
 
     </style>
@@ -325,7 +329,7 @@
                     }
                 );
 
-                //window.print();
+                window.print();
             }
         );
 
