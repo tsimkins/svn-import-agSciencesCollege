@@ -283,6 +283,10 @@
         .imagePortlet {
             display: none;
         }
+        
+        div.documentDescription {
+            margin-top: 6pt;
+        }
 
     </style>
 </metal:local_style_slot>
