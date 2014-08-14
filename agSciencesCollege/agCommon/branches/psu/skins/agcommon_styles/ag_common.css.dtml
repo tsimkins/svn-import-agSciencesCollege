@@ -1687,24 +1687,19 @@ dd.portletItem p {
 
 /* Paragraph and Unordered List readability per cmore */
 
-#content ul {
+#content .documentText ul {
     margin: 0.375em 0 1.125em 2.5em;
 }
 
-/* Nested ul's */
-p {
-    margin: 1em 0;
-}
-
-#content p{
+#content .documentText p {
     margin: 0.375em 0 1.125em 0;
 }
 
-#content dd {
+#content .documentText dd {
     margin: 0 0 1.5em 0;
 }
 
-#content dt {
+#content .documentText dt {
     margin: 0.375em 0 0.5em 0;
 }
 

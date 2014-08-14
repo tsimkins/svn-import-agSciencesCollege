@@ -136,7 +136,7 @@ function searchOnSubmit()
 jq(document).ready( 
     function () {
         setSearch();
-        resizeColumns();
+        //resizeColumns();
     }
 );
 /* Hide Short Name from Add screen */
@@ -950,7 +950,7 @@ jq(document).ready(
     function() {
         enableMobile();
         equalizeTopNav();
-        resizeColumns();
+        //resizeColumns();
 
         if (msieversion() <= 8 && msieversion() > 0)
         {
@@ -966,7 +966,7 @@ jq(window).resize(
     function() {
         enableMobile();
         equalizeTopNav();
-        resizeColumns();
+        //resizeColumns();
 
         if (msieversion() <= 8 && msieversion() > 0)
         {

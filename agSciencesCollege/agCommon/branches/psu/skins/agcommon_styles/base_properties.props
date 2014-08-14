@@ -84,8 +84,8 @@ backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#F6F6F6
-frontRightPortletHeaderBackgroundColor:string=#4D4D4D
+frontRightPortletHeaderTextColor:string=#4B4B4B
+frontRightPortletHeaderBackgroundColor:string=transparent
 frontRightPortletLinkColor:string=#2256BD
 frontRightPortletLinkHoverColor:string=#003FAC
 frontRightPortletTextColor:string=#3F3F3F

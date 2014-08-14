@@ -128,25 +128,14 @@
     #portal-column-content #content #homepage-text.sr {
         display: block;
     	margin: 0 0 0.1875em 0;
-    	width: 100%;
+    	width: auto;
     	clear: both;
     	float: none;
     	background-color: transparent;
     	padding-left: 0;
     	padding-right: 0;
     }
-    
-    #content #rightcolumn .portletHeader {
-        text-align: left;
-        padding-left: 0.75em !important;
-        padding-right: 0.5em !important;
-    }
-    
-    #content #rightcolumn,
-    #content #rightcolumn .portlet {
-    	background-color: transparent;
-    }
-    
+
     #portal-column-one {
         border: none;
         background-image: none;
@@ -451,11 +440,6 @@
     
     #centercolumn.agCommonPortlet .portletWrapper {
         margin: 0 0 1em 0;
-    }
-    
-    #content #centercolumn.agCommonPortlet .portletItem a.title {
-        font-size: 1.375em;
-        margin-top: 0.25em;
     }
     
     /* = Adjust visual-portal-wrapper and portal-top for no top nav = */
@@ -1245,10 +1229,6 @@
         margin-right: 0;
     }
     
-    #centercolumn.agCommonPortlet .portletItem {
-        margin: 0;
-    }
-    
     #portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .title,
     #portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .date,
     #portal-column-content.sl #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .summary,
@@ -1405,16 +1385,9 @@
     table.responsive td:empty { display: none; }
 
     /* Zap all feedmixer images from tile homepage */
-    body.template-tile_homepage_view #portlets-above .portletItem .rssImage {
-        display: none;
-    }
-
-    body.template-tile_homepage_view #portlets-above .portletItem {
-        margin-bottom: 0.5em !important;
-    }
-
-    body.template-tile_homepage_view #portlets-above img.feedmixerCollectionLeadImage {
-        display: none;
+    body.template-tile_homepage_view #portlets-above .portletItem .rssImage,
+    body.template-tile_homepage_view #portlets-above .portletWrapper .feedmixerCollectionLeadImage {
+        display: none !important;
     }
 
 }    
@@ -1528,10 +1501,6 @@
         width: 180px;
     }
     
-    #content #centercolumn.agCommonPortlet .portletItem a.title {
-        font-size: 1.125em;
-    }
-        
     form.event-registration-button input[type="submit"] {
         float: none;
         display: block;

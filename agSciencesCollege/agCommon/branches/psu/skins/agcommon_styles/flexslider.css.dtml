@@ -100,6 +100,10 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 .flexslider .contentLeadImageContainer img {
     margin: 0;
     width: 100%;
+    max-height: 340px;
+}
+
+#portal-column-content.sl .flexslider .contentLeadImageContainer img {
     max-height: 265px;
 }
 
