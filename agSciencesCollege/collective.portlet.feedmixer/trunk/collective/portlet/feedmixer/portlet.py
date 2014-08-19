@@ -161,7 +161,7 @@ class Renderer(base.Renderer):
 
             if field is not None:
                 if field.get_size(context) != 0:
-                    return field.tag(context, scale=scale, css_class=css_class, title=title)
+                    return field.tag(context, scale=scale, css_class=css_class, title=title, alt=title)
 
             return ''
 

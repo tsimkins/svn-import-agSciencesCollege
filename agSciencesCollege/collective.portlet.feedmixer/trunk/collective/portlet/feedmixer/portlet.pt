@@ -36,8 +36,9 @@
                         className python:isFirst and className + ' first' or className;
                         className python:show_summary and className + ' summary' or className;
                         className python:oddrow and className + ' odd' or className + ' even';
-                        className python:event_info and className + '  printed-event' or className;
-                        className python:isCanceled and className + '  canceled' or className;
+                        className python:event_info and className + ' printed-event' or className;
+                        className python:isCanceled and className + ' canceled' or className;
+                        className python:show_event_info and className + ' event_summary' or className;
                         leadimage entry/agsci_leadimage|nothing;
                         hasImage python:(view.show_image and leadimage) or None;
                         imageURL python:hasImage and entry.agsci_leadimage.get('url') + view.image_suffix or None;"
@@ -96,6 +97,8 @@
                     [Feed Summary]
                 </div>
                 
+                <div class="visualClear"><!-- --></div>
+                
         </dd>
     </tal:entry>
     
@@ -109,5 +112,7 @@
             i18n:translate="box_full_feed_view">More<span class="hiddenStructure" 
                                                           tal:omit-tag="more_text"> <span tal:replace="more_title" /></span>&hellip;</a>
     </dd>
+
+    <dd class="visualClear"><!-- --></dd>
 
 </dl>
