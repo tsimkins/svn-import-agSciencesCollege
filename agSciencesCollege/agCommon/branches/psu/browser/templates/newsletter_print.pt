@@ -352,8 +352,22 @@
                         }
                     }
                 );
+                
+                $('#portal-column-content .discreet, #portal-column-content .documentText').each(
+                    function() {
+                        var counter = 0;
+                        var leadimage = $(this).find('.contentLeadImageContainer');
+                        if (leadimage.size() > 2)
+                        {
+                            for (var i=2; i<leadimage.size(); i++)
+                            {
+                                $(leadimage[i]).hide();
+                            }
+                        }
+                    }
+                );
 
-                window.print();
+                //window.print();
             }
         );
 
