@@ -1,6 +1,7 @@
 import urllib2
 import re
-    
+import time
+
 data = {
     'extension': ['cooperative-extension', 'penn-state-cooperative-extension', 'extension', 'penn-state-extension'],
     'aec' : ['earth-and-environment', 'chesapeake-bay', 'energy', 'water', 'water-quality', 'environmental-engineering', 'environment', 'environmental-stewardship', 'forestry']
@@ -24,6 +25,8 @@ def setTags(context, tag):
     found_articles = False
     
     for u in urls:
+        print "Sleeping 10"
+        time.sleep(10)
         tag_url = 'http://news.psu.edu/rss/tag/%s' % u
         print "Grabbing %s" % tag_url
         rss = urllib2.urlopen(tag_url).read()
