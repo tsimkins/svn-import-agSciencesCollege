@@ -86,14 +86,13 @@ class RegistrationView(BrowserView):
 
         now = DateTime()
         
-        if now > event.end():
-            return False
-        
         if hasattr(event, 'free_registration_deadline'):
             registration_deadline = getattr(event, 'free_registration_deadline')
             if registration_deadline:
-                if now > registration_deadline:
-                    return False
+                return (now < registration_deadline)
+
+        if now > event.end():
+            return False
 
         if hasattr(event, 'free_registration_attendee_limit'):
             attendee_limit = getattr(event, 'free_registration_attendee_limit')
