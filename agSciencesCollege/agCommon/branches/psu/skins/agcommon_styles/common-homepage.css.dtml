@@ -182,18 +182,17 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 #content .agCommonPortlet .portletHeader,
 #content #homepage-text h1.documentFirstHeading {
     background-color: transparent;
-    padding: 0 !important;
+    padding: 0.375em 0 0 0 !important;
     border-width: 0;
     margin: 0.5em 0 0.375em 0;
     line-height: 1.3em;
-    font-size: 1em !important;
+    font-size: 1.375em !important;
     color: &dtml-frontRightPortletHeaderTextColor; !important; 
-    font-weight: bold !important;
+    font-weight: normal !important;
     text-align: left;
     border-width: 0 0 1px 0 !important;
     border-style: solid;
-    border-color: #999999 !important;
-    font-family: Arial, Helvetica, Helv, sans-serif;
+    border-color: #DDDDDD !important;    font-family: Arial, Helvetica, Helv, sans-serif;
     text-transform: none;
 }
 

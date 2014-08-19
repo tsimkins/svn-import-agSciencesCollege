@@ -84,14 +84,14 @@ backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#4B4B4B
+frontRightPortletHeaderTextColor:string=#AC5209
 frontRightPortletHeaderBackgroundColor:string=transparent
 frontRightPortletLinkColor:string=#2256BD
 frontRightPortletLinkHoverColor:string=#003FAC
 frontRightPortletTextColor:string=#3F3F3F
 frontRightPortletBackgroundColor:string=#F6F6F6
 
-insideRightPortletHeaderTextColor:string=#4B4B4B
+insideRightPortletHeaderTextColor:string=#AC5209
 insideRightPortletHeaderBackgroundColor:string=transparent
 insideRightPortletBackgroundColor:string=#F6F6F6
 insideRightPortletTextColor:string=#333333

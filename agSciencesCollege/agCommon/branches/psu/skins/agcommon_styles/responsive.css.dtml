@@ -999,7 +999,7 @@
     }
     
     #portal-column-one .portletNavigationTree .portletItem li {
-        border-top: 1px dashed #CCCCCC;
+        border-top: 1px dashed #DDDDDD;
         border-bottom: none;
         margin: 0;
         padding: 0;

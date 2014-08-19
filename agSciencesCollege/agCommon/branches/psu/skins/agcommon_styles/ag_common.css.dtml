@@ -271,13 +271,13 @@ body.icons-on.empty-top-navigation #portal-top {
 #navigation-mobile .portletHeader {
     background-color: transparent;
     color: &dtml-insideRightPortletHeaderTextColor;;
-    border-color: &dtml-insideRightPortletHeaderTextColor;;
+    border-color: #DDDDDD;
     border-width: 0 0 1px 0;
-    padding: 0.1875em 0 0.125em 0;
-    font-weight: bold;
+    padding: 0.1875em 0 0 0;
+    font-weight: normal;
     line-height: 1.25em;
     font-family: Arial, Helvetica, Helv, sans-serif;
-    font-size: 1.1875em;
+    font-size: 1.25em;
 }
 
 #portal-column-one .portlet,
@@ -435,7 +435,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #navigation-mobile .portletNavigationTree .portletItem li,
 #portal-column-one .portletNavigationTree .portletItem li {
-    border-top: 1px dashed #CCCCCC;
+    border-top: 1px dashed #DDDDDD;
     margin: 0;
     padding: 0;
 }
@@ -1021,11 +1021,11 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-color: transparent;
     color: &dtml-insideRightPortletHeaderTextColor;;
     font-weight: bold;
-    padding: 0.1875em 0 0.125em 0;
+    padding: 0.1875em 0 0 0;
     text-align: left;
     border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: &dtml-insideRightPortletHeaderTextColor;;
+    border-color: #DFC0A7;
     margin: 2px 0 0 0;
     line-height: 1.25em;
     font-family: Arial, Helvetica, Helv, serif;
@@ -1212,7 +1212,7 @@ html.kupu-html {
     padding: 0 0 0.0625em 0;
     border: none;
     font-weight: normal;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #DDDDDD;
     line-height: 1.25em;
 }
 
@@ -2598,7 +2598,7 @@ table.plain th, table.plain td {
    margin-top: 5px;
    border-width: 1px 0 0 0;
    border-style: solid;
-   border-color: #CCCCCC;
+   border-color: #DDDDDD;
 }
 
 body.template-file_view #disclaimer {
@@ -2716,11 +2716,11 @@ table.events td.canceled span,
 
 #content .listingWarning,
 .portlet .listingWarning {
-    color: #C74606;
-    font-size: 1.25em;
+    color: #000000;
+    font-size: 0.9375em;
     font-variant: small-caps;
     font-weight: bold;
-    margin: 0.5em 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -2856,6 +2856,11 @@ body.template-folder_full_view #content .documentText h3 {
     margin-top: 0.75em;
 }
 
+/* .documentActions */
+
+.documentActions {
+    border-color: #DDDDDD;
+}
 
 /* Contact Information (contributors) */
 
@@ -3322,7 +3327,7 @@ form.event-registration input[type="submit"]::-moz-focus-inner {
 #content h2.form-separator {
     margin: 2.5em -0.5em 0.5em -0.5em;
     background-color: #2E4676;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #DDDDDD;
     padding: 0.25em 0.5em;
     font-size: 1.125em;
     font-weight: bold;
