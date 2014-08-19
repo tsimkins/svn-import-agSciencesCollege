@@ -17,14 +17,16 @@ def setTags(context, tag):
     else:
         urls = data[tag] 
 
-    print "Urls to search: %s" % ",".join(urls)
+    print "Urls to search: %s" % ", ".join(urls)
     
     linkRegex = re.compile("<link>http://news.psu.edu/story/(\d+)/.*?</link>", re.I|re.M)
     
     found_articles = False
     
     for u in urls:
-        rss = urllib2.urlopen('http://news.psu.edu/rss/tag/%s' % u).read()
+        tag_url = 'http://news.psu.edu/rss/tag/%s' % u
+        print "Grabbing %s" % tag_url
+        rss = urllib2.urlopen(tag_url).read()
         for m in re.finditer(linkRegex, rss):
             link = m.group(1)
             if link in context.objectIds():
