@@ -189,4 +189,13 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="*"
+        name="event_rss"
+        class=".views.events.EventProgramZIPView"
+        template="templates/event_rss_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
 </configure>
