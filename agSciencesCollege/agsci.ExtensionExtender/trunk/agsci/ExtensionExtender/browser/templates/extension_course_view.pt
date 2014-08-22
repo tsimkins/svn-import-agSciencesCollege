@@ -19,12 +19,6 @@
                     </p>
                 </tal:course>
             </metal:results-heading>
-            
-            <tal:noeventscourse condition="noEventsCourse">
-                <metal:noevents fill-slot="folder-listing">
-                    <!-- No events -->
-                </metal:noevents>
-            </tal:noeventscourse>
         
             <metal:no-results fill-slot="no-results">
             </metal:no-results>
