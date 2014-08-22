@@ -45,7 +45,7 @@
         
                 <metal:folder-listing define-slot="folder-listing">
         
-                    <tal:listing condition="python: topicContents">
+                    <tal:listing condition="python: topicContents and not noEventsCourse">
                         <tal:default
                              define="folderContents topicContents;
                                      view nocall:context/@@folder_listing_z3;">
