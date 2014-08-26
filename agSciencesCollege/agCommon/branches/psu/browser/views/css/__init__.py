@@ -78,7 +78,9 @@ class TileHomepage(CSSView):
         column_count = n
 
         if mq in ('TABLET'):
-            if n > 2:
+            if n > 3:
+                column_count = 3
+            elif n > 2:
                 column_count = 2
         elif mq in ('BIGPHONE', 'SMALLPHONE'):
             column_count = 1

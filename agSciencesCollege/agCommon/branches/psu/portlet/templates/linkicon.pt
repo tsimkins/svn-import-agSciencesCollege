@@ -12,7 +12,8 @@
                         description licon/description|licon/title;
                         icon licon/icon|nothing;
                         show_icon python: view.show_icon(licon)">
-            <a tal:attributes="href licon/url;
+            <a class="title"
+               tal:attributes="href licon/url;
                                 title title;"
                 ><img tal:condition="show_icon" 
                         tal:attributes="src icon;

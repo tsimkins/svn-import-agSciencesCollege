@@ -45,7 +45,5 @@
     </tal:rss>
     <dd class="portletFooter" tal:condition="view/feedAvailable">
 
-        <span class="portletBottomLeft"></span>
-        <span class="portletBottomRight"></span>
     </dd>
 </dl>

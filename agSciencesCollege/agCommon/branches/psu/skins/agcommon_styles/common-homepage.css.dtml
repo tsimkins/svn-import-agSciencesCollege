@@ -61,9 +61,9 @@
 /*========= Content ============*/
 
 #content {
-    margin: 0 0.424929178470255% 0.375em 0.56657223796034% !important;
+    margin: 0 0.424929178470255% 0.375em 0.56657223796034%;
     width: 99.008498583569405%;
-    padding: 0 !important;
+    padding: 0;
     font-size: 1em;
     display: table;
     border-collapse: separate;
@@ -109,27 +109,27 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 
 #content #homepage-text {
     display: block;
-    margin: 0 0.429799426934097%; /* 3/698 */
-    padding: 0.375em 1.289398280802292%; /* 9/698 */
+    margin: 0 1.668520578420467%;
+    padding: 0.375em 0;
+    width: 96.662958843159066%;
 
 }
 
 #content #homepage-text.sr {
-    width: 67.765042979942693%;  /* (698-24-201)/698 */
+    margin: 0 2.149%;
+    width: 66.7622%;
     float: left;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Has center column */
 
-#content #homepage-text.sc {
-    width: 94.600562%;
-}
-
 #content #homepage-text.sr.sc {
     padding-left: 0;
     padding-right: 0;
-    margin: 0 1.418439716312057%;
-    width: 97.163120567375887%;
+    margin: 0 2.149%;
+    width: 95.702%;
 }
 
 #content #homepage-text .documentFirstHeading {
@@ -159,14 +159,14 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 .agCommonPortlet .portletWrapper {
     border: none;
     padding: 0;
-    margin: 0 0 1em 0;
+    margin: 0 0 1.5em 0;
 }
 
 /* ================= Columns ===================== */
 #centercolumn {
     padding-bottom: 0.25em;
-    margin: 0;
-    width: 100%;
+    margin: 0 2.148997134670487%;
+    width: 95.702005730659026%;
     display: block;
 }
 
@@ -179,29 +179,35 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 
 /* ================= Portlet headers ===================== */
 
-#content .agCommonPortlet .portletHeader,
-#content #homepage-text h1.documentFirstHeading {
+#content .agCommonPortlet .portletHeader {
     background-color: transparent;
-    padding: 0.375em 0 0 0 !important;
+    padding: 0.375em 0 0 0;
     border-width: 0;
-    margin: 0.5em 0 0.375em 0;
+    margin: 0.375em 0 0.375em 0;
     line-height: 1.3em;
-    font-size: 1.375em !important;
-    color: &dtml-frontRightPortletHeaderTextColor; !important; 
-    font-weight: normal !important;
+    font-size: 1.375em;
+    color: #AC5209;
+    font-weight: normal;
     text-align: left;
-    border-width: 0 0 1px 0 !important;
+    border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: #DDDDDD !important;    font-family: Arial, Helvetica, Helv, sans-serif;
+    border-color: #DDDDDD;
+    font-family: Arial, Helvetica, Helv, sans-serif;
     text-transform: none;
 }
 
+#content #centercolumn.agCommonPortlet .portletHeader,
+#content #rightcolumn.agCommonPortlet .portletHeader {
+    font-size: 1.1875em !important;
+    padding-top: 0 !important;
+}
+
 #content .agCommonPortlet .portletHeader span {
-    color: &dtml-frontRightPortletHeaderTextColor; !important; 
+    color: #AC5209 !important; 
 }
 
 .agCommonPortlet .portletHeader a {  
-    color: &dtml-frontRightPortletHeaderTextColor; !important;
+    color: #AC5209 !important;
     margin: 0;
     text-decoration: none;
     border: none !important;
@@ -303,12 +309,30 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 /* --------- Static Text -------- */
 
 .agCommonPortlet .portletStaticText .portletItem {
-    padding: 0.75em 0;
+    padding: 0 0 0.75em 0;
     font-size: 0.90625em;
+    margin: 0;
+}
+
+
+.agCommonPortlet .portletStaticText .portletItem p {
+    margin-bottom: 0.375em;
 }
 
 /* --------- Feedmixer -------- */
 /* http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-hack/ - "Hack Free Approach" */
+
+#centercolumn.agCommonPortlet .portletfeedmixer .portletItem {
+    border-top: 1px dashed #EEEEEE;
+    margin-top: 0.75em;
+    padding-top: 0.75em;
+}
+
+#centercolumn.agCommonPortlet .portletfeedmixer .portletItem:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+}
 
 #rightcolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
     float: none; 
@@ -326,7 +350,7 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem .rssImage {
     float: left; 
-    margin: 0.625em 1.590457256461233% 0.625em 0; /* 8/503 */
+    margin: 0.125em 1.590457256461233% 0.625em 0; /* 8/503 */
     text-align: right;
     width: 18.7089%;
 }
@@ -360,15 +384,17 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 
 #centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem {
     border-style: none;
-    margin: 0 0.5625em 1em 0.5625em;
+    margin: 0.25em 0 0.375em 0;
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage img {
     max-width: 100%;
+    width: 100%;
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage img {
     max-width: 100%;
+    width: 100%;
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixer .portletItem .hasImage {
@@ -398,7 +424,7 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
     background-color: transparent;
 }
 
-.agCommonPortlet .portletItem ul {
+#content .agCommonPortlet .portletItem ul {
     margin: 0;
     padding: 0;
 }
@@ -417,11 +443,30 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 }
 
 .agCommonPortlet dl.people .portletItem {
-    color: #3F3F3F;
+    color: #4B4B4B;
+    line-height: 1.25em;
+}
+
+#content .agCommonPortlet dl.people .portletItem h2 {
+    border: none;
+    margin: 0.5em 0 0.125em 0;
+    font-size: 0.875em !important;
+}
+
+#content .agCommonPortlet dl.people div {
+    font-size: 0.75em;
+}
+
+#content .agCommonPortlet dl.people .title {
+    font-size: 0.75em;
 }
 
 .agCommonPortlet dl.people .portletItem h2 a {
     font-weight: bold !important;
+}
+
+#content .agCommonPortlet dl.people .portletItem span.email a.email {
+    display: inline;
 }
 
 .agCommonPortlet .portletItem a:hover {

@@ -40,11 +40,37 @@ def total_width():
 portlet_rss_image = """
 
 #content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .rssImage {
-    width: 33%%;
+    width: 33.333333333333333%%;
     float: right;
-    margin: 0 0 0.125em 0.25em;
+    margin: 0 0 0.125em 0.888888888888889%%;
     padding: 0;
 }
+
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimageleft .rssImage {
+    width: 33.333333333333333%%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimagelarge .rssImage {
+    width: auto;
+    float: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.25em;
+}
+
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimageleft .title,
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimageleft .portletItemDetails {
+    margin-left: 35%%;
+}
+
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimagelarge .title,
+#content #portlets-above .portlet-width-%(block_klass)s.portlet-item-count-1 .portletfeedmixerimagelarge .portletItemDetails {
+    margin-left: 0;
+}
+
 """
 
 portlet_block_css = """
@@ -53,7 +79,7 @@ portlet_block_css = """
     width: %(block_percent)0.6f%%;
     float: left;
     padding: 0;
-    margin: 0.5em 0;
+    margin: 0;
 }
 
 #content #portlets-above .portlet-width-%(block_klass)s .portletHeader,
@@ -72,6 +98,8 @@ portlet_block_css = """
 #content #portlets-above .portlet-width-%(block_klass)s img.feedmixerCollectionLeadImage {
     padding: 0;
     height: auto;
+    margin-top: 1em;
+    margin-bottom: -0.5em;
 }
 
 """
@@ -95,6 +123,14 @@ contentwellportlet_css = """
     display: block;
 }
 
+#portal-column-content.sl #content #portlets-above .agCommonPortlet .portletHeader{
+    font-size: 1.25em;
+}
+
+#portal-column-content.sl #content #portlets-above .agCommonPortlet .portletItem {
+    margin-bottom: 0.875em;
+}
+
 div.AbovePortletManager1, 
 div.AbovePortletManager2, 
 div.AbovePortletManager3, 
@@ -111,7 +147,7 @@ div.AbovePortletManager5 {
 
 portlet_css = """
 #content #portlets-above .portlet {
-    margin-bottom: 1em;
+    margin-bottom: 0.375em;
 }
 
 #content #portlets-above .portlet img {

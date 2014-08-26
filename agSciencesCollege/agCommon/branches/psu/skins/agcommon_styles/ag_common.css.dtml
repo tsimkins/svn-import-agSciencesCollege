@@ -9,15 +9,12 @@
 
 body {
     background-color: &dtml-bodyBackgroundGradientColor;;
-
     background-position: 0 -280px; 
     background-repeat: repeat-x;
     background-image: url(&dtml-portal_url;/background-sprites.png);
-        
     color: #000000;
     background-repeat: repeat-x;
-
-    font-size: 100% !important;
+    font-size: 100%;
 }
 
 /* = visual-portal-wrapper ================================== */
@@ -259,7 +256,7 @@ body.icons-on.empty-top-navigation #portal-top {
     margin: 0 0 1.25em 0; 
     width: 100%;
     padding: 0;
-    font-size: 0.71875em;
+    font-size: 0.75em;
 }
 
 #navigation-mobile .portletWrapper {
@@ -274,10 +271,10 @@ body.icons-on.empty-top-navigation #portal-top {
     border-color: #DDDDDD;
     border-width: 0 0 1px 0;
     padding: 0.1875em 0 0 0;
-    font-weight: normal;
+    font-weight: bold;
     line-height: 1.25em;
     font-family: Arial, Helvetica, Helv, sans-serif;
-    font-size: 1.25em;
+    font-size: 1.1875em;
 }
 
 #portal-column-one .portlet,
@@ -435,7 +432,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #navigation-mobile .portletNavigationTree .portletItem li,
 #portal-column-one .portletNavigationTree .portletItem li {
-    border-top: 1px dashed #DDDDDD;
+    border-top: 1px dashed #EEEEEE;
     margin: 0;
     padding: 0;
 }
@@ -682,6 +679,10 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     vertical-align: middle;
 }
 
+#rightcolumn .linkIcon .sprite a {
+    margin-left: 2.3125em;
+}
+
 #portlets-mobile .linkIcon,
 #portal-column-one .linkIcon,
 #portal-column-two dl.linkIcon {
@@ -698,10 +699,6 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-color: transparent;
     background-image: none;
     min-height: 24px;
-}
-
-#rightcolumn .linkIcon .portletItem {
-    margin: 1em;
 }
 
 #portlets-mobile .linkIcon a,
@@ -731,10 +728,14 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portlets-mobile .linkIcon .sprite a span,
 #portal-column-one .linkIcon .sprite a span,
-#portal-column-two dl.linkIcon .sprite a span,
-#rightcolumn .linkIcon .sprite a span {
-    padding-top: 0.375em;
+#portal-column-two dl.linkIcon .sprite a span {
+    padding-top: 0.25em;
 }
+
+#rightcolumn .linkIcon .sprite a span {
+    padding-top: 0.125em;
+}
+
 
 #portlets-mobile .linkIcon img, 
 #portal-column-one .linkIcon img, 
@@ -744,7 +745,6 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     color: &dtml-leftLinkTextHoverColor;;
     margin: 0;
 }
-
 
 /* Link Buttons */
 
@@ -974,12 +974,11 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     padding: 0;
     margin: 0;
     background-color: &dtml-insideRightPortletBackgroundColor;;
-    width: 22.491730981256891%; /* ((8+8+4)+(92*2))/907 */
+    width: 22.27122381477398%; /* ((8+8+4)+(92*2))/907 */
     vertical-align: top;
     display: table-cell;
+    border-left: 1px solid #DDDDDD;
 }
-
-
 
 #portal-column-two h2 {
     font-size: 1em;
@@ -990,11 +989,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 }
 
 #portal-column-two .visualPadding {
-    padding: 0.75em 3.92156862745098%; /* 8/204 */
-}
-
-#portal-column-two dd.portletItem {
-    padding: 0.5em 0;
+    padding: 0.75em 5.911330049261084%; /* 12/204 */
 }
 
 #portal-column-two .date, #portal-column-two .location {
@@ -1008,7 +1003,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-color: transparent;
     border: none;
     padding: 0;
-    font-size: 0.6875em;
+    font-size: 0.75em;
 }
 
 #portal-column-two .portlet {
@@ -1019,13 +1014,13 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portal-column-two .portletHeader {
     background-color: transparent;
-    color: &dtml-insideRightPortletHeaderTextColor;;
+    color: #4B4B4B;
     font-weight: bold;
     padding: 0.1875em 0 0 0;
     text-align: left;
     border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: #DFC0A7;
+    border-color: #CFCFCF;
     margin: 2px 0 0 0;
     line-height: 1.25em;
     font-family: Arial, Helvetica, Helv, serif;
@@ -1040,8 +1035,9 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     background-color: transparent;
     border-width: 0;
     color: &dtml-insideRightPortletTextColor;;
-    padding: 0;
-    font-size: 1.0625em;
+    padding: 0.375em 0;
+    margin-bottom: 0.375em;
+    font-size: 1em;
 }
 
 #portal-column-two .portletItem ul {
@@ -1073,7 +1069,8 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 }
 
 #portal-column-two .portletFooter {
-    background-color: &dtml-insideRightPortletBackgroundColor;;
+    background-color: transparent;
+    font-size: 0.875em;
 }
 
 #portal-column-two ul li a {
@@ -1144,7 +1141,7 @@ dl.people .adr {
 #content {
     background-color: transparent;
     padding: 0 0 1.5em 0 !important;
-    font-size: 0.84375em;
+    font-size: 0.875em;
     margin: 0 2.873359347286272%; /* 704.75 */
     letter-spacing: -0.005em;
     width:   94.253281305427457%; /* 664.25/704.75 */
@@ -1173,7 +1170,7 @@ dl.people .adr {
 
 #content a {
     color: &dtml-linkColor;;
-    border-bottom: 1px solid #D1D6DF;
+    border-bottom: 1px solid #DDDDDD;
     text-decoration: none;
 }
 
@@ -1435,11 +1432,11 @@ body.template-person_view #content h3 {
 #addthis {
     font-size: 1.25em;
     color: #333333;
-    padding: 0 4px 4px 4px;
+    padding: 0 0.25em 0.25em 0.25em;
     border: none;
     display: block;
     float: right;
-    margin: -8px 0 0 8px;
+    margin: -0.25em 0 0 0.5em;
 }
 
 #addthis a {
@@ -1475,8 +1472,8 @@ body.template-person_view #content #addthis h2,
 #addthis h2 {
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: #999999;
-    color: #333333;
+    border-bottom-color: #DDDDDD;
+    color: #4b4b4b;
     text-align: right;
     font-size: 0.625em;
     margin-top: 0;
@@ -1677,8 +1674,10 @@ dd.portletItem p {
 }
 
 .portletFooter {
-    border-style: none;
-    padding: 0.25em;
+    border: none;
+    padding: 0;
+    margin: 0.25em 0;
+    text-align: left;
 }
 
 .image-left, .image-right {
@@ -1956,7 +1955,7 @@ body.template-news_listing #portal-column-two dd {
 
 body.template-newsitem_view .effectiveDate {
     color: #76797C;
-    font-size: 0.84375em;
+    font-size: 0.8125em;
     margin-bottom: 1em;
     margin-top: 0;
 }
@@ -2038,7 +2037,7 @@ body.template-pgv_sg_carousel_view #content {
     background-color: &dtml-leftSubNavBackground;;
     border: &dtml-leftNavBorderColor; solid 1px;
     padding: 0.75em;
-    font-size: 0.84375em;
+    font-size: 0.8125em;
     width: 25%;
     margin: 1em 0 1em 1em;
     clear: right;
@@ -3231,8 +3230,7 @@ body.template-default_error_message #content {
 }
 
 .portletWrapper .portletTwitter .portletItem {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding: 0;
 }
 
 .portletWrapper .portletTwitter .portletItem iframe {

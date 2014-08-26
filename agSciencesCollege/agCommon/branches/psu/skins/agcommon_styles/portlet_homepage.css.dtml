@@ -53,8 +53,7 @@
     text-transform:none;
     background-position:left top;
     background-repeat:no-repeat;
-    margin-left: 0.3125em !important;
-    letter-spacing: -0.05em;
+    margin-left: 0;
     margin-top: 0;
     margin-bottom: 0;
 }

@@ -131,8 +131,9 @@ div.AbovePortletManager2,
 div.AbovePortletManager3,
 div.AbovePortletManager4,
 div.AbovePortletManager5 {
-	width: 33%;
+	width: 29.873125720876586%;
 	float: left;
+	margin: 0 1.730103806228374%;
 }
 
 #portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
@@ -157,9 +158,9 @@ div.AbovePortletManager5 {
 #portlets-above .portletHeader {
     font-size:1.1em;
     font-weight:bold;
-    padding:0.5em 0 0.25em 0 !important;
+    padding:0.5em 0 0.25em 0;
     text-transform: uppercase;
-	display: block !important;
+	display: block;
 }
 
 #portlets-above dd.portletItem

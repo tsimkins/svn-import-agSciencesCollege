@@ -34,9 +34,13 @@ body.template-atct_edit #image-header {
 }
 
 /* ========== Center column ========= */
-#centercolumn,
-#centercolumn.sr {
+#centercolumn {
     border: none;
+    margin: 0 1.66852%;
+    width: 96.663%;
+}
+
+#centercolumn.sr {
     margin: 0 1.503759398496241%;
     width: 96.992481203007519%;
 }
@@ -45,6 +49,10 @@ body.template-atct_edit #image-header {
 	margin: 0.5em 0 0.75em 0;
 }
 
+#centercolumn.agCommonPortlet .portletfeedmixerimageleft .portletItem {
+    margin-left: 0;
+    margin-right: 0;
+}
 
 /* ========== Right column ========= */
 

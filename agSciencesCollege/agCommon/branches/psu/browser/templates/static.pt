@@ -19,14 +19,9 @@
 
     <dd class="portletItem odd">
         <div tal:replace="structure view/transformed" />
-        <tal:corners condition="not:view/has_footer">
-            <span class="portletBottomLeft"></span>
-            <span class="portletBottomRight"></span>
-        </tal:corners>
     </dd>
     
     <dd class="portletFooter" tal:condition="view/has_footer">
-        <span class="portletBottomLeft"></span>
         <span>
            <a class="tile"
               tal:omit-tag="not:view/has_link"
@@ -34,7 +29,8 @@
               tal:content="view/data/footer"
               />
         </span>
-        <span class="portletBottomRight"></span>
     </dd>
+    
+    <dd class="visualClear"><!-- --></dd>
 
 </dl>

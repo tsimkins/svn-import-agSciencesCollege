@@ -84,16 +84,16 @@ backgroundStripeOneColor:string=#0f50bc
 backgroundStripeTwoColor:string=#0c3b8d
 backgroundStripeThreeColor:string=#08265a
 
-frontRightPortletHeaderTextColor:string=#AC5209
+frontRightPortletHeaderTextColor:string=#4B4B4B
 frontRightPortletHeaderBackgroundColor:string=transparent
 frontRightPortletLinkColor:string=#2256BD
 frontRightPortletLinkHoverColor:string=#003FAC
 frontRightPortletTextColor:string=#3F3F3F
 frontRightPortletBackgroundColor:string=#F6F6F6
 
-insideRightPortletHeaderTextColor:string=#AC5209
+insideRightPortletHeaderTextColor:string=#4B4B4B
 insideRightPortletHeaderBackgroundColor:string=transparent
-insideRightPortletBackgroundColor:string=#F6F6F6
+insideRightPortletBackgroundColor:string=#F9F9F9
 insideRightPortletTextColor:string=#333333
 insideRightPortletLinkColor:string=#003399
 insideRightPortletLinkHoverColor:string=#3366CC
@@ -109,7 +109,7 @@ leftNavBorderColor:string=#DDDDDD
 leftNavTextColor:string=#4B4D4F
 leftNavTextHoverColor:string=#003FAC
 leftNavBackgroundColor:string=#FFFFFF
-leftSubNavBackground:string=#F6F6F6
+leftSubNavBackground:string=#F9F9F9
 
 leftLinkTextColor:string=#2256BD
 leftLinkTextHoverColor:string=#003FAC
