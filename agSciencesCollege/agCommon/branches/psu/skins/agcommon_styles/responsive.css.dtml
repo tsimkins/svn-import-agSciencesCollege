@@ -406,25 +406,6 @@
         height: 240px;
     }
     
-    /* Extension homepage overrides */
-    
-    body.section-front-page #portlets-above .portlet {
-        min-height: 0 !important;
-    }
-    
-    body.section-front-page #portlets-above .portletWrapper {
-        padding-top: 50px;
-        margin-top: 2em;
-    }
-    
-    /* Futurestudents overrides */
-    
-    body.template-document_homepage_view #portal-column-one {
-        background-image: none;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    
     /* General nomobile override */
     
     .nomobile {

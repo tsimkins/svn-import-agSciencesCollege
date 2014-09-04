@@ -484,7 +484,6 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 .agCommonPortlet .portletItem a:visited,
 #content .agCommonPortlet .portlet dd a:visited {
     color: &dtml-frontRightPortletLinkColor;;
-    display: block;
     text-decoration: none;
     border: none;
     font-weight: normal;

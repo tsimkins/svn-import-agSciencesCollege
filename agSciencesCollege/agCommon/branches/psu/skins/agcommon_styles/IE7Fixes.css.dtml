@@ -91,7 +91,7 @@ body.template-document_homepage_view #rightcolumn {
 #portal-column-two {
     padding: 12px;
     vertical-align: top;
-    width: 180px;
+    width: 178px;
     float: left;
 }
 
