@@ -33,7 +33,8 @@ def getCventEvents(acct_num='',
                  passwd='',
                  start_datestamp='',
                  end_datestamp='',
-                 uid=None):
+                 uid=None,
+                 skip_ids=[]):
 
     def toUID(u):
         segments = [8, 4, 4, 4, 12]
@@ -67,6 +68,10 @@ def getCventEvents(acct_num='',
         rv = client.service.Retrieve(_CvObjectType.Event, {'Id' : [toUID(uid)]})
     else:
         updated = client.service.GetUpdated(_CvObjectType.Event, start_datestamp, end_datestamp)
+        # Remove 'skip_ids' from list, and regenerate
+        if skip_ids:
+            new_ids = set(updated[0]) - set(skip_ids)
+            updated = {'Id' : list(new_ids)}
         rv = client.service.Retrieve(_CvObjectType.Event, updated)
 
 
@@ -113,7 +118,8 @@ def importEvents(context,
                  eventsURL="https://agsci.psu.edu/conferences/event-calendar",
                  owner=None,
                  daysback=7,
-                 uid=None):
+                 uid=None,
+                 skip_ids=[]):
 
     # Return values
     myStatus = []
@@ -159,7 +165,8 @@ def importEvents(context,
                                passwd=passwd,
                                start_datestamp=start_datestamp,
                                end_datestamp=end_datestamp,
-                               uid=uid)
+                               uid=uid,
+                               skip_ids=skip_ids)
 
     for r in cventData:
         # Basic Data
