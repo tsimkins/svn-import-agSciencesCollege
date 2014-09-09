@@ -2099,7 +2099,7 @@ body.template-pgv_sg_carousel_view #content {
     background-color: #F9F9F9;
     border: 1px solid #E0E0E0;
     padding: 0.6875em 2.210516310294596%;
-    margin-top: 0em;
+    margin-top: 0;
     margin-bottom: 1.25em;
     float: none;
     clear: both;

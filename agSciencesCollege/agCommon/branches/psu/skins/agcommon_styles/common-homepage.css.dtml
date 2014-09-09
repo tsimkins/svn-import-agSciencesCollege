@@ -73,6 +73,9 @@
 
 #portal-localsearchbox {
     font-size: 0.84375em;
+    padding: 0.6875em 1.668520578420467%;
+    margin: 0 1.668520578420467% 1.25em 1.668520578420467%;
+    width: 93.325917686318131%;
 }
 
 /*========= Editable ============*/
@@ -202,7 +205,8 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
     padding-top: 0 !important;
 }
 
-#content .agCommonPortlet .portletHeader span {
+#content .agCommonPortlet .portletHeader span,
+#content .agCommonPortlet .portletHeader a {
     color: #AC5209 !important; 
 }
 

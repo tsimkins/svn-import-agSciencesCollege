@@ -408,6 +408,13 @@ class HomepageView(FolderView):
         else:
             return False
 
+    @property
+    def showHomepageText(self):
+        if self.hasText():
+            return getattr(self.context, 'show_homepage_text', True)
+        else:
+            return getattr(self.context, 'show_homepage_text', False)
+
 class ModifiedSharingView(SharingView):
 
     template = ViewPageTemplateFile('../templates/sharing.pt')
