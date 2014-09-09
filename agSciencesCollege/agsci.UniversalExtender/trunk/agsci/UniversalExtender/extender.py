@@ -66,6 +66,17 @@ class HomePageExtender(object):
                 ),
             schemata="settings",
         ),
+        _ExtensionBooleanField(
+            "show_homepage_text",
+                required=False,
+                searchable=False,
+                default=True,
+                widget=BooleanWidget(
+                    label=u"Show Homepage Text",
+                    description=u"Display the text on the homepage.",
+                ),
+            schemata="settings",
+        ),
     ]
 
     def __init__(self, context):
