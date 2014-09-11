@@ -500,6 +500,9 @@ def htmlValue(self, REQUEST):
     
     value = safe_unicode(value)
 
+    if not value:
+        return ''
+
     # eliminate square brackets around lists --
     # they mean nothing to end users
     if (valueType == type([])):
