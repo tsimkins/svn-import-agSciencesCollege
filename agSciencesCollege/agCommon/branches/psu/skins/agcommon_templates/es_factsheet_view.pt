@@ -29,26 +29,37 @@
 
 <metal:footer fill-slot="footer">
 
-<div id = "disclaimer"> <h2 style="font-size: 1.25em; border: none;">RENUNCIA</h2>
+    <tal:disclaimer define="disclaimer_title_es context/factsheet_disclaimer_title_es|nothing;
+                            disclaimer_text_es context/factsheet_disclaimer_es|nothing"
+                    condition="disclaimer_text_es">
+    <h2 tal:condition="not: disclaimer_text_es">Disclaimer</h2>
+    <h2 tal:condition="disclaimer_title_es" tal:content="disclaimer_title_es" />
+    
+    <p tal:replace="structure disclaimer_text_es" />
+    </tal:disclaimer>
 
-<p>Esta publicaci&oacute;n esta disponible por media alterna por encargo. </p>
-
-<p>Donde se usen nombres de oficio, no hay intenci&oacute;n de discriminaci&oacute;n y ning&uacute;n patrocinio es implicado por la 
-Universidad de Pennsylvania State o el Departamento de Agricultura de Pennsylvania.</p>
-
-<p>Notas Entomol&oacute;gicas intentan servir como gu&iacute;as de referencia r&aacute;pidas y no deben ser utilizadas como 
-sustitutos de etiquetas de informaci&oacute;n de productos. La intenci&oacute;n al escribir estas Notas Entomol&oacute;gicas es para
-proveer informaci&oacute;n completa, oportuna y precisa. Los usuarios de pesticidas tienen la responsabilidad de consultar la
-etiqueta del pesticida y seguir dichas instrucciones.</p>
-
-<p>Publicado por adelantado por Cooperative Extensi&oacute;n Works, Actos de Congreso mayo 8 y junio 30, 1914, en cooperaci&oacute;n         
-con el Departamento de Agricultura de EU. y la Legislatura de Pennsylvania. D. Jackson, Director de Extensi&oacute;n Cooperativa, La
-Universidad de Pennsilvania State.</p>
-
-<p><strong>Esta publicaci&oacute;n est&aacute; disponible en medios alternativos si se solicita.</strong></p>
-<p>Penn State se suscribe a la acci&oacute;n afirmativa, la igualdad de opportunidad y a la diversidad de sus empleados.</p>
-
-</div>
+    <div id = "disclaimer"> 
+    
+        <p> Los programas de investigaci&oacute;n y extensi&oacute;n del Colegio de Ciencias Agr&iacute;colas de Penn State son financiados en parte por los condados de Pensilvania, el Gobierno de Pensilvania y el Departamento de Agricultura de EE. UU. </p> 
+        
+        <p> Visita Extensi&oacute;n de Penn State en la web: <a href="http://extension.psu.edu">http://extension.psu.edu</a> </p> 
+        
+        <p> Donde aparecen marcas comerciales, no hay intento de discriminaci&oacute;n o endoso impl&iacute;cito por parte de la Extensi&oacute;n Cooperativa de Penn State. </p> 
+        
+        <p> Esta publicaci&oacute;n est&aacute; disponible en medios alternativos si se solicita. </p> 
+        
+        <p> Penn State se suscribe a la acci&oacute;n afirmativa, la igualdad de oportunidad y a la diversidad de sus empleados. </p> 
+        
+        <p>
+        	&copy; Universidad Estatal de Pennsylvania 
+        	<span tal:omit-tag=""
+        		tal:define="now modules/DateTime/DateTime" 
+        		tal:content="now/year">[date last modified]</span>
+        </p>
+        
+    
+    
+    </div>
 
 </metal:footer>
 
