@@ -2,7 +2,7 @@ from zope.interface import implements, Interface
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_acquire, aq_inner
-from collective.contentleadimage.config import IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME
+from collective.contentleadimage.utils import getImageAndCaptionFieldNames
 from DateTime import DateTime
 from urllib import urlencode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -562,10 +562,15 @@ class FactsheetPDFView(FolderView):
                 img_height = (width/img_width)*img_height
                 img_width = width
 
-            try:
-                img_data = BytesIO(img_obj.data)
-            except AttributeError:
+            if hasattr(img_obj, 'data'):
+                if hasattr(img_obj.data, 'data'):
+                    img_data = BytesIO(img_obj.data.data)
+                else:
+                    img_data = BytesIO(img_obj.data)
+            elif hasattr(img_obj, '_data'):
                 img_data = BytesIO(img_obj._data)
+            else:
+                img_data = BytesIO('')
 
             if reader:
                 img = ImageReader(img_data)
@@ -704,7 +709,12 @@ class FactsheetPDFView(FolderView):
             pdf.append(Paragraph(desc, description))
             pdf.append(FrameBreak())
 
-        # Lead Image and caption as first elements. Not doing News Item image.
+        # If we're a news item, append the date
+        if self.context.portal_type in ['News Item']:
+            pdf.append(Paragraph('Posted: %s' % self.context.getEffectiveDate().strftime('%B %d, %Y'), discreet))            
+
+        # Lead Image and caption as first elements. Handles News Item image.
+        (IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME) = getImageAndCaptionFieldNames(self.context)
         leadImage_field = self.context.getField(IMAGE_FIELD_NAME)
         leadImage_caption_field = self.context.getField(IMAGE_CAPTION_FIELD_NAME)
 
