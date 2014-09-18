@@ -173,7 +173,7 @@ class FactsheetPDFView(FolderView):
                 emailUsers = ['trs22@psu.edu']
                 mFrom = "do.not.reply@psu.edu"
                 mSubj = "Error auto-generating PDF: %s" % self.context.Title()
-                mMsg = '<p><strong>ERROR:</strong> <a href="%s/pdf_factsheet">%s</a></p>'  % (self.context.absolute_url(), self.context.Title())
+                mMsg = '<p><strong>ERROR:</strong> <a href="%s">%s</a></p>'  % (self.context.absolute_url(), self.context.Title())
                 mailHost = self.context.MailHost
         
                 for mTo in emailUsers:
