@@ -143,6 +143,13 @@ class FactsheetPDFView(FolderView):
         self.request = request
         self.site = getSite()
 
+    @property
+    def portal_state(self):
+        return getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+
+    @property
+    def anonymous(self):
+        return self.portal_state.anonymous()
 
     def __call__(self):
         # Use the publication code as the filename, if it exists.  Otherwise,
@@ -153,22 +160,32 @@ class FactsheetPDFView(FolderView):
         if not filename:
             filename = self.context.getId()
 
-        try:
-            pdf = self.createPDF()
-        except:
-            # Send email
-            emailUsers = ['webservices@ag.psu.edu']
-            mFrom = "do.not.reply@psu.edu"
-            mSubj = "Error auto-generating PDF: %s" % self.context.Title()
-            mMsg = '<p><strong>ERROR:</strong> <a href="%s/pdf_factsheet">%s</a></p>'  % (self.context.absolute_url(), self.context.Title())
-            mailHost = self.context.MailHost
+        # If we're an anonymous user, and createPDF errors, send an email, and
+        # return a boring and unhelpful error message.  If we're logged in, let
+        # the error happen.
+        
+        if self.anonymous:
+        
+            try:
+                pdf = self.createPDF()
+            except:
+                # Send email
+                emailUsers = ['trs22@psu.edu']
+                mFrom = "do.not.reply@psu.edu"
+                mSubj = "Error auto-generating PDF: %s" % self.context.Title()
+                mMsg = '<p><strong>ERROR:</strong> <a href="%s/pdf_factsheet">%s</a></p>'  % (self.context.absolute_url(), self.context.Title())
+                mailHost = self.context.MailHost
+        
+                for mTo in emailUsers:
+                    mailHost.secureSend(mMsg.encode('utf-8'), mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
     
-            for mTo in emailUsers:
-                mailHost.secureSend(mMsg.encode('utf-8'), mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
-    
+                # Return error message
+                return "<h1>Error</h1><p>Sorry, an error has occurred.</p>"
+                
+        else:
 
-            # Return error message
-            return "<h1>Error</h1><p>Sorry, an error has occurred.</p>"
+            pdf = self.createPDF()
+
 
         self.request.response.setHeader('Content-Type', 'application/pdf')
         self.request.response.setHeader('Content-Disposition', 'attachment; filename="%s.pdf"' % filename)
