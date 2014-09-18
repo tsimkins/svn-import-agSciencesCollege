@@ -109,20 +109,28 @@ class FactsheetDocTemplate(BaseDocTemplate):
     def __init__(self, filename, **kw):
         BaseDocTemplate.__init__(self,filename, **kw)
 
+    def registerTOC(self, flowable):
+        text = flowable.getPlainText()
+        style = flowable.style.name
+        unique_key = uuid4().hex
+        self.canv.showOutline()
+        self.canv.bookmarkPage(unique_key)
+        if style == 'Heading1':
+            self.canv.addOutlineEntry(text, unique_key, level=0, closed=None)
+        elif style == 'Heading2':
+            self.canv.addOutlineEntry(text, unique_key, level=1, closed=None)
+        elif style == 'Heading3':
+            self.canv.addOutlineEntry(text, unique_key, level=2, closed=None)
+
+
     def afterFlowable(self, flowable):
         "Registers TOC entries."
-        if flowable.__class__.__name__ == 'Paragraph':
-            text = flowable.getPlainText()
-            style = flowable.style.name
-            unique_key = uuid4().hex
-            self.canv.showOutline()
-            self.canv.bookmarkPage(unique_key)
-            if style == 'Heading1':
-                self.canv.addOutlineEntry(text, unique_key, level=0, closed=None)
-            elif style == 'Heading2':
-                self.canv.addOutlineEntry(text, unique_key, level=1, closed=None)
-            elif style == 'Heading3':
-                self.canv.addOutlineEntry(text, unique_key, level=2, closed=None)
+        if isinstance(flowable, Paragraph):
+            self.registerTOC(flowable)
+        elif isinstance(flowable, ImageAndFlowables):
+            for i in flowable._content:
+                if isinstance(i, Paragraph):
+                    self.registerTOC(i)
 
 class FactsheetPDFView(FolderView):
     """
@@ -145,13 +153,21 @@ class FactsheetPDFView(FolderView):
         if not filename:
             filename = self.context.getId()
 
-        pdf = self.createPDF() # Remove this line when done debugging
-
         try:
-            #pdf = self.createPDF()
-            pass
+            pdf = self.createPDF()
         except:
-            # Also send email
+            # Send email
+            emailUsers = ['webservices@ag.psu.edu']
+            mFrom = "do.not.reply@psu.edu"
+            mSubj = "Error auto-generating PDF: %s" % self.context.Title()
+            mMsg = '<p><strong>ERROR:</strong> <a href="%s/pdf_factsheet">%s</a></p>'  % (self.context.absolute_url(), self.context.Title())
+            mailHost = self.context.MailHost
+    
+            for mTo in emailUsers:
+                mailHost.secureSend(mMsg.encode('utf-8'), mto=mTo, mfrom=mFrom, subject=mSubj, subtype='html')
+    
+
+            # Return error message
             return "<h1>Error</h1><p>Sorry, an error has occurred.</p>"
 
         self.request.response.setHeader('Content-Type', 'application/pdf')
@@ -183,7 +199,7 @@ class FactsheetPDFView(FolderView):
 
         def getItemText(item):
             if isinstance(item, Tag):
-                return portal_transforms.convert('html_to_text', item.prettify()).getData()
+                return portal_transforms.convert('html_to_text', repr(item)).getData()
             elif isinstance(item, NavigableString):
                 return str(item).strip()
             else:
@@ -191,6 +207,7 @@ class FactsheetPDFView(FolderView):
 
 
         # Provides the limited subset of HTML content used by the PDF generator
+        space_before_punctuation_re = re.compile(u"\s+([.;:,!?])", re.I|re.M)
 
         def getInlineContents(item):
             p_contents = []
@@ -212,15 +229,16 @@ class FactsheetPDFView(FolderView):
                             # Wouldn't it be nice to underline the links?
                             i['color'] = 'blue'
                         if i.string:
-                            p_contents.append(i.prettify())
+                            p_contents.append(repr(i))
                         else:
                             p_contents.append(getInlineContents(i))
                     else:
                         p_contents.append(getItemText(i))
                 elif isinstance(i, NavigableString):
                     p_contents.append(str(i).strip())
-            return "".join(p_contents)
 
+            contents = " ".join(p_contents)
+            return space_before_punctuation_re.sub(r"\1", contents)
 
         # Returns structure containing table data when passed a BeautifulSoup
         # <table> element.
@@ -264,10 +282,22 @@ class FactsheetPDFView(FolderView):
                     c_index = c_index + 1
 
                 for i in tr.findAll('td'):
-                    table_row.append(Paragraph(getInlineContents(i), td_cell))
+
+                    td_align = i.get('align', 'LEFT').upper()
+
+                    if td_align == 'RIGHT':
+                        p = Paragraph(getInlineContents(i), td_cell_right)
+                    else:
+                        p = Paragraph(getInlineContents(i), td_cell)
+
+                    p.hAlign = td_align
+
+                    table_row.append(p)
+                   
                     (colspan, rowspan) = getCellSpan(i)
                     c_max = c_index + colspan - 1
                     r_max = r_index + rowspan - 1
+
                     table_style.extend([
                         ('GRID', (c_index,r_index), (c_max,r_max), 0.5, grid),
                         ('FONTNAME', (c_index,r_index), (c_index,r_index), 'Times-Roman'),
@@ -275,13 +305,10 @@ class FactsheetPDFView(FolderView):
                         ('LEFTPADDING', (c_index,r_index), (c_index,r_index), 3),
                         ('RIGHTPADDING', (c_index,r_index), (c_index,r_index), 3),
                         ('SPAN', (c_index,r_index), (c_max,r_max)),
+                        ('ALIGN', (c_index,r_index), (c_index,r_index), td_align),
                       ]
                     )
-                    if i.get('align', '').lower() == 'right':
-                        table_style.extend([
-                            ('ALIGN', (c_index,r_index), (c_index,r_index), 'RIGHT'),
-                          ]
-                        )
+
                     c_index = c_index + 1
 
                 table_data.append(table_row)
@@ -472,6 +499,14 @@ class FactsheetPDFView(FolderView):
         td_cell.spaceAfter = 6
         td_cell.fontSize = 10
         td_cell.fontName = 'Times-Roman'
+
+        td_cell_right = ParagraphStyle('TableDataRight')
+        td_cell_right.spaceBefore = 3
+        td_cell_right.spaceAfter = 6
+        td_cell_right.fontSize = 10
+        td_cell_right.fontName = 'Times-Roman'
+        td_cell_right.alignment = TA_RIGHT
+
         
         series_heading = ParagraphStyle('Series')
         series_heading.spaceBefore = 2
@@ -713,7 +748,7 @@ class FactsheetPDFView(FolderView):
         if self.context.portal_type in ['News Item']:
             pdf.append(Paragraph('Posted: %s' % self.context.getEffectiveDate().strftime('%B %d, %Y'), discreet))            
 
-        # Lead Image and caption as first elements. Handles News Item image.
+        # Lead Image and caption as first elements. Not doing News Item image.
         (IMAGE_FIELD_NAME, IMAGE_CAPTION_FIELD_NAME) = getImageAndCaptionFieldNames(self.context)
         leadImage_field = self.context.getField(IMAGE_FIELD_NAME)
         leadImage_caption_field = self.context.getField(IMAGE_CAPTION_FIELD_NAME)
@@ -721,7 +756,6 @@ class FactsheetPDFView(FolderView):
         if leadImage_field and leadImage_caption_field:
             leadImage = leadImage_field.get(self.context)
             leadImage_caption = leadImage_caption_field.get(self.context)
-
             if leadImage.get_size():
                 if column_count == 1:
                     pdf.append(getImage(leadImage, caption=leadImage_caption, leadImage=True))
@@ -780,17 +814,18 @@ class FactsheetPDFView(FolderView):
                     paragraphs = []
                     
                     for j in range(i+1, len(pdf)-1):
-                        if isinstance(pdf[j], Paragraph):
+                        if isinstance(pdf[j], Paragraph) or isinstance(pdf[j], HRFlowable):
                             paragraphs.append(pdf[j])
                             pdf[j] = None
                         else:
                             break
 
                     if paragraphs:
-    
+
                         pdf[i].hAlign="RIGHT"
                         
                         img_paragraph = ImageAndFlowables(pdf[i], paragraphs,imageLeftPadding=element_padding)
+
                         pdf[i] = img_paragraph
 
             while None in pdf:
