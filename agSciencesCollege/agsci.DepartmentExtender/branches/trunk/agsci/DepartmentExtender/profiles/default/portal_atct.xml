@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<atcttool>
+    
+    <topic_indexes>
+        <index
+            name="department_research_areas"
+            description="Research Areas"
+            enabled="True"
+            friendlyName="Research Areas">
+            <criteria>ATSelectionCriterion</criteria>
+            <criteria>ATListCriterion</criteria>
+        </index>
+    
+    </topic_indexes>
+    
+    <topic_metadata>
+    
+    <metadata
+        name="department_research_areas"
+        description="Research Areas"
+        enabled="True"
+        friendlyName="Research Areas" />
+    
+    </topic_metadata> 
+    
+</atcttool>
+

@@ -1,0 +1,55 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:five="http://namespaces.zope.org/five"
+           i18n_domain="agsci.DepartmentExtender">
+
+    <include package="archetypes.schemaextender" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="Department Extender"
+        directory="profiles/default"
+        description="Extender for college and departments, but not Extension"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <!-- Register the import step -->
+    <genericsetup:importStep
+        name="agsci.DepartmentExtender"
+        title="agsci.DepartmentExtender special import handlers"
+        description=""
+        handler="agsci.DepartmentExtender.setuphandlers.import_various" />
+    
+    <!-- Register the upgrade step -->
+    <genericsetup:upgradeStep
+        title="Add catalog indexes"
+        description=""
+        source="1000"
+        destination="1001"
+        handler="agsci.DepartmentExtender.setuphandlers.add_catalog_indexes"
+        profile="agsci.DepartmentExtender:default" />
+
+    <!-- Research Extender -->
+
+    <adapter
+        name="agsci.DepartmentExtender.extender.ResearchExtender"
+        factory=".extender.ResearchExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <adapter
+        name="agsci.DepartmentExtender.extender.FSDPersonResearchExtender"
+        factory=".extender.FSDPersonResearchExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.event.ATEvent"
+        interface=".interfaces.IResearchExtender"    /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.IResearchExtender"
+    /> 
+
+</configure>

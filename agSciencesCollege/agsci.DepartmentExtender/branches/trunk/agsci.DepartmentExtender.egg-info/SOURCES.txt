@@ -1,0 +1,14 @@
+README.txt
+setup.py
+agsci/__init__.py
+agsci.DepartmentExtender.egg-info/PKG-INFO
+agsci.DepartmentExtender.egg-info/SOURCES.txt
+agsci.DepartmentExtender.egg-info/dependency_links.txt
+agsci.DepartmentExtender.egg-info/entry_points.txt
+agsci.DepartmentExtender.egg-info/namespace_packages.txt
+agsci.DepartmentExtender.egg-info/not-zip-safe
+agsci.DepartmentExtender.egg-info/requires.txt
+agsci.DepartmentExtender.egg-info/top_level.txt
+agsci/DepartmentExtender/__init__.py
+agsci/DepartmentExtender/extender.py
+agsci/DepartmentExtender/interfaces.py
