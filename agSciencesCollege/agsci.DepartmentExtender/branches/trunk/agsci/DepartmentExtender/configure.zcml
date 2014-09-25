@@ -6,6 +6,9 @@
 
     <include package="archetypes.schemaextender" />
 
+    <include package=".portlet" />
+    <include package=".browser" />
+    
     <genericsetup:registerProfile
         name="default"
         title="Department Extender"

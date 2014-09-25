@@ -1,0 +1,20 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.app.portlets" /> 
+
+    <plone:portlet
+        name="agsci.DepartmentExtender.drilldown"
+        interface=".drilldown.IDrilldown"
+        assignment=".drilldown.Assignment"
+        renderer=".drilldown.Renderer"
+        addview=".drilldown.AddForm"
+        editview=".drilldown.EditForm"
+        />
+
+    <utility
+      component=".drilldown.TypesVocabularyFactory"
+      name="agsci.DepartmentExtender.portlet.drilldown.types"
+      />
+
+</configure>
