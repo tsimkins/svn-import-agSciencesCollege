@@ -41,7 +41,7 @@ class ResearchExtender(object):
                 widget = InAndOutWidget(
                     label=u"Research Areas",
                     description=u"",
-                    condition="python: object.restrictedTraverse('@@agcommon_utilities').showResearchAreas(object)",
+                    condition="python: object.restrictedTraverse('@@department_extender_utilities').showResearchAreas(object)",
                 ),
         ),
 
@@ -65,7 +65,7 @@ class FSDPersonResearchExtender(ResearchExtender):
                 widget = InAndOutWidget(
                     label=u"Research Areas",
                     description=u"",
-                    condition="python: object.restrictedTraverse('@@agcommon_utilities').isFaculty(object)",
+                    condition="python: object.restrictedTraverse('@@department_extender_utilities').isFaculty(object)",
 
                 ),
         ),

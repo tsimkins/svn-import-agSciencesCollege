@@ -6,3 +6,11 @@ class IDepartmentExtenderLayer(IDefaultPloneLayer):
 
 class IResearchExtender(Interface):
     """ marker interface """
+
+class IDepartmentExtenderUtilities(Interface):
+
+    def isFaculty(self, o):
+        pass
+
+    def showResearchAreas(self, o):
+        pass

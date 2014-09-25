@@ -1,4 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            xmlns:five="http://namespaces.zope.org/five"
            i18n_domain="agsci.DepartmentExtender">
@@ -28,6 +29,17 @@
         destination="1001"
         handler="agsci.DepartmentExtender.setuphandlers.add_catalog_indexes"
         profile="agsci.DepartmentExtender:default" />
+
+    <!-- Utilities View -->
+    
+    <browser:page
+        for="*"
+        name="department_extender_utilities"
+        class=".utilities.DepartmentExtenderUtilities"
+        layer=".interfaces.IDepartmentExtenderLayer"
+        permission="zope2.View"
+        allowed_interface=".interfaces.IDepartmentExtenderUtilities"
+    />
 
     <!-- Research Extender -->
 
