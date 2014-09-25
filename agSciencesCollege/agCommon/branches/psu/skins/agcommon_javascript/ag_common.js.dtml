@@ -1615,6 +1615,19 @@ jq(document).ready(
     }
 );
 
+/* Remove 'icons-on' class if we have a custom class of 'no-icons' */
+
+jq(document).ready(
+
+    function() {
+        jq("body.custom-no-icons").each( 
+            function () {
+                jq(this).removeClass('icons-on');
+            }
+        );
+    }
+);
+
 
 
 /* YOUR JAVASCRIPT STOPS HERE */

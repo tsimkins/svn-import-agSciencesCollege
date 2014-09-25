@@ -273,8 +273,9 @@ def getHomepageImage(context):
 
     function scaleHomepageImage() {
         var homepageImage = jq("body.template-document_homepage_view #homepageimage");
+        var hasLeftColumn = jq("#portal-column-one").size() ? true : false;
 
-        if (homepageImage)
+        if (homepageImage && hasLeftColumn)
         {
             var ratio = homepageImage.width()/700; // Homepage image height
             var newHeight = ratio*homepageBackgroundHeight;

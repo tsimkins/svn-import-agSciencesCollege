@@ -1,21 +1,22 @@
-import re
-from zope.interface import implements, Interface
-from Products.Five import BrowserView
+from Acquisition import aq_base
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import normalizeString
-from Acquisition import aq_base, aq_chain
-from urllib import urlencode
+from Products.Five import BrowserView
 from Products.ZCatalog.CatalogBrains import AbstractCatalogBrain
-from zope.component import getMultiAdapter
 from Products.agCommon import getContextConfig
 from Products.agCommon import increaseHeadingLevel as _increaseHeadingLevel
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from urllib import urlencode
+from zope.component import getMultiAdapter
+from zope.interface import implements, Interface
+import re
 
 try:
     from agsci.ExtensionExtender.counties import getSurroundingCounties
 except ImportError:
     def getSurroundingCounties(c):
         return c
+
 
 class IAgCommonUtilities(Interface):
 
@@ -39,7 +40,7 @@ class IAgCommonUtilities(Interface):
 
     def contentFilter(self):
         pass
-    
+
 
 class AgCommonUtilities(BrowserView):
 
@@ -51,7 +52,7 @@ class AgCommonUtilities(BrowserView):
             show_event_location = True
         else:
             show_event_location = False
-                
+
         if show_event_location and (item.portal_type == 'Event' or item.portal_type == 'TalkEvent'):
             if hasattr(item, 'short_location'):
                 if isinstance(item, AbstractCatalogBrain):
@@ -62,7 +63,7 @@ class AgCommonUtilities(BrowserView):
             elif item.location.strip():
                 return item.location.strip()
 
-        return None  
+        return None
 
     def substituteTitle(self, item, context):
 
@@ -74,7 +75,7 @@ class AgCommonUtilities(BrowserView):
                 item_title = item_title.replace(course_title, '', 1).strip()
 
         return item_title
-     
+
     def reorderTopicContents(self, topicContents, order_by_id=None, order_by_title=None, zip_code_input=None):
 
         try:
@@ -101,28 +102,28 @@ class AgCommonUtilities(BrowserView):
 
             # The +1 applied to both outcomes is so that the index of 0 is not evaluated as false.
             return sorted(topicContents, key=lambda x: getId(x) in order_by_id and (order_by_id.index(getId(x)) + 1) or (len(order_by_id) + 1))
-            
+
             # Reference code
             # The below is slightly faster than the above in cases where order_by_id <= ~5, but the above scales better.
             # I left it in as an explanation of what the above is doing.
             """
             ordered = []
             unordered = []
-    
+
             # Grab all the unordered items
             for item in topicContents:
                 if item.getId not in order_by_id:
                     unordered.append(item)
-    
+
             # Grab the ordered items, in order
             for id in order_by_id:
                 for item in topicContents:
                     if item.getId == id:
                         ordered.append(item)
-    
+
             # Combine the two lists
             ordered.extend(unordered)
-    
+
             return ordered
             """
         elif order_by_title:
@@ -143,13 +144,13 @@ class AgCommonUtilities(BrowserView):
 
             for t in order_by_title:
                 r = re.compile(t)
-  
+
                 # Pull out matching items
                 for item in topicContents:
                     if not uuids.get(getConfig(item)) and r.search(getTitle(item)):
                         ordered.append(item)
                         uuids[getConfig(item)] = 1
-  
+
             for item in topicContents:
                 if not uuids.get(getConfig(item)):
                     ordered.append(item)
@@ -158,11 +159,11 @@ class AgCommonUtilities(BrowserView):
             return ordered
         else:
             return topicContents
-        
+
     def toMarkdown(self, text):
         portal_transforms = getToolByName(self.context, 'portal_transforms')
         return portal_transforms.convert('markdown_to_html', text)
-        
+
     def getUTM(self, source=None, medium=None, campaign=None, content=None):
         data = {}
 
@@ -208,9 +209,9 @@ class AgCommonUtilities(BrowserView):
                 body_classes.append('custom-h2-as-h3')
 
         # If 'show_mobile_nav' property is set or
-        # we're the homepage at the root of the site, 
+        # we're the homepage at the root of the site,
         # set class navigation-mobile
-        
+
         try:
             # Explicitly enabled or is a homepage at the root of the site
             if getattr(self.context, 'show_mobile_nav', False) or (self.context.portal_type == 'HomePage' and parent.portal_type == 'Plone Site'):
@@ -240,11 +241,11 @@ class AgCommonUtilities(BrowserView):
         # Use the Penn State (as opposed to the college) header if main_site is set.
         if getContextConfig(self.context, 'main_site'):
             body_classes.append("penn-state-header")
-            
+
         # Append custom classes
         if getContextConfig(self.context, 'custom_class'):
             body_classes.extend(['custom-%s' % str(x) for x in getContextConfig(self.context, 'custom_class').split()])
-            
+
         # Set "empty-top-navigation" body class
         topMenu =  getContextConfig(self.context, 'top-menu', 'topnavigation')
 
@@ -252,11 +253,11 @@ class AgCommonUtilities(BrowserView):
 
         if not portal_actions.get(topMenu, None):
             body_classes.append('empty-top-navigation')
-        
+
         # Contents below folder
         if getattr(context, "listing_after_text", False):
             body_classes.append('listing-after-text')
-        
+
         return ' '.join(body_classes)
 
     def contentFilter(self):
@@ -271,17 +272,17 @@ class AgCommonUtilities(BrowserView):
 
             if k in indexes:
 
-                # ZIP Code search            
+                # ZIP Code search
                 if k == 'zip_code_input':
 
                     search_zip = self.request.form.get('zip_code_input')
                     search_zip_radius = self.request.form.get('zip_code_radius')
-                    
+
                     if not search_zip_radius:
                         search_zip_radius = 50 # Default radius
-                    
+
                     if search_zip and search_zip_radius:
-            
+
                         try:
                             ziptool = getToolByName(self.context, 'extension_zipcode_tool')
                         except AttributeError:
@@ -295,7 +296,7 @@ class AgCommonUtilities(BrowserView):
                             contentFilter['zip_code'] = search_zip_list
                 elif k == 'Counties':
                     counties = self.request.form.get(k)
-            
+
                     if counties:
                         if len(counties) == 1:
                             contentFilter[k] = getSurroundingCounties(counties[0])

@@ -203,60 +203,74 @@
             </div>
         </tal:contact>
 
-        <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
-                              member context/@@plone_portal_state/member;
-                              extension_counties context/extension_counties|nothing;
-                              extension_programs context/extension_programs|nothing;
-                              extension_topics context/extension_topics|nothing;
-                              extension_courses context/extension_courses|nothing;
-                              extension_subtopics context/extension_subtopics|nothing;"
-                              condition="python: (not isAnon) and (extension_counties or extension_programs or extension_topics or extension_subtopics)">
+        <metal:metadata define-macro="custom-metadata">
 
-                <h2>Event Metadata</h2>
-                <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the counties and programs associated with this event.</p>
-                <tal:areas condition="extension_courses">
-                    <h3>Course</h3>
-                    <ul>
-                        <li tal:repeat="x extension_courses"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
+            <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
+                                  member context/@@plone_portal_state/member;
+                                  extension_counties context/extension_counties|nothing;
+                                  extension_programs context/extension_programs|nothing;
+                                  extension_topics context/extension_topics|nothing;
+                                  extension_courses context/extension_courses|nothing;
+                                  extension_subtopics context/extension_subtopics|nothing;
+                                  department_research_areas context/department_research_areas|nothing;"
+                                  condition="python: (not isAnon) and (extension_counties or extension_programs or extension_topics or extension_subtopics or department_research_areas or extension_courses)">
+                    <metal:title define-slot="metadata-title">
+                        <h2>Event Metadata</h2>
+                    </metal:title>
+                    <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the custom metadata associated with this item.</p>
+                    <tal:areas condition="extension_courses">
+                        <h3>Course</h3>
+                        <ul>
+                            <li tal:repeat="x extension_courses"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
+    
+                    <tal:areas condition="extension_counties">
+                        <h3>Counties</h3>
+                        <ul>
+                            <li tal:repeat="x extension_counties"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
+    
+                    <tal:areas condition="extension_topics">
+                        <h3>Programs</h3>
+                        <ul>
+                            <li tal:repeat="x extension_topics"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
+    
+                    <tal:areas condition="extension_subtopics">
+                        <h3>Topics</h3>
+                        <ul>
+                            <li tal:repeat="x extension_subtopics"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
+    
+                    <tal:areas condition="extension_programs">
+                        <h3>Legacy Programs</h3>
+                        <ul>
+                            <li tal:repeat="x extension_programs"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
 
-                <tal:areas condition="extension_counties">
-                    <h3>Counties</h3>
-                    <ul>
-                        <li tal:repeat="x extension_counties"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
+                    <tal:areas condition="department_research_areas">
+                        <h3>Research Areas</h3>
+                        <ul>
+                            <li tal:repeat="x department_research_areas"
+                                tal:content="x" />
+                        </ul>
+                    </tal:areas>
+    
+            </tal:metadata>
+    
+            <span class="visualClear"><!-- --></span>
 
-                <tal:areas condition="extension_topics">
-                    <h3>Programs</h3>
-                    <ul>
-                        <li tal:repeat="x extension_topics"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
-                <tal:areas condition="extension_subtopics">
-                    <h3>Topics</h3>
-                    <ul>
-                        <li tal:repeat="x extension_subtopics"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
-                <tal:areas condition="extension_programs">
-                    <h3>Legacy Programs</h3>
-                    <ul>
-                        <li tal:repeat="x extension_programs"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
-        </tal:metadata>
-
-        <span class="visualClear"><!-- --></span>
+        </metal:metadata>
 
     </metal:content-core>
 </metal:content-core>

@@ -218,41 +218,11 @@
       
       </div>
 
-        <tal:metadata define="isAnon context/@@plone_portal_state/anonymous;
-                              member context/@@plone_portal_state/member;
-                              extension_counties context/extension_counties|nothing;
-                              extension_topics context/extension_topics|nothing;
-                              extension_subtopics context/extension_subtopics|nothing;"
-                              condition="python: (not isAnon) and (extension_counties or extension_topics)">
-            <div>
+        <metal:metadata use-macro="context/event_view/macros/custom-metadata">
+            <metal:title fill-slot="metadata-title">
                 <h2>Person Metadata</h2>
-                <p class="discreet">This metadata section is only viewable by logged in users, and does not appear on the public view of the site.  It lists the counties and programs the individual is associated with.</p>
-                <tal:areas condition="extension_counties">
-                    <h3>Counties</h3>
-                    <ul>
-                        <li tal:repeat="x extension_counties"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
-                <tal:areas condition="extension_topics">
-                    <h3>Programs</h3>
-                    <ul>
-                        <li tal:repeat="x extension_topics"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-                
-                <tal:areas condition="extension_subtopics">
-                    <h3>Topics</h3>
-                    <ul>
-                        <li tal:repeat="x extension_subtopics"
-                            tal:content="x" />
-                    </ul>
-                </tal:areas>
-
-            </div>
-        </tal:metadata>
+            </metal:title>
+        </metal:metadata>
 
   </metal:main>
 

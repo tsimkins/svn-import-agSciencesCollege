@@ -30,7 +30,6 @@
            class="title"
            tal:attributes="href python:(item_type == 'Link' and obj.getRemoteUrl) or (item_type == 'File' and '%s/download' % obj.getURL()) or obj.getURL();
                            title obj/Description">
-            <img tal:replace="structure item_icon/html_tag" />
             <span tal:replace="item_title_or_id">
              Title
             </span>

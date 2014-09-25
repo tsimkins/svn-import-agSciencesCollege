@@ -11,15 +11,34 @@
 	background-color: transparent;
 	border: 0 none;
 	display: block;
-	margin: 0.25em 0.424929178470255% 0.25em 0.56657223796034%; /* L:4/706, R:3/706 */
-	width: 99.008498583569405%;  /* 699/706 */
+	margin: 0 0 0.25em 0 ; 
+	width: 100%;
 	text-align: left;
 	padding: 0;
 	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
-#homepageimage.nobreadcrumbs {
+#portal-column-content.sl #homepageimage {
+	margin: 0.25em 0.424929178470255% 0.25em 0.56657223796034%; /* L:4/706, R:3/706 */
+	width: 99.008498583569405%;  /* 699/706 */
+}
+
+#portal-column-content.sl #homepageimage.nobreadcrumbs {
 	margin-top: 0.1875em;
+}
+
+/* -------------- Breadcrumbs ----------------------------- */
+#portal-breadcrumbs.homepage {
+    margin: 0;
+    padding-left: 1.101321585903084%;
+    padding-right: 1.101321585903084%;
+    width: 97.797356828193833%;
+}
+
+#portal-column-content.sl #portal-breadcrumbs.homepage {
+    margin: 0.1875em 0.424929% 0.1875em 0.566572%;
+    width: 96.73758865248227%;
 }
 
 /* -------------- Homepage Image overlay ------------------ */
@@ -75,6 +94,12 @@
 
 #portal-column-two {
     display: none;
+}
+
+#centercolumn .portletWrapper:first-child .portletHeader:first-child,
+#rightcolumn .portletWrapper:first-child .portletHeader:first-child {
+    margin-top: 0;
+    pading-top: 0;
 }
 
 /* YOUR CSS RULES STOP HERE */

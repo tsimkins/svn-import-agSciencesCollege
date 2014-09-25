@@ -62,6 +62,12 @@
                         tal:content="redirect_links">remote url</a>
         </p>
 
+        <metal:metadata use-macro="context/event_view/macros/custom-metadata">
+            <metal:title fill-slot="metadata-title">
+                <h2>News Item Metadata</h2>
+            </metal:title>
+        </metal:metadata>
+
     </metal:block>
 </metal:content-core>
 
