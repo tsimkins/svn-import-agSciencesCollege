@@ -9,13 +9,9 @@
 
     <include package="plone.app.portlets" />
     <include package=".browser" />
-
+    <include package=".portlet" />
+    
     <five:registerPackage package="." />
-
-    <five:implements
-       class=".portlet.Assignment"
-       interface="Products.CMFPlone.interfaces.IHideFromBreadcrumbs"
-       />
 
     <genericsetup:registerProfile
        name="default"
@@ -24,47 +20,6 @@
        description="Portlet which can show multiple feeds"
        provides="Products.GenericSetup.interfaces.EXTENSION"
        />
-
-    <utility
-      component=".vocabulary.CacheTimeoutVocabularyFactory"
-      name="collective.portlet.feedmixer.timeouts"
-      />
-      
-    <utility
-      component=".vocabulary.ImagePositionVocabularyFactory"
-      name="collective.portlet.feedmixer.image_position"
-      />
-      
-    <utility
-      component=".vocabulary.ImageSizeVocabularyFactory"
-      name="collective.portlet.feedmixer.image_size"
-      />
- 
-    <plone:portlet
-        name="collective.portlet.feedmixer.FeedMixer"
-        interface=".portlet.IFeedMixer"
-        assignment=".portlet.Assignment"
-        renderer=".portlet.Renderer"
-        addview=".portlet.AddForm"
-        editview=".portlet.EditForm"
-        />
-
-    <plone:portlet
-        name="collective.portlet.feedmixer.RelatedItems"
-        interface=".portlet.related.IFeedMixerRelatedItems"
-        assignment=".portlet.related.Assignment"
-        renderer=".portlet.related.Renderer"
-        addview=".portlet.related.AddForm"
-        editview=".portlet.related.EditForm"
-        />
-        
-    <browser:page
-        for=".interfaces.IFeedMixer"
-        name="full_feed"
-        class=".full.FullFeedView"
-        template="full.pt"
-        permission="zope2.View"
-        />
 
     <i18n:registerTranslations directory="locales" />
 

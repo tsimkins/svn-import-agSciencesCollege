@@ -164,3 +164,5 @@ class IFeedMixer(IPortletDataProvider):
         sorted by publication date.
         """
 
+class IFeedMixerRelatedItems(IFeedMixer):
+    pass

@@ -1,15 +1,14 @@
-from collective.portlet.feedmixer.interfaces import IFeedMixer
-from collective.portlet.feedmixer.portlet import Renderer as _Renderer
-from collective.portlet.feedmixer.portlet import Assignment as _Assignment
+from collective.portlet.feedmixer.interfaces import IFeedMixerRelatedItems
 from collective.portlet.feedmixer.portlet import AddForm as _AddForm
+from collective.portlet.feedmixer.portlet import Assignment as _Assignment
 from collective.portlet.feedmixer.portlet import EditForm as _EditForm
+from collective.portlet.feedmixer.portlet import Renderer as _Renderer
 from plone.memoize.instance import memoize
-from plone.app.portlets.portlets import base
-from zope.interface import implements
-from collective.portlet.feedmixer import FeedMixerMessageFactory as _
 from zope import schema
 from zope.formlib import form
+from zope.interface import implements
 import feedparser
+
 
 def removeFields(form_fields):
     fields_to_remove = ['target_collection', 'show_footer', 'show_leadimage',
@@ -21,8 +20,6 @@ def removeFields(form_fields):
 
     return form_fields
 
-class IFeedMixerRelatedItems(IFeedMixer):
-    pass
 
 class Assignment(_Assignment):
 
@@ -33,6 +30,10 @@ class AddForm(_AddForm):
     """Portlet add form.
     """
     form_fields = removeFields(form.Fields(IFeedMixerRelatedItems))
+
+    def create(self, data):
+        path = self.context.__parent__.getPhysicalPath()
+        return Assignment(assignment_context_path='/'.join(path), **data)
 
 
 class EditForm(_EditForm):
@@ -49,11 +50,12 @@ class Renderer(_Renderer):
 
     @property
     def allEntries(self):
+
         if self.hasRelatedItems():
             feeds=[
                 self.getFeed(url="/".join(self.context.getPhysicalPath()), collection=True)
             ]
-    
+
             entries=self.mergeEntriesFromFeeds(feeds)
 
             return entries
@@ -73,17 +75,18 @@ class Renderer(_Renderer):
             # the browser is trying to parse it as XML.
 
             original_header = self.request.response.getHeader('content-type')
-            
+
             related_item_rss = self.context.restrictedTraverse('@@related_item_rss')
-            
+
             feed = feedparser.parse(related_item_rss().encode("utf-8"))
 
             self.request.response.setHeader('Content-Type', original_header)
+
             return self.cleanFeed(feed)
 
         else:
             return None
-        
+
     @property
     def show_footer(self):
         return False

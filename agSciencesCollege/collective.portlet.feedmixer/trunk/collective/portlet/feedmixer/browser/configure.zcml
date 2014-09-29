@@ -8,11 +8,20 @@
     <browser:page
         for="*"
         name="related_item_rss"
-        class=".views.RelatedItemRSSView"
+        class=".views.rss.RelatedItemRSSView"
         template="templates/related_item_rss_view.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
     />
+
+    <browser:page
+        for="..interfaces.IFeedMixer"
+        name="full_feed"
+        class=".views.full.FullFeedView"
+        template="templates/full.pt"
+        permission="zope2.View"
+        />
+
 
 </configure>
 
