@@ -8,6 +8,7 @@
     i18n_domain="collective.portlet.feedmixer">
 
     <include package="plone.app.portlets" />
+    <include package=".browser" />
 
     <five:registerPackage package="." />
 
@@ -48,6 +49,15 @@
         editview=".portlet.EditForm"
         />
 
+    <plone:portlet
+        name="collective.portlet.feedmixer.RelatedItems"
+        interface=".portlet.related.IFeedMixerRelatedItems"
+        assignment=".portlet.related.Assignment"
+        renderer=".portlet.related.Renderer"
+        addview=".portlet.related.AddForm"
+        editview=".portlet.related.EditForm"
+        />
+        
     <browser:page
         for=".interfaces.IFeedMixer"
         name="full_feed"

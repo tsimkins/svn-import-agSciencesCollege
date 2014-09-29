@@ -85,7 +85,7 @@ class Assignment(base.Assignment):
 class Renderer(base.Renderer):
     """Portlet renderer.
     """
-    render = ViewPageTemplateFile("portlet.pt")
+    render = ViewPageTemplateFile("templates/portlet.pt")
 
     @property
     def available(self):
