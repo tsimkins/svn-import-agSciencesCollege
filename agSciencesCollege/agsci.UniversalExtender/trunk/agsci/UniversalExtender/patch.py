@@ -498,7 +498,7 @@ def htmlValue(self, REQUEST):
     value = REQUEST.form.get(self.__name__, 'No Input')
     valueType = type(value)
     
-    value = safe_unicode(value)
+    value = repr(safe_unicode(value))
 
     if not value:
         return ''
