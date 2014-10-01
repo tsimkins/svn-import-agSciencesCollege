@@ -113,7 +113,8 @@ class LeadImageExtender(object):
           pil_quality = zconf.pil_config.quality,
           pil_resize_algo = zconf.pil_config.resize_algo,
           validators = (('isNonEmptyFile', V_REQUIRED),
-                               ('checkNewsImageMaxSize', V_REQUIRED)),
+                               ('checkNewsImageMaxSize', V_REQUIRED),
+                               ('isValidImage', V_REQUIRED)),
           widget = ImageWidget(
                          label=_(u"Lead image"),
                          description=_(u"You can upload lead image. This image "
@@ -181,7 +182,8 @@ if HAS_BLOB:
                 pil_quality = zconf.pil_config.quality,
                 pil_resize_algo = zconf.pil_config.resize_algo,
                 validators = (('isNonEmptyFile', V_REQUIRED),
-                              ('checkNewsImageMaxSize', V_REQUIRED)),
+                              ('checkNewsImageMaxSize', V_REQUIRED),
+                               ('isValidImage', V_REQUIRED)),
                 widget = ImageWidget(
                            label=_(u"Lead image"),
                            description=_(u"You can upload lead image. This image "
