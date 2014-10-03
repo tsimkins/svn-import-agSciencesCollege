@@ -29,5 +29,13 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="*"
+        name="research-areas-rss"
+        class=".views.drilldown.ResearchAreasView"
+        template="templates/base_rss_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
 
 </configure>
