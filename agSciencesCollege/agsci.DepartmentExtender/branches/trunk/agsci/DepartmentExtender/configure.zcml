@@ -72,5 +72,10 @@
         class="Products.ATContentTypes.content.link.ATLink"
         interface=".interfaces.IResearchExtender"
     /> 
+    
+    <five:implements
+        class="Products.ATContentTypes.content.document.ATDocument"
+        interface=".interfaces.IResearchExtender"
+    /> 
 
 </configure>
