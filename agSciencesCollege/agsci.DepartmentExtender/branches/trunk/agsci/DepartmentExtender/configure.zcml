@@ -60,10 +60,16 @@
 
     <five:implements
         class="Products.ATContentTypes.content.event.ATEvent"
-        interface=".interfaces.IResearchExtender"    /> 
+        interface=".interfaces.IResearchExtender"
+    /> 
     
     <five:implements
         class="Products.ATContentTypes.content.newsitem.ATNewsItem"
+        interface=".interfaces.IResearchExtender"
+    /> 
+
+    <five:implements
+        class="Products.ATContentTypes.content.link.ATLink"
         interface=".interfaces.IResearchExtender"
     /> 
 
