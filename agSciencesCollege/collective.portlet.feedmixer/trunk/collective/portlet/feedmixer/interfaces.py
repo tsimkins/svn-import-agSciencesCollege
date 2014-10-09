@@ -4,6 +4,14 @@ from zope import schema
 from Products.validation import validation
 from Products.ATContentTypes.interface import IATTopic
 from plone.app.vocabularies.catalog import SearchableTextSourceBinder
+from zope.interface import implements, Interface
+from plone.z3cform.fieldsets import group, extensible
+
+try:
+    from agsci.ExtensionExtender.portlet.similar import ISimilar
+except ImportError:
+    class ISimilar(Interface):
+        pass
 
 def isUrlList(data):
     verify=validation.validatorFor("isURL")
@@ -16,11 +24,12 @@ def isUrlList(data):
 class IFeedMixer(IPortletDataProvider):
     """A portlet which aggregates multiple feeds.
     """
+    
     title = schema.TextLine(
             title=_(u"heading_title",
-                default=u"Portlet Title"),
+                default=u"Portlet Header"),
             description=_(u"description_title",
-                default=u""),
+                default=u"Title of the rendered portlet"),
             default=u"",
             required=True)
 
@@ -166,3 +175,13 @@ class IFeedMixer(IPortletDataProvider):
 
 class IFeedMixerRelatedItems(IFeedMixer):
     pass
+
+class IFeedMixerSimilarItems(IFeedMixer, ISimilar):
+
+    days = schema.Int(
+            title=_(u"days",
+                default=u"News Item Days Filter"),
+            description=_(u"If showing news items, only show those within the past X days.",
+                default=u""),
+            default=365,
+            required=True)

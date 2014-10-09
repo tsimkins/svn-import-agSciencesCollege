@@ -17,6 +17,11 @@
        interface="Products.CMFPlone.interfaces.IHideFromBreadcrumbs"
        />
 
+    <five:implements
+       class=".similar.Assignment"
+       interface="Products.CMFPlone.interfaces.IHideFromBreadcrumbs"
+       />
+
     <utility
       component=".vocabulary.CacheTimeoutVocabularyFactory"
       name="collective.portlet.feedmixer.timeouts"
@@ -43,11 +48,20 @@
 
     <plone:portlet
         name="collective.portlet.feedmixer.RelatedItems"
-        interface=".related.IFeedMixerRelatedItems"
+        interface="..interfaces.IFeedMixerRelatedItems"
         assignment=".related.Assignment"
         renderer=".related.Renderer"
         addview=".related.AddForm"
         editview=".related.EditForm"
+        />
+
+    <plone:portlet
+        name="collective.portlet.feedmixer.SimilarItems"
+        interface="..interfaces.IFeedMixerSimilarItems"
+        assignment=".similar.Assignment"
+        renderer=".similar.Renderer"
+        addview=".similar.AddForm"
+        editview=".similar.EditForm"
         />
 
 </configure>

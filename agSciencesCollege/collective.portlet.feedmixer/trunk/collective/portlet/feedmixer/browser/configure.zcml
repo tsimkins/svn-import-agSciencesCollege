@@ -9,7 +9,16 @@
         for="*"
         name="related_item_rss"
         class=".views.rss.RelatedItemRSSView"
-        template="templates/related_item_rss_view.pt"
+        template="templates/base_rss_view.pt"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
+    />
+
+    <browser:page
+        for="*"
+        name="similar_item_rss"
+        class=".views.rss.SimilarItemRSSView"
+        template="templates/base_rss_view.pt"
         layer="Products.agCommon.browser.interfaces.IThemeSpecific"
         permission="zope2.View"
     />

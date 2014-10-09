@@ -404,7 +404,10 @@ class Renderer(base.Renderer):
     def memoized_entries(self):
         entries = self.allEntries
 
-        if len(entries) <= self.data.items_shown:
+        if not entries:
+            return []
+            
+        elif len(entries) <= self.data.items_shown:
             return entries
 
         elif self.random:
