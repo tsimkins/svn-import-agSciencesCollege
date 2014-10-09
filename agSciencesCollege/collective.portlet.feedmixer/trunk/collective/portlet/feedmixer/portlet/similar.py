@@ -13,6 +13,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.app.component.hooks import getSite
 from collective.portlet.feedmixer import getFields as _getFields
 from Products.ATContentTypes.interfaces.interfaces import IATContentType
+from Acquisition import aq_chain
 
 def _adjustFields(context=None, fields=None):
     remove =[
@@ -26,7 +27,7 @@ def _adjustFields(context=None, fields=None):
             ]
             
     if context:
-        for i in context.aq_chain:
+        for i in aq_chain(context):
             if IATContentType.providedBy(i):
                 portal_catalog = getToolByName(i, "portal_catalog")
                 indexes = portal_catalog.indexes()
