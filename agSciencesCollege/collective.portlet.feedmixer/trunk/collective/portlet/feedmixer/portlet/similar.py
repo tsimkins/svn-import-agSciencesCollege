@@ -121,6 +121,7 @@ class Renderer(_Renderer):
                     query_topics=self.data.query_topics,
                     query_courses=self.data.query_courses,
                     query_title=self.data.query_title,
+                    query_research_areas=self.data.research_areas,
                     days=self.data.days,
                     random=self.data.random,
         ).encode("utf-8"))
