@@ -7,12 +7,6 @@ from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from zope.interface import implements, Interface
 from plone.z3cform.fieldsets import group, extensible
 
-try:
-    from agsci.ExtensionExtender.portlet.similar import ISimilar
-except ImportError:
-    class ISimilar(Interface):
-        pass
-
 def isUrlList(data):
     verify=validation.validatorFor("isURL")
     for url in (x.strip() for x in data.split()):
@@ -176,7 +170,88 @@ class IFeedMixer(IPortletDataProvider):
 class IFeedMixerRelatedItems(IFeedMixer):
     pass
 
-class IFeedMixerSimilarItems(IFeedMixer, ISimilar):
+class IFeedMixerSimilarItems(IFeedMixer):
+
+    header = schema.TextLine(
+        title=_(u"Portlet header"),
+        description=_(u"Title of the rendered portlet"),
+        required=True)
+
+    show_header = schema.Bool(
+        title=_(u"Show portlet header"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    query_portal_type = schema.Choice(
+            title=_(u"heading_query_portal_type",
+                default=u"Content Types"),
+            description=_(u"description_query_portal_type",
+                default=u"Content types to include"),
+            required=False,
+            vocabulary='agsci.ExtensionExtender.portlet.similar.types'
+    )
+
+    query_research_areas = schema.Bool(
+        title=_(u"Search Research Areas"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    query_counties = schema.Bool(
+        title=_(u"Search Counties"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    query_programs = schema.Bool(
+        title=_(u"Search Programs"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    query_topics = schema.Bool(
+        title=_(u"Search Topics"),
+        description=_(u""),
+        required=False,
+        default=False)
+        
+    query_courses = schema.Bool(
+        title=_(u"Search Course"),
+        description=_(u""),
+        required=False,
+        default=False)
+        
+    query_title = schema.Bool(
+        title=_(u"Search Title"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    limit = schema.Int(
+        title=_(u"Limit"),
+        description=_(u"Specify the maximum number of items to show in the "
+                      u"portlet."),
+        required=True,
+        default=10)
+
+    limit_radius = schema.Int(
+        title=_(u"Limit Radius"),
+        description=_(u"Show only events within this many miles"),
+        required=True,
+        default=150)
+
+    show_dates = schema.Bool(
+        title=_(u"Show dates"),
+        description=_(u""),
+        required=False,
+        default=True)
+
+    show_location = schema.Bool(
+        title=_(u"Show location "),
+        description=_(u""),
+        required=False,
+        default=False)
 
     days = schema.Int(
             title=_(u"days",

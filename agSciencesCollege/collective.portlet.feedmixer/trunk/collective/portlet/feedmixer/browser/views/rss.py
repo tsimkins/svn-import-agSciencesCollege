@@ -26,6 +26,7 @@ class SimilarItemRSSView(FolderView):
                     query_topics=None,
                     query_courses=None,
                     query_title=None,
+                    query_research_areas=None,
                     random=False,
                     days=365,
                     ):
@@ -36,6 +37,7 @@ class SimilarItemRSSView(FolderView):
         self.query_topics=query_topics
         self.query_courses=query_courses
         self.query_title=query_title
+        self.query_research_areas=query_research_areas
         self.random=random
         self.days=days
 
@@ -73,6 +75,9 @@ class SimilarItemRSSView(FolderView):
 
         if self.query_title and self.context.Title():
             similar_query['Title'] = self.context.Title()
+        
+        if self.query_research_areas and self.context.department_research_areas:
+            similar_query['department_research_areas'] = self.context.department_research_areas
 
         if self.context.portal_type in ['Event'] and self.query_portal_type in ['Event'] and self.limit_radius and self.limit_radius > 0:
             if hasattr(self.context, 'zip_code') and self.context.zip_code and self.context.zip_code != '00000':

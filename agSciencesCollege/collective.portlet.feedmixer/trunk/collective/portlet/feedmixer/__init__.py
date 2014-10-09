@@ -2,7 +2,7 @@ from zope.i18nmessageid import MessageFactory
 FeedMixerMessageFactory = MessageFactory('collective.portlet.feedmixer')
 from zope.formlib import form
 
-def getFields(i, order=[], remove=[]):
+def getFields(i=None, fields=None, order=[], remove=[]):
 
     def getSortOrder(v):
         if v in order:
@@ -10,8 +10,14 @@ def getFields(i, order=[], remove=[]):
         else:
             return 99999
 
-    all_fields = form.Fields(i)
+    if fields:
+        all_fields = fields
+    else:
+        all_fields = form.Fields(i)
+
     all_fields = all_fields.omit(*remove)
+
+    [x.__name__ for x in all_fields.__iter__()]
     field_ids = [x.__name__ for x in all_fields.__iter__()]
     field_ids.sort(key=lambda x: getSortOrder(x))
 

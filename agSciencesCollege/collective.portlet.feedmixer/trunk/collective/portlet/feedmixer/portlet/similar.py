@@ -2,32 +2,57 @@ from collective.portlet.feedmixer.interfaces import IFeedMixerSimilarItems
 from collective.portlet.feedmixer.portlet import AddForm as _AddForm
 from collective.portlet.feedmixer.portlet import Assignment as _Assignment
 from collective.portlet.feedmixer.portlet import EditForm as _EditForm
-from collective.portlet.feedmixer.portlet import Renderer as _feedmixer_Renderer
+from collective.portlet.feedmixer.portlet import Renderer as _Renderer
 from plone.memoize.instance import memoize
 from zope import schema
 from zope.formlib import form
 from zope.interface import implements
 import feedparser
 from plone.app.portlets.portlets import base
-
-from agsci.ExtensionExtender.portlet.similar import Renderer as _similar_Renderer
-
+from Products.CMFCore.utils import getToolByName
+from zope.app.component.hooks import getSite
 from collective.portlet.feedmixer import getFields as _getFields
+from Products.ATContentTypes.interfaces.interfaces import IATContentType
 
-def getFields():
-    return _getFields(IFeedMixerSimilarItems, 
+def _adjustFields(context=None, fields=None):
+    remove =[
+                'target_collection', 
+                'show_footer', 
+                'show_leadimage',
+                'alternate_footer_link', 
+                'feeds', 
+                'reverse_feed', 
+                'header', 'limit', 'show_dates', 'show_location'
+            ]
+            
+    if context:
+        for i in context.aq_chain:
+            if IATContentType.providedBy(i):
+                portal_catalog = getToolByName(i, "portal_catalog")
+                indexes = portal_catalog.indexes()
+                
+                for (field, index) in [
+                    ('query_research_areas', 'department_research_areas'),
+                    ('query_counties', 'extension_counties'),
+                    ('query_programs', 'extension_topics'),
+                    ('query_topics', 'extension_programs'),
+                    ('query_courses', 'extension_courses'),
+                    ('limit_radius', 'zip_code'),
+                    ]:
+        
+                    if index not in indexes:
+                        remove.append(field)        
+
+                break
+
+    return _getFields(fields=fields, 
                         order=['title',  'show_header', 'cache_timeout', 'items_shown',],
-                        remove=['target_collection', 
-                                'show_footer', 
-                                'show_leadimage',
-                                'alternate_footer_link', 
-                                'feeds', 
-                                'reverse_feed', 
-                                'header', 'limit', 'show_dates', 'show_location'])
+                        remove=remove)
 
 
 class Assignment(_Assignment):
     implements(IFeedMixerSimilarItems)
+
     def __init__(self, *args, **kwargs):
         base.Assignment.__init__(self, *args, **kwargs)
 
@@ -35,20 +60,27 @@ class Assignment(_Assignment):
 class AddForm(_AddForm):
     """Portlet add form.
     """
-    form_fields = getFields()
+
+    form_fields = _getFields(IFeedMixerSimilarItems)
 
     def create(self, data):
         path = self.context.__parent__.getPhysicalPath()
         return Assignment(assignment_context_path='/'.join(path), **data)
+        
+    def adjustedFields(self):
+        return _adjustFields(self.context, self.form_fields)
 
 
 class EditForm(_EditForm):
     """Portlet edit form.
     """
-    form_fields = getFields()
 
+    form_fields = _getFields(IFeedMixerSimilarItems)
 
-class Renderer(_feedmixer_Renderer): #, _similar_Renderer):
+    def adjustedFields(self):
+        return _adjustFields(self.context, self.form_fields)
+
+class Renderer(_Renderer):
 
     @property
     def allEntries(self):
