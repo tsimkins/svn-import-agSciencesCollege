@@ -9,6 +9,8 @@ from ZODB.POSException import ConflictError
 
 from plone.portlet.collection.collection import Assignment as collection_assignment
 from collective.portlet.feedmixer.portlet import Assignment as feedmixer_assignment
+from collective.portlet.feedmixer.portlet.related import Assignment as feedmixer_related_assignment
+from collective.portlet.feedmixer.portlet.similar import Assignment as feedmixer_similar_assignment
 from plone.app.portlets.storage import PortletAssignmentMapping
 
 from .interfaces import ICollectivePortletClassLayer, ICollectivePortletClass
@@ -42,7 +44,7 @@ def filter_fields(self, k):
     if k in ('more_text', 'more_text_custom'):
         if isinstance(self.context, collection_assignment):
             return True
-        elif isinstance(self.context, feedmixer_assignment):
+        elif isinstance(self.context, feedmixer_assignment) and not isinstance(self.context, feedmixer_related_assignment) and not isinstance(self.context, feedmixer_similar_assignment):
             return True
         else:
             return False
@@ -63,6 +65,16 @@ def filter_fields(self, k):
         return False
 
     if k in ('portlet_width', 'portlet_item_count'):
+
+        # Check to see if we're in the above or below portlet manager
+        try:
+            manager = self.context.__parent__.__dict__['__manager__']
+            if 'ContentWellPortlets.BelowPortletManager' in manager or 'ContentWellPortlets.AbovePortletManager' in manager:
+                return True
+        except AttributeError, KeyError:
+            pass
+            
+        # If layout is tile_homepage_view
         for o in self.aq_chain:
             if hasattr(o, 'getLayout'):
                 return o.getLayout() == 'tile_homepage_view'
@@ -113,6 +125,11 @@ from plone.app.portlets.portlets import search
 
 def base_assignment__init__(self, *args, **kwargs):
     self.portlet_style = kwargs.get('portlet_style', u' ')
+    for (k,v) in kwargs.iteritems():
+        if k == 'assignment_context_path':
+            continue
+        else:
+            self.__setattr__(k, v)
 
 
 # portlet.Events
