@@ -174,45 +174,20 @@
         class="Products.ATContentTypes.content.topic.ATTopic"
         interface=".interfaces.ITopicExtender"
     /> 
-
-    <!-- Markdown Description Extender -->
+    
+    <!-- All Content Types Extender -->
 
     <adapter
-        name="agsci.UniversalExtender.extender.MarkdownDescriptionExtender"
-        factory=".extender.MarkdownDescriptionExtender"
+        name="agsci.UniversalExtender.extender.AllContentTypesExtender"
+        factory=".extender.AllContentTypesExtender"
         provides="archetypes.schemaextender.interfaces.ISchemaExtender"
     />
 
-    <!-- Removing Markdown option -->
-
-    <!--
-
-    <five:implements
-        class="Products.ATContentTypes.content.topic.ATTopic"
-        interface=".interfaces.IMarkdownDescriptionExtender"
-    /> 
-
-    <five:implements
-        class="Products.ATContentTypes.content.folder.ATFolder"
-        interface=".interfaces.IMarkdownDescriptionExtender"
-    /> 
-    
-    <five:implements
-        class="Products.ATContentTypes.content.link.ATLink"
-        interface=".interfaces.IMarkdownDescriptionExtender"
-    /> 
-    
-    <five:implements
-        class="Products.ATContentTypes.content.file.ATFile"
-        interface=".interfaces.IMarkdownDescriptionExtender"
-    />     
-
-    <five:implements
-        class="Products.ATContentTypes.content.document.ATDocument"
-        interface=".interfaces.IMarkdownDescriptionExtender"
-    />  
-
-    -->  
+    <adapter
+        name="agsci.UniversalExtender.extender.AllContentTypesExtender.fiddle"
+        factory=".extender.AllContentTypesExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaModifier"
+    />
 
     <!-- Table of Contents Extender -->
 

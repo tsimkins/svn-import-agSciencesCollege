@@ -1,6 +1,7 @@
-from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField, FileWidget, IntegerField, IntegerWidget
+from Products.Archetypes.public import StringField, StringWidget, BooleanField, BooleanWidget, TextField, RichWidget, LinesField, LinesWidget, InAndOutWidget, DateTimeField, CalendarWidget, ReferenceField, FileWidget, IntegerField, IntegerWidget, SelectionWidget
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.ATContentTypes.interfaces.event import IATEvent
+from Products.ATContentTypes.interface.interfaces import IATContentType
 from Products.ATContentTypes.interfaces.news import IATNewsItem
 from Products.ATContentTypes.interfaces.document import IATDocument
 from Products.ATContentTypes.interfaces.folder import IATFolder
@@ -42,6 +43,44 @@ class HomePageExtender(object):
 
 
     fields = [
+        _ExtensionBooleanField(
+            "show_homepage_text",
+                required=False,
+                searchable=False,
+                default=True,
+                widget=BooleanWidget(
+                    label=u"Show Homepage Text",
+                    description=u"Display the text on the homepage.",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            schemata="settings",
+        ),
+        _ExtensionStringField(
+            "homepage_image_format",
+            required=False,
+            default='standard',
+            schemata="settings",
+            widget=SelectionWidget(
+                label=u"Homepage Image Format",
+                description=u"",
+                format='select',
+                condition="python:member.has_role('Manager', object)",
+            ),
+            vocabulary=([(str(x).lower(), str(x)) for x in ('Standard', 'Panorama')]),
+        ),
+        _ExtensionStringField(
+            "homepage_portlet_format",
+            required=False,
+            default='standard',
+            schemata="settings",
+            widget=SelectionWidget(
+                label=u"Homepage Portlet Format",
+                description=u"",
+                format='select',
+                condition="python:member.has_role('Manager', object)",
+            ),
+            vocabulary=([(str(x).lower(), str(x)) for x in ('Standard', 'Tile')]),
+        ),
         _ExtensionReferenceField(
             "slider_target",
             widget = ReferenceBrowserWidget(
@@ -63,17 +102,6 @@ class HomePageExtender(object):
                     label=u"Randomize HomePage Slider",
                     description=u"Display slider images in a random rather than sequential order.",
                     condition="python:member.has_role('Manager', object)",
-                ),
-            schemata="settings",
-        ),
-        _ExtensionBooleanField(
-            "show_homepage_text",
-                required=False,
-                searchable=False,
-                default=True,
-                widget=BooleanWidget(
-                    label=u"Show Homepage Text",
-                    description=u"Display the text on the homepage.",
                 ),
             schemata="settings",
         ),
@@ -200,42 +228,6 @@ class FSDPersonExtender(object):
 
     def getFields(self):
         return self.fields
-
-"""
-# Hide extraneous tabs from mere mortals. Hide image field from
-# mere mortals so they can't upload a picture from 10 years ago
-# when they were 20 pounds lighter and had hair. Professional
-# portaits only!
-
-class FSDPersonModifier(object):
-    adapts(IPerson)
-    implements(ISchemaModifier, IBrowserLayerAwareExtender)
-    layer = IUniversalExtenderLayer
-
-    security = ClassSecurityInfo()
-
-    def __init__(self, context):
-        self.context = context
-
-    from Products.FacultyStaffDirectory.Person import schema
-
-
-    def fiddle(self, schema):
-
-        # Hide the administrative tabs for non-Managers
-        # https://weblion.psu.edu/trac/weblion/wiki/FacultyStaffDirectoryExtender
-
-        for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
-            for fieldName in schema.getSchemataFields(hideme):
-                fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
-
-        # Restrict the image field to Personnel Managers
-        image_field = schema['image'].copy()
-        image_field.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
-        schema['image'] = image_field
-
-        return schema
-"""
 
 # Check the "Exclude from navigation" by default for Links
 # and Files.  99% of the time these should be hidden, but
@@ -948,3 +940,46 @@ class FilePublicationExtender(BasePublicationExtender):
     implements(ISchemaExtender, IBrowserLayerAwareExtender)
 
     layer = IUniversalExtenderLayer
+
+
+class AllContentTypesExtender(object):
+    adapts(IATContentType)
+    implements(ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender)
+
+    layer = IUniversalExtenderLayer
+
+    fields = [
+        _ExtensionBooleanField(
+            "manage_body_portlets",
+            required=False,
+            default=False,
+            schemata="settings",
+            widget=BooleanWidget(
+                label=u"Manage body portlets",
+                description=u"Allows management of portlets above and below the body text.",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+        _ExtensionBooleanField(
+            "show_related_items",
+            required=False,
+            default=True,
+            schemata="categorization",
+            widget=BooleanWidget(
+                label=u"Show related items",
+                description=u"Shows the related items listing on the object (as opposed to the portlet view)",
+                condition="python:member.has_role('Manager')",
+            ),
+        ),
+
+    ]
+
+    def __init__(self, context):
+        self.context = context
+
+    def getFields(self):
+        return self.fields
+
+    def fiddle(self, schema):
+        schema.moveField('show_related_items', after='relatedItems')
+        return schema
