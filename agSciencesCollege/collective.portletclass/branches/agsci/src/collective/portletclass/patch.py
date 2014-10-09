@@ -92,6 +92,9 @@ def collective_portletclass__init__(self, context, request):
     if ICollectivePortletClassLayer.providedBy(self.request):
         for (k,v) in portletclass_fields(self):
             self.form_fields = self.form_fields + form.Fields(v)
+    
+    if hasattr(self, 'adjustedFields'):
+        self.form_fields = self.adjustedFields()
 
 def collective_portletclass_createAndAdd(self, data):
     # Patch the createAndAdd method of portlet add forms to remove the
