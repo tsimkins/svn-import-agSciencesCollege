@@ -7,11 +7,7 @@
 
 /* Content Well Portlets for Sitemap */
 
-#portlets-above {
-    display: none;
-}
-
-#portlets-below {
+#portlets-footer {
 	background-color: &dtml-sitemapBackgroundColor;;
 	font-size: 0.625em;
 	margin: 0;
@@ -25,28 +21,28 @@
     display: table;
 }
 
-div.BelowPortletManager1,
-div.BelowPortletManager2,
-div.BelowPortletManager3,
-div.BelowPortletManager4,
-div.BelowPortletManager5 {
+div.FooterPortletManager1,
+div.FooterPortletManager2,
+div.FooterPortletManager3,
+div.FooterPortletManager4,
+div.FooterPortletManager5 {
 	width: 18.642533936651584%; /* ((884 - 60)/5)/884 */
 	float: left;
 	padding: 0.5em 0.678733031674208%;  /* 6/884 */
 }
 
-#portlets-below .portlet, #portlets-below .even, #portlets-below .portletFooter,
-#portlets-below .portletItem, #portlets-below .portletHeader {
+#portlets-footer .portlet, #portlets-footer .even, #portlets-footer .portletFooter,
+#portlets-footer .portletItem, #portlets-footer .portletHeader {
 	background-color: transparent;
 	border: none;
 }
 
-#portlets-below .portletWrapper {
+#portlets-footer .portletWrapper {
     padding: 0;
     margin: 0.5em;
 }
 
-#portlets-below .portletHeader {
+#portlets-footer .portletHeader {
     color: &dtml-sitemapHeaderColor; !important;
 	font-size: 1.25em;
 	font-weight: bold;
@@ -58,48 +54,48 @@ div.BelowPortletManager5 {
 	line-height: 1.25em;
 }
 
-#portlets-below dd.portletItem
+#portlets-footer dd.portletItem
 {
 	padding: 0;
     margin: 0;
 }
 
-#portlets-below .portletNavigationTree dd.portletItem
+#portlets-footer .portletNavigationTree dd.portletItem
 {
     padding: 0;
 }
 
-#portlets-below .navTree li
+#portlets-footer .navTree li
 {
 	padding: 0;
     margin: 0;
 }
 
-#portlets-below .portletHeader a, #portlets-below .portletHeader span {
+#portlets-footer .portletHeader a, #portlets-footer .portletHeader span {
 	color: &dtml-sitemapHeaderColor; !important;
 	padding: 0;
 }
 
-#portlets-below .portletFooter {
+#portlets-footer .portletFooter {
 	text-align: left;
 	padding: 0.25em 0;
 }
 
-#portlets-below .portletFooter a {
+#portlets-footer .portletFooter a {
 	color: &dtml-sitemapLinkColor;;
 	display: block;
 	background-color: transparent;
 }
 
-#portlets-below a, #portlets-below .state-published
+#portlets-footer a, #portlets-footer .state-published
 {
 	color: &dtml-sitemapLinkColor; !important;
 	padding: 0.25em 3.061225114535738%;
 	display: block;
 }
 
-#portlets-below .portletItem .state-published:hover,
-#portlets-below .portletItem a:hover {
+#portlets-footer .portletItem .state-published:hover,
+#portlets-footer .portletItem a:hover {
 	color: &dtml-sitemapBackgroundColor; !important;
 	background-color: &dtml-sitemapLinkColor; !important;
 }
@@ -107,94 +103,9 @@ div.BelowPortletManager5 {
 
 /* Navigation Portlet */
 
-#portlets-below dd.portletItem .navTreeItem a, 
-#portlets-below .navTreeItem a,
-#portlets-below .navTreeCurrentItem
-{
-    background-color: transparent;
-    border: none !important;
-    font-weight: normal;
-}
-
-/* above */
-/* Content Well Portlets for Main Content Area */
-
-#portlets-above {
-	background-color: &dtml-bodySitemapBackgroundColor;;
-	font-size: 1em;
-	margin: 0;
-	padding-bottom: 6px;
-}
-
-div.AbovePortletManager1,
-div.AbovePortletManager2,
-div.AbovePortletManager3,
-div.AbovePortletManager4,
-div.AbovePortletManager5 {
-	width: 29.873125720876586%;
-	float: left;
-	margin: 0 1.730103806228374%;
-}
-
-#portlets-above .portlet, #portlets-above .even, #portlets-above .portletFooter,
-#portlets-above .portletItem, #portlets-above .portletHeader {
-	background-color: transparent;
-	border: none;
-}
-
-#portlets-above .portletWrapper {
-    padding: 0.5em 0;
-    margin: 0.5em;
-}
-
-#portlets-above dl.portlet:first-child,
-#portlets-above dl.portlet:first-child .portletHeader {
-    margin-left: 0;
-    margin-top: 0;
-    padding-left: 0;
-    padding-top: 0;
-}
-
-#portlets-above .portletHeader {
-    font-size:1.1em;
-    font-weight:bold;
-    padding:0.5em 0 0.25em 0;
-    text-transform: uppercase;
-	display: block;
-}
-
-#portlets-above dd.portletItem
-{
-	padding: 0;
-	line-height: 1.3em;
-}
-
-#portlets-above .portletNavigationTree dd.portletItem
-{
-    padding: 0;
-}
-
-#portlets-above ul,
-#portlets-below ul {
-	margin: 0;
-}
-
-#portlets-above .navTree li
-{
-	padding: 0;
-    margin: 0;
-}
-
-#portlets-above .portletHeader a, #portlets-above .portletHeader span {
-	color: &dtml-bodySitemapHeaderColor; !important;
-	padding: 0;
-}
-
-/* Navigation Portlet */
-
-#portlets-above dd.portletItem .navTreeItem a, 
-#portlets-above .navTreeItem a,
-#portlets-above .navTreeCurrentItem
+#portlets-footer dd.portletItem .navTreeItem a, 
+#portlets-footer .navTreeItem a,
+#portlets-footer .navTreeCurrentItem
 {
     background-color: transparent;
     border: none !important;
@@ -203,52 +114,52 @@ div.AbovePortletManager5 {
 
 /* Link Icon Portlet */
 
-#portlets-below dl.linkIcon dd {
+#portlets-footer dl.linkIcon dd {
     margin: 0;
     padding: 0;
 }
 
-#portlets-below dl.linkIcon dd.icon,
-#portlets-below dl.linkIcon dd.sprite {
+#portlets-footer dl.linkIcon dd.icon,
+#portlets-footer dl.linkIcon dd.sprite {
     margin: 0.75em 0;
 }
 
-#portlets-below dl.linkIcon a {
+#portlets-footer dl.linkIcon a {
     padding: 0.25em 3.061225114535738%;
 }
 
-#portlets-below dl.linkIcon img {
+#portlets-footer dl.linkIcon img {
     padding-right: 0.5em;
 }
 
 /* Sprites */
 
-#portlets-below dl.linkIcon dd.sprite,
-#portlets-below dl.linkIcon dd.icon {
+#portlets-footer dl.linkIcon dd.sprite,
+#portlets-footer dl.linkIcon dd.icon {
     min-height: 24px;
 }
 
-#portlets-below dl.linkIcon dd.sprite a,
-#portlets-below dl.linkIcon dd.icon a {
+#portlets-footer dl.linkIcon dd.sprite a,
+#portlets-footer dl.linkIcon dd.icon a {
     padding: 0;
 	color: &dtml-sitemapLinkColor; !important;
 	background-color: transparent !important;
     vertical-align: middle;
 }
 
-#portlets-below dl.linkIcon dd.sprite a:hover,
-#portlets-below dl.linkIcon dd.icon a:hover {
+#portlets-footer dl.linkIcon dd.sprite a:hover,
+#portlets-footer dl.linkIcon dd.icon a:hover {
 	color: &dtml-sitemapLinkColor; !important;
 	text-decoration: underline;
 }
 
-#portlets-below dl.linkIcon dd.sprite a {
+#portlets-footer dl.linkIcon dd.sprite a {
     margin-left: 2.875em;
     padding-top: 0.25em
 }
 
-#portlets-below dl.linkIcon dd.icon,
-#portlets-below dl.linkIcon dd.sprite {
+#portlets-footer dl.linkIcon dd.icon,
+#portlets-footer dl.linkIcon dd.sprite {
 	margin: 0.75em 3.061225114535738%;
 }
 

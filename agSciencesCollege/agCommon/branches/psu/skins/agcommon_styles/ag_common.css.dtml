@@ -245,7 +245,256 @@ body.icons-on.empty-top-navigation #portal-top {
 }
 
 
-/* ----- portlets ------------------------------------------ */
+/* ================= Portlet Styles =======================*/
+
+/* ================= agCommonPortlets =====================*/
+
+.agCommonPortlet {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.agCommonPortlet .portletWrapper {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.5em 0;
+}
+
+/* ================= Portlet headers ===================== */
+
+#content .agCommonPortlet .portletHeader {
+    background-color: transparent;
+    padding: 0.375em 0 0 0;
+    border-width: 0;
+    margin: 0.375em 0 0.375em 0;
+    line-height: 1.3em;
+    font-size: 1.375em;
+    color: #AC5209;
+    font-weight: normal;
+    text-align: left;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #DDDDDD;
+    font-family: Arial, Helvetica, Helv, sans-serif;
+    text-transform: none;
+}
+
+#content .agCommonPortlet .portletHeader span,
+#content .agCommonPortlet .portletHeader a {
+    color: #AC5209 !important; 
+}
+
+.agCommonPortlet .portletHeader a {  
+    color: #AC5209 !important;
+    margin: 0;
+    text-decoration: none;
+    border: none !important;
+}
+
+/* ================= Portlet item =====================*/
+
+.agCommonPortlet .portlet dd:first-child {
+    border-width: 0 0 0 0;
+}
+
+.agCommonPortlet .portletItem {
+    background-color: transparent;
+    border-width: 0;
+    color: &dtml-frontRightPortletTextColor;;
+    display: block;
+    font-size: 1em;
+    margin: 0 0 1em 0;
+    padding: 0;
+}
+
+.agCommonPortlet .portletItem p {
+    padding: 0;
+}
+
+.agCommonPortlet .portletItem a.title {
+    font-size: 0.90625em;
+    line-height: 1.25em;
+    font-weight: normal;
+    margin-top: 0;
+    border: none;
+    display: block;
+}
+
+.agCommonPortlet .portletItem a.title:hover {
+    text-decoration: underline;
+}
+
+.agCommonPortlet .portletItem .summary {
+    color: #333333;
+    font-size: 0.75em;
+    margin: 0.125em 0 0 0;
+    font-weight: normal;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.agCommonPortlet .portletItem .date,
+.agCommonPortlet .portletfeedmixer .portletItem.event_summary .date,
+.agCommonPortlet .portletItem .location {
+    color: #666666;
+    font-size: 0.75em;
+    font-weight: normal;
+    text-align: left;
+    line-height: 1.5em;
+    margin-bottom: 0;
+    line-height: 1.375em;
+}
+
+.agCommonPortlet .portletfeedmixer .portletItem .summary {
+    margin-top: 0.375em;  
+    color: #4B4B4B;   
+}
+
+.agCommonPortlet .portletfeedmixer .portletItem .date {
+    color: #767676;   
+}
+
+.agCommonPortlet .portletItem a.more {
+    display: block;
+    font-size: 0.875em;
+    margin: 5px;
+    text-align: left;
+    text-decoration: none;
+    border: none;
+}
+
+/* ================= Portlet Footer =====================*/
+
+.agCommonPortlet .portletFooter {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+#content .agCommonPortlet .portletFooter a {
+    color: #2256BD;
+    display: block;
+    margin: 0.5em 0.5em 0 0;
+    text-align: left;
+    text-decoration: none;
+    border-width: 0;
+    margin-bottom: 1em;
+    font-size: 0.6875em;
+}
+
+/* ================= Portlet Type =====================*/
+
+/* ----------------- Static Text --------------------- */
+
+.agCommonPortlet .portletStaticText .portletItem {
+    padding: 0 0 0.75em 0;
+    font-size: 0.90625em;
+    margin: 0;
+}
+
+
+.agCommonPortlet .portletStaticText .portletItem p {
+    margin-bottom: 0.375em;
+}
+
+/* Portlet */
+
+.agCommonPortlet .portlet {
+    border-bottom: none;
+    background-color: transparent;
+}
+
+#content .agCommonPortlet .portletItem ul {
+    margin: 0;
+    padding: 0;
+}
+
+.agCommonPortlet .portletItem li {
+    list-style-image: none;
+    list-style-type: none;
+    margin: 0 0 0.25em;
+    padding: 0.125em 0 0.125em 0.125em;
+    color: &dtml-frontRightPortletTextColor;;
+}
+
+.agCommonPortlet .navTreeCurrentItem {
+    border: 0 !important;
+    font-weight: bold;
+}
+
+.agCommonPortlet dl.people .portletItem {
+    color: #4B4B4B;
+    line-height: 1.25em;
+}
+
+#content .agCommonPortlet dl.people .portletItem h2 {
+    border: none;
+    margin: 0.5em 0 0.125em 0;
+    font-size: 0.875em !important;
+}
+
+#content .agCommonPortlet dl.people div {
+    font-size: 0.75em;
+}
+
+#content .agCommonPortlet dl.people .title {
+    font-size: 0.75em;
+}
+
+.agCommonPortlet dl.people .portletItem h2 a {
+    font-weight: bold !important;
+}
+
+#content .agCommonPortlet dl.people .portletItem span.email a.email {
+    display: inline;
+}
+
+.agCommonPortlet .portletItem a:hover {
+    color: &dtml-frontRightPortletLinkHoverColor;;
+    background-color: transparent;
+    text-decoration: underline !important;
+    border-bottom: none !important;
+}
+
+.agCommonPortlet .linkIcon .portletItem a:hover {
+    text-decoration: none;
+}
+
+#content .agCommonPortlet .portletItem a, 
+#content .agCommonPortlet .portletItem a:visited,
+#content .agCommonPortlet .portlet dd a:visited {
+    color: &dtml-frontRightPortletLinkColor;;
+    text-decoration: none;
+    border: none;
+    font-weight: normal;
+}
+
+/* make email address wrap in rightcolumn  person portlet */
+
+.agCommonPortlet .people .portletItem a.email {
+    display: inline;
+}
+
+.agCommonPortlet dl.portletfeedmixer .summary {
+    line-height: 1.5em;
+}
+
+.agCommonPortlet .people h2 {
+    border: none;
+    font-size: 1.25em;
+}
+
+/* manage agCommonPortlets */
+.agCommonPortlet .customManagePortletsLink {
+    display: block !important;
+    text-align: center;
+    padding-bottom: 1.5em;
+}
+
+.agCommonPortlet dd {
+    margin-bottom: 0;
+}
 
 #content .portlet dd a:visited {
     color: &dtml-linkColor;;
@@ -537,6 +786,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     display: block;
     text-align: left;
     margin-top: 0.5em;
+}
+
+#portal-column-one dl.portletfeedmixer .rssImage img,
+#portal-column-two dl.portletfeedmixer .rssImage img,
+#portlets-mobile dl.portletfeedmixer .rssImage img{
+    max-width: 100%;
 }
 
 .rssImage img.link {
@@ -3169,6 +3424,13 @@ body.template-by_county_summary_view #content .tileSummaryLeadImage {
     font-size: 0.5em;
 }
 
+.viewletmanager dd, .viewlet dd {
+    margin-left: 0;
+}
+
+body.template-manage-viewlets #content {
+    padding: 0.25em;
+}
 
 dl.person-connect img {
     margin: 0 0.5em;

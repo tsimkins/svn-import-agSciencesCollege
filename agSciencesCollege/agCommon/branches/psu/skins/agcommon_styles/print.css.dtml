@@ -301,7 +301,7 @@ body.custom-pullquote #region-content h2 {
 }
 
 /* Content Well Portlets */
-#portlets-above, #portlets-below {
+#portlets-above, #portlets-footer {
 	display: none !important;
 }
 

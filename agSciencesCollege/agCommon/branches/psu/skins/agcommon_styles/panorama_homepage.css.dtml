@@ -6,64 +6,7 @@
 /* YOUR CSS RULES START HERE */
 
 
-body.template-panorama_homepage_view #content {
-    margin:0;
-    padding-top: 0 !important;
-    width: 100%;
-}
 
-#portal-columns {
-    background-position: left top;
-    background-repeat: no-repeat;
-    /* The below will put a border below the panorama image without letting it 'bleed' into the content area. */
-    /* border-top: 1px solid #666666; */
-}
-
-#portal-column-two .portletHeader a {
-    color: &dtml-insideRightPortletHeaderTextColor;;
-}
-
-#portal-column-two .portlet {
-    border-bottom: none;
-}
-
-#addthis {
-    display: none;
-}
-
-.documentActions {
-    display: none;
-}
-
-#rightcolumn {
-    display: none;
-}
-
-#portal-breadcrumbs.homepage {
-    margin: 0;
-    padding-top: 0;
-    width: 97.797356828193833%;
-}
-
-#panorama-homepage-image {
-    background-repeat: no-repeat;
-    margin-top: -1.75em;
-    background-size: 100% auto;
-}
-
-#panorama-homepage-image.nobreadcrumbs {
-    margin-top: 0;
-}
-
-#portal-column-content.sr #content #homepage-text,
-#portal-column-content.sr #content #centercolumn {
-    margin: 0 2.124645892351275%;
-    width: 95.75070821529745%;
-}
-
-body.template-atct_edit #panorama-homepage-image {
-    display: none;
-}
 
 /* YOUR CSS RULES STOP HERE */
 

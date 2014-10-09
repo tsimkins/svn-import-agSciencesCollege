@@ -101,9 +101,9 @@ class TileHomepage(CSSView):
     def getContentWellPortletCSS(self):
     
         homepage_text_width = (self.total_width - 2*self.padding)/self.total_width
-        homepage_text_padding = self.padding/self.total_width
+        homepage_text_padding = container_margin = self.padding/self.total_width
     
-        return [templates.contentwellportlet_css % {'homepage_text_width' : 100*homepage_text_width, 'homepage_text_padding' : 100*homepage_text_padding}]
+        return [templates.contentwellportlet_css % {'homepage_text_width' : 100*homepage_text_width, 'homepage_text_padding' : 100*homepage_text_padding, 'container_margin' : 100*container_margin}]
 
     def getPortletCSS(self):
         return [templates.portlet_css]
@@ -150,8 +150,16 @@ class TileHomepage(CSSView):
         
         for (mq, mq_format) in mq_list:
             css.append(mq_format % "\n".join(self.getBlockCSS(mq=mq)))
-                        
+
+        # Template is "Above".  Set both equal, and then find/replace above with
+        # below for below portlet manager.
+        above_css = below_css = "\n".join(css)
+        below_css = below_css.replace('#portlets-above', '#portlets-below')
+        below_css = below_css.replace('.AbovePortletManager', '.BelowPortletManager')
+                
         return """
         /* Automagically generated tile homepage css */
         %s
-        """ % "\n".join(css)
+        
+        %s
+        """ % (above_css, below_css)

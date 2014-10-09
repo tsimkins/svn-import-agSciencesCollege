@@ -20,12 +20,15 @@
     <!-- Hiding Column Two -->
 </div>
 
-<div metal:fill-slot="main">
+<div metal:fill-slot="main"
+     tal:define="showLegacyHomePagePortlets view/showLegacyHomePagePortlets|nothing">
+  
   <h2 class="documentFirstHeading">Manage Right Column Portlets</h2>
-  <span tal:replace="structure provider:agcommon.rightcolumn" />
-  <tal:notAHomepage tal:condition="python: not context.getLayout() == 'document_homepage_view'">
-  <p>This portlet manager may only be used on homepages.</p>
-  </tal:notAHomepage>
+  
+  <span tal:condition="showLegacyHomePagePortlets" tal:replace="structure provider:agcommon.rightcolumn" />
+  
+  <p tal:condition="not: showLegacyHomePagePortlets">This portlet manager may only be used on homepages.</p>
+  
 </div>
 </body>
 </html>

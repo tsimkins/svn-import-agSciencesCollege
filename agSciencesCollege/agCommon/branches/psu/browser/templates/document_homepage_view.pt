@@ -8,12 +8,22 @@
     <body>
     
         <metal:js fill-slot="javascript_head_slot">
-            <!-- Homepage JavaScript -->
-            <script async
-                    tal:define="acquire_background_images context/acquire_background_images|nothing"
-                    tal:condition="python: acquire_background_images or 'background-images' in context.keys()" 
+            <tal:background-images 
+                define="acquire_background_images context/acquire_background_images|nothing"
+                condition="python: acquire_background_images or 'background-images' in context.keys()">
+                
+                <!-- Homepage JavaScript -->
+                <script async
+                    tal:condition="python: view.image_format == 'standard'"
                     type="text/javascript" 
                     src="background-images/getHomepageImage.js"></script>
+
+                <script async
+                    tal:condition="python: view.image_format == 'panorama'"
+                    type="text/javascript" 
+                    src="background-images/getPanoramaHomepageImage.js"></script>
+
+            </tal:background-images>
         </metal:js>
         
         <metal:title fill-slot="content-title" tal:condition="not:view/hasText">

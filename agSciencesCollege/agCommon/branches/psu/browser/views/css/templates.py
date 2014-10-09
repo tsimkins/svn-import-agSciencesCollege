@@ -121,9 +121,11 @@ portlet_item_css = """
 contentwellportlet_css = """
 #content #portlets-above {
     display: block;
+    margin-left: -%(container_margin)0.6f%%;
+    margin-right: -%(container_margin)0.6f%%;
 }
 
-#portal-column-content.sl #content #portlets-above .agCommonPortlet .portletHeader{
+#portal-column-content.sl #content #portlets-above .agCommonPortlet .portletHeader {
     font-size: 1.25em;
 }
 

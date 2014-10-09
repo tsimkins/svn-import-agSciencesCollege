@@ -244,11 +244,11 @@
         height: 100%;
     }
     
-    div.BelowPortletManager1,
-    div.BelowPortletManager2,
-    div.BelowPortletManager3,
-    div.BelowPortletManager4,
-    div.BelowPortletManager5,
+    div.FooterPortletManager1,
+    div.FooterPortletManager2,
+    div.FooterPortletManager3,
+    div.FooterPortletManager4,
+    div.FooterPortletManager5,
     div.AbovePortletManager1,
     div.AbovePortletManager2,
     div.AbovePortletManager3,
@@ -259,7 +259,7 @@
     	padding: 0.5em 0.78125%;  /* 6/768 */
     }
 
-    #portlets-below > div:nth-child(2n + 1) {
+    #portlets-footer > div:nth-child(2n + 1) {
         clear: left;
     }
 
@@ -272,12 +272,12 @@
         background-position: left top;
     }
     
-    #portal-top, #portal-columns, #portal-footer, #portlets-below {
+    #portal-top, #portal-columns, #portal-footer, #portlets-footer {
         border: none;
         width: 100%;
     }
     
-    #content #portlets-below {
+    #content #portlets-footer {
         background-color: transparent;
     }
     
@@ -560,7 +560,7 @@
     body.template-responsive_photogallery #portal-top,
     body.template-responsive_photogallery #clear-space-before-footer,
     body.template-responsive_photogallery #portal-footer,
-    body.template-responsive_photogallery #portlets-below, 
+    body.template-responsive_photogallery #portlets-footer, 
     body.template-responsive_photogallery #content .documentDescription,
     body.template-responsive_photogallery #content #content-text,
     body.template-responsive_photogallery #portal-localsearchbox,
@@ -1390,11 +1390,11 @@
 
 @media handheld, screen and (max-width: 480px) {
 
-    div.BelowPortletManager1,
-    div.BelowPortletManager2,
-    div.BelowPortletManager3,
-    div.BelowPortletManager4,
-    div.BelowPortletManager5,
+    div.FooterPortletManager1,
+    div.FooterPortletManager2,
+    div.FooterPortletManager3,
+    div.FooterPortletManager4,
+    div.FooterPortletManager5,
     div.AbovePortletManager1,
     div.AbovePortletManager2,
     div.AbovePortletManager3,

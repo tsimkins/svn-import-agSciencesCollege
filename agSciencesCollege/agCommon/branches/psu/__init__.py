@@ -321,7 +321,7 @@ def getHomepageImage(context):
 def getPortletHomepageImage(context, homepage_type="portlet"):
     return getPanoramaHomepageImage(context, homepage_type="portlet")
 
-def getPanoramaHomepageImage(context, homepage_type="panorama"):
+def getPanoramaHomepageImage(context, homepage_type="document"):
 
     (backgrounds, backgroundAlignments, backgroundHeights) = getBackgroundImages(context, maxHeight=250)
     
@@ -368,35 +368,7 @@ def getPanoramaHomepageImage(context, homepage_type="panorama"):
     """ % {'homepage_type' : homepage_type, 'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
 
 def getSubsiteHomepageImage(context):
-
-    (backgrounds, backgroundAlignments, backgroundHeights) = getBackgroundImages(context, maxHeight=188)
-    
-    if len(backgrounds):
-    
-        return """
-    jq(document).ready(
-        function () {
-            var homepageImage = jq('#image-header');        
-    
-            var backgrounds = "%(backgrounds)s".split(";");
-            var backgroundAlignments = "%(alignments)s".split(";");
-            var backgroundHeights = "%(heights)s".split(";");
-            var randomnumber = Math.floor(Math.random()*backgrounds.length) ;
-            
-            homepageImage.css("backgroundImage", "url(" + backgrounds[randomnumber] + ")");
-            homepageImage.css("backgroundPosition", backgroundAlignments[randomnumber] + " top");
-            homepageImage.css("paddingTop", backgroundHeights[randomnumber] + 'px');
-            
-            breadcrumbs = jq("#portal-breadcrumbs");
-
-            if (backgrounds.length && breadcrumbs.length)
-            {
-                breadcrumbs.addClass("homepage");
-            }
-        }
-    );
-   
-    """ % {'backgrounds' :  ";".join(backgrounds), 'alignments' : ";".join(backgroundAlignments), 'heights' : ";".join(backgroundHeights)}
+    return getHomepageImage(context)
 
 
 def getBackgroundImages(context, maxHeight=265):

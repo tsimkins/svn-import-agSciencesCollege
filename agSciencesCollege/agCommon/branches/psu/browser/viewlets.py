@@ -117,6 +117,14 @@ class AgCommonViewlet(ViewletBase):
         return self.isLayout(views=['document_homepage_view', 'document_subsite_view', 'portlet_homepage_view', 'panorama_homepage_view', 'tile_homepage_view'])
 
     @property
+    def showLegacyHomePagePortlets(self):
+        return (self.isHomePage and self.portlet_format == 'standard')
+
+    @property
+    def showAboveContentPortlets(self):
+        return (self.isHomePage and self.portlet_format == 'tile') or not self.isHomePage
+
+    @property
     def showHomepageText(self):
         return getattr(self.context, 'show_homepage_text', True)
 
@@ -162,6 +170,13 @@ class AgCommonViewlet(ViewletBase):
         else:
             return False
 
+    @property
+    def image_format(self):
+        return getattr(self.context, 'homepage_image_format', 'standard')
+
+    @property
+    def portlet_format(self):
+        return getattr(self.context, 'homepage_portlet_format', 'standard')
 
 class PortletViewlet(AgCommonViewlet):
 
@@ -842,7 +857,7 @@ class CustomCommentsViewlet(CommentsViewlet):
         except AttributeError:
             self.xid = md5(self.context.absolute_url()).hexdigest()
 
-class _ContentWellPortletsViewlet(ContentWellPortletsViewlet):
+class _ContentWellPortletsViewlet(ContentWellPortletsViewlet, AgCommonViewlet):
 
     def have_portlets(self, view=None):
         """Determine whether a column should be shown.
@@ -868,6 +883,18 @@ class _ContentWellPortletsViewlet(ContentWellPortletsViewlet):
         for counter, name in enumerate(visibleManagers):
             managers.append((name, (name.split('.')[-1])))
         return managers
+    
+    def showManagePortlets(self):
+        if self.canManagePortlets:
+            if self.isHomePage:
+                return True
+            elif self.canManageBodyPortlets():
+                return True
+        return False
+
+    def canManageBodyPortlets(self):
+        return getattr(self.context, 'manage_body_portlets', False)
+        
 
 class PortletsBelowViewlet(_ContentWellPortletsViewlet):
     name = 'BelowPortletManager'
@@ -876,6 +903,10 @@ class PortletsBelowViewlet(_ContentWellPortletsViewlet):
 class PortletsAboveViewlet(_ContentWellPortletsViewlet):
     name = 'AbovePortletManager'
     manage_view = '@@manage-portletsabovecontent'
+
+class FooterPortletsViewlet(_ContentWellPortletsViewlet):
+    name = 'FooterPortletManager'
+    manage_view = '@@manage-footerportlets'
     
 class LocalSearchViewlet(SearchBoxViewlet):
 
@@ -908,12 +939,11 @@ class LocalSearchViewlet(SearchBoxViewlet):
         return default_search_url
 
 class ContentRelatedItems(ContentRelatedItemsBase):
-
-    def related(self):
-        if not self.context.isPrincipiaFolderish:
-            return self.related_items()
-        else:
-            return []
+   
+    def show_related_items(self):
+        if self.related_items():
+            return getattr(self.context, 'show_related_items', True)
+        return False
 
 class PublicationCode(AgCommonViewlet):
 
