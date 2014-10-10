@@ -18,6 +18,9 @@ class RelatedItemRSSView(FolderView):
 
 class SimilarItemRSSView(FolderView):
 
+    def catalog_indexes(self):
+        return set(['Counties','Topics','Subtopics','Courses','Title','department_research_areas', 'Tags', 'Subject'])
+
     def __call__(self, 
                     limit=10, 
                     query_portal_type=None, 
@@ -27,6 +30,8 @@ class SimilarItemRSSView(FolderView):
                     query_courses=None,
                     query_title=None,
                     query_research_areas=None,
+                    query_public_tags=None,
+                    query_plone_tags=None,                    
                     random=False,
                     days=365,
                     ):
@@ -38,6 +43,8 @@ class SimilarItemRSSView(FolderView):
         self.query_courses=query_courses
         self.query_title=query_title
         self.query_research_areas=query_research_areas
+        self.query_public_tags=query_public_tags,
+        self.query_plone_tags=query_plone_tags,   
         self.random=random
         self.days=days
 
@@ -61,23 +68,29 @@ class SimilarItemRSSView(FolderView):
                 similar_query['sort_order'] = 'descending'
                 similar_query['effective'] = {'query' : DateTime()-self.days, 'range' : 'min'}
                 
-        if self.query_counties and self.context.extension_counties:
-            similar_query['Counties'] = self.context.extension_counties
+        if self.query_counties and getattr(self.context, 'extension_counties', ''):
+            similar_query['Counties'] = getattr(self.context, 'extension_counties', '')
 
-        if self.query_programs and self.context.extension_topics:
-            similar_query['Topics'] = self.context.extension_topics
+        if self.query_programs and getattr(self.context, 'extension_topics', ''):
+            similar_query['Topics'] = getattr(self.context, 'extension_topics', '')
 
-        if self.query_topics and self.context.extension_subtopics:
-            similar_query['Subtopics'] = self.context.extension_subtopics
+        if self.query_topics and getattr(self.context, 'extension_subtopics', ''):
+            similar_query['Subtopics'] = getattr(self.context, 'extension_subtopics', '')
 
-        if self.query_courses and self.context.extension_courses:
-            similar_query['Courses'] = self.context.extension_courses
+        if self.query_courses and getattr(self.context, 'extension_courses', ''):
+            similar_query['Courses'] = getattr(self.context, 'extension_courses', '')
 
         if self.query_title and self.context.Title():
             similar_query['Title'] = self.context.Title()
         
-        if self.query_research_areas and self.context.department_research_areas:
-            similar_query['department_research_areas'] = self.context.department_research_areas
+        if self.query_research_areas and getattr(self.context, 'department_research_areas', ''):
+            similar_query['department_research_areas'] = getattr(self.context, 'department_research_areas', '')
+
+        if self.query_public_tags and getattr(self.context, 'public_tags', ''):
+            similar_query['public_tags'] = getattr(self.context, 'public_tags', '')
+
+        if self.query_plone_tags and self.context.Subject():
+            similar_query['Subject'] = self.context.Subject()
 
         if self.context.portal_type in ['Event'] and self.query_portal_type in ['Event'] and self.limit_radius and self.limit_radius > 0:
             if hasattr(self.context, 'zip_code') and self.context.zip_code and self.context.zip_code != '00000':
@@ -87,10 +100,9 @@ class SimilarItemRSSView(FolderView):
                 similar_query['zip_code'] = list(search_zip_codes)
 
 
-        if similar_query.get('Counties') or similar_query.get('Topics') or similar_query.get('Subtopics') or similar_query.get('Courses') or similar_query.get('Title') or similar_query.get('department_research_areas'):
+        if set(similar_query.keys()) & self.catalog_indexes():
 
             all_brains = self.portal_catalog.searchResults(similar_query)
-    
             brains = []
     
             for b in all_brains:

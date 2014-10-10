@@ -34,10 +34,12 @@ def _adjustFields(context=None, fields=None):
                 
                 for (field, index) in [
                     ('query_research_areas', 'department_research_areas'),
-                    ('query_counties', 'extension_counties'),
-                    ('query_programs', 'extension_topics'),
-                    ('query_topics', 'extension_programs'),
-                    ('query_courses', 'extension_courses'),
+                    ('query_counties', 'Counties'),
+                    ('query_programs', 'Topics'),
+                    ('query_topics', 'Subtopiocs'),
+                    ('query_courses', 'Courses'),
+                    ('query_public_tags', 'Tags'),
+                    ('query_plone_tags', 'Subject'),
                     ('limit_radius', 'zip_code'),
                     ]:
         
@@ -122,6 +124,8 @@ class Renderer(_Renderer):
                     query_courses=getattr(self.data, 'query_courses', ''),
                     query_title=getattr(self.data, 'query_title', ''),
                     query_research_areas=getattr(self.data, 'query_research_areas', ''),
+                    query_public_tags=getattr(self.data, 'query_public_tags', ''),
+                    query_plone_tags=getattr(self.data, 'query_plone_tags', ''),
                     days=getattr(self.data, 'days', ''),
                     random=getattr(self.data, 'random', ''),
         ).encode("utf-8"))

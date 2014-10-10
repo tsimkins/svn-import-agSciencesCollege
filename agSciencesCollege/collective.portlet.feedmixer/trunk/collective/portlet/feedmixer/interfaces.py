@@ -198,6 +198,18 @@ class IFeedMixerSimilarItems(IFeedMixer):
         required=False,
         default=False)
 
+    query_plone_tags = schema.Bool(
+        title=_(u"Search Plone Tags"),
+        description=_(u""),
+        required=False,
+        default=False)
+
+    query_public_tags = schema.Bool(
+        title=_(u"Search Public Tags"),
+        description=_(u""),
+        required=False,
+        default=False)
+
     query_counties = schema.Bool(
         title=_(u"Search Counties"),
         description=_(u""),
