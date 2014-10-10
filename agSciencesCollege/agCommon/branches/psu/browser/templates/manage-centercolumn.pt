@@ -20,14 +20,11 @@
     <!-- Hiding Column Two -->
 </div>
 
-<div metal:fill-slot="main"
-     tal:define="showLegacyHomePagePortlets view/showLegacyHomePagePortlets|nothing">
+<div metal:fill-slot="main">
 
   <h2 class="documentFirstHeading">Manage Center Column Portlets</h2>
   
-  <span tal:condition="showLegacyHomePagePortlets" tal:replace="structure provider:agcommon.centercolumn" />
-
-  <p tal:condition="not: showLegacyHomePagePortlets">This portlet manager may only be used on homepages.</p>
+  <span tal:replace="structure provider:agcommon.centercolumn" />
 
 </div>
 </body>
