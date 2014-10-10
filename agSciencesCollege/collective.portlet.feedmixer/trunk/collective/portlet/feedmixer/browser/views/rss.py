@@ -87,7 +87,7 @@ class SimilarItemRSSView(FolderView):
                 similar_query['zip_code'] = list(search_zip_codes)
 
 
-        if similar_query.get('Counties') or similar_query.get('Topics') or similar_query.get('Subtopics') or similar_query.get('Courses') or similar_query.get('Title'):
+        if similar_query.get('Counties') or similar_query.get('Topics') or similar_query.get('Subtopics') or similar_query.get('Courses') or similar_query.get('Title') or similar_query.get('department_research_areas'):
 
             all_brains = self.portal_catalog.searchResults(similar_query)
     
@@ -97,7 +97,7 @@ class SimilarItemRSSView(FolderView):
                 if b.UID != self.context.UID():
                     brains.append(b)
 
-            if self.random:
+            if self.random and len(brains) > self.limit:
                 indexes = sorted(random.sample(range(0,len(brains)), self.limit))
                 brains = [brains[x] for x in indexes]
             else:            

@@ -114,16 +114,16 @@ class Renderer(_Renderer):
         similar_item_rss = self.context.restrictedTraverse('@@similar_item_rss')
 
         feed = feedparser.parse(similar_item_rss(
-                    limit=self.data.items_shown, 
-                    query_portal_type=self.data.query_portal_type, 
-                    query_counties=self.data.query_counties, 
-                    query_programs=self.data.query_programs,
-                    query_topics=self.data.query_topics,
-                    query_courses=self.data.query_courses,
-                    query_title=self.data.query_title,
-                    query_research_areas=self.data.research_areas,
-                    days=self.data.days,
-                    random=self.data.random,
+                    limit=getattr(self.data, 'items_shown', ''), 
+                    query_portal_type=getattr(self.data, 'query_portal_type', ''), 
+                    query_counties=getattr(self.data, 'query_counties', ''), 
+                    query_programs=getattr(self.data, 'query_programs', ''),
+                    query_topics=getattr(self.data, 'query_topics', ''),
+                    query_courses=getattr(self.data, 'query_courses', ''),
+                    query_title=getattr(self.data, 'query_title', ''),
+                    query_research_areas=getattr(self.data, 'query_research_areas', ''),
+                    days=getattr(self.data, 'days', ''),
+                    random=getattr(self.data, 'random', ''),
         ).encode("utf-8"))
 
         self.request.response.setHeader('Content-Type', original_header)
@@ -133,3 +133,7 @@ class Renderer(_Renderer):
     @property
     def show_footer(self):
         return False
+
+    @property
+    def available(self):
+        return bool(self.entries)
