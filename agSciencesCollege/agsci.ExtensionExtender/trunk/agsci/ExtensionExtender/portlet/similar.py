@@ -68,7 +68,6 @@ class ISimilar(IPortletDataProvider):
         required=False,
         default=False)
 
-
     query_topics = schema.Bool(
         title=_(u"Search Topics"),
         description=_(u""),
