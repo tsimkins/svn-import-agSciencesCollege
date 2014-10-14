@@ -21,7 +21,7 @@
     </div>
     
     <div id="rightcolumn" class="agCommonPortlet" 
-         tal:condition="python: view.showLegacyHomePagePortlets and (mp or hsc)">
+         tal:condition="python: view.showLegacyHomePagePortlets and (mp or hsr)">
     
     	<tal:block replace="structure provider:agcommon.rightcolumn" />
     
