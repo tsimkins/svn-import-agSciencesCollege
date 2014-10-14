@@ -3719,6 +3719,15 @@ body.custom-no-icons .documentByLine {
     display: none;
 }
 
+/* CSS for cropping image */
+#content .contentLeadImageContainer .crop-image {
+    float: right;
+}
+
+#content .contentLeadImageContainer .crop-image a:hover {
+    cursor: pointer; 
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
