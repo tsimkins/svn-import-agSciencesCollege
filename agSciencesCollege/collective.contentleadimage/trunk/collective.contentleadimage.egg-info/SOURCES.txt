@@ -35,7 +35,6 @@ collective/contentleadimage/browser/folder_leadimage_listing.pt
 collective/contentleadimage/browser/folder_leadimage_listing.py
 collective/contentleadimage/browser/folder_leadimage_view.pt
 collective/contentleadimage/browser/folder_leadimage_view.py
-collective/contentleadimage/browser/leadimage-body.pt
 collective/contentleadimage/browser/leadimage.pt
 collective/contentleadimage/browser/viewlets.py
 collective/contentleadimage/locales/collective.contentleadimage.pot

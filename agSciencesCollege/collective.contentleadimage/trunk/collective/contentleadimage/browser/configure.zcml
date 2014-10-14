@@ -75,7 +75,18 @@
          layer="..interfaces.ILeadImageSpecific"
          permission="zope2.View"
     />
-    
+
+    <!-- Cropped Image --> 
+
+    <browser:page
+        for="*"
+        name="crop-image"
+        template="templates/crop-image.pt"
+        class=".views.crop_image.CropImageView"
+        layer="..interfaces.ILeadImageSpecific"
+        permission="cmf.ModifyPortalContent"
+    />
+
     <browser:menuItem
         for="Products.Archetypes.interfaces.IBaseFolder"
         menu="plone_displayviews"

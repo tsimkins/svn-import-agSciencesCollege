@@ -111,3 +111,6 @@ class LeadImageViewlet(ViewletBase):
             return "contentLeadImageContainerFullWidth"
         else:
             return "contentLeadImageContainer"
+
+    def allowCrop(self):
+        return self.context.restrictedTraverse('@@crop-image').allowCrop()

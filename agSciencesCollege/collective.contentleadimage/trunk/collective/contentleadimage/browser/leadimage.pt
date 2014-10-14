@@ -27,8 +27,9 @@
        <img tal:replace="structure tag" src="" alt="" />
     </a>
 
-    <p class="discreet" tal:condition="view/caption" tal:content="view/caption" />
+    <p class="discreet crop-image" tal:condition="view/allowCrop">[<a tal:attributes="href string:${context/absolute_url}/@@crop-image">Crop Image</a>]</p>
 
+    <p class="discreet" tal:condition="view/caption" tal:content="view/caption" />
 
 </div>
 
