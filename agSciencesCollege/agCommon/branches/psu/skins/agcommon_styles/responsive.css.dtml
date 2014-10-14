@@ -501,6 +501,13 @@
    .documentActions {
         display: none;
     }
+
+    #portal-column-one dl.portletfeedmixer .rssImage img,
+    #portal-column-two dl.portletfeedmixer .rssImage img,
+    #portlets-mobile dl.portletfeedmixer .rssImage img{
+        max-width: 100%;
+        width: auto;        
+    }
 }
 
 /*------------------------ END resolution-768.css ----------------------------*/

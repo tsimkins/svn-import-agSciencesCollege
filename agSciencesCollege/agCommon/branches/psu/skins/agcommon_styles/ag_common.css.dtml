@@ -792,6 +792,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #portal-column-two dl.portletfeedmixer .rssImage img,
 #portlets-mobile dl.portletfeedmixer .rssImage img{
     max-width: 100%;
+    width: 100%;
 }
 
 .rssImage img.link {
