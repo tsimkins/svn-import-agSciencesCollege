@@ -43,8 +43,8 @@ class SimilarItemRSSView(FolderView):
         self.query_courses=query_courses
         self.query_title=query_title
         self.query_research_areas=query_research_areas
-        self.query_public_tags=query_public_tags,
-        self.query_plone_tags=query_plone_tags,   
+        self.query_public_tags=query_public_tags
+        self.query_plone_tags=query_plone_tags
         self.random=random
         self.days=days
 
@@ -87,7 +87,7 @@ class SimilarItemRSSView(FolderView):
             similar_query['department_research_areas'] = getattr(self.context, 'department_research_areas', '')
 
         if self.query_public_tags and getattr(self.context, 'public_tags', ''):
-            similar_query['public_tags'] = getattr(self.context, 'public_tags', '')
+            similar_query['Tags'] = getattr(self.context, 'public_tags', '')
 
         if self.query_plone_tags and self.context.Subject():
             similar_query['Subject'] = self.context.Subject()
