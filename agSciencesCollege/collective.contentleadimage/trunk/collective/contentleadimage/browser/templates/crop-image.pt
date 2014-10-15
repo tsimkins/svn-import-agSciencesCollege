@@ -81,7 +81,7 @@
                             </td>
                             <td align="center" valign="middle"> 
                                 <form tal:attributes="action view/commitUrl" method="post">
-                                    <input type="submit" value="Commit" />
+                                    <input type="submit" value="Save" />
                                 </form>
                             </td>
                         </tr>                        

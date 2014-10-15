@@ -1,3 +1,4 @@
+from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from zope.component import getUtility
 from zope.component import getMultiAdapter
@@ -113,4 +114,7 @@ class LeadImageViewlet(ViewletBase):
             return "contentLeadImageContainer"
 
     def allowCrop(self):
-        return self.context.restrictedTraverse('@@crop-image').allowCrop()
+        try:
+            return self.context.restrictedTraverse('@@crop-image').allowCrop()
+        except Unauthorized:
+            return False

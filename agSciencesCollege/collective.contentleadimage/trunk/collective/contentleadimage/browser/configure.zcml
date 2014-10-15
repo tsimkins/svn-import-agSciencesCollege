@@ -29,52 +29,6 @@
         layer="..interfaces.ILeadImageSpecific"
         file="contentleadimage.css" />
    
-   <!-- Standard View -->
-    <browser:page
-         for="Products.Archetypes.interfaces.IBaseFolder"
-         name="folder_leadimage_view"
-         class=".folder_leadimage_view.FolderLeadImageView"
-         template="folder_leadimage_view.pt"
-         layer="..interfaces.ILeadImageSpecific"
-         permission="zope2.View"
-    />
-    
-    <browser:menuItem
-        for="Products.Archetypes.interfaces.IBaseFolder"
-        menu="plone_displayviews"
-        title="Folder lead-image view"
-        action="folder_leadimage_view"
-        layer="..interfaces.ILeadImageSpecific"
-        description="View with lead images displayed"
-    />
-   
-    <browser:page
-         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-         name="folder_leadimage_view"
-         class=".folder_leadimage_view.FolderLeadImageView"
-         template="folder_leadimage_view.pt"
-         layer="..interfaces.ILeadImageSpecific"
-         permission="zope2.View"
-     />
-    
-    <browser:menuItem
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        menu="plone_displayviews"
-        title="Folder lead-image view"
-        action="folder_leadimage_view"
-        layer="..interfaces.ILeadImageSpecific"
-        description="View with lead images displayed"
-    />
-
-    <!-- Summary View -->
-    <browser:page
-         for="Products.Archetypes.interfaces.IBaseFolder"
-         name="folder_leadimage_listing"
-         class=".folder_leadimage_listing.FolderLeadImageListing"
-         template="folder_leadimage_listing.pt"
-         layer="..interfaces.ILeadImageSpecific"
-         permission="zope2.View"
-    />
 
     <!-- Cropped Image --> 
 
@@ -87,31 +41,14 @@
         permission="cmf.ModifyPortalContent"
     />
 
-    <browser:menuItem
-        for="Products.Archetypes.interfaces.IBaseFolder"
-        menu="plone_displayviews"
-        title="Folder lead-image listing"
-        action="folder_leadimage_listing"
-        layer="..interfaces.ILeadImageSpecific"
-        description="View with lead images displayed"
-    />
-   
     <browser:page
-         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-         name="folder_leadimage_listing"
-         class=".folder_leadimage_listing.FolderLeadImageListing"
-         template="folder_leadimage_listing.pt"
-         layer="..interfaces.ILeadImageSpecific"
-         permission="zope2.View"
-     />
-    
-    <browser:menuItem
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        menu="plone_displayviews"
-        title="Folder lead-image listing"
-        action="folder_leadimage_listing"
-        layer="..interfaces.ILeadImageSpecific"
-        description="View with lead images displayed as Summary View"
+        for="*"
+        name="croppable"
+        template="templates/croppable.pt"
+        class=".views.CroppableImages"
+        layer="Products.agCommon.browser.interfaces.IThemeSpecific"
+        permission="zope2.View"
     />
+
 
 </configure>

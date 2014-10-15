@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+  <head><title></title></head>
+
+  <body>
+
+    <metal:fill fill-slot="portal-columns">
+        <div id="portal-columns">
+            <div id="portal-column-content">
+                <div id="content"
+                    tal:define="folderContents view/getFolderContents">
+                    <h1 class="documentFirstHeading noBreadcrumbs">Croppable Images</h1>
+
+                    <p><a tal:attributes="href context/absolute_url">Back to <strong tal:content="context/Title" /></a></p>
+
+        <metal:listingmacro define-macro="listing">
+            <metal:block use-macro="context/@@folder_listing_z3/macros/content-core">
+                <metal:entries fill-slot="entries">
+                    <metal:block use-macro="context/@@folder_listing_z3/macros/entries">
+                        <metal:entry fill-slot="entry">
+                    <div tal:attributes="class python: view.getItemClass(item, layout)">
+
+                        <div class="contentLeadImageContainer">
+                            <tal:leadimage metal:use-macro="context/folder_listing_z3/macros/leadimage" />
+                        </div>
+
+                        <div class="tileHeadline"
+                            metal:define-macro="listitem">
+
+                            <a href="#"
+                               tal:attributes="class string: summary url ${item_wf_state_class};
+                                               href string:${item_url}/@@crop-image"
+                               tal:content="item_title_or_id">
+                                Item Title
+                            </a>
+                        </div>
+
+                        <tal:event condition="python: item_type == 'Event'">
+                            <div class="tileEvent">
+                                 <div metal:use-macro="here/@@folder_listing_z3/macros/event_date" />
+                            </div>
+                        </tal:event>
+
+                        <div class="tileBody" tal:condition="python: item_type != 'FSDPerson'">
+                            <p tal:omit-tag="" tal:condition="not:item_description">
+                                &nbsp;
+                            </p>
+                            <p tal:content="item_description"
+                                    tal:condition="item_description">
+                                description
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="visualClear"><!-- --></div>
+                        </metal:entry>
+                    </metal:block>
+                </metal:entries>
+            </metal:block>
+        </metal:listingmacro>
+
+                </div>
+            </div>
+        </div>
+    </metal:fill>
+  </body>
+</html>
