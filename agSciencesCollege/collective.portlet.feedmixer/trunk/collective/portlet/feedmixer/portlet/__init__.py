@@ -89,7 +89,10 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
+      try:
         return bool(self.entries)
+      except:
+        return False
 
     @property
     def title(self):
