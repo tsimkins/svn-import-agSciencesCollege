@@ -694,7 +694,7 @@ table td.footer .email-footer h2 {
         </table>
 
         <ul tal:condition="not:notEditor" class="nobullet inline">
-            <li><input type="submit" value="Submit"></li>
+            <li><input type="submit" value="Save"></li>
         </ul>
 
     </tal:listing>
