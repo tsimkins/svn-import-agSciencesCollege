@@ -1065,6 +1065,12 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     width: 90.483724194536468%;
 }
 
+#rightcolumn .linkButton .portletItem a,
+#rightcolumn .linkButton .portletItem a:hover {
+    font-size: 0.875em;
+    line-height: 1.4375em;
+}
+
 #portlets-mobile .linkButton dd.internal-link a,
 #portal-column-one .linkButton dd.internal-link a,
 #portal-column-two .linkButton dd.internal-link a,
