@@ -248,12 +248,7 @@
     div.FooterPortletManager2,
     div.FooterPortletManager3,
     div.FooterPortletManager4,
-    div.FooterPortletManager5,
-    div.AbovePortletManager1,
-    div.AbovePortletManager2,
-    div.AbovePortletManager3,
-    div.AbovePortletManager4,
-    div.AbovePortletManager5 {
+    div.FooterPortletManager5 {
     	width: 48.4375%; /* ((768 - 24)/2)/768 */
     	float: left;
     	padding: 0.5em 0.78125%;  /* 6/768 */
