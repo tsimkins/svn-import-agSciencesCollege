@@ -1251,9 +1251,13 @@ jq(window).load(function() {
             }
             else if (jq(el).parents("#portlets-above").size())
             {
-                return "Content Well";
+                return "Content Well (Above Content)";
             }
             else if (jq(el).parents("#portlets-below").size())
+            {
+                return "Content Well (Below Content)";
+            }
+            else if (jq(el).parents("#portlets-footer").size())
             {
                 return "Footer";
             }
@@ -1327,7 +1331,7 @@ jq(window).load(function() {
             function() {
                 var button_title = getButtonTitle(this);
                 
-                _gaq.push(['_trackEvent', 'Top Navigation', button_title]);
+                _gaq.push(['_trackEvent', 'Top Navigation', button_title, 'Top Navigation']);
             }
         );
 
@@ -1448,7 +1452,7 @@ jq(window).load(function() {
         // PDF tracking
         jq('#addthis .pdf a').click(
             function() {
-                _gaq.push(['_trackEvent', 'AddThis', 'Download PDF']);
+                _gaq.push(['_trackEvent', 'AddThis', 'Download PDF', 'Download PDF']);
             }
         );
     }

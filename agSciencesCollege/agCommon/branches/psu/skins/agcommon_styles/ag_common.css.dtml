@@ -788,9 +788,9 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
     margin-top: 0.5em;
 }
 
-#portal-column-one dl.portletfeedmixer .rssImage img,
-#portal-column-two dl.portletfeedmixer .rssImage img,
-#portlets-mobile dl.portletfeedmixer .rssImage img{
+#portal-column-one dl.portletfeedmixerimagelarge .rssImage img,
+#portal-column-two dl.portletfeedmixerimagelarge .rssImage img,
+#portlets-mobile dl.portletfeedmixerimagelarge .rssImage img {
     max-width: 100%;
     width: 100%;
 }
@@ -1270,7 +1270,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portal-column-two .portletHeader {
     background-color: transparent;
-    color: #4B4B4B;
+    color: #ac5209;
     font-weight: bold;
     padding: 0.1875em 0 0 0;
     text-align: left;

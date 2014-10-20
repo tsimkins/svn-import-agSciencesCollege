@@ -502,9 +502,9 @@
         display: none;
     }
 
-    #portal-column-one dl.portletfeedmixer .rssImage img,
-    #portal-column-two dl.portletfeedmixer .rssImage img,
-    #portlets-mobile dl.portletfeedmixer .rssImage img{
+    #portal-column-one dl.portletfeedmixerlarge .rssImage img,
+    #portal-column-two dl.portletfeedmixerlarge .rssImage img,
+    #portlets-mobile dl.portletfeedmixerlarge .rssImage img {
         max-width: 100%;
         width: auto;        
     }
