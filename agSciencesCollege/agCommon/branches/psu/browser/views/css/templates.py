@@ -119,6 +119,16 @@ portlet_item_css = """
 """
 
 contentwellportlet_css = """
+#content #portlets-above .navTreeItem a:hover, 
+#content #portlets-above dd.portletItem .navTreeItem a:hover {
+    background-color: transparent;
+}
+
+#content #portlets-above .navTreeItem a, 
+#content #portlets-above dd.portletItem .navTreeItem a {
+    padding: 0;
+}
+
 #content #portlets-above {
     display: block;
     margin-left: -%(container_margin)0.6f%%;
