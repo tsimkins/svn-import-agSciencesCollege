@@ -770,7 +770,9 @@ class FactsheetPDFView(FolderView):
         leadImage_field = self.context.getField(IMAGE_FIELD_NAME)
         leadImage_caption_field = self.context.getField(IMAGE_CAPTION_FIELD_NAME)
 
-        if leadImage_field and leadImage_caption_field:
+        show_leadimage = getattr(self.context, 'show_leadimage_context', True)
+
+        if show_leadimage and leadImage_field and leadImage_caption_field:
             leadImage = leadImage_field.get(self.context)
             leadImage_caption = leadImage_caption_field.get(self.context)
             if leadImage.get_size():
