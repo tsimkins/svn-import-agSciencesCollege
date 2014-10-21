@@ -2851,7 +2851,7 @@ div.overlay-iframe, div.overlay-ajax {
 /* table header background for plain table */
 
 table.plain th {
-    background-color: #F5F5F5;
+    background-color: #DDDDDD;
 }
 
 table.plain {
@@ -2861,6 +2861,10 @@ table.plain {
 
 table.plain th, table.plain td {
     padding: 0.25em 0.5em;
+}
+
+table.plain .even {
+    background-color: #F9F9F9;
 }
 
 /* Disclaimer for factsheets */

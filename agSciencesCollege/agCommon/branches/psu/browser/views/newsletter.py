@@ -85,10 +85,6 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
     def portal(self):
         return getToolByName(self.context, 'portal_url').getPortalObject()
         
-    @property
-    def newsletter_title(self):
-        return getattr(self.newsletter, 'newsletter_title', self.newsletter.Title())
-
     def isEnabled(self, item):
 
         enabled_items = self.getEnabledUID()
@@ -301,14 +297,19 @@ class NewsletterView(AgCommonUtilities, LeadImageViewlet):
 
     @property
     def newsletter_title(self):
+
         newsletter = self.newsletter
         
-        title = self.context.Title()
-        
         if newsletter:
-            title = getattr(newsletter, 'newsletter_title', newsletter.Title())
+            newsletter_title = getattr(newsletter, 'newsletter_title', None)
 
-        return title
+            if newsletter_title:
+                return newsletter_title
+            
+            return self.newsletter.Title()
+        
+        else:
+            return self.context.Title()
 
     # If we have a @lists.psu.edu listserv, return the listserv name
 

@@ -152,8 +152,11 @@
                 <tr>
                     <td id="portal-column-content" 
                         valign="top" 
+                        tal:define="newsletter_full_text context/newsletter_full_text|nothing;
+                                    klass python: leadimage_full_width and 'large' or '';
+                                    klass python: newsletter_full_text and ('%s newsletter_full_text' % klass).strip() or klass;"
                         tal:attributes="width python:sr and '390' or '570';
-                                        class python: leadimage_full_width and 'large' or ''"
+                                        class klass"
                         cellspacing="0" cellpadding="15" bgcolor="#ffffff" align="left">
         
                         <metal:slot define-slot="body">

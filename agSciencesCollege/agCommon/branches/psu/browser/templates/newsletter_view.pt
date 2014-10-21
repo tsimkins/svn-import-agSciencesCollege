@@ -413,6 +413,21 @@ table td.footer .email-footer h2 {
     line-height: 12pt;
 }
 
+td#portal-column-content.newsletter_full_text {
+    font-size: 10pt;
+}
+
+td#portal-column-content.newsletter_full_text .documentDescription {
+    font-size: 12pt;
+    line-height: 13.5pt;
+    margin-top: 6pt;
+    font-weight: normal;
+}
+
+td#portal-column-content.newsletter_full_text h3.tileHeadline {
+    font-size: 14pt;
+    line-height: 17pt;
+}
 
 </style>
 
@@ -772,7 +787,8 @@ table td.footer .email-footer h2 {
                                     show_date context/show_date|nothing;
                                     navigation_root_url context/@@plone_portal_state/navigation_root_url;
                                     pas_member context/@@pas_member;
-                                    leadimage_full_width context/leadimage_full_width|nothing;"
+                                    leadimage_full_width context/leadimage_full_width|nothing;
+                                    newsletter_full_text context/newsletter_full_text|nothing"
                                     condition="notEditor">
                     <tal:listing condition="batch">
 
@@ -812,13 +828,14 @@ table td.footer .email-footer h2 {
                                         </p>
                                     </tal:image>
 
-                                    <h3>
+                                    <h3 class="tileHeadline">
 
                                     <tal:image
+                                         tal:define="scale python: newsletter_full_text and 'mini' or 'micro'"
                                          tal:condition="not:leadimage_full_width">
                                             <img align="right"
                                                  tal:condition="exists:item_has_leadimage"
-                                                 tal:replace="structure python:view.tag(item_object, scale='micro', css_class='leadimage')" />
+                                                 tal:replace="structure python:view.tag(item_object, scale=scale, css_class='leadimage')" />
                                     </tal:image>
 
                                     <span tal:condition="python: not view.isSpotlight(item) and view.showSummary" tal:content="string:${repeat/item/number}." />
@@ -836,14 +853,26 @@ table td.footer .email-footer h2 {
                                     <metal:event use-macro="context/folder_listing_z3/macros/event_date" />
                                 </div>
 
-                                <p tal:condition="item_description|nothing">
+                                <p class="documentDescription" tal:condition="item_description|nothing">
 
                                     <span tal:replace="item_description" />
+                                    <tal:more condition="not: newsletter_full_text">
                                     [<a href="#"
                                         tal:attributes="href item_url;
                                                         class string:$item_type_class $item_wf_state_class url utm_newsletter_more"
                                         >more</a>]
+                                    </tal:more>
                                 </p>
+
+                                <tal:fulltext condition="newsletter_full_text">
+                                    <div class="documentText" 
+                                         tal:condition="item_object/getText|nothing">
+                                        <metal:field 
+                                               use-macro="python:item_object.widget('text', mode='view')">
+                                            Body text
+                                        </metal:field>
+                                    </div>
+                                </tal:fulltext>
 
                                 <br class="separator"
                                     tal:condition="not: context/leadimage_full_width|nothing" >
