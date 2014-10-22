@@ -547,3 +547,17 @@ def getSavedFormInputForEdit(self, **kwargs):
     sbuf.close()
 
     return res
+
+
+# Make unicode friendly
+# Products.Archetypes.Field.LinesField
+
+def lines_field_get_size(self, instance):   
+    """Get size of the stored data used for get_size in BaseObject
+    """
+    size=0
+    for line in self.get(instance):
+        size+=len(safe_unicode(line))
+    return size
+
+

@@ -484,6 +484,16 @@
         original="queryCatalog"
         />
 
+    <!-- Fix get_size str call in LinesField -->
+    
+    <monkey:patch
+        description="Fix get_size str call in LinesField"
+        class="Products.Archetypes.Field.LinesField"
+        replacement=".patch.lines_field_get_size"
+        original="get_size"
+        />
+
+
     <!-- Make HomePage/Section/Subsite/Blog types not allow comments on themselves, period. -->
 
     <five:implements
