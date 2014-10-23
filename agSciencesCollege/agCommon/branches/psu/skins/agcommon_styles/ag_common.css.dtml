@@ -3739,6 +3739,18 @@ body.custom-no-icons .documentByLine {
     cursor: pointer; 
 }
 
+/* Unbold labels for checkboxes and radio buttons */
+
+div.ArchetypesMultiSelectionValue label,
+div.ArchetypesSelectionWidget label {
+    font-weight: normal;
+}
+
+div.ArchetypesMultiSelectionValue,
+div.ArchetypesSelectionWidget input {
+    margin-left: 1em;
+}
+
 /* YOUR CSS RULES STOP HERE */
 
 /* </dtml-with> */
