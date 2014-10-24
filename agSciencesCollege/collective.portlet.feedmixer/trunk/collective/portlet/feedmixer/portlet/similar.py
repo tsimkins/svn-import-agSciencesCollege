@@ -92,7 +92,7 @@ class Renderer(_Renderer):
             return []
 
         feeds=[
-            self.getFeed(url="/".join(self.context.getPhysicalPath()), collection=True)
+            self.getFeed(url='%s/@@similar_item_rss' % '/'.join(self.context.getPhysicalPath()), collection=True)
         ]
 
         entries=self.mergeEntriesFromFeeds(feeds)
