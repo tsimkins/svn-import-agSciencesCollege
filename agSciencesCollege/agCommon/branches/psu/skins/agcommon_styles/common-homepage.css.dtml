@@ -137,8 +137,8 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 }
 
 #content #homepage-text .documentDescription {
-    margin-bottom: 1em;
-    font-size: 0.90625em;
+    margin-bottom: 0;
+    font-size: 1em;
     color: #3F3F3F;
 }
 
@@ -149,6 +149,7 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
 /* ================= Columns ===================== */
 #centercolumn {
     padding-bottom: 0.25em;
+    padding-top: 1em;
     margin: 0 2.148997134670487%;
     width: 95.702005730659026%;
     display: block;
@@ -158,7 +159,7 @@ body.template-atct_edit #portal-column-content .documentEditable #content {
     float: left;
     width: 66.762178%;  /* (496-2*15)/698 */
     margin: 0 2.148997%; /* 15/698 */
-    padding: 0;
+    padding: 1em 0 0 0;
 }
 
 /* ================= Portlet headers ===================== */
@@ -193,6 +194,15 @@ http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-
     margin: 0.625em 0 0.625em 0;
     width: 100%;
     text-align: left;
+}
+
+#rightcolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage {
+    margin-bottom: 0.125em;
+}
+
+#rightcolumn.agCommonPortlet .portletfeedmixerimagelarge .portletItem .rssImage img {
+    width: 100%;
+    max-width: 100%;
 }
 
 #centercolumn.agCommonPortlet .portletfeedmixer .portletItem .rssImage {
@@ -259,7 +269,7 @@ http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-
 #rightcolumn {
     display: block;
     margin: 0 2.148997%; /* 15/698 */
-    padding: 0;
+    padding: 1em 0 0 0;
     font-weight: normal;
     background-color: transparent;
     color: &dtml-frontRightPortletTextColor;;
@@ -353,10 +363,6 @@ body.homepage-portlet-format-tile #content #portlets-above {
     display: block;
     margin-left: 1.66852%;
     margin-right: 1.66852%;
-}
-
-body.homepage-portlet-format-standard #content {
-    margin-top: 1em;
 }
 
 /* YOUR CSS RULES STOP HERE */

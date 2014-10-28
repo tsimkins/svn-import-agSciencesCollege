@@ -1184,7 +1184,11 @@ jq(document).ready(
         if (! jq('#portal-personaltools').size())
         {
             utm = getUTM(document.location.hostname, "footer navigation", undefined, undefined);
+            applyUTM('#portlets-footer a', utm);
+
+            utm = getUTM(document.location.hostname, "below content", undefined, undefined);
             applyUTM('#portlets-below a', utm);
+
         }
     }
 );

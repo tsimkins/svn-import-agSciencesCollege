@@ -1718,11 +1718,18 @@ body.template-person_view #content h3 {
     border-bottom: none;
 }
 
-#addthis div.pdf {
+#addthis div.pdf,
+#addthis div.order {
     margin: 0.5em 0 0.25em 0;
 }
 
-#addthis div.pdf a {
+#addthis div.order {
+    margin-top: 0;
+}
+
+
+#addthis div.pdf a,
+#addthis div.order a {
     font-size: 0.9375em;
     color: &dtml-linkColor;;
     display: block;
@@ -1762,26 +1769,37 @@ body.template-person_view #content #addthis h2,
 }
 
 #addthis .addthis_toolbox a.addthis_button_email > span { 
-    background-position: 0 0; width: 16px; height: 16px; 
-} 
-
+    background-position: 0 0; 
+    width: 16px; height: 16px; 
+}
+ 
 #addthis .addthis_toolbox a.addthis_button_facebook > span { 
-    background-position: 0 -66px; width: 16px; height: 16px; 
-} 
-
+    background-position: 0 -66px; 
+    width: 16px; height: 16px; 
+}
+ 
 #addthis .addthis_toolbox a.addthis_button_print > span { 
-    background-position: 0 -198px; width: 16px; height: 16px; 
-} 
-
+    background-position: 0 -264px; 
+    width: 16px; height: 16px; 
+}
+ 
 #addthis .addthis_toolbox a.addthis_button_rss > span { 
-    background-position: 0 -264px; width: 16px; height: 16px; 
-} 
-
+    background-position: 0 -330px; 
+    width: 16px; height: 16px; 
+}
+ 
 #addthis .addthis_toolbox a.addthis_button_twitter > span { 
-    background-position: 0 -330px; width: 16px; height: 16px; 
-} 
+    background-position: 0 -396px; 
+    width: 16px; height: 16px; 
+}
 
 #addthis .addthis_toolbox a.addthis_button_pdf > span {
+    background-position: right -198px;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+
+#addthis .addthis_toolbox a.addthis_button_order > span{
     background-position: right -132px;
     background-repeat: no-repeat;
     padding-right: 20px;
@@ -3141,11 +3159,11 @@ body.template-folder_full_view #content .documentText h3 {
 
 /* Contact Information (contributors) */
 
-.documentContributors {
+.documentContributors, .publication {
     font-size: 0.875em;
 }
 
-#content .documentContributors h2 {
+#content .documentContributors h2, #content .publication h2 {
     color: &dtml-documentSubHeadingColor;;
     margin: 1.125em 0 0.375em 0;
     font-size: 1.375em;
@@ -3477,6 +3495,10 @@ form.searchPage {
     padding-top: 0.75em;
 }
 
+.searchResults dd {
+    margin: 0 0 2.5em 0;
+}
+
 #content .portletFooter a:hover {
     border: none;
     text-decoration: underline;
@@ -3699,7 +3721,8 @@ body.template-register_fg_base_view_p3 #addthis {
     margin: 0.5em 0 0 0;
 }
 
-div.publication {
+div.publication div,
+div.publication-details div {
     margin-bottom: 0.25em;
 }
 
@@ -3747,7 +3770,8 @@ div.ArchetypesSelectionWidget label {
 }
 
 div.ArchetypesMultiSelectionValue,
-div.ArchetypesSelectionWidget input {
+div.ArchetypesSelectionWidget input,
+div.ArchetypesSelectionWidget input.noborder {
     margin-left: 1em;
 }
 

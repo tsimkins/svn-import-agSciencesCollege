@@ -395,7 +395,7 @@
         name="agcommon.publicationcode"
         for="agsci.ExtensionExtender.interfaces.IExtensionPublicationExtender"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class=".viewlets.PublicationCode"
+        class=".viewlets.PublicationCodeViewlet"
         template="templates/publication_code.pt"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
@@ -405,8 +405,36 @@
         name="agcommon.publicationcode"
         for="agsci.UniversalExtender.interfaces.IUniversalPublicationExtender"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-        class=".viewlets.PublicationCode"
+        class=".viewlets.PublicationCodeViewlet"
         template="templates/publication_code.pt"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Order Publication View -->
+    <browser:page
+        name="order"
+        for="agsci.UniversalExtender.interfaces.IUniversalPublicationExtender"
+        class=".views.PublicationView"
+        template="templates/order_publication.pt"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <browser:page
+        name="order"
+        for="agsci.UniversalExtender.interfaces.IFilePublicationExtender"
+        class=".views.PublicationView"
+        template="templates/order_publication.pt"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />
+        
+    <browser:page
+        name="order"
+        for="agsci.ExtensionExtender.interfaces.IExtensionPublicationExtender"
+        class=".views.PublicationView"
+        template="templates/order_publication.pt"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
         />
@@ -717,7 +745,7 @@
     <browser:page
         for="agsci.UniversalExtender.interfaces.IFilePublicationExtender"
         name="file_view"
-        class=".views.PublicationFileView"
+        class=".views.PublicationView"
         template="templates/publication_file_view.pt"
         layer=".interfaces.IThemeSpecific"
         permission="zope2.View"

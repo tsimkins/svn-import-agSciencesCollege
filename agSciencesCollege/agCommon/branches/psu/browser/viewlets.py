@@ -8,7 +8,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.ContentWellPortlets.browser.viewlets import ContentWellPortletsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile, ZopeTwoPageTemplateFile
 from Products.agCommon import getContextConfig, scrubPhone
-from Products.agCommon.browser.views import FolderView
+from Products.agCommon.browser.views import FolderView, PublicationView
 from agsci.subsite.content.interfaces import ISection, ISubsite
 from cgi import escape
 from collective.contentleadimage.browser.viewlets import LeadImageViewlet
@@ -35,22 +35,6 @@ try:
     from agsci.ExtensionExtender.counties import data as county_data
 except ImportError:
     county_data = {}
-
-try:
-    from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
-except ImportError:
-    class IExtensionPublicationExtender(Interface):
-        """
-            Placeholder interface
-        """
-
-try:
-    from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
-except ImportError:
-    class IUniversalPublicationExtender(Interface):
-        """
-            Placeholder interface
-        """
 
 
 from zope.publisher.interfaces.browser import IBrowserView,IDefaultBrowserLayer
@@ -314,34 +298,26 @@ class FlexsliderViewlet(HomepageImageViewlet, FolderView):
             return "sequential"
 
 
-class AddThisViewlet(AgCommonViewlet):   
+class PublicationCodeViewlet(AgCommonViewlet, PublicationView):
+
+    def show_viewlet(self):
+        return (self.publication_code or self.publication_series)
+
+class AddThisViewlet(PublicationCodeViewlet):   
     index = ViewPageTemplateFile('templates/addthis.pt')
 
     def update(self):
+        pass
 
+    @property
+    def isSyndicationAllowed(self):
         syntool = getToolByName(self.context, 'portal_syndication')
-
-        self.isSyndicationAllowed = syntool.isSyndicationAllowed(self.context)
-
-        portal_type = getattr(self.context, 'portal_type', None)
-
-        if portal_type == 'FSDPerson':
-            self.isPerson = True
-        else:
-            self.isPerson = False
+        return syntool.isSyndicationAllowed(self.context)
         
-        # Integrate Extension PDF download
-        self.downloadPDF = False
-        if IExtensionPublicationExtender.providedBy(self.context) or IUniversalPublicationExtender.providedBy(self.context):
-            if hasattr(self.context, 'extension_publication_file') and self.context.extension_publication_file:
-                self.downloadPDF = True
-                self.pdf_url = '%s/extension_publication_file' % self.context.absolute_url()
-            elif hasattr(self.context, 'extension_publication_url') and self.context.extension_publication_url:
-                self.downloadPDF = True
-                self.pdf_url = self.context.extension_publication_url
-            elif hasattr(self.context, 'extension_publication_download') and self.context.extension_publication_download:
-                self.downloadPDF = True
-                self.pdf_url = '%s/pdf_factsheet' % self.context.absolute_url()
+    @property
+    def isPerson(self):
+        portal_type = getattr(self.context, 'portal_type', None)
+        return (portal_type == 'FSDPerson')
 
     @property
     def hide_addthis(self):
@@ -944,29 +920,6 @@ class ContentRelatedItems(ContentRelatedItemsBase):
         if self.related_items():
             return getattr(self.context, 'show_related_items', True)
         return False
-
-class PublicationCode(AgCommonViewlet):
-
-    @property
-    def publication_code(self):
-        return getattr(self.context, 'extension_publication_code', None)
-
-    @property
-    def publication_series(self):
-        return getattr(self.context, 'extension_publication_series', None)
-    
-    def show_viewlet(self):
-        return (self.publication_code or self.publication_series)
-
-    def xrender(self):
-        publication_code = getattr(self.context, 'extension_publication_code', None)
-        publication_series = getattr(self.context, 'extension_publication_code', None)
-        if hasattr(self.context, 'extension_publication_code'):
-            code = self.context.extension_publication_code
-            if code:
-                return """<div><h2 class="inline">Publication Code:</h2> %s</div>""" % code
-        return ""
-
 
 # provideAdapter for viewlets to be registered in standalone mode
 

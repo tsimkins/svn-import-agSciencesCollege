@@ -35,6 +35,22 @@ except ImportError:
     def PdfFileReader(*args, **kwargs):
         return None
 
+try:
+    from agsci.ExtensionExtender.interfaces import IExtensionPublicationExtender
+except ImportError:
+    class IExtensionPublicationExtender(Interface):
+        """
+            Placeholder interface
+        """
+
+try:
+    from agsci.UniversalExtender.interfaces import IUniversalPublicationExtender
+except ImportError:
+    class IUniversalPublicationExtender(Interface):
+        """
+            Placeholder interface
+        """
+
 """
     Interface Definitions
 """
@@ -478,26 +494,6 @@ class ModifiedSharingView(SharingView):
 
         return current_settings
 
-class PublicationFileView(FolderView):
-
-    def getPDF(self):
-
-       if self.context.getContentType() in ['application/pdf']:
-            file = self.context.getFile()
-            file_data = StringIO(file.data)
-            return PdfFileReader(file_data)
-        
-       return None
-
-    def getNumPages(self):
-
-        pdf = self.getPDF()
-        
-        if pdf:
-            return pdf.getNumPages()
-        
-        return None
-
 class RSSTemplateView(FolderView):
 
     pass
@@ -527,3 +523,75 @@ class AnnualEventRedirect(FolderView):
                 RESPONSE.setHeader('Cache-Control', 'max-age=0, s-maxage=300, must-revalidate, public, proxy-revalidate')
         
             return getMultiAdapter((self.context, self.request), name=u'agenda_view')()
+
+
+class PublicationView(FolderView):
+
+    @property
+    def publication_code(self):
+        return getattr(self.context, 'extension_publication_code', None)
+
+    @property
+    def publication_series(self):
+        return getattr(self.context, 'extension_publication_series', None)
+
+    @property
+    def publication_cost(self):
+        return getattr(self.context, 'extension_publication_cost', None)
+
+    @property
+    def publication_for_sale(self):
+        return getattr(self.context, 'extension_publication_for_sale', None)
+
+    @property
+    def contact_pdc(self):
+        return getattr(self.context, 'extension_publication_contact_pdc', None)
+
+    @property
+    def orderPublication(self):
+        return getattr(self.context, 'extension_publication_contact_pdc', False)
+
+    @property
+    def order_url(self):
+        return '%s/order' % self.context.absolute_url()
+
+        
+    @property
+    def downloadPDF(self):
+        return (self.pdf_url != '')
+
+    @property
+    def pdf_url(self):
+
+        # Integrate Extension PDF download
+        if IExtensionPublicationExtender.providedBy(self.context) or IUniversalPublicationExtender.providedBy(self.context):
+            if hasattr(self.context, 'extension_publication_file') and self.context.extension_publication_file:
+                return '%s/extension_publication_file' % self.context.absolute_url()
+            elif hasattr(self.context, 'extension_publication_url') and self.context.extension_publication_url:
+                return self.context.extension_publication_url
+            elif hasattr(self.context, 'extension_publication_download') and self.context.extension_publication_download:
+                return '%s/pdf_factsheet' % self.context.absolute_url()
+
+        return ''
+
+
+    def page_title(self):
+        return 'Order Publication: %s' % self.context.Title()
+
+    def getPDF(self):
+
+       if self.context.getContentType() in ['application/pdf']:
+            file = self.context.getFile()
+            file_data = StringIO(file.data)
+            return PdfFileReader(file_data)
+        
+       return None
+
+    def getNumPages(self):
+
+        pdf = self.getPDF()
+        
+        if pdf:
+            return pdf.getNumPages()
+        
+        return None
