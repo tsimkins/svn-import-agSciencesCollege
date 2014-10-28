@@ -20,7 +20,11 @@
 
                     <p><a tal:attributes="href context/absolute_url">Back to <strong tal:content="context/Title" /></a></p>
 
-        <metal:listingmacro define-macro="listing">
+        <p tal:condition="not:folderContents">
+            No images to crop.
+        </p>
+
+        <metal:listingmacro define-macro="listing" tal:condition="folderContents">
             <metal:block use-macro="context/@@folder_listing_z3/macros/content-core">
                 <metal:entries fill-slot="entries">
                     <metal:block use-macro="context/@@folder_listing_z3/macros/entries">
