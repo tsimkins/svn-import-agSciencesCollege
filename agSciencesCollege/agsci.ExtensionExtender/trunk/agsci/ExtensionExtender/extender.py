@@ -272,23 +272,23 @@ class ExtensionExtender(object):
                 ),
             ),
             _ExtensionBooleanField(
-                "extension_publication_for_sale",
-                schemata="Publication",
-                required=False,
-                default=False,
-                widget=BooleanWidget(
-                    label=u"Publication For Sale",
-                    description=u"",
-                    condition="python:member.has_role('Manager', object)",
-                ),
-            ),
-            _ExtensionBooleanField(
                 "extension_publication_contact_pdc",
                 schemata="Publication",
                 required=False,
                 default=False,
                 widget=BooleanWidget(
                     label=u"Contact PDC",
+                    description=u"",
+                    condition="python:member.has_role('Manager', object)",
+                ),
+            ),
+            _ExtensionBooleanField(
+                "extension_publication_for_sale",
+                schemata="Publication",
+                required=False,
+                default=False,
+                widget=BooleanWidget(
+                    label=u"Publication For Sale",
                     description=u"",
                     condition="python:member.has_role('Manager', object)",
                 ),
