@@ -40,6 +40,10 @@
                     <div tal:condition="python: view.publication_for_sale and view.publication_cost">
                         <h3 class="inline">Cost</h3> $<span tal:replace="view/publication_cost" />
                     </div>
+
+                    <div tal:condition="python: view.contact_pdc and not view.publication_for_sale">
+                        <h3 class="inline">Cost</h3> Free
+                    </div>
     
                 </metal:publication>
             </div>            
