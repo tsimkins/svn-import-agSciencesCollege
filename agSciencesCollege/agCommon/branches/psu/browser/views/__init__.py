@@ -574,10 +574,6 @@ class PublicationView(FolderView):
 
         return ''
 
-
-    def page_title(self):
-        return 'Order Publication: %s' % self.context.Title()
-
     def getPDF(self):
 
        if self.context.getContentType() in ['application/pdf']:
@@ -595,3 +591,8 @@ class PublicationView(FolderView):
             return pdf.getNumPages()
         
         return None
+
+class OrderPublicationView(PublicationView):
+
+    def page_title(self):
+        return 'Order Publication: %s' % self.context.Title()

@@ -415,7 +415,7 @@
     <browser:page
         name="order"
         for="agsci.UniversalExtender.interfaces.IUniversalPublicationExtender"
-        class=".views.PublicationView"
+        class=".views.OrderPublicationView"
         template="templates/order_publication.pt"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
