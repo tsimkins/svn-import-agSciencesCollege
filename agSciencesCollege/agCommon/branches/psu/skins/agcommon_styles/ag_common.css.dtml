@@ -2119,11 +2119,15 @@ div.comment img.avatar {
 }
 
 .listingBar span.next, .listingNext  {
-    width: 48%;
+    max-width: 48%;
+    margin-left: 2%;
+    display: block;
 }
 
 .listingBar span.previous, .listingPrevious {
-    width: 48%;
+    max-width: 48%;
+    margin-right: 2%;
+    display: block;
 }
 
 /* Related items */
