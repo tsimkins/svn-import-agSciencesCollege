@@ -16,9 +16,15 @@ class ImageFormatValidator:
     def __init__(self, name):
         self.name = name
     def __call__(self, value, *args, **kwargs):
+
+        if value == 'DELETE_IMAGE':
+            return 1
+
         content_type = value.headers.get('content-type', '')
+
         if content_type not in ('image/jpeg', 'image/png', 'image/gif'):
             return "Image should be a web-friendly format, such as JPG, PNG, or GIF"
+
         return 1
 
 validation.register(ImageFormatValidator('isValidImage'))
