@@ -292,8 +292,21 @@ http://www.mikepadgett.com/technology/technical/alternative-to-the-pie-clearfix-
     font-size: 1em;
 }
 
-#rightcolumn.agCommonPortlet .portletItem a.title {
+#rightcolumn.agCommonPortlet .portletItem a.title,
+#rightcolumn.agCommonPortlet .portletItem li.navTreeItem {
+    line-height: 1.25em;
     font-size: 0.84375em;
+    padding: 0;
+}
+
+#rightcolumn.agCommonPortlet .portletItem li.navTreeItem a {
+    margin: 0 0 1em 0;
+    padding: 0;
+}
+
+#rightcolumn .navTreeItem a:hover, 
+#rightcolumn dd.portletItem .navTreeItem a:hover {
+    background-color: transparent;
 }
 
 /* Hide Homepage Image on edit screen */
