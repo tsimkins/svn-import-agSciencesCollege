@@ -43,7 +43,7 @@
     }
 }
 
-/*------------------------ END rlarge-site.css ----------------------------*/
+/*------------------------ END large-site.css ----------------------------*/
 
 /*------------------------- resolution-890.css ------------------------------*/
 
@@ -502,6 +502,10 @@
     #portlets-mobile dl.portletfeedmixerlarge .rssImage img {
         max-width: 100%;
         width: auto;        
+    }
+    
+    body.homepage-portlet-format-tile #portal-column-content.s0 #content #homepage-text.sc {
+        margin-top: 0;
     }
 }
 
@@ -1394,6 +1398,11 @@
         display: none !important;
     }
 
+    #portal-column-content #content dl.people .portletItem a.imagelarge img.photo {
+        max-width: 75px;
+        margin-left: 5px;
+    }
+
 }    
 
 
@@ -1524,6 +1533,10 @@
     #content .searchResults dt.contenttype-fsdperson,
     #content .searchResults dd.contenttype-fsdperson {
         padding-left: 0;
+    }
+    
+    #content .tilePortletContainer .tilePortletManager dl.people .portletItem .person-image {
+        float: right;
     }
 
 }

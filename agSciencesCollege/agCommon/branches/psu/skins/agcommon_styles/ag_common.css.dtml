@@ -1365,6 +1365,14 @@ dl.people .portletItem img.photo {
     display: block;
 }
 
+#portal-column-content #content dl.people .portletItem a.imagelarge img.photo {
+    max-width: 150px;
+}
+
+#portal-column-content #content dl.people .portletItem a.imagesmall img.photo {
+    max-width: 75px;
+}
+
 dl.people .portletItem {
     margin-bottom: 0.75em;
     display: block;
@@ -2947,8 +2955,17 @@ body.template-agenda_view #document-toc h3 {
     border-bottom: 1px solid #DDDDDD;
 }
 
+#content .eventSummary a:hover span {
+    border-bottom: 1px solid #265FCF;
+}
+
 #content .eventSummary a {
     text-decoration: none;
+}
+
+#content .eventSummary .event_add_calendar a,
+#content .eventSummary .event_add_calendar a:hover {
+    border-bottom: none;
 }
 
 #content .eventSummary a.img {
