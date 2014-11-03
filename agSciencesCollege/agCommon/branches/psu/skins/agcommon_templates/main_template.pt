@@ -161,7 +161,7 @@
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
             <div id="portal-column-content"
-                tal:attributes="class python:(sl and sr and 'sl sr') or (sl and 'sl') or (sr and 'sr') or ''">
+                tal:attributes="class python:(sl and sr and 'sl sr') or (sl and 'sl') or (sr and 'sr') or 's0'">
 
               <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
