@@ -80,13 +80,6 @@
                     <metal:add_to_calendar define-macro="event_add_calendar">
                     <a class="img"
                         href="#"
-                        tal:attributes="href string:$here_url/vcs_view"
-                        title="Download this event in vCal format"
-                        i18n:attributes="title title_add_to_vcal;">
-                        <img tal:replace="structure context/icon_export_vcal.png" src=""
-                                alt="" /><span i18n:translate="label_add_to_vcal">vCal</span></a>
-                    <a class="img"
-                        href="#"
                         tal:attributes="href string:$here_url/ics_view"
                         title="Download this event in iCal format"
                         i18n:attributes="title title_add_to_ical;">
