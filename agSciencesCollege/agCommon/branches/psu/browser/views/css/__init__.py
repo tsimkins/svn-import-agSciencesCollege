@@ -78,9 +78,9 @@ class TileHomepage(CSSView):
         column_count = n
 
         if mq in ('TABLET'):
-            if n > 3:
+            if n >= 5:
                 column_count = 3
-            elif n > 2:
+            elif n == 4:
                 column_count = 2
         elif mq in ('BIGPHONE', 'SMALLPHONE'):
             column_count = 1
@@ -151,15 +151,7 @@ class TileHomepage(CSSView):
         for (mq, mq_format) in mq_list:
             css.append(mq_format % "\n".join(self.getBlockCSS(mq=mq)))
 
-        # Template is "Above".  Set both equal, and then find/replace above with
-        # below for below portlet manager.
-        above_css = below_css = "\n".join(css)
-        below_css = below_css.replace('#portlets-above', '#portlets-below')
-        below_css = below_css.replace('.AbovePortletManager', '.BelowPortletManager')
-                
         return """
         /* Automagically generated tile homepage css */
         %s
-        
-        %s
-        """ % (above_css, below_css)
+        """ % ("\n".join(css))
