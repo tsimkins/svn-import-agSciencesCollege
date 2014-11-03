@@ -1,4 +1,5 @@
 from zope import schema
+from zope.schema.vocabulary import SimpleVocabulary
 from zope.component import getMultiAdapter
 from zope.formlib import form
 from zope.interface import implements
@@ -44,6 +45,16 @@ class IPerson(IPortletDataProvider):
         required=True,
         default=False)
 
+    image_size = schema.Choice(
+            title=_(u"heading_image_size",
+                default=u"Image Size"),
+            description=_(u"description_image_size",
+                default=u""),
+            default='small',
+            required=True,
+            vocabulary=SimpleVocabulary.fromValues([u'small', u'large']),
+        )
+
     hide = schema.Bool(
         title=_(u"Hide portlet"),
         description=_(u"Tick this box if you want to temporarily hide "
@@ -60,9 +71,12 @@ class Assignment(base.Assignment):
     people = ""
     show_address = False
     show_image = False
+    image_size = u'small'
     hide = False
 
-    def __init__(self, header=u"", show_header=False, people=people, show_address=False, show_image=False, hide=False, *args, **kwargs):
+    def __init__(self, header=u"", show_header=show_header, people=people, 
+                 show_address=show_address, show_image=show_image, 
+                 image_size=image_size, hide=hide, *args, **kwargs):
         base.Assignment.__init__(self, *args, **kwargs)
         self.header = header
         self.show_header = show_header
@@ -70,6 +84,7 @@ class Assignment(base.Assignment):
         self.show_address = show_address
         self.show_image = show_image
         self.hide = hide
+        self.image_size = image_size
                 
     @property
     def title(self):
@@ -127,6 +142,19 @@ class Renderer(base.Renderer):
     def available(self):
         return not self.data.hide and self.people
 
+    @property
+    def image_size(self):
+        if self.data.image_size:
+            return self.data.image_size
+        else:
+            return 'small'
+
+    @property
+    def image_scale(self):
+        return {
+                'large' : 'normal',
+                'small' : 'thumb'
+        }.get(self.image_size, 'thumb')
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IPerson)
