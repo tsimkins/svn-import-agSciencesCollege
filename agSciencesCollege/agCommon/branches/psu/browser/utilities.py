@@ -257,6 +257,10 @@ class AgCommonUtilities(BrowserView):
         # Contents below folder
         if getattr(context, "listing_after_text", False):
             body_classes.append('listing-after-text')
+
+        # Contents below folder
+        if getattr(context, "hide_breadcrumbs", False):
+            body_classes.append('hide-breadcrumbs')
         
         # Panorama Image
         if getattr(context, 'portal_type', '') in ['HomePage']:
