@@ -207,7 +207,7 @@ class FSDPersonExtender(object):
         # Hide the administrative tabs for non-Managers
         # https://weblion.psu.edu/trac/weblion/wiki/FacultyStaffDirectoryExtender
 
-        for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
+        for hideme in ['User Settings', 'categorization', 'dates', 'ownership', 'settings', 'Employment Information']:
             for fieldName in schema.getSchemataFields(hideme):
                 fieldName.widget.condition="python:member.has_role('Manager', object) or member.has_role('Personnel Manager', object)"
 
