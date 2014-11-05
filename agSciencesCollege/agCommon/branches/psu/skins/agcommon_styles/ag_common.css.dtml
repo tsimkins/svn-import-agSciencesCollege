@@ -1047,12 +1047,16 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 
 #portlets-mobile .linkButton a,
 #portlets-mobile .linkButton a:hover,
+#portlets-mobile .linkButton a:visited,
 #portal-column-one .linkButton a,
-#portal-column-two .linkButton .portletItem a,
 #portal-column-one .linkButton a:hover,
+#portal-column-one .linkButton a:visited,
+#portal-column-two .linkButton .portletItem a,
 #portal-column-two .linkButton .portletItem a:hover,
+#portal-column-two .linkButton .portletItem a:visited,
 #rightcolumn .linkButton .portletItem a,
-#rightcolumn .linkButton .portletItem a:hover {
+#rightcolumn .linkButton .portletItem a:hover,
+#rightcolumn .linkButton .portletItem a:visited {
     text-decoration: none;
     display: block !important;
     color: &dtml-leftButtonTextColor_external;;
@@ -1069,6 +1073,7 @@ body.empty-top-navigation #portal-column-one .portletNavigationHeader {
 #rightcolumn .linkButton .portletItem a:hover {
     font-size: 0.875em;
     line-height: 1.4375em;
+    text-decoration: none !important;
 }
 
 #portlets-mobile .linkButton dd.internal-link a,
