@@ -154,6 +154,11 @@ class Newsletter(ATTopic):
                 and not criterion.value and key == 'end' and 'start' in result:
                     del result['start']
                 result[key] = value
+
+        # Fix sort_order if not reversed (e.g. blank) on this item
+        sc = self.getSortCriterion()
+        if sc and not sc.getReversed() and result.has_key('sort_order'):
+            del result['sort_order']
         return result
 
 registerType(Newsletter, PROJECTNAME)

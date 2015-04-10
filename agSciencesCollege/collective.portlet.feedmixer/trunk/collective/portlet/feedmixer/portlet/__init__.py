@@ -266,6 +266,11 @@ class Renderer(base.Renderer):
         else:
             return more_url
 
+    def fileinfo(self, entry):
+        if not (entry.get('agsci_ispublication', '') == 'True'):
+            return entry.get('agsci_fileinfo', None)
+        return None
+
     @property
     def feed_urls(self):
         if self.data.feeds:
@@ -483,6 +488,14 @@ class Renderer(base.Renderer):
 
         else:
             return None
+
+    @property
+    def portlet_hash(self):
+        return self.__portlet_metadata__.get('hash', '')
+
+    @property    
+    def context_path(self):
+        return '/'.join(self.context.getPhysicalPath())
 
 class AddForm(base.AddForm):
     """Portlet add form.

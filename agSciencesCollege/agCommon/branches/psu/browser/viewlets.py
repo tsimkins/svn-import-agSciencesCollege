@@ -41,6 +41,11 @@ from zope.publisher.interfaces.browser import IBrowserView,IDefaultBrowserLayer
 
 from Products.Five.browser import BrowserView
 
+class EmptyViewlet(ViewletBase):
+
+    def index(self):
+        return "<!-- This viewlet intentionally left blank. -->"
+
 class AgCommonViewlet(ViewletBase):
 
     def update(self):
@@ -890,6 +895,10 @@ class LocalSearchViewlet(SearchBoxViewlet):
         return sorted(county_data.keys())
 
     def searchURL(self):
+        anchor = ""
+        
+        if self.context.getLayout() in ['extension_course_view'] or 'courses' in self.context.Subject():
+            anchor = "#event-listing"
 
         default_search_url ='%s/search' % self.site_url
         localsearch_collection_path = self.context.getProperty('localsearch_collection_path', '')
@@ -901,9 +910,10 @@ class LocalSearchViewlet(SearchBoxViewlet):
                 parent = self.context.getParentNode()
                 
                 if self.context.getId() == parent.getDefaultPage():
-                    return parent.absolute_url()
+                    return '%s%s' % (parent.absolute_url(), anchor)
                 else:
-                    return self.context.absolute_url()
+                    return '%s%s' % (self.context.absolute_url(), anchor)
+
         elif localsearch_collection_path:
             if localsearch_collection_path.startswith('/'):
                 localsearch_collection_path = localsearch_collection_path[1:]

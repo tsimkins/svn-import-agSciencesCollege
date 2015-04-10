@@ -114,7 +114,7 @@
 
                             <img tal:replace="structure item_icon/html_tag" />
                             <a href="#"
-                               tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);
+                               tal:attributes="href python: view.getItemURL(item);
                                               class string: $item_wf_state_class url"
                                tal:content="item_title_or_id">
                                 Item Title
@@ -133,7 +133,6 @@
                                </tal:tags>
                             </p>
                        </tal:taglisting>
-
 
                        <tal:byline condition="show_about">
 
@@ -184,6 +183,15 @@
                              tal:condition="show_date"
                              tal:content="python:toLocalizedTime(item_effective,long_format=0)" />
                     </metal:show-date>
+
+                    <metal:info define-macro="item-info">
+
+                        <div class="discreet tileFileInfo"
+                             tal:define="item_info python:view.getItemInfo(item)"
+                             tal:condition="item_info"
+                             tal:content="item_info" />
+    
+                    </metal:info>
 
                     <div tal:define="dt_class python:test(item_description or item_type == 'Event', 'tileDescription', 'tileDescription no-description');"
                            tal:attributes="class dt_class">

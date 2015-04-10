@@ -8,6 +8,7 @@ from Products.CMFCore.utils import getToolByName
 from DateTime import DateTime
 from Products.agCommon import getContextConfig
 import HTMLParser
+from Products.CMFPlone.utils import safe_unicode
 
 try:
     from zope.app.component.hooks import getSite
@@ -89,7 +90,8 @@ class RegistrationView(BrowserView):
         if hasattr(event, 'free_registration_deadline'):
             registration_deadline = getattr(event, 'free_registration_deadline')
             if registration_deadline:
-                return (now < registration_deadline)
+                if now > registration_deadline:
+                    return False
 
         if now > event.end():
             return False
@@ -152,8 +154,8 @@ class RegistrationView(BrowserView):
 
     def unescapeHTML(self, e):
         h = HTMLParser.HTMLParser()
-        return h.unescape(e)
-        
+        return h.unescape(safe_unicode(e))
+
 
 class DownloadCSVView(RegistrationView):
     security = ClassSecurityInfo()
